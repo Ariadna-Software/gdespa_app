@@ -1,4 +1,4 @@
-# GDESPA_WAPP  
+# GDESPA_APP  
  Web application (GDES PANAMA project)
 
 ## License  
