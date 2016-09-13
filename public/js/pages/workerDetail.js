@@ -47,7 +47,10 @@ var workerDetailAPI = {
         self.state = ko.observable();
         self.userId = ko.observable(),
         self.phone = ko.observable(),
-        self.email = ko.observable()
+        self.email = ko.observable(),
+        self.code = ko.observable(),
+        self.position = ko.observable(),
+        self.department = ko.observable()
         // users combos
         self.optionsUsers = ko.observableArray([]);
         self.selectedUsers = ko.observableArray([]);
@@ -65,6 +68,9 @@ var workerDetailAPI = {
         vm.userId(data.user.id);
         vm.phone(data.phone);
         vm.email(data.email);
+        vm.code(data.code);
+        vm.position(data.position);
+        vm.department(data.department);
         workerDetailAPI.loadUsers(vm.userId());
     },
     // Validates form (jquery validate) 
@@ -127,7 +133,10 @@ var workerDetailAPI = {
                     id: vm.sUser()
                 },
                 phone: vm.phone(),
-                email: vm.email()
+                email: vm.email(),
+                code: vm.code(),
+                position: vm.position(),
+                department: vm.department()
             };
             var url = "", type = "";
             if (vm.id() == 0) {

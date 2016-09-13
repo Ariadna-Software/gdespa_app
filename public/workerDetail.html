@@ -29,7 +29,7 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
 	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-	
+
 
 	<!-- FAVICONS -->
 	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -193,7 +193,13 @@
 								<form id="workerDetail-form" class="smart-form">
 									<fieldset>
 										<div class="row">
-											<section class="col col-md-8">
+											<section class="col col-md-2">
+												<label class="label" data-i18n="workerDetail.code">Numero:</label>
+												<label class="input">
+													<input id="txtCode" name="txtCode" data-bind="value: code">
+												</label>
+											</section>
+											<section class="col col-md-6">
 												<label class="label" data-i18n="workerDetail.name">Nombre:</label>
 												<label class="input">
 													<input id="txtName" name="txtName" data-bind="value: name">
@@ -201,12 +207,25 @@
 											</section>
 											<section class="col col-md-4">
 												<label class="label" data-i18n="workerDetail.user">Usuario:</label>
-												<select style="width:100%;" id="cmbUsers" name="cmbUsers" 
-													data-bind="options: optionsUsers, optionsText: 'name', optionsValue: 'id', 
+												<select style="width:100%;" id="cmbUsers" name="cmbUsers" data-bind="options: optionsUsers, optionsText: 'name', optionsValue: 'id', 
 													value: sUser, valueAllowUnset: true, selectedOptions: selectedUsers, selected2:{}">
 												</select>
 											</section>
 										</div>
+										<div class="row">
+											<setion class="col col-md-6">
+												<label class="label" data-i18n="workerDetail.position">Cargo:</label>
+												<label class="input">
+													<input id="txtPosition" name="txtPosition" data-bind="value: position">
+												</label>
+											</setion>
+											<section class="col col-md-6">
+												<label class="label" data-i18n="workerDetail.department">Departamento:</label>
+												<label class="input">
+													<input id="txtDepartment" name="txtDepartment" data-bind="value: department">
+												</label>
+											</section>
+										</div>										
 										<div class="row">
 											<section class="col col-md-4">
 												<label class="label" data-i18n="workerDetail.ssId">DNI:</label>
@@ -218,13 +237,13 @@
 												<label class="label" data-i18n="workerDetail.phone">Teléfono:</label>
 												<label class="input">
 													<input id="txtPhone" name="txtPhone" data-bind="value: phone">
-												</label>												
+												</label>
 											</section>
 											<section class="col col-md-4">
 												<label class="label" data-i18n="workerDetail.email">Correo:</label>
 												<label class="input">
 													<input id="txtEmail" name="txtEmail" data-bind="value: email">
-												</label>												
+												</label>
 											</section>
 										</div>
 										<div class="row">
@@ -232,19 +251,19 @@
 												<label class="label" data-i18n="workerDetail.address">Dirección:</label>
 												<label class="input">
 													<input id="txtAddress" name="txtAddress" data-bind="value: address">
-												</label>												
+												</label>
 											</setion>
 											<section class="col col-md-2">
 												<label class="label" data-i18n="workerDetail.zip">Cod Postal:</label>
 												<label class="input">
 													<input id="txtZip" name="txtZip" data-bind="value: zip">
-												</label>												
+												</label>
 											</section>
 											<section class="col col-md-4">
 												<label class="label" data-i18n="workerDetail.city">Localidad:</label>
 												<label class="input">
 													<input id="txtCity" name="txtCity" data-bind="value: city">
-												</label>												
+												</label>
 											</section>
 										</div>
 										<div class="row">
@@ -252,13 +271,13 @@
 												<label class="label" data-i18n="workerDetail.province">Provincia:</label>
 												<label class="input">
 													<input id="txtProvince" name="txtProvince" data-bind="value: province">
-												</label>												
+												</label>
 											</setion>
 											<section class="col col-md-6">
 												<label class="label" data-i18n="workerDetail.state">Comunidad / Estado:</label>
 												<label class="input">
 													<input id="txtState" name="txtState" data-bind="value: state">
-												</label>												
+												</label>
 											</section>
 										</div>
 

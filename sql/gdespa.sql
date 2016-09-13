@@ -27,7 +27,7 @@ CREATE TABLE `api_key` (
   PRIMARY KEY (`apiKeyId`),
   KEY `ref_apikey_user` (`userId`),
   CONSTRAINT `ref_apikey_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `user` */
 
@@ -43,7 +43,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`userId`),
   KEY `rf_user_userGroup` (`userGroupId`),
   CONSTRAINT `rf_user_userGroup` FOREIGN KEY (`userGroupId`) REFERENCES `user_group` (`userGroupId`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `user_group` */
 
@@ -53,7 +53,28 @@ CREATE TABLE `user_group` (
   `userGroupId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`userGroupId`)
-) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
+
+/*Table structure for table `worker` */
+
+DROP TABLE IF EXISTS `worker`;
+
+CREATE TABLE `worker` (
+  `workerId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `ssId` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `zip` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `province` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`workerId`),
+  KEY `ref_user` (`userId`),
+  CONSTRAINT `ref_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

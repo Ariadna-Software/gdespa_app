@@ -14,3 +14,8 @@ CREATE TABLE `gdespa`.`worker`(
 ALTER TABLE `gdespa`.`worker`   
   ADD COLUMN `phone` VARCHAR(255) NULL AFTER `userId`,
   ADD COLUMN `email` VARCHAR(255) NULL AFTER `phone`;
+  
+ ALTER TABLE `gdespa`.`worker`   
+  ADD COLUMN `code` INT(11) NULL AFTER `email`,
+  ADD COLUMN `position` VARCHAR(255) NULL AFTER `code`,
+  ADD COLUMN `department` VARCHAR(255) NULL AFTER `position`;

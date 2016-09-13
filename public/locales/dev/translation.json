@@ -81,6 +81,9 @@
         "state": "Comunidad / Estado",
         "user": "Usuario asociado",
         "phone": "Teléfono",
-        "email": "Correo electrónico"
+        "email": "Correo electrónico",
+        "code": "Numero",
+        "position": "Cargo",
+        "department": "Departamento"
     }
 }
