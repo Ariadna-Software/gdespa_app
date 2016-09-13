@@ -22,3 +22,15 @@ ALTER TABLE `gdespa`.`worker`
 
   INSERT INTO gdespa.worker (CODE, NAME, POSITION, department)
 SELECT * FROM gdespa_test.import;
+
+#-------------------
+CREATE TABLE `gdespa`.`company`(  
+  `companyId` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255),
+  PRIMARY KEY (`companyId`)
+);
+CREATE TABLE `gdespa`.`store`(  
+  `storeId` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255),
+  PRIMARY KEY (`storeId`)
+);

@@ -33,7 +33,8 @@
             "user_group": "Grupo usuarios",
             "user": "Usuarios",
             "worker": "Trabajadores",
-            "company": "Empresas"
+            "company": "Empresas",
+            "store": "Almacenes"
         }
     },
     "index": {
@@ -95,7 +96,16 @@
         "title": "Detalle empresa",
         "name": "Nombre",
         "cancel": "Salir sin guardar",
-        "ok": "Guardar",
-        "group": "Grupo"
+        "ok": "Guardar"
+    },
+    "storeGeneral": {
+        "title": "Mantenimiento almacenes",
+        "new": "Nueva almacén"
+    },
+    "storeDetail": {
+        "title": "Detalle almacenes",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar"
     }
 }
