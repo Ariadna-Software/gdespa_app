@@ -187,3 +187,5 @@ var workerDetailAPI = {
         });
     }
 };
+
+workerDetailAPI.init();

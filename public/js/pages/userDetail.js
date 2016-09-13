@@ -126,7 +126,7 @@ var userDetailAPI = {
                 login: vm.login(),
                 password: vm.password(),
                 lang: vm.sLanguage(),
-                userGroup:{
+                userGroup: {
                     id: vm.sGroup()
                 }
             };
@@ -160,12 +160,12 @@ var userDetailAPI = {
     },
     loadLanguages: function (id) {
         var langs = [];
-        for (var i=0; i < myconfig.languages.length; i++){
+        for (var i = 0; i < myconfig.languages.length; i++) {
             langs.push({
                 name: myconfig.languages[i]
             })
         }
-        var options = [{name: "" }].concat(langs);
+        var options = [{ name: "" }].concat(langs);
         vm.optionsLanguages(options);
         $("#cmbLanguages").val([id]).trigger('change');
     },
@@ -189,3 +189,5 @@ var userDetailAPI = {
         });
     }
 };
+
+userDetailAPI.init();
