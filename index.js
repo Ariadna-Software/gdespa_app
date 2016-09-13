@@ -17,7 +17,7 @@ var moment = require('moment');
 
 var pack = require('./package.json');
 // read app parameters (host and port for the API)
-var config = require('./config.json');
+var cfg = require('./config.json');
 
 
 // starting express

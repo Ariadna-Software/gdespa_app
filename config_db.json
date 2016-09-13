@@ -1,0 +1,16 @@
+{
+    "prod": {
+        "host": "localhost",
+        "user": "root",
+        "password": "aritel",
+        "database": "gdespa",
+        "port": 3306
+    },
+    "test": {
+        "host": "localhost",
+        "user": "travis",
+        "password": "",
+        "database": "gdespa_test",
+        "port": 3306
+    }
+}

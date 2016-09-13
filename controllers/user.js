@@ -5,7 +5,7 @@
 var express = require('express');
 var router = express.Router();
 var userDb = require('../lib/user');
-var auth = require('../lib/authorization');
+var auth = require('../lib/authorize');
 var common = require('./common');
 
 router.get('/', common.midChkApiKey, function (req, res) {
