@@ -34,3 +34,12 @@ CREATE TABLE `gdespa`.`store`(
   `name` VARCHAR(255),
   PRIMARY KEY (`storeId`)
 );
+
+#----------------------
+CREATE TABLE `gdespa`.`unit`(  
+  `unitId` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255),
+  `abb` VARCHAR(255),
+  PRIMARY KEY (`unitId`)
+);
+

@@ -62,6 +62,7 @@ app.use('/api/login', require('./controllers/login'));
 app.use('/api/worker', require('./controllers/worker'));
 app.use('/api/company', require('./controllers/company'));
 app.use('/api/store', require('./controllers/store'));
+app.use('/api/unit', require('./controllers/unit'));
 
 // general API to export
 

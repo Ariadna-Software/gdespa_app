@@ -12,12 +12,9 @@
 	<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 	<script src="js/plugin/pace/pace.js"></script>
 
-	<!-- #CSS Links -->
 	<!-- Basic Styles -->
 	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
-
-
 
 	<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
 	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production-plugins.min.css">
@@ -27,16 +24,22 @@
 	<!-- SmartAdmin RTL Support -->
 	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">
 
-	<link rel="stylesheet" type="text/css" media="screen" href="css/ariadna-style.css">
+	<!-- We recommend you use "your_style.css" to override SmartAdmin
+		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
-	<!-- #FAVICONS -->
+	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+	<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
+
+	<!-- FAVICONS -->
 	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
 
-	<!-- #GOOGLE FONT -->
+	<!-- GOOGLE FONT -->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
-	<!-- #APP SCREEN / ICONS -->
+	<!-- Specifying a Webpage Icon for Web Clip 
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
 	<link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png">
 	<link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png">
 	<link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png">
@@ -162,7 +165,7 @@
 							<a href="unitGeneral.html">
 								<i class="fa fa-lg fa-fw fa-wrench"></i> <span data-i18n="menu.administration.unit">Blank</span>
 							</a>
-						</li>
+						</li>	
 					</ul>
 				</li>
 			</ul>
@@ -176,7 +179,8 @@
 		<div id="ribbon">
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
-				<li data-i18n="menu.home">Home</li>
+				<li data-i18n="menu.administration.main">Home</li>
+				<li data-i18n="menu.administration.unit">Home</li>
 			</ol>
 		</div>
 		<!-- Main content -->
@@ -185,7 +189,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-home"></i> <span data-i18n="menu.home">Inicio</span>
+						<i class="fa-fw fa fa-wrench"></i> <span data-i18n="menu.administration.unit">Inicio</span>
 					</h1>
 				</div>
 			</div>
@@ -194,18 +198,40 @@
 				<div class="row">
 					<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<!-- Widget ID (each widget will need unique ID)-->
-						<div class="jarviswidget well" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false"
-							data-widget-sortable="false">
-							<div>
-								<!-- widget edit box -->
-								<div class="jarviswidget-editbox">
-								</div>
-								<!-- widget content -->
-								<div class="widget-body">
-									<h2 data-i18n="index.welcome">Bienvenidos</h2>
-									<p data-i18n="index.wel1"></p>
-									<p data-i18n="index.wel2"></p>
-								</div>
+						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+								<h2 data-i18n="unitDetail.title">Mantenimiento</h2>
+							</header>
+							<div class="widget-body">
+								<form id="unitDetail-form" class="smart-form">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-8">
+												<label class="label" data-i18n="unitDetail.name">Nombre:</label>
+												<label class="input">
+													<input id="txtName" name="txtName" data-bind="value: name">
+												</label>
+											</section>
+											<section class="col col-md-4">
+												<label class="label" data-i18n="unitDetail.abb">Abreviatura:</label>
+												<label class="input">
+													<input id="txtAbb" name="txtAbb" data-bind="value: abb">
+												</label>
+											</section>											
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnExit" data-i18n="[title]unitDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+											<i class="fa fa-lg fa-sign-out"></i>
+										</button>
+											<button id="btnOk" data-i18n="[title]unitDetail.ok" class="btn btn-success btn-circle btn-lg">
+											<i class="fa fa-lg fa-check"></i>
+										</button>
+										</div>
+									</fieldset>
+								</form>
 							</div>
 						</div>
 					</article>
@@ -291,6 +317,8 @@
 	<!-- TRANSLATIONS -->
 	<script src="js/libs/i18next-1.9.0.js"></script>
 	<script src="locales/validator-languages.js"></script>
+	<script src="locales/datatable-languages.js"></script>
+	<script src="locales/select2-languages.js"></script>
 	<!-- PAGE RELATED PLUGIN(S) -->
 	<script src="js/plugin/datatables/jquery.dataTables.min.js"></script>
 	<script src="js/plugin/datatables/dataTables.colVis.min.js"></script>
@@ -301,14 +329,13 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/index.js"></script>
+	<script src="js/pages/unitDetail.js"></script>
 
 
 
 	<script type="text/javascript">
 		$(document).ready(function() {
 				pageSetUp();
-				aswInit.initPage();
 		})
 	</script>
 

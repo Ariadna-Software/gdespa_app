@@ -34,7 +34,8 @@
             "user": "Usuarios",
             "worker": "Trabajadores",
             "company": "Empresas",
-            "store": "Almacenes"
+            "store": "Almacenes",
+            "unit": "Unidades"
         }
     },
     "index": {
@@ -105,6 +106,17 @@
     "storeDetail": {
         "title": "Detalle almacenes",
         "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar"
+    },
+    "unitGeneral": {
+        "title": "Mantenimiento unidades",
+        "new": "Nueva unidad"
+    },
+    "unitDetail": {
+        "title": "Detalle unidad",
+        "name": "Nombre",
+        "abb": "Abreviatura",
         "cancel": "Salir sin guardar",
         "ok": "Guardar"
     }
