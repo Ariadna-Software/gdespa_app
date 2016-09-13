@@ -10,6 +10,7 @@
     "yes": "Si",
     "no": "No",
     "delete_warning": "¿Desea realmente borrar el registro: ",
+    "search_name": "Introduzca el texto a buscar (Déjelo vacio para ver todos)",
     "error": {
         "general": "Se ha producido un error, ver detalles más abajo.",
         "ajax_general": "Se ha producido un error general. Posiblemente falla la conexión.",
@@ -30,7 +31,8 @@
         "administration": {
             "main": "Administracion",
             "user_group": "Grupo usuarios",
-            "user": "Usuarios"
+            "user": "Usuarios",
+            "worker": "Trabajadores"
         }
     },
     "index": {
@@ -62,5 +64,23 @@
         "group": "Grupo",
         "login": "Login",
         "password": "Contraseña"
+    },
+    "workerGeneral": {
+        "title": "Mantenimiento de trabajadores",
+        "new": "Nuevo trabajador",
+        "search": "Buscar trabajadores"
+    },
+    "workerDetail": {
+        "title": "Detalle de trabajador",
+        "name": "Nombre",
+        "ssId": "DNI",
+        "address": "Dirección",
+        "zip": "Cod. Postal",
+        "city": "Localidad",
+        "province": "Provincia",
+        "state": "Comunidad / Estado",
+        "user": "Usuario asociado",
+        "phone": "Teléfono",
+        "email": "Correo electrónico"
     }
 }
