@@ -196,16 +196,28 @@
 											</section>
 											<section class="col col-md-4">
 												<label class="label" data-i18n="userDetail.language">Idioma:</label>
-												<select style="width:100%; padding-left:5px;" id="cmbLanguages" name="cmbLanguages" 
+												<select style="width:100%;" id="cmbLanguages" name="cmbLanguages" 
 													data-bind="options: optionsLanguages, optionsText: 'name', optionsValue: 'name', 
 													value: sLanguage, valueAllowUnset: true, selectedOptions: selectedLanguages, selected2:{}">
 												</select>
 											</section>
 										</div>
 										<div class="row">
-											<section class="col col-md-12">
+											<section class="col col-md-4">
+												<label class="label" data-i18n="userDetail.login">Login:</label>
+												<label class="input">
+													<input id="txtLogin" name="txtLogin" data-bind="value: login">
+												</label>
+											</section>
+											<section class="col col-md-4">
+												<label class="label" data-i18n="userDetail.password">Contraseña:</label>
+												<label class="input">
+													<input id="txtPassword" name="txtPassword" data-bind="value: password">
+												</label>												
+											</section>
+											<section class="col col-md-4">
 												<label class="label" data-i18n="userDetail.group">Grupo:</label>
-												<select style="width:100%; padding-left:5px;" id="cmbGroups" name="cmbGroups" 
+												<select style="width:100%;" id="cmbGroups" name="cmbGroups" 
 													data-bind="options: optionsGroups, optionsText: 'name', optionsValue: 'id', 
 													value: sGroup, valueAllowUnset: true, selectedOptions: selectedGroups, selected2:{}">
 												</select>
@@ -327,6 +339,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 				pageSetUp();
+				userDetailAPI.init();
 		})
 	</script>
 

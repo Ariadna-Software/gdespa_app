@@ -59,6 +59,8 @@
         "language": "Idioma",
         "cancel": "Salir sin guardar",
         "ok": "Guardar",
-        "group": "Grupo"
+        "group": "Grupo",
+        "login": "Login",
+        "password": "Contraseña"
     }
 }

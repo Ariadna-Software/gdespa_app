@@ -41,6 +41,8 @@ var userDetailAPI = {
         var self = this;
         self.id = ko.observable();
         self.name = ko.observable();
+        self.login = ko.observable();
+        self.password = ko.observable();
         self.userGroupId = ko.observable();
         self.lang = ko.observable();
         // languages combos
@@ -55,16 +57,31 @@ var userDetailAPI = {
     loadData: function (data) {
         vm.id(data.id);
         vm.name(data.name);
+        vm.login(data.login);
+        vm.password(data.password);
         vm.userGroupId(data.userGroup.id);
         vm.lang(data.lang);
+        userDetailAPI.loadLanguages(vm.lang());
+        userDetailAPI.loadGroups(vm.userGroupId());
     },
     // Validates form (jquery validate) 
     dataOk: function () {
         $('#userDetail-form').validate({
             rules: {
                 txtName: { required: true },
+                txtLogin: { required: true },
+                txtPassword: { required: true },
                 cmbLanguages: { required: true },
                 cmbGroups: { required: true }
+            },
+            // Messages for form validation
+            messages: {
+                cmbLanguages: {
+                    required: "Debe elegir un idioma"
+                },
+                cmbGroups: {
+                    required: "Debe elegir un grupo"
+                }
             },
             // Do not change code below
             errorPlacement: function (error, element) {
@@ -105,7 +122,13 @@ var userDetailAPI = {
             // dat for post or put
             var data = {
                 id: vm.id(),
-                name: vm.name()
+                name: vm.name(),
+                login: vm.login(),
+                password: vm.password(),
+                lang: vm.sLanguage(),
+                userGroup:{
+                    id: vm.sGroup()
+                }
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -136,18 +159,26 @@ var userDetailAPI = {
         return mf;
     },
     loadLanguages: function (id) {
-
+        var langs = [];
+        for (var i=0; i < myconfig.languages.length; i++){
+            langs.push({
+                name: myconfig.languages[i]
+            })
+        }
+        var options = [{name: "" }].concat(langs);
+        vm.optionsLanguages(options);
+        $("#cmbLanguages").val([id]).trigger('change');
     },
     loadGroups: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/user_group?api_key=%s',myconfig.apiUrl, api_key),
+            url: sprintf('%s/user_group?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 var options = [{ id: 0, name: " " }].concat(data);
                 vm.optionsGroups(options);
-                $("#cmbGroups").val([0]).trigger('change');
+                $("#cmbGroups").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -158,4 +189,3 @@ var userDetailAPI = {
         });
     }
 };
-userDetailAPI.init();
