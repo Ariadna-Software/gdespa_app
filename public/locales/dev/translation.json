@@ -32,7 +32,8 @@
             "main": "Administracion",
             "user_group": "Grupo usuarios",
             "user": "Usuarios",
-            "worker": "Trabajadores"
+            "worker": "Trabajadores",
+            "company": "Empresas"
         }
     },
     "index": {
@@ -85,5 +86,16 @@
         "code": "Numero",
         "position": "Cargo",
         "department": "Departamento"
+    },
+    "companyGeneral": {
+        "title": "Mantenimiento empresas",
+        "new": "Nueva empresa"
+    },
+    "companyDetail": {
+        "title": "Detalle empresa",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "group": "Grupo"
     }
 }

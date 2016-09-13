@@ -136,8 +136,8 @@
 						<i class="fa fa-lg fa-fw fa-bank"></i> <span class="menu-item-parent" data-i18n="menu.administration.main">Blank</span>
 					</a>
 					<ul>
-						<li id="userGroupGeneral" class="">
-							<a href="userGroupGeneral.html">
+						<li id="companyGeneral" class="">
+							<a href="companyGeneral.html">
 								<i class="fa fa-lg fa-fw fa-users"></i> <span data-i18n="menu.administration.user_group">Blank</span>
 							</a>
 						</li>
@@ -170,7 +170,7 @@
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
 				<li data-i18n="menu.administration.main">Home</li>
-				<li data-i18n="menu.administration.worker">Home</li>
+				<li data-i18n="menu.administration.company">Home</li>
 			</ol>
 		</div>
 		<!-- Main content -->
@@ -179,7 +179,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-male"></i> <span data-i18n="menu.administration.worker">Inicio</span>
+						<i class="fa-fw fa fa-building"></i> <span data-i18n="menu.administration.company">Inicio</span>
 					</h1>
 				</div>
 			</div>
@@ -191,42 +191,26 @@
 						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-								<h2 data-i18n="workerGeneral.title">Mantenimiento</h2>
+								<h2 data-i18n="companyGeneral.title">Mantenimiento</h2>
 							</header>
 							<div class="row">
-								<form id="workerGeneral-form" class="smart-form">
-									<fieldset>
-										<div class="row">
-											<section class="col col-md-12">
-												<label class="label" data-i18n="search_name">Introduzca el texto a buscar (* = Ver todos)</label>
-												<label class="input">
-                                                        <input id="txtSearch" name="txtSearch" type="text" />
-                                                    </label>
-											</section>
-										</div>
-									</fieldset>
+								<form id="companyGeneral-form" class="smart-form">
 									<fieldset>
 										<div class="pull-right">
-											<button id="btnSearch" data-i18n="[title]workerGeneral.search" class="btn btn-primary btn-circle btn-lg">
-                                                <i class="fa fa-lg fa-search"></i>
-                                            </button>
-											<button id="btnNew" data-i18n="[title]workerGeneral.new" class="btn btn-success btn-circle btn-lg">
-                                        		<i class="fa fa-lg fa-plus"></i>
-                                        	</button>
+											<button id="btnNew" data-i18n="[title]companyGeneral.new" class="btn btn-success btn-circle btn-lg">
+                                        	<i class="fa fa-lg fa-plus"></i>
+                                        </button>
 										</div>
 									</fieldset>
 								</form>
 							</div>
 							<div class="row">
-								<div id="tb_worker" style="display:none;">
-									<table id="dt_worker" class="table table-striped table-bordered table-hover" width="100%">
+								<div id="tb_company">
+									<table id="dt_company" class="table table-striped table-bordered table-hover" width="100%">
 										<thead>
 											<tr>
 												<th data-class="expand">
-													<i class="fa fa-fw fa-male text-muted hidden-md hidden-sm hidden-xs"></i> Nombre
-												</th>
-												<th data-hide="phone">
-													Usuario asociado
+													<i class="fa fa-fw fa-users text-muted hidden-md hidden-sm hidden-xs"></i> Nombre
 												</th>
 												<th>
 												</th>
@@ -330,7 +314,7 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/workerGeneral.js"></script>
+	<script src="js/pages/companyGeneral.js"></script>
 
 
 

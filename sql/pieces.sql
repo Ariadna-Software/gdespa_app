@@ -19,3 +19,6 @@ ALTER TABLE `gdespa`.`worker`
   ADD COLUMN `code` INT(11) NULL AFTER `email`,
   ADD COLUMN `position` VARCHAR(255) NULL AFTER `code`,
   ADD COLUMN `department` VARCHAR(255) NULL AFTER `position`;
+
+  INSERT INTO gdespa.worker (CODE, NAME, POSITION, department)
+SELECT * FROM gdespa_test.import;
