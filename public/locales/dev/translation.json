@@ -1,88 +1,64 @@
-﻿{
-    "app": {
-        "nombre": "GDESAC",
-        "dateFormat": "DD/MM/YYYY",
-        "dateInicialFinal": "La fecha final debe ser mayor que la inicial.",
-        "deleteMens": "¿Realmente desea borrar este registro?",
-        "mensaje": "Mensaje",
-        "aceptar": "Aceptar",
-        "cancelar": "Cancelar",
-        "editar": "Editar",
-        "eliminar": "Eliminar registro",
-        "evaluar": "Evaluar asignación",
-        "salir": "Salir",
-        "cerrarMenu": "Cerrar menu",
-        "pantallaCompleta":  "Pantalla completa"
+{
+    "company_info": "GD Enery Services",
+    "app_name": "GDES PANAMA (DEV)",
+    "collapse_menu": "Mostrar / cerar menú",
+    "log_out": "Salir",
+    "search": "Buscar",
+    "search_placeholder": "Búsqueda no disponible...",
+    "full_screen": "Pantalla completa",
+    "warning": "ADVERTENCIA",
+    "yes": "Si",
+    "no": "No",
+    "delete_warning": "¿Desea realmente borrar el registro: ",
+    "error": {
+        "general": "Se ha producido un error, ver detalles más abajo.",
+        "ajax_general": "Se ha producido un error general. Posiblemente falla la conexión.",
+        "authorization": "No autorizado, compruebe que el usuario y contraseña son los correctos",
+        "close": "Para cerrar este mensaje haga clic en él."
     },
-    "report": { 
-        "acConocimientosTrabajador": "Nknhlj67"
-    },
-    "general": {
-        "trabajadores": "Trabajadores",
-        "titulo": "AREAS DE CONOCIMIENTO",
-        "jtable": {
-            "processing": "Procesando...",
-            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "infoPostFix": "",
-            "loadingRecords": "Cargando...",
-            "zeroRecords": "No se encontraron resultados",
-            "emptyTable": "Ningún dato disponible en esta tabla",
-            "paginate": {
-                "first": "Primero",
-                "previous": "Anterior",
-                "next": "Siguiente",
-                "last": "Último"
-            },
-            "aria": {
-                "sortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sortDescending": ": Activar para ordenar la columna de manera descendente"
-            }
-        }
+    "login": {
+        "access_site": "Acceso a la aplicación",
+        "user": "Usuario",
+        "password": "Contraseña",
+        "login": "Entrar",
+        "forgotten": "He olvidado el usuario o contraseña",
+        "please_login": "Por favor introduzca su usuario",
+        "please_password": "Por favor introduzca su password"
     },
     "menu": {
-        "MisConocimientos": "MIS CONOCIMIENTOS",
-        "RegConocimientos": "REG.CONOCIMIENTOS"
-    },
-    "cliIndex": {
-        "titulo": "Estas son sus áreas de conocimiento registradas",
-        "btnPDF": "Informe PDF",
-        "template": {
-            "conocimiento": "Conocimiento",
-            "proyecto": "Proyecto",
-            "finicio": "F.Inicial",
-            "ffinal": "F.Final",
-            "dias": "Dias",
-            "comentarios": "Comentarios",
-            "evaluador": "Evaluador"
+        "home": "Inicio",
+        "administration": {
+            "main": "Administracion",
+            "user_group": "Grupo usuarios",
+            "user": "Usuarios"
         }
-
     },
-    "cliEvaPorTrabajador": {
-        "titulo": "Seleccione aquí el trabajador al que registrará conocimientos",
-        "buscar": "Buscar asignaciones por trabajador.",
-        "trabajador": "Trabajador",
-        "btnBuscar": "Buscar",
-        "nombre": "Nombre",
-        "proyecto": "Proyecto",
-        "rol": "Rol"
+    "index": {
+        "welcome": "Bienvenido a la aplicación GDES PANAMA.",
+        "wel1": "Le recordamos que el uso de esta aplicación está sujeto a las normas internas de la empresa y de manera general a los compromisos de confidencialidad expresados en la LOPD",
+        "wel2": "Para poder acceder a las diferentes funcionalidades utilice el menú de la izquierda que le mostrará las opciones a las que tiene acceso"
     },
-    "cliEvaAsgDetalle": {
-        "titulo": "Detalles de áreas de conocimiento en esta asignación",
-        "datosAsignacion": "Datos de la asignación",
-        "datosConocimiento":  "Datos del conocimiento",
-        "asignacion": "Asignación: ",
-        "trabajador": "Trabajador: ",
-        "proyecto": "Proyecto: ",
-        "rol": "Rol: ",
-        "categoria": "Categoría: ",
-        "conocimiento": "Conocimiento: ",
-        "dfecha": "Desde fecha: ",
-        "hfecha": "Hasta fecha: ",
-        "observaciones": "Observaciones: ",
-        "btnSalir": "Salir sin guardar",
-        "btnAceptar": "Agregar registro",
-        "btnEditar":  "Editar registro"
+    "userGroupGeneral": {
+        "title": "Mantenimiento grupos de usuarios",
+        "new": "Nuevo grupo"
+    },
+    "userGroupDetail": {
+        "title": "Detalle grupo de usuarios",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "group": "Grupo"
+    },
+    "userGeneral": {
+        "title": "Mantenimiento de usuarios",
+        "new": "Nuevo usuario"
+    },
+    "userDetail": {
+        "title": "Detalle de usuario",
+        "name": "Nombre",
+        "language": "Idioma",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "group": "Grupo"
     }
 }
