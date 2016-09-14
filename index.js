@@ -65,6 +65,7 @@ app.use('/api/store', require('./controllers/store'));
 app.use('/api/unit', require('./controllers/unit'));
 app.use('/api/item', require('./controllers/item'));
 app.use('/api/cunit', require('./controllers/cunit'));
+app.use('/api/cunit_line', require('./controllers/cunit_line'));
 
 // general API to export
 

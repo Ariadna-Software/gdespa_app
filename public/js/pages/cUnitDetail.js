@@ -14,7 +14,7 @@ var cUnitDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
-        $('#cUnit_name').text(user.name);
+        $('#user_name').text(user.name);
         // make active menu option
         $('#cUnitGeneral').attr('class', 'active');
         // knockout management
