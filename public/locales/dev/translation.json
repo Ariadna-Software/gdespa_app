@@ -36,7 +36,8 @@
             "company": "Empresas",
             "store": "Almacenes",
             "unit": "Unidades",
-            "item": "Articulos"
+            "item": "Articulos",
+            "cUnit": "Unidades constructivas"
         }
     },
     "index": {
@@ -133,6 +134,22 @@
         "description": "Descripción",
         "unit": "Unidades",
         "image": "Imagen",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar"
+    },
+    "cUnitGeneral": {
+        "title": "Mantenimiento unidades constructivas",
+        "new": "Nueva unidad",
+        "search": "Buscar unidades"
+    },
+    "cUnitDetail": {
+        "title": "Detalle unidad constructiva",
+        "name": "Nombre",
+        "reference": "Referencia",
+        "description": "Descripción",
+        "quantity": "Cantidad",
+        "image": "Imagen",
+        "cost": "Coste",
         "cancel": "Salir sin guardar",
         "ok": "Guardar"
     }
