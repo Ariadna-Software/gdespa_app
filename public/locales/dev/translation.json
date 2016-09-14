@@ -35,7 +35,8 @@
             "worker": "Trabajadores",
             "company": "Empresas",
             "store": "Almacenes",
-            "unit": "Unidades"
+            "unit": "Unidades",
+            "item": "Articulos"
         }
     },
     "index": {
@@ -117,6 +118,21 @@
         "title": "Detalle unidad",
         "name": "Nombre",
         "abb": "Abreviatura",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar"
+    },
+    "itemGeneral": {
+        "title": "Mantenimiento artículos",
+        "new": "Nuevo artículo",
+        "search": "Buscar artículos"
+    },
+    "itemDetail": {
+        "title": "Detalle artículo",
+        "name": "Nombre",
+        "reference": "Referencia",
+        "description": "Descripción",
+        "unit": "Unidades",
+        "image": "Imagen",
         "cancel": "Salir sin guardar",
         "ok": "Guardar"
     }

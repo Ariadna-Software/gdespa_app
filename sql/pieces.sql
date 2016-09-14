@@ -42,4 +42,15 @@ CREATE TABLE `gdespa`.`unit`(
   `abb` VARCHAR(255),
   PRIMARY KEY (`unitId`)
 );
-
+# --------------------
+CREATE TABLE `gdespa`.`item`(  
+  `itemId` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255),
+  `description` TEXT,
+  `unitId` INT(11),
+  `image` VARCHAR(255),
+  PRIMARY KEY (`itemId`),
+  CONSTRAINT `ref_item_unit` FOREIGN KEY (`unitId`) REFERENCES `gdespa`.`unit`(`unitId`)
+);
+ALTER TABLE `gdespa`.`item`   
+  ADD COLUMN `reference` VARCHAR(255) NULL AFTER `itemId`;
