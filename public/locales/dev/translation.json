@@ -148,9 +148,15 @@
         "reference": "Referencia",
         "description": "Descripción",
         "quantity": "Cantidad",
+        "line": "Linea",
+        "unit": "Unid.",
+        "item": "Articulo",
         "image": "Imagen",
         "cost": "Coste",
         "cancel": "Salir sin guardar",
-        "ok": "Guardar"
+        "ok": "Guardar",
+        "newLine": "Nueva linea",
+        "associated_items": "Artículos asociados",
+        "modal_title": "Artículo asociado"
     }
 }

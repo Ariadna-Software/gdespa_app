@@ -26,7 +26,10 @@ var cUnitDetailAPI = {
             e.preventDefault();
             window.open('cUnitGeneral.html', '_self');
         })
-
+        // init lines table
+        cUnitLineAPI.init();
+        // init modal form
+        cUnitModalAPI.init();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         cUnitDetailAPI.getCUnit(id);
@@ -40,7 +43,15 @@ var cUnitDetailAPI = {
         self.description = ko.observable();
         self.cost = ko.observable();
         self.image = ko.observable();
-        // cUnit group combos
+        // -- Modal related
+        self.lineId = ko.observable();
+        self.line = ko.observable();
+        self.quantity = ko.observable();
+        // item combo
+        self.optionsItems = ko.observableArray([]);
+        self.selectedItems = ko.observableArray([]);
+        self.sItem = ko.observable();
+        // unit combo
         self.optionsUnits = ko.observableArray([]);
         self.selectedUnits = ko.observableArray([]);
         self.sUnit = ko.observable();
@@ -59,10 +70,10 @@ var cUnitDetailAPI = {
             rules: {
                 txtName: { required: true },
                 txtReference: { required: true },
-                txtCost: { 
+                txtCost: {
                     required: true,
                     number: true
-                 }
+                }
             },
             // Messages for form validation
             messages: {
@@ -88,6 +99,7 @@ var cUnitDetailAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 cUnitDetailAPI.loadData(data[0]);
+                cUnitLineAPI.getCUnitLines(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -140,7 +152,10 @@ var cUnitDetailAPI = {
             });
         }
         return mf;
-    }
+    },
 };
+
+
+
 
 cUnitDetailAPI.init();

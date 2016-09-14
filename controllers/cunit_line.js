@@ -45,7 +45,6 @@ router.get('/cunit/:id', midCheck, function (req, res) {
     var id = req.params.id;
     cUnitLineDb.getByCUnitId(id, function (err, lines) {
         if (err) return res.status(500).send(err.message);
-        if (lines.length == 0) return res.status(404).send('Construction unit line not found');
         res.json(lines);
     }, test);
 });
