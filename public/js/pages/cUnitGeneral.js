@@ -1,77 +1,79 @@
 /*
- * itemGeneral.js
- * Function for the page itemGeneral.html
+ * cUnitGeneral.js
+ * Function for the page cUnitGeneral.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
 
 var data = null;
 
-var itemGeneralAPI = {
+var cUnitGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
         // make active menu option
-        $('#itemGeneral').attr('class', 'active');
-        itemGeneralAPI.initWorkerTable();
+        $('#cUnitGeneral').attr('class', 'active');
+        cUnitGeneralAPI.initCUnitTable();
         // avoid sending form 
-        $('#itemGeneral-form').submit(function () {
+        $('#cUnitGeneral-form').submit(function () {
             return false;
         });
         // buttons click events 
-        $('#btnNew').click(itemGeneralAPI.newWorker());
-        $('#btnSearch').click(itemGeneralAPI.searchWorker());
+        $('#btnNew').click(cUnitGeneralAPI.newCUnit());
+        $('#btnSearch').click(cUnitGeneralAPI.searchCUnit());
         // check if there's an id
         var id = aswUtil.gup('id');
         if (id) {
-            itemGeneralAPI.getWorker(id);
+            cUnitGeneralAPI.getCUnit(id);
         }
     },
     // initializes the table
-    initWorkerTable: function () {
-        var options = aswInit.initTableOptions('dt_item');
+    initCUnitTable: function () {
+        var options = aswInit.initTableOptions('dt_cUnit');
         options.data = data;
         options.columns = [{
             data: "reference"
         }, {
                 data: "name"
+            },{
+                data: "description"
             }, {
                 data: "id",
                 render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='itemGeneralAPI.deleteWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='itemGeneralAPI.editWorker(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='cUnitGeneralAPI.deleteCUnitMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='cUnitGeneralAPI.editCUnit(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                     var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                     return html;
                 }
             }];
-        $('#dt_item').dataTable(options);
+        $('#dt_cUnit').dataTable(options);
     },
-    searchWorker: function () {
+    searchCUnit: function () {
         var mf = function () {
             // obtain strin to search 
             var search = $('#txtSearch').val();
-            itemGeneralAPI.getItems(search);
+            cUnitGeneralAPI.getCUnits(search);
         };
         return mf;
     },
-    newWorker: function () {
+    newCUnit: function () {
         // Its an event handler, return function
         var mf = function () {
-            window.open(sprintf('itemDetail.html?id=%s', 0), '_self');
+            window.open(sprintf('cUnitDetail.html?id=%s', 0), '_self');
         }
         return mf;
     },
-    editWorker: function (id) {
-        window.open(sprintf('itemDetail.html?id=%s', id), '_self');
+    editCUnit: function (id) {
+        window.open(sprintf('cUnitDetail.html?id=%s', id), '_self');
     },
-    deleteWorkerMessage: function (id) {
-        var url = sprintf("%s/item/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteCUnitMessage: function (id) {
+        var url = sprintf("%s/cunit/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].name;
-                var fn = sprintf('itemGeneralAPI.deleteWorker(%s);', id);
+                var fn = sprintf('cUnitGeneralAPI.deleteCUnit(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -82,8 +84,8 @@ var itemGeneralAPI = {
             }
         });
     },
-    deleteWorker: function (id) {
-        var url = sprintf("%s/item/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteCUnit: function (id) {
+        var url = sprintf("%s/cunit/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         var data = {
             id: id
         };
@@ -93,7 +95,7 @@ var itemGeneralAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                itemGeneralAPI.getItems('');
+                cUnitGeneralAPI.getCUnits('');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -104,14 +106,14 @@ var itemGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getItems: function (name) {
-        var url = sprintf("%s/item?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+    getCUnits: function (name) {
+        var url = sprintf("%s/cunit?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemGeneralAPI.loadItemsTable(data);
+                cUnitGeneralAPI.loadCUnitsTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -122,14 +124,14 @@ var itemGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getWorker: function (id) {
-        var url = sprintf("%s/item/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    getCUnit: function (id) {
+        var url = sprintf("%s/cunit/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemGeneralAPI.loadItemsTable(data);
+                cUnitGeneralAPI.loadCUnitsTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -139,13 +141,13 @@ var itemGeneralAPI = {
             }
         });
     },
-    loadItemsTable: function (data) {
-        var dt = $('#dt_item').dataTable();
+    loadCUnitsTable: function (data) {
+        var dt = $('#dt_cUnit').dataTable();
         dt.fnClearTable();
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-        $("#tb_item").show();
+        $("#tb_cUnit").show();
     }
 };
 
-itemGeneralAPI.init();
+cUnitGeneralAPI.init();

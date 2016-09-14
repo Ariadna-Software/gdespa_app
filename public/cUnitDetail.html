@@ -191,7 +191,7 @@
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
 				<li data-i18n="menu.administration.main">Home</li>
-				<li data-i18n="menu.administration.item">Home</li>
+				<li data-i18n="menu.administration.cUnit">Home</li>
 			</ol>
 		</div>
 		<!-- Main content -->
@@ -200,7 +200,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-cube"></i> <span data-i18n="menu.administration.item">Inicio</span>
+						<i class="fa-fw fa fa-cubes"></i> <span data-i18n="menu.administration.cUnit">Inicio</span>
 					</h1>
 				</div>
 			</div>
@@ -212,46 +212,46 @@
 						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-								<h2 data-i18n="itemDetail.title">Mantenimiento</h2>
+								<h2 data-i18n="cUnitDetail.title">Mantenimiento</h2>
 							</header>
 							<div class="widget-body">
-								<form id="itemDetail-form" class="smart-form">
+								<form id="cUnitDetail-form" class="smart-form">
 									<fieldset>
 										<div class="row">
-											<section class="col col-md-4">
-												<label class="label" data-i18n="itemDetail.reference">Referencia:</label>
-												<label class="input">
-													<input id="txtReference" name="txtReference" data-bind="value: reference">
-												</label>
-											</section>
 											<section class="col col-md-8">
-												<label class="label" data-i18n="itemDetail.name">Nombre:</label>
+												<label class="label" data-i18n="cUnitDetail.name">Nombre:</label>
 												<label class="input">
 													<input id="txtName" name="txtName" data-bind="value: name">
 												</label>
 											</section>
+											<section class="col col-md-4">
+												<label class="label" data-i18n="cUnitDetail.reference">Referencia:</label>
+												<label class="input">
+													<input id="txtReference" name="txtReference" data-bind="value: reference">
+												</label>
+											</section>
 										</div>
 										<div class="row">
-											<section class="col col-md-4">
-												<label class="label" data-i18n="itemDetail.unit">Unidades:</label>
-												<select style="width:100%;" id="cmbUnits" name="cmbUnits" data-bind="options: optionsUnits, optionsText: 'name', optionsValue: 'id', 
-													value: sUnit, valueAllowUnset: true, selectedOptions: selectedUnits, selected2:{}">
-												</select>
-											</section>
 											<section class="col col-md-8">
-												<label class="label" data-i18n="itemDetail.description">Descripción:</label>
+												<label class="label" data-i18n="cUnitDetail.description">Descripción:</label>
 												<label class="textarea textarea-resizable">
                                                         <textarea id="txtDescription" rows="3" class="custom-scroll" data-bind="value:description"></textarea>
-                                                    </label>
+                                                </label>
+											</section>
+											<section class="col col-md-4">
+												<label class="label" data-i18n="cUnitDetail.cost">Coste:</label>
+												<label class="input">
+													<input id="txtCost" name="txtCost" data-bind="value: cost">
+                                                </label>
 											</section>
 										</div>
 									</fieldset>
 									<fieldset>
 										<div class="pull-right">
-											<button id="btnExit" data-i18n="[title]itemDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+											<button id="btnExit" data-i18n="[title]cUnitDetail.cancel" class="btn btn-warning btn-circle btn-lg">
 											<i class="fa fa-lg fa-sign-out"></i>
 										</button>
-											<button id="btnOk" data-i18n="[title]itemDetail.ok" class="btn btn-success btn-circle btn-lg">
+											<button id="btnOk" data-i18n="[title]cUnitDetail.ok" class="btn btn-success btn-circle btn-lg">
 											<i class="fa fa-lg fa-check"></i>
 										</button>
 										</div>
@@ -273,7 +273,7 @@
 		</div>
 	</div>
 
-	<!-- SHORTCUT AREA : With large tiles (activated via clicking item name tag)
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking cUnit name tag)
 		Note: These tiles are completely responsive,
 		you can add as many as you like
 		-->
@@ -354,7 +354,7 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/itemDetail.js"></script>
+	<script src="js/pages/cUnitDetail.js"></script>
 
 
 

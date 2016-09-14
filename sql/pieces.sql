@@ -75,3 +75,7 @@ CREATE TABLE `gdespa`.`cunit_line`(
   CONSTRAINT `ref_cuniLine_cunit` FOREIGN KEY (`cunitId`) REFERENCES `gdespa`.`cunit`(`cunitId`),
   CONSTRAINT `ref_cunitLine_item` FOREIGN KEY (`itemId`) REFERENCES `gdespa`.`item`(`itemId`)
 );
+#---------------------------------
+ALTER TABLE `gdespa`.`cunit_line`   
+  ADD COLUMN `unitId` INT(11) NULL AFTER `itemId`,
+  ADD CONSTRAINT `ref_cunitLine_unit` FOREIGN KEY (`unitId`) REFERENCES `gdespa`.`unit`(`unitId`);

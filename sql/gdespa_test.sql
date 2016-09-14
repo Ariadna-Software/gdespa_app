@@ -33,6 +33,56 @@ CREATE TABLE `api_key` (
 
 insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (-99,-99,'2001-01-01 00:00:00','2100-01-01 00:00:00','*TS*KEY');
 
+/*Table structure for table `company` */
+
+DROP TABLE IF EXISTS `company`;
+
+CREATE TABLE `company` (
+  `companyId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`companyId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `company` */
+
+/*Table structure for table `cunit` */
+
+DROP TABLE IF EXISTS `cunit`;
+
+CREATE TABLE `cunit` (
+  `cunitId` int(11) NOT NULL AUTO_INCREMENT,
+  `reference` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` text,
+  `image` varchar(255) DEFAULT NULL,
+  `cost` decimal(12,2) DEFAULT NULL,
+  PRIMARY KEY (`cunitId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `cunit` */
+
+/*Table structure for table `cunit_line` */
+
+DROP TABLE IF EXISTS `cunit_line`;
+
+CREATE TABLE `cunit_line` (
+  `cunitLineId` int(11) NOT NULL AUTO_INCREMENT,
+  `cunitId` int(11) DEFAULT NULL,
+  `line` int(11) DEFAULT NULL,
+  `itemId` int(11) DEFAULT NULL,
+  `unitId` int(11) DEFAULT NULL,
+  `quantity` decimal(5,2) DEFAULT NULL,
+  PRIMARY KEY (`cunitLineId`),
+  KEY `ref_cuniLine_cunit` (`cunitId`),
+  KEY `ref_cunitLine_item` (`itemId`),
+  KEY `ref_cunitLine_unit` (`unitId`),
+  CONSTRAINT `ref_cunitLine_unit` FOREIGN KEY (`unitId`) REFERENCES `unit` (`unitId`),
+  CONSTRAINT `ref_cuniLine_cunit` FOREIGN KEY (`cunitId`) REFERENCES `cunit` (`cunitId`),
+  CONSTRAINT `ref_cunitLine_item` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `cunit_line` */
+
 /*Table structure for table `import` */
 
 DROP TABLE IF EXISTS `import`;
@@ -248,6 +298,49 @@ insert  into `import`(`code`,`name`,`position`,`department`) values (357,'MARTIN
 insert  into `import`(`code`,`name`,`position`,`department`) values (159,'GONZALEZ, JONNATHAN                ','AYUDANTE GENERAL','TALLER DAVID');
 insert  into `import`(`code`,`name`,`position`,`department`) values (52,'MU','SOLDADOR','TALLER DAVID');
 insert  into `import`(`code`,`name`,`position`,`department`) values (240,'ANGULO, CARLOS                     ','SOLDADOR','TALLER DAVID');
+
+/*Table structure for table `item` */
+
+DROP TABLE IF EXISTS `item`;
+
+CREATE TABLE `item` (
+  `itemId` int(11) NOT NULL AUTO_INCREMENT,
+  `reference` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` text,
+  `unitId` int(11) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`itemId`),
+  KEY `ref_item_unit` (`unitId`),
+  CONSTRAINT `ref_item_unit` FOREIGN KEY (`unitId`) REFERENCES `unit` (`unitId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `item` */
+
+/*Table structure for table `store` */
+
+DROP TABLE IF EXISTS `store`;
+
+CREATE TABLE `store` (
+  `storeId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`storeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `store` */
+
+/*Table structure for table `unit` */
+
+DROP TABLE IF EXISTS `unit`;
+
+CREATE TABLE `unit` (
+  `unitId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `abb` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`unitId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `unit` */
 
 /*Table structure for table `user` */
 
