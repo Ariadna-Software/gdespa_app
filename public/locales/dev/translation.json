@@ -17,6 +17,10 @@
         "authorization": "No autorizado, compruebe que el usuario y contraseña son los correctos",
         "close": "Para cerrar este mensaje haga clic en él."
     },
+    "util":{
+        "date_iso": "YYYY-MM-DD",
+        "date_format": "DD/MM/YYYY"
+    },
     "login": {
         "access_site": "Acceso a la aplicación",
         "user": "Usuario",

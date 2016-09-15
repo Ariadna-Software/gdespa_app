@@ -39,6 +39,9 @@ var aswLanguage = {
         $('#language-flag').attr('class', flag);
         $('#language-abrv').text(lgn);
         validator_languages(lg);
+        // numeral
+        numeral.language(lg,numeral_languages[lg]);
+        numeral.language(lg);
         // store language in cookie
         aswCookies.setCookie('gdespa_lang', lg);
     }
