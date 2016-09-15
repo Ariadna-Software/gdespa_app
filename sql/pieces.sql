@@ -114,3 +114,17 @@ ALTER TABLE `gdespa`.`status`
 ALTER TABLE `gdespa`.`pw`   
   CHANGE `status` `statusId` INT(11) NULL,
   ADD CONSTRAINT `ref_pw_status` FOREIGN KEY (`statusId`) REFERENCES `gdespa`.`status`(`statusId`);
+#--------------------------------
+CREATE TABLE `gdespa`.`pw_line`(  
+  `pwLineId` INT(11) NOT NULL AUTO_INCREMENT,
+  `pwId` INT(11),
+  `line` INT(11),
+  `cunitId` INT(11),
+  `cost` DECIMAL(12,2),
+  `quantity` DECIMAL(5,2),
+  `k` INT(11),
+  `amount` DECIMAL(12,2),
+  PRIMARY KEY (`pwLineId`),
+  CONSTRAINT `ref_pwline_pw` FOREIGN KEY (`pwId`) REFERENCES `gdespa`.`pw`(`pwId`),
+  CONSTRAINT `ref_pwline_cunit` FOREIGN KEY (`cunitId`) REFERENCES `gdespa`.`cunit`(`cunitId`)
+);
