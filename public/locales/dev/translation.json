@@ -38,6 +38,16 @@
             "unit": "Unidades",
             "item": "Articulos",
             "cUnit": "Unidades constructivas"
+        },
+        "pwman":{
+            "main": "Obras y servicios",
+            "pw": "Propuestas"
+        },
+        "store":{
+            "main": "Almacenes / Stock"
+        },
+        "report":{
+            "main": "Informes"
         }
     },
     "index": {
@@ -158,6 +168,30 @@
         "newLine": "Nueva linea",
         "associated_items": "Artículos asociados",
         "modal_title": "Artículo asociado",
+        "validate":{
+            "items": "Debe elegir un artículo",
+            "units": "Debe elegir una unidad"
+        }
+    },
+    "pwGeneral": {
+        "title": "Mantenimiento propuestas",
+        "new": "Nueva propuesta",
+        "search": "Buscar propuestas"
+    },
+    "pwDetail": {
+        "title": "Detalle propuesta",
+        "name": "Nombre",
+        "reference": "Referencia",
+        "description": "Descripción",
+        "status": "ESTADO",
+        "iniDate": "Fecha inicial",
+        "initInCharge": "Responsable inicial",
+        "total": "TOTAL",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "newLine": "Nueva linea",
+        "associated_items": "Unidades constructivas asociados",
+        "modal_title": "Unidad constructiva",
         "validate":{
             "items": "Debe elegir un artículo",
             "units": "Debe elegir una unidad"

@@ -29,7 +29,7 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
 	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-	
+
 
 	<!-- FAVICONS -->
 	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -156,7 +156,7 @@
 							<a href="companyGeneral.html">
 								<i class="fa fa-lg fa-fw fa-building"></i> <span data-i18n="menu.administration.company">Blank</span>
 							</a>
-						</li>	
+						</li>
 						<li id="storeGeneral" class="">
 							<a href="storeGeneral.html">
 								<i class="fa fa-lg fa-fw fa-database"></i> <span data-i18n="menu.administration.store">Blank</span>
@@ -176,8 +176,30 @@
 							<a href="cUnitGeneral.html">
 								<i class="fa fa-lg fa-fw fa-cubes"></i> <span data-i18n="menu.administration.cUnit">Blank</span>
 							</a>
-						</li>	
+						</li>
 					</ul>
+				</li>
+				<li id="pwman" class="">
+					<a href="#">
+						<i class="fa fa-lg fa-fw fa-share-alt"></i> <span class="menu-item-parent" data-i18n="menu.pwman.main">Blank</span>
+					</a>
+					<ul>
+						<li id="pw" class="">
+							<a href="pwGeneral.html">
+								<i class="fa fa-lg fa-fw fa-cog"></i> <span data-i18n="menu.pwman.pw">Blank</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li id="store" class="">
+					<a href="#">
+						<i class="fa fa-lg fa-fw fa-database"></i> <span class="menu-item-parent" data-i18n="menu.store.main">Blank</span>
+					</a>
+				</li>
+				<li id="report" class="">
+					<a href="#">
+						<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span class="menu-item-parent" data-i18n="menu.report.main">Blank</span>
+					</a>
 				</li>
 			</ul>
 		</nav>
@@ -226,8 +248,7 @@
 											</section>
 											<section class="col col-md-4">
 												<label class="label" data-i18n="userDetail.language">Idioma:</label>
-												<select style="width:100%;" id="cmbLanguages" name="cmbLanguages" 
-													data-bind="options: optionsLanguages, optionsText: 'name', optionsValue: 'name', 
+												<select style="width:100%;" id="cmbLanguages" name="cmbLanguages" data-bind="options: optionsLanguages, optionsText: 'name', optionsValue: 'name', 
 													value: sLanguage, valueAllowUnset: true, selectedOptions: selectedLanguages, selected2:{}">
 												</select>
 											</section>
@@ -243,12 +264,11 @@
 												<label class="label" data-i18n="userDetail.password">Contraseña:</label>
 												<label class="input">
 													<input id="txtPassword" name="txtPassword" data-bind="value: password">
-												</label>												
+												</label>
 											</section>
 											<section class="col col-md-4">
 												<label class="label" data-i18n="userDetail.group">Grupo:</label>
-												<select style="width:100%;" id="cmbGroups" name="cmbGroups" 
-													data-bind="options: optionsGroups, optionsText: 'name', optionsValue: 'id', 
+												<select style="width:100%;" id="cmbGroups" name="cmbGroups" data-bind="options: optionsGroups, optionsText: 'name', optionsValue: 'id', 
 													value: sGroup, valueAllowUnset: true, selectedOptions: selectedGroups, selected2:{}">
 												</select>
 											</section>
