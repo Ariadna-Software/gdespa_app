@@ -157,6 +157,10 @@
         "ok": "Guardar",
         "newLine": "Nueva linea",
         "associated_items": "Artículos asociados",
-        "modal_title": "Artículo asociado"
+        "modal_title": "Artículo asociado",
+        "validate":{
+            "items": "Debe elegir un artículo",
+            "units": "Debe elegir una unidad"
+        }
     }
 }

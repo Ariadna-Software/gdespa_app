@@ -32,6 +32,10 @@ var cUnitDetailAPI = {
         cUnitModalAPI.init();
         // check if an id have been passed
         var id = aswUtil.gup('id');
+        // if it is an update show lines
+        if (id != 0) {
+            $('#wid-id-1').show();
+        }
         cUnitDetailAPI.getCUnit(id);
     },
     pageData: function () {
@@ -140,8 +144,13 @@ var cUnitDetailAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    var url = sprintf('cUnitGeneral.html?id=%s', data.id);
-                    window.open(url, '_self');
+                    if (type == "POST") {
+                        vm.id(data.id);
+                         $('#wid-id-1').show();
+                    } else {
+                        var url = sprintf('cUnitGeneral.html?id=%s', data.id);
+                        window.open(url, '_self');
+                    }
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

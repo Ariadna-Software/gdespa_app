@@ -15,23 +15,44 @@ var cUnitModalAPI = {
         // button events
         $('#btnSaveLine').click(cUnitModalAPI.saveLine());
     },
+    // Validates form (jquery validate) 
+    dataOk: function () {
+        $('#cUnitModal-form').validate({
+            rules: {
+                txtQuantity: {
+                    required: true,
+                    number: true
+                },
+                cmbItems: { required: true },
+                cmbUnits: { required: true }
+            },
+            // Messages for form validation
+            messages: {
+            },
+            // Do not change code below
+            errorPlacement: function (error, element) {
+                error.insertAfter(element.parent());
+            }
+        });
+        return $('#cUnitModal-form').valid();
+    },
     newLine: function () {
         // new line id is zero.
         vm.lineId(0);
         // clean other fields
         vm.line(null);
         vm.quantity(null);
-        cUnitModalAPI.loadUnits(0);
-        cUnitModalAPI.loadItems(0);
+        cUnitModalAPI.loadUnits(null);
+        cUnitModalAPI.loadItems(null);
     },
-    editLine: function(id){
+    editLine: function (id) {
         $.ajax({
             type: "GET",
             url: sprintf('%s/cunit_line/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                if (data.length){
+                if (data.length) {
                     vm.lineId(data[0].id);
                     vm.line(data[0].line);
                     cUnitModalAPI.loadItems(data[0].item.id);
@@ -50,6 +71,7 @@ var cUnitModalAPI = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
+            if (!cUnitModalAPI.dataOk()) return;
             // mount line to save 
             var data = {
                 id: vm.lineId(),
@@ -101,7 +123,7 @@ var cUnitModalAPI = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ id: 0, name: " " }].concat(data);
+                var options = [{ id: null, name: "" }].concat(data);
                 vm.optionsItems(options);
                 $("#cmbItems").val([id]).trigger('change');
             },
@@ -127,7 +149,7 @@ var cUnitModalAPI = {
                         name: v.abb
                     });
                 });
-                var options = [{ id: 0, name: " " }].concat(abbs);
+                var options = [{ id: null, name: "" }].concat(abbs);
                 vm.optionsUnits(options);
                 $("#cmbUnits").val([id]).trigger('change');
             },

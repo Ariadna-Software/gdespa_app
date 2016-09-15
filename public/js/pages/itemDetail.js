@@ -154,7 +154,7 @@ var itemDetailAPI = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ id: 0, name: " " }].concat(data);
+                var options = [{ id: null, name: " " }].concat(data);
                 vm.optionsUnits(options);
                 $("#cmbUnits").val([id]).trigger('change');
             },
