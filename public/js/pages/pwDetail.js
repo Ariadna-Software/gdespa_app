@@ -1,6 +1,6 @@
 /*
- * cUnitDetail.js
- * Function for the page cUnitDetail.html
+ * pwDetail.js
+ * Function for the page pwDetail.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
@@ -10,33 +10,45 @@ var lang = aswCookies.getCookie('gdespa_lang');
 var data = null;
 var vm = null;
 
-var cUnitDetailAPI = {
-    init: function () {
+var pwDetailAPI = {
+    init: function (r) {
         aswInit.initPage();
         validator_languages(lang);
+        datepicker_languages(lang);
+        // datepicker fields need a language format
+        var v = i18n.t('util.date_format2');
+        //
+        $("#txtInitDate").datepicker({ dateFormat: 'dd/mm/yy' });
         $('#user_name').text(user.name);
         // make active menu option
-        $('#cUnitGeneral').attr('class', 'active');
+        $('#pwGeneral').attr('class', 'active');
         // knockout management
-        vm = new cUnitDetailAPI.pageData();
+        vm = new pwDetailAPI.pageData();
         ko.applyBindings(vm);
+        // combos
+        $('#cmbWorkers').select2(select2_languages[lang]);
+        pwDetailAPI.loadWorkers();
+        $('#cmbCompanies').select2(select2_languages[lang]);
+        pwDetailAPI.loadCompanies();
+        $('#cmbStatus').select2(select2_languages[lang]);
+        pwDetailAPI.loadStatus();
         // buttons click events
-        $('#btnOk').click(cUnitDetailAPI.btnOk());
+        $('#btnOk').click(pwDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
             e.preventDefault();
-            window.open('cUnitGeneral.html', '_self');
+            window.open('pwGeneral.html', '_self');
         })
         // init lines table
-        cUnitLineAPI.init();
+        // pwLineAPI.init();
         // init modal form
-        cUnitModalAPI.init();
+        // pwModalAPI.init();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
         }
-        cUnitDetailAPI.getCUnit(id);
+        pwDetailAPI.getPw(id);
     },
     pageData: function () {
         // knockout objects
@@ -45,8 +57,23 @@ var cUnitDetailAPI = {
         self.name = ko.observable();
         self.reference = ko.observable();
         self.description = ko.observable();
-        self.cost = ko.observable();
-        self.image = ko.observable();
+        self.initDate = ko.observable();
+        self.initInCharge = ko.observable();
+        self.companyId = ko.observable();
+        self.defaultK = ko.observable();
+        self.total = ko.observable();
+        // status combo
+        self.optionsStatus = ko.observableArray([]);
+        self.selectedStatus = ko.observableArray([]);
+        self.sStatus = ko.observable();
+        // company combo
+        self.optionsCompanies = ko.observableArray([]);
+        self.selectedCompanies = ko.observableArray([]);
+        self.sCompany = ko.observable();
+        // worker combo
+        self.optionsWorkers = ko.observableArray([]);
+        self.selectedWorkers = ko.observableArray([]);
+        self.sWorker = ko.observable();
         // -- Modal related
         self.lineId = ko.observable();
         self.line = ko.observable();
@@ -70,7 +97,7 @@ var cUnitDetailAPI = {
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#cUnitDetail-form').validate({
+        $('#pwDetail-form').validate({
             rules: {
                 txtName: { required: true },
                 txtReference: { required: true },
@@ -87,12 +114,12 @@ var cUnitDetailAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#cUnitDetail-form').valid();
+        return $('#pwDetail-form').valid();
     },
-    // obtain a  cUnit group from the API
-    getCUnit: function (id) {
+    // obtain a  pw group from the API
+    getPw: function (id) {
         if (!id || (id == 0)) {
-            // new cUnit group
+            // new pw group
             vm.id(0);
             return;
         }
@@ -102,8 +129,8 @@ var cUnitDetailAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                cUnitDetailAPI.loadData(data[0]);
-                cUnitLineAPI.getCUnitLines(data[0].id);
+                pwDetailAPI.loadData(data[0]);
+                // pwLineAPI.getPwLines(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -118,7 +145,7 @@ var cUnitDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!cUnitDetailAPI.dataOk()) return;
+            if (!pwDetailAPI.dataOk()) return;
             // dat for post or put
             var data = {
                 id: vm.id(),
@@ -146,9 +173,9 @@ var cUnitDetailAPI = {
                 success: function (data, status) {
                     if (type == "POST") {
                         vm.id(data.id);
-                         $('#wid-id-1').show();
+                        $('#wid-id-1').show();
                     } else {
-                        var url = sprintf('cUnitGeneral.html?id=%s', data.id);
+                        var url = sprintf('pwGeneral.html?id=%s', data.id);
                         window.open(url, '_self');
                     }
                 },
@@ -162,9 +189,50 @@ var cUnitDetailAPI = {
         }
         return mf;
     },
+    loadCompanies: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/company?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 0, name: " " }].concat(data);
+                vm.optionsCompanies(options);
+                $("#cmbCompanies").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('login.html', '_self');
+                }
+            }
+        });
+    },
+    loadWorkers: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/worker?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 0, name: " " }].concat(data);
+                vm.optionsWorkers(options);
+                $("#cmbWorkers").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('login.html', '_self');
+                }
+            }
+        });
+    },
+    loadStatus: function (id) {
+        var options = aswInit.getStatus();
+        vm.optionsStatus(options);
+        $("#cmbStatus").val([id]).trigger('change');
+    }
 };
 
 
-
-
-cUnitDetailAPI.init();
+pwDetailAPI.init();

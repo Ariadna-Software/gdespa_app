@@ -27,7 +27,8 @@
     },
     "util": {
         "date_iso": "YYYY-MM-DD",
-        "date_format": "DD/MM/YYYY"
+        "date_format": "DD/MM/YYYY",
+        "date_format2": "dd/mm/yy"
     },
     "login": {
         "access_site": "Acceso a la aplicación",
@@ -193,11 +194,12 @@
     "pwDetail": {
         "title": "Detalle propuesta",
         "name": "Nombre",
-        "reference": "Referencia",
+        "reference": "Ref. GDES-LINEMAN",
         "description": "Descripción",
         "status": "ESTADO",
         "iniDate": "Fecha inicial",
         "initInCharge": "Responsable inicial",
+        "defaultK": "K (Por defecto)",
         "total": "TOTAL",
         "cancel": "Salir sin guardar",
         "ok": "Guardar",

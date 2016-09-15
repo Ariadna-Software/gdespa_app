@@ -241,31 +241,76 @@
 									<form id="pwDetail-form" class="smart-form">
 										<fieldset>
 											<div class="row">
-												<section class="col col-md-8">
-													<label class="label" data-i18n="pwDetail.name">Nombre:</label>
+												<section class="col col-md-2">
+													<label class="label" data-18n="pwDetail.status">ESTADO:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbStatus" name="cmbStatus" 
+															data-bind="options: optionsStatus, optionsText: 'name', optionsValue: 'id', value: sStatus, valueAllowUnset: true, selectedOptions: selectedStatus, selected2:{}">
+														</select>
+														<i></i>
+                                        			</label>
+												</section>
+												<section class="col col-md-2">
+													<label class="label" data-i18n="pwDetail.initDate">Fecha Inicio:</label>
 													<label class="input">
-													<input id="txtName" name="txtName" data-bind="value: name">
-												</label>
+                                                        <input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker"/>
+                                                    </label>
 												</section>
 												<section class="col col-md-4">
-													<label class="label" data-i18n="pwDetail.reference">Referencia:</label>
-													<label class="input">
-													<input id="txtReference" name="txtReference" data-bind="value: reference">
-												</label>
+													<label class="label" data-18n="pwDetail.company">Empresa:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbCompanies" name="cmbCompanies" 
+															data-bind="options: optionsCompanies, optionsText: 'name', optionsValue: 'id', value: sCompany, valueAllowUnset: true, selectedOptions: selectedCompanies, selected2:{}">
+														</select>
+														<i></i>
+                                        			</label>
+												</section>
+												<section class="col col-md-4">
+													<label class="label" data-18n="pwDetail.worker">Responsable inicial:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" 
+															data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}">
+														</select>
+														<i></i>
+                                        			</label>
 												</section>
 											</div>
 											<div class="row">
+												<section class="col col-md-4">
+													<label class="label" data-i18n="pwDetail.reference">Referencia:</label>
+													<label class="input">
+														<input id="txtReference" name="txtReference" data-bind="value: reference">
+													</label>
+												</section>
 												<section class="col col-md-8">
+													<label class="label" data-i18n="pwDetail.name">Nombre:</label>
+													<label class="input">
+														<input id="txtName" name="txtName" data-bind="value: name">
+													</label>
+												</section>
+											</div>
+											<div class="row">
+												<section class="col col-md-12">
 													<label class="label" data-i18n="pwDetail.description">Descripción:</label>
 													<label class="textarea textarea-resizable">
                                                         <textarea id="txtDescription" rows="3" class="custom-scroll" data-bind="value:description"></textarea>
                                                 </label>
 												</section>
-												<section class="col col-md-4">
-													<label class="label" data-i18n="pwDetail.cost">Coste:</label>
+											</div>
+											<div class="row">
+												<section class="col col-md-8">
+												</section>
+												<section class="col col-md-2">
+													<label class="label" data-i18n="pwDetail.defaultK">K (Global):</label>
 													<label class="input">
-													<input id="txtCost" name="txtCost" data-bind="value: cost">
-                                                </label>
+														<input id="txtDefaultK" name="txtDefaultK" data-bind="value: defaultK">
+													</label>
+												</section>
+												<section class="col col-md-2">
+													<label class="label" data-i18n="pwDetail.total">Total:</label>
+													<label class="input">
+														<input id="txtTotal" name="txtTotal" data-bind="value: total">
+													</label>
 												</section>
 											</div>
 										</fieldset>
@@ -428,6 +473,9 @@
 		</script>
 	<!-- IMPORTANT: APP CONFIG -->
 	<script src="js/app.config.js"></script>
+	<!-- TRANS -->
+	<script src="js/libs/i18next-1.9.0.js"></script>
+
 	<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
 	<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
 	<!-- BOOTSTRAP JS -->
@@ -471,12 +519,11 @@
 	<script src="js/numeral.js"></script>
 	<script src="js/moment.js"></script>
 	<!-- TRANSLATIONS -->
-	<script src="js/libs/i18next-1.9.0.js"></script>
 	<script src="locales/validator-languages.js"></script>
 	<script src="locales/datatable-languages.js"></script>
 	<script src="locales/select2-languages.js"></script>
 	<script src="locales/numeral-languages.js"></script>
-	<script src="locales/datatable-languages.js"></script>
+	<script src="locales/datepicker-languages.js"></script>
 	<script src="locales/select2-languages.js"></script>
 	<!-- PAGE RELATED PLUGIN(S) -->
 	<script src="js/plugin/datatables/jquery.dataTables.min.js"></script>
@@ -497,7 +544,8 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 				pageSetUp();
-		})
+		});
+		alert("TR ": + i18n.t('status.INIT'));
 	</script>
 
 	<!-- Your GOOGLE ANALYTICS CODE Below -->

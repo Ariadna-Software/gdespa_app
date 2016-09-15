@@ -27,7 +27,7 @@ CREATE TABLE `api_key` (
   PRIMARY KEY (`apiKeyId`),
   KEY `ref_apikey_user` (`userId`),
   CONSTRAINT `ref_apikey_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 /*Data for the table `api_key` */
 
@@ -90,6 +90,12 @@ insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKe
 insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (58,1,'2016-09-13 11:02:55','2016-09-13 16:02:55','COUtk');
 insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (59,1,'2016-09-13 16:05:16','2016-09-13 21:05:16','N2kvJ');
 insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (60,1,'2016-09-14 08:26:38','2016-09-14 13:26:38','lMxG7');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (61,1,'2016-09-14 13:26:50','2016-09-14 18:26:50','tXAtH');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (62,1,'2016-09-14 18:36:30','2016-09-14 23:36:30','49Pnz');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (63,1,'2016-09-15 08:43:52','2016-09-15 13:43:52','DOgBe');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (64,1,'2016-09-15 12:13:18','2016-09-15 17:13:18','8zkJw');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (65,1,'2016-09-15 12:57:51','2016-09-15 17:57:51','282aV');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (66,1,'2016-09-15 18:17:42','2016-09-15 23:17:42','HmkQV');
 
 /*Table structure for table `company` */
 
@@ -99,7 +105,7 @@ CREATE TABLE `company` (
   `companyId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`companyId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `company` */
 
@@ -117,9 +123,13 @@ CREATE TABLE `cunit` (
   `image` varchar(255) DEFAULT NULL,
   `cost` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`cunitId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `cunit` */
+
+insert  into `cunit`(`cunitId`,`reference`,`name`,`description`,`image`,`cost`) values (1,'MONT78999','Montaje de plano alto','Es montar el plano, pero arriba',NULL,'10.25');
+insert  into `cunit`(`cunitId`,`reference`,`name`,`description`,`image`,`cost`) values (2,'MT45555R','Montaje en plano bajo','El plano en bajo',NULL,'45.50');
+insert  into `cunit`(`cunitId`,`reference`,`name`,`description`,`image`,`cost`) values (3,'LM458888','Limpieza de cañerías','Se limpian cañerias como su nombre indica',NULL,'455.30');
 
 /*Table structure for table `cunit_line` */
 
@@ -136,12 +146,18 @@ CREATE TABLE `cunit_line` (
   KEY `ref_cuniLine_cunit` (`cunitId`),
   KEY `ref_cunitLine_item` (`itemId`),
   KEY `ref_cunitLine_unit` (`unitId`),
-  CONSTRAINT `ref_cunitLine_unit` FOREIGN KEY (`unitId`) REFERENCES `unit` (`unitId`),
   CONSTRAINT `ref_cuniLine_cunit` FOREIGN KEY (`cunitId`) REFERENCES `cunit` (`cunitId`),
-  CONSTRAINT `ref_cunitLine_item` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `ref_cunitLine_item` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`),
+  CONSTRAINT `ref_cunitLine_unit` FOREIGN KEY (`unitId`) REFERENCES `unit` (`unitId`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 /*Data for the table `cunit_line` */
+
+insert  into `cunit_line`(`cunitLineId`,`cunitId`,`line`,`itemId`,`unitId`,`quantity`) values (7,2,10,1,1,'78.00');
+insert  into `cunit_line`(`cunitLineId`,`cunitId`,`line`,`itemId`,`unitId`,`quantity`) values (8,2,NULL,1,1,'15.00');
+insert  into `cunit_line`(`cunitLineId`,`cunitId`,`line`,`itemId`,`unitId`,`quantity`) values (9,1,1,2,1,'20.00');
+insert  into `cunit_line`(`cunitLineId`,`cunitId`,`line`,`itemId`,`unitId`,`quantity`) values (10,1,2,1,1,'25.00');
+insert  into `cunit_line`(`cunitLineId`,`cunitId`,`line`,`itemId`,`unitId`,`quantity`) values (11,3,1,1,1,'20.00');
 
 /*Table structure for table `item` */
 
@@ -157,9 +173,38 @@ CREATE TABLE `item` (
   PRIMARY KEY (`itemId`),
   KEY `ref_item_unit` (`unitId`),
   CONSTRAINT `ref_item_unit` FOREIGN KEY (`unitId`) REFERENCES `unit` (`unitId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `item` */
+
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (1,'CFTT7889','Chapa de aluminio 33','Chapa por metros',1,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (2,'A7888','Poste 25m','Poste grande de narices',1,NULL);
+
+/*Table structure for table `pw` */
+
+DROP TABLE IF EXISTS `pw`;
+
+CREATE TABLE `pw` (
+  `pwId` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(255) DEFAULT NULL,
+  `reference` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` text,
+  `initDate` date DEFAULT NULL,
+  `initInCharge` int(11) DEFAULT NULL,
+  `companyId` int(11) DEFAULT NULL,
+  `defaultK` decimal(5,2) DEFAULT NULL,
+  `total` decimal(12,2) DEFAULT NULL,
+  PRIMARY KEY (`pwId`),
+  KEY `ref_pw_worker` (`initInCharge`),
+  KEY `ref_pw_company` (`companyId`),
+  CONSTRAINT `ref_pw_company` FOREIGN KEY (`companyId`) REFERENCES `company` (`companyId`),
+  CONSTRAINT `ref_pw_worker` FOREIGN KEY (`initInCharge`) REFERENCES `worker` (`workerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+/*Data for the table `pw` */
+
+insert  into `pw`(`pwId`,`status`,`reference`,`name`,`description`,`initDate`,`initInCharge`,`companyId`,`defaultK`,`total`) values (2,'INIT','REF666','NAME666','DES666','2016-09-01',11,1,'1.00','0.00');
 
 /*Table structure for table `store` */
 
@@ -182,9 +227,12 @@ CREATE TABLE `unit` (
   `name` varchar(255) DEFAULT NULL,
   `abb` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`unitId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `unit` */
+
+insert  into `unit`(`unitId`,`name`,`abb`) values (1,'metros','m');
+insert  into `unit`(`unitId`,`name`,`abb`) values (2,'litros','l');
 
 /*Table structure for table `user` */
 
@@ -200,7 +248,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`userId`),
   KEY `rf_user_userGroup` (`userGroupId`),
   CONSTRAINT `rf_user_userGroup` FOREIGN KEY (`userGroupId`) REFERENCES `user_group` (`userGroupId`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
@@ -243,7 +291,7 @@ CREATE TABLE `worker` (
   PRIMARY KEY (`workerId`),
   KEY `ref_user` (`userId`),
   CONSTRAINT `ref_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=267 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=214 DEFAULT CHARSET=utf8;
 
 /*Data for the table `worker` */
 

@@ -40,8 +40,28 @@ var aswLanguage = {
         $('#language-abrv').text(lgn);
         validator_languages(lg);
         // numeral
-        numeral.language(lg,numeral_languages[lg]);
+        numeral.language(lg, numeral_languages[lg]);
         numeral.language(lg);
+        // datepicker
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '&#x3C;Ant',
+            nextText: 'Sig&#x3E;',
+            currentText: 'Hoy',
+            monthNames: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+            monthNamesShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+            dayNames: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+            dayNamesShort: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+            dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+
+        $.datepicker.setDefaults($.datepicker.regional['es']);
         // store language in cookie
         aswCookies.setCookie('gdespa_lang', lg);
     }
@@ -232,6 +252,18 @@ var aswInit = {
         // change serach, it doesn't matter language
         options.language.search = '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>';
         return options;
+    },
+    //
+    getStatus: function(){
+        var sts = [
+            {id:0, name:i18n.t("status.INIT")},
+            {id:1, name:i18n.t("status.ACCEPTED")},
+            {id:2, name:i18n.t("status.DONE")},
+            {id:3, name:i18n.t("status.VALIDATED")},
+            {id:4, name:i18n.t("status.INVOICED")},
+            {id:5, name:i18n.t("status.PAID")}
+        ];
+        return sts;
     }
 }
 
