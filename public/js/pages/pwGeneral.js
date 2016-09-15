@@ -1,79 +1,88 @@
 /*
- * cUnitGeneral.js
- * Function for the page cUnitGeneral.html
+ * pwGeneral.js
+ * Function for the page pwGeneral.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
 
 var data = null;
 
-var cUnitGeneralAPI = {
+var pwGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
         // make active menu option
-        $('#cUnitGeneral').attr('class', 'active');
-        cUnitGeneralAPI.initCUnitTable();
+        $('#pwGeneral').attr('class', 'active');
+        pwGeneralAPI.initPwTable();
         // avoid sending form 
-        $('#cUnitGeneral-form').submit(function () {
+        $('#pwGeneral-form').submit(function () {
             return false;
         });
         // buttons click events 
-        $('#btnNew').click(cUnitGeneralAPI.newCUnit());
-        $('#btnSearch').click(cUnitGeneralAPI.searchCUnit());
+        $('#btnNew').click(pwGeneralAPI.newPw());
+        $('#btnSearch').click(pwGeneralAPI.searchPw());
         // check if there's an id
         var id = aswUtil.gup('id');
         if (id) {
-            cUnitGeneralAPI.getCUnit(id);
+            pwGeneralAPI.getPw(id);
+        } else {
+            // we load all records by default
+            pwGeneralAPI.getPws('');
         }
     },
     // initializes the table
-    initCUnitTable: function () {
-        var options = aswInit.initTableOptions('dt_cUnit');
+    initPwTable: function () {
+        var options = aswInit.initTableOptions('dt_pw');
         options.data = data;
         options.columns = [{
             data: "reference"
         }, {
+                data: "status",
+                render: function (data, type, row) {
+                    var html = sprintf('<span data-i18n="status.%s"></span>', data);
+                    return html;
+                }
+            }, {
                 data: "name"
-            },{
+            }, {
                 data: "description"
             }, {
                 data: "id",
                 render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='cUnitGeneralAPI.deleteCUnitMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='cUnitGeneralAPI.editCUnit(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwGeneralAPI.deletePwMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='pwGeneralAPI.editPw(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                     var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                     return html;
                 }
             }];
-        $('#dt_cUnit').dataTable(options);
+        $('#dt_pw').dataTable(options);
     },
-    searchCUnit: function () {
+    searchPw: function () {
         var mf = function () {
             // obtain strin to search 
             var search = $('#txtSearch').val();
-            cUnitGeneralAPI.getCUnits(search);
+            pwGeneralAPI.getPws(search);
         };
         return mf;
     },
-    newCUnit: function () {
+    newPw: function () {
         // Its an event handler, return function
         var mf = function () {
-            window.open(sprintf('cUnitDetail.html?id=%s', 0), '_self');
+            window.open(sprintf('pwDetail.html?id=%s', 0), '_self');
         }
         return mf;
     },
-    editCUnit: function (id) {
-        window.open(sprintf('cUnitDetail.html?id=%s', id), '_self');
+    editPw: function (id) {
+        window.open(sprintf('pwDetail.html?id=%s', id), '_self');
     },
-    deleteCUnitMessage: function (id) {
-        var url = sprintf("%s/cunit/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deletePwMessage: function (id) {
+        var url = sprintf("%s/pw/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].name;
-                var fn = sprintf('cUnitGeneralAPI.deleteCUnit(%s);', id);
+                var fn = sprintf('pwGeneralAPI.deletePw(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -84,8 +93,8 @@ var cUnitGeneralAPI = {
             }
         });
     },
-    deleteCUnit: function (id) {
-        var url = sprintf("%s/cunit/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deletePw: function (id) {
+        var url = sprintf("%s/pw/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         var data = {
             id: id
         };
@@ -95,7 +104,7 @@ var cUnitGeneralAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                cUnitGeneralAPI.getCUnits('');
+                pwGeneralAPI.getPws('');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -106,14 +115,14 @@ var cUnitGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getCUnits: function (name) {
-        var url = sprintf("%s/cunit?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+    getPws: function (name) {
+        var url = sprintf("%s/pw?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                cUnitGeneralAPI.loadCUnitsTable(data);
+                pwGeneralAPI.loadPwsTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -124,14 +133,14 @@ var cUnitGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getCUnit: function (id) {
-        var url = sprintf("%s/cunit/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    getPw: function (id) {
+        var url = sprintf("%s/pw/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                cUnitGeneralAPI.loadCUnitsTable(data);
+                pwGeneralAPI.loadPwsTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -141,13 +150,13 @@ var cUnitGeneralAPI = {
             }
         });
     },
-    loadCUnitsTable: function (data) {
-        var dt = $('#dt_cUnit').dataTable();
+    loadPwsTable: function (data) {
+        var dt = $('#dt_pw').dataTable();
         dt.fnClearTable();
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-        $("#tb_cUnit").show();
+        $("#tb_pw").show();
     }
 };
 
-cUnitGeneralAPI.init();
+pwGeneralAPI.init();

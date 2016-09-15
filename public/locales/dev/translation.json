@@ -17,7 +17,15 @@
         "authorization": "No autorizado, compruebe que el usuario y contraseña son los correctos",
         "close": "Para cerrar este mensaje haga clic en él."
     },
-    "util":{
+    "status": {
+        "INIT": "PRESUPUESTO",
+        "ACCEPTED": "ACEPTADO",
+        "DONE": "REALIZADO",
+        "VALIDATED": "CERTIFICADO",
+        "INVOICED": "FACTURADO",
+        "PAID": "PAGADO"
+    },
+    "util": {
         "date_iso": "YYYY-MM-DD",
         "date_format": "DD/MM/YYYY"
     },
@@ -43,14 +51,14 @@
             "item": "Articulos",
             "cUnit": "Unidades constructivas"
         },
-        "pwman":{
+        "pwman": {
             "main": "Obras y servicios",
             "pw": "Propuestas"
         },
-        "store":{
+        "store": {
             "main": "Almacenes / Stock"
         },
-        "report":{
+        "report": {
             "main": "Informes"
         }
     },
@@ -172,7 +180,7 @@
         "newLine": "Nueva linea",
         "associated_items": "Artículos asociados",
         "modal_title": "Artículo asociado",
-        "validate":{
+        "validate": {
             "items": "Debe elegir un artículo",
             "units": "Debe elegir una unidad"
         }
@@ -196,7 +204,7 @@
         "newLine": "Nueva linea",
         "associated_items": "Unidades constructivas asociados",
         "modal_title": "Unidad constructiva",
-        "validate":{
+        "validate": {
             "items": "Debe elegir un artículo",
             "units": "Debe elegir una unidad"
         }

@@ -212,8 +212,8 @@
 		<div id="ribbon">
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
-				<li data-i18n="menu.administration.main">Home</li>
-				<li data-i18n="menu.administration.cUnit">Home</li>
+				<li data-i18n="menu.pwman.main">Home</li>
+				<li data-i18n="menu.pwman.pw">Home</li>
 			</ol>
 		</div>
 		<!-- Main content -->
@@ -222,7 +222,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-cubes"></i> <span data-i18n="menu.administration.cUnit">Inicio</span>
+						<i class="fa-fw fa fa-cog"></i> <span data-i18n="menu.pwman.pw">Inicio</span>
 					</h1>
 				</div>
 			</div>
@@ -233,22 +233,22 @@
 						<!-- Widget ID (each widget will need unique ID)-->
 						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
-								<span class="widget-icon"> <i class="fa fa-cubes"></i> </span>
-								<h2 data-i18n="cUnitDetail.title">Mantenimiento</h2>
+								<span class="widget-icon"> <i class="fa fa-cog"></i> </span>
+								<h2 data-i18n="pwDetail.title">Mantenimiento</h2>
 							</header>
 							<div class="widget-body">
 								<div class="row">
-									<form id="cUnitDetail-form" class="smart-form">
+									<form id="pwDetail-form" class="smart-form">
 										<fieldset>
 											<div class="row">
 												<section class="col col-md-8">
-													<label class="label" data-i18n="cUnitDetail.name">Nombre:</label>
+													<label class="label" data-i18n="pwDetail.name">Nombre:</label>
 													<label class="input">
 													<input id="txtName" name="txtName" data-bind="value: name">
 												</label>
 												</section>
 												<section class="col col-md-4">
-													<label class="label" data-i18n="cUnitDetail.reference">Referencia:</label>
+													<label class="label" data-i18n="pwDetail.reference">Referencia:</label>
 													<label class="input">
 													<input id="txtReference" name="txtReference" data-bind="value: reference">
 												</label>
@@ -256,13 +256,13 @@
 											</div>
 											<div class="row">
 												<section class="col col-md-8">
-													<label class="label" data-i18n="cUnitDetail.description">Descripción:</label>
+													<label class="label" data-i18n="pwDetail.description">Descripción:</label>
 													<label class="textarea textarea-resizable">
                                                         <textarea id="txtDescription" rows="3" class="custom-scroll" data-bind="value:description"></textarea>
                                                 </label>
 												</section>
 												<section class="col col-md-4">
-													<label class="label" data-i18n="cUnitDetail.cost">Coste:</label>
+													<label class="label" data-i18n="pwDetail.cost">Coste:</label>
 													<label class="input">
 													<input id="txtCost" name="txtCost" data-bind="value: cost">
                                                 </label>
@@ -271,10 +271,10 @@
 										</fieldset>
 										<fieldset>
 											<div class="pull-right">
-												<button id="btnExit" data-i18n="[title]cUnitDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+												<button id="btnExit" data-i18n="[title]pwDetail.cancel" class="btn btn-warning btn-circle btn-lg">
 													<i class="fa fa-lg fa-sign-out"></i>
 												</button>
-												<button id="btnOk" data-i18n="[title]cUnitDetail.ok" class="btn btn-success btn-circle btn-lg">
+												<button id="btnOk" data-i18n="[title]pwDetail.ok" class="btn btn-success btn-circle btn-lg">
 													<i class="fa fa-lg fa-check"></i>
 												</button>
 											</div>
@@ -287,35 +287,35 @@
 							style="display:none;">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
-								<h2 data-i18n="cUnitDetail.associated_items">Mantenimiento</h2>
+								<h2 data-i18n="pwDetail.associated_items">Mantenimiento</h2>
 							</header>
 							<div class="widget-body">
 								<div class="row">
-									<form id="cUnitDetailLine-form" class="smart-form">
+									<form id="pwDetailLine-form" class="smart-form">
 										<fieldset>
 											<div class="pull-right">
-												<button id="btnNewLine" data-i18n="[title]cUnitDetail.newLine" data-toggle="modal" data-target="#cUnitModal" class="btn btn-success btn-circle btn-lg">
+												<button id="btnNewLine" data-i18n="[title]pwDetail.newLine" data-toggle="modal" data-target="#pwModal" class="btn btn-success btn-circle btn-lg">
 													<i class="fa fa-lg fa-plus"></i>
 												</button>
 											</div>
 										</fieldset>
 										<fieldset>
-											<div id="tb_cUnitLine">
-												<table id="dt_cUnitLine" class="table table-striped table-bordered table-hover" width="100%">
+											<div id="tb_pwLine">
+												<table id="dt_pwLine" class="table table-striped table-bordered table-hover" width="100%">
 													<thead>
 														<tr>
 															<th data-class="expand">
 																<i class="fa fa-fw fa-cube text-muted hidden-md hidden-sm hidden-xs"></i>
-																<span data-i18n="cUnitDetail.line">R</span>
+																<span data-i18n="pwDetail.line">R</span>
 															</th>
 															<th>
-																<span data-i18n="cUnitDetail.item"></span>
+																<span data-i18n="pwDetail.item"></span>
 															</th>
 															<th data-hide="phone">
-																<span data-i18n="cUnitDetail.unit"></span>
+																<span data-i18n="pwDetail.unit"></span>
 															</th>
 															<th data-hide="phone">
-																<span data-i18n="cUnitDetail.quantity"></span>
+																<span data-i18n="pwDetail.quantity"></span>
 															</th>
 															<th>
 															</th>
@@ -343,7 +343,7 @@
 	</div>
 
 	<!-- Modal -->
-	<div class="modal fade" id="cUnitModal" tabindex="-1" role="dialog">
+	<div class="modal fade" id="pwModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -351,34 +351,34 @@
                         &times;
                     </button>
 					<h4 class="modal-title">
-						<i class="fa fa-sitemap"></i> <span data-i18n="cUnitDetail.modal_title">ART</span>
+						<i class="fa fa-sitemap"></i> <span data-i18n="pwDetail.modal_title">ART</span>
 					</h4>
 				</div>
 				<div class="modal-body no-padding">
-					<form id="cUnitModal-form" class="smart-form">
+					<form id="pwModal-form" class="smart-form">
 						<fieldset>
 							<section>
 								<div class="row">
 									<section class="col col-md-2">
-										<label class="label" data-i18n="cUnitDetail.line">Linea:</label>
+										<label class="label" data-i18n="pwDetail.line">Linea:</label>
 										<label class="input">
                                             <input id="txtLinea" name="txtLinea" type="text" data-bind="value: line" />
                                         </label>
 									</section>
 									<section class="col col-md-6">
-										<label class="label" data-18n="cUnitDetail.item">Articulo:</label>
+										<label class="label" data-18n="pwDetail.item">Articulo:</label>
 										<label style="width:100%;">
                                             <select style="width:100%" id="cmbItems" name="cmbItems" data-bind="options: optionsItems, optionsText: 'name', optionsValue: 'id', value: sItem, valueAllowUnset: true, selectedOptions: selectedItems, selected2:{}"></select><i></i>
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-18n="cUnitDetail.unit">Unid:</label>
+										<label class="label" data-18n="pwDetail.unit">Unid:</label>
 										<label style="width:100%;">
                                             <select style="width:100%" id="cmbUnits" name="cmbUnits" data-bind="options: optionsUnits, optionsText: 'name', optionsValue: 'id', value: sUnit, valueAllowUnset: true, selectedOptions: selectedUnits, selected2:{}"></select><i></i>
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-i18n="cUnitDetail.quantity">Cantidad:</label>
+										<label class="label" data-i18n="pwDetail.quantity">Cantidad:</label>
 										<label class="input">
                                             <input id="txtQuantity" name="txtQuantity" type="text" data-bind="value: quantity" />
                                         </label>
@@ -388,10 +388,10 @@
 						</fieldset>
 						<footer>
 							<button id="btnSaveLine" class="btn btn-primary">
-                                <span data-i18n="cUnitDetail.ok">A</span>
+                                <span data-i18n="pwDetail.ok">A</span>
                             </button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">
-                                <span data-i18n="cUnitDetail.cancel">C</span>
+                                <span data-i18n="pwDetail.cancel">C</span>
                             </button>
 						</footer>
 					</form>
@@ -402,7 +402,7 @@
 		<!-- /.modal-dialog -->
 	</div>
 
-	<!-- SHORTCUT AREA : With large tiles (activated via clicking cUnit name tag)
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking pw name tag)
 		Note: These tiles are completely responsive,
 		you can add as many as you like
 		-->
@@ -488,9 +488,9 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/cUnitModal.js"></script>
-	<script src="js/pages/cUnitLine.js"></script>
-	<script src="js/pages/cUnitDetail.js"></script>
+	<script src="js/pages/pwModal.js"></script>
+	<script src="js/pages/pwLine.js"></script>
+	<script src="js/pages/pwDetail.js"></script>
 
 
 
