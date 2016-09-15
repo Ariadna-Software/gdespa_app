@@ -36,11 +36,7 @@ var pwGeneralAPI = {
         options.columns = [{
             data: "reference"
         }, {
-                data: "status",
-                render: function (data, type, row) {
-                    var html = sprintf('<span data-i18n="status.%s"></span>', data);
-                    return html;
-                }
+                data: "status.name"
             }, {
                 data: "name"
             }, {

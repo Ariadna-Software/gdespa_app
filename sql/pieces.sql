@@ -96,3 +96,21 @@ CREATE TABLE `gdespa`.`pw`(
 );
 ALTER TABLE `gdespa`.`pw`   
   ADD COLUMN `status` VARCHAR(255) NULL AFTER `pwId`;
+#----------------------
+CREATE TABLE `gdespa`.`status`(  
+  `statusId` INT(11),
+  `name` VARCHAR(255)
+);
+ALTER TABLE `gdespa`.`status`   
+  CHANGE `statusId` `statusId` INT(11) NOT NULL, 
+  ADD PRIMARY KEY (`statusId`);
+
+/*[19:35:25][85 ms]*/ INSERT INTO `gdespa`.`status` (`statusId`, `name`) VALUES ('0', 'PRESUPUESTO'); 
+/*[19:35:32][55 ms]*/ INSERT INTO `gdespa`.`status` (`statusId`, `name`) VALUES ('1', 'ACEPTADO'); 
+/*[19:35:41][105 ms]*/ INSERT INTO `gdespa`.`status` (`statusId`, `name`) VALUES ('2', 'TERMINADO'); 
+/*[19:35:50][102 ms]*/ INSERT INTO `gdespa`.`status` (`statusId`, `name`) VALUES ('3', 'CERTIFICADO'); 
+/*[19:35:56][53 ms]*/ INSERT INTO `gdespa`.`status` (`statusId`, `name`) VALUES ('4', 'FACTURADO'); 
+/*[19:36:01][29 ms]*/ INSERT INTO `gdespa`.`status` (`statusId`, `name`) VALUES ('5', 'PAGADO'); 
+ALTER TABLE `gdespa`.`pw`   
+  CHANGE `status` `statusId` INT(11) NULL,
+  ADD CONSTRAINT `ref_pw_status` FOREIGN KEY (`statusId`) REFERENCES `gdespa`.`status`(`statusId`);

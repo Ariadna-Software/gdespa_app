@@ -253,11 +253,11 @@
 												<section class="col col-md-2">
 													<label class="label" data-i18n="pwDetail.initDate">Fecha Inicio:</label>
 													<label class="input">
-                                                        <input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker"/>
+                                                        <input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy"/>
                                                     </label>
 												</section>
 												<section class="col col-md-4">
-													<label class="label" data-18n="pwDetail.company">Empresa:</label>
+													<label class="label" data-i18n="pwDetail.company">Empresa:</label>
 													<label style="width:100%;">
 														<select style="width:100%" id="cmbCompanies" name="cmbCompanies" 
 															data-bind="options: optionsCompanies, optionsText: 'name', optionsValue: 'id', value: sCompany, valueAllowUnset: true, selectedOptions: selectedCompanies, selected2:{}">
@@ -266,7 +266,7 @@
                                         			</label>
 												</section>
 												<section class="col col-md-4">
-													<label class="label" data-18n="pwDetail.worker">Responsable inicial:</label>
+													<label class="label" data-i18n="pwDetail.initInCharge">Responsable inicial:</label>
 													<label style="width:100%;">
 														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" 
 															data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}">
@@ -544,8 +544,8 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 				pageSetUp();
+				pwDetailAPI.init();
 		});
-		alert("TR ": + i18n.t('status.INIT'));
 	</script>
 
 	<!-- Your GOOGLE ANALYTICS CODE Below -->
