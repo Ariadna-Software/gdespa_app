@@ -79,3 +79,20 @@ CREATE TABLE `gdespa`.`cunit_line`(
 ALTER TABLE `gdespa`.`cunit_line`   
   ADD COLUMN `unitId` INT(11) NULL AFTER `itemId`,
   ADD CONSTRAINT `ref_cunitLine_unit` FOREIGN KEY (`unitId`) REFERENCES `gdespa`.`unit`(`unitId`);
+#---------------------------------
+CREATE TABLE `gdespa`.`pw`(  
+  `pwId` INT(11) NOT NULL AUTO_INCREMENT,
+  `reference` VARCHAR(255),
+  `name` VARCHAR(255),
+  `description` TEXT,
+  `initDate` DATE,
+  `initInCharge` INT(11),
+  `companyId` INT(11),
+  `defaultK` DECIMAL(5,2),
+  `total` DECIMAL(12,2),
+  PRIMARY KEY (`pwId`),
+  CONSTRAINT `ref_pw_worker` FOREIGN KEY (`initInCharge`) REFERENCES `gdespa`.`worker`(`workerId`),
+  CONSTRAINT `ref_pw_company` FOREIGN KEY (`companyId`) REFERENCES `gdespa`.`company`(`companyId`)
+);
+ALTER TABLE `gdespa`.`pw`   
+  ADD COLUMN `status` VARCHAR(255) NULL AFTER `pwId`;
