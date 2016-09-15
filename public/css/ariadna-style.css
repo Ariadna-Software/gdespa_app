@@ -19,5 +19,10 @@
     display: none;
 }
 .asw-logo {
-    height: 30px;
+    padding: 1px;
+    height: 50px;
+}
+.asw-logo-login {
+    padding: 1px;
+    height: 70px;
 }
