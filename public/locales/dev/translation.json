@@ -9,6 +9,8 @@
     "warning": "ADVERTENCIA",
     "yes": "Si",
     "no": "No",
+    "evolution": "EVOLUCIÓN",
+    "progress": "PROGRESO",
     "delete_warning": "¿Desea realmente borrar el registro: ",
     "search_name": "Introduzca el texto a buscar (Déjelo vacio para ver todos)",
     "error": {

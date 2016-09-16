@@ -238,96 +238,140 @@
 							</header>
 							<div class="widget-body">
 								<div class="row">
-									<form id="pwDetail-form" class="smart-form">
-										<fieldset>
-											<div class="row">
-												<section class="col col-md-2">
-													<label class="label" data-18n="pwDetail.status">ESTADO:</label>
-													<label style="width:100%;">
+									<section class="col col-md-10">
+										<form id="pwDetail-form" class="smart-form">
+											<fieldset>
+												<div class="row">
+													<section class="col col-md-2">
+														<label class="label" data-18n="pwDetail.status">ESTADO:</label>
+														<label style="width:100%;">
 														<select style="width:100%" id="cmbStatus" name="cmbStatus" 
 															data-bind="options: optionsStatus, optionsText: 'name', optionsValue: 'id', value: sStatus, valueAllowUnset: true, selectedOptions: selectedStatus, selected2:{}">
 														</select>
 														<i></i>
                                         			</label>
-												</section>
-												<section class="col col-md-2">
-													<label class="label" data-i18n="pwDetail.initDate">Fecha Inicio:</label>
-													<label class="input">
+													</section>
+													<section class="col col-md-2">
+														<label class="label" data-i18n="pwDetail.initDate">Fecha Inicio:</label>
+														<label class="input">
                                                         <input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy"/>
                                                     </label>
-												</section>
-												<section class="col col-md-4">
-													<label class="label" data-i18n="pwDetail.company">Empresa:</label>
-													<label style="width:100%;">
+													</section>
+													<section class="col col-md-4">
+														<label class="label" data-i18n="pwDetail.company">Empresa:</label>
+														<label style="width:100%;">
 														<select style="width:100%" id="cmbCompanies" name="cmbCompanies" 
 															data-bind="options: optionsCompanies, optionsText: 'name', optionsValue: 'id', value: sCompany, valueAllowUnset: true, selectedOptions: selectedCompanies, selected2:{}">
 														</select>
 														<i></i>
                                         			</label>
-												</section>
-												<section class="col col-md-4">
-													<label class="label" data-i18n="pwDetail.initInCharge">Responsable inicial:</label>
-													<label style="width:100%;">
+													</section>
+													<section class="col col-md-4">
+														<label class="label" data-i18n="pwDetail.initInCharge">Responsable inicial:</label>
+														<label style="width:100%;">
 														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" 
 															data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}">
 														</select>
 														<i></i>
                                         			</label>
-												</section>
-											</div>
-											<div class="row">
-												<section class="col col-md-4">
-													<label class="label" data-i18n="pwDetail.reference">Referencia:</label>
-													<label class="input">
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-4">
+														<label class="label" data-i18n="pwDetail.reference">Referencia:</label>
+														<label class="input">
 														<input id="txtReference" name="txtReference" data-bind="value: reference">
 													</label>
-												</section>
-												<section class="col col-md-8">
-													<label class="label" data-i18n="pwDetail.name">Nombre:</label>
-													<label class="input">
+													</section>
+													<section class="col col-md-8">
+														<label class="label" data-i18n="pwDetail.name">Nombre:</label>
+														<label class="input">
 														<input id="txtName" name="txtName" data-bind="value: name">
 													</label>
-												</section>
-											</div>
-											<div class="row">
-												<section class="col col-md-12">
-													<label class="label" data-i18n="pwDetail.description">Descripción:</label>
-													<label class="textarea textarea-resizable">
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-12">
+														<label class="label" data-i18n="pwDetail.description">Descripción:</label>
+														<label class="textarea textarea-resizable">
                                                         <textarea id="txtDescription" rows="3" class="custom-scroll" data-bind="value:description"></textarea>
                                                 </label>
-												</section>
-											</div>
-											<div class="row">
-												<section class="col col-md-8">
-												</section>
-												<section class="col col-md-2">
-													<label class="label" data-i18n="pwDetail.defaultK">K (Global):</label>
-													<label class="input">
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-8">
+													</section>
+													<section class="col col-md-2">
+														<label class="label" data-i18n="pwDetail.defaultK">K (Global):</label>
+														<label class="input">
 														<input id="txtDefaultK" name="txtDefaultK" data-bind="value: defaultK">
 													</label>
-												</section>
-												<section class="col col-md-2">
-													<label class="label" data-i18n="pwDetail.total">Total:</label>
-													<label class="input">
+													</section>
+													<section class="col col-md-2">
+														<label class="label" data-i18n="pwDetail.total">Total:</label>
+														<label class="input">
 														<input id="txtTotal" name="txtTotal" data-bind="value: total" disabled>
 													</label>
-												</section>
-											</div>
-										</fieldset>
-										<fieldset>
-											<div class="pull-right">
-												<button id="btnChangeStatus" data-i18n="[title]pwDetail.change_status" data-toggle="modal" data-target="#pwModal2" class="btn btn-success btn-circle btn-lg">
+													</section>
+												</div>
+											</fieldset>
+											<fieldset>
+												<div class="pull-right">
+													<button id="btnChangeStatus" data-i18n="[title]pwDetail.change_status" data-toggle="modal" data-target="#pwModal2" class="btn btn-success btn-circle btn-lg"
+														style="display:none;">
 													<i class="fa fa-lg fa-random"></i>
-												</button>												
-												<button id="btnExit" data-i18n="[title]pwDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+												</button>
+													<button id="btnExit" data-i18n="[title]pwDetail.cancel" class="btn btn-warning btn-circle btn-lg">
 													<i class="fa fa-lg fa-sign-out"></i>
 												</button>
-												<button id="btnOk" data-i18n="[title]pwDetail.ok" class="btn btn-success btn-circle btn-lg">
+													<button id="btnOk" data-i18n="[title]pwDetail.ok" class="btn btn-success btn-circle btn-lg">
 													<i class="fa fa-lg fa-check"></i>
 												</button>
-											</div>
-										</fieldset>
-									</form>
+												</div>
+											</fieldset>
+										</form>
+
+									</section>
+									<section class="col col-md-2">
+										<div class="row">
+											<hr/>
+											<h1 data-i18n="evolution">E</h1>
+											<hr/>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.INIT"></span>: </strong>
+											<span data-bind="text: initDate"></span>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.ACCEPTED"></span>: </strong>
+											<span data-bind="text: acepDate"></span>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.DONE">:</span>: </strong>
+											<span data-bind="text: finDate"></span>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.VALIDATED"></span>: </strong>
+											<span data-bind="text: cerDate"></span>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.INVOICED"></span>: </strong>
+											<span data-bind="text: invDate"></span>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.PAID"></span>: </strong>
+											<span data-bind="text: payDate"></span>
+										</div>
+										<div class="row">
+											<hr/>
+											<h1 data-i18n="progress">P</h1>
+											<hr/>
+										</div>
+										<div class="row" style="text-align:center">
+											<h1>0 %</h1>
+										</div>
+									</section>
+
 								</div>
 							</div>
 						</div>

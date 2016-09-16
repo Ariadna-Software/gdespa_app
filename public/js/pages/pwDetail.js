@@ -51,6 +51,7 @@ var pwDetailAPI = {
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
+            $('#btnChangeStatus').show();
         }
         pwDetailAPI.getPw(id);
     },
@@ -66,6 +67,11 @@ var pwDetailAPI = {
         self.companyId = ko.observable();
         self.defaultK = ko.observable();
         self.total = ko.observable();
+        self.acepDate = ko.observable();
+        self.finDate = ko.observable();
+        self.cerDate = ko.observable();
+        self.invDate = ko.observable();
+        self.payDate = ko.observable();
         // status combo
         self.optionsStatus = ko.observableArray([]);
         self.selectedStatus = ko.observableArray([]);
@@ -115,6 +121,18 @@ var pwDetailAPI = {
         pwDetailAPI.loadCompanies(vm.sCompany());
         vm.defaultK(data.defaultK);
         vm.total(data.total);
+        if (moment(data.acepDate).isValid()) {
+            vm.acepDate(moment(data.acepDate).format(i18n.t("util.date_format")));
+        }
+        if (moment(data.finDate).isValid()) {
+            vm.finDate(moment(data.finDate).format(i18n.t("util.date_format")));
+        }
+        if (moment(data.cerDate).isValid())
+            vm.cerDate(moment(data.cerDate).format(i18n.t("util.date_format")));
+        if (moment(data.finDate).invValid())
+            vm.invDate(moment(data.invDate).format(i18n.t("util.date_format")));
+        if (moment(data.payDate).isValid())
+            vm.payDate(moment(data.payDate).format(i18n.t("util.date_format")));
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -200,6 +218,7 @@ var pwDetailAPI = {
                     if (type == "POST") {
                         vm.id(data.id);
                         $('#wid-id-1').show();
+                        $('#btnChangeStatus').show();
                     } else {
                         var url = sprintf('pwGeneral.html?id=%s', data.id);
                         window.open(url, '_self');

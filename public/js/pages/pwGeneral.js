@@ -146,6 +146,7 @@ var pwGeneralAPI = {
             }
         });
     },
+    //
     loadPwsTable: function (data) {
         var dt = $('#dt_pw').dataTable();
         dt.fnClearTable();

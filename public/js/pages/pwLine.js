@@ -19,6 +19,8 @@ var pwLineAPI = {
             }, {
                 data: "cost"
             }, {
+                data: "quantity"
+            }, {
                 data: "k"
             }, {
                 data: "amount"
