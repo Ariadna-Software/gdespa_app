@@ -154,3 +154,27 @@ ALTER TABLE `gdespa`.`pw`
 ALTER TABLE `gdespa`.`pw_line` DROP FOREIGN KEY `ref_pwline_pw`;
 
 ALTER TABLE `gdespa`.`pw_line` ADD CONSTRAINT `ref_pwline_pw` FOREIGN KEY (`pwId`) REFERENCES `gdespa`.`pw`(`pwId`) ON DELETE CASCADE;
+# --------------------------
+CREATE TABLE `gdespa`.`wo`(  
+  `woId` INT(11) NOT NULL AUTO_INCREMENT,
+  `initDate` DATE,
+  `endDate` DATE,
+  `workerId` INT(11),
+  `pwId` INT(11),
+  `comments` TEXT,
+  PRIMARY KEY (`woId`),
+  CONSTRAINT `ref_wo_pw` FOREIGN KEY (`pwId`) REFERENCES `gdespa`.`pw`(`pwId`),
+  CONSTRAINT `ref_wo_worker` FOREIGN KEY (`workerId`) REFERENCES `gdespa`.`worker`(`workerId`)
+);
+
+CREATE TABLE `gdespa`.`wo_line`(  
+  `woLineId` INT(11) NOT NULL AUTO_INCREMENT,
+  `woId` INT(11),
+  `cunitId` INT(11),
+  `estimate` DECIMAL(5,2),
+  `done` DECIMAL(5,2),
+  `quantity` DECIMAL(5,2),
+  PRIMARY KEY (`woLineId`),
+  CONSTRAINT `ref_wol_wo` FOREIGN KEY (`woId`) REFERENCES `gdespa`.`wo`(`woId`),
+  CONSTRAINT `ref_wol_cunit` FOREIGN KEY (`cunitId`) REFERENCES `gdespa`.`cunit`(`cunitId`)
+);
