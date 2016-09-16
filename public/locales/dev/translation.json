@@ -195,10 +195,12 @@
         "title": "Detalle propuesta",
         "name": "Nombre",
         "reference": "Ref. GDES-LINEMAN",
+        "reference2": "Referencia",
         "company": "Empresa",
         "description": "Descripción",
         "status": "ESTADO",
         "initDate": "Fecha inicial",
+        "initDate2": "Fecha cambio",
         "initInCharge": "Responsable inicial",
         "defaultK": "K (Por defecto)",
         "total": "TOTAL",
@@ -207,6 +209,7 @@
         "newLine": "Nueva linea",
         "associated_items": "Unidades constructivas asociadas",
         "modal_title": "Unidad constructiva",
+        "modal_title2": "Cambiar estado",
         "validate": {
             "items": "Debe elegir un artículo",
             "units": "Debe elegir una unidad"
@@ -216,6 +219,8 @@
         "cost": "Coste",
         "quantity": "Cantidad",
         "amount": "Importe",
-        "cunit": "Unidad Cons."
+        "cunit": "Unidad Cons.",
+        "inCharge": "Responsable",
+        "change_status": "Cambiar el estado"
     }
 }

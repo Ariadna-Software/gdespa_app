@@ -150,3 +150,7 @@ ALTER TABLE `gdespa`.`pw`
   ADD CONSTRAINT `ref_pw_inv` FOREIGN KEY (`invInCharge`) REFERENCES `gdespa`.`worker`(`workerId`),
   ADD CONSTRAINT `ref_pw_pay` FOREIGN KEY (`payInCharge`) REFERENCES `gdespa`.`worker`(`workerId`),
   ADD CONSTRAINT `ref_pw_cer` FOREIGN KEY (`cerInCharge`) REFERENCES `gdespa`.`worker`(`workerId`);
+#------------------------
+ALTER TABLE `gdespa`.`pw_line` DROP FOREIGN KEY `ref_pwline_pw`;
+
+ALTER TABLE `gdespa`.`pw_line` ADD CONSTRAINT `ref_pwline_pw` FOREIGN KEY (`pwId`) REFERENCES `gdespa`.`pw`(`pwId`) ON DELETE CASCADE;

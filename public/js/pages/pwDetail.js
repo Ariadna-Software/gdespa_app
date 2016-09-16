@@ -39,11 +39,13 @@ var pwDetailAPI = {
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('pwGeneral.html', '_self');
-        })
+        });
+        $('#btnChangeStatus').click(pwDetailAPI.newPwStatus());
         // init lines table
         pwLineAPI.init();
         // init modal form
         pwModalAPI.init();
+        pwModal2API.init();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         // if it is an update show lines
@@ -87,6 +89,17 @@ var pwDetailAPI = {
         self.optionsCUnits = ko.observableArray([]);
         self.selectedCUnits = ko.observableArray([]);
         self.sCUnit = ko.observable();
+        // -- Modal related (2)
+        self.reference2 = ko.observable();
+        self.initDate2 = ko.observable();
+        // status2 combo
+        self.optionsStatus2 = ko.observableArray([]);
+        self.selectedStatus2 = ko.observableArray([]);
+        self.sStatus2 = ko.observable();
+        // worker2 combo
+        self.optionsWorkers2 = ko.observableArray([]);
+        self.selectedWorkers2 = ko.observableArray([]);
+        self.sWorker2 = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -162,7 +175,7 @@ var pwDetailAPI = {
                 name: vm.name(),
                 reference: vm.reference(),
                 description: vm.description(),
-                initDate: moment(vm.initDate(),i18n.t("util.date_iso")).format(i18n.t("util.date_format")),
+                initDate: moment(vm.initDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso")),
                 initInCharge: { id: vm.sWorker() },
                 company: { id: vm.sCompany() },
                 defaultK: vm.defaultK(),
@@ -258,5 +271,13 @@ var pwDetailAPI = {
                 }
             }
         });
+    },
+    newPwStatus: function () {
+        var mf = function (e) {
+            // show modal form
+            e.preventDefault();
+            pwModal2API.newStatus();
+        };
+        return mf;
     }
 };

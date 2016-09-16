@@ -316,6 +316,9 @@
 										</fieldset>
 										<fieldset>
 											<div class="pull-right">
+												<button id="btnChangeStatus" data-i18n="[title]pwDetail.change_status" data-toggle="modal" data-target="#pwModal2" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-random"></i>
+												</button>												
 												<button id="btnExit" data-i18n="[title]pwDetail.cancel" class="btn btn-warning btn-circle btn-lg">
 													<i class="fa fa-lg fa-sign-out"></i>
 												</button>
@@ -451,11 +454,77 @@
                                         </label>
 									</section>
 								</div>
-								
+
 							</section>
 						</fieldset>
 						<footer>
 							<button id="btnSaveLine" class="btn btn-primary">
+                                <span data-i18n="pwDetail.ok">A</span>
+                            </button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+                                <span data-i18n="pwDetail.cancel">C</span>
+                            </button>
+						</footer>
+					</form>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- Modal 2-->
+	<div class="modal fade" id="pwModal2" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+					<h4 class="modal-title">
+						<i class="fa fa-random"></i> <span data-i18n="pwDetail.modal_title2">ART</span>
+					</h4>
+				</div>
+				<div class="modal-body no-padding">
+					<form id="pwModal2-form" class="smart-form">
+						<fieldset>
+							<section>
+								<div class="row">
+									<section class="col col-md-2">
+										<label class="label" data-18n="pwDetail.status">ESTADO:</label>
+										<label style="width:100%;">
+											<select style="width:100%" id="cmbStatus2" name="cmbStatus2" 
+												data-bind="options: optionsStatus2, optionsText: 'name', optionsValue: 'id', value: sStatus2, valueAllowUnset: true, selectedOptions: selectedStatus2, selected2:{}">
+											</select>
+											<i></i>
+										</label>
+									</section>
+									<section class="col col-md-2">
+										<label class="label" data-i18n="pwDetail.initDate2">Fecha (2):</label>
+										<label class="input">
+											<input id="txtInitDate2" name="txtInitDate2" data-bind="value: initDate2" class="datepicker" data-dateformat="dd/mm/yy"/>
+										</label>
+									</section>
+									<section class="col col-md-4">
+										<label class="label" data-i18n="pwDetail.inCharge">Responsable:</label>
+										<label style="width:100%;">
+											<select style="width:100%" id="cmbWorkers2" name="cmbWorkers2" 
+												data-bind="options: optionsWorkers2, optionsText: 'name', optionsValue: 'id', value: sWorker2, valueAllowUnset: true, selectedOptions: selectedWorkers2, selected2:{}">
+											</select>
+											<i></i>
+										</label>
+									</section>
+									<section class="col col-md-4">
+										<label class="label" data-i18n="pwDetail.reference2">Referencia:</label>
+										<label class="input">
+											<input id="txtReference2" name="txtReference2" data-bind="value: reference2">
+										</label>
+									</section>
+								</div>
+							</section>
+						</fieldset>
+						<footer>
+							<button id="btnSaveLine2" class="btn btn-primary">
                                 <span data-i18n="pwDetail.ok">A</span>
                             </button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -558,6 +627,7 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
+	<script src="js/pages/pwModal2.js"></script>
 	<script src="js/pages/pwModal.js"></script>
 	<script src="js/pages/pwLine.js"></script>
 	<script src="js/pages/pwDetail.js"></script>
