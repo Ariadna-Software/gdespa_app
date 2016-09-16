@@ -69,6 +69,7 @@ app.use('/api/cunit_line', require('./controllers/cunit_line'));
 app.use('/api/status', require('./controllers/status'));
 app.use('/api/pw', require('./controllers/pw'));
 app.use('/api/pw_line', require('./controllers/pw_line'));
+app.use('/api/wo', require('./controllers/wo'));
 
 // general API to export
 

@@ -264,8 +264,8 @@ CREATE TABLE `pw_line` (
 
 insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`) values (8,5,1,3,'455.30','1.00',1,'455.30');
 insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`) values (9,6,1,1,'10.25','16.00',1,'164.00');
-insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`) values (10,7,NULL,2,'45.50','1.00',1,'45.50');
-insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`) values (11,7,NULL,3,'455.30','1.00',1,'455.30');
+insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`) values (10,7,1,2,'45.50','20.00',1,'90.10');
+insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`) values (11,7,2,3,'455.30','30.00',1,'455.30');
 
 /*Table structure for table `status` */
 
@@ -365,9 +365,12 @@ CREATE TABLE `wo` (
   KEY `ref_wo_worker` (`workerId`),
   CONSTRAINT `ref_wo_pw` FOREIGN KEY (`pwId`) REFERENCES `pw` (`pwId`),
   CONSTRAINT `ref_wo_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wo` */
+
+insert  into `wo`(`woId`,`initDate`,`endDate`,`workerId`,`pwId`,`comments`) values (1,'2016-01-01','2016-01-06',14,7,'A mano total');
+insert  into `wo`(`woId`,`initDate`,`endDate`,`workerId`,`pwId`,`comments`) values (2,'2016-01-07','2016-01-07',14,7,NULL);
 
 /*Table structure for table `wo_line` */
 
@@ -385,9 +388,13 @@ CREATE TABLE `wo_line` (
   KEY `ref_wol_cunit` (`cunitId`),
   CONSTRAINT `ref_wol_wo` FOREIGN KEY (`woId`) REFERENCES `wo` (`woId`),
   CONSTRAINT `ref_wol_cunit` FOREIGN KEY (`cunitId`) REFERENCES `cunit` (`cunitId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wo_line` */
+
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (1,1,2,'4.00','2.00','2.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (2,1,3,'6.00','3.00','3.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (3,2,2,'0.00','0.00','8.00');
 
 /*Table structure for table `worker` */
 
