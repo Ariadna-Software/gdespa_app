@@ -129,7 +129,7 @@ var pwDetailAPI = {
         }
         if (moment(data.cerDate).isValid())
             vm.cerDate(moment(data.cerDate).format(i18n.t("util.date_format")));
-        if (moment(data.finDate).invValid())
+        if (moment(data.finDate).isValid())
             vm.invDate(moment(data.invDate).format(i18n.t("util.date_format")));
         if (moment(data.payDate).isValid())
             vm.payDate(moment(data.payDate).format(i18n.t("util.date_format")));
