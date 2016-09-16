@@ -254,14 +254,14 @@ var aswInit = {
         return options;
     },
     //
-    getStatus: function(){
+    getStatus: function () {
         var sts = [
-            {id:0, name:i18n.t("status.INIT")},
-            {id:1, name:i18n.t("status.ACCEPTED")},
-            {id:2, name:i18n.t("status.DONE")},
-            {id:3, name:i18n.t("status.VALIDATED")},
-            {id:4, name:i18n.t("status.INVOICED")},
-            {id:5, name:i18n.t("status.PAID")}
+            { id: 0, name: i18n.t("status.INIT") },
+            { id: 1, name: i18n.t("status.ACCEPTED") },
+            { id: 2, name: i18n.t("status.DONE") },
+            { id: 3, name: i18n.t("status.VALIDATED") },
+            { id: 4, name: i18n.t("status.INVOICED") },
+            { id: 5, name: i18n.t("status.PAID") }
         ];
         return sts;
     }
@@ -283,5 +283,8 @@ var aswUtil = {
             return "";
         else
             return results[1];
+    },
+    round2: function (num) {
+        return +(Math.round(num + "e+2") + "e-2");
     }
 }

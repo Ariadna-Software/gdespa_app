@@ -128,3 +128,25 @@ CREATE TABLE `gdespa`.`pw_line`(
   CONSTRAINT `ref_pwline_pw` FOREIGN KEY (`pwId`) REFERENCES `gdespa`.`pw`(`pwId`),
   CONSTRAINT `ref_pwline_cunit` FOREIGN KEY (`cunitId`) REFERENCES `gdespa`.`cunit`(`cunitId`)
 );
+#--------------------------------------
+ALTER TABLE `gdespa`.`pw`   
+  ADD COLUMN `acepDate` DATE NULL AFTER `total`,
+  ADD COLUMN `acepInCharge` INT(11) NULL AFTER `acepDate`,
+  ADD COLUMN `acepRef` VARCHAR(255) NULL AFTER `acepInCharge`,
+  ADD COLUMN `finDate` DATE NULL AFTER `acepRef`,
+  ADD COLUMN `finInCharge` INT(11) NULL AFTER `finDate`,
+  ADD COLUMN `finRef` VARCHAR(255) NULL AFTER `finInCharge`,
+  ADD COLUMN `cerDate` DATE NULL AFTER `finRef`,
+  ADD COLUMN `cerInCharge` INT(11) NULL AFTER `cerDate`,
+  ADD COLUMN `cerRef` VARCHAR(255) NULL AFTER `cerInCharge`,
+  ADD COLUMN `invDate` DATE NULL AFTER `cerRef`,
+  ADD COLUMN `invInCharge` INT(11) NULL AFTER `invDate`,
+  ADD COLUMN `invRef` VARCHAR(255) NULL AFTER `invInCharge`,
+  ADD COLUMN `payDate` DATE NULL AFTER `invRef`,
+  ADD COLUMN `payInCharge` INT(11) NULL AFTER `payDate`,
+  ADD COLUMN `payRef` VARCHAR(255) NULL AFTER `payInCharge`,
+  ADD CONSTRAINT `ref_pw_acep` FOREIGN KEY (`acepInCharge`) REFERENCES `gdespa`.`worker`(`workerId`),
+  ADD CONSTRAINT `ref_pw_fin` FOREIGN KEY (`finInCharge`) REFERENCES `gdespa`.`worker`(`workerId`),
+  ADD CONSTRAINT `ref_pw_inv` FOREIGN KEY (`invInCharge`) REFERENCES `gdespa`.`worker`(`workerId`),
+  ADD CONSTRAINT `ref_pw_pay` FOREIGN KEY (`payInCharge`) REFERENCES `gdespa`.`worker`(`workerId`),
+  ADD CONSTRAINT `ref_pw_cer` FOREIGN KEY (`cerInCharge`) REFERENCES `gdespa`.`worker`(`workerId`);

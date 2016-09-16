@@ -210,6 +210,12 @@
         "validate": {
             "items": "Debe elegir un artículo",
             "units": "Debe elegir una unidad"
-        }
+        },
+        "line": "Linea",
+        "k": "K",
+        "cost": "Coste",
+        "quantity": "Cantidad",
+        "amount": "Importe",
+        "cunit": "Unidad Cons."
     }
 }

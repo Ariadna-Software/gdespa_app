@@ -309,7 +309,7 @@
 												<section class="col col-md-2">
 													<label class="label" data-i18n="pwDetail.total">Total:</label>
 													<label class="input">
-														<input id="txtTotal" name="txtTotal" data-bind="value: total">
+														<input id="txtTotal" name="txtTotal" data-bind="value: total" disabled>
 													</label>
 												</section>
 											</div>
@@ -354,13 +354,19 @@
 																<span data-i18n="pwDetail.line">R</span>
 															</th>
 															<th>
-																<span data-i18n="pwDetail.item"></span>
+																<span data-i18n="pwDetail.cunit"></span>
 															</th>
 															<th data-hide="phone">
-																<span data-i18n="pwDetail.unit"></span>
+																<span data-i18n="pwDetail.cost"></span>
 															</th>
 															<th data-hide="phone">
 																<span data-i18n="pwDetail.quantity"></span>
+															</th>
+															<th data-hide="phone">
+																<span data-i18n="pwDetail.k"></span>
+															</th>
+															<th data-hide="phone">
+																<span data-i18n="pwDetail.amount"></span>
 															</th>
 															<th>
 															</th>
@@ -411,16 +417,20 @@
                                         </label>
 									</section>
 									<section class="col col-md-6">
-										<label class="label" data-18n="pwDetail.item">Articulo:</label>
+										<label class="label" data-18n="pwDetail.cunit">Unidad constructiva:</label>
 										<label style="width:100%;">
-                                            <select style="width:100%" id="cmbItems" name="cmbItems" data-bind="options: optionsItems, optionsText: 'name', optionsValue: 'id', value: sItem, valueAllowUnset: true, selectedOptions: selectedItems, selected2:{}"></select><i></i>
+                                            <select style="width:100%" id="cmbCUnits" name="cmbCUnits" data-bind="options: optionsCUnits, optionsText: 'name', optionsValue: 'id', value: sCUnit, valueAllowUnset: true, selectedOptions: selectedCUnits, selected2:{}"></select><i></i>
                                         </label>
 									</section>
-									<section class="col col-md-2">
-										<label class="label" data-18n="pwDetail.unit">Unid:</label>
-										<label style="width:100%;">
-                                            <select style="width:100%" id="cmbUnits" name="cmbUnits" data-bind="options: optionsUnits, optionsText: 'name', optionsValue: 'id', value: sUnit, valueAllowUnset: true, selectedOptions: selectedUnits, selected2:{}"></select><i></i>
+									<section class="col col-md-4">
+										<label class="label" data-i18n="pwDetail.cost">Coste:</label>
+										<label class="input">
+                                            <input id="txtCost" name="txtCost" type="text" data-bind="value: cost" />
                                         </label>
+									</section>
+								</div>
+								<div class="row">
+									<section class="col col-md-6">
 									</section>
 									<section class="col col-md-2">
 										<label class="label" data-i18n="pwDetail.quantity">Cantidad:</label>
@@ -428,7 +438,20 @@
                                             <input id="txtQuantity" name="txtQuantity" type="text" data-bind="value: quantity" />
                                         </label>
 									</section>
+									<section class="col col-md-2">
+										<label class="label" data-i18n="pwDetail.k">K:</label>
+										<label class="input">
+                                            <input id="txtK" name="txtK" type="text" data-bind="value: k" />
+                                        </label>
+									</section>
+									<section class="col col-md-2">
+										<label class="label" data-i18n="pwDetail.amount">Importe:</label>
+										<label class="input">
+                                            <input id="txtAmount" name="txtAmount" type="text" data-bind="value: amount" disabled />
+                                        </label>
+									</section>
 								</div>
+								
 							</section>
 						</fieldset>
 						<footer>

@@ -11,7 +11,7 @@ var data = null;
 var vm = null;
 
 var pwDetailAPI = {
-    init: function (r) {
+    init: function () {
         aswInit.initPage();
         validator_languages(lang);
         datepicker_languages(lang);
@@ -41,9 +41,9 @@ var pwDetailAPI = {
             window.open('pwGeneral.html', '_self');
         })
         // init lines table
-        // pwLineAPI.init();
+        pwLineAPI.init();
         // init modal form
-        // pwModalAPI.init();
+        pwModalAPI.init();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         // if it is an update show lines
@@ -77,17 +77,16 @@ var pwDetailAPI = {
         self.selectedWorkers = ko.observableArray([]);
         self.sWorker = ko.observable();
         // -- Modal related
-        self.lineId = ko.observable();
+        self.pwLineId = ko.observable();
         self.line = ko.observable();
+        self.cost = ko.observable();
         self.quantity = ko.observable();
-        // item combo
-        self.optionsItems = ko.observableArray([]);
-        self.selectedItems = ko.observableArray([]);
-        self.sItem = ko.observable();
-        // unit combo
-        self.optionsUnits = ko.observableArray([]);
-        self.selectedUnits = ko.observableArray([]);
-        self.sUnit = ko.observable();
+        self.k = ko.observable();
+        self.amount = ko.observable();
+        // cunit combo
+        self.optionsCUnits = ko.observableArray([]);
+        self.selectedCUnits = ko.observableArray([]);
+        self.sCUnit = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -139,7 +138,7 @@ var pwDetailAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 pwDetailAPI.loadData(data[0]);
-                // pwLineAPI.getPwLines(data[0].id);
+                pwLineAPI.getPwLines(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);

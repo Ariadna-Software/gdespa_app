@@ -1,30 +1,29 @@
-var cUnitModalAPI = {
+var pwModalAPI = {
     init: function () {
         // combos
-        $('#cmbUnits').select2(select2_languages[lang]);
-        cUnitModalAPI.loadUnits();
-        $('#cmbItems').select2(select2_languages[lang]);
-        cUnitModalAPI.loadItems();
-        $("#cmbItems").select2().on('change', function (e) {
-            cUnitModalAPI.changeItem(e.added);
+        $("#cmbCUnits").select2().on('change', function (e) {
+            pwModalAPI.changeCUnits(e.added);
         });
         // avoid sending form 
-        $('#cUnitModal-form').submit(function () {
+        $('#pwModal-form').submit(function () {
             return false;
         });
         // button events
-        $('#btnSaveLine').click(cUnitModalAPI.saveLine());
+        $('#btnSaveLine').click(pwModalAPI.saveLine());
+        // lostfocus events
+        $("#txtCost").blur(pwModalAPI.updateTotal());
+        $("#txtK").blur(pwModalAPI.updateTotal());
+        $("#txtQuantity").blur(pwModalAPI.updateTotal());
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#cUnitModal-form').validate({
+        $('#pwModal-form').validate({
             rules: {
-                txtQuantity: {
-                    required: true,
-                    number: true
-                },
-                cmbItems: { required: true },
-                cmbUnits: { required: true }
+                txtQuantity: { required: true, number: true },
+                txtCost: { required: true, number: true },
+                txtK: { required: true, number: true },
+                txtAmount: { required: true, number: true },
+                cmbCUnits: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -34,30 +33,34 @@ var cUnitModalAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#cUnitModal-form').valid();
+        return $('#pwModal-form').valid();
     },
     newLine: function () {
         // new line id is zero.
-        vm.lineId(0);
+        vm.pwLineId(0);
         // clean other fields
         vm.line(null);
         vm.quantity(null);
-        cUnitModalAPI.loadUnits(null);
-        cUnitModalAPI.loadItems(null);
+        vm.cost(null);
+        vm.k(vm.defaultK());
+        vm.amount(null);
+        pwModalAPI.loadCUnits(null);
     },
     editLine: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/cunit_line/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            url: sprintf('%s/pw_line/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 if (data.length) {
-                    vm.lineId(data[0].id);
+                    vm.pwLineId(data[0].id);
                     vm.line(data[0].line);
-                    cUnitModalAPI.loadItems(data[0].item.id);
-                    cUnitModalAPI.loadUnits(data[0].unit.id);
+                    pwModalAPI.loadCUnits(data[0].cunit.id);
                     vm.quantity(data[0].quantity);
+                    vm.cost(data[0].cost);
+                    vm.k(data[0].k);
+                    vm.amount(data[0].amount);
                 }
             },
             error: function (err) {
@@ -71,31 +74,31 @@ var cUnitModalAPI = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
-            if (!cUnitModalAPI.dataOk()) return;
+            if (!pwModalAPI.dataOk()) return;
             // mount line to save 
             var data = {
-                id: vm.lineId(),
+                id: vm.pwLineId(),
                 line: vm.line(),
-                cUnit: {
+                pw: {
                     id: vm.id()
                 },
-                item: {
-                    id: vm.sItem()
+                cunit: {
+                    id: vm.sCUnit()
                 },
-                unit: {
-                    id: vm.sUnit()
-                },
-                quantity: vm.quantity()
+                quantity: vm.quantity(),
+                k: vm.k(),
+                cost: vm.cost(),
+                amount: vm.amount()
             };
             var url = "", type = "";
-            if (vm.lineId() == 0) {
+            if (vm.pwLineId() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/cunit_line?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/pw_line?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/cunit_line/%s/?api_key=%s', myconfig.apiUrl, vm.lineId(), api_key);
+                url = sprintf('%s/pw_line/%s/?api_key=%s', myconfig.apiUrl, vm.pwLineId(), api_key);
             }
             $.ajax({
                 type: type,
@@ -103,8 +106,9 @@ var cUnitModalAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#cUnitModal').modal('hide');
-                    cUnitLineAPI.getCUnitLines(vm.id());
+                    $('#pwModal').modal('hide');
+                    // pwLineAPI.getPwLines(vm.id());
+                    pwDetailAPI.getPw(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
@@ -116,16 +120,16 @@ var cUnitModalAPI = {
         };
         return mf;
     },
-    loadItems: function (id) {
+    loadCUnits: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/item?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/cunit?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 var options = [{ id: null, name: "" }].concat(data);
-                vm.optionsItems(options);
-                $("#cmbItems").val([id]).trigger('change');
+                vm.optionsCUnits(options);
+                $("#cmbCUnits").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -135,42 +139,19 @@ var cUnitModalAPI = {
             }
         });
     },
-    loadUnits: function (id) {
-        $.ajax({
-            type: "GET",
-            url: sprintf('%s/unit?api_key=%s', myconfig.apiUrl, api_key),
-            dataType: "json",
-            contentType: "application/json",
-            success: function (data, status) {
-                var abbs = [];
-                data.forEach(function (v) {
-                    abbs.push({
-                        id: v.id,
-                        name: v.abb
-                    });
-                });
-                var options = [{ id: null, name: "" }].concat(abbs);
-                vm.optionsUnits(options);
-                $("#cmbUnits").val([id]).trigger('change');
-            },
-            error: function (err) {
-                aswNotif.errAjax(err);
-                if (err.status == 401) {
-                    window.open('login.html', '_self');
-                }
-            }
-        });
-    },
-    changeItem: function (data) {
+    changeCUnits: function (data) {
         if (!data) return;
         $.ajax({
             type: "GET",
-            url: sprintf('%s/item/%s/?api_key=%s', myconfig.apiUrl, data.id, api_key),
+            url: sprintf('%s/cunit/%s/?api_key=%s', myconfig.apiUrl, data.id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 if (data.length) {
-                    cUnitModalAPI.loadUnits(data[0].unit.id);
+                    // TODO: cost
+                    vm.cost(data[0].cost);
+                    vm.quantity(1);
+                    pwModalAPI.updateTotal()();
                 }
             },
             error: function (err) {
@@ -180,5 +161,12 @@ var cUnitModalAPI = {
                 }
             }
         })
+    },
+    updateTotal: function () {
+        var mf = function () {
+            var t = vm.cost() * vm.quantity() * vm.k();
+            vm.amount(aswUtil.round2(t));
+        };
+        return mf;
     }
 };
