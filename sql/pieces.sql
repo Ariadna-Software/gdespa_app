@@ -178,3 +178,7 @@ CREATE TABLE `gdespa`.`wo_line`(
   CONSTRAINT `ref_wol_wo` FOREIGN KEY (`woId`) REFERENCES `gdespa`.`wo`(`woId`),
   CONSTRAINT `ref_wol_cunit` FOREIGN KEY (`cunitId`) REFERENCES `gdespa`.`cunit`(`cunitId`)
 );
+# -----------------------------------------
+ALTER TABLE `gdespa`.`wo_line` DROP FOREIGN KEY `ref_wol_wo`;
+
+ALTER TABLE `gdespa`.`wo_line` ADD CONSTRAINT `ref_wol_wo` FOREIGN KEY (`woId`) REFERENCES `gdespa`.`wo`(`woId`) ON DELETE CASCADE;

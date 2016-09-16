@@ -70,6 +70,7 @@ app.use('/api/status', require('./controllers/status'));
 app.use('/api/pw', require('./controllers/pw'));
 app.use('/api/pw_line', require('./controllers/pw_line'));
 app.use('/api/wo', require('./controllers/wo'));
+app.use('/api/wo_line', require('./controllers/wo_line'));
 
 // general API to export
 

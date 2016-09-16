@@ -26,3 +26,9 @@
     padding: 1px;
     height: 70px;
 }
+.asw-center {
+    text-align: center;
+}
+.asw-right {
+    text-align: right;
+}

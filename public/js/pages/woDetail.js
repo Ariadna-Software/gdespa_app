@@ -1,6 +1,6 @@
 /*
- * cUnitDetail.js
- * Function for the page cUnitDetail.html
+ * woDetail.js
+ * Function for the page woDetail.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
@@ -10,33 +10,33 @@ var lang = aswCookies.getCookie('gdespa_lang');
 var data = null;
 var vm = null;
 
-var cUnitDetailAPI = {
+var woDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
         $('#user_name').text(user.name);
         // make active menu option
-        $('#cUnitGeneral').attr('class', 'active');
+        $('#woGeneral').attr('class', 'active');
         // knockout management
-        vm = new cUnitDetailAPI.pageData();
+        vm = new woDetailAPI.pageData();
         ko.applyBindings(vm);
         // buttons click events
-        $('#btnOk').click(cUnitDetailAPI.btnOk());
+        $('#btnOk').click(woDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
             e.preventDefault();
-            window.open('cUnitGeneral.html', '_self');
+            window.open('woGeneral.html', '_self');
         })
         // init lines table
-        cUnitLineAPI.init();
+        woLineAPI.init();
         // init modal form
-        cUnitModalAPI.init();
+        woModalAPI.init();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
         }
-        cUnitDetailAPI.getCUnit(id);
+        woDetailAPI.getCUnit(id);
     },
     pageData: function () {
         // knockout objects
@@ -70,7 +70,7 @@ var cUnitDetailAPI = {
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#cUnitDetail-form').validate({
+        $('#woDetail-form').validate({
             rules: {
                 txtName: { required: true },
                 txtReference: { required: true },
@@ -87,12 +87,12 @@ var cUnitDetailAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#cUnitDetail-form').valid();
+        return $('#woDetail-form').valid();
     },
-    // obtain a  cUnit group from the API
+    // obtain a  wo group from the API
     getCUnit: function (id) {
         if (!id || (id == 0)) {
-            // new cUnit group
+            // new wo group
             vm.id(0);
             return;
         }
@@ -102,8 +102,8 @@ var cUnitDetailAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                cUnitDetailAPI.loadData(data[0]);
-                cUnitLineAPI.getCUnitLines(data[0].id);
+                woDetailAPI.loadData(data[0]);
+                woLineAPI.getCUnitLines(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -118,7 +118,7 @@ var cUnitDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!cUnitDetailAPI.dataOk()) return;
+            if (!woDetailAPI.dataOk()) return;
             // dat for post or put
             var data = {
                 id: vm.id(),
@@ -148,7 +148,7 @@ var cUnitDetailAPI = {
                         vm.id(data.id);
                          $('#wid-id-1').show();
                     } else {
-                        var url = sprintf('cUnitGeneral.html?id=%s', data.id);
+                        var url = sprintf('woGeneral.html?id=%s', data.id);
                         window.open(url, '_self');
                     }
                 },
@@ -167,4 +167,4 @@ var cUnitDetailAPI = {
 
 
 
-cUnitDetailAPI.init();
+woDetailAPI.init();

@@ -1,15 +1,15 @@
 /*
- * cunit_line.js
+ * wo_line.js
  * handles user group related messages
 */
 var express = require('express');
 var router = express.Router();
-var cUnitLineDb = require('../lib/cunit_line'); // to access mysql db
+var woLineDb = require('../lib/wo_line'); // to access mysql db
 var midCheck = require('./common').midChkApiKey;
 
 router.get('/', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
-    cUnitLineDb.get(function (err, lines) {
+    woLineDb.get(function (err, lines) {
         if (err) {
             res.status(500).send(err.message);
         } else {
@@ -20,8 +20,8 @@ router.get('/', midCheck, function (req, res) {
 
 router.post('/', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
-    var cUnitLine = req.body;
-    cUnitLineDb.post(cUnitLine, function (err, lines) {
+    var woLine = req.body;
+    woLineDb.post(woLine, function (err, lines) {
         if (err) {
             res.status(500).send(err.message);
         } else {
@@ -33,17 +33,17 @@ router.post('/', midCheck, function (req, res) {
 router.get('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    cUnitLineDb.getById(id, function (err, lines) {
+    woLineDb.getById(id, function (err, lines) {
         if (err) return res.status(500).send(err.message);
-        if (lines.length == 0) return res.status(404).send('Construction unit line not found');
+        if (lines.length == 0) return res.status(404).send('Work order line not found');
         res.json(lines);
     }, test);
 });
 
-router.get('/cunit/:id', midCheck, function (req, res) {
+router.get('/wo/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    cUnitLineDb.getByCUnitId(id, function (err, lines) {
+    woLineDb.getBywoId(id, function (err, lines) {
         if (err) return res.status(500).send(err.message);
         res.json(lines);
     }, test);
@@ -52,8 +52,8 @@ router.get('/cunit/:id', midCheck, function (req, res) {
 router.put('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    var cUnitLine = req.body;
-    cUnitLineDb.put(cUnitLine, function (err, group) {
+    var woLine = req.body;
+    woLineDb.put(woLine, function (err, group) {
         if (err) {
             res.status(500).send(err.message);
         } else {
@@ -65,11 +65,11 @@ router.put('/:id', midCheck, function (req, res) {
 router.delete('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    var cUnitLine = req.body;
-    if (!cUnitLine.id) {
-        return res.status(400).send('Construction unit line with id in body needed');
+    var woLine = req.body;
+    if (!woLine.id) {
+        return res.status(400).send('Work order line with id in body needed');
     }
-    cUnitLineDb.delete(cUnitLine, function (err) {
+    woLineDb.delete(woLine, function (err) {
         if (err) {
             res.status(500).send(err.message);
         } else {

@@ -56,7 +56,8 @@
         },
         "pwman": {
             "main": "Obras y servicios",
-            "pw": "Propuestas"
+            "pw": "Propuestas",
+            "wo": "Partes de trabajo"
         },
         "store": {
             "main": "Almacenes / Stock"
@@ -224,5 +225,27 @@
         "cunit": "Unidad Cons.",
         "inCharge": "Responsable",
         "change_status": "Cambiar el estado"
+    },
+    "woGeneral": {
+        "title": "Mantenimiento partes de trabajo",
+        "new": "Nuevo parte",
+        "search": "Buscar partes"
+    },
+    "woDetail": {
+        "title": "Detalle parte de trabajo",
+        "initDate": "Fecha inicial",
+        "endDate": "Fecha final",
+        "worker": "Responsable",
+        "pw": "Propuesta",
+        "cunit": "Unidad constructiva",
+        "estimate": "Presupuestado",
+        "done": "Realizado",
+        "quantity": "Cantidad",
+        "comments": "Observaciones",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "newLine": "Nueva linea",
+        "associated_lines": "Lineas del parte",
+        "modal_title": "Linea del parte"
     }
 }
