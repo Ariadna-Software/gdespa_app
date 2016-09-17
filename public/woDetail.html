@@ -249,7 +249,7 @@
 												<section class="col col-md-2">
 													<label class="label" data-i18n="woDetail.initDate">Fecha inicio:</label>
 													<label class="input">
-														<input id="txInitDate" name="txtIitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy">
+														<input id="txInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy">
 													</label>
 												</section>
 												<section class="col col-md-2">
@@ -318,14 +318,8 @@
 													<thead>
 														<tr>
 															<th data-class="expand">
-																<i class="fa fa-fw fa-cube text-muted hidden-md hidden-sm hidden-xs"></i>
-																<span data-i18n="woDetail.line">R</span>
-															</th>
-															<th>
-																<span data-i18n="woDetail.item"></span>
-															</th>
-															<th data-hide="phone">
-																<span data-i18n="woDetail.unit"></span>
+																<i class="fa fa-fw fa-cogs text-muted hidden-md hidden-sm hidden-xs"></i>
+																<span data-i18n="woDetail.cunit">R</span>
 															</th>
 															<th data-hide="phone">
 																<span data-i18n="woDetail.quantity"></span>
@@ -510,6 +504,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 				pageSetUp();
+				woDetailAPI.init();
 		})
 	</script>
 

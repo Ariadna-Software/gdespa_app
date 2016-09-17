@@ -1,11 +1,5 @@
 var woModalAPI = {
     init: function () {
-        // combos
-        $('#cmbCUnits').select2(select2_languages[lang]);
-        woModalAPI.loadCUnits();
-        $("#cmbCUnits").select2().on('change', function (e) {
-            woModalAPI.changeCUnit(e.added);
-        });
         // avoid sending form 
         $('#woModal-form').submit(function () {
             return false;
@@ -40,7 +34,12 @@ var woModalAPI = {
         vm.quantity(null);
         vm.estimate(null);
         vm.done(null);
+        // combos
+        $('#cmbCUnits').select2(select2_languages[lang]);
         woModalAPI.loadCUnits(null);
+        $("#cmbCUnits").select2().on('change', function (e) {
+            woModalAPI.changeCUnit(e.added);
+        });
     },
     editLine: function (id) {
         $.ajax({
@@ -51,10 +50,15 @@ var woModalAPI = {
             success: function (data, status) {
                 if (data.length) {
                     vm.lineId(data[0].id);
-                    vm.line(data[0].line);
-                    woModalAPI.loadItems(data[0].item.id);
-                    woModalAPI.loadUnits(data[0].unit.id);
+                    vm.estimate(data[0].estimate);
+                    vm.done(data[0].done);
                     vm.quantity(data[0].quantity);
+                    //
+                    $('#cmbCUnits').select2(select2_languages[lang]);
+                    woModalAPI.loadCUnits(null);
+                    $("#cmbCUnits").select2().on('change', function (e) {
+                        woModalAPI.changeCUnit(e.added);
+                    });
                 }
             },
             error: function (err) {
@@ -78,6 +82,8 @@ var woModalAPI = {
                 cunit: {
                     id: vm.sCUnit()
                 },
+                estimate: vm.estimate(),
+                done: vm.done(),
                 quantity: vm.quantity()
             };
             var url = "", type = "";
@@ -97,7 +103,7 @@ var woModalAPI = {
                 data: JSON.stringify(data),
                 success: function (data, status) {
                     $('#woModal').modal('hide');
-                    woLineAPI.getCUnitLines(vm.id());
+                    woLineAPI.getWoLines(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
@@ -112,7 +118,7 @@ var woModalAPI = {
     loadCUnits: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/cunit?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/cunit/pw/%s/?api_key=%s', myconfig.apiUrl, vm.sPw(), api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
@@ -132,12 +138,16 @@ var woModalAPI = {
         if (!data) return;
         $.ajax({
             type: "GET",
-            url: sprintf('%s/cunit/%s/?api_key=%s', myconfig.apiUrl, data.id, api_key),
+            url: sprintf('%s/cunit/estdone/?api_key=%s&cunitId=%s&pwId=%s', myconfig.apiUrl, api_key, data.id, vm.sPw()),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 if (data.length) {
-                    woModalAPI.loadUnits(data[0].unit.id);
+                    vm.estimate(data[0].estimate);
+                    vm.done(data[0].done);
+                } else {
+                    vm.estimate(0);
+                    vm.done(0);
                 }
             },
             error: function (err) {

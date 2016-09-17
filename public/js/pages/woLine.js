@@ -42,7 +42,7 @@ var woLineAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                var name = data[0].cunit.name + " (" + data[0].quantity + ")";
+                var name = data[0].cunit.name + " (Cantidad: " + data[0].quantity + ")";
                 var fn = sprintf('woLineAPI.deleteWoLine(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },

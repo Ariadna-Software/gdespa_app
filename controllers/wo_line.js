@@ -43,7 +43,7 @@ router.get('/:id', midCheck, function (req, res) {
 router.get('/wo/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    woLineDb.getBywoId(id, function (err, lines) {
+    woLineDb.getByWoId(id, function (err, lines) {
         if (err) return res.status(500).send(err.message);
         res.json(lines);
     }, test);

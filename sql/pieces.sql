@@ -182,3 +182,6 @@ CREATE TABLE `gdespa`.`wo_line`(
 ALTER TABLE `gdespa`.`wo_line` DROP FOREIGN KEY `ref_wol_wo`;
 
 ALTER TABLE `gdespa`.`wo_line` ADD CONSTRAINT `ref_wol_wo` FOREIGN KEY (`woId`) REFERENCES `gdespa`.`wo`(`woId`) ON DELETE CASCADE;
+#------------------
+ALTER TABLE `gdespa`.`pw_line`   
+  CHANGE `k` `k` DECIMAL(5,2) NULL;

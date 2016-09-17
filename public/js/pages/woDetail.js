@@ -14,6 +14,7 @@ var woDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
+        datepicker_languages(lang);
         $('#user_name').text(user.name);
         // make active menu option
         $('#woGeneral').attr('class', 'active');
@@ -70,9 +71,11 @@ var woDetailAPI = {
     },
     loadData: function (data) {
         vm.id(data.id);
-        vm.initDate(moment(data.name, i18n.t('util.date_iso')).format(i18n.t('util.date_format')));
-        vm.endDate(moment(data.name, i18n.t('util.date_iso')).format(i18n.t('util.date_format')));
+        vm.initDate(moment(data.initDate).format(i18n.t('util.date_format')));
+        vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
+        woDetailAPI.loadPws(data.pw.id);
+        woDetailAPI.loadWorkers(data.worker.id);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -126,11 +129,14 @@ var woDetailAPI = {
             // dat for post or put
             var data = {
                 id: vm.id(),
-                name: vm.name(),
-                reference: vm.reference(),
-                description: vm.description(),
-                image: vm.image(),
-                cost: vm.cost()
+                initDate: moment(vm.initDate(), i18n.t('util.date_iso')).format(i18n.t('util.date_format')),
+                endDate: moment(vm.endDate(), i18n.t('util.date_iso')).format(i18n.t('util.date_format')),
+                worker: {
+                    id: vm.sWorker()
+                },
+                pw: {
+                    id: vm.sPw()
+                }
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -209,4 +215,3 @@ var woDetailAPI = {
 
 
 
-woDetailAPI.init();

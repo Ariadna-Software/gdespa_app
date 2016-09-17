@@ -30,6 +30,22 @@ router.get('/', common.midChkApiKey, function (req, res) {
     }
 });
 
+router.get('/estdone', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var cunitId = req.query.cunitId;
+    var pwId = req.query.pwId;
+    if (!cunitId || !pwId) {
+        return res.status(400).send("No unit and / or proposal identifiers");
+    }
+    cunitDb.getEstDone(cunitId, pwId, function (err, cunits) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(cunits);
+        }
+    }, test);
+});
+
 router.post('/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var cunit = req.body;
@@ -46,6 +62,16 @@ router.get('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
     cunitDb.getById(id, function (err, cunits) {
+        if (err) return res.status(500).send(err.message);
+        if (cunits.length == 0) return res.status(404).send('Construction unit not found');
+        res.json(cunits);
+    }, test);
+});
+
+router.get('/pw/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    cunitDb.getByPw(id, function (err, cunits) {
         if (err) return res.status(500).send(err.message);
         if (cunits.length == 0) return res.status(404).send('Construction unit not found');
         res.json(cunits);
