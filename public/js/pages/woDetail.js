@@ -129,8 +129,8 @@ var woDetailAPI = {
             // dat for post or put
             var data = {
                 id: vm.id(),
-                initDate: moment(vm.initDate(), i18n.t('util.date_iso')).format(i18n.t('util.date_format')),
-                endDate: moment(vm.endDate(), i18n.t('util.date_iso')).format(i18n.t('util.date_format')),
+                initDate: moment(vm.initDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
+                endDate: moment(vm.endDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
                 worker: {
                     id: vm.sWorker()
                 },
