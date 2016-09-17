@@ -1,30 +1,27 @@
-var cUnitModalAPI = {
+var woModalAPI = {
     init: function () {
         // combos
-        $('#cmbUnits').select2(select2_languages[lang]);
-        cUnitModalAPI.loadUnits();
-        $('#cmbItems').select2(select2_languages[lang]);
-        cUnitModalAPI.loadItems();
-        $("#cmbItems").select2().on('change', function (e) {
-            cUnitModalAPI.changeItem(e.added);
+        $('#cmbCUnits').select2(select2_languages[lang]);
+        woModalAPI.loadCUnits();
+        $("#cmbCUnits").select2().on('change', function (e) {
+            woModalAPI.changeCUnit(e.added);
         });
         // avoid sending form 
-        $('#cUnitModal-form').submit(function () {
+        $('#woModal-form').submit(function () {
             return false;
         });
         // button events
-        $('#btnSaveLine').click(cUnitModalAPI.saveLine());
+        $('#btnSaveLine').click(woModalAPI.saveLine());
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#cUnitModal-form').validate({
+        $('#woModal-form').validate({
             rules: {
                 txtQuantity: {
                     required: true,
                     number: true
                 },
-                cmbItems: { required: true },
-                cmbUnits: { required: true }
+                cmbCUnits: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -34,29 +31,29 @@ var cUnitModalAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#cUnitModal-form').valid();
+        return $('#woModal-form').valid();
     },
     newLine: function () {
         // new line id is zero.
         vm.lineId(0);
         // clean other fields
-        vm.line(null);
         vm.quantity(null);
-        cUnitModalAPI.loadUnits(null);
-        cUnitModalAPI.loadItems(null);
+        vm.estimate(null);
+        vm.done(null);
+        woModalAPI.loadCUnits(null);
     },
     editLine: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/cunit_line/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            url: sprintf('%s/wo_line/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 if (data.length) {
                     vm.lineId(data[0].id);
                     vm.line(data[0].line);
-                    cUnitModalAPI.loadItems(data[0].item.id);
-                    cUnitModalAPI.loadUnits(data[0].unit.id);
+                    woModalAPI.loadItems(data[0].item.id);
+                    woModalAPI.loadUnits(data[0].unit.id);
                     vm.quantity(data[0].quantity);
                 }
             },
@@ -71,19 +68,15 @@ var cUnitModalAPI = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
-            if (!cUnitModalAPI.dataOk()) return;
+            if (!woModalAPI.dataOk()) return;
             // mount line to save 
             var data = {
                 id: vm.lineId(),
-                line: vm.line(),
-                cUnit: {
+                wo: {
                     id: vm.id()
                 },
-                item: {
-                    id: vm.sItem()
-                },
-                unit: {
-                    id: vm.sUnit()
+                cunit: {
+                    id: vm.sCUnit()
                 },
                 quantity: vm.quantity()
             };
@@ -91,11 +84,11 @@ var cUnitModalAPI = {
             if (vm.lineId() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/cunit_line?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/wo_line?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/cunit_line/%s/?api_key=%s', myconfig.apiUrl, vm.lineId(), api_key);
+                url = sprintf('%s/wo_line/%s/?api_key=%s', myconfig.apiUrl, vm.lineId(), api_key);
             }
             $.ajax({
                 type: type,
@@ -103,8 +96,8 @@ var cUnitModalAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#cUnitModal').modal('hide');
-                    cUnitLineAPI.getCUnitLines(vm.id());
+                    $('#woModal').modal('hide');
+                    woLineAPI.getCUnitLines(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
@@ -116,16 +109,16 @@ var cUnitModalAPI = {
         };
         return mf;
     },
-    loadItems: function (id) {
+    loadCUnits: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/item?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/cunit?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 var options = [{ id: null, name: "" }].concat(data);
-                vm.optionsItems(options);
-                $("#cmbItems").val([id]).trigger('change');
+                vm.optionsCUnits(options);
+                $("#cmbCUnits").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -135,42 +128,16 @@ var cUnitModalAPI = {
             }
         });
     },
-    loadUnits: function (id) {
-        $.ajax({
-            type: "GET",
-            url: sprintf('%s/unit?api_key=%s', myconfig.apiUrl, api_key),
-            dataType: "json",
-            contentType: "application/json",
-            success: function (data, status) {
-                var abbs = [];
-                data.forEach(function (v) {
-                    abbs.push({
-                        id: v.id,
-                        name: v.abb
-                    });
-                });
-                var options = [{ id: null, name: "" }].concat(abbs);
-                vm.optionsUnits(options);
-                $("#cmbUnits").val([id]).trigger('change');
-            },
-            error: function (err) {
-                aswNotif.errAjax(err);
-                if (err.status == 401) {
-                    window.open('login.html', '_self');
-                }
-            }
-        });
-    },
-    changeItem: function (data) {
+    changeCUnit: function (data) {
         if (!data) return;
         $.ajax({
             type: "GET",
-            url: sprintf('%s/item/%s/?api_key=%s', myconfig.apiUrl, data.id, api_key),
+            url: sprintf('%s/cunit/%s/?api_key=%s', myconfig.apiUrl, data.id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 if (data.length) {
-                    cUnitModalAPI.loadUnits(data[0].unit.id);
+                    woModalAPI.loadUnits(data[0].unit.id);
                 }
             },
             error: function (err) {

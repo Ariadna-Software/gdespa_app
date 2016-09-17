@@ -20,6 +20,11 @@ var woDetailAPI = {
         // knockout management
         vm = new woDetailAPI.pageData();
         ko.applyBindings(vm);
+        //
+        $('#cmbWorkers').select2(select2_languages[lang]);
+        woDetailAPI.loadWorkers();
+        $('#cmbPws').select2(select2_languages[lang]);
+        woDetailAPI.loadPws();
         // buttons click events
         $('#btnOk').click(woDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
@@ -36,48 +41,47 @@ var woDetailAPI = {
         if (id != 0) {
             $('#wid-id-1').show();
         }
-        woDetailAPI.getCUnit(id);
+        woDetailAPI.getWo(id);
     },
     pageData: function () {
         // knockout objects
         var self = this;
         self.id = ko.observable();
-        self.name = ko.observable();
-        self.reference = ko.observable();
-        self.description = ko.observable();
-        self.cost = ko.observable();
-        self.image = ko.observable();
+        self.initDate = ko.observable();
+        self.endDate = ko.observable();
+        self.comments = ko.observable();
+        // worker combo
+        self.optionsWorkers = ko.observableArray([]);
+        self.selectedWorkers = ko.observableArray([]);
+        self.sWorker = ko.observable();
+        // pw combo
+        self.optionsPws = ko.observableArray([]);
+        self.selectedPws = ko.observableArray([]);
+        self.sPw = ko.observable();
         // -- Modal related
         self.lineId = ko.observable();
-        self.line = ko.observable();
+        self.estimate = ko.observable();
+        self.done = ko.observable();
         self.quantity = ko.observable();
-        // item combo
-        self.optionsItems = ko.observableArray([]);
-        self.selectedItems = ko.observableArray([]);
-        self.sItem = ko.observable();
-        // unit combo
-        self.optionsUnits = ko.observableArray([]);
-        self.selectedUnits = ko.observableArray([]);
-        self.sUnit = ko.observable();
+        // cunit combo
+        self.optionsCUnits = ko.observableArray([]);
+        self.selectedCUnits = ko.observableArray([]);
+        self.sCUnit = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
-        vm.name(data.name);
-        vm.reference(data.reference);
-        vm.description(data.description);
-        vm.cost(data.cost);
-        vm.image(data.image);
+        vm.initDate(moment(data.name, i18n.t('util.date_iso')).format(i18n.t('util.date_format')));
+        vm.endDate(moment(data.name, i18n.t('util.date_iso')).format(i18n.t('util.date_format')));
+        vm.comments(data.comments);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
         $('#woDetail-form').validate({
             rules: {
-                txtName: { required: true },
-                txtReference: { required: true },
-                txtCost: {
-                    required: true,
-                    number: true
-                }
+                txtInitDate: { required: true },
+                txtEndDate: { required: true },
+                cmbWorkers: { required: true },
+                cmbPws: { required: true },
             },
             // Messages for form validation
             messages: {
@@ -90,20 +94,20 @@ var woDetailAPI = {
         return $('#woDetail-form').valid();
     },
     // obtain a  wo group from the API
-    getCUnit: function (id) {
+    getWo: function (id) {
         if (!id || (id == 0)) {
             // new wo group
             vm.id(0);
             return;
         }
-        var url = sprintf("%s/cunit/%s?api_key=%s", myconfig.apiUrl, id, api_key);
+        var url = sprintf("%s/wo/%s?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
                 woDetailAPI.loadData(data[0]);
-                woLineAPI.getCUnitLines(data[0].id);
+                woLineAPI.getWoLines(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -132,11 +136,11 @@ var woDetailAPI = {
             if (vm.id() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/cunit?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/wo?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/cunit/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+                url = sprintf('%s/wo/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
             }
             $.ajax({
                 type: type,
@@ -146,7 +150,7 @@ var woDetailAPI = {
                 success: function (data, status) {
                     if (type == "POST") {
                         vm.id(data.id);
-                         $('#wid-id-1').show();
+                        $('#wid-id-1').show();
                     } else {
                         var url = sprintf('woGeneral.html?id=%s', data.id);
                         window.open(url, '_self');
@@ -162,6 +166,44 @@ var woDetailAPI = {
         }
         return mf;
     },
+    loadWorkers: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/worker?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: null, name: "" }].concat(data);
+                vm.optionsWorkers(options);
+                $("#cmbWorkers").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('login.html', '_self');
+                }
+            }
+        });
+    },
+    loadPws: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/pw?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: null, name: "" }].concat(data);
+                vm.optionsPws(options);
+                $("#cmbPws").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('login.html', '_self');
+                }
+            }
+        });
+    }   
 };
 
 
