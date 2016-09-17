@@ -228,7 +228,6 @@
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
 						<i class="fa-fw fa fa-cog"></i> <span data-i18n="menu.pwman.pw">Inicio</span>
-						<span id="pwDetailTitle"></span>
 					</h1>
 				</div>
 			</div>
@@ -236,258 +235,199 @@
 			<section id="widget-grid" class="">
 				<div class="row">
 					<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<ul class="nav nav-tabs bordered" id="pwDetail_GT">
-							<li class="active"><a data-toggle="tab" href="#s1" data-i18n="pwDetail.tabs.general">GENERAL</a></li>
-							<li><a data-toggle="tab" href="#s2" data-i18n="pwDetail.tabs.work_order">PARTE</a></li>
-						</ul>
-						<div class="tab-content padding-10" id="pwDetail_GT1">
-							<div class="tab-pane fade in active" id="s1">
-								<!-- Widget ID (each widget will need unique ID)-->
-								<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
-									<header>
-										<span class="widget-icon"> <i class="fa fa-cog"></i> </span>
-										<h2>
-											<span data-i18n="pwDetail.title">Mantenimiento</span>
-										</h2>
-									</header>
-									<div class="widget-body">
-										<div class="row">
-											<section class="col col-md-10">
-												<form id="pwDetail-form" class="smart-form">
-													<fieldset>
-														<div class="row">
-															<section class="col col-md-2">
-																<label class="label" data-18n="pwDetail.status">ESTADO:</label>
-																<label style="width:100%;">
+						<!-- Widget ID (each widget will need unique ID)-->
+						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-cog"></i> </span>
+								<h2 data-i18n="pwDetail.title">Mantenimiento</h2>
+							</header>
+							<div class="widget-body">
+								<div class="row">
+									<section class="col col-md-10">
+										<form id="pwDetail-form" class="smart-form">
+											<fieldset>
+												<div class="row">
+													<section class="col col-md-2">
+														<label class="label" data-18n="pwDetail.status">ESTADO:</label>
+														<label style="width:100%;">
 														<select style="width:100%" id="cmbStatus" name="cmbStatus" 
 															data-bind="options: optionsStatus, optionsText: 'name', optionsValue: 'id', value: sStatus, valueAllowUnset: true, selectedOptions: selectedStatus, selected2:{}">
 														</select>
 														<i></i>
                                         			</label>
-															</section>
-															<section class="col col-md-2">
-																<label class="label" data-i18n="pwDetail.initDate">Fecha Inicio:</label>
-																<label class="input">
+													</section>
+													<section class="col col-md-2">
+														<label class="label" data-i18n="pwDetail.initDate">Fecha Inicio:</label>
+														<label class="input">
                                                         <input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy"/>
                                                     </label>
-															</section>
-															<section class="col col-md-4">
-																<label class="label" data-i18n="pwDetail.company">Empresa:</label>
-																<label style="width:100%;">
+													</section>
+													<section class="col col-md-4">
+														<label class="label" data-i18n="pwDetail.company">Empresa:</label>
+														<label style="width:100%;">
 														<select style="width:100%" id="cmbCompanies" name="cmbCompanies" 
 															data-bind="options: optionsCompanies, optionsText: 'name', optionsValue: 'id', value: sCompany, valueAllowUnset: true, selectedOptions: selectedCompanies, selected2:{}">
 														</select>
 														<i></i>
                                         			</label>
-															</section>
-															<section class="col col-md-4">
-																<label class="label" data-i18n="pwDetail.initInCharge">Responsable inicial:</label>
-																<label style="width:100%;">
+													</section>
+													<section class="col col-md-4">
+														<label class="label" data-i18n="pwDetail.initInCharge">Responsable inicial:</label>
+														<label style="width:100%;">
 														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" 
 															data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}">
 														</select>
 														<i></i>
                                         			</label>
-															</section>
-														</div>
-														<div class="row">
-															<section class="col col-md-4">
-																<label class="label" data-i18n="pwDetail.reference">Referencia:</label>
-																<label class="input">
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-4">
+														<label class="label" data-i18n="pwDetail.reference">Referencia:</label>
+														<label class="input">
 														<input id="txtReference" name="txtReference" data-bind="value: reference">
 													</label>
-															</section>
-															<section class="col col-md-8">
-																<label class="label" data-i18n="pwDetail.name">Nombre:</label>
-																<label class="input">
+													</section>
+													<section class="col col-md-8">
+														<label class="label" data-i18n="pwDetail.name">Nombre:</label>
+														<label class="input">
 														<input id="txtName" name="txtName" data-bind="value: name">
 													</label>
-															</section>
-														</div>
-														<div class="row">
-															<section class="col col-md-12">
-																<label class="label" data-i18n="pwDetail.description">Descripción:</label>
-																<label class="textarea textarea-resizable">
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-12">
+														<label class="label" data-i18n="pwDetail.description">Descripción:</label>
+														<label class="textarea textarea-resizable">
                                                         <textarea id="txtDescription" rows="3" class="custom-scroll" data-bind="value:description"></textarea>
                                                 </label>
-															</section>
-														</div>
-														<div class="row">
-															<section class="col col-md-8">
-															</section>
-															<section class="col col-md-2">
-																<label class="label" data-i18n="pwDetail.defaultK">K (Global):</label>
-																<label class="input">
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-8">
+													</section>
+													<section class="col col-md-2">
+														<label class="label" data-i18n="pwDetail.defaultK">K (Global):</label>
+														<label class="input">
 														<input id="txtDefaultK" name="txtDefaultK" data-bind="value: defaultK">
 													</label>
-															</section>
-															<section class="col col-md-2">
-																<label class="label" data-i18n="pwDetail.total">Total:</label>
-																<label class="input">
+													</section>
+													<section class="col col-md-2">
+														<label class="label" data-i18n="pwDetail.total">Total:</label>
+														<label class="input">
 														<input id="txtTotal" name="txtTotal" data-bind="value: total" disabled>
 													</label>
-															</section>
-														</div>
-
-													</fieldset>
-												</form>
-											</section>
-											<section class="col col-md-2 asw-center">
-												<div class="row">
-													<hr/>
-													<h1 data-i18n="progress">P</h1>
-													<hr/>
+													</section>
 												</div>
-												<div class="row" style="text-align:center">
-													<h1 id="progress">0 %</h1>
-												</div>
-											</section>
-										</div>
-										<div class="row">
-											<section class="col col-md-12">
-													<fieldset>
-														<div class="row">
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.INIT">INIT</p></strong>
-																	<p data-bind="text: initDate"></p>
-																	REF:
-																	<p data-bind="text: reference"></p>
-																</div>
-															</section>
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.ACCEPTED">INIT</p></strong>
-																	<p data-bind="text: acepDate"></p>
-																	REF:
-																	<p data-bind="text: acepRef"></p>
-																</div>
-															</section>
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.DONE">*</p></strong>
-																	<p data-bind="text: finDate"></p>
-																	REF:
-																	<p data-bind="text: finRef"></p>
-																</div>
-															</section>
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.VALIDATED">*</p></strong>
-																	<p data-bind="text: cerDate"></p>
-																	REF:
-																	<p data-bind="text: cerRef"></p>
-																</div>
-															</section>
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.INVOICED">*</p></strong>
-																	<p data-bind="text: invDate"></p>
-																	REF:
-																	<p data-bind="text: invRef"></p>
-																</div>
-															</section>
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.PAID">*</p></strong>
-																	<p data-bind="text: payDate"></p>
-																	REF:
-																	<p data-bind="text: payRef"></p>
-																</div>
-															</section>
-														</div>
-														<div class="pull-right">
-															<button id="btnChangeStatus" data-i18n="[title]pwDetail.change_status" data-toggle="modal" data-target="#pwModal2" class="btn btn-success btn-circle btn-lg"
-																style="display:none;">
-																<i class="fa fa-lg fa-random"></i>
-															</button>
-															<button id="btnExit" data-i18n="[title]pwDetail.cancel" class="btn btn-warning btn-circle btn-lg">
-																<i class="fa fa-lg fa-sign-out"></i>
-															</button>
-															<button id="btnOk" data-i18n="[title]pwDetail.ok" class="btn btn-success btn-circle btn-lg">
-																<i class="fa fa-lg fa-check"></i>
-															</button>
-														</div>
-													</fieldset>
-											</section>
-										</div>
-									</div>
-								</div>
-								<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false"
-									style="display:none;">
-									<header>
-										<span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
-										<h2 data-i18n="pwDetail.associated_items">Mantenimiento</h2>
-									</header>
-									<div class="widget-body">
-										<div class="row">
-											<form id="pwDetailLine-form" class="smart-form">
-												<fieldset>
-													<div class="pull-right">
-														<button id="btnNewLine" data-i18n="[title]pwDetail.newLine" data-toggle="modal" data-target="#pwModal" class="btn btn-success btn-circle btn-lg">
-													<i class="fa fa-lg fa-plus"></i>
+											</fieldset>
+											<fieldset>
+												<div class="pull-right">
+													<button id="btnChangeStatus" data-i18n="[title]pwDetail.change_status" data-toggle="modal" data-target="#pwModal2" class="btn btn-success btn-circle btn-lg"
+														style="display:none;">
+													<i class="fa fa-lg fa-random"></i>
 												</button>
-													</div>
-												</fieldset>
-												<fieldset>
-													<div id="tb_pwLine">
-														<table id="dt_pwLine" class="table table-striped table-bordered table-hover" width="100%">
-															<thead>
-																<tr>
-																	<th data-class="expand">
-																		<i class="fa fa-fw fa-cube text-muted hidden-md hidden-sm hidden-xs"></i>
-																		<span data-i18n="pwDetail.line">R</span>
-																	</th>
-																	<th>
-																		<span data-i18n="pwDetail.cunit"></span>
-																	</th>
-																	<th data-hide="phone">
-																		<span data-i18n="pwDetail.cost"></span>
-																	</th>
-																	<th data-hide="phone">
-																		<span data-i18n="pwDetail.quantity"></span>
-																	</th>
-																	<th data-hide="phone">
-																		<span data-i18n="pwDetail.k"></span>
-																	</th>
-																	<th data-hide="phone">
-																		<span data-i18n="pwDetail.amount"></span>
-																	</th>
-																	<th>
-																	</th>
-																</tr>
-															</thead>
-														</table>
-													</div>
-												</fieldset>
-											</form>
+													<button id="btnExit" data-i18n="[title]pwDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+													<i class="fa fa-lg fa-sign-out"></i>
+												</button>
+													<button id="btnOk" data-i18n="[title]pwDetail.ok" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-check"></i>
+												</button>
+												</div>
+											</fieldset>
+										</form>
+
+									</section>
+									<section class="col col-md-2">
+										<div class="row">
+											<hr/>
+											<h1 data-i18n="evolution">E</h1>
+											<hr/>
 										</div>
-									</div>
+										<div class="row">
+											<strong><span data-i18n="status.INIT"></span>: </strong>
+											<span data-bind="text: initDate"></span>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.ACCEPTED"></span>: </strong>
+											<span data-bind="text: acepDate"></span>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.DONE">:</span>: </strong>
+											<span data-bind="text: finDate"></span>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.VALIDATED"></span>: </strong>
+											<span data-bind="text: cerDate"></span>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.INVOICED"></span>: </strong>
+											<span data-bind="text: invDate"></span>
+										</div>
+										<div class="row">
+											<strong><span data-i18n="status.PAID"></span>: </strong>
+											<span data-bind="text: payDate"></span>
+										</div>
+										<div class="row">
+											<hr/>
+											<h1 data-i18n="progress">P</h1>
+											<hr/>
+										</div>
+										<div class="row" style="text-align:center">
+											<h1>0 %</h1>
+										</div>
+									</section>
+
 								</div>
 							</div>
-							<div class="tab-pane fade" id="s2">
-								<div id="tb_wo">
-									<table id="dt_wo" class="table table-striped table-bordered table-hover" width="100%">
-										<thead>
-											<tr>
-												<th data-class="expand">
-													<i class="fa fa-fw fa-cog text-muted hidden-md hidden-sm hidden-xs"></i>
-													<span data-i18n="woDetail.initDate">R</span>
-												</th>
-												<th data-hide="phone" class="asw-center">
-													<span data-i18n="woDetail.endDate"></span>
-												</th>
-												<th>
-													<span data-i18n="woDetail.worker"></span>
-												</th>
-												<th>
-													<span data-i18n="woDetail.comments"></span>
-												</th>
-												<th>
-												</th>
-											</tr>
-										</thead>
-									</table>
+						</div>
+						<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false"
+							style="display:none;">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
+								<h2 data-i18n="pwDetail.associated_items">Mantenimiento</h2>
+							</header>
+							<div class="widget-body">
+								<div class="row">
+									<form id="pwDetailLine-form" class="smart-form">
+										<fieldset>
+											<div class="pull-right">
+												<button id="btnNewLine" data-i18n="[title]pwDetail.newLine" data-toggle="modal" data-target="#pwModal" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-plus"></i>
+												</button>
+											</div>
+										</fieldset>
+										<fieldset>
+											<div id="tb_pwLine">
+												<table id="dt_pwLine" class="table table-striped table-bordered table-hover" width="100%">
+													<thead>
+														<tr>
+															<th data-class="expand">
+																<i class="fa fa-fw fa-cube text-muted hidden-md hidden-sm hidden-xs"></i>
+																<span data-i18n="pwDetail.line">R</span>
+															</th>
+															<th>
+																<span data-i18n="pwDetail.cunit"></span>
+															</th>
+															<th data-hide="phone">
+																<span data-i18n="pwDetail.cost"></span>
+															</th>
+															<th data-hide="phone">
+																<span data-i18n="pwDetail.quantity"></span>
+															</th>
+															<th data-hide="phone">
+																<span data-i18n="pwDetail.k"></span>
+															</th>
+															<th data-hide="phone">
+																<span data-i18n="pwDetail.amount"></span>
+															</th>
+															<th>
+															</th>
+														</tr>
+													</thead>
+												</table>
+											</div>
+										</fieldset>
+									</form>
 								</div>
 							</div>
 						</div>

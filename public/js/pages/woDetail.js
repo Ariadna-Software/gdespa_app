@@ -136,7 +136,8 @@ var woDetailAPI = {
                 },
                 pw: {
                     id: vm.sPw()
-                }
+                },
+                comments: vm.comments()
             };
             var url = "", type = "";
             if (vm.id() == 0) {

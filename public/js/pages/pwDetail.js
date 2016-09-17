@@ -46,6 +46,8 @@ var pwDetailAPI = {
         // init modal form
         pwModalAPI.init();
         pwModal2API.init();
+        // init tabs
+        pwDetailAPI.initWoTable();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         // if it is an update show lines
@@ -54,6 +56,7 @@ var pwDetailAPI = {
             $('#btnChangeStatus').show();
         }
         pwDetailAPI.getPw(id);
+        pwDetailAPI.getWo(id);
     },
     pageData: function () {
         // knockout objects
@@ -72,6 +75,11 @@ var pwDetailAPI = {
         self.cerDate = ko.observable();
         self.invDate = ko.observable();
         self.payDate = ko.observable();
+        self.acepRef = ko.observable();
+        self.finRef = ko.observable();
+        self.cerRef = ko.observable();
+        self.invRef = ko.observable();
+        self.payRef = ko.observable();
         // status combo
         self.optionsStatus = ko.observableArray([]);
         self.selectedStatus = ko.observableArray([]);
@@ -129,10 +137,17 @@ var pwDetailAPI = {
         }
         if (moment(data.cerDate).isValid())
             vm.cerDate(moment(data.cerDate).format(i18n.t("util.date_format")));
-        if (moment(data.finDate).isValid())
+        if (moment(data.invDate).isValid())
             vm.invDate(moment(data.invDate).format(i18n.t("util.date_format")));
         if (moment(data.payDate).isValid())
             vm.payDate(moment(data.payDate).format(i18n.t("util.date_format")));
+        vm.acepRef(data.acepRef);
+        vm.finRef(data.finRef);
+        vm.cerRef(data.cerRef);
+        vm.invRef(data.invRef);
+        vm.payRef(data.payRef);
+        // if we have tabs we should change wiget title
+        $('#pwDetailTitle').html(" <strong>[" + vm.name() + "]</strong>");
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -170,6 +185,24 @@ var pwDetailAPI = {
             success: function (data, status) {
                 pwDetailAPI.loadData(data[0]);
                 pwLineAPI.getPwLines(data[0].id);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('login.html', '_self');
+                }
+            }
+        });
+        // update progress
+        url = sprintf("%s/pw/per/%s?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                if (data && data.length > 0){
+                    $('#progress').text((data[0].percentage * 100) + "%");
+                }
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -298,5 +331,62 @@ var pwDetailAPI = {
             pwModal2API.newStatus();
         };
         return mf;
+    },
+    // TAB -- WO
+    initWoTable: function () {
+        var options = aswInit.initTableOptions('dt_wo');
+        options.data = data;
+        options.columns = [{
+            data: "initDate",
+            render: function (data, type, row) {
+                var html = moment(data).format(i18n.t("util.date_format"));
+                return html;
+            }
+        }, {
+                data: "endDate",
+                render: function (data, type, row) {
+                    var html = moment(data).format(i18n.t("util.date_format"));
+                    return html;
+                }
+            }, {
+                data: "workerName"
+            }, {
+                data: "comments"
+            }, {
+                data: "woId",
+                render: function (data, type, row) {
+                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='pwDetailAPI.editWo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                    var html = "<div class='pull-right'>" + bt2 + "</div>";
+                    return html;
+                }
+            }];
+        $('#dt_wo').dataTable(options);
+    },
+    getWo: function (id) {
+        var url = sprintf("%s/pw/wo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                pwDetailAPI.loadWo(data);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('login.html', '_self');
+                }
+            }
+        });
+    },
+    loadWo: function (data) {
+        var dt = $('#dt_wo').dataTable();
+        dt.fnClearTable();
+        if (data.length && data.length > 0) dt.fnAddData(data);
+        dt.fnDraw();
+        $("#tb_wo").show();
+    },
+    editWo: function (id) {
+        window.open(sprintf('woDetail.html?id=%s', id), '_blank');
     }
 };

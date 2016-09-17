@@ -195,6 +195,10 @@
         "search": "Buscar propuestas"
     },
     "pwDetail": {
+        "tabs":{
+            "general": "General",
+            "work_order": "Partes de trabajo"
+        },
         "title": "Detalle propuesta",
         "name": "Nombre",
         "reference": "Ref. GDES-LINEMAN",
