@@ -172,6 +172,17 @@ var aswNotif = {
             //timeout: 8000,
             icon: "fa fa-bell swing animated"
         });
+    },
+    newMainLines: function () {
+        var html = i18n.t("record_lines");
+        html += "<hr/>";
+        html += sprintf("<div><small>%s</small></div>", i18n.t('error.close'));
+        $.smallBox({
+            title: i18n.t('new_record'),
+            content: html,
+            color: "#4E8975",
+            iconSmall: "fa fa-warning shake animated",
+        });
     }
 }
 

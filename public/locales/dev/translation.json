@@ -9,6 +9,8 @@
     "warning": "ADVERTENCIA",
     "yes": "Si",
     "no": "No",
+    "new_record": "NUEVO REGISTRO",
+    "record_lines": "Registro correctamente dado de alta. Introduzca las lineas asociadas más abajo en esta misma página",
     "evolution": "EVOLUCIÓN",
     "progress": "PROGRESO",
     "delete_warning": "¿Desea realmente borrar el registro: ",

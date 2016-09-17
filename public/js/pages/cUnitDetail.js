@@ -145,6 +145,7 @@ var cUnitDetailAPI = {
                 data: JSON.stringify(data),
                 success: function (data, status) {
                     if (type == "POST") {
+                        aswNotif.newMainLines();
                         vm.id(data.id);
                          $('#wid-id-1').show();
                     } else {

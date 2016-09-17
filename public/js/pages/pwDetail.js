@@ -252,6 +252,7 @@ var pwDetailAPI = {
                         vm.id(data.id);
                         $('#wid-id-1').show();
                         $('#btnChangeStatus').show();
+                        aswNotif.newMainLines();
                     } else {
                         var url = sprintf('pwGeneral.html?id=%s', data.id);
                         window.open(url, '_self');

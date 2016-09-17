@@ -158,6 +158,7 @@ var woDetailAPI = {
                     if (type == "POST") {
                         vm.id(data.id);
                         $('#wid-id-1').show();
+                        aswNotif.newMainLines();
                     } else {
                         var url = sprintf('woGeneral.html?id=%s', data.id);
                         window.open(url, '_self');
