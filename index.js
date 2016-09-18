@@ -72,6 +72,7 @@ app.use('/api/pw_line', require('./controllers/pw_line'));
 app.use('/api/wo', require('./controllers/wo'));
 app.use('/api/wo_line', require('./controllers/wo_line'));
 app.use('/api/item_stock', require('./controllers/item_stock'));
+app.use('/api/item_in', require('./controllers/item_in'));
 
 // general API to export
 
