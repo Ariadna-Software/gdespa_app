@@ -1,5 +1,9 @@
+DELETE FROM closure_line;
+DELETE FROM closure;
 DELETE FROM item_in;
 DELETE FROM item_out;
+DELETE FROM wo_line;
+DELETE FROM wo;
 DELETE FROM pw_line;
 DELETE FROM pw;
 DELETE FROM cunit_line;
