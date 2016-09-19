@@ -1,49 +1,49 @@
-var woLineAPI = {
+var itemInLineAPI = {
     init: function () {
         // init tables
-        woLineAPI.initWoLineTable();
+        itemInLineAPI.initItemInLineTable();
         // button handlers
-        $('#btnNewLine').click(woLineAPI.newWoLine());
+        $('#btnNewLine').click(itemInLineAPI.newItemInLine());
         // avoid sending form 
-        $('#woDetailLine-form').submit(function () {
+        $('#itemInDetail-form').submit(function () {
             return false;
         });
     },
-    initWoLineTable: function () {
-        var options = aswInit.initTableOptions('dt_woLine');
+    initItemInLineTable: function () {
+        var options = aswInit.initTableOptions('dt_itemInLine');
         options.data = data;
         options.columns = [{
-            data: "cunit.name"
+            data: "item.name"
         }, {
                 data: "quantity"
             }, {
                 data: "id",
                 render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woLineAPI.deleteWoLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#woModal' onclick='woModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='itemInLineAPI.deleteItemInLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#itemInModal' onclick='itemInModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                     var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                     return html;
                 }
             }];
-        $('#dt_woLine').dataTable(options);
+        $('#dt_itemInLine').dataTable(options);
     },
-    newWoLine: function () {
+    newItemInLine: function () {
         var mf = function (e) {
             // show modal form
             e.preventDefault();
-            woModalAPI.newLine();
+            itemInModalAPI.newLine();
         };
         return mf;
     },
-    deleteWoLineMessage: function (id) {
-        var url = sprintf("%s/wo_line/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteItemInLineMessage: function (id) {
+        var url = sprintf("%s/item_in_line/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                var name = data[0].cunit.name + " (Cantidad: " + data[0].quantity + ")";
-                var fn = sprintf('woLineAPI.deleteWoLine(%s);', id);
+                var name = data[0].item.name + " (Cantidad: " + data[0].quantity + ")";
+                var fn = sprintf('itemInLineAPI.deleteitemInLine(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -54,8 +54,8 @@ var woLineAPI = {
             }
         });
     },
-    deleteWoLine: function (id) {
-        var url = sprintf("%s/wo_line/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteitemInLine: function (id) {
+        var url = sprintf("%s/item_in_line/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         var data = {
             id: id
         };
@@ -65,7 +65,7 @@ var woLineAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                woLineAPI.getWoLines(vm.id());
+                itemInLineAPI.getItemInLines(vm.id());
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -75,14 +75,14 @@ var woLineAPI = {
             }
         });
     },
-    getWoLines: function (id) {
-        var url = sprintf("%s/wo_line/wo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    getItemInLines: function (id) {
+        var url = sprintf("%s/item_in_line/itemIn/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                woLineAPI.loadWoLinesTable(data);
+                itemInLineAPI.loadItemInLinesTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -92,11 +92,11 @@ var woLineAPI = {
             }
         });
     },
-    loadWoLinesTable: function (data) {
-        var dt = $('#dt_woLine').dataTable();
+    loadItemInLinesTable: function (data) {
+        var dt = $('#dt_itemInLine').dataTable();
         dt.fnClearTable();
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-        $("#tb_woLine").show();
+        $("#tb_itemInLine").show();
     }
 };

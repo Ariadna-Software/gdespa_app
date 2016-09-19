@@ -265,7 +265,7 @@
         "title": "Detalle entrada",
         "dateIn": "Fecha",
         "worker": "Responsable",
-        "store": "Almacen",
+        "store": "Almacen entrada",
         "item": "Artículo",
         "quantity": "Cantidad",
         "comments": "Observaciones",

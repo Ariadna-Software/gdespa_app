@@ -10,7 +10,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 var data = null;
 var vm = null;
 
-var itemInAPI = {
+var itemInDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
@@ -19,13 +19,15 @@ var itemInAPI = {
         // make active menu option
         $('#itemInGeneral').attr('class', 'active');
         // knockout management
-        vm = new itemInAPI.pageData();
+        vm = new itemInDetailAPI.pageData();
         ko.applyBindings(vm);
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
-        itemInAPI.loadWorkers();
+        itemInDetailAPI.loadWorkers();
+        $('#cmbStores').select2(select2_languages[lang]);
+        itemInDetailAPI.loadStores();        
         // buttons click events
-        $('#btnOk').click(itemInAPI.btnOk());
+        $('#btnOk').click(itemInDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('itemInGeneral.html', '_self');
@@ -40,7 +42,7 @@ var itemInAPI = {
         if (id != 0) {
             $('#wid-id-1').show();
         }
-        itemInAPI.getItemIn(id);
+        itemInDetailAPI.getItemIn(id);
     },
     pageData: function () {
         // knockout objects
@@ -52,7 +54,12 @@ var itemInAPI = {
         self.optionsWorkers = ko.observableArray([]);
         self.selectedWorkers = ko.observableArray([]);
         self.sWorker = ko.observable();
+        // store combo
+        self.optionsStores = ko.observableArray([]);
+        self.selectedStores = ko.observableArray([]);
+        self.sStore = ko.observable();
         // -- Modal related
+        self.lineId = ko.observable();
         self.quantity = ko.observable();
         // item combo
         self.optionsItems = ko.observableArray([]);
@@ -61,20 +68,17 @@ var itemInAPI = {
     },
     loadData: function (data) {
         vm.id(data.id);
-        vm.initDate(moment(data.initDate).format(i18n.t('util.date_format')));
-        vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
+        vm.dateIn(moment(data.datIn).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
-        itemInAPI.loadPws(data.pw.id);
-        itemInAPI.loadWorkers(data.worker.id);
+        itemInDetailAPI.loadWorkers(data.worker.id);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
         $('#itemIn-form').validate({
             rules: {
-                txtInitDate: { required: true },
-                txtEndDate: { required: true },
+                txtDateIn: { required: true },
                 cmbWorkers: { required: true },
-                cmbPws: { required: true },
+                cmbStores: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -93,13 +97,13 @@ var itemInAPI = {
             vm.id(0);
             return;
         }
-        var url = sprintf("%s/wo/%s?api_key=%s", myconfig.apiUrl, id, api_key);
+        var url = sprintf("%s/item_in/%s?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemInAPI.loadData(data[0]);
+                itemInDetailAPI.loadData(data[0]);
                 itemInLineAPI.getItemInLines(data[0].id);
             },
             error: function (err) {
@@ -115,17 +119,16 @@ var itemInAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!itemInAPI.dataOk()) return;
+            if (!itemInDetailAPI.dataOk()) return;
             // dat for post or put
             var data = {
                 id: vm.id(),
-                initDate: moment(vm.initDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
-                endDate: moment(vm.endDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
+                dateIn: moment(vm.dateIn(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
                 worker: {
                     id: vm.sWorker()
                 },
-                pw: {
-                    id: vm.sPw()
+                store: {
+                    id: vm.sStore()
                 },
                 comments: vm.comments()
             };
@@ -133,11 +136,11 @@ var itemInAPI = {
             if (vm.id() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/wo?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/item_in?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/wo/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+                url = sprintf('%s/item_in/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
             }
             $.ajax({
                 type: type,
@@ -183,16 +186,16 @@ var itemInAPI = {
             }
         });
     },
-    loadPws: function (id) {
+    loadStores: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/pw?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/store?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 var options = [{ id: null, name: "" }].concat(data);
-                vm.optionsPws(options);
-                $("#cmbPws").val([id]).trigger('change');
+                vm.optionsStores(options);
+                $("#cmbStores").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -201,7 +204,7 @@ var itemInAPI = {
                 }
             }
         });
-    }   
+    }
 };
 
 
