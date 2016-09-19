@@ -35,6 +35,8 @@ var closureDetailAPI = {
         closureLineAPI.init();
         // init modal form
         closureModalAPI.init();
+        // 
+        closureDetailAPI.initWoTable();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         // if it is an update show lines
@@ -45,6 +47,7 @@ var closureDetailAPI = {
             vm.closureDate(moment(new Date()).format('DD/MM/YYYY'));
         }
         closureDetailAPI.getClosure(id);
+        closureDetailAPI.getWo(id);
     },
     pageData: function () {
         // knockout objects
@@ -106,7 +109,7 @@ var closureDetailAPI = {
             success: function (data, status) {
                 closureDetailAPI.loadData(data[0]);
                 closureLineAPI.getClosureLines(data[0].id);
-                if (vm.close() != 0){
+                if (vm.close() != 0) {
                     $('#btnClose').hide();
                 }
             },
@@ -228,6 +231,66 @@ var closureDetailAPI = {
         }
         return mf;
     },
+    // TAB -- WO
+    initWoTable: function () {
+        var options = aswInit.initTableOptions('dt_wo');
+        options.data = data;
+        options.columns = [{
+            data: "initDate",
+            render: function (data, type, row) {
+                var html = moment(data).format(i18n.t("util.date_format"));
+                return html;
+            }
+        }, {
+                data: "endDate",
+                render: function (data, type, row) {
+                    var html = moment(data).format(i18n.t("util.date_format"));
+                    return html;
+                }
+            }, {
+                data: "worker.name"
+            }, {
+                data: "comments"
+            }, {
+                data: "id",
+                render: function (data, type, row) {
+                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='closureDetailAPI.editWo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                    var html = "<div class='pull-right'>" + bt2 + "</div>";
+                    return html;
+                }
+            }];
+        $('#dt_wo').dataTable(options);
+    },
+    getWo: function (id) {
+        var url = sprintf("%s/wo/closure/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        if (vm.id() == 0){
+            url = sprintf("%s/wo/?api_key=%s", myconfig.apiUrl, api_key);
+        }
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                closureDetailAPI.loadWo(data);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('login.html', '_self');
+                }
+            }
+        });
+    },
+    loadWo: function (data) {
+        var dt = $('#dt_wo').dataTable();
+        dt.fnClearTable();
+        if (data.length && data.length > 0) dt.fnAddData(data);
+        dt.fnDraw();
+        $("#tb_wo").show();
+    },
+    editWo: function (id) {
+        window.open(sprintf('woDetail.html?id=%s', id), '_blank');
+    }
 };
 
 

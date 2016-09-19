@@ -304,6 +304,10 @@
         "search": "Buscar cierres"
     },
     "closureDetail": {
+        "tabs":{
+            "general": "General",
+            "work_order": "Partes de trabajo"
+        },
         "title": "Detalle cierre",
         "closureDate": "Fecha cierre",
         "close": "Cerrar",

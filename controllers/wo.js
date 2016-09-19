@@ -74,6 +74,14 @@ router.get('/:id', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/closure/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    woDb.getByClosureId(id, function (err, wos) {
+        if (err) return res.status(500).send(err.message);
+        res.json(wos);
+    }, test);
+});
 router.put('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
