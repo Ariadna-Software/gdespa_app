@@ -146,7 +146,7 @@ CREATE TABLE `closure_line` (
   KEY `ref_closline_pw` (`pwId`),
   CONSTRAINT `ref_closline_closure` FOREIGN KEY (`closureId`) REFERENCES `closure` (`closureId`),
   CONSTRAINT `ref_closline_pw` FOREIGN KEY (`pwId`) REFERENCES `pw` (`pwId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 /*Data for the table `closure_line` */
 
@@ -400,7 +400,7 @@ CREATE TABLE `pw` (
 /*Data for the table `pw` */
 
 insert  into `pw`(`pwId`,`statusId`,`reference`,`name`,`description`,`initDate`,`initInCharge`,`companyId`,`defaultK`,`total`,`acepDate`,`acepInCharge`,`acepRef`,`finDate`,`finInCharge`,`finRef`,`cerDate`,`cerInCharge`,`cerRef`,`invDate`,`invInCharge`,`invRef`,`payDate`,`payInCharge`,`payRef`) values 
-(5,2,'4555','Limpia cañerias altas','Limpia cosas','2016-09-15',15,1,'1.50','2722.93','2016-09-07',15,'ASWSW','2016-09-15',15,'RTTT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(5,1,'4555','Limpia cañerias altas','Limpia cosas','2016-09-15',15,1,'1.50','2722.93','2016-09-07',15,'ASWSW','2016-09-15',15,'RTTT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 (6,0,'455878AJ','Montaje de catenaria 1/22',NULL,'2015-03-01',11,1,'1.00','255.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 (7,0,'E78899','Desdoble de las lineas altas en GOR aumentando el título hasta que pete a ver si lo consigo',NULL,'2016-09-10',14,1,'1.00','500.80',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 (8,1,'RFD78885','Tendido en plano de cables para DONELA',NULL,'2016-09-01',11,1,'1.00','136.50','2016-09-30',11,'WSEER',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);

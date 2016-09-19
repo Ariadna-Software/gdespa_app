@@ -59,7 +59,8 @@
         "pwman": {
             "main": "Obras y servicios",
             "pw": "Propuestas",
-            "wo": "Partes de trabajo"
+            "wo": "Partes de trabajo",
+            "closure": "Cierres"
         },
         "store": {
             "main": "Almacenes / Stock",
@@ -294,5 +295,25 @@
         "newLine": "Nueva linea",
         "associated_lines": "Lineas de la salida",
         "modal_title": "Linea de la salida"
+    },
+    "closureGeneral": {
+        "title": "Mantenimiento cierres",
+        "new": "Nuevo cierre",
+        "search": "Buscar cierres"
+    },
+    "closureDetail": {
+        "title": "Detalle cierre",
+        "closureDate": "Fecha cierre",
+        "worker": "Responsable",
+        "pw": "Propuesta",
+        "estimate": "Calculado",
+        "done": "Real",
+        "quantity": "Cantidad",
+        "comments": "Observaciones",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "newLine": "Nueva linea",
+        "associated_lines": "Lineas del cierre",
+        "modal_title": "Linea del cierre"
     }
 }
