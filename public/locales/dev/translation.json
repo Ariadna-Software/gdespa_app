@@ -274,5 +274,25 @@
         "newLine": "Nueva linea",
         "associated_lines": "Lineas de la entrada",
         "modal_title": "Linea de la entrada"
+    },
+    "itemOutGeneral": {
+        "title": "Entradas",
+        "new": "Nueva entrada",
+        "search": "Buscar entradas"
+    },
+    "itemOutDetail": {
+        "title": "Detalle entrada",
+        "dateIn": "Fecha",
+        "worker": "Responsable",
+        "store": "Almacen entrada",
+        "pw": "Propuesta",
+        "item": "Artículo",
+        "quantity": "Cantidad",
+        "comments": "Observaciones",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "newLine": "Nueva linea",
+        "associated_lines": "Lineas de la entrada",
+        "modal_title": "Linea de la entrada"
     }
 }

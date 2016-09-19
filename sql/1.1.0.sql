@@ -48,3 +48,10 @@ CREATE TABLE `gdespa`.`item_out_line`(
   CONSTRAINT `ref_itemoutline_itemin` FOREIGN KEY (`itemOutId`) REFERENCES `gdespa`.`item_out`(`itemOutId`),
   CONSTRAINT `ref_itemoutline_item` FOREIGN KEY (`itemId`) REFERENCES `gdespa`.`item`(`itemId`)
 );
+ALTER TABLE `gdespa`.`item_out`   
+  ADD COLUMN `pwId` INT(11) NULL AFTER `storeId`,
+  ADD CONSTRAINT `ref_itemout_pw` FOREIGN KEY (`pwId`) REFERENCES `gdespa`.`pw`(`pwId`);
+ALTER TABLE `gdespa`.`item_in_line` DROP FOREIGN KEY `ref_iteminline_itemin`;
+ALTER TABLE `gdespa`.`item_in_line` ADD CONSTRAINT `ref_iteminline_itemin` FOREIGN KEY (`itemInId`) REFERENCES `gdespa`.`item_in`(`itemInId`) ON DELETE CASCADE;
+ALTER TABLE `gdespa`.`item_out_line` DROP FOREIGN KEY `ref_itemoutline_itemin`;
+ALTER TABLE `gdespa`.`item_out_line` ADD CONSTRAINT `ref_itemoutline_itemin` FOREIGN KEY (`itemOutId`) REFERENCES `gdespa`.`item_out`(`itemOutId`) ON DELETE CASCADE;
