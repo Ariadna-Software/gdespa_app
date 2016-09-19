@@ -13,7 +13,7 @@ var pool = mysql.createPool({
 
 var s = process.argv[2];
 console.log("S: ", s);
-s = 4;
+//s = 4;
 var sheet_name = book.SheetNames[s];
 console.log(sheet_name);
 var sheet = book.Sheets[sheet_name];
@@ -50,67 +50,69 @@ var altaCUnitLine = function (lista, done) {
     var cunit = null;
     var itemR = null;
     async.each(lista, function (cul, callback) {
-        console.log("OB1: ", JSON.stringify(cul));
-        pool.getConnection(function (err, conn) {
-            if (err) return callback(err);
-            // primero obtenemos la unidad constructiva
-            var sql = "SELECT * FROM cunit WHERE reference = ?";
-            sql = mysql.format(sql, cul.ref);
-            console.log("SQL: ", sql);
-            conn.query(sql, function (err, res) {
-                conn.release();
-                if (err) return callback(err);
-                console.log("OB2: ", JSON.stringify(cul));
-                cunit = res[0];
-                if (!cunit) {
-                    console.log("REF: ", cul.ref);
-                }
-                // damos de alta el artículo
+        async.waterfall([function (call2) {
+            pool.getConnection(function (err, conn) {
+                // primero obtenemos la unidad constructiva
+                var sql = "SELECT * FROM cunit WHERE reference = ?";
+                sql = mysql.format(sql, cul.ref);
+                conn.query(sql, function (err, res) {
+                    conn.release();
+                    if (err) return call2(err);
+                    var cunit = res[0];
+                    call2(null, cunit);
+                });
+            });
+        }, function (cunit, call2) {
+            pool.getConnection(function (err, conn) {
+                if (err) return call2(err);
+                // dar de alta el articulo
                 var item = {
                     reference: cul.ref2,
                     name: cul.name
-                }
-                pool.getConnection(function (err, conn) {
+                };
+                var sql = "INSERT INTO item SET ? ON DUPLICATE KEY UPDATE ?";
+                sql = mysql.format(sql, [item, item]);
+                conn.query(sql, function (err, res) {
+                    conn.release();
+                    if (err) return call2(err);
+                    call2(null, cunit);
+                });
+            });
+        }, function (cunit, call2) {
+            // buscar el articulo dado de alta
+            pool.getConnection(function (err, conn) {
+                if (err) return call2(err);
+                var sql = "SELECT * FROM item WHERE reference = ?";
+                sql = mysql.format(sql, cul.ref2);
+                conn.query(sql, function (err, res) {
+                    conn.release();
+                    if (err) return call2(err);
+                    var item = res[0];
+                    call2(null, cunit, item);
+                });
+            });
+        }, function (cunit, item, call2) {
+            // dar de alta la relación artículo / unidad
+            var clin = {
+                cunitId: cunit.cunitId,
+                line: cul.line,
+                itemId: item.itemId,
+                quantity: cul.quantity
+            };
+            pool.getConnection(function (err, conn) {
+                if (err) return callback(err);
+                sql = "INSERT INTO cunit_line SET ? ON DUPLICATE KEY UPDATE ?";
+                sql = mysql.format(sql, [clin, clin]);
+                conn.query(sql, function (err, res) {
+                    conn.release();
                     if (err) return callback(err);
-                    sql = "INSERT INTO item SET ? ON DUPLICATE KEY UPDATE ?";
-                    sql = mysql.format(sql, [item, item]);
-                    conn.query(sql, function (err) {
-                        conn.release();
-                        if (err) return callback(err);
-                        pool.getConnection(function (err, conn) {
-                            if (err) return callback(err);
-                            // buscamos el artículo que hemos creado
-                            sql = "SELECT * FROM item WHERE reference = ?";
-                            sql = mysql.format(sql, cul.ref2);
-                            conn.query(sql, function (err, res) {
-                                conn.release();
-                                if (err) return callback(err);
-                                itemR = res[0];
-                                // y ahora la linea de unidad
-                                var clin = {
-                                    cunitId: cunit.cunitId,
-                                    line: cul.line,
-                                    itemId: itemR.itemId,
-                                    quantity: cul.quantity
-                                };
-                                pool.getConnection(function (err, conn) {
-                                    if (err) return callback(err);
-                                    sql = "INSERT INTO cunit_line SET ? ON DUPLICATE KEY UPDATE ?";
-                                    sql = mysql.format(sql, [clin, clin]);
-                                    conn.query(sql, function (err, res) {
-                                        conn.release();
-                                        if (err) return callback(err);
-                                        console.log("OB2F ", JSON.stringify(cul));
-                                        callback();
-                                    });
-
-                                })
-                            });
-                        })
-                    })
+                    call2(null);
                 });
             })
-        });
+        }], function (err) {
+            if (err) return callback(err);
+            callback();
+        })
 
     }, function (err) {
         if (err) return done(err);
