@@ -65,6 +65,19 @@ router.put('/:id', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.put('/close/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    var closure = req.body;
+    closureDb.putClose(closure, function (err, closure) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(closure);
+        }
+    }, test);
+});
+
 router.delete('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

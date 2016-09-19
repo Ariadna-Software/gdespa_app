@@ -152,7 +152,7 @@ var closureDetailAPI = {
                     if (type == "POST") {
                         vm.id(data.id);
                         $('#wid-id-1').show();
-                        aswNotif.newMainLines();
+                        aswNotif.newClosureLines();
                         closureDetailAPI.getClosure(vm.id());
                     } else {
                         var url = sprintf('closureGeneral.html?id=%s', data.id);
@@ -208,7 +208,7 @@ var closureDetailAPI = {
             };
             // updating record
             type = "PUT";
-            url = sprintf('%s/closure/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+            url = sprintf('%s/closure/close/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
             $.ajax({
                 type: type,
                 url: url,

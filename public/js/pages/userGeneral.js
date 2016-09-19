@@ -20,7 +20,6 @@ var userGeneralAPI = {
         });
         // buttons click events 
         $('#btnNew').click(userGeneralAPI.newUser());
-
     },
     // initializes the table
     initUserTable: function () {
@@ -28,9 +27,9 @@ var userGeneralAPI = {
         options.data = data;
         options.columns = [{
             data: "name"
-        },{
-            data: "userGroup.name"
         }, {
+                data: "userGroup.name"
+            }, {
                 data: "id",
                 render: function (data, type, row) {
                     var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='userGeneralAPI.deleteUserMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
@@ -61,7 +60,7 @@ var userGeneralAPI = {
                 var name = data[0].name;
                 var fn = sprintf('userGeneralAPI.deleteUser(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
-           },
+            },
             error: function (err) {
                 aswNotif.errAjax(err);
                 if (err.status == 401) {

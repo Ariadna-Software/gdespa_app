@@ -20,12 +20,14 @@ var woGeneralAPI = {
         // buttons click events 
         $('#btnNew').click(woGeneralAPI.newWo());
         $('#btnSearch').click(woGeneralAPI.searchWo());
+        //
+        $('#chkClosed').change(woGeneralAPI.checkClosedChange());
         // check if there's an id
         var id = aswUtil.gup('id');
         if (id) {
             woGeneralAPI.getWo(id);
         }else{
-            woGeneralAPI.getWo('');
+            woGeneralAPI.getWos('', false);
         }
     },
     // initializes the table
@@ -122,8 +124,9 @@ var woGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getWos: function (name) {
+    getWos: function (name, chk) {
         var url = sprintf("%s/wo?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+        if (chk) url = sprintf("%s/wo/all/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
         $.ajax({
             type: "GET",
             url: url,
@@ -163,6 +166,13 @@ var woGeneralAPI = {
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
         $("#tb_wo").show();
+    },
+    checkClosedChange: function () {
+        var mf = function () {
+            var chk = $(this).is(':checked');
+           woGeneralAPI.getWos('',chk);
+        }
+        return mf;
     }
 };
 

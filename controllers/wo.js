@@ -30,6 +30,28 @@ router.get('/', common.midChkApiKey, function (req, res) {
     }
 });
 
+router.get('/all/', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var name = req.query.name;
+    if (name) {
+        woDb.getByNameAll(name, function (err, wos) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(wos);
+            }
+        }, test);
+    } else {
+        woDb.getAll(function (err, wos) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(wos);
+            }
+        }, test);
+    }
+});
+
 router.post('/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var wo = req.body;

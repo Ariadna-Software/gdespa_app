@@ -239,7 +239,8 @@
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",
         "new": "Nuevo parte",
-        "search": "Buscar partes"
+        "search": "Buscar partes",
+        "closed": "Ver partes cerrados"
     },
     "woDetail": {
         "title": "Detalle parte de trabajo",
