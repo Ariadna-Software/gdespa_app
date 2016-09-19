@@ -1,6 +1,6 @@
 /*
- * itemIn.js
- * Function for the page itemIn.html
+ * itemOut.js
+ * Function for the page itemOut.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
@@ -10,45 +10,47 @@ var lang = aswCookies.getCookie('gdespa_lang');
 var data = null;
 var vm = null;
 
-var itemInDetailAPI = {
+var itemOutDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
         datepicker_languages(lang);
         $('#user_name').text(user.name);
         // make active menu option
-        $('#itemInGeneral').attr('class', 'active');
+        $('#itemOutGeneral').attr('class', 'active');
         // knockout management
-        vm = new itemInDetailAPI.pageData();
+        vm = new itemOutDetailAPI.pageData();
         ko.applyBindings(vm);
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
-        itemInDetailAPI.loadWorkers();
+        itemOutDetailAPI.loadWorkers();
         $('#cmbStores').select2(select2_languages[lang]);
-        itemInDetailAPI.loadStores();        
+        itemOutDetailAPI.loadStores(); 
+        $('#cmbPws').select2(select2_languages[lang]);
+        itemOutDetailAPI.loadPws();                     
         // buttons click events
-        $('#btnOk').click(itemInDetailAPI.btnOk());
+        $('#btnOk').click(itemOutDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
             e.preventDefault();
-            window.open('itemInGeneral.html', '_self');
+            window.open('itemOutGeneral.html', '_self');
         })
         // init lines table
-        itemInLineAPI.init();
+        itemOutLineAPI.init();
         // init modal form
-        itemInModalAPI.init();
+        itemOutModalAPI.init();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
         }
-        itemInDetailAPI.getItemIn(id);
+        itemOutDetailAPI.getItemIn(id);
     },
     pageData: function () {
         // knockout objects
         var self = this;
         self.id = ko.observable();
-        self.dateIn = ko.observable();
+        self.dateOut = ko.observable();
         self.comments = ko.observable();
         // worker combo
         self.optionsWorkers = ko.observableArray([]);
@@ -58,6 +60,10 @@ var itemInDetailAPI = {
         self.optionsStores = ko.observableArray([]);
         self.selectedStores = ko.observableArray([]);
         self.sStore = ko.observable();
+        // pw combo
+        self.optionsPws = ko.observableArray([]);
+        self.selectedPws = ko.observableArray([]);
+        self.sPw = ko.observable();        
         // -- Modal related
         self.lineId = ko.observable();
         self.quantity = ko.observable();
@@ -68,16 +74,17 @@ var itemInDetailAPI = {
     },
     loadData: function (data) {
         vm.id(data.id);
-        vm.dateIn(moment(data.datIn).format(i18n.t('util.date_format')));
+        vm.dateOut(moment(data.datIn).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
-        itemInDetailAPI.loadWorkers(data.worker.id);
-        itemInDetailAPI.loadStores(data.store.id);
+        itemOutDetailAPI.loadWorkers(data.worker.id);
+        itemOutDetailAPI.loadStores(data.store.id);
+        itemOutDetailAPI.loadPws(data.pw.id);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#itemIn-form').validate({
+        $('#itemOut-form').validate({
             rules: {
-                txtDateIn: { required: true },
+                txtDateOut: { required: true },
                 cmbWorkers: { required: true },
                 cmbStores: { required: true }
             },
@@ -89,7 +96,7 @@ var itemInDetailAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#itemIn-form').valid();
+        return $('#itemOut-form').valid();
     },
     // obtain a  wo group from the API
     getItemIn: function (id) {
@@ -98,14 +105,14 @@ var itemInDetailAPI = {
             vm.id(0);
             return;
         }
-        var url = sprintf("%s/item_in/%s?api_key=%s", myconfig.apiUrl, id, api_key);
+        var url = sprintf("%s/item_out/%s?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemInDetailAPI.loadData(data[0]);
-                itemInLineAPI.getItemInLines(data[0].id);
+                itemOutDetailAPI.loadData(data[0]);
+                itemOutLineAPI.getItemOutLines(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -120,16 +127,19 @@ var itemInDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!itemInDetailAPI.dataOk()) return;
+            if (!itemOutDetailAPI.dataOk()) return;
             // dat for post or put
             var data = {
                 id: vm.id(),
-                dateIn: moment(vm.dateIn(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
+                dateOut: moment(vm.dateOut(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
                 worker: {
                     id: vm.sWorker()
                 },
                 store: {
                     id: vm.sStore()
+                },
+                pw:{
+                    id: vm.sPw()
                 },
                 comments: vm.comments()
             };
@@ -137,11 +147,11 @@ var itemInDetailAPI = {
             if (vm.id() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/item_in?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/item_out?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/item_in/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+                url = sprintf('%s/item_out/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
             }
             $.ajax({
                 type: type,
@@ -154,7 +164,7 @@ var itemInDetailAPI = {
                         $('#wid-id-1').show();
                         aswNotif.newMainLines();
                     } else {
-                        var url = sprintf('itemInGeneral.html?id=%s', data.id);
+                        var url = sprintf('itemOutGeneral.html?id=%s', data.id);
                         window.open(url, '_self');
                     }
                 },
@@ -197,6 +207,25 @@ var itemInDetailAPI = {
                 var options = [{ id: null, name: "" }].concat(data);
                 vm.optionsStores(options);
                 $("#cmbStores").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('login.html', '_self');
+                }
+            }
+        });
+    },
+    loadPws: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/pw?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: null, name: "" }].concat(data);
+                vm.optionsPws(options);
+                $("#cmbPws").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
