@@ -15,15 +15,23 @@ var closureLineAPI = {
         options.columns = [{
             data: "pw.name"
         }, {
-                data: "estimate"
+                data: "estimate",
+                render: function (data, type, row) {
+                    var html = (data * 100)  ;
+                    return html;
+                }
             }, {
-                data: "done"
+                data: "done",
+                render: function (data, type, row) {
+                    var html = (data * 100)  ;
+                    return html;
+                }
             }, {
                 data: "id",
                 render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='closureLineAPI.deleteClosureLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                    // var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='closureLineAPI.deleteClosureLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                     var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#closureModal' onclick='closureModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                    var html = "<div class='pull-right'>"  + bt2 + "</div>";
                     return html;
                 }
             }];
@@ -44,7 +52,7 @@ var closureLineAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                var name = data[0].cunit.name + " (Cantidad: " + data[0].quantity + ")";
+                var name = data[0].pw.name;
                 var fn = sprintf('closureLineAPI.deleteClosureLine(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },

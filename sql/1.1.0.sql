@@ -74,3 +74,8 @@ CREATE TABLE `gdespa`.`closure_line`(
   CONSTRAINT `ref_closline_closure` FOREIGN KEY (`closureId`) REFERENCES `gdespa`.`closure`(`closureId`),
   CONSTRAINT `ref_closline_pw` FOREIGN KEY (`pwId`) REFERENCES `gdespa`.`pw`(`pwId`)
 );
+ALTER TABLE `gdespa`.`closure_line` DROP FOREIGN KEY `ref_closline_closure`;
+
+ALTER TABLE `gdespa`.`closure_line` ADD CONSTRAINT `ref_closline_closure` FOREIGN KEY (`closureId`) REFERENCES `gdespa`.`closure`(`closureId`) ON DELETE CASCADE;
+ALTER TABLE `gdespa`.`closure`   
+  ADD COLUMN `close` INT(11) DEFAULT 0  NULL AFTER `comments`;

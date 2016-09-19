@@ -26,6 +26,7 @@ var closureDetailAPI = {
         closureDetailAPI.loadWorkers();
         // buttons click events
         $('#btnOk').click(closureDetailAPI.btnOk());
+        $('#btnClose').click(closureDetailAPI.btnClose());
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('closureGeneral.html', '_self');
@@ -39,6 +40,9 @@ var closureDetailAPI = {
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
+        } else {
+            //vm.closureDate(moment(new Date()).format(i18n.t('util.date_format')));
+            vm.closureDate(moment(new Date()).format('DD/MM/YYYY'));
         }
         closureDetailAPI.getClosure(id);
     },
@@ -48,6 +52,7 @@ var closureDetailAPI = {
         self.id = ko.observable();
         self.closureDate = ko.observable();
         self.comments = ko.observable();
+        self.close = ko.observable();
         // worker combo
         self.optionsWorkers = ko.observableArray([]);
         self.selectedWorkers = ko.observableArray([]);
@@ -60,11 +65,13 @@ var closureDetailAPI = {
         self.optionsPws = ko.observableArray([]);
         self.selectedPws = ko.observableArray([]);
         self.sPw = ko.observable();
+        // init date 
     },
     loadData: function (data) {
         vm.id(data.id);
-        vm.closureDate(moment(data.initDate).format(i18n.t('util.date_format')));
+        vm.closureDate(moment(data.closureDate).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
+        vm.close(data.close);
         closureDetailAPI.loadWorkers(data.worker.id);
     },
     // Validates form (jquery validate) 
@@ -99,6 +106,9 @@ var closureDetailAPI = {
             success: function (data, status) {
                 closureDetailAPI.loadData(data[0]);
                 closureLineAPI.getClosureLines(data[0].id);
+                if (vm.close() != 0){
+                    $('#btnClose').hide();
+                }
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -117,7 +127,7 @@ var closureDetailAPI = {
             // dat for post or put
             var data = {
                 id: vm.id(),
-                closuretDate: moment(vm.closuretDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
+                closureDate: moment(vm.closureDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
                 worker: {
                     id: vm.sWorker()
                 },
@@ -143,6 +153,7 @@ var closureDetailAPI = {
                         vm.id(data.id);
                         $('#wid-id-1').show();
                         aswNotif.newMainLines();
+                        closureDetailAPI.getClosure(vm.id());
                     } else {
                         var url = sprintf('closureGeneral.html?id=%s', data.id);
                         window.open(url, '_self');
@@ -161,7 +172,7 @@ var closureDetailAPI = {
     loadWorkers: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/closurerker?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/worker?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
@@ -176,7 +187,47 @@ var closureDetailAPI = {
                 }
             }
         });
-    }
+    },
+    btnClose: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            //
+            if (vm.id() == 0) return;
+            // validate form
+            if (!closureDetailAPI.dataOk()) return;
+            // dat for post or put
+            var data = {
+                id: vm.id(),
+                closureDate: moment(vm.closureDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
+                worker: {
+                    id: vm.sWorker()
+                },
+                comments: vm.comments(),
+                close: 1
+            };
+            // updating record
+            type = "PUT";
+            url = sprintf('%s/closure/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    var url = sprintf('closureGeneral.html?id=%s', data.id);
+                    window.open(url, '_self');
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('login.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    },
 };
 
 

@@ -36,9 +36,6 @@ var closureModalAPI = {
         // combos
         $('#cmbPws').select2(select2_languages[lang]);
         closureModalAPI.loadPws(null);
-        $("#cmbPws").select2().on('change', function (e) {
-            closureModalAPI.changePw(e.added);
-        });
     },
     editLine: function (id) {
         $.ajax({
@@ -49,15 +46,11 @@ var closureModalAPI = {
             success: function (data, status) {
                 if (data.length) {
                     vm.lineId(data[0].id);
-                    vm.estimate(data[0].estimate);
-                    vm.done(data[0].done);
-                    vm.quantity(data[0].quantity);
+                    vm.estimate(parseInt(data[0].estimate * 100.0));
+                    vm.done(parseInt(data[0].done * 100.0));
                     //
                     $('#cmbPws').select2(select2_languages[lang]);
-                    closureModalAPI.loadPws(null);
-                    $("#cmbPws").select2().on('change', function (e) {
-                        closureModalAPI.changePw(e.added);
-                    });
+                    closureModalAPI.loadPws(data[0].pw.id);
                 }
             },
             error: function (err) {
@@ -78,8 +71,8 @@ var closureModalAPI = {
                 pw: {
                     id: vm.sPw()
                 },
-                estimate: vm.estimate(),
-                done: vm.done()
+                estimate: vm.estimate() / 100,
+                done: vm.done() / 100
             };
             var url = "", type = "";
             if (vm.lineId() == 0) {
@@ -98,7 +91,7 @@ var closureModalAPI = {
                 data: JSON.stringify(data),
                 success: function (data, status) {
                     $('#closureModal').modal('hide');
-                    closureLineAPI.getWoLines(vm.id());
+                    closureLineAPI.getClosureLines(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
@@ -113,7 +106,7 @@ var closureModalAPI = {
     loadPws: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/pw/pw/%s/?api_key=%s', myconfig.apiUrl, vm.sPw(), api_key),
+            url: sprintf('%s/pw/?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
@@ -128,29 +121,5 @@ var closureModalAPI = {
                 }
             }
         });
-    },
-    changePw: function (data) {
-        if (!data) return;
-        $.ajax({
-            type: "GET",
-            url: sprintf('%s/pw/estdone/?api_key=%s&pwId=%s&pwId=%s', myconfig.apiUrl, api_key, data.id, vm.sPw()),
-            dataType: "json",
-            contentType: "application/json",
-            success: function (data, status) {
-                if (data.length) {
-                    vm.estimate(data[0].estimate);
-                    vm.done(data[0].done);
-                } else {
-                    vm.estimate(0);
-                    vm.done(0);
-                }
-            },
-            error: function (err) {
-                aswNotif.errAjax(err);
-                if (err.status == 401) {
-                    window.open('login.html', '_self');
-                }
-            }
-        })
     }
 };
