@@ -78,6 +78,7 @@ app.use('/api/item_out', require('./controllers/item_out'));
 app.use('/api/item_out_line', require('./controllers/item_out_line'));
 app.use('/api/closure', require('./controllers/closure'));
 app.use('/api/closure_line', require('./controllers/closure_line'));
+app.use('/api/pw_worker', require('./controllers/pw_worker'));
 
 // general API to export
 
