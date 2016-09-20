@@ -46,6 +46,7 @@ var pwDetailAPI = {
         // init modal form
         pwModalAPI.init();
         pwModal2API.init();
+        pwModal3API.init();
         // init tabs
         pwDetailAPI.initWoTable();
         // check if an id have been passed
@@ -115,6 +116,12 @@ var pwDetailAPI = {
         self.optionsWorkers2 = ko.observableArray([]);
         self.selectedWorkers2 = ko.observableArray([]);
         self.sWorker2 = ko.observable();
+        // -- Modal related (3)
+        self.pwWorkerId = ko.observable();
+        // worker3 combo
+        self.optionsWorkers3 = ko.observableArray([]);
+        self.selectedWorkers3 = ko.observableArray([]);
+        self.sWorker3 = ko.observable();        
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -186,6 +193,7 @@ var pwDetailAPI = {
             success: function (data, status) {
                 pwDetailAPI.loadData(data[0]);
                 pwLineAPI.getPwLines(data[0].id);
+                pwLineAPI.getPwWorkers(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);

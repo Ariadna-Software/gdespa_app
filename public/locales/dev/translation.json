@@ -203,7 +203,8 @@
     "pwDetail": {
         "tabs":{
             "general": "General",
-            "work_order": "Partes de trabajo"
+            "work_order": "Partes de trabajo",
+            "worker": "Trabajadores"
         },
         "title": "Detalle propuesta",
         "name": "Nombre",
@@ -224,6 +225,7 @@
         "associated_items": "Unidades constructivas asociadas",
         "modal_title": "Unidad constructiva",
         "modal_title2": "Cambiar estado",
+        "modal_title3": "Trabajador en propuesta",
         "validate": {
             "items": "Debe elegir un artículo",
             "units": "Debe elegir una unidad"
@@ -235,7 +237,9 @@
         "amount": "Importe",
         "cunit": "Unidad Cons.",
         "inCharge": "Responsable",
-        "change_status": "Cambiar el estado"
+        "change_status": "Cambiar el estado",
+        "worker": "Trabajador",
+        "newWorker": "Nuevo trabajador"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",
