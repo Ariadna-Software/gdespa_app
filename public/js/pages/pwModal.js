@@ -44,6 +44,7 @@ var pwModalAPI = {
         vm.cost(null);
         vm.k(vm.defaultK());
         vm.amount(null);
+        vm.comments(null);
         pwModalAPI.loadCUnits(null);
     },
     editLine: function (id) {
@@ -61,6 +62,7 @@ var pwModalAPI = {
                     vm.cost(data[0].cost);
                     vm.k(data[0].k);
                     vm.amount(data[0].amount);
+                    vm.comments(data[0].comments);
                 }
             },
             error: function (err) {
@@ -88,7 +90,8 @@ var pwModalAPI = {
                 quantity: vm.quantity(),
                 k: vm.k(),
                 cost: vm.cost(),
-                amount: vm.amount()
+                amount: vm.amount(),
+                comments: vm.comments()
             };
             var url = "", type = "";
             if (vm.pwLineId() == 0) {

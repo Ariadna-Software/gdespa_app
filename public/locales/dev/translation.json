@@ -211,6 +211,7 @@
         "reference2": "Referencia",
         "company": "Empresa",
         "description": "Descripción",
+        "comments": "Observaciones",
         "status": "ESTADO",
         "initDate": "Fecha inicial",
         "initDate2": "Fecha cambio",

@@ -99,6 +99,7 @@ var pwDetailAPI = {
         self.quantity = ko.observable();
         self.k = ko.observable();
         self.amount = ko.observable();
+        self.comments = ko.observable();
         // cunit combo
         self.optionsCUnits = ko.observableArray([]);
         self.selectedCUnits = ko.observableArray([]);

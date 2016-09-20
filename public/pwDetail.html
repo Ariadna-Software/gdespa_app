@@ -215,7 +215,7 @@
 							<a href="itemOutGeneral.html">
 								<i class="fa fa-lg fa-fw fa-sign-out"></i> <span data-i18n="menu.store.itemOut">Blank</span>
 							</a>
-						</li>						
+						</li>
 					</ul>
 				</li>
 				<li id="report" class="">
@@ -362,70 +362,70 @@
 										</div>
 										<div class="row">
 											<section class="col col-md-12">
-													<fieldset>
-														<div class="row">
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.INIT">INIT</p></strong>
-																	<p data-bind="text: initDate"></p>
-																	REF:
-																	<p data-bind="text: reference"></p>
-																</div>
-															</section>
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.ACCEPTED">INIT</p></strong>
-																	<p data-bind="text: acepDate"></p>
-																	REF:
-																	<p data-bind="text: acepRef"></p>
-																</div>
-															</section>
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.DONE">*</p></strong>
-																	<p data-bind="text: finDate"></p>
-																	REF:
-																	<p data-bind="text: finRef"></p>
-																</div>
-															</section>
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.VALIDATED">*</p></strong>
-																	<p data-bind="text: cerDate"></p>
-																	REF:
-																	<p data-bind="text: cerRef"></p>
-																</div>
-															</section>
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.INVOICED">*</p></strong>
-																	<p data-bind="text: invDate"></p>
-																	REF:
-																	<p data-bind="text: invRef"></p>
-																</div>
-															</section>
-															<section class="col col-md-2">
-																<div class="asw-center">
-																	<strong><p data-i18n="status.PAID">*</p></strong>
-																	<p data-bind="text: payDate"></p>
-																	REF:
-																	<p data-bind="text: payRef"></p>
-																</div>
-															</section>
-														</div>
-														<div class="pull-right">
-															<button id="btnChangeStatus" data-i18n="[title]pwDetail.change_status" data-toggle="modal" data-target="#pwModal2" class="btn btn-success btn-circle btn-lg"
-																style="display:none;">
+												<fieldset>
+													<div class="row">
+														<section class="col col-md-2">
+															<div class="asw-center">
+																<strong><p data-i18n="status.INIT">INIT</p></strong>
+																<p data-bind="text: initDate"></p>
+																REF:
+																<p data-bind="text: reference"></p>
+															</div>
+														</section>
+														<section class="col col-md-2">
+															<div class="asw-center">
+																<strong><p data-i18n="status.ACCEPTED">INIT</p></strong>
+																<p data-bind="text: acepDate"></p>
+																REF:
+																<p data-bind="text: acepRef"></p>
+															</div>
+														</section>
+														<section class="col col-md-2">
+															<div class="asw-center">
+																<strong><p data-i18n="status.DONE">*</p></strong>
+																<p data-bind="text: finDate"></p>
+																REF:
+																<p data-bind="text: finRef"></p>
+															</div>
+														</section>
+														<section class="col col-md-2">
+															<div class="asw-center">
+																<strong><p data-i18n="status.VALIDATED">*</p></strong>
+																<p data-bind="text: cerDate"></p>
+																REF:
+																<p data-bind="text: cerRef"></p>
+															</div>
+														</section>
+														<section class="col col-md-2">
+															<div class="asw-center">
+																<strong><p data-i18n="status.INVOICED">*</p></strong>
+																<p data-bind="text: invDate"></p>
+																REF:
+																<p data-bind="text: invRef"></p>
+															</div>
+														</section>
+														<section class="col col-md-2">
+															<div class="asw-center">
+																<strong><p data-i18n="status.PAID">*</p></strong>
+																<p data-bind="text: payDate"></p>
+																REF:
+																<p data-bind="text: payRef"></p>
+															</div>
+														</section>
+													</div>
+													<div class="pull-right">
+														<button id="btnChangeStatus" data-i18n="[title]pwDetail.change_status" data-toggle="modal" data-target="#pwModal2" class="btn btn-success btn-circle btn-lg"
+															style="display:none;">
 																<i class="fa fa-lg fa-random"></i>
 															</button>
-															<button id="btnExit" data-i18n="[title]pwDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+														<button id="btnExit" data-i18n="[title]pwDetail.cancel" class="btn btn-warning btn-circle btn-lg">
 																<i class="fa fa-lg fa-sign-out"></i>
 															</button>
-															<button id="btnOk" data-i18n="[title]pwDetail.ok" class="btn btn-success btn-circle btn-lg">
+														<button id="btnOk" data-i18n="[title]pwDetail.ok" class="btn btn-success btn-circle btn-lg">
 																<i class="fa fa-lg fa-check"></i>
 															</button>
-														</div>
-													</fieldset>
+													</div>
+												</fieldset>
 											</section>
 										</div>
 									</div>
@@ -470,6 +470,9 @@
 																	<th data-hide="phone">
 																		<span data-i18n="pwDetail.amount"></span>
 																	</th>
+																	<th data-hide="phone">
+																		<span data-i18n="pwDetail.comments"></span>
+																	</th>																	
 																	<th>
 																	</th>
 																</tr>
@@ -580,7 +583,14 @@
                                         </label>
 									</section>
 								</div>
-
+								<div class="row">
+									<section class="col col-md-12">
+										<label class="label" data-i18n="pwDetail.comments">Observaciones:</label>
+										<label class="textarea textarea-resizable">
+                                                        <textarea id="txComments" rows="3" class="custom-scroll" data-bind="value:comments"></textarea>
+                                                </label>
+									</section>
+								</div>
 							</section>
 						</fieldset>
 						<footer>
