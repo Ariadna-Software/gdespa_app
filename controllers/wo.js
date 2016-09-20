@@ -55,7 +55,7 @@ router.get('/all/', common.midChkApiKey, function (req, res) {
 router.post('/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var wo = req.body;
-    woDb.post(wo, function (err, wos) {
+    woDb.postGeneratedWorker(wo, function (err, wos) {
         if (err) {
             res.status(500).send(err.message);
         } else {
