@@ -248,6 +248,7 @@
         "initDate": "Fecha inicial",
         "endDate": "Fecha final",
         "worker": "Responsable",
+        "generate_from_pw": "Generar desde la propuesta",
         "pw": "Propuesta",
         "cunit": "Unidad constructiva",
         "estimate": "Presupuestado",

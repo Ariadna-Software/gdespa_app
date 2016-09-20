@@ -144,6 +144,9 @@ var woDetailAPI = {
                 // creating new record
                 type = "POST";
                 url = sprintf('%s/wo?api_key=%s', myconfig.apiUrl, api_key);
+                if ($('#chkGenerated').is(':checked')){
+                    url = sprintf('%s/wo/generated/?api_key=%s', myconfig.apiUrl, api_key);
+                }
             } else {
                 // updating record
                 type = "PUT";
@@ -159,6 +162,7 @@ var woDetailAPI = {
                         vm.id(data.id);
                         $('#wid-id-1').show();
                         aswNotif.newMainLines();
+                        woDetailAPI.getWo(data.id);
                     } else {
                         var url = sprintf('woGeneral.html?id=%s', data.id);
                         window.open(url, '_self');

@@ -283,7 +283,13 @@
 												</section>
 											</div>
 											<div class="row">
-												<section class="col col-md-12">
+												<section class="col col-md-4">
+														<label class="checkbox">
+														<input id="chkGenerated" type="checkbox" name="chkGenerated">
+														<i></i><span data-i18n="woDetail.generate_from_pw"></span>
+													</label>
+												</section>												
+												<section class="col col-md-8">
 													<label class="label" data-18n="woDetail.pw">Propuesta:</label>
 													<label style="width:100%;">
 														<select style="width:100%" id="cmbPws" name="cmbPws" data-bind="options: optionsPws, optionsText: 'name', optionsValue: 'id', value: sPw, valueAllowUnset: true, selectedOptions: selectedPws, selected2:{}"></select><i></i>

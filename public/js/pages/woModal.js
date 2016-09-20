@@ -55,7 +55,11 @@ var woModalAPI = {
                     vm.quantity(data[0].quantity);
                     //
                     $('#cmbCUnits').select2(select2_languages[lang]);
-                    woModalAPI.loadCUnits(null);
+                    woModalAPI.loadCUnits(data[0].cunit.id);
+                    var data = {
+                        id: data[0].cunit.id
+                    };
+                    woModalAPI.changeCUnit(data);
                     $("#cmbCUnits").select2().on('change', function (e) {
                         woModalAPI.changeCUnit(e.added);
                     });
