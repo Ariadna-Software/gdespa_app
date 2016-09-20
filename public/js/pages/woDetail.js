@@ -36,6 +36,9 @@ var woDetailAPI = {
         woLineAPI.init();
         // init modal form
         woModalAPI.init();
+        // init modal 2 form
+        woModal2API.init();
+       
         // check if an id have been passed
         var id = aswUtil.gup('id');
         // if it is an update show lines
@@ -59,7 +62,7 @@ var woDetailAPI = {
         self.optionsPws = ko.observableArray([]);
         self.selectedPws = ko.observableArray([]);
         self.sPw = ko.observable();
-        // -- Modal related
+        // -- Modal related (1)
         self.lineId = ko.observable();
         self.estimate = ko.observable();
         self.done = ko.observable();
@@ -68,6 +71,13 @@ var woDetailAPI = {
         self.optionsCUnits = ko.observableArray([]);
         self.selectedCUnits = ko.observableArray([]);
         self.sCUnit = ko.observable();
+        // -- Modal related (2)
+        self.woWorkerId = ko.observable();
+        self.quantity2 = ko.observable();
+        // worker2 combo
+        self.optionsWorkers2 = ko.observableArray([]);
+        self.selectedWorkers2 = ko.observableArray([]);
+        self.sWorker2 = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -111,6 +121,7 @@ var woDetailAPI = {
             success: function (data, status) {
                 woDetailAPI.loadData(data[0]);
                 woLineAPI.getWoLines(data[0].id);
+                woLineAPI.getWoWorkers(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -144,7 +155,7 @@ var woDetailAPI = {
                 // creating new record
                 type = "POST";
                 url = sprintf('%s/wo?api_key=%s', myconfig.apiUrl, api_key);
-                if ($('#chkGenerated').is(':checked')){
+                if ($('#chkGenerated').is(':checked')) {
                     url = sprintf('%s/wo/generated/?api_key=%s', myconfig.apiUrl, api_key);
                 }
             } else {
@@ -215,7 +226,7 @@ var woDetailAPI = {
                 }
             }
         });
-    }   
+    }
 };
 
 

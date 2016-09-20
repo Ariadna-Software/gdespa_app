@@ -215,7 +215,7 @@
 							<a href="itemOutGeneral.html">
 								<i class="fa fa-lg fa-fw fa-sign-out"></i> <span data-i18n="menu.store.itemOut">Blank</span>
 							</a>
-						</li>						
+						</li>
 					</ul>
 				</li>
 				<li id="report" class="">
@@ -252,110 +252,148 @@
 			<section id="widget-grid" class="">
 				<div class="row">
 					<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<!-- Widget ID (each widget will need unique ID)-->
-						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
-							<header>
-								<span class="widget-icon"> <i class="fa fa-cogs"></i> </span>
-								<h2 data-i18n="woDetail.title">Mantenimiento</h2>
-							</header>
-							<div class="widget-body">
-								<div class="row">
-									<form id="woDetail-form" class="smart-form">
-										<fieldset>
-											<div class="row">
-												<section class="col col-md-2">
-													<label class="label" data-i18n="woDetail.initDate">Fecha inicio:</label>
-													<label class="input">
+						<ul class="nav nav-tabs bordered" id="woDetail_GT">
+							<li class="active"><a data-toggle="tab" href="#s1" data-i18n="woDetail.tabs.general">GENERAL</a></li>
+							<li><a data-toggle="tab" href="#s2" data-i18n="woDetail.tabs.worker">TRABAJADOR</a></li>
+						</ul>
+						<div class="tab-content padding-10" id="woDetail_GT1">
+							<div class="tab-pane fade in active" id="s1">
+								<!-- Widget ID (each widget will need unique ID)-->
+								<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+									<header>
+										<span class="widget-icon"> <i class="fa fa-cogs"></i> </span>
+										<h2 data-i18n="woDetail.title">Mantenimiento</h2>
+									</header>
+									<div class="widget-body">
+										<div class="row">
+											<form id="woDetail-form" class="smart-form">
+												<fieldset>
+													<div class="row">
+														<section class="col col-md-2">
+															<label class="label" data-i18n="woDetail.initDate">Fecha inicio:</label>
+															<label class="input">
 														<input id="txInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy">
 													</label>
-												</section>
-												<section class="col col-md-2">
-													<label class="label" data-i18n="woDetail.endDate">Fecha final:</label>
-													<label class="input">
+														</section>
+														<section class="col col-md-2">
+															<label class="label" data-i18n="woDetail.endDate">Fecha final:</label>
+															<label class="input">
 														<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy">
 													</label>
-												</section>
-												<section class="col col-md-8">
-													<label class="label" data-18n="woDetail.worker">Responsable:</label>
-													<label style="width:100%;">
+														</section>
+														<section class="col col-md-8">
+															<label class="label" data-18n="woDetail.worker">Responsable:</label>
+															<label style="width:100%;">
 														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}"></select><i></i>
 													</label>
-												</section>
-											</div>
-											<div class="row">
-												<section class="col col-md-4">
-														<label class="checkbox">
+														</section>
+													</div>
+													<div class="row">
+														<section class="col col-md-4">
+															<label class="checkbox">
 														<input id="chkGenerated" type="checkbox" name="chkGenerated">
 														<i></i><span data-i18n="woDetail.generate_from_pw"></span>
 													</label>
-												</section>												
-												<section class="col col-md-8">
-													<label class="label" data-18n="woDetail.pw">Propuesta:</label>
-													<label style="width:100%;">
+														</section>
+														<section class="col col-md-8">
+															<label class="label" data-18n="woDetail.pw">Propuesta:</label>
+															<label style="width:100%;">
 														<select style="width:100%" id="cmbPws" name="cmbPws" data-bind="options: optionsPws, optionsText: 'name', optionsValue: 'id', value: sPw, valueAllowUnset: true, selectedOptions: selectedPws, selected2:{}"></select><i></i>
 													</label>
-												</section>
-											</div>
-											<div class="row">
-												<section class="col col-md-12">
-													<label class="label" data-i18n="woDetail.comments">Onservaciones:</label>
-													<label class="textarea textarea-resizable">
+														</section>
+													</div>
+													<div class="row">
+														<section class="col col-md-12">
+															<label class="label" data-i18n="woDetail.comments">Onservaciones:</label>
+															<label class="textarea textarea-resizable">
                                                         <textarea id="txtComments" rows="3" class="custom-scroll" data-bind="value:comments"></textarea>
 	                                                </label>
-												</section>
-											</div>
-										</fieldset>
-										<fieldset>
-											<div class="pull-right">
-												<button id="btnExit" data-i18n="[title]woDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+														</section>
+													</div>
+												</fieldset>
+												<fieldset>
+													<div class="pull-right">
+														<button id="btnExit" data-i18n="[title]woDetail.cancel" class="btn btn-warning btn-circle btn-lg">
 													<i class="fa fa-lg fa-sign-out"></i>
 												</button>
-												<button id="btnOk" data-i18n="[title]woDetail.ok" class="btn btn-success btn-circle btn-lg">
+														<button id="btnOk" data-i18n="[title]woDetail.ok" class="btn btn-success btn-circle btn-lg">
 													<i class="fa fa-lg fa-check"></i>
 												</button>
-											</div>
-										</fieldset>
-									</form>
+													</div>
+												</fieldset>
+											</form>
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
-						<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false"
-							style="display:none;">
-							<header>
-								<span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
-								<h2 data-i18n="woDetail.associated_lines">Mantenimiento</h2>
-							</header>
-							<div class="widget-body">
-								<div class="row">
-									<form id="woDetailLine-form" class="smart-form">
-										<fieldset>
-											<div class="pull-right">
-												<button id="btnNewLine" data-i18n="[title]woDetail.newLine" data-toggle="modal" data-target="#woModal" class="btn btn-success btn-circle btn-lg">
+								<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false"
+									style="display:none;">
+									<header>
+										<span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
+										<h2 data-i18n="woDetail.associated_lines">Mantenimiento</h2>
+									</header>
+									<div class="widget-body">
+										<div class="row">
+											<form id="woDetailLine-form" class="smart-form">
+												<fieldset>
+													<div class="pull-right">
+														<button id="btnNewLine" data-i18n="[title]woDetail.newLine" data-toggle="modal" data-target="#woModal" class="btn btn-success btn-circle btn-lg">
 													<i class="fa fa-lg fa-plus"></i>
 												</button>
-											</div>
-										</fieldset>
-										<fieldset>
-											<div id="tb_woLine">
-												<table id="dt_woLine" class="table table-striped table-bordered table-hover" width="100%">
-													<thead>
-														<tr>
-															<th data-class="expand">
-																<i class="fa fa-fw fa-cogs text-muted hidden-md hidden-sm hidden-xs"></i>
-																<span data-i18n="woDetail.cunit">R</span>
-															</th>
-															<th data-hide="phone">
-																<span data-i18n="woDetail.quantity"></span>
-															</th>
-															<th>
-															</th>
-														</tr>
-													</thead>
-												</table>
-											</div>
-										</fieldset>
-									</form>
+													</div>
+												</fieldset>
+												<fieldset>
+													<div id="tb_woLine">
+														<table id="dt_woLine" class="table table-striped table-bordered table-hover" width="100%">
+															<thead>
+																<tr>
+																	<th data-class="expand">
+																		<i class="fa fa-fw fa-cogs text-muted hidden-md hidden-sm hidden-xs"></i>
+																		<span data-i18n="woDetail.cunit">R</span>
+																	</th>
+																	<th data-hide="phone">
+																		<span data-i18n="woDetail.quantity"></span>
+																	</th>
+																	<th>
+																	</th>
+																</tr>
+															</thead>
+														</table>
+													</div>
+												</fieldset>
+											</form>
+										</div>
+									</div>
 								</div>
+							</div>
+							<div class="tab-pane fade" id="s2">
+								<form id="woDetailWorker-form" class="smart-form">
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnNewWorker" data-i18n="[title]woDetail.newWorker" data-toggle="modal" data-target="#woModal2" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-plus"></i>
+												</button>
+										</div>
+									</fieldset>
+									<fieldset>
+										<div id="tb_worker">
+											<table id="dt_worker" class="table table-striped table-bordered table-hover" width="100%">
+												<thead>
+													<tr>
+														<th data-class="expand">
+															<i class="fa fa-fw fa-male text-muted hidden-md hidden-sm hidden-xs"></i>
+															<span data-i18n="woDetail.worker2">R</span>
+														</th>
+														<th data-hide="phone">
+															<span data-i18n="woDetail.quantity2"></span>
+														</th>
+														<th>
+														</th>
+													</tr>
+												</thead>
+											</table>
+										</div>
+									</fieldset>
+								</form>
 							</div>
 						</div>
 					</article>
@@ -418,6 +456,57 @@
 						</fieldset>
 						<footer>
 							<button id="btnSaveLine" class="btn btn-primary">
+                                <span data-i18n="woDetail.ok">A</span>
+                            </button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+                                <span data-i18n="woDetail.cancel">C</span>
+                            </button>
+						</footer>
+					</form>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- Modal 2-->
+	<div class="modal fade" id="woModal2" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+					<h4 class="modal-title">
+						<i class="fa fa-male"></i> <span data-i18n="woDetail.modal_title2">ART</span>
+					</h4>
+				</div>
+				<div class="modal-body no-padding">
+					<form id="woModal2-form" class="smart-form">
+						<fieldset>
+							<section>
+								<div class="row">
+									<section class="col col-md-10">
+										<label class="label" data-i18n="woDetail.worker2">Trabajador:</label>
+										<label style="width:100%;">
+											<select style="width:100%" id="cmbWorkers2" name="cmbWorkers2" 
+												data-bind="options: optionsWorkers2, optionsText: 'name', optionsValue: 'id', value: sWorker2, valueAllowUnset: true, selectedOptions: selectedWorkers2, selected2:{}">
+											</select>
+											<i></i>
+										</label>
+									</section>
+									<section class="col col-md-2">
+										<label class="label" data-i18n="woDetail.quantity2">Dias:</label>
+										<label class="input">
+                                            <input id="txtQuantity2" name="txtQuantity2" type="text" data-bind="value: quantity2" />
+                                        </label>
+									</section>									
+								</div>
+							</section>
+						</fieldset>
+						<footer>
+							<button id="btnSaveLine2" class="btn btn-primary">
                                 <span data-i18n="woDetail.ok">A</span>
                             </button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -518,6 +607,7 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
+	<script src="js/pages/woModal2.js"></script>
 	<script src="js/pages/woModal.js"></script>
 	<script src="js/pages/woLine.js"></script>
 	<script src="js/pages/woDetail.js"></script>
