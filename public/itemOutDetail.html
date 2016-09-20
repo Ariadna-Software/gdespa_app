@@ -215,7 +215,7 @@
 							<a href="itemOutGeneral.html">
 								<i class="fa fa-lg fa-fw fa-sign-out"></i> <span data-i18n="menu.store.itemOut">Blank</span>
 							</a>
-						</li>						
+						</li>
 					</ul>
 				</li>
 				<li id="report" class="">
@@ -280,17 +280,21 @@
 													<label style="width:100%;">
 														<select style="width:100%" id="cmbStores" name="cmbStores" data-bind="options: optionsStores, optionsText: 'name', optionsValue: 'id', value: sStore, valueAllowUnset: true, selectedOptions: selectedStores, selected2:{}"></select><i></i>
 													</label>
-												</section>												
+												</section>
 											</div>
-											<div class="row">	
+											<div class="row">
 												<section class="col col-md-7">
+														<label class="checkbox">
+														<input id="chkGenerated" type="checkbox" name="chkGenerated">
+														<i></i><span data-i18n="itemOutDetail.generate_from_pw"></span>
+													</label>
 												</section>
 												<section class="col col-md-5">
 													<label class="label" data-18n="itemOutDetail.pw">Propuesta:</label>
 													<label style="width:100%;">
 														<select style="width:100%" id="cmbPws" name="cmbPws" data-bind="options: optionsPws, optionsText: 'name', optionsValue: 'id', value: sPw, valueAllowUnset: true, selectedOptions: selectedPws, selected2:{}"></select><i></i>
 													</label>
-												</section>													
+												</section>
 											</div>
 											<div class="row">
 												<section class="col col-md-12">

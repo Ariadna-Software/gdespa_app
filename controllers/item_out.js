@@ -42,6 +42,18 @@ router.post('/', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.post('/generated/', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var item_out = req.body;
+    itemOutDb.postGenerated(item_out, function (err, item_outs) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(item_outs);
+        }
+    }, test);
+});
+
 router.get('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

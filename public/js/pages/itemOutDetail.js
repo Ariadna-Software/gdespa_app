@@ -25,9 +25,9 @@ var itemOutDetailAPI = {
         $('#cmbWorkers').select2(select2_languages[lang]);
         itemOutDetailAPI.loadWorkers();
         $('#cmbStores').select2(select2_languages[lang]);
-        itemOutDetailAPI.loadStores(); 
+        itemOutDetailAPI.loadStores();
         $('#cmbPws').select2(select2_languages[lang]);
-        itemOutDetailAPI.loadPws();                     
+        itemOutDetailAPI.loadPws();
         // buttons click events
         $('#btnOk').click(itemOutDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
@@ -63,7 +63,7 @@ var itemOutDetailAPI = {
         // pw combo
         self.optionsPws = ko.observableArray([]);
         self.selectedPws = ko.observableArray([]);
-        self.sPw = ko.observable();        
+        self.sPw = ko.observable();
         // -- Modal related
         self.lineId = ko.observable();
         self.quantity = ko.observable();
@@ -82,7 +82,7 @@ var itemOutDetailAPI = {
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#itemOut-form').validate({
+        var options = {
             rules: {
                 txtDateOut: { required: true },
                 cmbWorkers: { required: true },
@@ -95,7 +95,12 @@ var itemOutDetailAPI = {
             errorPlacement: function (error, element) {
                 error.insertAfter(element.parent());
             }
-        });
+        };
+        if ($('#chkGenerated').is(':checked')){
+            options.rules.cmbPws = { required: true};
+            options.messages.cmbPws = {required: i18n.t("itemOutDetail.pw_required")};
+        }
+        $('#itemOut-form').validate(options);
         return $('#itemOut-form').valid();
     },
     // obtain a  wo group from the API
@@ -138,7 +143,7 @@ var itemOutDetailAPI = {
                 store: {
                     id: vm.sStore()
                 },
-                pw:{
+                pw: {
                     id: vm.sPw()
                 },
                 comments: vm.comments()
@@ -148,6 +153,9 @@ var itemOutDetailAPI = {
                 // creating new record
                 type = "POST";
                 url = sprintf('%s/item_out?api_key=%s', myconfig.apiUrl, api_key);
+                if ($('#chkGenerated').is(':checked')){
+                    url = sprintf('%s/item_out/generated/?api_key=%s', myconfig.apiUrl, api_key);
+                }
             } else {
                 // updating record
                 type = "PUT";
@@ -163,6 +171,7 @@ var itemOutDetailAPI = {
                         vm.id(data.id);
                         $('#wid-id-1').show();
                         aswNotif.newMainLines();
+                        itemOutDetailAPI.getItemIn(data.id);
                     } else {
                         var url = sprintf('itemOutGeneral.html?id=%s', data.id);
                         window.open(url, '_self');

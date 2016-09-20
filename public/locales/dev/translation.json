@@ -289,6 +289,8 @@
         "dateOut": "Fecha",
         "worker": "Responsable",
         "store": "Almacen salida",
+        "generate_from_pw": "Generar desde la propuesta",
+        "pw_required": "Necesita una propuesta",
         "pw": "Propuesta",
         "item": "Artículo",
         "quantity": "Cantidad",
