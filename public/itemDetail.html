@@ -215,7 +215,7 @@
 							<a href="itemOutGeneral.html">
 								<i class="fa fa-lg fa-fw fa-sign-out"></i> <span data-i18n="menu.store.itemOut">Blank</span>
 							</a>
-						</li>						
+						</li>
 					</ul>
 				</li>
 				<li id="report" class="">
@@ -288,6 +288,23 @@
                                                         <textarea id="txtDescription" rows="3" class="custom-scroll" data-bind="value:description"></textarea>
                                                     </label>
 											</section>
+										</div>
+										<div class="row">
+											<section class="col col-md-8">
+
+											</section>
+											<section class="col col-md-2">
+												<label class="checkbox">
+														<input id="chkOwnItem" type="checkbox" name="chkOwnItem" data-bind="checked: ownItem">
+														<i></i><span data-i18n="itemDetail.ownItem"></span>
+													</label>
+											</section>
+											<section class="col col-md-2">
+												<label class="label" data-i18n="itemDetail.minStock">Stock min:</label>
+												<label class="input">
+													<input id="txtMinStock" name="txtMinStock" data-bind="value: minStock">
+												</label>
+											</section>											
 										</div>
 									</fieldset>
 									<fieldset>

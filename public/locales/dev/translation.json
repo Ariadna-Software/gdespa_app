@@ -168,7 +168,9 @@
         "unit": "Unidades",
         "image": "Imagen",
         "cancel": "Salir sin guardar",
-        "ok": "Guardar"
+        "ok": "Guardar",
+        "ownItem": "Artículo propio",
+        "minStock": "Stock mínimo"
     },
     "cUnitGeneral": {
         "title": "Mantenimiento unidades constructivas",

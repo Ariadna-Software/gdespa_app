@@ -47,6 +47,9 @@ var itemDetailAPI = {
         self.optionsUnits = ko.observableArray([]);
         self.selectedUnits = ko.observableArray([]);
         self.sUnit = ko.observable();
+        //
+        self.ownItem = ko.observable();
+        self.minStock = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -56,6 +59,8 @@ var itemDetailAPI = {
         vm.unitId(data.unit.id);
         vm.image(data.image);
         itemDetailAPI.loadUnits(vm.unitId());
+        vm.ownItem(data.ownItem);
+        vm.minStock(data.minStock);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -63,7 +68,8 @@ var itemDetailAPI = {
             rules: {
                 txtName: { required: true },
                 txtReference: { required: true },
-                cmbUnits: { required: true }
+                cmbUnits: { required: true },
+                txtMinStock: {number: true}
             },
             // Messages for form validation
             messages: {
@@ -116,7 +122,9 @@ var itemDetailAPI = {
                 image: vm.image(),
                 unit: {
                     id: vm.sUnit()
-                }
+                },
+                ownItem: vm.ownItem(),
+                minStock: vm.minStock()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
