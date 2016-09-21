@@ -49,6 +49,15 @@ router.get('/cunit/:id', midCheck, function (req, res) {
     }, test);
 });
 
+router.get('/newline/:id', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    cUnitLineDb.getNewLineNumber(id, function (err, lines) {
+        if (err) return res.status(500).send(err.message);
+        res.json(lines);
+    }, test);
+});
+
 router.put('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

@@ -44,6 +44,8 @@ var cUnitModalAPI = {
         vm.quantity(null);
         cUnitModalAPI.loadUnits(null);
         cUnitModalAPI.loadItems(null);
+        // obtain next line number
+        cUnitModalAPI.newLineNumber(vm.id());
     },
     editLine: function (id) {
         $.ajax({
@@ -180,5 +182,24 @@ var cUnitModalAPI = {
                 }
             }
         })
-    }
+    },
+    newLineNumber: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/cunit_line/newline/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                if (data) {
+                    vm.line(data.contador);
+                }
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('login.html', '_self');
+                }
+            }
+        });
+    },
 };
