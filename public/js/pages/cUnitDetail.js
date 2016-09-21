@@ -108,7 +108,7 @@ var cUnitDetailAPI = {
             error: function (err) {
                 aswNotif.errAjax(err);
                 if (err.status == 401) {
-                    window.open('login.html', '_self');
+                    window.open('index.html', '_self');
                 }
             }
         });
@@ -156,7 +156,7 @@ var cUnitDetailAPI = {
                 error: function (err) {
                     aswNotif.errAjax(err);
                     if (err.status == 401) {
-                        window.open('login.html', '_self');
+                        window.open('index.html', '_self');
                     }
                 }
             });

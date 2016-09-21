@@ -1,21 +1,23 @@
-var closureModalAPI = {
+var deliveryModalAPI = {
     init: function () {
         // avoid sending form 
-        $('#closureModal-form').submit(function () {
+        $('#deliveryModal-form').submit(function () {
             return false;
         });
         // button events
-        $('#btnSaveLine').click(closureModalAPI.saveLine());
+        $('#btnSaveLine').click(deliveryModalAPI.saveLine());
+        // combos
+        $('#cmbItems').select2(select2_languages[lang]);
+        deliveryModalAPI.loadItems(null);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#closureModal-form').validate({
+        $('#deliveryModal-form').validate({
             rules: {
-                txtDone: {
+                txtQuantity: {
                     required: true,
                     number: true
-                },
-                cmbPws: { required: true }
+                }
             },
             // Messages for form validation
             messages: {
@@ -25,32 +27,23 @@ var closureModalAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#closureModal-form').valid();
-    },
-    newLine: function () {
-        // new line id is zero.
-        vm.lineId(0);
-        // clean other fields
-        vm.estimate(null);
-        vm.done(null);
-        // combos
-        $('#cmbPws').select2(select2_languages[lang]);
-        closureModalAPI.loadPws(null);
+        return $('#deliveryModal-form').valid();
     },
     editLine: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/closure_line/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            url: sprintf('%s/delivery_line/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 if (data.length) {
                     vm.lineId(data[0].id);
-                    vm.estimate(parseInt(data[0].estimate * 100.0));
-                    vm.done(parseInt(data[0].done * 100.0));
+                    vm.estimate(data[0].estimate);
+                    vm.done(data[0].done);
+                    vm.quantity(data[0].quantity);
                     //
-                    $('#cmbPws').select2(select2_languages[lang]);
-                    closureModalAPI.loadPws(data[0].pw.id);
+                    $('#cmbItems').select2(select2_languages[lang]);
+                    deliveryModalAPI.loadItems(data[0].item.id);
                 }
             },
             error: function (err) {
@@ -64,34 +57,31 @@ var closureModalAPI = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
-            if (!closureModalAPI.dataOk()) return;
+            if (!deliveryModalAPI.dataOk()) return;
             // mount line to save 
             var data = {
                 id: vm.lineId(),
-                pw: {
-                    id: vm.sPw()
+                delivery: {
+                    id: vm.id()
                 },
-                estimate: vm.estimate() / 100,
-                done: vm.done() / 100
+                item: {
+                    id: vm.sItem()
+                },
+                quantity: vm.quantity()
             };
             var url = "", type = "";
-            if (vm.lineId() == 0) {
-                // creating new record
-                type = "POST";
-                url = sprintf('%s/closure_line?api_key=%s', myconfig.apiUrl, api_key);
-            } else {
-                // updating record
-                type = "PUT";
-                url = sprintf('%s/closure_line/%s/?api_key=%s', myconfig.apiUrl, vm.lineId(), api_key);
-            }
+            // updating record
+            type = "PUT";
+            url = sprintf('%s/delivery_line/%s/?api_key=%s', myconfig.apiUrl, vm.lineId(), api_key);
+
             $.ajax({
                 type: type,
                 url: url,
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#closureModal').modal('hide');
-                    closureLineAPI.getClosureLines(vm.id());
+                    $('#deliveryModal').modal('hide');
+                    deliveryLineAPI.getDeliveryLines(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
@@ -103,16 +93,16 @@ var closureModalAPI = {
         };
         return mf;
     },
-    loadPws: function (id) {
+    loadItems: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/pw/?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/item/?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 var options = [{ id: null, name: "" }].concat(data);
-                vm.optionsPws(options);
-                $("#cmbPws").val([id]).trigger('change');
+                vm.optionsItems(options);
+                $("#cmbItems").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);

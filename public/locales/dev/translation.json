@@ -11,6 +11,7 @@
     "no": "No",
     "new_record": "NUEVO REGISTRO",
     "record_lines": "Registro correctamente dado de alta. Introduzca las lineas asociadas más abajo en esta misma página",
+    "serve_lines": "Las cantidades de material servido se han actualizado. Puede comprobarlo en las lineas más abajo. Pulse en el botón salir para regresar a la pantalla anterior.",
     "evolution": "EVOLUCIÓN",
     "progress": "PROGRESO",
     "delete_warning": "¿Desea realmente borrar el registro: ",
@@ -66,6 +67,7 @@
         },
         "store": {
             "main": "Almacenes / Stock",
+            "delivery": "Reservas / Entregas",
             "itemIn": "Entradas",
             "itemOut": "Salidas"
         },
@@ -354,5 +356,32 @@
         "name": "Nombre",
         "cancel": "Salir sin guardar",
         "ok": "Guardar"
+    },
+    "deliveryGeneral": {
+        "title": "Reservas / Entregas",
+        "new": "Nueva",
+        "search": "Buscar",
+        "message": "Escoja de entre los proyectos activos aquel para el que quiere reservar / entregar material haciendo clic en el botón "
+    },
+    "deliveryDetail": {
+        "title": "Detalle reserva / entrega",
+        "lastDate": "Fecha",
+        "worker": "Responsable",
+        "store": "Almacen salida",
+        "reference": "Referencia",
+        "generate_from_pw": "Generar desde la propuesta",
+        "pw_required": "Necesita una propuesta",
+        "pw": "Propuesta",
+        "item": "Artículo",
+        "quantity": "Cantidad",
+        "comments": "Observaciones",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "newLine": "Nueva linea",
+        "associated_lines": "Lineas de la salida",
+        "modal_title": "Linea de la salida",
+        "deliver": "Entregar",
+        "estimate": "Propuesto",
+        "done": "Entregado"
     }
 }

@@ -184,6 +184,17 @@ var aswNotif = {
             iconSmall: "fa fa-warning shake animated",
         });
     },
+    newServeLines: function () {
+        var html = i18n.t("serve_lines");
+        html += "<hr/>";
+        html += sprintf("<div><small>%s</small></div>", i18n.t('error.close'));
+        $.smallBox({
+            title: i18n.t('new_record'),
+            content: html,
+            color: "#4E8975",
+            iconSmall: "fa fa-warning shake animated",
+        });
+    },    
     newClosureLines: function () {
         var html = i18n.t("closure_ready");
         html += "<hr/>";

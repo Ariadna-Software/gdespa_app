@@ -19,3 +19,6 @@ CREATE TABLE `gdespa`.`delivery_line`(
   CONSTRAINT `ref_dlyl_dly` FOREIGN KEY (`deliveryId`) REFERENCES `gdespa`.`delivery`(`deliveryId`) ON DELETE CASCADE,
   CONSTRAINT `ref_dlyl_item` FOREIGN KEY (`itemId`) REFERENCES `gdespa`.`item`(`itemId`)
 );
+ALTER TABLE `gdespa`.`delivery`   
+  ADD COLUMN `storeId` INT(11) NULL AFTER `workerId`,
+  ADD CONSTRAINT `ref_dly_store` FOREIGN KEY (`storeId`) REFERENCES `gdespa`.`store`(`storeId`);

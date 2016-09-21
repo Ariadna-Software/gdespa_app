@@ -42,12 +42,21 @@ router.post('/', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/active/', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    pwDb.getActive(function (err, pws) {
+        if (err) return res.status(500).send(err.message);
+        res.json(pws);
+    }, test);
+});
+
 router.get('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
     pwDb.getById(id, function (err, pws) {
         if (err) return res.status(500).send(err.message);
-        if (pws.length == 0) return res.status(404).send('User not found');
+        if (pws.length == 0) return res.status(404).send('Project not found');
         res.json(pws);
     }, test);
 });
@@ -88,7 +97,7 @@ router.delete('/:id', common.midChkApiKey, function (req, res) {
     var id = req.params.id;
     var pw = req.body;
     if (!pw.id) {
-        res.status(400).send('User with id needed in body');
+        res.status(400).send('Project with id needed in body');
     }
     pwDb.delete(pw, function (err) {
         if (err) {
