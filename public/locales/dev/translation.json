@@ -293,7 +293,8 @@
         "ok": "Guardar",
         "newLine": "Nueva linea",
         "associated_lines": "Lineas de la entrada",
-        "modal_title": "Linea de la entrada"
+        "modal_title": "Linea de la entrada",
+        "deliveryNote": "Albarán proveedor"
     },
     "itemOutGeneral": {
         "title": "Salidas",

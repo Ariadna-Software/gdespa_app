@@ -50,6 +50,7 @@ var itemInDetailAPI = {
         self.id = ko.observable();
         self.dateIn = ko.observable();
         self.comments = ko.observable();
+        self.deliveryNote = ko.observable();
         // worker combo
         self.optionsWorkers = ko.observableArray([]);
         self.selectedWorkers = ko.observableArray([]);
@@ -70,6 +71,7 @@ var itemInDetailAPI = {
         vm.id(data.id);
         vm.dateIn(moment(data.datIn).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
+        vm.deliveryNote(data.deliveryNote);
         itemInDetailAPI.loadWorkers(data.worker.id);
         itemInDetailAPI.loadStores(data.store.id);
     },
@@ -131,7 +133,8 @@ var itemInDetailAPI = {
                 store: {
                     id: vm.sStore()
                 },
-                comments: vm.comments()
+                comments: vm.comments(),
+                deliveryNote: vm.deliveryNote()
             };
             var url = "", type = "";
             if (vm.id() == 0) {

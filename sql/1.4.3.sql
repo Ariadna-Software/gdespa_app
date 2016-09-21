@@ -5,3 +5,5 @@ ALTER TABLE `gdespa`.`worker`
 ALTER TABLE `gdespa`.`item`   
   ADD COLUMN `ownItem` BOOL NULL AFTER `image`,
   ADD COLUMN `minStock` DECIMAL(10,2) NULL AFTER `ownItem`;
+ALTER TABLE `gdespa`.`item_in`   
+  ADD COLUMN `deliveryNote` VARCHAR(255) NULL AFTER `comments`;
