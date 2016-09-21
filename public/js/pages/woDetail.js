@@ -38,12 +38,15 @@ var woDetailAPI = {
         woModalAPI.init();
         // init modal 2 form
         woModal2API.init();
-       
+
         // check if an id have been passed
         var id = aswUtil.gup('id');
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
+        } else {
+            // new record
+            $('#s2').hide();
         }
         woDetailAPI.getWo(id);
     },
@@ -174,6 +177,7 @@ var woDetailAPI = {
                         $('#wid-id-1').show();
                         aswNotif.newMainLines();
                         woDetailAPI.getWo(data.id);
+                        $('#s2').show();
                     } else {
                         var url = sprintf('woGeneral.html?id=%s', data.id);
                         window.open(url, '_self');

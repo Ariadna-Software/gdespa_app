@@ -55,6 +55,10 @@ var pwDetailAPI = {
         if (id != 0) {
             $('#wid-id-1').show();
             $('#btnChangeStatus').show();
+        } else {
+            // new record
+            $('#s2').hide();
+            $('#s3').hide();
         }
         pwDetailAPI.getPw(id);
         pwDetailAPI.getWo(id);
@@ -121,7 +125,7 @@ var pwDetailAPI = {
         // worker3 combo
         self.optionsWorkers3 = ko.observableArray([]);
         self.selectedWorkers3 = ko.observableArray([]);
-        self.sWorker3 = ko.observable();        
+        self.sWorker3 = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -209,7 +213,7 @@ var pwDetailAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                if (data && data.length > 0){
+                if (data && data.length > 0) {
                     $('#progress').text((data[0].percentage * 100) + "%");
                 }
             },
@@ -261,6 +265,8 @@ var pwDetailAPI = {
                         vm.id(data.id);
                         $('#wid-id-1').show();
                         $('#btnChangeStatus').show();
+                        $('#s2').show();
+                        $('#s3').show();
                         aswNotif.newMainLines();
                     } else {
                         var url = sprintf('pwGeneral.html?id=%s', data.id);
