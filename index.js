@@ -81,6 +81,8 @@ app.use('/api/closure_line', require('./controllers/closure_line'));
 app.use('/api/pw_worker', require('./controllers/pw_worker'));
 app.use('/api/wo_worker', require('./controllers/wo_worker'));
 app.use('/api/zone', require('./controllers/zone'));
+app.use('/api/delivery', require('./controllers/delivery'));
+app.use('/api/delivery_line', require('./controllers/delivery_line'));
 
 // general API to export
 
