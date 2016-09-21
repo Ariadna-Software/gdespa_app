@@ -45,12 +45,13 @@ var workerDetailAPI = {
         self.city = ko.observable();
         self.province = ko.observable();
         self.state = ko.observable();
-        self.userId = ko.observable(),
-        self.phone = ko.observable(),
-        self.email = ko.observable(),
-        self.code = ko.observable(),
-        self.position = ko.observable(),
-        self.department = ko.observable()
+        self.userId = ko.observable();
+        self.phone = ko.observable();
+        self.email = ko.observable();
+        self.code = ko.observable();
+        self.position = ko.observable();
+        self.department = ko.observable();
+        self.bloodType = ko.observable();
         // users combos
         self.optionsUsers = ko.observableArray([]);
         self.selectedUsers = ko.observableArray([]);
@@ -71,6 +72,7 @@ var workerDetailAPI = {
         vm.code(data.code);
         vm.position(data.position);
         vm.department(data.department);
+        vm.bloodType(data.bloodType);
         workerDetailAPI.loadUsers(vm.userId());
     },
     // Validates form (jquery validate) 
@@ -136,7 +138,8 @@ var workerDetailAPI = {
                 email: vm.email(),
                 code: vm.code(),
                 position: vm.position(),
-                department: vm.department()
+                department: vm.department(),
+                bloodType: vm.bloodType()
             };
             var url = "", type = "";
             if (vm.id() == 0) {

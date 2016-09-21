@@ -121,7 +121,8 @@
         "email": "Correo electrónico",
         "code": "Numero",
         "position": "Cargo",
-        "department": "Departamento"
+        "department": "Departamento",
+        "blood_type": "Grupo sanguíneo"
     },
     "companyGeneral": {
         "title": "Mantenimiento empresas",
