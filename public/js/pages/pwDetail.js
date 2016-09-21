@@ -34,6 +34,8 @@ var pwDetailAPI = {
         pwDetailAPI.loadCompanies();
         $('#cmbStatus').select2(select2_languages[lang]);
         pwDetailAPI.loadStatus(0);
+        $('#cmbZone').select2(select2_languages[lang]);
+        pwDetailAPI.loadZones(0);        
         // buttons click events
         $('#btnOk').click(pwDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
@@ -97,6 +99,11 @@ var pwDetailAPI = {
         self.optionsWorkers = ko.observableArray([]);
         self.selectedWorkers = ko.observableArray([]);
         self.sWorker = ko.observable();
+        // zone combo
+        self.optionsZone = ko.observableArray([]);
+        self.selectedZone = ko.observableArray([]);
+        self.sZone = ko.observable();
+
         // -- Modal related
         self.pwLineId = ko.observable();
         self.line = ko.observable();
@@ -158,6 +165,8 @@ var pwDetailAPI = {
         vm.cerRef(data.cerRef);
         vm.invRef(data.invRef);
         vm.payRef(data.payRef);
+        vm.sZone(data.zone.id);
+        pwDetailAPI.loadZones(vm.sZone());
         // if we have tabs we should change wiget title
         $('#pwDetailTitle').html(" <strong>[" + vm.name() + "]</strong>");
     },
@@ -232,7 +241,6 @@ var pwDetailAPI = {
             // validate form
             if (!pwDetailAPI.dataOk()) return;
             // dat for post or put
-            console.log("FF ", i18n.t("util.date_format"));
             var data = {
                 id: vm.id(),
                 status: { id: vm.sStatus() },
@@ -243,7 +251,8 @@ var pwDetailAPI = {
                 initInCharge: { id: vm.sWorker() },
                 company: { id: vm.sCompany() },
                 defaultK: vm.defaultK(),
-                total: vm.total()
+                total: vm.total(),
+                zone: { id: vm.sZone() }
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -331,6 +340,25 @@ var pwDetailAPI = {
                 var options = data;
                 vm.optionsStatus(options);
                 $("#cmbStatus").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('login.html', '_self');
+                }
+            }
+        });
+    },
+    loadZones: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/zone?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = data;
+                vm.optionsZone(options);
+                $("#cmbZone").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);

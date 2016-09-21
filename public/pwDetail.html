@@ -177,6 +177,11 @@
 								<i class="fa fa-lg fa-fw fa-cubes"></i> <span data-i18n="menu.administration.cUnit">Blank</span>
 							</a>
 						</li>
+						<li id="zoneGeneral" class="">
+							<a href="zoneGeneral.html">
+								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span data-i18n="menu.administration.zone">Blank</span>
+							</a>
+						</li>	
 					</ul>
 				</li>
 				<li id="pwman" class="">
@@ -277,26 +282,26 @@
 															<section class="col col-md-2">
 																<label class="label" data-18n="pwDetail.status">ESTADO:</label>
 																<label style="width:100%;">
-														<select style="width:100%" id="cmbStatus" name="cmbStatus" 
-															data-bind="options: optionsStatus, optionsText: 'name', optionsValue: 'id', value: sStatus, valueAllowUnset: true, selectedOptions: selectedStatus, selected2:{}">
-														</select>
-														<i></i>
-                                        			</label>
+																	<select style="width:100%" id="cmbStatus" name="cmbStatus" 
+																		data-bind="options: optionsStatus, optionsText: 'name', optionsValue: 'id', value: sStatus, valueAllowUnset: true, selectedOptions: selectedStatus, selected2:{}">
+																	</select>
+																	<i></i>
+																</label>
 															</section>
 															<section class="col col-md-2">
 																<label class="label" data-i18n="pwDetail.initDate">Fecha Inicio:</label>
 																<label class="input">
-                                                        <input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy"/>
-                                                    </label>
+																	<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy"/>
+																</label>
 															</section>
 															<section class="col col-md-4">
 																<label class="label" data-i18n="pwDetail.company">Empresa:</label>
 																<label style="width:100%;">
-														<select style="width:100%" id="cmbCompanies" name="cmbCompanies" 
-															data-bind="options: optionsCompanies, optionsText: 'name', optionsValue: 'id', value: sCompany, valueAllowUnset: true, selectedOptions: selectedCompanies, selected2:{}">
-														</select>
-														<i></i>
-                                        			</label>
+																	<select style="width:100%" id="cmbCompanies" name="cmbCompanies" 
+																		data-bind="options: optionsCompanies, optionsText: 'name', optionsValue: 'id', value: sCompany, valueAllowUnset: true, selectedOptions: selectedCompanies, selected2:{}">
+																	</select>
+																	<i></i>
+																</label>
 															</section>
 															<section class="col col-md-4">
 																<label class="label" data-i18n="pwDetail.initInCharge">Responsable inicial:</label>
@@ -331,8 +336,16 @@
 															</section>
 														</div>
 														<div class="row">
-															<section class="col col-md-8">
+															<section class="col col-md-4">
+																<label class="label" data-18n="pwDetail.zone">ZONA:</label>
+																<label style="width:100%;">
+																	<select style="width:100%" id="cmbZone" name="cmbZone" 
+																		data-bind="options: optionsZone, optionsText: 'name', optionsValue: 'id', value: sZone, valueAllowUnset: true, selectedOptions: selectedZone, selected2:{}">
+																	</select>
+																	<i></i>
+																</label>																
 															</section>
+															<section class="col col-md-4"></section>
 															<section class="col col-md-2">
 																<label class="label" data-i18n="pwDetail.defaultK">K (Global):</label>
 																<label class="input">

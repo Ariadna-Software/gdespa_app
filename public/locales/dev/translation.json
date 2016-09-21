@@ -55,7 +55,8 @@
             "store": "Almacenes",
             "unit": "Unidades",
             "item": "Articulos",
-            "cUnit": "Unidades constructivas"
+            "cUnit": "Unidades constructivas",
+            "zone": "Zonas"
         },
         "pwman": {
             "main": "Obras y servicios",
@@ -204,7 +205,7 @@
         "search": "Buscar propuestas"
     },
     "pwDetail": {
-        "tabs":{
+        "tabs": {
             "general": "General",
             "work_order": "Partes de trabajo",
             "worker": "Trabajadores"
@@ -242,7 +243,8 @@
         "inCharge": "Responsable",
         "change_status": "Cambiar el estado",
         "worker": "Trabajador",
-        "newWorker": "Nuevo trabajador"
+        "newWorker": "Nuevo trabajador",
+        "zone": "Zona"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",
@@ -251,7 +253,7 @@
         "closed": "Ver partes cerrados"
     },
     "woDetail": {
-        "tabs":{
+        "tabs": {
             "general": "General",
             "worker": "Trabajadores"
         },
@@ -324,7 +326,7 @@
         "search": "Buscar cierres"
     },
     "closureDetail": {
-        "tabs":{
+        "tabs": {
             "general": "General",
             "work_order": "Partes de trabajo"
         },
@@ -342,5 +344,15 @@
         "newLine": "Nueva linea",
         "associated_lines": "Lineas del cierre",
         "modal_title": "Linea del cierre"
+    },
+    "zoneGeneral": {
+        "title": "Mantenimiento zonas",
+        "new": "Nueva zona"
+    },
+    "zoneDetail": {
+        "title": "Detalle zona",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar"
     }
 }

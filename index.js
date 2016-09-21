@@ -80,6 +80,7 @@ app.use('/api/closure', require('./controllers/closure'));
 app.use('/api/closure_line', require('./controllers/closure_line'));
 app.use('/api/pw_worker', require('./controllers/pw_worker'));
 app.use('/api/wo_worker', require('./controllers/wo_worker'));
+app.use('/api/zone', require('./controllers/zone'));
 
 // general API to export
 
