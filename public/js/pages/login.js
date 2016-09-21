@@ -48,7 +48,7 @@ var loginAPI = {
                 aswCookies.setCookie('api_key', data.api_key, 1);
                 aswCookies.setCookie('gdespa_lang', data.user.lang)
                 aswLanguage.changeLanguage(data.user.lang);
-                window.open('index.html', '_self');
+                window.open('index2.html', '_self');
             },
             error: function (xhr, textStatus, errorThrwon) {
                 aswNotif.errAjaxShort(xhr);
