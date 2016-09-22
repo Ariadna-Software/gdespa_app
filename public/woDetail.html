@@ -210,7 +210,7 @@
 							<a href="deliveryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-archive"></i> <span data-i18n="menu.store.delivery">Blank</span>
 							</a>
-						</li>					
+						</li>
 						<li id="itemInGeneral" class="">
 							<a href="itemInGeneral.html">
 								<i class="fa fa-lg fa-fw fa-sign-in"></i> <span data-i18n="menu.store.itemIn">Blank</span>
@@ -295,10 +295,6 @@
 													</div>
 													<div class="row">
 														<section class="col col-md-4">
-															<label class="checkbox">
-														<input id="chkGenerated" type="checkbox" name="chkGenerated">
-														<i></i><span data-i18n="woDetail.generate_from_pw"></span>
-													</label>
 														</section>
 														<section class="col col-md-8">
 															<label class="label" data-18n="woDetail.pw">Propuesta:</label>
@@ -355,10 +351,14 @@
 																		<i class="fa fa-fw fa-cogs text-muted hidden-md hidden-sm hidden-xs"></i>
 																		<span data-i18n="woDetail.cunit">R</span>
 																	</th>
-																	<th data-hide="phone">
-																		<span data-i18n="woDetail.quantity"></span>
+																	<th data-hide="phone" class="asw-center">
+																		<span data-i18n="woDetail.estimate"></span>
 																	</th>
-																	<th>
+																	<th data-hide="phone" class="asw-cente">
+																		<span data-i18n="woDetail.done"></span>
+																	</th>
+																	<th data-hide="phone" class="asw-center">
+																		<span data-i18n="woDetail.quantity"></span>
 																	</th>
 																</tr>
 															</thead>
@@ -506,7 +506,7 @@
 										<label class="input">
                                             <input id="txtQuantity2" name="txtQuantity2" type="text" data-bind="value: quantity2" />
                                         </label>
-									</section>									
+									</section>
 								</div>
 							</section>
 						</fieldset>

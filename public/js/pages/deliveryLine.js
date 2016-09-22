@@ -102,15 +102,5 @@ var deliveryLineAPI = {
                 });
             })
         });
-    },
-    quantityBlur: function (id) {
-        var mf = function () {
-            alert("ID: " + id);
-        };
-        return;
-    },
-    saveQuantity: function () {
-        alert("ID2");
-        alert(v.id);
     }
 };

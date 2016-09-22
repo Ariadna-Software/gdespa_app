@@ -30,6 +30,7 @@ var deliveryDetailAPI = {
         $('#btnOk').click(deliveryDetailAPI.btnOk());
         $('#btnDeliver').click(deliveryDetailAPI.btnDeliver());
         $('#btnPrint').click(deliveryDetailAPI.btnPrint());
+        $('#btnDelete').click(deliveryDetailAPI.btnDelete());
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('deliveryGeneral.html', '_self');
@@ -44,9 +45,12 @@ var deliveryDetailAPI = {
         if (id != 0) {
             $('#wid-id-1').show();
             $('#btnDeliver').show();
-        }else{
+            $('#btnPrint').show();
+            $('#btnDelete').show();
+        } else {
             $('#btnDeliver').hide();
             $('#btnPrint').hide();
+            $('#btnDelete').hide();
         }
         deliveryDetailAPI.getDelivery(id);
         //
@@ -192,6 +196,7 @@ var deliveryDetailAPI = {
                         $('#wid-id-1').show();
                         $('#btnDeliver').show();
                         $('#btnPrint').show();
+                        $('#btnDelete').show();
                         aswNotif.newMainLines();
                         deliveryDetailAPI.getDelivery(data.id);
                     } else {
@@ -284,7 +289,7 @@ var deliveryDetailAPI = {
             });
         }
         return mf;
-    },    
+    },
     loadWorkers: function (id) {
         $.ajax({
             type: "GET",
@@ -322,7 +327,52 @@ var deliveryDetailAPI = {
                 }
             }
         });
+    },
+    btnDelete: function () {
+        mf = function () {
+            var url = sprintf("%s/delivery/%s/?api_key=%s", myconfig.apiUrl, vm.id(), api_key);
+            $.ajax({
+                type: "GET",
+                url: url,
+                contentType: "application/json",
+                success: function (data, status) {
+                    var name = i18n.t('deliveryDetail.worker') + ": " + data[0].worker.name;
+                    name += " " + i18n.t('deliveryDetail.store') + ": " + data[0].store.name
+                    var fn = sprintf('deliveryDetailAPI.deleteDelivery(%s);', vm.id());
+                    aswNotif.deleteRecordQuestion(name, fn);
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
     }
+    ,
+    deleteDelivery: function (id) {
+        var url = sprintf("%s/delivery/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        var data = {
+            id: id
+        };
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data, status) {
+                window.open('deliveryGeneral.html', '_self');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
 };
 
 

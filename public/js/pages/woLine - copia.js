@@ -12,7 +12,7 @@ var woLineAPI = {
         });
         $('#woDetailWorker-form').submit(function () {
             return false;
-        });
+        });        
     },
     // WO_LINE
     initWoLineTable: function () {
@@ -21,18 +21,13 @@ var woLineAPI = {
         options.columns = [{
             data: "cunit.name"
         }, {
-                data: "estimate",
-                className: "asw-center"
-            }, {
-                data: "done",
-                className: "asw-center"
+                data: "quantity"
             }, {
                 data: "id",
-                width: "10%",
                 render: function (data, type, row) {
-                    var html = '<label class="input">';
-                    html += sprintf('<input class="asw-center" id="qty%s" name="qty%s" type="text"/>', data, data);
-                    html += '</label>';
+                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woLineAPI.deleteWoLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#woModal' onclick='woModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                     return html;
                 }
             }];
@@ -109,46 +104,6 @@ var woLineAPI = {
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
         $("#tb_woLine").show();
-        data.forEach(function (v) {
-            var field = "#qty" + v.id;
-            $(field).val(v.quantity);
-            $(field).blur(function () {
-                var quantity = 0;
-                if ($(field).val() != "") {
-                    quantity = parseFloat($(field).val());
-                }
-                var data = {
-                    id: v.id,
-                    wo: {
-                        id: v.wo.id
-                    },
-                    cunit: {
-                        id: v.cunit.id
-                    },
-                    estimate: v.estimate,
-                    done: v.done,
-                    quantity: quantity
-                };
-                var url = "", type = "";
-                // updating record
-                var type = "PUT";
-                var url = sprintf('%s/wo_line/%s/?api_key=%s', myconfig.apiUrl, v.id, api_key);
-                $.ajax({
-                    type: type,
-                    url: url,
-                    contentType: "application/json",
-                    data: JSON.stringify(data),
-                    success: function (data, status) {
-                    },
-                    error: function (err) {
-                        aswNotif.errAjax(err);
-                        if (err.status == 401) {
-                            window.open('index.html', '_self');
-                        }
-                    }
-                });
-            })
-        });
     },
     // WO_WORKER
     initWoWorkerTable: function () {

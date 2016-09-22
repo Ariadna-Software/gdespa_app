@@ -367,6 +367,7 @@
         "title": "Detalle reserva / entrega",
         "lastDate": "Fecha",
         "print": "Imprimir",
+        "delete": "Borrar registro",
         "worker": "Responsable",
         "store": "Almacen salida",
         "reference": "Referencia",
