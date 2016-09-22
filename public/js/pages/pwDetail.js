@@ -61,6 +61,7 @@ var pwDetailAPI = {
             // new record
             $('#s2').hide();
             $('#s3').hide();
+            $('#wid-id-1').hide();
         }
         pwDetailAPI.getPw(id);
         pwDetailAPI.getWo(id);

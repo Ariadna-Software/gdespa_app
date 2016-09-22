@@ -46,6 +46,8 @@ var pwModalAPI = {
         vm.amount(null);
         vm.comments(null);
         pwModalAPI.loadCUnits(null);
+        // obtain next line number
+        pwModalAPI.newLineNumber(vm.id());
     },
     editLine: function (id) {
         $.ajax({
@@ -171,5 +173,25 @@ var pwModalAPI = {
             vm.amount(aswUtil.round2(t));
         };
         return mf;
+    },
+    newLineNumber: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/pw_line/newline/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                if (data) {
+                    vm.line(data.contador);
+                }
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
     }
+
 };
