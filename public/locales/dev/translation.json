@@ -366,6 +366,7 @@
     "deliveryDetail": {
         "title": "Detalle reserva / entrega",
         "lastDate": "Fecha",
+        "print": "Imprimir",
         "worker": "Responsable",
         "store": "Almacen salida",
         "reference": "Referencia",

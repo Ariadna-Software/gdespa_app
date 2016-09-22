@@ -194,7 +194,7 @@ var aswNotif = {
             color: "#4E8975",
             iconSmall: "fa fa-warning shake animated",
         });
-    },    
+    },
     newClosureLines: function () {
         var html = i18n.t("closure_ready");
         html += "<hr/>";
@@ -319,5 +319,38 @@ var aswUtil = {
     },
     round2: function (num) {
         return +(Math.round(num + "e+2") + "e-2");
+    }
+}
+
+var aswReport = {
+    reportPDF: function (data, shortid) {
+        var data = {
+            "template": {
+                "shortid": shortid
+            },
+            "data": data
+        }
+        aswReport.f_open_post("POST", myconfig.reportUrl + "/api/report", data);
+    },
+
+    f_open_post: function (verb, url, data, target) {
+        var form = document.createElement("form");
+        form.action = url;
+        form.method = verb;
+        form.target = target || "_blank";
+
+        var input = document.createElement("textarea");
+        input.name = "template[shortid]";
+        input.value = data.template.shortid;
+        form.appendChild(input);
+
+        input = document.createElement("textarea");
+        input.name = "data";
+        input.value = JSON.stringify(data.data);
+        form.appendChild(input);
+
+        form.style.display = 'none';
+        document.body.appendChild(form);
+        form.submit();
     }
 }

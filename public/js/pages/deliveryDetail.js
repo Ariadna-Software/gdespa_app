@@ -29,6 +29,7 @@ var deliveryDetailAPI = {
         // buttons click events
         $('#btnOk').click(deliveryDetailAPI.btnOk());
         $('#btnDeliver').click(deliveryDetailAPI.btnDeliver());
+        $('#btnPrint').click(deliveryDetailAPI.btnPrint());
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('deliveryGeneral.html', '_self');
@@ -45,6 +46,7 @@ var deliveryDetailAPI = {
             $('#btnDeliver').show();
         }else{
             $('#btnDeliver').hide();
+            $('#btnPrint').hide();
         }
         deliveryDetailAPI.getDelivery(id);
         //
@@ -189,6 +191,7 @@ var deliveryDetailAPI = {
                         vm.id(data.id);
                         $('#wid-id-1').show();
                         $('#btnDeliver').show();
+                        $('#btnPrint').show();
                         aswNotif.newMainLines();
                         deliveryDetailAPI.getDelivery(data.id);
                     } else {
@@ -251,6 +254,37 @@ var deliveryDetailAPI = {
         }
         return mf;
     },
+    btnPrint: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            // validate form
+            if (!deliveryDetailAPI.dataOk()) return;
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            url = sprintf('%s/report/delivery/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    // process report data
+                    aswReport.reportPDF(data, 'rJj0N7WT');
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    },    
     loadWorkers: function (id) {
         $.ajax({
             type: "GET",

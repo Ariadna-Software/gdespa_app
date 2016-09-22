@@ -65,6 +65,7 @@ var deliveryLineAPI = {
         // quantity field handlers
         data.forEach(function (v) {
             var field = "#qty" + v.id;
+            $(field).val(v.quantity);
             $(field).blur(function () {
                 var quantity = 0;
                 if ($(field).val() != ""){
