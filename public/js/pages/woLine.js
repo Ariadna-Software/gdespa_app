@@ -18,6 +18,7 @@ var woLineAPI = {
     initWoLineTable: function () {
         var options = aswInit.initTableOptions('dt_woLine');
         options.data = data;
+        options.paging = false;
         options.columns = [{
             data: "cunit.name"
         }, {
