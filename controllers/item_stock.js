@@ -64,6 +64,25 @@ router.get('/:id', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/store/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    itemStockDb.getByStoreId(id, function (err, item_stocks) {
+        if (err) return res.status(500).send(err.message);
+        res.json(item_stocks);
+    }, test);
+});
+
+router.get('/item/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    itemStockDb.getByItemId(id, function (err, item_stocks) {
+        if (err) return res.status(500).send(err.message);
+        res.json(item_stocks);
+    }, test);
+});
+
+
 router.put('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

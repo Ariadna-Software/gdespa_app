@@ -29,10 +29,12 @@ var itemDetailAPI = {
         // combos
         $('#cmbUnits').select2(select2_languages[lang]);
         itemDetailAPI.loadUnits();
-
+        // init stock table
+        itemDetailAPI.initStoreTable();
         // check if an id have been passed
         var id = aswUtil.gup('id');
-        itemDetailAPI.getUserGroup(id);
+        itemDetailAPI.getItem(id);
+
     },
     pageData: function () {
         // knockout objects
@@ -69,7 +71,7 @@ var itemDetailAPI = {
                 txtName: { required: true },
                 txtReference: { required: true },
                 cmbUnits: { required: true },
-                txtMinStock: {number: true}
+                txtMinStock: { number: true }
             },
             // Messages for form validation
             messages: {
@@ -85,7 +87,7 @@ var itemDetailAPI = {
         return $('#itemDetail-form').valid();
     },
     // obtain a  item group from the API
-    getUserGroup: function (id) {
+    getItem: function (id) {
         if (!id || (id == 0)) {
             // new item group
             vm.id(0);
@@ -98,6 +100,7 @@ var itemDetailAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 itemDetailAPI.loadData(data[0]);
+                itemDetailAPI.getStore(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -173,6 +176,41 @@ var itemDetailAPI = {
                 }
             }
         });
+    },
+    // TAB -- WO
+    initStoreTable: function () {
+        var options = aswInit.initTableOptions('dt_store');
+        options.data = data;
+        options.columns = [{
+            data: "store.name"
+        }, {
+                data: "stock"
+            }];
+        $('#dt_store').dataTable(options);
+    },
+    getStore: function (id) {
+        var url = sprintf("%s/item_stock/item/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                itemDetailAPI.loadStore(data);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadStore: function (data) {
+        var dt = $('#dt_store').dataTable();
+        dt.fnClearTable();
+        if (data.length && data.length > 0) dt.fnAddData(data);
+        dt.fnDraw();
+        $("#tb_store").show();
     }
 };
 

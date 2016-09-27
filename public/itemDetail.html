@@ -181,7 +181,7 @@
 							<a href="zoneGeneral.html">
 								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span data-i18n="menu.administration.zone">Blank</span>
 							</a>
-						</li>	
+						</li>
 					</ul>
 				</li>
 				<li id="pwman" class="">
@@ -215,7 +215,7 @@
 							<a href="deliveryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-archive"></i> <span data-i18n="menu.store.delivery">Blank</span>
 							</a>
-						</li>					
+						</li>
 						<li id="itemInGeneral" class="">
 							<a href="itemInGeneral.html">
 								<i class="fa fa-lg fa-fw fa-sign-in"></i> <span data-i18n="menu.store.itemIn">Blank</span>
@@ -262,72 +262,97 @@
 			<section id="widget-grid" class="">
 				<div class="row">
 					<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<!-- Widget ID (each widget will need unique ID)-->
-						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
-							<header>
-								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-								<h2 data-i18n="itemDetail.title">Mantenimiento</h2>
-							</header>
-							<div class="widget-body">
-								<form id="itemDetail-form" class="smart-form">
-									<fieldset>
-										<div class="row">
-											<section class="col col-md-4">
-												<label class="label" data-i18n="itemDetail.reference">Referencia:</label>
-												<label class="input">
+						<ul class="nav nav-tabs bordered" id="itemDetail_GT">
+							<li class="active"><a data-toggle="tab" href="#s1" data-i18n="itemDetail.tabs.general">GENERAL</a></li>
+							<li><a data-toggle="tab" href="#s2" data-i18n="itemDetail.tabs.store">PARTE</a></li>
+						</ul>
+						<div class="tab-content padding-10" id="itemDetail_GT1">
+							<div class="tab-pane fade in active" id="s1">
+								<!-- Widget ID (each widget will need unique ID)-->
+								<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+									<header>
+										<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+										<h2 data-i18n="itemDetail.title">Mantenimiento</h2>
+									</header>
+									<div class="widget-body">
+										<form id="itemDetail-form" class="smart-form">
+											<fieldset>
+												<div class="row">
+													<section class="col col-md-4">
+														<label class="label" data-i18n="itemDetail.reference">Referencia:</label>
+														<label class="input">
 													<input id="txtReference" name="txtReference" data-bind="value: reference">
 												</label>
-											</section>
-											<section class="col col-md-8">
-												<label class="label" data-i18n="itemDetail.name">Nombre:</label>
-												<label class="input">
+													</section>
+													<section class="col col-md-8">
+														<label class="label" data-i18n="itemDetail.name">Nombre:</label>
+														<label class="input">
 													<input id="txtName" name="txtName" data-bind="value: name">
 												</label>
-											</section>
-										</div>
-										<div class="row">
-											<section class="col col-md-4">
-												<label class="label" data-i18n="itemDetail.unit">Unidades:</label>
-												<select style="width:100%;" id="cmbUnits" name="cmbUnits" data-bind="options: optionsUnits, optionsText: 'name', optionsValue: 'id', 
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-4">
+														<label class="label" data-i18n="itemDetail.unit">Unidades:</label>
+														<select style="width:100%;" id="cmbUnits" name="cmbUnits" data-bind="options: optionsUnits, optionsText: 'name', optionsValue: 'id', 
 													value: sUnit, valueAllowUnset: true, selectedOptions: selectedUnits, selected2:{}">
 												</select>
-											</section>
-											<section class="col col-md-8">
-												<label class="label" data-i18n="itemDetail.description">Descripción:</label>
-												<label class="textarea textarea-resizable">
+													</section>
+													<section class="col col-md-8">
+														<label class="label" data-i18n="itemDetail.description">Descripción:</label>
+														<label class="textarea textarea-resizable">
                                                         <textarea id="txtDescription" rows="3" class="custom-scroll" data-bind="value:description"></textarea>
                                                     </label>
-											</section>
-										</div>
-										<div class="row">
-											<section class="col col-md-8">
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-8">
 
-											</section>
-											<section class="col col-md-2">
-												<label class="checkbox">
+													</section>
+													<section class="col col-md-2">
+														<label class="checkbox">
 														<input id="chkOwnItem" type="checkbox" name="chkOwnItem" data-bind="checked: ownItem">
 														<i></i><span data-i18n="itemDetail.ownItem"></span>
 													</label>
-											</section>
-											<section class="col col-md-2">
-												<label class="label" data-i18n="itemDetail.minStock">Stock min:</label>
-												<label class="input">
+													</section>
+													<section class="col col-md-2">
+														<label class="label" data-i18n="itemDetail.minStock">Stock min:</label>
+														<label class="input">
 													<input id="txtMinStock" name="txtMinStock" data-bind="value: minStock">
 												</label>
-											</section>											
-										</div>
-									</fieldset>
-									<fieldset>
-										<div class="pull-right">
-											<button id="btnExit" data-i18n="[title]itemDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+													</section>
+												</div>
+											</fieldset>
+											<fieldset>
+												<div class="pull-right">
+													<button id="btnExit" data-i18n="[title]itemDetail.cancel" class="btn btn-warning btn-circle btn-lg">
 											<i class="fa fa-lg fa-sign-out"></i>
 										</button>
-											<button id="btnOk" data-i18n="[title]itemDetail.ok" class="btn btn-success btn-circle btn-lg">
+													<button id="btnOk" data-i18n="[title]itemDetail.ok" class="btn btn-success btn-circle btn-lg">
 											<i class="fa fa-lg fa-check"></i>
 										</button>
-										</div>
-									</fieldset>
-								</form>
+												</div>
+											</fieldset>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="s2">
+								<div id="tb_store">
+									<table id="dt_store" class="table table-striped table-bordered table-hover" width="100%">
+										<thead>
+											<tr>
+												<th data-class="expand">
+													<i class="fa fa-fw fa-database text-muted hidden-md hidden-sm hidden-xs"></i>
+													<span data-i18n="itemDetail.store">R</span>
+												</th>
+												<th data-hide="phone" class="asw-center">
+													<span data-i18n="itemDetail.stock"></span>
+												</th>
+											</tr>
+										</thead>
+									</table>
+								</div>								
 							</div>
 						</div>
 					</article>

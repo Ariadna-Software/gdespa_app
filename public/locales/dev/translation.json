@@ -164,6 +164,10 @@
         "search": "Buscar artículos"
     },
     "itemDetail": {
+        "tabs": {
+            "general": "General",
+            "store": "Stock por almacén"
+        },
         "title": "Detalle artículo",
         "name": "Nombre",
         "reference": "Referencia",
@@ -173,7 +177,9 @@
         "cancel": "Salir sin guardar",
         "ok": "Guardar",
         "ownItem": "Artículo propio",
-        "minStock": "Stock mínimo"
+        "minStock": "Stock mínimo",
+        "store": "Almacen",
+        "stock": "Stock"
     },
     "cUnitGeneral": {
         "title": "Mantenimiento unidades constructivas",
