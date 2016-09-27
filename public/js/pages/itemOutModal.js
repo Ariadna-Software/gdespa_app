@@ -35,6 +35,7 @@ var itemOutModalAPI = {
         // combos
         $('#cmbItems').select2(select2_languages[lang]);
         itemOutModalAPI.loadItems(null);
+        $('#cmbItems').prop('disabled', false);
     },
     editLine: function (id) {
         $.ajax({
@@ -49,6 +50,7 @@ var itemOutModalAPI = {
                     //
                     $('#cmbItems').select2(select2_languages[lang]);
                     itemOutModalAPI.loadItems(data[0].item.id);
+                    $('#cmbItems').prop('disabled', 'disabled');
                 }
             },
             error: function (err) {
@@ -90,8 +92,27 @@ var itemOutModalAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#itemOutModal').modal('hide');
-                    itemOutLineAPI.getItemOutLines(vm.id());
+                    // update stock
+                    var data = {
+                        storeId: vm.sStore(),
+                        itemId: vm.sItem()
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: sprintf('%s/item_stock/upstock/?api_key=%s', myconfig.apiUrl, api_key),
+                        contentType: "application/json",
+                        data: JSON.stringify(data),
+                        success: function (data, status) {
+                            $('#itemOutModal').modal('hide');
+                            itemOutLineAPI.getItemOutLines(vm.id());
+                        },
+                        error: function (err) {
+                            aswNotif.errAjax(err);
+                            if (err.status == 401) {
+                                window.open('index.html', '_self');
+                            }
+                        }
+                    });
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

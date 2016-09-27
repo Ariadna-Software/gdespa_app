@@ -27,7 +27,7 @@ CREATE TABLE `api_key` (
   PRIMARY KEY (`apiKeyId`),
   KEY `ref_apikey_user` (`userId`),
   CONSTRAINT `ref_apikey_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
 
 /*Data for the table `api_key` */
 
@@ -110,6 +110,17 @@ insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKe
 insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (78,1,'2016-09-19 01:49:31','2016-09-19 06:49:31','TPmfv');
 insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (79,1,'2016-09-19 21:58:50','2016-09-20 02:58:50','hgJ3D');
 insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (80,1,'2016-09-20 17:35:40','2016-09-20 22:35:40','1B9tA');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (81,1,'2016-09-21 08:49:22','2016-09-21 13:49:22','KwPxX');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (82,1,'2016-09-21 08:50:05','2016-09-21 13:50:05','ZjgmK');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (83,1,'2016-09-21 08:50:28','2016-09-21 13:50:28','5LuVK');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (84,1,'2016-09-21 09:14:08','2016-09-21 14:14:08','XLSJ0');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (85,1,'2016-09-21 10:32:41','2016-09-21 15:32:41','NIuQJ');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (86,1,'2016-09-21 10:41:49','2016-09-21 15:41:49','9vho7');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (87,1,'2016-09-21 12:03:32','2016-09-21 17:03:32','HaTu3');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (88,1,'2016-09-22 08:48:43','2016-09-22 13:48:43','u5u9a');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (89,1,'2016-09-22 12:23:52','2016-09-22 17:23:52','Bt5Jw');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (90,1,'2016-09-22 14:27:41','2016-09-22 19:27:41','Nd5eq');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (91,1,'2016-09-27 12:05:54','2016-09-27 17:05:54','SrV5E');
 
 /*Table structure for table `closure` */
 
@@ -123,7 +134,7 @@ CREATE TABLE `closure` (
   PRIMARY KEY (`closureId`),
   KEY `ref_closure_worker` (`workerId`),
   CONSTRAINT `ref_closure_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `closure` */
 
@@ -140,9 +151,9 @@ CREATE TABLE `closure_line` (
   PRIMARY KEY (`closureLineId`),
   KEY `ref_closline_closure` (`closureId`),
   KEY `ref_closline_pw` (`pwId`),
-  CONSTRAINT `ref_closline_closure` FOREIGN KEY (`closureId`) REFERENCES `closure` (`closureId`),
+  CONSTRAINT `ref_closline_closure` FOREIGN KEY (`closureId`) REFERENCES `closure` (`closureId`) ON DELETE CASCADE,
   CONSTRAINT `ref_closline_pw` FOREIGN KEY (`pwId`) REFERENCES `pw` (`pwId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `closure_line` */
 
@@ -174,7 +185,7 @@ CREATE TABLE `cunit` (
   `cost` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`cunitId`),
   UNIQUE KEY `idx_ref` (`reference`)
-) ENGINE=InnoDB AUTO_INCREMENT=3916 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3150 DEFAULT CHARSET=utf8;
 
 /*Data for the table `cunit` */
 
@@ -17826,6 +17837,68 @@ insert  into `cunit_line`(`cunitLineId`,`cunitId`,`line`,`itemId`,`unitId`,`quan
 insert  into `cunit_line`(`cunitLineId`,`cunitId`,`line`,`itemId`,`unitId`,`quantity`) values (16408,2214,2,11115,NULL,'4.00');
 insert  into `cunit_line`(`cunitLineId`,`cunitId`,`line`,`itemId`,`unitId`,`quantity`) values (16409,2214,4,11134,NULL,'4.00');
 
+/*Table structure for table `delivery` */
+
+DROP TABLE IF EXISTS `delivery`;
+
+CREATE TABLE `delivery` (
+  `deliveryId` int(11) NOT NULL AUTO_INCREMENT,
+  `pwId` int(11) DEFAULT NULL,
+  `lastDate` date DEFAULT NULL,
+  `workerId` int(11) DEFAULT NULL,
+  `storeId` int(11) DEFAULT NULL,
+  `comments` text,
+  PRIMARY KEY (`deliveryId`),
+  KEY `ref_dly_pw` (`pwId`),
+  KEY `ref_dly_worker` (`workerId`),
+  KEY `ref_dly_store` (`storeId`),
+  CONSTRAINT `ref_dly_pw` FOREIGN KEY (`pwId`) REFERENCES `pw` (`pwId`),
+  CONSTRAINT `ref_dly_store` FOREIGN KEY (`storeId`) REFERENCES `store` (`storeId`),
+  CONSTRAINT `ref_dly_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+/*Data for the table `delivery` */
+
+insert  into `delivery`(`deliveryId`,`pwId`,`lastDate`,`workerId`,`storeId`,`comments`) values (10,12,'2016-09-09',13,1,NULL);
+
+/*Table structure for table `delivery_line` */
+
+DROP TABLE IF EXISTS `delivery_line`;
+
+CREATE TABLE `delivery_line` (
+  `deliveryLineId` int(11) NOT NULL AUTO_INCREMENT,
+  `deliveryId` int(11) DEFAULT NULL,
+  `itemId` int(11) DEFAULT NULL,
+  `estimate` decimal(10,2) DEFAULT NULL,
+  `done` decimal(10,2) DEFAULT NULL,
+  `quantity` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`deliveryLineId`),
+  KEY `ref_dlyl_dly` (`deliveryId`),
+  KEY `ref_dlyl_item` (`itemId`),
+  CONSTRAINT `ref_dlyl_dly` FOREIGN KEY (`deliveryId`) REFERENCES `delivery` (`deliveryId`) ON DELETE CASCADE,
+  CONSTRAINT `ref_dlyl_item` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+
+/*Data for the table `delivery_line` */
+
+insert  into `delivery_line`(`deliveryLineId`,`deliveryId`,`itemId`,`estimate`,`done`,`quantity`) values (74,10,124,'120.00','0.00','0.00');
+insert  into `delivery_line`(`deliveryLineId`,`deliveryId`,`itemId`,`estimate`,`done`,`quantity`) values (75,10,145,'45.00','0.00','0.00');
+insert  into `delivery_line`(`deliveryLineId`,`deliveryId`,`itemId`,`estimate`,`done`,`quantity`) values (76,10,NULL,NULL,'0.00','0.00');
+
+/*Table structure for table `image` */
+
+DROP TABLE IF EXISTS `image`;
+
+CREATE TABLE `image` (
+  `imageId` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `comments` text,
+  `url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`imageId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `image` */
+
 /*Table structure for table `item` */
 
 DROP TABLE IF EXISTS `item`;
@@ -17837,551 +17910,554 @@ CREATE TABLE `item` (
   `description` text,
   `unitId` int(11) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `ownItem` tinyint(1) DEFAULT NULL,
+  `minStock` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`itemId`),
   UNIQUE KEY `idx_ref` (`reference`),
   KEY `ref_item_unit` (`unitId`),
   CONSTRAINT `ref_item_unit` FOREIGN KEY (`unitId`) REFERENCES `unit` (`unitId`)
-) ENGINE=InnoDB AUTO_INCREMENT=17498 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17499 DEFAULT CHARSET=utf8;
 
 /*Data for the table `item` */
 
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (116,'450963','POSTE DE MADERA 12 M CLASE 1',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (117,'450958','POSTE DE MADERA 6 M CLASE 5',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (118,'450959','POSTE DE MADERA 9 M CLASE 5',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (119,'450960','POSTE DE MADERA 10,5 M CLASE 5',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (120,'450961','POSTE DE MADERA 10,5 M CLASE 3',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (121,'150021','Poste de madera de 60 pies clase 3',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (122,'450962','POSTE DE MADERA 12 M CLASE 3',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (123,'450964','POSTE DE MADERA 14 M CLASE 3',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (124,'450965','POSTE DE MADERA 14 M CLASE 1',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (125,'150020','Poste de madera de 55 pies clase 3',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (126,'150022','Poste de madera de 65 pies clase 3',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (142,'715700',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 300 daN 12m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (143,'436932','POSTE HORMIGON PRETENSADO CENTRIFUGADO O VIBRADO 300 daN 6m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (144,'683322','POSTE HORMIGON PRETENSADO CENTRIFUGADO 800 daN 9m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (145,'436937','POSTE HORMIGON PRETENSADO CENTRIFUGADO 300 daN 9 m ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (146,'531666','POSTE HORMIGON PRETENSADO CENTRIFUGADO 500 daN 9m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (147,'436956',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 500 daN 10,5 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (148,'683324',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 800 daN 10,5 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (149,'436957',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 500 daN 12m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (150,'436938',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 300 daN 10,5 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (151,'436959',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 800 daN 12m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (152,'526792',' M3 DE HORMIGÓN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (153,'436960',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 800 daN 14m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (160,'436958',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 500 daN 14 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (167,'454772',' POSTE METALICO DE CHAPA 500 daN 14 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (168,'454767',' POSTE METALICO DE CHAPA 300 daN 9 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (170,'530412',' POSTE METALICO DE CHAPA 500 daN 9 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (171,'454768',' POSTE METALICO DE CHAPA 300 daN 10,5 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (172,'685618',' POSTE METALICO DE CHAPA 800 daN 10,5 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (173,'454769',' POSTE METALICO DE CHAPA 500 daN 10,5 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (174,'454770',' POSTE METALICO DE CHAPA 500 daN 12 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (175,'685619',' POSTE METALICO DE CHAPA 800 daN 12 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (176,'454771',' POSTE METALICO DE CHAPA 800 daN 12 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (177,'691354','POSTE METÁLICO CHAPA OCTOGONAL 12 m 1250 daN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (178,'454773',' POSTE METALICO DE CHAPA 800 daN 14 m',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (180,'691351','POSTE METÁLICO CHAPA OCTOGONAL 14 m 1250 daN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (181,'691356','POSTE METÁLICO CHAPA OCTOGONAL 12 m 3000 daN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (185,'691352','POSTE METÁLICO CHAPA OCTOGONAL 14 m 2000 daN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (190,'691355','POSTE METÁLICO CHAPA OCTOGONAL 12 m 2000 daN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (195,'691353','POSTE METÁLICO CHAPA OCTOGONAL 14 m 3000 daN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (225,'437604','CONECTOR CUÑA A PRESIÓN 266 MCM - #2 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (226,'437006','SOPORTE VERTICAL PARA AISLADOR TIPO POSTE',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (227,'437008','SOPORTE LATERAL PARA AISLADOR TIPO POSTE',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (228,'437655','PERNO CORTO ACERO GALVANIZADO ¾”- ¾”x 3”',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (229,'437806','SOPORTE HORQUILLA PARA AISLADOR TIPO CARRETE',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (230,'437709','RETENCIÓN PREFORMADA “Z” AISL.57/1-3 ACSR 477',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (231,'437712','RETENCIÓN PREFORMADA “OMEGA” AISL.57/1-3 ACSR 477',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (232,'437805','AISLADOR PORCELANA TIPO CARRETE (ANSI C29.3) ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (233,'437803','RETENCIÓN PREFORMADA “OMEGA” AISL.53/2 ACSR 266',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (234,'434470','ML. CABLE DE COBRE DESNUDO Nº2 AWG ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (236,'437708','RETENCIÓN PREFORMADA “Z” AISL.57/1-3 ACSR 266',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (237,'699901','CONECTOR COMPRESION #2-#2 CU',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (240,'440860','GRAPA CONEXIÓN DOBLE CABLE TIERRA SIN TORNILLO ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (242,'437710','RETENCIÓN PREFORMADA “OMEGA” AISL.57/1-3 ACSR 266',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (244,'437802','RETENCIÓN PREFORMADA “OMEGA” AISL.53/2 ACSR 1/0 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (247,'437607','CONECTOR CUÑA A PRESIÓN 1/0 - #2 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (252,'525794','RETENCIÓN PREFORMADA “Z” AISL.57/1-3 ACSR 4/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (253,'525795','RETENCIÓN PREFORMADA “OMEGA” AISL.57/1-3 ACSR 4/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (264,'437707','RETENCIÓN PREFORMADA “Z” AISL.57/1-3 ACSR 1/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (270,'437711','RETENCIÓN PREFORMADA “OMEGA” AISL.57/1-3 ACSR 1/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (275,'551265','CRUCETA ANGULAR METÁLICA 1 400 mm',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (277,'437714','RETENCIÓN PREFORMADA “OMEGA” DOBLE AISL.57/1-3 ACSR 477',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (290,'437715','RETENCIÓN PREFORMADA “OMEGA” DOBLE AISL.57/1-3 ACSR 266',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (295,'525796','RETENCIÓN PREFORMADA “OMEGA” DOBLE AISL.57/1-3 ACSR 4/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (309,'437713','RETENCIÓN PREFORMADA “OMEGA” DOBLE AISL.57/1-3 ACSR 1/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (319,'551266','CRUCETA ANGULAR METÁLICA 1 800 mm ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (321,'437594','CONECTOR CUÑA A PRESIÓN 477 MCM - 477 MCM ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (322,'551418','GRILLETE LARGO RECTO 5/8\" 11.300KG ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (323,'450950','GRAPA AMARRE ALUMINIO COND. AWG 4/0-MCM 266 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (325,'437595','CONECTOR CUÑA A PRESIÓN 266 MCM - 266 MCM',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (331,'437596','CONECTOR CUÑA A PRESION 1/0 - 1/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (335,'450949','GRAPA AMARRE ALUMINIO COND. AWG 1/0 (RAVEN)',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (345,'525791','CONECTOR CUÑA A PRESIÓN 4/0 - 4/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (369,'450948','ALARGADERA 10\" PARA CADENA DE AISLADORES',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (440,'437597','CONECTOR CUÑA A PRESIÓN 477 MCM - 266 MCM',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (447,'437598','CONECTOR CUÑA A PRESIÓN 266 MCM - 1/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (456,'525789','CONECTOR CUÑA A PRESIÓN 477 MCM - 4/0 AWG ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (471,'437599','CONECTOR CUÑA A PRESIÓN 477 MCM - 1/0 AWG ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (477,'525790','CONECTOR CUÑA A PRESIÓN 266 MCM - 4/0 AWG ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (506,'525792','CONECTOR CUÑA A PRESIÓN 4/0 - 1/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (651,'458464','GRAPA DE SUSPENSION ALUMINIO COND. AWG 4/0-MCM 266 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (658,'458463','GRAPA DE SUSPENSION ALUMINIO COND. AWG 1/0 (RAVEN) ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (688,'551267','CRUCETA ANGULAR METÁLICA 2 400 mm ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (728,'690290','CRUCETA ANGULAR METÁLICA 3 000 mm',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (772,'120326',' VARILLA PROT 1 AISL 19PLG 4 ACSR DIST ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (2191,'416457','SOPORTE DE MEDICÓN MT MONOFÁSICA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3649,'436990','ML. CONDUCTOR ALUMINIO ACERO ACSR 266 PARTRIDGE',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3651,'436978','ML. CONDUCTOR ALUMINIO ACERO ACSR 1/0 RAVEN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3652,'525748','ML. CONDUCTOR ALUMINIO ACERO ACSR 4/0 PENGUIN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3656,'330480','ML. CONDUCTOR ALUMINIO ACERO ACSR 477 HAWK ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3663,'330535','Cable de potencia 1c 4/0 15kV XLP pant metálica',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3669,'330533','Cable de potencia 1C #2 15kv xlp pant. Metalica',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3670,'329205','Alambre mensajero de 3/8 plg',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3671,'330508','Cable cobre 500KCM 600V',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3672,'330498','Cond. Cobre 4/0 AWG estañado desnudo suave',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3674,'413236','Cable aluminio 477 35 kv aisl /prot.',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3675,'230000','Cable aluminio 1/0 35 kv aisl /prot.',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3677,'334294','Cable aluminio 477 15 kv aisl /prot.',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3678,'334302','Cable aluminio 1/0 15 kv aisl /prot.',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3679,'413613','Cable aluminio 266 15 kv aisl /prot.',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3680,'413194','Alambre mensajero de 1/2 plg',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3684,'413590','Cable aluminio 266 35 kv aisl /prot.',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3685,'330536','Cable de potencia 1c 500KCM 15kV XLP pant metálica',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3686,'430051','Cable de potencia 1c 1/0 35kV XLP pant metálica',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3687,'330489','Cable servicio aluminio cuádruplex 4 pinto',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (3688,'330475','Conductor aluminio 266.8 KCM waxwing acsr',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7876,'450912','SOPORTE TRANSFORMADOR MONOFASICO TIPO POSTE ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7881,'441208','TRANSFORMADOR MONOF. TIPO POSTE 13,2 kV 10 kVA ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7885,'441209','TRANSFORMADOR MONOF. TIPO POSTE 13,2 kV 25 kVA ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7886,'530559','TERMINAL DE COMPRESION PLETINA COND. # 2 CU',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7889,'441210','TRANSFORMADOR MONOF. TIPO POSTE 13,2 kV 50 kVA ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7900,'441211','TRANSFORMADOR MONOF. TIPO POSTE 13,2 kV 75 kVA ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7903,'441212','TRANSFORMADOR MONOF. TIPO POSTE 34,5 kV 10 kVA ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7905,'441213','TRANSFORMADOR MONOF. TIPO POSTE 34,5 kV 25 kVA ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7913,'441214','TRANSFORMADOR MONOF. TIPO POSTE 34,5 kV 50 kVA ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7918,'441215','TRANSFORMADOR MONOF. TIPO POSTE 34,5 kV 75 kVA ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (7963,'520888','SOPORTE AUXILIAR PARA TERCER TRAFO TIPO POSTE ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8016,'330378','Transformador conv 25KVA 7620/13200Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8017,'330376','Transformador conv 10KVA 7620/13200Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8018,'330377','Transformador conv 15KVA 7620/13200Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8019,'330380','Transformador conv 50 KVA 7620/13200Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8020,'330381','Transformador conv 75 KVA 7620/13200Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8021,'330396','Transformador conv 10KVA 19920/34500Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8022,'330400','Transformador conv 50 KVA 19920/34500Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8023,'330431','Transformador gab.300 KVA 13.2kV 208/120V E1',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8024,'330397','Transformador conv 15KVA 19920/34500Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8025,'330398','Transformador conv 25KVA 19920/34500Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8026,'552098','TERMINAL DE COMPRESIÓN BIMETALICO PLETINA PARA BT 500 MCM',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8027,'532324','ML. CONDUCTOR AISLADO XLPE 500 MCM 600 V ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8028,'552097','TERMINAL DE COMPRESIÓN BIMETALICO PLETINA PARA BT 4/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8029,'532325','ML. CONDUCTOR AISLADO XLPE 4/0 AWG 600 V ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8030,'330351','Transformador conv 10KVA2400/4160Y-120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8031,'330353','Transformador conv 25KVA2400/4160Y-120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8032,'330356','Transformador conv 75 KVA 2400/4160Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8033,'330362','Transformador conv 25KVA 12000V - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8034,'330355','Transformador conv 50KVA2400/4160Y-120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8035,'333172','Transformador conv 10KVA 12000V - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8036,'330364','Transformador conv 50KVA 12000V - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8037,'330407','Transformador conv 50KVA 19920/34500Y -240/480',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8038,'330387','Transformador conv 75 KVA 7620/13200Y - 240/480',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8039,'330401','Transformador conv 75KVA 19920/34500Y - 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8040,'330408','Transformador conv 75KVA 19920/34500Y -240/480',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8041,'330386','Transformador conv 50 KVA 7620/13200Y - 240/480',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8042,'330417','Transformador gab.100 KVA 2.4kV DELTA 120/240V',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8043,'330419','Transformador gab.50KVA 13200GRDY/7620 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8044,'330420','Transformador gab.75KVA 13200GRDY/7620 120/240',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8045,'330439','Transformador gab. 300KVA 13.2KV DELTA 208Y/120 E2',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8046,'333302','Transformador gab. 750KVA 13.2KV DELTA 480/277 E3',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8047,'330429','Tr gabinete 500 kva 2.4 kv delta 280Y/120',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8048,'330442','Transformador gab. 750KVA 13.2KV DELTA 208/120 E3',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8049,'330440','Transformador gab. 500KVA 13.2KV DELTA 208Y/120 E2',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8050,'330447','Transformador gab. 750KVA 19920/34500GRDY 120/208Y E1',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8051,'333309','Transformador gab. 750KVA 13.2KV DELTA 480 E2',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8052,'330424','Tr gab 300 kva 4.16 kv delta 280Y/120 E1',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8053,'330425','Tr gabinete 500 kva 4.16 kv delta 208Y/120 E1',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8055,'458533','TUBO PORTAFUSIBLES ESPULSION 15 KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8056,'450701','SOPORTE PARA SECCIONAMIENTO Y PROTECCIÓN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8058,'458529','BASE SECCIONADOR FUSIBLE DE 36 KV 200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8059,'458528','BASE SECCIONADOR FUSIBLE DE 15 KV 200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8062,'458531','TUBO PORTAFUSIBLES ESPULSION 36 KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8074,'474075','FUSIBLE DE EXPULSION TIPO \"D\"- 7A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8075,'474074','FUSIBLE DE EXPULSION TIPO \"D\"- 5A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8076,'474071','FUSIBLE DE EXPULSION TIPO \"D\"- 1,5A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8077,'458535','FUSIBLE DE EXPULSION TIPO \"k\"- 40A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8078,'474072','FUSIBLE DE EXPULSION TIPO \"D\"- 3A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8079,'474076','FUSIBLE DE EXPULSION TIPO \"D\"- 10A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8080,'474077','FUSIBLE DE EXPULSION TIPO \"D\"- 15A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8081,'458534','FUSIBLE DE EXPULSION TIPO \"D\"- 20A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8082,'692481','FUSIBLE LIMITADOR DE CORRIENTE TIPO \"k\"- 25A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8083,'458537','FUSIBLE DE EXPULSION TIPO \"k\"- 65A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8084,'692482','FUSIBLE LIMITADOR DE CORRIENTE TIPO \"k\"- 12A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8085,'454874',' PERNO AC. GALVANIZADO 5/8\"-3/4\"X12\" ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8150,'551556','TORNILLO GALVANIZADO DE OJO 5/8 X 10\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8224,'458532','CUCHILLA SECCIONADORA PARA SECCIONADOR FUSIBLE 15 KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8254,'458530','CUCHILLA SECCIONADORA PARA SECCIONADOR FUSIBLE 36 KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8367,'441202','PARARRAYOS AUTOVÁLVULA 13,2 kV 10 kA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8372,'441203','PARARRAYOS AUTOVÁLVULA 34,5 kV 10 kA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8373,'454857','CONECTOR AMOVIBLE PARA ESTRIBO',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8383,'553431','ALARGADERA 10\" TIPO CLEVIS',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8391,'552910','SECCIONADOR 13,2KV 600 AMP',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8392,'552902','TERMINAL COMPRESION BIMETALICO CONDUCTOR 266 MCM',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8404,'552901','TERMINAL COMPRESION BIMETALICO CONDUCTOR 4/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8415,'552900','TERMINAL COMPRESION BIMETALICO CONDUCTOR 1/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8424,'552912','SECCIONADOR 34,5 KV 600A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8453,'329545','ELEMENTO FUSIBLE TIPO T 10A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8454,'329543','ELEMENTO FUSIBLE TIPO T 6A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8455,'329544','ELEMENTO FUSIBLE TIPO T 8A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8456,'329546','ELEMENTO FUSIBLE TIPO T 12A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8457,'329547','ELEMENTO FUSIBLE TIPO T 15A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8458,'329549','ELEMENTO FUSIBLE TIPO T 25A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8459,'329552','ELEMENTO FUSIBLE TIPO T 50A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8460,'329553','ELEMENTO FUSIBLE TIPO T 65A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8461,'329550','ELEMENTO FUSIBLE TIPO T 30A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8463,'329496','Rompecarga interruptor lateral 34.5 KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8464,'329241','Pararrayo para cable subterráneo 27KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8465,'329554','ELEMENTO FUSIBLE TIPO T 80A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8466,'329495','Rompecarga interruptor 15KV AB CHANCE',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8468,'329238','Pararrayo para cable subterráneo 10KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8472,'329491','Interruptor de aire 3 polos 600A 15kV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8474,'411654','ALAMBRE 10AWG THHN THWN,FLE 19 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8475,'411656','ALAMB 10AWG,THHN,THWN,FLEX 19HE',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8477,'329492','Interruptor de aire 3 polos 600A 34.5kV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8480,'683372','SOPORTE PARA BRIDA DE SUJECCIÓN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8481,'551557','ML. FLEJE DE SUJECIÓN 20 X 0,7 MM',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8482,'704164','HEBILLA PARA FLEJE DE SUJECIÓN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8483,'329420','CONECTOR DE TIERRA PARA TRANSFORMADOR',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8484,'330670','TR CORR BASE PLANA 5-10/5A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8485,'330723','TR POTENCIAL 8,400/120V  70/1  15KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8486,'412458','ARMARIO POLIES/DISP.COMP/MIRI/U',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8487,'744342','MEDIDOR INTEGRAL MULTITAR.BT INDIRECTO 4H TIPO2',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8488,'330577','SELLO PLASTICO AZUL TIPO CANDAD',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8497,'410701','TR CORRIENTE BASE PLANA 5-10/5 34.5',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8498,'411556','TR POTENCIAL 21000/120 VOLT 175/1 34',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8505,'411653','ALAMBRE 10AWG THHB THWN FLEX 19',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8506,'411655','ALAMB 10AWG THHN O THWN FLEX 19',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8541,'330672','TR CORR BASE PLANA 15-30/5A 15 KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8557,'330679','TR CORR BASE PLANA 15-30/5A 34,5kV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8574,'330673','TR CORR BASE PLANA 20-40/5A 15kV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8587,'330674','TR CORR BASE PLANA 25-50/5A 15kV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8605,'330675','TR CORR BASE PLANA 40-80/5A 15kV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8948,'453778','EMPALME PLENA TRACCION CONDUCTOR ACSR 477 (HAWK) ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8949,'453777','EMPALME PLENA TRACCION CONDUCTOR ACSR 266 (PARTRIDGE)',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8950,'413582','EMPALME PLENA TRACCION ACSR-AAAC #4',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8951,'437600','CONECTOR CUÑA A PRESIÓN CON ESTRIBO 477 MCM ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8952,'520332','EMPALME PLENA TRACCION ACSR-AAAC 4/0 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8953,'453776','EMPALME PLENA TRACCION ACSR-AAAC 1/0 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8954,'525793',' CONECTOR CUÑA A PRESIÓN 4/0 - #2 AWG ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8955,'437601','CONECTOR CUÑA A PRESIÓN CON ESTRIBO 266 MCM ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8957,'525797','CONECTOR CUÑA A PRESIÓN CON ESTRIBO 4/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8958,'437603','CONECTOR CUÑA A PRESIÓN CON ESTRIBO 1/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8970,'414522','CONECTOR CUÑA CON ESTRIBO PARA #4 ACSR',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8973,'329407','Conector tipo c para cable 6-6cu',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8976,'329425','Grapa de línea caliente 477 acsr',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8978,'329424','Grapa de línea caliente 266 a 3/0 acsr',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8979,'330534','Cable potencia 1C #6 5kV xlp Pant. Met',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8982,'413245','fulminante color rojo',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8984,'335811','CABLE POTENCIA 1C N2 5KV XPL PANT MET',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8986,'434435','ML. CABLE ACERO GALVANIZADO 3/8\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8988,'530875','GRILLETE NORMAL RECTO 7/8\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8989,'458467','GUARDACABOS PARA RETENCION CABLE DE ACERO 3/8\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8990,'458662','PLETINA SUJECION PARA RETENIDAS',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8991,'530882','Terminal preformada retenida 1/2 plg',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8993,'530631','ML. CABLE ACERO GALVANIZADO 1/2”',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (8996,'531645','ALARGADERA AISLANTE PARA RETENIDAS',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9000,'530881','GUARDACABOS PARA RETENCION CABLE DE ACERO 1/2\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9008,'707561','AISLADOR PORCELANA TIPO TENSOR 3/8\" (ANSI 54.2)',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9015,'707562','AISLADOR PORCELANA TIPO TENSOR 1/2\" (ANSI 54.4) ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9046,'458414','HERRAJE DE ANCLAJE PARA RETENIDA VERTICAL',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9094,'458479','VARILLA DE ANCLAJE DE OJO C.T. 3/4\" X 8\'',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9095,'707868','ANCLA DE HORMIGÓN',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9097,'458481','ANCLA DE EXPANSIÓN PARA VARILLA DE 3/4\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9099,'691357','ANCLA POLIPROPILENO 135\" PARA VARILLA DE  3/4\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9100,'711932','ANCLA POLIPROPILENO 135\" PARA VARILLA DE  1\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9102,'530638','ANCLA DE EXPANSIÓN PARA VARILLA DE 1\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9104,'530635','VARILLA DE ANCLAJE DE OJO C.T. 1\" X 8\'',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9230,'436991',' AISLADOR PORCELANA TIPO POSTE 13,2 kV (ANSI 57-1)',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9232,'441248',' AISLADOR COMPOSITE TIPO POSTE 34,5 KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9234,'441249','AISLADOR COMPOSITE TIPO SUSPENSIÓN 13,2 KV ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9237,'441250','AISLADOR COMPOSITE TIPO SUSPENSIÓN 34,5 KV ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9250,'450952','GRAPA AMARRE ALUMINIO COND. MCM 477 (HAWK) ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9263,'436992','AISLADOR PORCELANA TIPO POSTE 34,5 kV (ANSI 57-3) ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9276,'458462','GRAPA DE SUSPENSION ALUMINIO COND. MCM 477 (HAWK) ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9280,'441247',' AISLADOR COMPOSITE TIPO POSTE 13,2 KV ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9294,'110073','AISLADOR PORCELANA TIPO SUSPENSIÓN ANSI 52.9 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9298,'329214','Bastidor un alambre con aislador 53-2',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9307,'330929','Bastidor  primario fijo canalizado',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9308,'413263','Grapa para remate de preformada',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9310,'413198','Aislador de espiga 35 kv polimérico',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9311,'413224','Terminal preformada para 477 34.5 kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9313,'413268','Grapa suspensión angular para 1/0al',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9314,'413218','Soporte ángulo cable forrado 35 kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9315,'110210','Platina de montaje para aislador ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9316,'413197','Espiga galvanizada 35 kv fijación',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9319,'329203','Terminal preformada cable 3/8 plg',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9321,'120080','Terminal preformada para 1/0 34.5 kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9353,'120210','Gancho espaciador primario 3 cables',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9354,'413199','Gancho espaciador primario 3 cables',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9360,'413611','Terminal preformada 266 para 15kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9364,'413612','Terminal preformada 477 para 15kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9377,'413195','Aislador de espiga 15 kv polimérico',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9380,'413196','Espiga galvanizada 15 kv fijación en cruceta de metal',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9397,'413591','Terminal preformada 266 para 35kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9424,'413217','Soporte para ángulo Cab. Forrado',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9428,'413598','Terminal  preformada 1/0 15 kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9450,'050023','Abrazadera doble /4 x 1-1/2 x  4-1/2 plg',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9518,'690294','TERMINAL COMPRESIÓN BIMET. CONDUCTOR 4/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9519,'458524','ML. CONDUCTOR TRENZADO TRIPLEX 600V 1/0 AAC-1/0 AAAC',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9520,'690293','TERMINAL COMP. PLETINA CONDUCTOR 1/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9521,'458523',' ML. CONDUCTOR TRENZADO TRIPLEX 600V #2 AAC/#2 AAAC ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9524,'458526','ML. CONDUCTOR TRENZADO CUADRUPLEX 600V 4/0 AAC-4/0 AAAC ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9525,'458525','ML. CONDUCTOR TRENZADO TRIPLEX 600V 4/0 AAC-4/0 AAAC',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9536,'690292','TERMINAL COMPRESIÓN BIMET. CONDUCTOR #2 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9542,'458556','ML. CONDUCTOR TRENZADO TRIPLEX 600V 4/0 AAC-4/0 AAAC',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9558,'458527','ML. CONDUCTOR TRENZADO CUADRUPLEX 600V 336,4 AAC-4/0 AAAC',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9559,'690295','TERMINAL COMPRESIÓN BIMET. CONDUCTOR 336 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9573,'329406','Conec con sep para # 6 cu a 1/0 acsr',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9591,'551463','PINZA ANCLAJE PA-#2-1000',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9592,'521069','GRAPA DE SUSPENSIÓN GS-1200',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9595,'525612','PINZA ANCLAJE PA-1/0-1500 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9596,'525613','PINZA ANCLAJE PA-4/0-2000 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9611,'525614','PLETINA ANILLO AMARRE PARA FACHADAS ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9617,'521070','PINZA ANCLAJE ACOMETIDA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9618,'709958','PINZA ANCLAJE ACOMETIDA TRENZADA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9626,'551558','CAJA DE DERIVACIÓN MONOFASICA 1000 V',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9628,'528892','ML. CONDUCTOR CONCENTRICO DE COBRE 3 X #4 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9633,'416728','CAJA DE DERIVACIÓN MONOFASICA 4 SALIDAS1000 V',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9635,'528891','ML. CONDUCTOR CONCENTRICO DE COBRE 3 X #6 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9640,'528890','ML. CONDUCTOR CONCENTRICO DE COBRE 2 X #6',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9641,'520319','ML. CONDUCTOR TRENZADO TRIPLEX 600V #6 AAC/#6 AAC',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9642,'520318','ML. CONDUCTOR TRENZADO DUPLEX 600V #6 AAC/#6 AAC',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9647,'691347','ML. CONDUCTOR TRENZADO CUADRUPLEX 600V 1/0 AAC-1/0 AAAC',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9648,'525943',' ML. CONDUCTOR CONCENTRICO DE COBRE 2 X #8 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9650,'525944','ML. CONDUCTOR CONCENTRICO DE COBRE 3 X #8',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9652,'529757','ML. CONDUCTOR CONCENTRICO DE COBRE 4 X #4',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9653,'521072','TACO METALICO FIJACION C.T. 12 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9656,'209199','DISPOSITIVO VERIFICACION 4 HILO',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9657,'525640','BRIDA DE SUJECCIàN HASTA 50 MM ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9658,'330664','TR CORR TIPO VENT. 100-200/5 60',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9660,'433575','CONTADOR INDIRECTO TRIFASICO   ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9661,'130559','CINTA AISLANTE P/ EMPALME 130C ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9667,'330579','SELLO PLASTICO/BORRAR DEMANDA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9674,'330599','MED ELECT BAD 240V 2.5A 3F 3H 2',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9686,'330685','TR CORR TIPO VENT. 200-400/5 60',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9702,'330665','TR CORR TIPO VENT. 300-600/5 60',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9730,'330666','TR CORR TIPO VENT. 400-800/5 60',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9753,'330667','TR CORR TIPO VENT. 800-1600/5 6',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9763,'330669','TR CORR TIPO VENT. 1200-2400/5 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9774,'330686','TR CORR TIPO VENT. 600-1200/5 6',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9782,'458593','TORNILLO AC.INOXIDABLE/EXAG.C.T',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9783,'458594','ARANDELA DE PRESION AC.INOX. 1/',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9785,'458595','ARANDELA PLANA REDONDA AC.INOX.',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9795,'411698','CONECTOR LIQUID TIGHT RECTO UNA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9797,'411661','TUBERIA LIQUID TIGHT DE 1',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9800,'330565','S 120V 1F 2H 15A 1E',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9801,'330566','S   240V 1F 3H 15A 1E          ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9804,'330567','S 240V1F2H30A 1E',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9805,'330588','MED ELECT SD 120V 30A 1F 3H 2E ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9807,'433571','MEDIDOR E12SD.208V200A60HZ.A05.',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9810,'330589','MED ELECT SD 240V 30A 1F 3H 1E ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9813,'433572','MEDIDOR E16SD.480V200A60HZ.A05R',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (9815,'692442','MEDIDOR E1SD.120V100A60HZ.A05.S',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10553,'520942','CONECTOR PERFORACIÓN ACOMETIDA B.T. #2-1/0 AWG UNA SALIDA ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10554,'520943','CONECTOR PERFORACIÓN ACOMETIDA B.T. 4/0-336,4 MCM UNA SALIDA ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10555,'533839','CONECTOR PERFORACIÓN ACOMETIDA B.T. #2-1/0 AWG DOS SALIDAS ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10556,'533840','CONECTOR PERFORACIÓN ACOMETIDA B.T. 4/0-336,4 MCM DOS SALIDAS ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10557,'703753','CONECTOR PERFORACIÓN 4/0-1/0 / 4/0-#2',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10558,'703751','CONECTOR PERFORACIÓN 1/0-#2/ 1/0-#6',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10559,'709901','CONECTOR PERFORACIÓN #2-#6 / #2-#6',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10560,'329444','Conector compresión para fase 6Al a 6Cu',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10561,'703752','CONECTOR PERFORACIÓN 336,4-4/0 / 336,4-4/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10562,'520334','EMPALME MANGUITO COMPRESIÓN PREAISLADO #2-#2',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10563,'520343','EMPALME MANGUITO COMPRESIÓN PREAISLADO 336,4-336,4 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10564,'551560','EMPALME PLENA TRACCION AISLADO A COMPRESION CONDUCTOR #2 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10565,'531811','EMPALME PLENA TRACCION AISLADO A COMPRESION CONDUCTOR 4/0 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10566,'9329442','CONECTOR COMPRESION PARA FASE 6AL A 8CU',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10567,'520337','EMPALME MANGUITO COMPRESIÓN PREAISLADO 1/0-1/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10568,'705103','CONECTOR COMPRESION B.T. 4/0-1/0 / #6-#4 AL',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10569,'531810','EMPALME PLENA TRACCION AISLADO A COMPRESION CONDUCTOR 1/0 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10570,'520341','EMPALME MANGUITO COMPRESIÓN PREAISLADO 4/0-4/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10571,'705102','CONECTOR COMPRESION B.T. 500 / #6-#4 AL',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10572,'705104','CONECTOR COMPRESION B.T.#2 / #6-#4 AL',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10573,'704161','CONECTOR COMPRESION B.T. 500-4/0 / 1/0-#2 AL',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10574,'131006','CONECTOR CON BARRERA 4/0 AWG 15KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10575,'704160','CONECTOR COMPRESION B.T. 500-4/0 / 500-4/0 AL',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10576,'131010','CONECTOR CON BARRERA 500KCM',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10577,'131002','Conector con barrera 2 awg 15kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10578,'552096','TERMINAL DE COMPRESIÓN BIMETALICO PLETINA PARA BT 1/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10579,'704162','CONECTOR COMPRESION B.T. 1/0-#2 / 1/0-#2 AL',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10580,'329462','CONECTOR COMPRESION NEUTRO 1/0 AL A 1/0CU',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10583,'329412','Conector tipo C 1/0 a 1/0 Al',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10584,'329442','Conector compresión para fase 6Al a 8Cu',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10585,'329456','Conector compresión neutro 6Al a 8Cu',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10589,'329454','Conector compresión neutro 6Al a 6Cu',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10590,'329411','Conector Forma C para conductor 1/0Al a 6Cu',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10592,'329449','Conector compresión para fase 2Al a 2Cu',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10593,'329453','Conector compresión neutro 6Al a 10Cu',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10594,'329460','Conector compresión neutro 2Al a 2Cu',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10595,'329410','Conector forma 6 cond 1/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10597,'329443','Conector compresión para fase 6Al a 10Cu',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10599,'317960','ML. TRITUBO DE PLÁSTICO 3 x 40 mm DIÁMETRO ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10602,'416496','CAJA DE DERIVACIÓN SUBTERRANEA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10605,'552239','SOPORTE AUTOVALVULA Y BOTELLA TERMINAL EN CRUCETA ANGULAR',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10607,'553434','PROTECCIÓN ABIERTA PASO AÉREO SUBTERRANEO 120 mm',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10608,'553435','CODO PARA PASO AEREO SUBTERANEO 120 mm',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10610,'532558','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 15 KV 500 MCM ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10612,'683326','ABRAZADERA PARA BOTELLA TERMINAL',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10620,'553433','PROTECCIÓN ABIERTA PASO AEREO SUBTERRANEO 90 MM',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10622,'553436','CODO PASO AEREO SUBTERRANEO 90 MM',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10623,'532554','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 15 KV 4/0 AWG. ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10636,'715697','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 15 KV 750 MCM ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10650,'532551','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 15 KV 1/0 AWG. ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10665,'532560','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 35 KV 500 MCM ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10677,'532557','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 35 KV 4/0 AWG. ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10693,'532553','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 35 KV 1/0 AWG. ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10783,'437654','TORNILLO ACERO GALVANIZADO C.T. 5/8\" X 1-3/4\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10785,'440944','ARANDELA PLAN REDONDA 5/8\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10908,'532326','ML. CONDUCTOR AISLADO XLPE 1/0 AWG 600 V',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10912,'532317','ML. CONDUCTOR AISLADO 1/0 AWG 15 KV NEUTRO COMPLETO',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10913,'532315','ML. CONDUCTOR AISLADO 4/0 AWG 15 KV NEUTRO 1/3 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10914,'532314','ML. CONDUCTOR AISLADO 500 MCM 15 KV NEUTRO 1/3 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10915,'715694','ML. CONDUCTOR AISLADO 750 MCM 15 KV NEUTRO 1/3 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10916,'532323','ML. CONDUCTOR AISLADO 1/0 AWG 35 KV NEUTRO COMPLETO ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10917,'532321','ML. CONDUCTOR AISLADO 500 MCM 35 KV NEUTRO 1/3 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10919,'532322','ML. CONDUCTOR AISLADO 4/0 AWG 35 KV NEUTRO 1/3 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10922,'416387','CONDUCTOR AISLADP 5KV 4/ AWG PANTALLA METALICA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10924,'532327','ML. CONDUCTOR AISLADO XLPE #2 AWG 600 V ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10929,'553689','TRANSFORMADOR TRIF. PADMOUNTED E/S 13,2 kV 750 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10930,'529932','TRANSFORMADOR MONOF. PADMOUNTED 13,2 kV 50 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10931,'529933','TRANSFORMADOR MONOF. PADMOUNTED 13,2 kV 100  kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10932,'529934','TRANSFORMADOR MONOF. PADMOUNTED 13,2 kV 167  kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10933,'529939','TRANSFORMADOR MONOF. PADMOUNTED 34,5 kV 100  kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10934,'529940','TRANSFORMADOR MONOF. PADMOUNTED 34,5 kV 167  kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10935,'553687','TRANSFORMADOR TRIF. PADMOUNTED E/S 13,2 kV 300 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10936,'529938','TRANSFORMADOR MONOF. PADMOUNTED 34,5 kV 50 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10937,'553688','TRANSFORMADOR TRIF. PADMOUNTED E/S 13,2 kV 500 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10938,'553686','TRANSFORMADOR TRIF. PADMOUNTED E/S 13,2 kV 150 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10939,'553694','TRANSFORMADOR TRIF. PADMOUNTED E/S 34,5 kV 150 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10940,'553695','TRANSFORMADOR TRIF. PADMOUNTED E/S 34,5 kV 300 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10941,'553696','TRANSFORMADOR TRIF. PADMOUNTED E/S 34,5 kV 500 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10942,'553697','TRANSFORMADOR TRIF. PADMOUNTED E/S 34,5 kV 750 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10943,'552288','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 13,2 kV 150 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10944,'531116','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 13,2 kV 300 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10945,'531117','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 13,2 kV 500 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10946,'531118','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 13,2 kV 750 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10947,'552290','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 34,5 kV 150 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10948,'531122','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 34,5 kV 300 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10949,'913712','TRANSFORMADOR TRIF. PADMOUNTED F/L 150KVA 12kVDELTA  208/120 V Y ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10950,'416940','TRANSFORMADOR TRIF. PADMOUNTED F/L 750KVA 12kVDELTA  480/277V Y ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10951,'913711','TRANSFORMADOR MONOF. PADMOUNTED 12 kV 500  kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10952,'330418','TRANSFORMADOR MONOF. PADMOUNTED 12 kV 100  kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10953,'330427','TRANSFORMADOR TRIF. PADMOUNTED F/L 500KVA 12kVDELTA  208/120 V Y ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10954,'330426','TRANSFORMADOR TRIF. PADMOUNTED F/L 300KVA 12kVDELTA  208/120 V Y ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10955,'531123','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 34,5 kV 500 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10956,'531124','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 34,5 kV 750 kVA',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10958,'415883','CONECTOR PLATINA 4 HUECOS A 3 CABLES 500 CU/AL',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10959,'330432','Transformador gab.500 KVA 13.2kV 208/120V E1',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10960,'333325','Transformador gabinete 300kva 3f del 208y/120 ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10961,'330413','Trafo gabinete 300kva 13.2 kv delta 120/240 delta',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10962,'331311','CONEC PLATINA ALUM 4 HUECOS A 4 CABLES 500 AL/CU',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10963,'330433','Transformador gab.750 KVA 13.2kV 208/120V E1',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10966,'685943','CENTRO SEC. TRIF. PADMOUNTED SIMPLE (3L1) 15 kV 600/200A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10967,'685946','CENTRO SEC. TRIF. PADMOUNTED (3L3) 15 kV 600 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10968,'685951','CENTRO SEC. TRIF. PADMOUNTED (4L4) 35 kV 600 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10969,'685945','CENTRO SEC. TRIF. PADMOUNTED SIMPLE (3L1) 35 kV 600/200A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10970,'685948','CENTRO SEC. TRIF. PADMOUNTED (3L3) 35 kV 600 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10971,'685949','CENTRO SEC. TRIF. PADMOUNTED (4L4) 15 kV 600 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10972,'683824','CENTRO SEC. TRIF.  (3L3) CON CASETA PREF. HORMIGON 35 KV 400 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10973,'683827','CENTRO SEC. TRIF.  (4L4) CON CASETA PREF. HORMIGON 35 KV 400 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10974,'683822','CENTRO SEC. TRIF.  (3L3) CON CASETA PREF. HORMIGON 15 KV 630 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10975,'683825','CENTRO SEC. TRIF.  (4L4) CON CASETA PREF. HORMIGON 15 KV 630 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10986,'532610','TERMINAL ACODADO ENCHUFABLE EN CARGA 1/0 AWG 35 KV 200 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10987,'532570','TERMINAL ACODADO ENCHUFABLE EN CARGA 1/0 AWG 15 KV 200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10988,'532571','TERMINAL ACODADO ENCHUFABLE EN CARGA 4/0 AWG 15 KV 200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10989,'532574','BORNA INSER. PARA TERMINAL ENCHU. EN CARGA EN 15 KV 200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10990,'552304','BORNA PARKING DOBLE INSERT. TERM. ENCHUF. EN CARGA 15 KV 200 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10991,'552307','BORNA PARKING DE PAT. PARA TERM. ENCHUF. EN CARGA 15 KV 200 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10992,'532572','BORNA INSER. DOBLE PARA TER. ENCHU. EN CARGA 15 KV 200 A.',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10993,'532573','TAPÓN DE CIERRE AISLANTE EN 15 KV 200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10994,'552299','BORNA PARKING INSERT. PARA TERM. ENCHUF. EN CARGA 15 KV 200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10995,'532575','BARRA TRES BORNAS ENCHUFABLES EN CARGA EN 15 KV 200 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10996,'532611','TERMINAL ACODADO ENCHUFABLE EN CARGA 4/0 AWG 35 KV 200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10997,'532706','BORNA INSER. PARA TERMINAL ENCHU. EN CARGA EN 35 KV 200 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10998,'552301','BORNA PARKING INSERT. PARA TERM. ENCHUF. EN CARGA 35 KV 200 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (10999,'552306','BORNA PARKING DOBLE INSERT. TERM. ENCHUF. EN CARGA 35 KV 200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11000,'532612','BORNA INSER. DOBLE PARA TER. ENCHU. EN CARGA 35 KV 200 A.',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11001,'552309','BORNA PARKING DE PAT. PARA TERM. ENCHUF. EN CARGA 35 KV 200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11002,'532707','BARRA TRES BORNAS ENCHUFABLES EN CARGA EN 35 KV 200 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11003,'532671','TAPÓN DE CIERRE AISLANTE EN 35 KV 200 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11004,'532720','TERMINAL ATORNILLABLE EN T SIN CARGA 4/0 AWG 15 Y 25 KV 600 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11005,'532721','TERMINAL ATORNILLABLE EN T SIN CARGA 500 MCM 15 Y 25 KV 600 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11006,'532718','BORNA DE REDUCCIÓN EN 15 KV 600-200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11007,'552292','TERMINAL ATORN. EN T S/C CON REDUCTOR 600/200 A PARA 500 15 KV ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11008,'552302','BORNA PARKING INSERT. PARA TERM. ATORNILL. EN 15 Y 25 KV 600 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11009,'552310','BORNA PARKING DE PAT. TERM. ATORNILL. 15 Y 25 KV 600 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11010,'532705','BORNA DE REDUCCIÓN EN 35 KV 600-200 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11011,'532719','BARRA TRES BORNAS ATORNILLABLES SIN CARGA EN 15 Y 25 KV 600 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11012,'552291','TERMINAL ATORN. EN T S/C CON REDUCTOR 600/200 A PARA 4/0 15 KV ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11013,'532717','BORNA DE UNION EN 15KV PARA TER. ATOR. EN T 600 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11014,'552297','TAPÓN DE CIERRE AISLANTE EN 15 Y 25 KV 600 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11015,'532728','TERMINAL ATORNILLABLE EN T SIN CARGA 4/0 AWG 35 KV 600 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11016,'552303','BORNA PARKING INSERT. PARA TERM. ATORNILL. EN 35 KV 600 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11017,'552311','BORNA PARKING DE PAT. PARA TERM. ATORNILL. 35 KV 600 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11018,'532729','TERMINAL ATORNILLABLE EN T SIN CARGA 500 MCM 35 KV 600 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11019,'552295','TERMINAL ATORN. EN T S/C CON REDUCTOR 600/200 A PARA 4/0 35 KV ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11020,'552296','TERMINAL ATORN. EN T S/C CON REDUCTOR 600/200 A PARA 500 35 KV ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11021,'715696','TERMINAL ATORNILLABLE EN T S/C CON REDUCTOR  600/200 A PARA 750 MCM 15 KV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11022,'532731','BARRA TRES BORNAS ATORNILLABLES SIN CARGA EN 35 KV 600 A ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11023,'532730','BORNA DE UNIÓN EN 35 KV PARA TER. ATOR. EN T SIN CARGA 600 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11024,'552298','TAPÓN DE CIERRE AISLANTE EN 35KV 600 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11026,'715695','TERMINAL ATORNILLABLE EN T SIN CARGA 750 MCM 15 KV 600 A',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11030,'532663','EMPALME CONTRÁCTIL EN FRIO 15kV 1/0 AWG ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11034,'532665','EMPALME CONTRÁCTIL EN FRIO 15kV 4/0 AWG ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11035,'715699','EMPALME CONTRÁCTIL EN FRIO 15kV 750 MCM ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11036,'532668','EMPALME CONTRÁCTIL EN FRIO 15kV 500 MCM ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11037,'532667','EMPALME CONTRÁCTIL EN FRIO 35kV 4/0 AWG ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11038,'532670','EMPALME CONTRÁCTIL EN FRIO 35kV 500 MCM ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11039,'532664','EMPALME CONTRÁCTIL EN FRIO 35kV 1/0 AWG ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11040,'414257','Barra 4 vias 600 amp 15kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11041,'130635','Empalme premoldeado #500 AWG 15kV',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11042,'130663','Gancho para fijar codo',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11043,'130646','Codo rompecarga con punta de prueba 15kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11044,'414007','Barra 4 vias 200 amp 15kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11045,'416692','TERMINAL ROMPECARGA DE 200 A 5KV 4/0 AWG',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11046,'413271','Empalme contractil en frío subterráneo recto # 2 a 4/0',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11047,'413618','Adaptador conex. Tierra cable # 2 Pmet',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11049,'413294','Terminal contractil en frío polimérica # 2 a 4/0 xlp',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11050,'413615','Conector terminal Barra a cable # 2',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11058,'531537','CONECTOR CUÑA A PRESIÓN PICA DE P.T.-AWG #2 Cu ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11067,'551469','ML. CONDUCTOR AISLADO #4 COBRE ',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11070,'526668','CONECTOR COMPRESION #2-#2 CU',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11077,'329212','Puntal de madera tiro de 60\" caída de 18\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11078,'329218','Cruceta madera 5 pies',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11079,'329209','Cruceta de madera de 8 pies',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11083,'120610','Estribo para soporte de gancho',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11085,'413214','Brazo para mensajero 14 plg 15 kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11090,'413215','Brazo antimovimiento 14 plg',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11092,'331506','Brazo para mensajero 24 plg 35 kv',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11098,'331507','Brazo antimovimiento 24 plg',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11102,'437656','PERNO LARGO DE ACERO GALVANIZADO 3/4 X 3/4 X 7\"',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11108,'329919','Control fotoelectrico 250W 240 voltios',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11109,'329907','Foco alta presion de sodio 250W',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11110,'329945','Soporte para luminaria 1-1/4\" x 6 pies',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11111,'329897','Luminaria sodio 100 W tipo II 120voltios',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11112,'329920','Control fotoelectrico 100W 120voltios',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11113,'329908','Foco alta presion de sodio 100W',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11114,'329900','Luminaria sodio 250 W tipo II 240voltios',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11115,'330505','Alambre cobre #12 awg, TW, blanco',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11116,'330506','Alambre cobre #12 awg, TW, negro',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11117,'329414','Conector de alumbrado publico',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11119,'329946','Soporte para luminaria 1-1/4\" x 8 pies',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11121,'414098','Soporte para luminaria 1-1/4\" x 10 pies',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11134,'330504','Alambre cobre #12 awg, TW, rojo',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11170,'710185','CONECTOR PERFORACIÓN 1/0-#6 / #10-#14',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11178,'416448','Luminaria sodio 250 W tipo II 277 voltios',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11188,'329465','CONECTOR ALUMBRADO PUBLICO 4 ACSR A 14 CU',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11190,'414657','POSTE DECORATIVO DE 14 PIES PARA LUMINARIAS',NULL,NULL,NULL);
-insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`) values (11191,'414655','LUMINARIA DECORATIVA DE 100 WATT TIPO II',NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (116,'450963','POSTE DE MADERA 12 M CLASE 1',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (117,'450958','POSTE DE MADERA 6 M CLASE 5',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (118,'450959','POSTE DE MADERA 9 M CLASE 5',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (119,'450960','POSTE DE MADERA 10,5 M CLASE 5',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (120,'450961','POSTE DE MADERA 10,5 M CLASE 3',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (121,'150021','Poste de madera de 60 pies clase 3',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (122,'450962','POSTE DE MADERA 12 M CLASE 3',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (123,'450964','POSTE DE MADERA 14 M CLASE 3',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (124,'450965','POSTE DE MADERA 14 M CLASE 1',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (125,'150020','Poste de madera de 55 pies clase 3',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (126,'150022','Poste de madera de 65 pies clase 3',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (142,'715700',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 300 daN 12m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (143,'436932','POSTE HORMIGON PRETENSADO CENTRIFUGADO O VIBRADO 300 daN 6m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (144,'683322','POSTE HORMIGON PRETENSADO CENTRIFUGADO 800 daN 9m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (145,'436937','POSTE HORMIGON PRETENSADO CENTRIFUGADO 300 daN 9 m ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (146,'531666','POSTE HORMIGON PRETENSADO CENTRIFUGADO 500 daN 9m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (147,'436956',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 500 daN 10,5 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (148,'683324',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 800 daN 10,5 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (149,'436957',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 500 daN 12m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (150,'436938',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 300 daN 10,5 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (151,'436959',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 800 daN 12m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (152,'526792',' M3 DE HORMIGÓN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (153,'436960',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 800 daN 14m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (160,'436958',' POSTE HORMIGON PRETENSADO CENTRIFUGADO 500 daN 14 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (167,'454772',' POSTE METALICO DE CHAPA 500 daN 14 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (168,'454767',' POSTE METALICO DE CHAPA 300 daN 9 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (170,'530412',' POSTE METALICO DE CHAPA 500 daN 9 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (171,'454768',' POSTE METALICO DE CHAPA 300 daN 10,5 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (172,'685618',' POSTE METALICO DE CHAPA 800 daN 10,5 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (173,'454769',' POSTE METALICO DE CHAPA 500 daN 10,5 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (174,'454770',' POSTE METALICO DE CHAPA 500 daN 12 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (175,'685619',' POSTE METALICO DE CHAPA 800 daN 12 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (176,'454771',' POSTE METALICO DE CHAPA 800 daN 12 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (177,'691354','POSTE METÁLICO CHAPA OCTOGONAL 12 m 1250 daN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (178,'454773',' POSTE METALICO DE CHAPA 800 daN 14 m',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (180,'691351','POSTE METÁLICO CHAPA OCTOGONAL 14 m 1250 daN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (181,'691356','POSTE METÁLICO CHAPA OCTOGONAL 12 m 3000 daN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (185,'691352','POSTE METÁLICO CHAPA OCTOGONAL 14 m 2000 daN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (190,'691355','POSTE METÁLICO CHAPA OCTOGONAL 12 m 2000 daN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (195,'691353','POSTE METÁLICO CHAPA OCTOGONAL 14 m 3000 daN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (225,'437604','CONECTOR CUÑA A PRESIÓN 266 MCM - #2 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (226,'437006','SOPORTE VERTICAL PARA AISLADOR TIPO POSTE',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (227,'437008','SOPORTE LATERAL PARA AISLADOR TIPO POSTE',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (228,'437655','PERNO CORTO ACERO GALVANIZADO ¾”- ¾”x 3”',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (229,'437806','SOPORTE HORQUILLA PARA AISLADOR TIPO CARRETE',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (230,'437709','RETENCIÓN PREFORMADA “Z” AISL.57/1-3 ACSR 477',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (231,'437712','RETENCIÓN PREFORMADA “OMEGA” AISL.57/1-3 ACSR 477',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (232,'437805','AISLADOR PORCELANA TIPO CARRETE (ANSI C29.3) ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (233,'437803','RETENCIÓN PREFORMADA “OMEGA” AISL.53/2 ACSR 266',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (234,'434470','ML. CABLE DE COBRE DESNUDO Nº2 AWG ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (236,'437708','RETENCIÓN PREFORMADA “Z” AISL.57/1-3 ACSR 266',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (237,'699901','CONECTOR COMPRESION #2-#2 CU',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (240,'440860','GRAPA CONEXIÓN DOBLE CABLE TIERRA SIN TORNILLO ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (242,'437710','RETENCIÓN PREFORMADA “OMEGA” AISL.57/1-3 ACSR 266',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (244,'437802','RETENCIÓN PREFORMADA “OMEGA” AISL.53/2 ACSR 1/0 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (247,'437607','CONECTOR CUÑA A PRESIÓN 1/0 - #2 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (252,'525794','RETENCIÓN PREFORMADA “Z” AISL.57/1-3 ACSR 4/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (253,'525795','RETENCIÓN PREFORMADA “OMEGA” AISL.57/1-3 ACSR 4/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (264,'437707','RETENCIÓN PREFORMADA “Z” AISL.57/1-3 ACSR 1/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (270,'437711','RETENCIÓN PREFORMADA “OMEGA” AISL.57/1-3 ACSR 1/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (275,'551265','CRUCETA ANGULAR METÁLICA 1 400 mm',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (277,'437714','RETENCIÓN PREFORMADA “OMEGA” DOBLE AISL.57/1-3 ACSR 477',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (290,'437715','RETENCIÓN PREFORMADA “OMEGA” DOBLE AISL.57/1-3 ACSR 266',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (295,'525796','RETENCIÓN PREFORMADA “OMEGA” DOBLE AISL.57/1-3 ACSR 4/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (309,'437713','RETENCIÓN PREFORMADA “OMEGA” DOBLE AISL.57/1-3 ACSR 1/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (319,'551266','CRUCETA ANGULAR METÁLICA 1 800 mm ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (321,'437594','CONECTOR CUÑA A PRESIÓN 477 MCM - 477 MCM ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (322,'551418','GRILLETE LARGO RECTO 5/8\" 11.300KG ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (323,'450950','GRAPA AMARRE ALUMINIO COND. AWG 4/0-MCM 266 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (325,'437595','CONECTOR CUÑA A PRESIÓN 266 MCM - 266 MCM',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (331,'437596','CONECTOR CUÑA A PRESION 1/0 - 1/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (335,'450949','GRAPA AMARRE ALUMINIO COND. AWG 1/0 (RAVEN)',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (345,'525791','CONECTOR CUÑA A PRESIÓN 4/0 - 4/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (369,'450948','ALARGADERA 10\" PARA CADENA DE AISLADORES',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (440,'437597','CONECTOR CUÑA A PRESIÓN 477 MCM - 266 MCM',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (447,'437598','CONECTOR CUÑA A PRESIÓN 266 MCM - 1/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (456,'525789','CONECTOR CUÑA A PRESIÓN 477 MCM - 4/0 AWG ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (471,'437599','CONECTOR CUÑA A PRESIÓN 477 MCM - 1/0 AWG ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (477,'525790','CONECTOR CUÑA A PRESIÓN 266 MCM - 4/0 AWG ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (506,'525792','CONECTOR CUÑA A PRESIÓN 4/0 - 1/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (651,'458464','GRAPA DE SUSPENSION ALUMINIO COND. AWG 4/0-MCM 266 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (658,'458463','GRAPA DE SUSPENSION ALUMINIO COND. AWG 1/0 (RAVEN) ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (688,'551267','CRUCETA ANGULAR METÁLICA 2 400 mm ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (728,'690290','CRUCETA ANGULAR METÁLICA 3 000 mm',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (772,'120326',' VARILLA PROT 1 AISL 19PLG 4 ACSR DIST ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (2191,'416457','SOPORTE DE MEDICÓN MT MONOFÁSICA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3649,'436990','ML. CONDUCTOR ALUMINIO ACERO ACSR 266 PARTRIDGE',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3651,'436978','ML. CONDUCTOR ALUMINIO ACERO ACSR 1/0 RAVEN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3652,'525748','ML. CONDUCTOR ALUMINIO ACERO ACSR 4/0 PENGUIN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3656,'330480','ML. CONDUCTOR ALUMINIO ACERO ACSR 477 HAWK ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3663,'330535','Cable de potencia 1c 4/0 15kV XLP pant metálica',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3669,'330533','Cable de potencia 1C #2 15kv xlp pant. Metalica',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3670,'329205','Alambre mensajero de 3/8 plg',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3671,'330508','Cable cobre 500KCM 600V',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3672,'330498','Cond. Cobre 4/0 AWG estañado desnudo suave',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3674,'413236','Cable aluminio 477 35 kv aisl /prot.',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3675,'230000','Cable aluminio 1/0 35 kv aisl /prot.',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3677,'334294','Cable aluminio 477 15 kv aisl /prot.',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3678,'334302','Cable aluminio 1/0 15 kv aisl /prot.',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3679,'413613','Cable aluminio 266 15 kv aisl /prot.',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3680,'413194','Alambre mensajero de 1/2 plg',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3684,'413590','Cable aluminio 266 35 kv aisl /prot.',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3685,'330536','Cable de potencia 1c 500KCM 15kV XLP pant metálica',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3686,'430051','Cable de potencia 1c 1/0 35kV XLP pant metálica',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3687,'330489','Cable servicio aluminio cuádruplex 4 pinto',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (3688,'330475','Conductor aluminio 266.8 KCM waxwing acsr',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7876,'450912','SOPORTE TRANSFORMADOR MONOFASICO TIPO POSTE ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7881,'441208','TRANSFORMADOR MONOF. TIPO POSTE 13,2 kV 10 kVA ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7885,'441209','TRANSFORMADOR MONOF. TIPO POSTE 13,2 kV 25 kVA ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7886,'530559','TERMINAL DE COMPRESION PLETINA COND. # 2 CU',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7889,'441210','TRANSFORMADOR MONOF. TIPO POSTE 13,2 kV 50 kVA ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7900,'441211','TRANSFORMADOR MONOF. TIPO POSTE 13,2 kV 75 kVA ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7903,'441212','TRANSFORMADOR MONOF. TIPO POSTE 34,5 kV 10 kVA ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7905,'441213','TRANSFORMADOR MONOF. TIPO POSTE 34,5 kV 25 kVA ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7913,'441214','TRANSFORMADOR MONOF. TIPO POSTE 34,5 kV 50 kVA ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7918,'441215','TRANSFORMADOR MONOF. TIPO POSTE 34,5 kV 75 kVA ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (7963,'520888','SOPORTE AUXILIAR PARA TERCER TRAFO TIPO POSTE ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8016,'330378','Transformador conv 25KVA 7620/13200Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8017,'330376','Transformador conv 10KVA 7620/13200Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8018,'330377','Transformador conv 15KVA 7620/13200Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8019,'330380','Transformador conv 50 KVA 7620/13200Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8020,'330381','Transformador conv 75 KVA 7620/13200Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8021,'330396','Transformador conv 10KVA 19920/34500Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8022,'330400','Transformador conv 50 KVA 19920/34500Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8023,'330431','Transformador gab.300 KVA 13.2kV 208/120V E1',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8024,'330397','Transformador conv 15KVA 19920/34500Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8025,'330398','Transformador conv 25KVA 19920/34500Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8026,'552098','TERMINAL DE COMPRESIÓN BIMETALICO PLETINA PARA BT 500 MCM',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8027,'532324','ML. CONDUCTOR AISLADO XLPE 500 MCM 600 V ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8028,'552097','TERMINAL DE COMPRESIÓN BIMETALICO PLETINA PARA BT 4/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8029,'532325','ML. CONDUCTOR AISLADO XLPE 4/0 AWG 600 V ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8030,'330351','Transformador conv 10KVA2400/4160Y-120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8031,'330353','Transformador conv 25KVA2400/4160Y-120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8032,'330356','Transformador conv 75 KVA 2400/4160Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8033,'330362','Transformador conv 25KVA 12000V - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8034,'330355','Transformador conv 50KVA2400/4160Y-120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8035,'333172','Transformador conv 10KVA 12000V - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8036,'330364','Transformador conv 50KVA 12000V - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8037,'330407','Transformador conv 50KVA 19920/34500Y -240/480',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8038,'330387','Transformador conv 75 KVA 7620/13200Y - 240/480',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8039,'330401','Transformador conv 75KVA 19920/34500Y - 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8040,'330408','Transformador conv 75KVA 19920/34500Y -240/480',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8041,'330386','Transformador conv 50 KVA 7620/13200Y - 240/480',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8042,'330417','Transformador gab.100 KVA 2.4kV DELTA 120/240V',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8043,'330419','Transformador gab.50KVA 13200GRDY/7620 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8044,'330420','Transformador gab.75KVA 13200GRDY/7620 120/240',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8045,'330439','Transformador gab. 300KVA 13.2KV DELTA 208Y/120 E2',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8046,'333302','Transformador gab. 750KVA 13.2KV DELTA 480/277 E3',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8047,'330429','Tr gabinete 500 kva 2.4 kv delta 280Y/120',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8048,'330442','Transformador gab. 750KVA 13.2KV DELTA 208/120 E3',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8049,'330440','Transformador gab. 500KVA 13.2KV DELTA 208Y/120 E2',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8050,'330447','Transformador gab. 750KVA 19920/34500GRDY 120/208Y E1',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8051,'333309','Transformador gab. 750KVA 13.2KV DELTA 480 E2',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8052,'330424','Tr gab 300 kva 4.16 kv delta 280Y/120 E1',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8053,'330425','Tr gabinete 500 kva 4.16 kv delta 208Y/120 E1',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8055,'458533','TUBO PORTAFUSIBLES ESPULSION 15 KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8056,'450701','SOPORTE PARA SECCIONAMIENTO Y PROTECCIÓN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8058,'458529','BASE SECCIONADOR FUSIBLE DE 36 KV 200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8059,'458528','BASE SECCIONADOR FUSIBLE DE 15 KV 200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8062,'458531','TUBO PORTAFUSIBLES ESPULSION 36 KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8074,'474075','FUSIBLE DE EXPULSION TIPO \"D\"- 7A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8075,'474074','FUSIBLE DE EXPULSION TIPO \"D\"- 5A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8076,'474071','FUSIBLE DE EXPULSION TIPO \"D\"- 1,5A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8077,'458535','FUSIBLE DE EXPULSION TIPO \"k\"- 40A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8078,'474072','FUSIBLE DE EXPULSION TIPO \"D\"- 3A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8079,'474076','FUSIBLE DE EXPULSION TIPO \"D\"- 10A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8080,'474077','FUSIBLE DE EXPULSION TIPO \"D\"- 15A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8081,'458534','FUSIBLE DE EXPULSION TIPO \"D\"- 20A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8082,'692481','FUSIBLE LIMITADOR DE CORRIENTE TIPO \"k\"- 25A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8083,'458537','FUSIBLE DE EXPULSION TIPO \"k\"- 65A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8084,'692482','FUSIBLE LIMITADOR DE CORRIENTE TIPO \"k\"- 12A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8085,'454874',' PERNO AC. GALVANIZADO 5/8\"-3/4\"X12\" ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8150,'551556','TORNILLO GALVANIZADO DE OJO 5/8 X 10\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8224,'458532','CUCHILLA SECCIONADORA PARA SECCIONADOR FUSIBLE 15 KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8254,'458530','CUCHILLA SECCIONADORA PARA SECCIONADOR FUSIBLE 36 KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8367,'441202','PARARRAYOS AUTOVÁLVULA 13,2 kV 10 kA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8372,'441203','PARARRAYOS AUTOVÁLVULA 34,5 kV 10 kA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8373,'454857','CONECTOR AMOVIBLE PARA ESTRIBO',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8383,'553431','ALARGADERA 10\" TIPO CLEVIS',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8391,'552910','SECCIONADOR 13,2KV 600 AMP',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8392,'552902','TERMINAL COMPRESION BIMETALICO CONDUCTOR 266 MCM',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8404,'552901','TERMINAL COMPRESION BIMETALICO CONDUCTOR 4/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8415,'552900','TERMINAL COMPRESION BIMETALICO CONDUCTOR 1/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8424,'552912','SECCIONADOR 34,5 KV 600A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8453,'329545','ELEMENTO FUSIBLE TIPO T 10A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8454,'329543','ELEMENTO FUSIBLE TIPO T 6A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8455,'329544','ELEMENTO FUSIBLE TIPO T 8A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8456,'329546','ELEMENTO FUSIBLE TIPO T 12A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8457,'329547','ELEMENTO FUSIBLE TIPO T 15A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8458,'329549','ELEMENTO FUSIBLE TIPO T 25A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8459,'329552','ELEMENTO FUSIBLE TIPO T 50A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8460,'329553','ELEMENTO FUSIBLE TIPO T 65A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8461,'329550','ELEMENTO FUSIBLE TIPO T 30A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8463,'329496','Rompecarga interruptor lateral 34.5 KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8464,'329241','Pararrayo para cable subterráneo 27KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8465,'329554','ELEMENTO FUSIBLE TIPO T 80A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8466,'329495','Rompecarga interruptor 15KV AB CHANCE',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8468,'329238','Pararrayo para cable subterráneo 10KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8472,'329491','Interruptor de aire 3 polos 600A 15kV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8474,'411654','ALAMBRE 10AWG THHN THWN,FLE 19 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8475,'411656','ALAMB 10AWG,THHN,THWN,FLEX 19HE',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8477,'329492','Interruptor de aire 3 polos 600A 34.5kV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8480,'683372','SOPORTE PARA BRIDA DE SUJECCIÓN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8481,'551557','ML. FLEJE DE SUJECIÓN 20 X 0,7 MM',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8482,'704164','HEBILLA PARA FLEJE DE SUJECIÓN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8483,'329420','CONECTOR DE TIERRA PARA TRANSFORMADOR',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8484,'330670','TR CORR BASE PLANA 5-10/5A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8485,'330723','TR POTENCIAL 8,400/120V  70/1  15KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8486,'412458','ARMARIO POLIES/DISP.COMP/MIRI/U',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8487,'744342','MEDIDOR INTEGRAL MULTITAR.BT INDIRECTO 4H TIPO2',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8488,'330577','SELLO PLASTICO AZUL TIPO CANDAD',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8497,'410701','TR CORRIENTE BASE PLANA 5-10/5 34.5',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8498,'411556','TR POTENCIAL 21000/120 VOLT 175/1 34',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8505,'411653','ALAMBRE 10AWG THHB THWN FLEX 19',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8506,'411655','ALAMB 10AWG THHN O THWN FLEX 19',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8541,'330672','TR CORR BASE PLANA 15-30/5A 15 KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8557,'330679','TR CORR BASE PLANA 15-30/5A 34,5kV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8574,'330673','TR CORR BASE PLANA 20-40/5A 15kV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8587,'330674','TR CORR BASE PLANA 25-50/5A 15kV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8605,'330675','TR CORR BASE PLANA 40-80/5A 15kV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8948,'453778','EMPALME PLENA TRACCION CONDUCTOR ACSR 477 (HAWK) ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8949,'453777','EMPALME PLENA TRACCION CONDUCTOR ACSR 266 (PARTRIDGE)',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8950,'413582','EMPALME PLENA TRACCION ACSR-AAAC #4',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8951,'437600','CONECTOR CUÑA A PRESIÓN CON ESTRIBO 477 MCM ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8952,'520332','EMPALME PLENA TRACCION ACSR-AAAC 4/0 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8953,'453776','EMPALME PLENA TRACCION ACSR-AAAC 1/0 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8954,'525793',' CONECTOR CUÑA A PRESIÓN 4/0 - #2 AWG ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8955,'437601','CONECTOR CUÑA A PRESIÓN CON ESTRIBO 266 MCM ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8957,'525797','CONECTOR CUÑA A PRESIÓN CON ESTRIBO 4/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8958,'437603','CONECTOR CUÑA A PRESIÓN CON ESTRIBO 1/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8970,'414522','CONECTOR CUÑA CON ESTRIBO PARA #4 ACSR',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8973,'329407','Conector tipo c para cable 6-6cu',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8976,'329425','Grapa de línea caliente 477 acsr',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8978,'329424','Grapa de línea caliente 266 a 3/0 acsr',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8979,'330534','Cable potencia 1C #6 5kV xlp Pant. Met',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8982,'413245','fulminante color rojo',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8984,'335811','CABLE POTENCIA 1C N2 5KV XPL PANT MET',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8986,'434435','ML. CABLE ACERO GALVANIZADO 3/8\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8988,'530875','GRILLETE NORMAL RECTO 7/8\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8989,'458467','GUARDACABOS PARA RETENCION CABLE DE ACERO 3/8\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8990,'458662','PLETINA SUJECION PARA RETENIDAS',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8991,'530882','Terminal preformada retenida 1/2 plg',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8993,'530631','ML. CABLE ACERO GALVANIZADO 1/2”',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (8996,'531645','ALARGADERA AISLANTE PARA RETENIDAS',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9000,'530881','GUARDACABOS PARA RETENCION CABLE DE ACERO 1/2\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9008,'707561','AISLADOR PORCELANA TIPO TENSOR 3/8\" (ANSI 54.2)',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9015,'707562','AISLADOR PORCELANA TIPO TENSOR 1/2\" (ANSI 54.4) ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9046,'458414','HERRAJE DE ANCLAJE PARA RETENIDA VERTICAL',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9094,'458479','VARILLA DE ANCLAJE DE OJO C.T. 3/4\" X 8\'',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9095,'707868','ANCLA DE HORMIGÓN',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9097,'458481','ANCLA DE EXPANSIÓN PARA VARILLA DE 3/4\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9099,'691357','ANCLA POLIPROPILENO 135\" PARA VARILLA DE  3/4\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9100,'711932','ANCLA POLIPROPILENO 135\" PARA VARILLA DE  1\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9102,'530638','ANCLA DE EXPANSIÓN PARA VARILLA DE 1\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9104,'530635','VARILLA DE ANCLAJE DE OJO C.T. 1\" X 8\'',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9230,'436991',' AISLADOR PORCELANA TIPO POSTE 13,2 kV (ANSI 57-1)',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9232,'441248',' AISLADOR COMPOSITE TIPO POSTE 34,5 KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9234,'441249','AISLADOR COMPOSITE TIPO SUSPENSIÓN 13,2 KV ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9237,'441250','AISLADOR COMPOSITE TIPO SUSPENSIÓN 34,5 KV ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9250,'450952','GRAPA AMARRE ALUMINIO COND. MCM 477 (HAWK) ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9263,'436992','AISLADOR PORCELANA TIPO POSTE 34,5 kV (ANSI 57-3) ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9276,'458462','GRAPA DE SUSPENSION ALUMINIO COND. MCM 477 (HAWK) ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9280,'441247',' AISLADOR COMPOSITE TIPO POSTE 13,2 KV ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9294,'110073','AISLADOR PORCELANA TIPO SUSPENSIÓN ANSI 52.9 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9298,'329214','Bastidor un alambre con aislador 53-2',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9307,'330929','Bastidor  primario fijo canalizado',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9308,'413263','Grapa para remate de preformada',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9310,'413198','Aislador de espiga 35 kv polimérico',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9311,'413224','Terminal preformada para 477 34.5 kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9313,'413268','Grapa suspensión angular para 1/0al',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9314,'413218','Soporte ángulo cable forrado 35 kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9315,'110210','Platina de montaje para aislador ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9316,'413197','Espiga galvanizada 35 kv fijación',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9319,'329203','Terminal preformada cable 3/8 plg',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9321,'120080','Terminal preformada para 1/0 34.5 kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9353,'120210','Gancho espaciador primario 3 cables',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9354,'413199','Gancho espaciador primario 3 cables',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9360,'413611','Terminal preformada 266 para 15kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9364,'413612','Terminal preformada 477 para 15kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9377,'413195','Aislador de espiga 15 kv polimérico',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9380,'413196','Espiga galvanizada 15 kv fijación en cruceta de metal',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9397,'413591','Terminal preformada 266 para 35kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9424,'413217','Soporte para ángulo Cab. Forrado',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9428,'413598','Terminal  preformada 1/0 15 kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9450,'050023','Abrazadera doble /4 x 1-1/2 x  4-1/2 plg',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9518,'690294','TERMINAL COMPRESIÓN BIMET. CONDUCTOR 4/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9519,'458524','ML. CONDUCTOR TRENZADO TRIPLEX 600V 1/0 AAC-1/0 AAAC',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9520,'690293','TERMINAL COMP. PLETINA CONDUCTOR 1/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9521,'458523',' ML. CONDUCTOR TRENZADO TRIPLEX 600V #2 AAC/#2 AAAC ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9524,'458526','ML. CONDUCTOR TRENZADO CUADRUPLEX 600V 4/0 AAC-4/0 AAAC ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9525,'458525','ML. CONDUCTOR TRENZADO TRIPLEX 600V 4/0 AAC-4/0 AAAC',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9536,'690292','TERMINAL COMPRESIÓN BIMET. CONDUCTOR #2 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9542,'458556','ML. CONDUCTOR TRENZADO TRIPLEX 600V 4/0 AAC-4/0 AAAC',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9558,'458527','ML. CONDUCTOR TRENZADO CUADRUPLEX 600V 336,4 AAC-4/0 AAAC',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9559,'690295','TERMINAL COMPRESIÓN BIMET. CONDUCTOR 336 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9573,'329406','Conec con sep para # 6 cu a 1/0 acsr',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9591,'551463','PINZA ANCLAJE PA-#2-1000',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9592,'521069','GRAPA DE SUSPENSIÓN GS-1200',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9595,'525612','PINZA ANCLAJE PA-1/0-1500 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9596,'525613','PINZA ANCLAJE PA-4/0-2000 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9611,'525614','PLETINA ANILLO AMARRE PARA FACHADAS ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9617,'521070','PINZA ANCLAJE ACOMETIDA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9618,'709958','PINZA ANCLAJE ACOMETIDA TRENZADA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9626,'551558','CAJA DE DERIVACIÓN MONOFASICA 1000 V',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9628,'528892','ML. CONDUCTOR CONCENTRICO DE COBRE 3 X #4 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9633,'416728','CAJA DE DERIVACIÓN MONOFASICA 4 SALIDAS1000 V',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9635,'528891','ML. CONDUCTOR CONCENTRICO DE COBRE 3 X #6 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9640,'528890','ML. CONDUCTOR CONCENTRICO DE COBRE 2 X #6',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9641,'520319','ML. CONDUCTOR TRENZADO TRIPLEX 600V #6 AAC/#6 AAC',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9642,'520318','ML. CONDUCTOR TRENZADO DUPLEX 600V #6 AAC/#6 AAC',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9647,'691347','ML. CONDUCTOR TRENZADO CUADRUPLEX 600V 1/0 AAC-1/0 AAAC',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9648,'525943',' ML. CONDUCTOR CONCENTRICO DE COBRE 2 X #8 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9650,'525944','ML. CONDUCTOR CONCENTRICO DE COBRE 3 X #8',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9652,'529757','ML. CONDUCTOR CONCENTRICO DE COBRE 4 X #4',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9653,'521072','TACO METALICO FIJACION C.T. 12 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9656,'209199','DISPOSITIVO VERIFICACION 4 HILO',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9657,'525640','BRIDA DE SUJECCIàN HASTA 50 MM ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9658,'330664','TR CORR TIPO VENT. 100-200/5 60',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9660,'433575','CONTADOR INDIRECTO TRIFASICO   ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9661,'130559','CINTA AISLANTE P/ EMPALME 130C ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9667,'330579','SELLO PLASTICO/BORRAR DEMANDA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9674,'330599','MED ELECT BAD 240V 2.5A 3F 3H 2',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9686,'330685','TR CORR TIPO VENT. 200-400/5 60',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9702,'330665','TR CORR TIPO VENT. 300-600/5 60',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9730,'330666','TR CORR TIPO VENT. 400-800/5 60',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9753,'330667','TR CORR TIPO VENT. 800-1600/5 6',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9763,'330669','TR CORR TIPO VENT. 1200-2400/5 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9774,'330686','TR CORR TIPO VENT. 600-1200/5 6',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9782,'458593','TORNILLO AC.INOXIDABLE/EXAG.C.T',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9783,'458594','ARANDELA DE PRESION AC.INOX. 1/',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9785,'458595','ARANDELA PLANA REDONDA AC.INOX.',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9795,'411698','CONECTOR LIQUID TIGHT RECTO UNA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9797,'411661','TUBERIA LIQUID TIGHT DE 1',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9800,'330565','S 120V 1F 2H 15A 1E',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9801,'330566','S   240V 1F 3H 15A 1E          ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9804,'330567','S 240V1F2H30A 1E',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9805,'330588','MED ELECT SD 120V 30A 1F 3H 2E ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9807,'433571','MEDIDOR E12SD.208V200A60HZ.A05.',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9810,'330589','MED ELECT SD 240V 30A 1F 3H 1E ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9813,'433572','MEDIDOR E16SD.480V200A60HZ.A05R',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (9815,'692442','MEDIDOR E1SD.120V100A60HZ.A05.S',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10553,'520942','CONECTOR PERFORACIÓN ACOMETIDA B.T. #2-1/0 AWG UNA SALIDA ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10554,'520943','CONECTOR PERFORACIÓN ACOMETIDA B.T. 4/0-336,4 MCM UNA SALIDA ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10555,'533839','CONECTOR PERFORACIÓN ACOMETIDA B.T. #2-1/0 AWG DOS SALIDAS ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10556,'533840','CONECTOR PERFORACIÓN ACOMETIDA B.T. 4/0-336,4 MCM DOS SALIDAS ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10557,'703753','CONECTOR PERFORACIÓN 4/0-1/0 / 4/0-#2',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10558,'703751','CONECTOR PERFORACIÓN 1/0-#2/ 1/0-#6',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10559,'709901','CONECTOR PERFORACIÓN #2-#6 / #2-#6',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10560,'329444','Conector compresión para fase 6Al a 6Cu',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10561,'703752','CONECTOR PERFORACIÓN 336,4-4/0 / 336,4-4/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10562,'520334','EMPALME MANGUITO COMPRESIÓN PREAISLADO #2-#2',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10563,'520343','EMPALME MANGUITO COMPRESIÓN PREAISLADO 336,4-336,4 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10564,'551560','EMPALME PLENA TRACCION AISLADO A COMPRESION CONDUCTOR #2 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10565,'531811','EMPALME PLENA TRACCION AISLADO A COMPRESION CONDUCTOR 4/0 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10566,'9329442','CONECTOR COMPRESION PARA FASE 6AL A 8CU',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10567,'520337','EMPALME MANGUITO COMPRESIÓN PREAISLADO 1/0-1/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10568,'705103','CONECTOR COMPRESION B.T. 4/0-1/0 / #6-#4 AL',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10569,'531810','EMPALME PLENA TRACCION AISLADO A COMPRESION CONDUCTOR 1/0 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10570,'520341','EMPALME MANGUITO COMPRESIÓN PREAISLADO 4/0-4/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10571,'705102','CONECTOR COMPRESION B.T. 500 / #6-#4 AL',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10572,'705104','CONECTOR COMPRESION B.T.#2 / #6-#4 AL',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10573,'704161','CONECTOR COMPRESION B.T. 500-4/0 / 1/0-#2 AL',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10574,'131006','CONECTOR CON BARRERA 4/0 AWG 15KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10575,'704160','CONECTOR COMPRESION B.T. 500-4/0 / 500-4/0 AL',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10576,'131010','CONECTOR CON BARRERA 500KCM',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10577,'131002','Conector con barrera 2 awg 15kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10578,'552096','TERMINAL DE COMPRESIÓN BIMETALICO PLETINA PARA BT 1/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10579,'704162','CONECTOR COMPRESION B.T. 1/0-#2 / 1/0-#2 AL',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10580,'329462','CONECTOR COMPRESION NEUTRO 1/0 AL A 1/0CU',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10583,'329412','Conector tipo C 1/0 a 1/0 Al',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10584,'329442','Conector compresión para fase 6Al a 8Cu',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10585,'329456','Conector compresión neutro 6Al a 8Cu',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10589,'329454','Conector compresión neutro 6Al a 6Cu',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10590,'329411','Conector Forma C para conductor 1/0Al a 6Cu',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10592,'329449','Conector compresión para fase 2Al a 2Cu',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10593,'329453','Conector compresión neutro 6Al a 10Cu',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10594,'329460','Conector compresión neutro 2Al a 2Cu',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10595,'329410','Conector forma 6 cond 1/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10597,'329443','Conector compresión para fase 6Al a 10Cu',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10599,'317960','ML. TRITUBO DE PLÁSTICO 3 x 40 mm DIÁMETRO ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10602,'416496','CAJA DE DERIVACIÓN SUBTERRANEA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10605,'552239','SOPORTE AUTOVALVULA Y BOTELLA TERMINAL EN CRUCETA ANGULAR',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10607,'553434','PROTECCIÓN ABIERTA PASO AÉREO SUBTERRANEO 120 mm',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10608,'553435','CODO PARA PASO AEREO SUBTERANEO 120 mm',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10610,'532558','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 15 KV 500 MCM ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10612,'683326','ABRAZADERA PARA BOTELLA TERMINAL',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10620,'553433','PROTECCIÓN ABIERTA PASO AEREO SUBTERRANEO 90 MM',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10622,'553436','CODO PASO AEREO SUBTERRANEO 90 MM',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10623,'532554','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 15 KV 4/0 AWG. ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10636,'715697','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 15 KV 750 MCM ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10650,'532551','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 15 KV 1/0 AWG. ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10665,'532560','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 35 KV 500 MCM ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10677,'532557','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 35 KV 4/0 AWG. ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10693,'532553','TERMINACIÓN DE EXTERIOR CONTRÁCTIL EN FRÍO DE 35 KV 1/0 AWG. ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10783,'437654','TORNILLO ACERO GALVANIZADO C.T. 5/8\" X 1-3/4\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10785,'440944','ARANDELA PLAN REDONDA 5/8\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10908,'532326','ML. CONDUCTOR AISLADO XLPE 1/0 AWG 600 V',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10912,'532317','ML. CONDUCTOR AISLADO 1/0 AWG 15 KV NEUTRO COMPLETO',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10913,'532315','ML. CONDUCTOR AISLADO 4/0 AWG 15 KV NEUTRO 1/3 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10914,'532314','ML. CONDUCTOR AISLADO 500 MCM 15 KV NEUTRO 1/3 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10915,'715694','ML. CONDUCTOR AISLADO 750 MCM 15 KV NEUTRO 1/3 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10916,'532323','ML. CONDUCTOR AISLADO 1/0 AWG 35 KV NEUTRO COMPLETO ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10917,'532321','ML. CONDUCTOR AISLADO 500 MCM 35 KV NEUTRO 1/3 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10919,'532322','ML. CONDUCTOR AISLADO 4/0 AWG 35 KV NEUTRO 1/3 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10922,'416387','CONDUCTOR AISLADP 5KV 4/ AWG PANTALLA METALICA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10924,'532327','ML. CONDUCTOR AISLADO XLPE #2 AWG 600 V ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10929,'553689','TRANSFORMADOR TRIF. PADMOUNTED E/S 13,2 kV 750 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10930,'529932','TRANSFORMADOR MONOF. PADMOUNTED 13,2 kV 50 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10931,'529933','TRANSFORMADOR MONOF. PADMOUNTED 13,2 kV 100  kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10932,'529934','TRANSFORMADOR MONOF. PADMOUNTED 13,2 kV 167  kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10933,'529939','TRANSFORMADOR MONOF. PADMOUNTED 34,5 kV 100  kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10934,'529940','TRANSFORMADOR MONOF. PADMOUNTED 34,5 kV 167  kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10935,'553687','TRANSFORMADOR TRIF. PADMOUNTED E/S 13,2 kV 300 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10936,'529938','TRANSFORMADOR MONOF. PADMOUNTED 34,5 kV 50 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10937,'553688','TRANSFORMADOR TRIF. PADMOUNTED E/S 13,2 kV 500 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10938,'553686','TRANSFORMADOR TRIF. PADMOUNTED E/S 13,2 kV 150 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10939,'553694','TRANSFORMADOR TRIF. PADMOUNTED E/S 34,5 kV 150 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10940,'553695','TRANSFORMADOR TRIF. PADMOUNTED E/S 34,5 kV 300 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10941,'553696','TRANSFORMADOR TRIF. PADMOUNTED E/S 34,5 kV 500 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10942,'553697','TRANSFORMADOR TRIF. PADMOUNTED E/S 34,5 kV 750 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10943,'552288','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 13,2 kV 150 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10944,'531116','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 13,2 kV 300 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10945,'531117','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 13,2 kV 500 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10946,'531118','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 13,2 kV 750 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10947,'552290','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 34,5 kV 150 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10948,'531122','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 34,5 kV 300 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10949,'913712','TRANSFORMADOR TRIF. PADMOUNTED F/L 150KVA 12kVDELTA  208/120 V Y ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10950,'416940','TRANSFORMADOR TRIF. PADMOUNTED F/L 750KVA 12kVDELTA  480/277V Y ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10951,'913711','TRANSFORMADOR MONOF. PADMOUNTED 12 kV 500  kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10952,'330418','TRANSFORMADOR MONOF. PADMOUNTED 12 kV 100  kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10953,'330427','TRANSFORMADOR TRIF. PADMOUNTED F/L 500KVA 12kVDELTA  208/120 V Y ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10954,'330426','TRANSFORMADOR TRIF. PADMOUNTED F/L 300KVA 12kVDELTA  208/120 V Y ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10955,'531123','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 34,5 kV 500 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10956,'531124','TRANSFORMADOR TRIF. PADMOUNTED FIN DE LÍNEA 34,5 kV 750 kVA',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10958,'415883','CONECTOR PLATINA 4 HUECOS A 3 CABLES 500 CU/AL',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10959,'330432','Transformador gab.500 KVA 13.2kV 208/120V E1',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10960,'333325','Transformador gabinete 300kva 3f del 208y/120 ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10961,'330413','Trafo gabinete 300kva 13.2 kv delta 120/240 delta',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10962,'331311','CONEC PLATINA ALUM 4 HUECOS A 4 CABLES 500 AL/CU',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10963,'330433','Transformador gab.750 KVA 13.2kV 208/120V E1',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10966,'685943','CENTRO SEC. TRIF. PADMOUNTED SIMPLE (3L1) 15 kV 600/200A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10967,'685946','CENTRO SEC. TRIF. PADMOUNTED (3L3) 15 kV 600 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10968,'685951','CENTRO SEC. TRIF. PADMOUNTED (4L4) 35 kV 600 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10969,'685945','CENTRO SEC. TRIF. PADMOUNTED SIMPLE (3L1) 35 kV 600/200A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10970,'685948','CENTRO SEC. TRIF. PADMOUNTED (3L3) 35 kV 600 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10971,'685949','CENTRO SEC. TRIF. PADMOUNTED (4L4) 15 kV 600 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10972,'683824','CENTRO SEC. TRIF.  (3L3) CON CASETA PREF. HORMIGON 35 KV 400 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10973,'683827','CENTRO SEC. TRIF.  (4L4) CON CASETA PREF. HORMIGON 35 KV 400 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10974,'683822','CENTRO SEC. TRIF.  (3L3) CON CASETA PREF. HORMIGON 15 KV 630 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10975,'683825','CENTRO SEC. TRIF.  (4L4) CON CASETA PREF. HORMIGON 15 KV 630 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10986,'532610','TERMINAL ACODADO ENCHUFABLE EN CARGA 1/0 AWG 35 KV 200 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10987,'532570','TERMINAL ACODADO ENCHUFABLE EN CARGA 1/0 AWG 15 KV 200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10988,'532571','TERMINAL ACODADO ENCHUFABLE EN CARGA 4/0 AWG 15 KV 200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10989,'532574','BORNA INSER. PARA TERMINAL ENCHU. EN CARGA EN 15 KV 200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10990,'552304','BORNA PARKING DOBLE INSERT. TERM. ENCHUF. EN CARGA 15 KV 200 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10991,'552307','BORNA PARKING DE PAT. PARA TERM. ENCHUF. EN CARGA 15 KV 200 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10992,'532572','BORNA INSER. DOBLE PARA TER. ENCHU. EN CARGA 15 KV 200 A.',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10993,'532573','TAPÓN DE CIERRE AISLANTE EN 15 KV 200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10994,'552299','BORNA PARKING INSERT. PARA TERM. ENCHUF. EN CARGA 15 KV 200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10995,'532575','BARRA TRES BORNAS ENCHUFABLES EN CARGA EN 15 KV 200 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10996,'532611','TERMINAL ACODADO ENCHUFABLE EN CARGA 4/0 AWG 35 KV 200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10997,'532706','BORNA INSER. PARA TERMINAL ENCHU. EN CARGA EN 35 KV 200 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10998,'552301','BORNA PARKING INSERT. PARA TERM. ENCHUF. EN CARGA 35 KV 200 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (10999,'552306','BORNA PARKING DOBLE INSERT. TERM. ENCHUF. EN CARGA 35 KV 200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11000,'532612','BORNA INSER. DOBLE PARA TER. ENCHU. EN CARGA 35 KV 200 A.',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11001,'552309','BORNA PARKING DE PAT. PARA TERM. ENCHUF. EN CARGA 35 KV 200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11002,'532707','BARRA TRES BORNAS ENCHUFABLES EN CARGA EN 35 KV 200 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11003,'532671','TAPÓN DE CIERRE AISLANTE EN 35 KV 200 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11004,'532720','TERMINAL ATORNILLABLE EN T SIN CARGA 4/0 AWG 15 Y 25 KV 600 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11005,'532721','TERMINAL ATORNILLABLE EN T SIN CARGA 500 MCM 15 Y 25 KV 600 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11006,'532718','BORNA DE REDUCCIÓN EN 15 KV 600-200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11007,'552292','TERMINAL ATORN. EN T S/C CON REDUCTOR 600/200 A PARA 500 15 KV ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11008,'552302','BORNA PARKING INSERT. PARA TERM. ATORNILL. EN 15 Y 25 KV 600 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11009,'552310','BORNA PARKING DE PAT. TERM. ATORNILL. 15 Y 25 KV 600 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11010,'532705','BORNA DE REDUCCIÓN EN 35 KV 600-200 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11011,'532719','BARRA TRES BORNAS ATORNILLABLES SIN CARGA EN 15 Y 25 KV 600 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11012,'552291','TERMINAL ATORN. EN T S/C CON REDUCTOR 600/200 A PARA 4/0 15 KV ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11013,'532717','BORNA DE UNION EN 15KV PARA TER. ATOR. EN T 600 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11014,'552297','TAPÓN DE CIERRE AISLANTE EN 15 Y 25 KV 600 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11015,'532728','TERMINAL ATORNILLABLE EN T SIN CARGA 4/0 AWG 35 KV 600 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11016,'552303','BORNA PARKING INSERT. PARA TERM. ATORNILL. EN 35 KV 600 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11017,'552311','BORNA PARKING DE PAT. PARA TERM. ATORNILL. 35 KV 600 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11018,'532729','TERMINAL ATORNILLABLE EN T SIN CARGA 500 MCM 35 KV 600 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11019,'552295','TERMINAL ATORN. EN T S/C CON REDUCTOR 600/200 A PARA 4/0 35 KV ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11020,'552296','TERMINAL ATORN. EN T S/C CON REDUCTOR 600/200 A PARA 500 35 KV ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11021,'715696','TERMINAL ATORNILLABLE EN T S/C CON REDUCTOR  600/200 A PARA 750 MCM 15 KV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11022,'532731','BARRA TRES BORNAS ATORNILLABLES SIN CARGA EN 35 KV 600 A ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11023,'532730','BORNA DE UNIÓN EN 35 KV PARA TER. ATOR. EN T SIN CARGA 600 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11024,'552298','TAPÓN DE CIERRE AISLANTE EN 35KV 600 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11026,'715695','TERMINAL ATORNILLABLE EN T SIN CARGA 750 MCM 15 KV 600 A',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11030,'532663','EMPALME CONTRÁCTIL EN FRIO 15kV 1/0 AWG ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11034,'532665','EMPALME CONTRÁCTIL EN FRIO 15kV 4/0 AWG ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11035,'715699','EMPALME CONTRÁCTIL EN FRIO 15kV 750 MCM ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11036,'532668','EMPALME CONTRÁCTIL EN FRIO 15kV 500 MCM ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11037,'532667','EMPALME CONTRÁCTIL EN FRIO 35kV 4/0 AWG ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11038,'532670','EMPALME CONTRÁCTIL EN FRIO 35kV 500 MCM ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11039,'532664','EMPALME CONTRÁCTIL EN FRIO 35kV 1/0 AWG ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11040,'414257','Barra 4 vias 600 amp 15kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11041,'130635','Empalme premoldeado #500 AWG 15kV',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11042,'130663','Gancho para fijar codo',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11043,'130646','Codo rompecarga con punta de prueba 15kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11044,'414007','Barra 4 vias 200 amp 15kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11045,'416692','TERMINAL ROMPECARGA DE 200 A 5KV 4/0 AWG',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11046,'413271','Empalme contractil en frío subterráneo recto # 2 a 4/0',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11047,'413618','Adaptador conex. Tierra cable # 2 Pmet',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11049,'413294','Terminal contractil en frío polimérica # 2 a 4/0 xlp',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11050,'413615','Conector terminal Barra a cable # 2',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11058,'531537','CONECTOR CUÑA A PRESIÓN PICA DE P.T.-AWG #2 Cu ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11067,'551469','ML. CONDUCTOR AISLADO #4 COBRE ',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11070,'526668','CONECTOR COMPRESION #2-#2 CU',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11077,'329212','Puntal de madera tiro de 60\" caída de 18\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11078,'329218','Cruceta madera 5 pies',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11079,'329209','Cruceta de madera de 8 pies',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11083,'120610','Estribo para soporte de gancho',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11085,'413214','Brazo para mensajero 14 plg 15 kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11090,'413215','Brazo antimovimiento 14 plg',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11092,'331506','Brazo para mensajero 24 plg 35 kv',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11098,'331507','Brazo antimovimiento 24 plg',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11102,'437656','PERNO LARGO DE ACERO GALVANIZADO 3/4 X 3/4 X 7\"',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11108,'329919','Control fotoelectrico 250W 240 voltios',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11109,'329907','Foco alta presion de sodio 250W',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11110,'329945','Soporte para luminaria 1-1/4\" x 6 pies',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11111,'329897','Luminaria sodio 100 W tipo II 120voltios',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11112,'329920','Control fotoelectrico 100W 120voltios',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11113,'329908','Foco alta presion de sodio 100W',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11114,'329900','Luminaria sodio 250 W tipo II 240voltios',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11115,'330505','Alambre cobre #12 awg, TW, blanco',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11116,'330506','Alambre cobre #12 awg, TW, negro',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11117,'329414','Conector de alumbrado publico',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11119,'329946','Soporte para luminaria 1-1/4\" x 8 pies',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11121,'414098','Soporte para luminaria 1-1/4\" x 10 pies',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11134,'330504','Alambre cobre #12 awg, TW, rojo',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11170,'710185','CONECTOR PERFORACIÓN 1/0-#6 / #10-#14',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11178,'416448','Luminaria sodio 250 W tipo II 277 voltios',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11188,'329465','CONECTOR ALUMBRADO PUBLICO 4 ACSR A 14 CU',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11190,'414657','POSTE DECORATIVO DE 14 PIES PARA LUMINARIAS',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (11191,'414655','LUMINARIA DECORATIVA DE 100 WATT TIPO II',NULL,NULL,NULL,NULL,NULL);
+insert  into `item`(`itemId`,`reference`,`name`,`description`,`unitId`,`image`,`ownItem`,`minStock`) values (17498,'0014778','La de prueba con to','Mi descr',1,NULL,1,'14.00');
 
 /*Table structure for table `item_in` */
 
@@ -18393,14 +18469,17 @@ CREATE TABLE `item_in` (
   `dateIn` date DEFAULT NULL,
   `workerId` int(11) DEFAULT NULL,
   `comments` text,
+  `deliveryNote` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`itemInId`),
   KEY `ref_itemin_store` (`storeId`),
   KEY `ref_itemin_worker` (`workerId`),
   CONSTRAINT `ref_itemin_store` FOREIGN KEY (`storeId`) REFERENCES `store` (`storeId`),
   CONSTRAINT `ref_itemin_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `item_in` */
+
+insert  into `item_in`(`itemInId`,`storeId`,`dateIn`,`workerId`,`comments`,`deliveryNote`) values (1,1,'2016-09-15',13,NULL,'Z04665');
 
 /*Table structure for table `item_in_line` */
 
@@ -18416,9 +18495,13 @@ CREATE TABLE `item_in_line` (
   KEY `ref_iteminline_itemin` (`itemInId`),
   CONSTRAINT `ref_iteminline_item` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`),
   CONSTRAINT `ref_iteminline_itemin` FOREIGN KEY (`itemInId`) REFERENCES `item_in` (`itemInId`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `item_in_line` */
+
+insert  into `item_in_line`(`itemInLineId`,`itemInId`,`itemId`,`quantity`) values (1,1,120,'23.00');
+insert  into `item_in_line`(`itemInLineId`,`itemInId`,`itemId`,`quantity`) values (2,1,240,'140.00');
+insert  into `item_in_line`(`itemInLineId`,`itemInId`,`itemId`,`quantity`) values (3,1,234,'63.00');
 
 /*Table structure for table `item_out` */
 
@@ -18438,11 +18521,11 @@ CREATE TABLE `item_out` (
   CONSTRAINT `ref_itemout_pw` FOREIGN KEY (`pwId`) REFERENCES `pw` (`pwId`),
   CONSTRAINT `ref_itemout_store` FOREIGN KEY (`storeId`) REFERENCES `store` (`storeId`),
   CONSTRAINT `ref_itemout_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `item_out` */
 
-insert  into `item_out`(`itemOutId`,`storeId`,`pwId`,`dateOut`,`workerId`,`comments`) values (5,1,9,'2016-09-01',13,NULL);
+insert  into `item_out`(`itemOutId`,`storeId`,`pwId`,`dateOut`,`workerId`,`comments`) values (1,1,12,'2016-09-16',15,'A ver lo que sale');
 
 /*Table structure for table `item_out_line` */
 
@@ -18458,22 +18541,12 @@ CREATE TABLE `item_out_line` (
   KEY `ref_itemoutline_itemin` (`itemOutId`),
   CONSTRAINT `ref_itemoutline_item` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`),
   CONSTRAINT `ref_itemoutline_itemin` FOREIGN KEY (`itemOutId`) REFERENCES `item_out` (`itemOutId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `item_out_line` */
 
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (61,5,242,'20.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (62,5,229,'10.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (63,5,227,'20.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (64,5,228,'30.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (65,5,236,'10.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (66,5,244,'10.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (67,5,232,'10.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (68,5,234,'20.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (69,5,247,'10.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (70,5,226,'10.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (71,5,237,'10.00');
-insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (72,5,240,'20.00');
+insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (1,1,240,'8.00');
+insert  into `item_out_line`(`itemOutLineId`,`itemOutId`,`itemId`,`quantity`) values (2,1,120,'6.00');
 
 /*Table structure for table `item_stock` */
 
@@ -18485,6 +18558,7 @@ CREATE TABLE `item_stock` (
   `itemId` int(11) DEFAULT NULL,
   `stock` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`itemStockId`),
+  UNIQUE KEY `idx_stock_store_item` (`storeId`,`itemId`),
   KEY `ref_stock_store` (`storeId`),
   KEY `ref_stock_item` (`itemId`),
   CONSTRAINT `ref_stock_item` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`),
@@ -18523,6 +18597,7 @@ CREATE TABLE `pw` (
   `payDate` date DEFAULT NULL,
   `payInCharge` int(11) DEFAULT NULL,
   `payRef` varchar(255) DEFAULT NULL,
+  `zoneId` int(11) DEFAULT NULL,
   PRIMARY KEY (`pwId`),
   KEY `ref_pw_worker` (`initInCharge`),
   KEY `ref_pw_company` (`companyId`),
@@ -18532,6 +18607,7 @@ CREATE TABLE `pw` (
   KEY `ref_pw_inv` (`invInCharge`),
   KEY `ref_pw_pay` (`payInCharge`),
   KEY `ref_pw_cer` (`cerInCharge`),
+  KEY `ref_pw_zone` (`zoneId`),
   CONSTRAINT `ref_pw_acep` FOREIGN KEY (`acepInCharge`) REFERENCES `worker` (`workerId`),
   CONSTRAINT `ref_pw_cer` FOREIGN KEY (`cerInCharge`) REFERENCES `worker` (`workerId`),
   CONSTRAINT `ref_pw_company` FOREIGN KEY (`companyId`) REFERENCES `company` (`companyId`),
@@ -18539,12 +18615,14 @@ CREATE TABLE `pw` (
   CONSTRAINT `ref_pw_inv` FOREIGN KEY (`invInCharge`) REFERENCES `worker` (`workerId`),
   CONSTRAINT `ref_pw_pay` FOREIGN KEY (`payInCharge`) REFERENCES `worker` (`workerId`),
   CONSTRAINT `ref_pw_status` FOREIGN KEY (`statusId`) REFERENCES `status` (`statusId`),
-  CONSTRAINT `ref_pw_worker` FOREIGN KEY (`initInCharge`) REFERENCES `worker` (`workerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  CONSTRAINT `ref_pw_worker` FOREIGN KEY (`initInCharge`) REFERENCES `worker` (`workerId`),
+  CONSTRAINT `ref_pw_zone` FOREIGN KEY (`zoneId`) REFERENCES `zone` (`zoneId`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 /*Data for the table `pw` */
 
-insert  into `pw`(`pwId`,`statusId`,`reference`,`name`,`description`,`initDate`,`initInCharge`,`companyId`,`defaultK`,`total`,`acepDate`,`acepInCharge`,`acepRef`,`finDate`,`finInCharge`,`finRef`,`cerDate`,`cerInCharge`,`cerRef`,`invDate`,`invInCharge`,`invRef`,`payDate`,`payInCharge`,`payRef`) values (9,0,'45578','Prueba para salidas',NULL,'2016-09-20',13,1,'1.00','372.50',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `pw`(`pwId`,`statusId`,`reference`,`name`,`description`,`initDate`,`initInCharge`,`companyId`,`defaultK`,`total`,`acepDate`,`acepInCharge`,`acepRef`,`finDate`,`finInCharge`,`finRef`,`cerDate`,`cerInCharge`,`cerRef`,`invDate`,`invInCharge`,`invRef`,`payDate`,`payInCharge`,`payRef`,`zoneId`) values (12,1,'RFGDL-89669966','Tendido de postes en Z1','Se trata de un tendido de postes a lo largo de una linea de referencia de tipo general','2016-09-01',17,1,'1.00','20069.98','2016-09-14',17,'WS',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1);
+insert  into `pw`(`pwId`,`statusId`,`reference`,`name`,`description`,`initDate`,`initInCharge`,`companyId`,`defaultK`,`total`,`acepDate`,`acepInCharge`,`acepRef`,`finDate`,`finInCharge`,`finRef`,`cerDate`,`cerInCharge`,`cerRef`,`invDate`,`invInCharge`,`invRef`,`payDate`,`payInCharge`,`payRef`,`zoneId`) values (13,0,'ASW','La segunda propuesta','Esta es la segunda','2016-09-08',17,1,'1.00','14040.95',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `pw_line` */
 
@@ -18565,11 +18643,32 @@ CREATE TABLE `pw_line` (
   KEY `ref_pwline_pw` (`pwId`),
   CONSTRAINT `ref_pwline_cunit` FOREIGN KEY (`cunitId`) REFERENCES `cunit` (`cunitId`),
   CONSTRAINT `ref_pwline_pw` FOREIGN KEY (`pwId`) REFERENCES `pw` (`pwId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 /*Data for the table `pw_line` */
 
-insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`,`comments`) values (16,9,NULL,271,'37.25','10.00','1.00','372.50',NULL);
+insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`,`comments`) values (19,12,1,153,'102.41','120.00','1.00','12289.20',NULL);
+insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`,`comments`) values (20,12,2,183,'133.06','45.00','1.00','5987.70',NULL);
+insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`,`comments`) values (21,12,3,203,'77.96','23.00','1.00','1793.08',NULL);
+insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`,`comments`) values (22,13,1,153,'102.41','15.00','1.00','1536.15',NULL);
+insert  into `pw_line`(`pwLineId`,`pwId`,`line`,`cunitId`,`cost`,`quantity`,`k`,`amount`,`comments`) values (23,13,2,207,'223.30','56.00','1.00','12504.80',NULL);
+
+/*Table structure for table `pw_worker` */
+
+DROP TABLE IF EXISTS `pw_worker`;
+
+CREATE TABLE `pw_worker` (
+  `pwWorkerId` int(11) NOT NULL AUTO_INCREMENT,
+  `pwId` int(11) DEFAULT NULL,
+  `workerId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`pwWorkerId`),
+  KEY `ref_pww_pw` (`pwId`),
+  KEY `ref_pww_worker` (`workerId`),
+  CONSTRAINT `ref_pww_pw` FOREIGN KEY (`pwId`) REFERENCES `pw` (`pwId`) ON DELETE CASCADE,
+  CONSTRAINT `ref_pww_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`) ON DELETE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `pw_worker` */
 
 /*Table structure for table `status` */
 
@@ -18674,11 +18773,13 @@ CREATE TABLE `wo` (
   CONSTRAINT `ref_wo_closure` FOREIGN KEY (`closureId`) REFERENCES `closure` (`closureId`),
   CONSTRAINT `ref_wo_pw` FOREIGN KEY (`pwId`) REFERENCES `pw` (`pwId`),
   CONSTRAINT `ref_wo_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wo` */
 
-insert  into `wo`(`woId`,`initDate`,`endDate`,`workerId`,`pwId`,`comments`,`closureId`) values (11,'2016-09-01','2016-09-30',13,9,NULL,NULL);
+insert  into `wo`(`woId`,`initDate`,`endDate`,`workerId`,`pwId`,`comments`,`closureId`) values (18,'2016-09-01','2016-09-08',13,12,NULL,NULL);
+insert  into `wo`(`woId`,`initDate`,`endDate`,`workerId`,`pwId`,`comments`,`closureId`) values (23,'2016-09-01','2016-09-14',15,12,NULL,NULL);
+insert  into `wo`(`woId`,`initDate`,`endDate`,`workerId`,`pwId`,`comments`,`closureId`) values (24,'2016-09-01','2016-09-15',14,12,NULL,NULL);
 
 /*Table structure for table `wo_line` */
 
@@ -18696,11 +18797,38 @@ CREATE TABLE `wo_line` (
   KEY `ref_wol_cunit` (`cunitId`),
   CONSTRAINT `ref_wol_cunit` FOREIGN KEY (`cunitId`) REFERENCES `cunit` (`cunitId`),
   CONSTRAINT `ref_wol_wo` FOREIGN KEY (`woId`) REFERENCES `wo` (`woId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wo_line` */
 
-insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (17,11,271,'10.00','0.00','3.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (27,18,153,'120.00','0.00','10.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (28,18,183,'45.00','0.00','6.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (29,18,203,'23.00','0.00','11.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (45,23,153,'120.00','10.00','4.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (46,23,183,'45.00','6.00','3.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (47,23,203,'23.00','11.00','5.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (48,24,153,'120.00','14.00','0.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (49,24,183,'45.00','9.00','0.00');
+insert  into `wo_line`(`woLineId`,`woId`,`cunitId`,`estimate`,`done`,`quantity`) values (50,24,203,'23.00','16.00','0.00');
+
+/*Table structure for table `wo_worker` */
+
+DROP TABLE IF EXISTS `wo_worker`;
+
+CREATE TABLE `wo_worker` (
+  `woWorkerId` int(11) NOT NULL AUTO_INCREMENT,
+  `woId` int(11) DEFAULT NULL,
+  `workerId` int(11) DEFAULT NULL,
+  `quantity` decimal(5,2) DEFAULT '0.00',
+  `cost` decimal(10,2) DEFAULT '0.00',
+  PRIMARY KEY (`woWorkerId`),
+  KEY `ref_wow_wo` (`woId`),
+  KEY `ref_wow_worker` (`workerId`),
+  CONSTRAINT `ref_wow_wo` FOREIGN KEY (`woId`) REFERENCES `wo` (`woId`) ON DELETE CASCADE,
+  CONSTRAINT `ref_wow_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`) ON DELETE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `wo_worker` */
 
 /*Table structure for table `worker` */
 
@@ -18721,6 +18849,7 @@ CREATE TABLE `worker` (
   `code` int(11) DEFAULT NULL,
   `position` varchar(255) DEFAULT NULL,
   `department` varchar(255) DEFAULT NULL,
+  `bloodType` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`workerId`),
   KEY `ref_user` (`userId`),
   CONSTRAINT `ref_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`)
@@ -18728,209 +18857,223 @@ CREATE TABLE `worker` (
 
 /*Data for the table `worker` */
 
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (11,'Juan Mer','4555','Calle Uruguay N.11 Oficina 101','46007','Valencia','Valencia','VAlencia',NULL,'668999','rafa@myariadna.com',33,'Cargo','Departa');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (12,'name',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'position','department');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (13,'CASTREJON, TOMAS                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,'ALMACENISTA','ADMINISTRACION CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (14,'AGUILAR, VALENTINA                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,7,'ASISTENTE DE ALMACEN','ADMINISTRACION CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (15,'DE LEON, DAYAN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,236,'AYUDANTE GENERAL','ADMINISTRACION CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (16,'MORAN, HERMOGENES                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,265,'AYUDANTE GENERAL','ADMINISTRACION CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (17,'RODRIGUEZ, SIMON                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,32,'CAPATAZ','ADMINISTRACION CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (18,'HERNANDEZ, DORIS                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,162,'OFICINISTA ADMINISTRATIVA','ADMINISTRACION CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (19,'SALAZAR, KATHERINE                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,354,'TPR','ADMINISTRACION CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (20,'TREJOS, HADAMEIBYS                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,363,'OFICINISTA ADMINISTRATIVA','ADMINISTRACION CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (21,'CASTRO, FELICIA                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,168,'SUPERVISOR','ADMINISTRACION CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (22,'ZAPATA, EVELYN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,140,'ASISTENTE DE ALMACEN','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (23,'MOJICA, ROSA                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,59,'ASISTENTE DE CONTABILIDAD','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (24,'KUCHLER, CECILIA                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,213,'ASISTENTE DE CONTABILIDAD','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (25,'GUTIERREZ, YASMINA                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,319,'ASISTENTE TECNICO','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (26,'SANTAMARIA, EVELYN                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,164,'ENCARGADA DE COSTOS','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (27,'PALACIOS, ARMANDO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,56,'ENCARGADO','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (28,'SAGEL, GASPAR                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,254,'ENCARGADO DE PROYETOS','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (29,'CASTRO, OSVALDO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,54,'GERENTE DE OPERACIONES','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (30,'HOLDELN, WILLIAM                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,63,'GERENTE FINANCIERO','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (31,'PITTI, YESSICA                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,221,'OFICINISTA ADMINISTRATIVA','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (32,'JUSTAVINO, CARMEN                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,62,'RESPONSABLE DE ADMINISTRACION','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (33,'CASTILLO, JOSEPH                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,163,'TPR','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (34,'OROCU, CARLOS                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,47,'MANTENIMIENTO','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (35,'CABALLERO, HIGINIO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,336,'ASISTENTE DE ALMACEN','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (36,'BEITIA, YAISETH                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,356,'ASISTENTE DE CONTABILIDAD','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (37,'ANGUIZOLA, MEYLIN                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,365,'TPR','ADMINISTRACION DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (38,'ORTIZ, ALVARO                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,20,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (39,'TORRES, EDUARDO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,21,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (40,'LOPEZ, LUIS                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,27,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (41,'ARROCHA, LUIS                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,158,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (42,'VANEGA, ARQUIMEDES                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,167,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (43,'MORAN, MARLON                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,171,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (44,'ARROCHA, JUNIER                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,216,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (45,'FRANCO, EUFRASINO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,225,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (46,'ARROCHA, KEVIN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,227,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (47,'MARCUCCI, PAULINO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,232,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (48,'FRANCO, ARMI                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,243,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (49,'URRIOLA, RODOLFO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,244,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (50,'OSES, RICHARD                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,245,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (51,'ARCIA, BELISARIO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,247,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (52,'GUEVARA, JOSE                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,248,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (53,'VARGAS, JORGE                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,256,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (54,'SIANCA, SALUSTIANO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,267,'AYUDANTE GENERAL','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (55,'GODOY, ARIEL                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,43,'CAPATAZ','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (56,'ORTEGA, DIDIEL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,211,'CAPATAZ','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (57,'GONZALEZ, AMABLE                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,257,'CAPATAZ','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (58,'GALIALE, EDILBERTO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,194,'CONDUCTOR','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (59,'RIOS, JOSE                         ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9,'ENCARGADO','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (60,'FLORES, JUAN                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,17,'LINIERO ELECTRICO','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (61,'CARRION, JOSE                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,23,'LINIERO ELECTRICO','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (62,'ADAMES, JORGE                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,26,'LINIERO ELECTRICO','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (63,'SANCHEZ, MANUEL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,91,'LINIERO ELECTRICO','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (64,'ARCIA, MANUEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,161,'LINIERO ELECTRICO','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (65,'GONZALEZ, MIGUEL                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,242,'LINIERO ELECTRICO','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (66,'RODRIGUEZ, OSLEY                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,24,'LINIERO EN TENSION','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (67,'MOLINA, FABIO                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,25,'LINIERO EN TENSION','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (68,'CHIARI, RICARDO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,169,'LINIERO EN TENSION','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (69,'CRUZ, CIRILO                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,234,'LINIERO EN TENSION','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (70,'OJO, DEYVIS                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,46,'MECANICO','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (71,'APARICIO, HECTOR                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,146,'OPERADOR DE GRUA','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (72,'BATISTA, ANIBAL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,226,'OPERADOR DE GRUA','DESARROLLO CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (73,'TREJOS, JOSE                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,238,'ALMACENISTA','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (74,'GUTIERREZ, JOSE                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,55,'AYUDANTE GENERAL','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (75,'MARIN, RODERICK                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,58,'AYUDANTE GENERAL','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (76,'ATENCIO, MANUEL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,60,'AYUDANTE GENERAL','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (77,'GONZALEZ, FELIX                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,90,'AYUDANTE GENERAL','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (78,'CASASOLA, DONNY                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,65,'CAPATAZ','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (79,'SANTIAGO, OMAR                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,68,'CAPATAZ','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (80,'CABALLERO, ALBERTO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,219,'CONDUCTOR','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (81,'CONTRERAS, NESTOR                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,78,'ELECTRICISTA','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (82,'CHAVEZ, JOHN                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,61,'LINIERO ELECTRICO','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (83,'GONZALEZ, MARVIN                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,64,'LINIERO ELECTRICO','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (84,'CONCEPCION, EDWARD                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,67,'LINIERO ELECTRICO','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (85,'SALDA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,66,'LINIERO EN TENSION','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (86,'HERNANDEZ, ANGEL                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,145,'LINIERO EN TENSION','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (87,'RUBIO, SANTIAGO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,170,'LINIERO EN TENSION','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (88,'PIMENTEL, RAUL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,53,'MECANICO','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (89,'BOLA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,69,'OPERADOR DE GRUA','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (90,'GOMEZ, ELVIS                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,75,'OPERADOR DE GRUA','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (91,'MONTES, MAYKOL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,144,'OPERADOR DE GRUA','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (92,'FUENTES, RODOLFO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,266,'OPERADOR DE GRUA','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (93,'MIRANDA, ONESIMO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,349,'OPERADOR DE GRUA','DESARROLLO DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (94,'BATISTA, OCTAVIO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,202,'ASISTENTE TECNICO','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (95,'MONTENEGRO, DANIEL                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,222,'AYUDANTE GENERAL','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (96,'INDUNI, CESAR                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,192,'CAPATAZ','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (97,'GONZALEZ, ERIK                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,174,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (98,'REYES, MANUEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,175,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (99,'SANCHEZ, RONIS                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,177,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (100,'DE LEON, JEAN                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,179,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (101,'CARVAJAL, JUAN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,180,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (102,'GONZALEZ, SERGIO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,181,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (103,'GONZALEZ, FRANCISCO                ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,184,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (104,'MONTENEGRO, ALBERTH                ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,185,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (105,'CORDOBA, APARICIO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,186,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (106,'NU',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,188,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (107,'MORENO, MELQUIADES                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,190,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (108,'BERNAL, ABELARDO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,191,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (109,'MONTENEGRO, NEHEMIAS               ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,195,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (110,'MARTINEZ, HERNAN                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,196,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (111,'DE LEON, JOSE                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,197,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (112,'PEREZ, JHONNY                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,198,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (113,'SALDA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,199,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (114,'CALDERON, AGUSTIN                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,200,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (115,'LOPEZ, SAMUEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,201,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (116,'BATISTA, LUIS                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,203,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (117,'HERNANDEZ, MARLON                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,204,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (118,'RODRIGUEZ, LEOPOLDO                ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,205,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (119,'RODRIGUEZ, YOVANY                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,206,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (120,'CASTILLO, LUIS                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,207,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (121,'CORTES, JERMAINE                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,208,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (122,'ARROYO, YONY                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,210,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (123,'GUDI',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,212,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (124,'VARELA, ARMANDO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,215,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (125,'DE LEON, ROBERTO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,217,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (126,'CIANCA, LUIS                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,235,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (127,'MARTINEZ, PRAXCEDEZ                ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,268,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (128,'MEDINA, JESUS                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,311,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (129,'BARRAGAN, JUSTO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,321,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (130,'DEAGO, IRMA                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,189,'OFICINISTA ADMINISTRATIVA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (131,'VILLARREAL, ISAIAS                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,233,'OPERADOR DE GRUA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (132,'GOMEZ, FELIX                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,359,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (133,'NAVARRO, MARCOS                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,360,'CONDUCTOR','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (134,'MORENO, ARIEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,361,'ELECTRICISTA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (135,'RUIZ, RODRIGO                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,362,'OPERADOR DE GRUA','MEDIDORES CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (136,'RODRIGUEZ, ARNALDO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,269,'CONDUCTOR','MEDIDORES CENTRALES ');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (137,'RODRIGUEZ, KARINA                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,114,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (138,'MOJICA, SAMUEL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,48,'AYUDANTE GENERAL','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (139,'MONTEZUMA, RODRIGO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,249,'AYUDANTE GENERAL','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (140,'ROVIRA, AZAEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,77,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (141,'GONZALEZ, GABINO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,108,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (142,'ARAUZ, ERICK                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,109,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (143,'NAVARRO, ERIC                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,112,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (144,'URIBE, JOSE                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,113,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (145,'CABALLERO, GENARO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,115,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (146,'NU',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,117,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (147,'GUERRA, YELSIN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,118,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (148,'JARA, JAIRO                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,121,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (149,'CAPARROSO, JOSE                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,122,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (150,'FULLER, BENIGNO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,124,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (151,'SANCHEZ, MARCELINO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,125,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (152,'ATENCIO, RORI                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,126,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (153,'ORTIZ, RICARDO                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,136,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (154,'AVILA, GILBERTO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,137,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (155,'MONTENEGRO, ABEL                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,141,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (156,'ROSAS, HELMOND                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,142,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (157,'ESPINOZA, JOHANA                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,152,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (158,'MEDINA, JOSE                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,153,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (159,'GONZALEZ, POMPILIO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,241,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (160,'LESCURE, YIBELIS                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,308,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (161,'BEITIA, KEVIN                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,320,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (162,'MONTES, RODERICK                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,80,'ENCARGADO','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (163,'QUINTERO, NORMAN                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,123,'OPERADOR DE GRUA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (164,'TAPIA, XAVIER                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,337,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (165,'MONTENEGRO, JULIAN                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,352,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (166,'ARAUZ, JOSUE                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,353,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (167,'SALDA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,364,'ELECTRICISTA','MEDIDORES DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (168,'RUIZ, RICARDO                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,358,'AYUDANTE GENERAL','OER  DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (169,'MACIAS, JOSE                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,228,'PERFORADORES','OER CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (170,'MACIAS, MANUEL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,229,'PERFORADORES','OER CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (171,'PALMA, JOSE                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,230,'PERFORADORES','OER CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (172,'VICTORIA, EDGARDO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,231,'PERFORADORES','OER CENTRALES');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (173,'DEL LA CRUZ, ALVIN                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,338,'LINIERO ELECTRICO','OER CHORRERA');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (174,'MURILLO, GUILLERMO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,339,'LINIERO ELECTRICO','OER CHORRERA');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (175,'VALDERRAMA, ISAI                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,341,'LINIERO ELECTRICO','OER CHORRERA');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (176,'FRIAS, ELIAS                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,342,'LINIERO ELECTRICO','OER CHORRERA');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (177,'SANTANA, GEORGE                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,343,'LINIERO EN TENSION','OER CHORRERA');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (178,'CAMARGO, MIGUEL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,345,'LINIERO EN TENSION','OER CHORRERA');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (179,'SEGUNDO, ISMAEL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,346,'LINIERO EN TENSION','OER CHORRERA');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (180,'GRACIA, YENISBEL                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,347,'SUPERVISOR','OER CHORRERA');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (181,'BERNAL, LORENZO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,351,'CAPATAZ','OER CHORRERA');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (182,'CAMARENA, GISSELL                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,224,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (183,'SANTAMARIA, DEIKER                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,264,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (184,'CASTRELLON, ALBIN                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,322,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (185,'ZARATE, HECTOR                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,250,'LINIERO ELECTRICO','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (186,'BOZZI, JOSE                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,251,'LINIERO ELECTRICO','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (187,'POLANCO, MARCELINO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,252,'LINIERO ELECTRICO','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (188,'BODAN, ALFONSO                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,253,'LINIERO ELECTRICO','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (189,'QUINTERO, SAMUEL                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,83,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (190,'VEGA, ISRAEL                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,94,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (191,'BIRMINGHAN, JOSE                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,104,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (192,'PRADO, ROBINSON                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,239,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (193,'LIZONDRO, EDISON                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,262,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (194,'CASTILLO, LUIS                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,312,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (195,'GONZALEZ, JEAN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,313,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (196,'VIQUEZ, ABDIEL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,323,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (197,'ROBINSON, MAXWELL                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,120,'ELECTRICISTA','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (198,'TORREZ, JORGE   H                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,73,'ENCARGADO','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (199,'GONZALEZ, KEVIN                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,107,'LINIERO ELECTRICO','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (200,'ORTEGA, YORLINIS                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,255,'LINIERO ELECTRICO','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (201,'ESPINOZA, JOSE                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,309,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (202,'FRANCECHIS, JOSE                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,148,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (203,'GANTES, ARIEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,173,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (204,'JURADO, JEAN                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,223,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (205,'PINEDA, GRABIEL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,160,'CONDUCTOR','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (206,'NASH, ROBERTO                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,128,'LINIERO ELECTRICO','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (207,'CERRACIN, ALVARO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,348,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (208,'LOPEZ, MANUEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,350,'CAPATAZ','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (209,'IBARRA, ROGER                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,355,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (210,'MARTINEZ, JAVIER                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,357,'AYUDANTE GENERAL','OER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (211,'GONZALEZ, JONNATHAN                ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,159,'AYUDANTE GENERAL','TALLER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (212,'MU',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,52,'SOLDADOR','TALLER DAVID');
-insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`) values (213,'ANGULO, CARLOS                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,240,'SOLDADOR','TALLER DAVID');
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (11,'Juan Mer','4555','Calle Uruguay N.11 Oficina 101','46007','Valencia','Valencia','VAlencia',NULL,'668999','rafa@myariadna.com',33,'Cargo','Departa',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (12,'name',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'position','department',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (13,'CASTREJON, TOMAS                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,'ALMACENISTA','ADMINISTRACION CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (14,'AGUILAR, VALENTINA                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,7,'ASISTENTE DE ALMACEN','ADMINISTRACION CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (15,'DE LEON, DAYAN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,236,'AYUDANTE GENERAL','ADMINISTRACION CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (16,'MORAN, HERMOGENES                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,265,'AYUDANTE GENERAL','ADMINISTRACION CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (17,'RODRIGUEZ, SIMON                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,32,'CAPATAZ','ADMINISTRACION CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (18,'HERNANDEZ, DORIS                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,162,'OFICINISTA ADMINISTRATIVA','ADMINISTRACION CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (19,'SALAZAR, KATHERINE                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,354,'TPR','ADMINISTRACION CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (20,'TREJOS, HADAMEIBYS                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,363,'OFICINISTA ADMINISTRATIVA','ADMINISTRACION CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (21,'CASTRO, FELICIA                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,168,'SUPERVISOR','ADMINISTRACION CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (22,'ZAPATA, EVELYN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,140,'ASISTENTE DE ALMACEN','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (23,'MOJICA, ROSA                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,59,'ASISTENTE DE CONTABILIDAD','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (24,'KUCHLER, CECILIA                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,213,'ASISTENTE DE CONTABILIDAD','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (25,'GUTIERREZ, YASMINA                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,319,'ASISTENTE TECNICO','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (26,'SANTAMARIA, EVELYN                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,164,'ENCARGADA DE COSTOS','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (27,'PALACIOS, ARMANDO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,56,'ENCARGADO','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (28,'SAGEL, GASPAR                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,254,'ENCARGADO DE PROYETOS','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (29,'CASTRO, OSVALDO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,54,'GERENTE DE OPERACIONES','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (30,'HOLDELN, WILLIAM                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,63,'GERENTE FINANCIERO','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (31,'PITTI, YESSICA                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,221,'OFICINISTA ADMINISTRATIVA','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (32,'JUSTAVINO, CARMEN                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,62,'RESPONSABLE DE ADMINISTRACION','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (33,'CASTILLO, JOSEPH                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,163,'TPR','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (34,'OROCU, CARLOS                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,47,'MANTENIMIENTO','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (35,'CABALLERO, HIGINIO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,336,'ASISTENTE DE ALMACEN','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (36,'BEITIA, YAISETH                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,356,'ASISTENTE DE CONTABILIDAD','ADMINISTRACION DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (37,'ANGUIZOLA, MEYLIN                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,365,'TPR','ADMINISTRACION DAVID','O+');
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (38,'ORTIZ, ALVARO                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,20,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (39,'TORRES, EDUARDO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,21,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (40,'LOPEZ, LUIS                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,27,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (41,'ARROCHA, LUIS                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,158,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (42,'VANEGA, ARQUIMEDES                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,167,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (43,'MORAN, MARLON                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,171,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (44,'ARROCHA, JUNIER                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,216,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (45,'FRANCO, EUFRASINO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,225,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (46,'ARROCHA, KEVIN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,227,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (47,'MARCUCCI, PAULINO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,232,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (48,'FRANCO, ARMI                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,243,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (49,'URRIOLA, RODOLFO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,244,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (50,'OSES, RICHARD                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,245,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (51,'ARCIA, BELISARIO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,247,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (52,'GUEVARA, JOSE                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,248,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (53,'VARGAS, JORGE                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,256,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (54,'SIANCA, SALUSTIANO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,267,'AYUDANTE GENERAL','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (55,'GODOY, ARIEL                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,43,'CAPATAZ','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (56,'ORTEGA, DIDIEL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,211,'CAPATAZ','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (57,'GONZALEZ, AMABLE                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,257,'CAPATAZ','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (58,'GALIALE, EDILBERTO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,194,'CONDUCTOR','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (59,'RIOS, JOSE                         ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9,'ENCARGADO','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (60,'FLORES, JUAN                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,17,'LINIERO ELECTRICO','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (61,'CARRION, JOSE                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,23,'LINIERO ELECTRICO','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (62,'ADAMES, JORGE                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,26,'LINIERO ELECTRICO','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (63,'SANCHEZ, MANUEL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,91,'LINIERO ELECTRICO','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (64,'ARCIA, MANUEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,161,'LINIERO ELECTRICO','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (65,'GONZALEZ, MIGUEL                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,242,'LINIERO ELECTRICO','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (66,'RODRIGUEZ, OSLEY                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,24,'LINIERO EN TENSION','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (67,'MOLINA, FABIO                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,25,'LINIERO EN TENSION','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (68,'CHIARI, RICARDO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,169,'LINIERO EN TENSION','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (69,'CRUZ, CIRILO                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,234,'LINIERO EN TENSION','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (70,'OJO, DEYVIS                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,46,'MECANICO','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (71,'APARICIO, HECTOR                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,146,'OPERADOR DE GRUA','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (72,'BATISTA, ANIBAL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,226,'OPERADOR DE GRUA','DESARROLLO CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (73,'TREJOS, JOSE                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,238,'ALMACENISTA','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (74,'GUTIERREZ, JOSE                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,55,'AYUDANTE GENERAL','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (75,'MARIN, RODERICK                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,58,'AYUDANTE GENERAL','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (76,'ATENCIO, MANUEL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,60,'AYUDANTE GENERAL','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (77,'GONZALEZ, FELIX                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,90,'AYUDANTE GENERAL','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (78,'CASASOLA, DONNY                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,65,'CAPATAZ','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (79,'SANTIAGO, OMAR                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,68,'CAPATAZ','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (80,'CABALLERO, ALBERTO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,219,'CONDUCTOR','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (81,'CONTRERAS, NESTOR                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,78,'ELECTRICISTA','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (82,'CHAVEZ, JOHN                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,61,'LINIERO ELECTRICO','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (83,'GONZALEZ, MARVIN                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,64,'LINIERO ELECTRICO','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (84,'CONCEPCION, EDWARD                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,67,'LINIERO ELECTRICO','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (85,'SALDA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,66,'LINIERO EN TENSION','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (86,'HERNANDEZ, ANGEL                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,145,'LINIERO EN TENSION','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (87,'RUBIO, SANTIAGO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,170,'LINIERO EN TENSION','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (88,'PIMENTEL, RAUL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,53,'MECANICO','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (89,'BOLA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,69,'OPERADOR DE GRUA','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (90,'GOMEZ, ELVIS                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,75,'OPERADOR DE GRUA','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (91,'MONTES, MAYKOL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,144,'OPERADOR DE GRUA','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (92,'FUENTES, RODOLFO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,266,'OPERADOR DE GRUA','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (93,'MIRANDA, ONESIMO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,349,'OPERADOR DE GRUA','DESARROLLO DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (94,'BATISTA, OCTAVIO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,202,'ASISTENTE TECNICO','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (95,'MONTENEGRO, DANIEL                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,222,'AYUDANTE GENERAL','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (96,'INDUNI, CESAR                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,192,'CAPATAZ','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (97,'GONZALEZ, ERIK                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,174,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (98,'REYES, MANUEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,175,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (99,'SANCHEZ, RONIS                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,177,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (100,'DE LEON, JEAN                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,179,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (101,'CARVAJAL, JUAN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,180,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (102,'GONZALEZ, SERGIO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,181,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (103,'GONZALEZ, FRANCISCO                ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,184,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (104,'MONTENEGRO, ALBERTH                ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,185,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (105,'CORDOBA, APARICIO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,186,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (106,'NU',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,188,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (107,'MORENO, MELQUIADES                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,190,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (108,'BERNAL, ABELARDO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,191,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (109,'MONTENEGRO, NEHEMIAS               ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,195,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (110,'MARTINEZ, HERNAN                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,196,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (111,'DE LEON, JOSE                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,197,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (112,'PEREZ, JHONNY                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,198,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (113,'SALDA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,199,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (114,'CALDERON, AGUSTIN                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,200,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (115,'LOPEZ, SAMUEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,201,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (116,'BATISTA, LUIS                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,203,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (117,'HERNANDEZ, MARLON                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,204,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (118,'RODRIGUEZ, LEOPOLDO                ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,205,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (119,'RODRIGUEZ, YOVANY                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,206,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (120,'CASTILLO, LUIS                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,207,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (121,'CORTES, JERMAINE                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,208,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (122,'ARROYO, YONY                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,210,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (123,'GUDI',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,212,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (124,'VARELA, ARMANDO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,215,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (125,'DE LEON, ROBERTO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,217,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (126,'CIANCA, LUIS                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,235,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (127,'MARTINEZ, PRAXCEDEZ                ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,268,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (128,'MEDINA, JESUS                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,311,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (129,'BARRAGAN, JUSTO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,321,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (130,'DEAGO, IRMA                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,189,'OFICINISTA ADMINISTRATIVA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (131,'VILLARREAL, ISAIAS                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,233,'OPERADOR DE GRUA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (132,'GOMEZ, FELIX                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,359,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (133,'NAVARRO, MARCOS                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,360,'CONDUCTOR','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (134,'MORENO, ARIEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,361,'ELECTRICISTA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (135,'RUIZ, RODRIGO                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,362,'OPERADOR DE GRUA','MEDIDORES CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (136,'RODRIGUEZ, ARNALDO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,269,'CONDUCTOR','MEDIDORES CENTRALES ',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (137,'RODRIGUEZ, KARINA                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,114,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (138,'MOJICA, SAMUEL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,48,'AYUDANTE GENERAL','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (139,'MONTEZUMA, RODRIGO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,249,'AYUDANTE GENERAL','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (140,'ROVIRA, AZAEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,77,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (141,'GONZALEZ, GABINO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,108,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (142,'ARAUZ, ERICK                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,109,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (143,'NAVARRO, ERIC                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,112,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (144,'URIBE, JOSE                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,113,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (145,'CABALLERO, GENARO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,115,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (146,'NU',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,117,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (147,'GUERRA, YELSIN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,118,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (148,'JARA, JAIRO                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,121,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (149,'CAPARROSO, JOSE                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,122,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (150,'FULLER, BENIGNO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,124,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (151,'SANCHEZ, MARCELINO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,125,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (152,'ATENCIO, RORI                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,126,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (153,'ORTIZ, RICARDO                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,136,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (154,'AVILA, GILBERTO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,137,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (155,'MONTENEGRO, ABEL                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,141,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (156,'ROSAS, HELMOND                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,142,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (157,'ESPINOZA, JOHANA                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,152,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (158,'MEDINA, JOSE                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,153,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (159,'GONZALEZ, POMPILIO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,241,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (160,'LESCURE, YIBELIS                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,308,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (161,'BEITIA, KEVIN                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,320,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (162,'MONTES, RODERICK                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,80,'ENCARGADO','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (163,'QUINTERO, NORMAN                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,123,'OPERADOR DE GRUA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (164,'TAPIA, XAVIER                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,337,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (165,'MONTENEGRO, JULIAN                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,352,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (166,'ARAUZ, JOSUE                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,353,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (167,'SALDA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,364,'ELECTRICISTA','MEDIDORES DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (168,'RUIZ, RICARDO                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,358,'AYUDANTE GENERAL','OER  DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (169,'MACIAS, JOSE                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,228,'PERFORADORES','OER CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (170,'MACIAS, MANUEL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,229,'PERFORADORES','OER CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (171,'PALMA, JOSE                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,230,'PERFORADORES','OER CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (172,'VICTORIA, EDGARDO                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,231,'PERFORADORES','OER CENTRALES',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (173,'DEL LA CRUZ, ALVIN                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,338,'LINIERO ELECTRICO','OER CHORRERA',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (174,'MURILLO, GUILLERMO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,339,'LINIERO ELECTRICO','OER CHORRERA',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (175,'VALDERRAMA, ISAI                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,341,'LINIERO ELECTRICO','OER CHORRERA',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (176,'FRIAS, ELIAS                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,342,'LINIERO ELECTRICO','OER CHORRERA',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (177,'SANTANA, GEORGE                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,343,'LINIERO EN TENSION','OER CHORRERA',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (178,'CAMARGO, MIGUEL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,345,'LINIERO EN TENSION','OER CHORRERA',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (179,'SEGUNDO, ISMAEL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,346,'LINIERO EN TENSION','OER CHORRERA',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (180,'GRACIA, YENISBEL                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,347,'SUPERVISOR','OER CHORRERA',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (181,'BERNAL, LORENZO                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,351,'CAPATAZ','OER CHORRERA',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (182,'CAMARENA, GISSELL                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,224,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (183,'SANTAMARIA, DEIKER                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,264,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (184,'CASTRELLON, ALBIN                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,322,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (185,'ZARATE, HECTOR                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,250,'LINIERO ELECTRICO','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (186,'BOZZI, JOSE                        ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,251,'LINIERO ELECTRICO','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (187,'POLANCO, MARCELINO                 ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,252,'LINIERO ELECTRICO','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (188,'BODAN, ALFONSO                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,253,'LINIERO ELECTRICO','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (189,'QUINTERO, SAMUEL                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,83,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (190,'VEGA, ISRAEL                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,94,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (191,'BIRMINGHAN, JOSE                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,104,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (192,'PRADO, ROBINSON                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,239,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (193,'LIZONDRO, EDISON                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,262,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (194,'CASTILLO, LUIS                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,312,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (195,'GONZALEZ, JEAN                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,313,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (196,'VIQUEZ, ABDIEL                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,323,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (197,'ROBINSON, MAXWELL                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,120,'ELECTRICISTA','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (198,'TORREZ, JORGE   H                  ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,73,'ENCARGADO','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (199,'GONZALEZ, KEVIN                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,107,'LINIERO ELECTRICO','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (200,'ORTEGA, YORLINIS                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,255,'LINIERO ELECTRICO','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (201,'ESPINOZA, JOSE                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,309,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (202,'FRANCECHIS, JOSE                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,148,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (203,'GANTES, ARIEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,173,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (204,'JURADO, JEAN                       ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,223,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (205,'PINEDA, GRABIEL                    ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,160,'CONDUCTOR','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (206,'NASH, ROBERTO                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,128,'LINIERO ELECTRICO','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (207,'CERRACIN, ALVARO                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,348,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (208,'LOPEZ, MANUEL                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,350,'CAPATAZ','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (209,'IBARRA, ROGER                      ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,355,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (210,'MARTINEZ, JAVIER                   ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,357,'AYUDANTE GENERAL','OER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (211,'GONZALEZ, JONNATHAN                ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,159,'AYUDANTE GENERAL','TALLER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (212,'MU',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,52,'SOLDADOR','TALLER DAVID',NULL);
+insert  into `worker`(`workerId`,`name`,`ssId`,`address`,`zip`,`city`,`province`,`state`,`userId`,`phone`,`email`,`code`,`position`,`department`,`bloodType`) values (213,'ANGULO, CARLOS                     ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,240,'SOLDADOR','TALLER DAVID',NULL);
+
+/*Table structure for table `zone` */
+
+DROP TABLE IF EXISTS `zone`;
+
+CREATE TABLE `zone` (
+  `zoneId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`zoneId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `zone` */
+
+insert  into `zone`(`zoneId`,`name`) values (1,'Zona 1');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
