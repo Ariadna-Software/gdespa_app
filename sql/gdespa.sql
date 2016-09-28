@@ -27,7 +27,7 @@ CREATE TABLE `api_key` (
   PRIMARY KEY (`apiKeyId`),
   KEY `ref_apikey_user` (`userId`),
   CONSTRAINT `ref_apikey_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 
 /*Data for the table `api_key` */
 
@@ -123,6 +123,7 @@ insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKe
 insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (91,1,'2016-09-27 12:05:54','2016-09-27 17:05:54','SrV5E');
 insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (92,1,'2016-09-27 17:46:53','2016-09-27 22:46:53','wQUj8');
 insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (93,1,'2016-09-28 12:30:29','2016-09-28 17:30:29','7AnwW');
+insert  into `api_key`(`apiKeyId`,`userId`,`getDateTime`,`expireDateTime`,`apiKey`) values (94,1,'2016-09-28 16:40:55','2016-09-28 21:40:55','66kiZ');
 
 /*Table structure for table `closure` */
 
@@ -136,9 +137,11 @@ CREATE TABLE `closure` (
   PRIMARY KEY (`closureId`),
   KEY `ref_closure_worker` (`workerId`),
   CONSTRAINT `ref_closure_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `closure` */
+
+insert  into `closure`(`closureId`,`closureDate`,`workerId`,`comments`) values (1,'2016-09-28',15,NULL);
 
 /*Table structure for table `closure_line` */
 
@@ -155,9 +158,11 @@ CREATE TABLE `closure_line` (
   KEY `ref_closline_pw` (`pwId`),
   CONSTRAINT `ref_closline_closure` FOREIGN KEY (`closureId`) REFERENCES `closure` (`closureId`) ON DELETE CASCADE,
   CONSTRAINT `ref_closline_pw` FOREIGN KEY (`pwId`) REFERENCES `pw` (`pwId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `closure_line` */
+
+insert  into `closure_line`(`closureLineId`,`closureId`,`pwId`,`estimate`,`done`) values (1,1,12,0.19,0.19);
 
 /*Table structure for table `company` */
 
@@ -17911,14 +17916,18 @@ CREATE TABLE `inventory` (
   `storeId` int(11) DEFAULT NULL,
   `workerId` int(11) DEFAULT NULL,
   `comments` text,
+  `close` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`inventoryId`),
   KEY `ref_inv_store` (`storeId`),
   KEY `ref_inv_worker` (`workerId`),
   CONSTRAINT `ref_inv_store` FOREIGN KEY (`storeId`) REFERENCES `store` (`storeId`),
   CONSTRAINT `ref_inv_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `inventory` */
+
+insert  into `inventory`(`inventoryId`,`inventoryDate`,`storeId`,`workerId`,`comments`,`close`) values (1,'2016-09-28',1,15,NULL,1);
+insert  into `inventory`(`inventoryId`,`inventoryDate`,`storeId`,`workerId`,`comments`,`close`) values (2,'2016-09-28',1,16,NULL,1);
 
 /*Table structure for table `inventory_line` */
 
@@ -17935,9 +17944,16 @@ CREATE TABLE `inventory_line` (
   KEY `ref_invl_item` (`itemId`),
   CONSTRAINT `ref_invl_inv` FOREIGN KEY (`inventoryId`) REFERENCES `inventory` (`inventoryId`) ON DELETE CASCADE,
   CONSTRAINT `ref_invl_item` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `inventory_line` */
+
+insert  into `inventory_line`(`inventoryLineId`,`inventoryId`,`itemId`,`oldStock`,`newStock`) values (1,1,240,142.00,11.00);
+insert  into `inventory_line`(`inventoryLineId`,`inventoryId`,`itemId`,`oldStock`,`newStock`) values (2,1,234,63.00,12.00);
+insert  into `inventory_line`(`inventoryLineId`,`inventoryId`,`itemId`,`oldStock`,`newStock`) values (3,1,120,17.00,13.00);
+insert  into `inventory_line`(`inventoryLineId`,`inventoryId`,`itemId`,`oldStock`,`newStock`) values (4,2,240,142.00,140.00);
+insert  into `inventory_line`(`inventoryLineId`,`inventoryId`,`itemId`,`oldStock`,`newStock`) values (5,2,234,63.00,60.00);
+insert  into `inventory_line`(`inventoryLineId`,`inventoryId`,`itemId`,`oldStock`,`newStock`) values (6,2,120,17.00,10.00);
 
 /*Table structure for table `item` */
 
@@ -18597,19 +18613,23 @@ CREATE TABLE `item_stock` (
   `storeId` int(11) DEFAULT NULL,
   `itemId` int(11) DEFAULT NULL,
   `stock` decimal(12,2) DEFAULT NULL,
+  `lastInvDate` date DEFAULT NULL,
+  `lastInvId` int(11) DEFAULT NULL,
   PRIMARY KEY (`itemStockId`),
   UNIQUE KEY `idx_stock_store_item` (`storeId`,`itemId`),
   KEY `ref_stock_store` (`storeId`),
   KEY `ref_stock_item` (`itemId`),
+  KEY `ref_stock_inv` (`lastInvId`),
+  CONSTRAINT `ref_stock_inv` FOREIGN KEY (`lastInvId`) REFERENCES `inventory` (`inventoryId`),
   CONSTRAINT `ref_stock_item` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`),
   CONSTRAINT `ref_stock_store` FOREIGN KEY (`storeId`) REFERENCES `store` (`storeId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `item_stock` */
 
-insert  into `item_stock`(`itemStockId`,`storeId`,`itemId`,`stock`) values (2,1,240,142.00);
-insert  into `item_stock`(`itemStockId`,`storeId`,`itemId`,`stock`) values (3,1,234,63.00);
-insert  into `item_stock`(`itemStockId`,`storeId`,`itemId`,`stock`) values (4,1,120,17.00);
+insert  into `item_stock`(`itemStockId`,`storeId`,`itemId`,`stock`,`lastInvDate`,`lastInvId`) values (2,1,240,142.00,'2016-09-28',1);
+insert  into `item_stock`(`itemStockId`,`storeId`,`itemId`,`stock`,`lastInvDate`,`lastInvId`) values (3,1,234,63.00,'2016-09-28',1);
+insert  into `item_stock`(`itemStockId`,`storeId`,`itemId`,`stock`,`lastInvDate`,`lastInvId`) values (4,1,120,17.00,'2016-09-28',1);
 
 /*Table structure for table `pw` */
 
