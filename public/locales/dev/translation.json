@@ -69,7 +69,8 @@
             "main": "Almacenes / Stock",
             "delivery": "Reservas / Entregas",
             "itemIn": "Entradas",
-            "itemOut": "Salidas"
+            "itemOut": "Salidas",
+            "inventory": "Inventario"
         },
         "report": {
             "main": "Informes"
@@ -397,5 +398,29 @@
         "deliver": "Entregar",
         "estimate": "Propuesto",
         "done": "Entregado"
+    },
+    "inventoryGeneral": {
+        "title": "Mantenimiento inventarios",
+        "new": "Nuevo inventario",
+        "search": "Buscar inventario"
+    },
+    "inventoryDetail": {
+        "tabs": {
+            "general": "General",
+            "work_order": "Partes de trabajo"
+        },
+        "title": "Detalle inventario",
+        "inventoryDate": "Fecha inventario",
+        "close": "Cerrar",
+        "worker": "Responsable",
+        "store": "Almacén",
+        "oldStock": "Stock anterior",
+        "newStock": "Stock actual",
+        "comments": "Observaciones",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "newLine": "Nueva linea",
+        "associated_lines": "Lineas del inventario",
+        "modal_title": "Linea del inventario"
     }
 }
