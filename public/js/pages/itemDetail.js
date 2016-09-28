@@ -177,7 +177,7 @@ var itemDetailAPI = {
             }
         });
     },
-    // TAB -- WO
+    // TAB -- STORE
     initStoreTable: function () {
         var options = aswInit.initTableOptions('dt_store');
         options.data = data;

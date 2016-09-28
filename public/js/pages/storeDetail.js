@@ -26,6 +26,8 @@ var storeDetailAPI = {
             e.preventDefault();
             window.open('storeGeneral.html', '_self');
         })
+        // init item table
+        storeDetailAPI.initItemTable();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         storeDetailAPI.getStore(id);
@@ -67,6 +69,7 @@ var storeDetailAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 storeDetailAPI.loadData(data[0]);
+                storeDetailAPI.getItem(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -114,6 +117,41 @@ var storeDetailAPI = {
             });
         }
         return mf;
+    },
+    // TAB -- ITEM
+    initItemTable: function () {
+        var options = aswInit.initTableOptions('dt_item');
+        options.data = data;
+        options.columns = [{
+            data: "item.name"
+        }, {
+                data: "stock"
+            }];
+        $('#dt_item').dataTable(options);
+    },
+    getItem: function (id) {
+        var url = sprintf("%s/item_stock/store/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                storeDetailAPI.loadItem(data);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadItem: function (data) {
+        var dt = $('#dt_item').dataTable();
+        dt.fnClearTable();
+        if (data.length && data.length > 0) dt.fnAddData(data);
+        dt.fnDraw();
+        $("#tb_item").show();
     }
 };
 storeDetailAPI.init();

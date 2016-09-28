@@ -142,10 +142,16 @@
         "new": "Nueva almacén"
     },
     "storeDetail": {
+        "tabs": {
+            "general": "General",
+            "item": "Stock por artículo"
+        },
         "title": "Detalle almacenes",
         "name": "Nombre",
         "cancel": "Salir sin guardar",
-        "ok": "Guardar"
+        "ok": "Guardar",
+        "item": "Articulo",
+        "stock": "Stock"
     },
     "unitGeneral": {
         "title": "Mantenimiento unidades",
