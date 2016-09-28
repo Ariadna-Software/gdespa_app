@@ -17,6 +17,7 @@
     "delete_warning": "¿Desea realmente borrar el registro: ",
     "search_name": "Introduzca el texto a buscar (Déjelo vacio para ver todos)",
     "closure_ready": "El cierre está preparado. Modifique las líneas que desee y cuando esté listo haga clic en el botón 'X' esto hará el cierre efectivo.",
+    "inventory_ready": "El inventario está preparado. Modifique las líneas que desee y cuando esté listo haga clic en el botón 'X' esto hará el inventario efectivo.",
     "error": {
         "general": "Se ha producido un error, ver detalles más abajo.",
         "ajax_general": "Se ha producido un error general. Posiblemente falla la conexión.",
@@ -413,6 +414,7 @@
         "inventoryDate": "Fecha inventario",
         "close": "Cerrar",
         "worker": "Responsable",
+        "item": "Articulo",
         "store": "Almacén",
         "oldStock": "Stock anterior",
         "newStock": "Stock actual",

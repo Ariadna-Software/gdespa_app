@@ -25,3 +25,6 @@ ALTER TABLE `gdespa`.`item_stock`
   ADD COLUMN `lastInvDate` DATE NULL AFTER `stock`,
   ADD COLUMN `lastInvId` INT NULL AFTER `lastInvDate`,
   ADD CONSTRAINT `ref_stock_inv` FOREIGN KEY (`lastInvId`) REFERENCES `gdespa`.`inventory`(`inventoryId`);
+
+ALTER TABLE `gdespa`.`inventory`   
+ADD COLUMN `close` BOOL NULL AFTER `comments`;

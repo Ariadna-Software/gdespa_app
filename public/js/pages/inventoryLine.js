@@ -1,60 +1,40 @@
-var closureLineAPI = {
+var inventoryLineAPI = {
     init: function () {
         // init tables
-        closureLineAPI.initClosureLineTable();
-        // button handlers
-        $('#btnNewLine').click(closureLineAPI.newClosureLine());
-        // avoid sending form 
-        $('#closureDetailLine-form').submit(function () {
-            return false;
-        });
+        inventoryLineAPI.initInventoryLineTable();
     },
-    initClosureLineTable: function () {
-        var options = aswInit.initTableOptions('dt_closureLine');
+    initInventoryLineTable: function () {
+        var options = aswInit.initTableOptions('dt_inventoryLine');
         options.data = data;
+        options.paging = false;
         options.columns = [{
-            data: "pw.name"
+            data: "item.name"
         }, {
-                data: "estimate",
+                data: "oldStock",
                 render: function (data, type, row) {
-                    var html = (data * 100)  ;
-                    return html;
-                }
-            }, {
-                data: "done",
-                render: function (data, type, row) {
-                    var html = (data * 100)  ;
+                    var html = data  ;
                     return html;
                 }
             }, {
                 data: "id",
+                width: "10%",
                 render: function (data, type, row) {
-                    // var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='closureLineAPI.deleteClosureLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#closureModal' onclick='closureModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>"  + bt2 + "</div>";
+                    var html = '<label class="input">';
+                    html += sprintf('<input class="asw-center" id="qty%s" name="qty%s" type="text"/>', data, data);
+                    html += '</label>';
                     return html;
                 }
             }];
-        $('#dt_closureLine').dataTable(options);
+        $('#dt_inventoryLine').dataTable(options);
     },
-    newClosureLine: function () {
-        var mf = function (e) {
-            // show modal form
-            e.preventDefault();
-            closureModalAPI.newLine();
-        };
-        return mf;
-    },
-    deleteClosureLineMessage: function (id) {
-        var url = sprintf("%s/closure_line/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    getInventoryLines: function (id) {
+        var url = sprintf("%s/inventory_line/inventory/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                var name = data[0].pw.name;
-                var fn = sprintf('closureLineAPI.deleteClosureLine(%s);', id);
-                aswNotif.deleteRecordQuestion(name, fn);
+                inventoryLineAPI.loadInventoryLinesTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -64,49 +44,51 @@ var closureLineAPI = {
             }
         });
     },
-    deleteClosureLine: function (id) {
-        var url = sprintf("%s/closure_line/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
-        var data = {
-            id: id
-        };
-        $.ajax({
-            type: "DELETE",
-            url: url,
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: function (data, status) {
-                closureLineAPI.getClosureLines(vm.id());
-            },
-            error: function (err) {
-                aswNotif.errAjax(err);
-                if (err.status == 401) {
-                    window.open('index.html', '_self');
-                }
-            }
-        });
-    },
-    getClosureLines: function (id) {
-        var url = sprintf("%s/closure_line/closure/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
-        $.ajax({
-            type: "GET",
-            url: url,
-            contentType: "application/json",
-            success: function (data, status) {
-                closureLineAPI.loadClosureLinesTable(data);
-            },
-            error: function (err) {
-                aswNotif.errAjax(err);
-                if (err.status == 401) {
-                    window.open('index.html', '_self');
-                }
-            }
-        });
-    },
-    loadClosureLinesTable: function (data) {
-        var dt = $('#dt_closureLine').dataTable();
+    loadInventoryLinesTable: function (data) {
+        var dt = $('#dt_inventoryLine').dataTable();
         dt.fnClearTable();
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-        $("#tb_closureLine").show();
+        $("#tb_inventoryLine").show();
+        // quantity field handlers
+        data.forEach(function (v) {
+            var field = "#qty" + v.id;
+            $(field).val(v.newStock);
+            $(field).blur(function () {
+                var quantity = 0;
+                if ($(field).val() != ""){
+                    quantity = parseFloat($(field).val());
+                }
+                var data = {
+                    id: v.id,
+                    inventory: {
+                        id: v.inventory.id
+                    },
+                    item: {
+                        id: v.item.id
+                    },
+                    newStock: quantity
+                };
+                var url = "", type = "";
+                // updating record
+                var type = "PUT";
+                var url = sprintf('%s/inventory_line/%s/?api_key=%s', myconfig.apiUrl, v.id, api_key);
+
+                $.ajax({
+                    type: type,
+                    url: url,
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    success: function (data, status) {
+                    },
+                    error: function (err) {
+                        aswNotif.errAjax(err);
+                        if (err.status == 401) {
+                            window.open('index.html', '_self');
+                        }
+                    }
+                });
+            })
+        });        
     }
 };

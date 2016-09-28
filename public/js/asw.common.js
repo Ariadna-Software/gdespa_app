@@ -205,6 +205,18 @@ var aswNotif = {
             color: "#4E8975",
             iconSmall: "fa fa-warning shake animated",
         });
+    },
+    // newInventoryLines
+    newInventoryLines: function () {
+        var html = i18n.t("inventory_ready");
+        html += "<hr/>";
+        html += sprintf("<div><small>%s</small></div>", i18n.t('error.close'));
+        $.smallBox({
+            title: i18n.t('new_record'),
+            content: html,
+            color: "#4E8975",
+            iconSmall: "fa fa-warning shake animated",
+        });
     }
 }
 

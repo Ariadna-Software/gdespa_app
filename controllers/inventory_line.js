@@ -43,7 +43,7 @@ router.get('/:id', midCheck, function (req, res) {
 router.get('/inventory/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    inventoryLineDb.getByClosureId(id, function (err, lines) {
+    inventoryLineDb.getByInventoryId(id, function (err, lines) {
         if (err) return res.status(500).send(err.message);
         res.json(lines);
     }, test);

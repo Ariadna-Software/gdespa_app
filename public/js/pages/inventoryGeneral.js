@@ -1,41 +1,43 @@
 /*
- * closureGeneral.js
- * Function for the page closureGeneral.html
+ * inventoryGeneral.js
+ * Function for the page inventoryGeneral.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
 
 var data = null;
 
-var closureGeneralAPI = {
+var inventoryGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
         // make active menu option
-        $('#closureGeneral').attr('class', 'active');
-        closureGeneralAPI.initClosureTable();
+        $('#inventoryGeneral').attr('class', 'active');
+        inventoryGeneralAPI.initInventoryTable();
         // avoid sending form 
-        $('#closureGeneral-form').submit(function () {
+        $('#inventoryGeneral-form').submit(function () {
             return false;
         });
         // buttons click events 
-        $('#btnNew').click(closureGeneralAPI.newClosure());
-        $('#btnSearch').click(closureGeneralAPI.searchClosure());
+        $('#btnNew').click(inventoryGeneralAPI.newInventory());
+        $('#btnSearch').click(inventoryGeneralAPI.searchInventory());
         // check if there's an id
         var id = aswUtil.gup('id');
         if (id) {
-            closureGeneralAPI.getClosure(id);
-        }else{
-            closureGeneralAPI.getClosure('');
+            inventoryGeneralAPI.getInventory(id);
+        } else {
+            inventoryGeneralAPI.getInventory('');
         }
     },
     // initializes the table
-    initClosureTable: function () {
-        var options = aswInit.initTableOptions('dt_closure');
+    initInventoryTable: function () {
+        var options = aswInit.initTableOptions('dt_inventory');
         options.data = data;
         options.columns = [{
-            data: "worker.name"
+            data: "store.name"
         }, {
-                data: "closureDate",
+                data: "worker.name"
+            }, {
+                data: "inventoryDate",
                 render: function (data, type, row) {
                     // LANG: var html = moment(data).format(i18n.t('util.date_format'));
                     var html = moment(data).format('DD/MM/YYYY');
@@ -47,41 +49,41 @@ var closureGeneralAPI = {
             }, {
                 data: "id",
                 render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='closureGeneralAPI.deleteClosureMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='closureGeneralAPI.editClosure(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='inventoryGeneralAPI.deleteInventoryMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='inventoryGeneralAPI.editInventory(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                     var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                     return html;
                 }
             }];
-        $('#dt_closure').dataTable(options);
+        $('#dt_inventory').dataTable(options);
     },
-    searchClosure: function () {
+    searchInventory: function () {
         var mf = function () {
             // obtain strin to search 
             var search = $('#txtSearch').val();
-            closureGeneralAPI.getClosures(search);
+            inventoryGeneralAPI.getInventorys(search);
         };
         return mf;
     },
-    newClosure: function () {
+    newInventory: function () {
         // Its an event handler, return function
         var mf = function () {
-            window.open(sprintf('closureDetail.html?id=%s', 0), '_self');
+            window.open(sprintf('inventoryDetail.html?id=%s', 0), '_self');
         }
         return mf;
     },
-    editClosure: function (id) {
-        window.open(sprintf('closureDetail.html?id=%s', id), '_self');
+    editInventory: function (id) {
+        window.open(sprintf('inventoryDetail.html?id=%s', id), '_self');
     },
-    deleteClosureMessage: function (id) {
-        var url = sprintf("%s/closure/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteInventoryMessage: function (id) {
+        var url = sprintf("%s/inventory/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                var name = data[0].worker.name + " [" + moment(data[0].closureDate).format(i18n.t('util.date_format'))  + "]" ;
-                var fn = sprintf('closureGeneralAPI.deleteClosure(%s);', id);
+                var name = data[0].worker.name + " [" + moment(data[0].inventoryDate).format(i18n.t('util.date_format')) + "]";
+                var fn = sprintf('inventoryGeneralAPI.deleteInventory(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -92,8 +94,8 @@ var closureGeneralAPI = {
             }
         });
     },
-    deleteClosure: function (id) {
-        var url = sprintf("%s/closure/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteInventory: function (id) {
+        var url = sprintf("%s/inventory/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         var data = {
             id: id
         };
@@ -103,7 +105,7 @@ var closureGeneralAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                closureGeneralAPI.getClosures('');
+                inventoryGeneralAPI.getInventorys('');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -114,14 +116,14 @@ var closureGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getClosures: function (name) {
-        var url = sprintf("%s/closure?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+    getInventorys: function (name) {
+        var url = sprintf("%s/inventory?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                closureGeneralAPI.loadClosuresTable(data);
+                inventoryGeneralAPI.loadInventorysTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -132,14 +134,14 @@ var closureGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getClosure: function (id) {
-        var url = sprintf("%s/closure/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    getInventory: function (id) {
+        var url = sprintf("%s/inventory/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                closureGeneralAPI.loadClosuresTable(data);
+                inventoryGeneralAPI.loadInventorysTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -149,13 +151,13 @@ var closureGeneralAPI = {
             }
         });
     },
-    loadClosuresTable: function (data) {
-        var dt = $('#dt_closure').dataTable();
+    loadInventorysTable: function (data) {
+        var dt = $('#dt_inventory').dataTable();
         dt.fnClearTable();
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-        $("#tb_closure").show();
+        $("#tb_inventory").show();
     }
 };
 
-closureGeneralAPI.init();
+inventoryGeneralAPI.init();
