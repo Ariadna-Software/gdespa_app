@@ -41,6 +41,9 @@ var storeDetailAPI = {
     loadData: function (data) {
         vm.id(data.id);
         vm.name(data.name);
+        // show big name
+        var html = sprintf('<strong>[%s]</strong>', vm.name());
+        $('#storeName').html(html);
     },
     // Validates form (jquery validate) 
     dataOk: function () {

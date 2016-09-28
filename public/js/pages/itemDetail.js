@@ -63,6 +63,9 @@ var itemDetailAPI = {
         itemDetailAPI.loadUnits(vm.unitId());
         vm.ownItem(data.ownItem);
         vm.minStock(data.minStock);
+        // show big name
+        var html = sprintf('<strong>[%s]</strong>', vm.name());
+        $('#itemName').html(html);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
