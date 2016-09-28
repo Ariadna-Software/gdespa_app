@@ -54,6 +54,9 @@ var inventoryLineAPI = {
         data.forEach(function (v) {
             var field = "#qty" + v.id;
             $(field).val(v.newStock);
+            if (vm.close()){
+                $(field).attr('disabled', 'true');
+            }
             $(field).blur(function () {
                 var quantity = 0;
                 if ($(field).val() != ""){

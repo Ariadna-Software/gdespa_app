@@ -28,3 +28,6 @@ ALTER TABLE `gdespa`.`item_stock`
 
 ALTER TABLE `gdespa`.`inventory`   
 ADD COLUMN `close` BOOL NULL AFTER `comments`;
+
+ALTER TABLE `gdespa`.`inventory`   
+  CHANGE `close` `close` TINYINT(1) DEFAULT 0 NULL;

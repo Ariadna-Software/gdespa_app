@@ -71,6 +71,11 @@ var inventoryDetailAPI = {
         vm.close(data.close);
         inventoryDetailAPI.loadWorkers(data.worker.id);
         inventoryDetailAPI.loadStores(data.store.id);
+        if (!vm.close()) {
+            $('#btnClose').show()
+        }else{
+            $('#btnClose').hide()
+        }
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -130,7 +135,7 @@ var inventoryDetailAPI = {
                 worker: {
                     id: vm.sWorker()
                 },
-                store:{
+                store: {
                     id: vm.sStore()
                 },
                 comments: vm.comments()
@@ -208,7 +213,7 @@ var inventoryDetailAPI = {
                 }
             }
         });
-    },    
+    },
     btnClose: function () {
         var mf = function (e) {
             // avoid default accion
@@ -223,6 +228,9 @@ var inventoryDetailAPI = {
                 inventoryDate: moment(vm.inventoryDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
                 worker: {
                     id: vm.sWorker()
+                },
+                store: {
+                    id: vm.sStore() 
                 },
                 comments: vm.comments(),
                 close: 1
