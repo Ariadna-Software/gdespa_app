@@ -129,6 +129,14 @@ var storeDetailAPI = {
             data: "item.name"
         }, {
                 data: "stock"
+            }, {
+                data: "lastInvDate",
+                render: function (data, type, row) {
+                    var html = moment(data).format('DD/MM/YYYY');
+                    return html;
+                }
+            }, {
+                data: "lastStock"
             }];
         $('#dt_item').dataTable(options);
     },

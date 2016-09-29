@@ -153,7 +153,9 @@
         "cancel": "Salir sin guardar",
         "ok": "Guardar",
         "item": "Articulo",
-        "stock": "Stock"
+        "stock": "Stock",
+        "lastInvDate": "Último inventario",
+        "lastStock": "Stock inventario"
     },
     "unitGeneral": {
         "title": "Mantenimiento unidades",

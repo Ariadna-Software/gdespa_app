@@ -69,7 +69,10 @@ var itemOutModalAPI = {
             var data = {
                 id: vm.lineId(),
                 itemOut: {
-                    id: vm.id()
+                    id: vm.id(),
+                    store: {
+                        id: vm.sStore()
+                    }
                 },
                 item: {
                     id: vm.sItem()
@@ -92,27 +95,8 @@ var itemOutModalAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    // update stock
-                    var data = {
-                        storeId: vm.sStore(),
-                        itemId: vm.sItem()
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: sprintf('%s/item_stock/upstock/?api_key=%s', myconfig.apiUrl, api_key),
-                        contentType: "application/json",
-                        data: JSON.stringify(data),
-                        success: function (data, status) {
-                            $('#itemOutModal').modal('hide');
-                            itemOutLineAPI.getItemOutLines(vm.id());
-                        },
-                        error: function (err) {
-                            aswNotif.errAjax(err);
-                            if (err.status == 401) {
-                                window.open('index.html', '_self');
-                            }
-                        }
-                    });
+                    $('#itemOutModal').modal('hide');
+                    itemOutLineAPI.getItemOutLines(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
