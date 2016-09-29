@@ -28,6 +28,7 @@ var inventoryDetailAPI = {
         inventoryDetailAPI.loadWorkers();
         // buttons click events
         $('#btnOk').click(inventoryDetailAPI.btnOk());
+        $('#btnPrint').click(inventoryDetailAPI.btnPrint());
         $('#btnClose').click(inventoryDetailAPI.btnClose());
         $('#btnExit').click(function (e) {
             e.preventDefault();
@@ -73,7 +74,7 @@ var inventoryDetailAPI = {
         inventoryDetailAPI.loadStores(data.store.id);
         if (!vm.close()) {
             $('#btnClose').show()
-        }else{
+        } else {
             $('#btnClose').hide()
         }
     },
@@ -230,7 +231,7 @@ var inventoryDetailAPI = {
                     id: vm.sWorker()
                 },
                 store: {
-                    id: vm.sStore() 
+                    id: vm.sStore()
                 },
                 comments: vm.comments(),
                 close: 1
@@ -257,6 +258,37 @@ var inventoryDetailAPI = {
         }
         return mf;
     },
+    btnPrint: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            // validate form
+            if (!inventoryDetailAPI.dataOk()) return;
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            url = sprintf('%s/report/inventory/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    // process report data
+                    aswReport.reportPDF(data, 'HJMQo35p');
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    }
 };
 
 

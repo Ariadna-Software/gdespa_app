@@ -425,6 +425,7 @@
         "ok": "Guardar",
         "newLine": "Nueva linea",
         "associated_lines": "Lineas del inventario",
-        "modal_title": "Linea del inventario"
+        "modal_title": "Linea del inventario",
+        "print":"Imprimir"
     }
 }
