@@ -13,7 +13,7 @@ var pool = mysql.createPool({
 
 var s = process.argv[2];
 console.log("S: ", s);
-s = 4;
+// s = 4;
 var sheet_name = book.SheetNames[s];
 console.log(sheet_name);
 var sheet = book.Sheets[sheet_name];
