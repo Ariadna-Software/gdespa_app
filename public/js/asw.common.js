@@ -217,6 +217,20 @@ var aswNotif = {
             color: "#4E8975",
             iconSmall: "fa fa-warning shake animated",
         });
+    },
+    generalQuestion: function (message, fn) {
+        // mount message
+        var msg = message;
+        var btn1 = sprintf("<a href='javascript:void(0);' onClick='%s' class='btn btn-warning btn-sm'>%s</a>", fn, i18n.t('yes'));
+        var btn2 = sprintf("<a href='javascript:void(0);' class='btn btn-warning btn-sm'>%s</a>", i18n.t('no'));
+        msg += sprintf("<p class='text-align-right'>%s %s</p>", btn1, btn2);
+        $.smallBox({
+            title: i18n.t('warning'),
+            content: msg,
+            color: "#C79121",
+            //timeout: 8000,
+            icon: "fa fa-bell swing animated"
+        });
     }
 }
 

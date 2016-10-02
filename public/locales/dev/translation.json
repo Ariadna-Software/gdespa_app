@@ -381,6 +381,7 @@
     },
     "deliveryDetail": {
         "title": "Detalle reserva / entrega",
+        "serve_message": "Al hacer el envio creará una salida de almacen con la fecha de entrega y el responsable escogido, actualizando los stocks. ¿Está seguro? (Esta acción no puede deshacerse)",
         "lastDate": "Fecha",
         "print": "Imprimir",
         "delete": "Borrar registro",

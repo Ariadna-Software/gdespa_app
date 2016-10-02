@@ -31,7 +31,7 @@ var deliveryDetailAPI = {
         deliveryDetailAPI.loadStores();
         // buttons click events
         $('#btnOk').click(deliveryDetailAPI.btnOk());
-        $('#btnDeliver').click(deliveryDetailAPI.btnDeliver());
+        $('#btnDeliver').click(deliveryDetailAPI.btnDeliverMessage());
         $('#btnPrint').click(deliveryDetailAPI.btnPrint());
         $('#btnDelete').click(deliveryDetailAPI.btnDelete());
         $('#btnExit').click(function (e) {
@@ -217,10 +217,16 @@ var deliveryDetailAPI = {
         }
         return mf;
     },
+    btnDeliverMessage: function () {
+        var mf = function () {
+            var message = i18n.t("deliveryDetail.serve_message");
+            var fn = 'deliveryDetailAPI.btnDeliver()();';
+            aswNotif.generalQuestion(message, fn);
+        };
+        return mf;
+    },
     btnDeliver: function () {
         var mf = function (e) {
-            // avoid default accion
-            e.preventDefault();
             // validate form
             if (!deliveryDetailAPI.dataOk()) return;
             // dat for post or put
