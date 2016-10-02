@@ -10,6 +10,9 @@ var data = null;
 var inventoryGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
+        if (user.login != "admin"){
+            $('#administration').hide();
+        }
         // make active menu option
         $('#inventoryGeneral').attr('class', 'active');
         inventoryGeneralAPI.initInventoryTable();

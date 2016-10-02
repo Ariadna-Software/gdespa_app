@@ -15,6 +15,9 @@ var storeDetailAPI = {
         aswInit.initPage();
         validator_languages(lang);
         $('#user_name').text(user.name);
+        if (user.login != "admin"){
+            $('#administration').hide();
+        }
         // make active menu option
         $('#storeGeneral').attr('class', 'active');
         // knockout management

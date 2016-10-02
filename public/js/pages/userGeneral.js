@@ -10,6 +10,9 @@ var data = null;
 var userGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
+        if (user.login != "admin"){
+            $('#administration').hide();
+        }
         // make active menu option
         $('#userGeneral').attr('class', 'active');
         userGeneralAPI.initUserTable();

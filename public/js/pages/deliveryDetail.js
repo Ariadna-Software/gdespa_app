@@ -16,6 +16,9 @@ var deliveryDetailAPI = {
         validator_languages(lang);
         datepicker_languages(lang);
         $('#user_name').text(user.name);
+        if (user.login != "admin"){
+            $('#administration').hide();
+        }
         // make active menu option
         $('#deliveryGeneral').attr('class', 'active');
         // knockout management

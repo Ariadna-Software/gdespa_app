@@ -10,6 +10,9 @@ var data = null;
 var workerGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
+        if (user.login != "admin"){
+            $('#administration').hide();
+        }
         // make active menu option
         $('#workerGeneral').attr('class', 'active');
         workerGeneralAPI.initWorkerTable();

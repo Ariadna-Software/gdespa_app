@@ -20,6 +20,9 @@ var pwDetailAPI = {
         //
         //$("#txtInitDate").datepicker({ dateFormat: 'dd/mm/yy' });
         $('#user_name').text(user.name);
+        if (user.login != "admin"){
+            $('#administration').hide();
+        }
         // make active menu option
         $('#pwGeneral').attr('class', 'active');
         // knockout management

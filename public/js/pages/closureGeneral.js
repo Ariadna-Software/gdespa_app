@@ -10,6 +10,9 @@ var data = null;
 var closureGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
+        if (user.login != "admin"){
+            $('#administration').hide();
+        }
         // make active menu option
         $('#closureGeneral').attr('class', 'active');
         closureGeneralAPI.initClosureTable();

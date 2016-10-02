@@ -10,6 +10,9 @@ var data = null;
 var woGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
+        if (user.login != "admin"){
+            $('#administration').hide();
+        }
         // make active menu option
         $('#woGeneral').attr('class', 'active');
         woGeneralAPI.initWoTable();

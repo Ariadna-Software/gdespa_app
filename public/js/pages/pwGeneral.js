@@ -10,6 +10,9 @@ var data = null;
 var pwGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
+        if (user.login != "admin"){
+            $('#administration').hide();
+        }
         // make active menu option
         $('#pwGeneral').attr('class', 'active');
         pwGeneralAPI.initPwTable();
