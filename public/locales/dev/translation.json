@@ -240,6 +240,8 @@
         "initDate2": "Fecha cambio",
         "initInCharge": "Responsable inicial",
         "defaultK": "K (Por defecto)",
+        "mainK": "K (Global)",
+        "endDate": "Fecha final",
         "total": "TOTAL",
         "cancel": "Salir sin guardar",
         "ok": "Guardar",

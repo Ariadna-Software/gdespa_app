@@ -27,6 +27,9 @@ var deliveryDetailAPI = {
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
         deliveryDetailAPI.loadWorkers();
+        if (user.worker){
+            deliveryDetailAPI.loadWorkers(user.worker.id);
+        }        
         $('#cmbStores').select2(select2_languages[lang]);
         deliveryDetailAPI.loadStores();
         // buttons click events

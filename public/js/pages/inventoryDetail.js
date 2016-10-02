@@ -29,6 +29,9 @@ var inventoryDetailAPI = {
         inventoryDetailAPI.loadStores();
         $('#cmbWorkers').select2(select2_languages[lang]);
         inventoryDetailAPI.loadWorkers();
+        if (user.worker){
+            inventoryDetailAPI.loadWorkers(user.worker.id);
+        }        
         // prevent submit form
         $('#inventoryDetail-form').submit(function () {
             return false;

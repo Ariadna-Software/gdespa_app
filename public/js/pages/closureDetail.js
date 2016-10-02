@@ -27,6 +27,9 @@ var closureDetailAPI = {
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
         closureDetailAPI.loadWorkers();
+        if (user.worker){
+            closureDetailAPI.loadWorkers(user.worker.id);
+        }        
         // buttons click events
         $('#btnOk').click(closureDetailAPI.btnOk());
         $('#btnClose').click(closureDetailAPI.btnClose());

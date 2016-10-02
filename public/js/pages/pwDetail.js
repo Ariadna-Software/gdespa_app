@@ -20,7 +20,7 @@ var pwDetailAPI = {
         //
         //$("#txtInitDate").datepicker({ dateFormat: 'dd/mm/yy' });
         $('#user_name').text(user.name);
-        if (user.login != "admin"){
+        if (user.login != "admin") {
             $('#administration').hide();
         }
         // make active menu option
@@ -33,12 +33,15 @@ var pwDetailAPI = {
         // combos
         $('#cmbWorkers').select2(select2_languages[lang]);
         pwDetailAPI.loadWorkers();
+        if (user.worker){
+            pwDetailAPI.loadWorkers(user.worker.id);
+        }
         $('#cmbCompanies').select2(select2_languages[lang]);
         pwDetailAPI.loadCompanies();
         $('#cmbStatus').select2(select2_languages[lang]);
         pwDetailAPI.loadStatus(0);
         $('#cmbZone').select2(select2_languages[lang]);
-        pwDetailAPI.loadZones(0);        
+        pwDetailAPI.loadZones(0);
         // buttons click events
         $('#btnOk').click(pwDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
@@ -91,6 +94,8 @@ var pwDetailAPI = {
         self.cerRef = ko.observable();
         self.invRef = ko.observable();
         self.payRef = ko.observable();
+        self.endDate = ko.observable();
+        self.mainK = ko.observable();
         // status combo
         self.optionsStatus = ko.observableArray([]);
         self.selectedStatus = ko.observableArray([]);
@@ -151,6 +156,7 @@ var pwDetailAPI = {
         vm.sCompany(data.company.id);
         pwDetailAPI.loadCompanies(vm.sCompany());
         vm.defaultK(data.defaultK);
+        vm.mainK(data.mainK);
         vm.total(data.total);
         if (moment(data.acepDate).isValid()) {
             vm.acepDate(moment(data.acepDate).format(i18n.t("util.date_format")));
@@ -164,6 +170,8 @@ var pwDetailAPI = {
             vm.invDate(moment(data.invDate).format(i18n.t("util.date_format")));
         if (moment(data.payDate).isValid())
             vm.payDate(moment(data.payDate).format(i18n.t("util.date_format")));
+        if (moment(data.endDate).isValid())
+            vm.endDate(moment(data.endDate).format(i18n.t("util.date_format")));
         vm.acepRef(data.acepRef);
         vm.finRef(data.finRef);
         vm.cerRef(data.cerRef);
@@ -255,9 +263,13 @@ var pwDetailAPI = {
                 initInCharge: { id: vm.sWorker() },
                 company: { id: vm.sCompany() },
                 defaultK: vm.defaultK(),
+                mainK: vm.mainK(),
                 total: vm.total(),
                 zone: { id: vm.sZone() }
             };
+            if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()){
+                data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
+            }
             var url = "", type = "";
             if (vm.id() == 0) {
                 // creating new record

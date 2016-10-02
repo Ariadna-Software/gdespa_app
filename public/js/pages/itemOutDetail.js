@@ -27,6 +27,9 @@ var itemOutDetailAPI = {
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
         itemOutDetailAPI.loadWorkers();
+        if (user.worker){
+            itemOutDetailAPI.loadWorkers(user.worker.id);
+        }        
         $('#cmbStores').select2(select2_languages[lang]);
         itemOutDetailAPI.loadStores();
         $('#cmbPws').select2(select2_languages[lang]);
