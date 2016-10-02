@@ -29,10 +29,14 @@ var inventoryDetailAPI = {
         inventoryDetailAPI.loadStores();
         $('#cmbWorkers').select2(select2_languages[lang]);
         inventoryDetailAPI.loadWorkers();
+        // prevent submit form
+        $('#inventoryDetail-form').submit(function () {
+            return false;
+        });
         // buttons click events
         $('#btnOk').click(inventoryDetailAPI.btnOk());
         $('#btnPrint').click(inventoryDetailAPI.btnPrint());
-        $('#btnClose').click(inventoryDetailAPI.btnClose());
+        $('#btnClose').click(inventoryDetailAPI.btnCloseMessage());
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('inventoryGeneral.html', '_self');
@@ -218,10 +222,18 @@ var inventoryDetailAPI = {
             }
         });
     },
+    btnCloseMessage: function () {
+        var mf = function () {
+            var message = i18n.t("inventoryDetail.close_message");
+            var fn = 'inventoryDetailAPI.btnClose()();';
+            aswNotif.generalQuestion(message, fn);
+        };
+        return mf;
+    },
     btnClose: function () {
         var mf = function (e) {
             // avoid default accion
-            e.preventDefault();
+            // e.preventDefault();
             //
             if (vm.id() == 0) return;
             // validate form

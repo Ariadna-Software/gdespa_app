@@ -415,6 +415,7 @@
         },
         "title": "Detalle inventario",
         "inventoryDate": "Fecha inventario",
+        "close_message": "Al cerrar el inventario da por buenas las cantidades introducidas y el stock se actualizará en consecuencia. ¿Está seguro? (esta acción no puede deshacerse)",
         "close": "Cerrar",
         "worker": "Responsable",
         "item": "Articulo",
