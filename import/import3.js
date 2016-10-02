@@ -13,7 +13,7 @@ var pool = mysql.createPool({
 
 var s = process.argv[2];
 console.log("S: ", s);
-//s = 4;
+//s = 1;
 var sheet_name = book.SheetNames[s];
 console.log(sheet_name);
 var sheet = book.Sheets[sheet_name];
@@ -52,12 +52,12 @@ var cunits = [];
 while (i < 100000) {
     // Only first column
     i++;
-    var c1 = sheet['A' + i];
+    var c1 = sheet['D' + i];
     var c2 = sheet['C' + i];
     if (c1 && c2) {
         var cu = {
             reference: c1.v,
-            cost: c2.v
+            cost: c2.v.replace(',','.')
         }
         cunits.push(cu);
     }

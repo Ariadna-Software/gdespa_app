@@ -5,10 +5,10 @@
             "name": "Iniciar",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/index.js",
+            "program": "${workspaceRoot}/import/import3.js",
             "stopOnEntry": false,
             "args": [],
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}/import",
             "preLaunchTask": null,
             "runtimeExecutable": null,
             "runtimeArgs": [
