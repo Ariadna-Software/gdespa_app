@@ -222,6 +222,7 @@ var deliveryDetailAPI = {
             var message = i18n.t("deliveryDetail.serve_message");
             var fn = 'deliveryDetailAPI.btnDeliver()();';
             aswNotif.generalQuestion(message, fn);
+            $("#btnDeliver").prop("disabled", true);
         };
         return mf;
     },
@@ -260,6 +261,7 @@ var deliveryDetailAPI = {
                     $('#wid-id-1').show();
                     aswNotif.newServeLines();
                     deliveryDetailAPI.getDelivery(data.id);
+                    $("#btnDeliver").prop("disabled", false);
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

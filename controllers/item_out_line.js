@@ -71,7 +71,7 @@ router.delete('/:id', midCheck, function (req, res) {
     }
     itemOutLineDb.delete(woLine, function (err) {
         if (err) {
-            res.status(500).send(err.message);
+            return res.status(500).send(err.message);
         } else {
             res.json(null);
         }
