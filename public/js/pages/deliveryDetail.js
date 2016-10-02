@@ -16,7 +16,7 @@ var deliveryDetailAPI = {
         validator_languages(lang);
         datepicker_languages(lang);
         $('#user_name').text(user.name);
-        if (user.login != "admin"){
+        if (user.login != "admin") {
             $('#administration').hide();
         }
         // make active menu option
@@ -227,6 +227,9 @@ var deliveryDetailAPI = {
             var data = {
                 id: vm.id(),
                 lastDate: moment(vm.lastDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
+                pw: {
+                    id: vm.pwId()
+                },
                 worker: {
                     id: vm.sWorker()
                 },
