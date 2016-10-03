@@ -25,9 +25,9 @@ var closureDetailAPI = {
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
         closureDetailAPI.loadWorkers();
-        if (user.worker){
+        if (user.worker) {
             closureDetailAPI.loadWorkers(user.worker.id);
-        }        
+        }
         // buttons click events
         $('#btnOk').click(closureDetailAPI.btnOk());
         $('#btnClose').click(closureDetailAPI.btnClose());
@@ -138,7 +138,8 @@ var closureDetailAPI = {
                 worker: {
                     id: vm.sWorker()
                 },
-                comments: vm.comments()
+                comments: vm.comments(),
+                close: vm.close()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -161,6 +162,7 @@ var closureDetailAPI = {
                         $('#wid-id-1').show();
                         aswNotif.newClosureLines();
                         closureDetailAPI.getClosure(vm.id());
+                        closureDetailAPI.getWo(vm.id());
                     } else {
                         var url = sprintf('closureGeneral.html?id=%s', data.id);
                         window.open(url, '_self');
@@ -266,9 +268,11 @@ var closureDetailAPI = {
         $('#dt_wo').dataTable(options);
     },
     getWo: function (id) {
-        var url = sprintf("%s/wo/closure/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
-        if (vm.id() == 0){
-            url = sprintf("%s/wo/?api_key=%s", myconfig.apiUrl, api_key);
+        var url = "";
+        if (vm.close()) {
+            url = sprintf("%s/wo/closure/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        } else {
+            url = sprintf("%s/wo/closure2/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         }
         $.ajax({
             type: "GET",
