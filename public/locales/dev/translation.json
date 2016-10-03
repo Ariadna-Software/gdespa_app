@@ -360,6 +360,7 @@
             "general": "General",
             "work_order": "Partes de trabajo"
         },
+        "close_message": "Al realizar un cierre todos los partes relacionados se dan por cerrados, sin permitir modificaciones. ¿Está seguro? (esta acción no puede deshacerse)",
         "title": "Detalle cierre",
         "closureDate": "Fecha cierre",
         "close": "Cerrar",

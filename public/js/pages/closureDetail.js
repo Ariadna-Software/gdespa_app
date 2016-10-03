@@ -30,11 +30,15 @@ var closureDetailAPI = {
         }
         // buttons click events
         $('#btnOk').click(closureDetailAPI.btnOk());
-        $('#btnClose').click(closureDetailAPI.btnClose());
+        $('#btnClose').click(closureDetailAPI.btnCloseMessage());
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('closureGeneral.html', '_self');
         })
+        // avoid sending form 
+        $('#closureDetail-form').submit(function () {
+            return false;
+        });
         // init lines table
         closureLineAPI.init();
         // init modal form
@@ -197,10 +201,18 @@ var closureDetailAPI = {
             }
         });
     },
+    btnCloseMessage: function () {
+        var mf = function () {
+            var message = i18n.t("closureDetail.close_message");
+            var fn = 'closureDetailAPI.btnClose()();';
+            aswNotif.generalQuestion(message, fn);
+        };
+        return mf;
+    },
     btnClose: function () {
         var mf = function (e) {
             // avoid default accion
-            e.preventDefault();
+            // e.preventDefault();
             //
             if (vm.id() == 0) return;
             // validate form
