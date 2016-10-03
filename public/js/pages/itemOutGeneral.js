@@ -10,9 +10,7 @@ var data = null;
 var itemOutGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
-        if (user.login != "admin"){
-            $('#administration').hide();
-        }
+        aswInit.initPerm(user);
         // make active menu option
         $('#itemOutGeneral').attr('class', 'active');
         itemOutGeneralAPI.initItemOutTable();

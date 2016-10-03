@@ -323,6 +323,15 @@ var aswInit = {
             { id: 5, name: i18n.t("status.PAID") }
         ];
         return sts;
+    },
+    //
+    initPerm: function(user){
+        $('#administration').hide();
+        $('#pwman').hide();
+        $('#store').hide();
+        if (user.perAdm) $('#administration').show();
+        if (user.perGes) $('#pwman').show();
+        if (user.perStore) $('#store').show();
     }
 }
 

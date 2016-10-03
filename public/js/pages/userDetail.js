@@ -15,9 +15,7 @@ var userDetailAPI = {
         aswInit.initPage();
         validator_languages(lang);
         $('#user_name').text(user.name);
-        if (user.login != "admin"){
-            $('#administration').hide();
-        }
+        aswInit.initPerm(user);
         // make active menu option
         $('#userGeneral').attr('class', 'active');
         // knockout management
@@ -48,6 +46,9 @@ var userDetailAPI = {
         self.password = ko.observable();
         self.userGroupId = ko.observable();
         self.lang = ko.observable();
+        self.perAdm = ko.observable();
+        self.perGes = ko.observable();
+        self.perStore = ko.observable();
         // languages combos
         self.optionsLanguages = ko.observableArray([]);
         self.selectedLanguages = ko.observableArray([]);
@@ -66,6 +67,9 @@ var userDetailAPI = {
         vm.lang(data.lang);
         userDetailAPI.loadLanguages(vm.lang());
         userDetailAPI.loadGroups(vm.userGroupId());
+        vm.perAdm(data.perAdm);
+        vm.perGes(data.perGes);
+        vm.perStore(data.perStore);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -131,7 +135,10 @@ var userDetailAPI = {
                 lang: vm.sLanguage(),
                 userGroup: {
                     id: vm.sGroup()
-                }
+                },
+                perAdm: vm.perAdm(),
+                perGes: vm.perGes(),
+                perStore: vm.perStore()
             };
             var url = "", type = "";
             if (vm.id() == 0) {

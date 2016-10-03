@@ -10,9 +10,7 @@ var data = null;
 var zoneGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
-        if (user.login != "admin"){
-            $('#administration').hide();
-        }
+        aswInit.initPerm(user);
         // make active menu option
         $('#zoneGeneral').attr('class', 'active');
         zoneGeneralAPI.initZoneTable();

@@ -10,9 +10,7 @@ var data = null;
 var userGroupGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
-        if (user.login != "admin"){
-            $('#administration').hide();
-        }
+        aswInit.initPerm(user);
         // make active menu option
         $('#userGroupGeneral').attr('class', 'active');
         userGroupGeneralAPI.initUserGroupTable();

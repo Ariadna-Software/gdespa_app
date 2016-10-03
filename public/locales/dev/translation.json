@@ -105,7 +105,10 @@
         "ok": "Guardar",
         "group": "Grupo",
         "login": "Login",
-        "password": "Contraseña"
+        "password": "Contraseña",
+        "perAdm": "Acceso al menú Administración",
+        "perGes": "Acceso al menú de Gestión",
+        "perStore": "Acceso al menú de Almacenes"
     },
     "workerGeneral": {
         "title": "Mantenimiento de trabajadores",

@@ -10,9 +10,7 @@ var data = null;
 var companyGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
-        if (user.login != "admin"){
-            $('#administration').hide();
-        }
+        aswInit.initPerm(user);
         // make active menu option
         $('#companyGeneral').attr('class', 'active');
         companyGeneralAPI.initCompanyTable();

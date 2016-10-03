@@ -15,9 +15,7 @@ var userGroupDetailAPI = {
         aswInit.initPage();
         validator_languages(lang);
         $('#user_name').text(user.name);
-        if (user.login != "admin"){
-            $('#administration').hide();
-        }
+        aswInit.initPerm(user);
         // make active menu option
         $('#userGroupGeneral').attr('class', 'active');
         // knockout management

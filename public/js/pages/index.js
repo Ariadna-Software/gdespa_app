@@ -7,9 +7,7 @@ var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var indexAPI = {
     init: function(){
         $('#user_name').text(user.name);
-        if (user.login != "admin"){
-            $('#administration').hide();
-        }
+        aswInit.initPerm(user);
         // make active menu option
         $('#index').attr('class', 'active');
     }

@@ -181,7 +181,7 @@
 							<a href="zoneGeneral.html">
 								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span data-i18n="menu.administration.zone">Blank</span>
 							</a>
-						</li>	
+						</li>
 					</ul>
 				</li>
 				<li id="pwman" class="">
@@ -215,7 +215,7 @@
 							<a href="deliveryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-archive"></i> <span data-i18n="menu.store.delivery">Blank</span>
 							</a>
-						</li>					
+						</li>
 						<li id="itemInGeneral" class="">
 							<a href="itemInGeneral.html">
 								<i class="fa fa-lg fa-fw fa-sign-in"></i> <span data-i18n="menu.store.itemIn">Blank</span>
@@ -230,7 +230,7 @@
 							<a href="inventoryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-table"></i> <span data-i18n="menu.store.inventory">Blank</span>
 							</a>
-						</li>						
+						</li>
 					</ul>
 				</li>
 				<li id="report" class="">
@@ -308,6 +308,26 @@
 												<select style="width:100%;" id="cmbGroups" name="cmbGroups" data-bind="options: optionsGroups, optionsText: 'name', optionsValue: 'id', 
 													value: sGroup, valueAllowUnset: true, selectedOptions: selectedGroups, selected2:{}">
 												</select>
+											</section>
+										</div>
+										<div class="row">
+											<section class="col col-md-4">
+												<label class="checkbox">
+												<input id="chkPerAdm" type="checkbox" name="chkPerAdm" data-bind="checked: perAdm">
+													<i></i><span data-i18n="userDetail.perAdm"></span>
+												</label>
+											</section>
+											<section class="col col-md-4">
+												<label class="checkbox">
+												<input id="chkPerGes" type="checkbox" name="chkPerGes" data-bind="checked: perGes">
+													<i></i><span data-i18n="userDetail.perGes"></span>
+												</label>
+											</section>
+											<section class="col col-md-4">
+												<label class="checkbox">
+												<input id="chkPerStore" type="checkbox" name="chkPerStore" data-bind="checked: perStore">
+													<i></i><span data-i18n="userDetail.perStore"></span>
+												</label>
 											</section>
 										</div>
 									</fieldset>
