@@ -108,7 +108,14 @@
         "password": "Contraseña",
         "perAdm": "Acceso al menú Administración",
         "perGes": "Acceso al menú de Gestión",
-        "perStore": "Acceso al menú de Almacenes"
+        "perStore": "Acceso al menú de Almacenes",
+        "PwGeneral": "--> Propuestas",
+        "WoGeneral": "--> Partes de trabajo",
+        "ClosureGeneral": "--> Cierres",
+        "DeliveryGeneral": "--> Reservas / Entregas",
+        "ItemInGeneral": "--> Entradas",
+        "ItemOutGeneral": "--> Salidas",
+        "InventoryGeneral": "--> Inventarios"
     },
     "workerGeneral": {
         "title": "Mantenimiento de trabajadores",

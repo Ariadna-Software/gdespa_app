@@ -49,6 +49,14 @@ var userDetailAPI = {
         self.perAdm = ko.observable();
         self.perGes = ko.observable();
         self.perStore = ko.observable();
+        //
+        self.PwGeneral = ko.observable();
+        self.WoGeneral = ko.observable();
+        self.ClosureGeneral = ko.observable();
+        self.DeliveryGeneral = ko.observable();
+        self.ItemInGeneral = ko.observable();
+        self.ItemOutGeneral = ko.observable();
+        self.InventoryGeneral = ko.observable();
         // languages combos
         self.optionsLanguages = ko.observableArray([]);
         self.selectedLanguages = ko.observableArray([]);
@@ -70,6 +78,14 @@ var userDetailAPI = {
         vm.perAdm(data.perAdm);
         vm.perGes(data.perGes);
         vm.perStore(data.perStore);
+        //
+        vm.PwGeneral(data.pwGeneral);
+        vm.WoGeneral(data.woGeneral);
+        vm.ClosureGeneral(data.closureGeneral);
+        vm.DeliveryGeneral(data.deliveryGeneral);
+        vm.ItemInGeneral(data.itemInGeneral);
+        vm.ItemOutGeneral(data.itemOutGeneral);
+        vm.InventoryGeneral(data.inventoryGeneral);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -138,7 +154,14 @@ var userDetailAPI = {
                 },
                 perAdm: vm.perAdm(),
                 perGes: vm.perGes(),
-                perStore: vm.perStore()
+                perStore: vm.perStore(),
+                pwGeneral: vm.PwGeneral(),
+                woGeneral: vm.WoGeneral(),
+                closureGeneral: vm.ClosureGeneral(),
+                deliveryGeneral: vm.DeliveryGeneral(),
+                itemInGeneral: vm.ItemInGeneral(),
+                itemOutGeneral: vm.ItemOutGeneral(),
+                inventoryGeneral: vm.InventoryGeneral()
             };
             var url = "", type = "";
             if (vm.id() == 0) {

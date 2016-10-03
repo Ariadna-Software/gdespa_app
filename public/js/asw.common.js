@@ -325,13 +325,26 @@ var aswInit = {
         return sts;
     },
     //
-    initPerm: function(user){
+    initPerm: function (user) {
         $('#administration').hide();
         $('#pwman').hide();
         $('#store').hide();
-        if (user.perAdm) $('#administration').show();
-        if (user.perGes) $('#pwman').show();
-        if (user.perStore) $('#store').show();
+        if (user.perAdm) {
+            $('#administration').show();
+        }
+        if (user.perGes) {
+            $('#pwman').show();
+            if (!user.pwGeneral) $('#pwGeneral').hide();
+            if (!user.woGeneral) $('#woGeneral').hide();
+            if (!user.closureGeneral) $('#closureGeneral').hide();
+        }
+        if (user.perStore) {
+            $('#store').show();
+            if (!user.deliveryGeneral) $('#deliveryGeneral').hide();
+            if (!user.itemInGeneral) $('#itemInGeneral').hide();
+            if (!user.itemOutGeneral) $('#itemOutGeneral').hide();
+            if (!user.inventoryGeneral) $('#inventoryGeneral').hide();
+        }
     }
 }
 
