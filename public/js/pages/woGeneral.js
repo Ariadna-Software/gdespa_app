@@ -46,14 +46,6 @@ var woGeneralAPI = {
                     return html;
                 }
             }, {
-                data: "endDate",
-                render: function (data, type, row) {
-                    // LANG: var html = moment(data).format(i18n.t('util.date_format'));
-                    var html = moment(data).format('DD/MM/YYYY');
-                    html = "<div class='asw-center'>" + html + "</div>";
-                    return html;
-                }
-            }, {
                 data: "worker.name"
             }, {
                 data: "id",

@@ -43,6 +43,17 @@ var pwGeneralAPI = {
             }, {
                 data: "description"
             }, {
+                data: "zone.name"
+            }, {
+                data: "total"
+            }, {
+                data: "endDate"
+			}, {
+				data: "percentage",
+				render: function(data){
+					return data*100 + " %";
+				}
+            }, {
                 data: "id",
                 render: function (data, type, row) {
                     var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwGeneralAPI.deletePwMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
