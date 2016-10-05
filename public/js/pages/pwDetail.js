@@ -179,6 +179,9 @@ var pwDetailAPI = {
         vm.payRef(data.payRef);
         vm.sZone(data.zone.id);
         pwDetailAPI.loadZones(vm.sZone());
+        console.log(data);
+        $('#progress').text((data.percentage * 100) + "%");
+        $('#cost').text(data.cost * 1 + "€");
         // if we have tabs we should change wiget title
         $('#pwDetailTitle').html(" <strong>[" + vm.name() + "]</strong>");
     },
@@ -227,6 +230,7 @@ var pwDetailAPI = {
                 }
             }
         });
+        /*
         // update progress
         url = sprintf("%s/pw/per/%s?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
@@ -245,6 +249,7 @@ var pwDetailAPI = {
                 }
             }
         });
+        */
     },
     btnOk: function () {
         var mf = function (e) {
