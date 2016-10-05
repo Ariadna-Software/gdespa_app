@@ -161,8 +161,6 @@ var woLineAPI = {
         }, {
                 data: "quantity"
             }, {
-                data: "cost"
-            }, {
                 data: "id",
                 render: function (data, type, row) {
                     var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woLineAPI.deleteWoWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
