@@ -137,6 +137,7 @@
         "code": "Numero",
         "position": "Cargo",
         "department": "Departamento",
+        "cost": "Coste",
         "blood_type": "Grupo sanguíneo"
     },
     "companyGeneral": {
@@ -305,6 +306,7 @@
         "modal_title": "Linea del parte",
         "modal_title2": "Trabajador del parte",
         "worker2": "Trabajador",
+        "cost": "Coste",
         "newWorker": "Nuevo trabajador",
         "quantity2": "Dias"
     },

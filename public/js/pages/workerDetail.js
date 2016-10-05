@@ -52,6 +52,7 @@ var workerDetailAPI = {
         self.code = ko.observable();
         self.position = ko.observable();
         self.department = ko.observable();
+        self.cost = ko.observable();
         self.bloodType = ko.observable();
         // users combos
         self.optionsUsers = ko.observableArray([]);
@@ -73,6 +74,7 @@ var workerDetailAPI = {
         vm.code(data.code);
         vm.position(data.position);
         vm.department(data.department);
+        vm.cost(data.cost);
         vm.bloodType(data.bloodType);
         workerDetailAPI.loadUsers(vm.userId());
     },
@@ -140,6 +142,7 @@ var workerDetailAPI = {
                 code: vm.code(),
                 position: vm.position(),
                 department: vm.department(),
+                cost: vm.cost(),
                 bloodType: vm.bloodType()
             };
             var url = "", type = "";

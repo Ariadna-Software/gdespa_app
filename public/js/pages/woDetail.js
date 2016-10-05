@@ -59,7 +59,7 @@ var woDetailAPI = {
         var self = this;
         self.id = ko.observable();
         self.initDate = ko.observable();
-        self.endDate = ko.observable();
+      //  self.endDate = ko.observable();
         self.comments = ko.observable();
         // worker combo
         self.optionsWorkers = ko.observableArray([]);
@@ -89,7 +89,7 @@ var woDetailAPI = {
     loadData: function (data) {
         vm.id(data.id);
         vm.initDate(moment(data.initDate).format(i18n.t('util.date_format')));
-        vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
+       // vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
         woDetailAPI.loadPws(data.pw.id);
         woDetailAPI.loadWorkers(data.worker.id);
@@ -99,7 +99,7 @@ var woDetailAPI = {
         $('#woDetail-form').validate({
             rules: {
                 txtInitDate: { required: true },
-                txtEndDate: { required: true },
+        //        txtEndDate: { required: true },
                 cmbWorkers: { required: true },
                 cmbPws: { required: true },
             },
@@ -148,7 +148,7 @@ var woDetailAPI = {
             var data = {
                 id: vm.id(),
                 initDate: moment(vm.initDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
-                endDate: moment(vm.endDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
+        //        endDate: moment(vm.endDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
                 worker: {
                     id: vm.sWorker()
                 },
