@@ -180,8 +180,8 @@ var pwDetailAPI = {
         vm.sZone(data.zone.id);
         pwDetailAPI.loadZones(vm.sZone());
         console.log(data);
-        $('#progress').text((data.percentage * 100) + "%");
-        $('#cost').text(data.cost * 1 + "€");
+        $('#progress').text((data.percentage * 100) + " %");
+        $('#cost').text(data.cost * 1 + " USD");
         // if we have tabs we should change wiget title
         $('#pwDetailTitle').html(" <strong>[" + vm.name() + "]</strong>");
     },
