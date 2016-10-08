@@ -13,7 +13,7 @@ var pool = mysql.createPool({
 
 var s = process.argv[2];
 console.log("S: ", s);
-//s = 4;
+//s = 5;
 var sheet_name = book.SheetNames[s];
 console.log(sheet_name);
 var sheet = book.Sheets[sheet_name];
@@ -133,10 +133,10 @@ while (i < 100000) {
             reference: c1.v,
             name: c2.v,
             description: desc
-        }
-        if (c3) {
-            cu.cost = c3.v;
-        }
+        };
+//        if (c3) {
+//            cu.cost = c3.v;
+//        }
         cunits.push(cu);
     }
 }
@@ -156,7 +156,7 @@ while (i < 100000) {
     var a1 = sheet['B' + i];
     var a2 = sheet['C' + i];
     var a3 = sheet['D' + i];
-    if (a1 && isNumber(a1.v) && a2 && a3) {
+    if (a1 && a2 && a3) {
         l++;
         var cu2 = {
             ref: uc,
