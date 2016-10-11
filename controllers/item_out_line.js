@@ -55,7 +55,7 @@ router.put('/:id', midCheck, function (req, res) {
     var woLine = req.body;
     itemOutLineDb.put(woLine, function (err, group) {
         if (err) {
-            res.status(500).send(err.message);
+            return res.status(500).send(err.message);
         } else {
             res.json(group);
         }
