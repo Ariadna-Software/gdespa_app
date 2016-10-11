@@ -42,18 +42,6 @@ router.post('/', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
-router.post('/upstock/', common.midChkApiKey, function (req, res) {
-    var test = req.query.test && (req.query.test == 'true');
-    var stck = req.body;
-    itemStockDb.postUpdateStock(stck, function (err, item_stocks) {
-        if (err) {
-            res.status(500).send(err.message);
-        } else {
-            res.json(null);
-        }
-    }, test);
-});
-
 router.get('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
