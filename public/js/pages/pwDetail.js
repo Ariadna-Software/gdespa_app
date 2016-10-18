@@ -184,6 +184,12 @@ var pwDetailAPI = {
         $('#cost').text(data.cost * 1 + " USD");
         // if we have tabs we should change wiget title
         $('#pwDetailTitle').html(" <strong>[" + vm.name() + "]</strong>");
+        // New button visibility
+        if (vm.sStatus() > 0){
+            if (!user.modPw){
+                $('#btnNewLine').hide();
+            }
+        }
     },
     // Validates form (jquery validate) 
     dataOk: function () {

@@ -49,6 +49,7 @@ var userDetailAPI = {
         self.perAdm = ko.observable();
         self.perGes = ko.observable();
         self.perStore = ko.observable();
+        self.perReport = ko.observable();
         //
         self.PwGeneral = ko.observable();
         self.WoGeneral = ko.observable();
@@ -57,6 +58,9 @@ var userDetailAPI = {
         self.ItemInGeneral = ko.observable();
         self.ItemOutGeneral = ko.observable();
         self.InventoryGeneral = ko.observable();
+        self.ModPw = ko.observable();
+        self.SeeNotOwner = ko.observable();
+        self.ModWoClosed = ko.observable();
         // languages combos
         self.optionsLanguages = ko.observableArray([]);
         self.selectedLanguages = ko.observableArray([]);
@@ -78,6 +82,7 @@ var userDetailAPI = {
         vm.perAdm(data.perAdm);
         vm.perGes(data.perGes);
         vm.perStore(data.perStore);
+        vm.perReport(data.perReport);
         //
         vm.PwGeneral(data.pwGeneral);
         vm.WoGeneral(data.woGeneral);
@@ -86,6 +91,9 @@ var userDetailAPI = {
         vm.ItemInGeneral(data.itemInGeneral);
         vm.ItemOutGeneral(data.itemOutGeneral);
         vm.InventoryGeneral(data.inventoryGeneral);
+        vm.SeeNotOwner(data.seeNotOwner);
+        vm.ModWoClosed(data.modWoClosed);
+        vm.ModPw(data.modPw);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -152,16 +160,20 @@ var userDetailAPI = {
                 userGroup: {
                     id: vm.sGroup()
                 },
-                perAdm: vm.perAdm(),
-                perGes: vm.perGes(),
-                perStore: vm.perStore(),
-                pwGeneral: vm.PwGeneral(),
-                woGeneral: vm.WoGeneral(),
-                closureGeneral: vm.ClosureGeneral(),
-                deliveryGeneral: vm.DeliveryGeneral(),
-                itemInGeneral: vm.ItemInGeneral(),
-                itemOutGeneral: vm.ItemOutGeneral(),
-                inventoryGeneral: vm.InventoryGeneral()
+                perAdm: vm.perAdm() ? 1 : 0,
+                perGes: vm.perGes() ? 1 : 0,
+                perStore: vm.perStore() ? 1 : 0,
+                perReport: vm.perReport() ? 1 : 0,
+                pwGeneral: vm.PwGeneral() ? 1 : 0,
+                woGeneral: vm.WoGeneral() ? 1 : 0,
+                closureGeneral: vm.ClosureGeneral() ? 1 : 0,
+                deliveryGeneral: vm.DeliveryGeneral() ? 1 : 0,
+                itemInGeneral: vm.ItemInGeneral() ? 1 : 0,
+                itemOutGeneral: vm.ItemOutGeneral() ? 1 : 0,
+                inventoryGeneral: vm.InventoryGeneral() ? 1 : 0,
+                seeNotOwner: vm.SeeNotOwner() ? 1 : 0,
+                modPw: vm.ModPw() ? 1 : 0,
+                modWoClosed: vm.ModWoClosed() ? 1: 0
             };
             var url = "", type = "";
             if (vm.id() == 0) {

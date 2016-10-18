@@ -37,31 +37,32 @@ var pwGeneralAPI = {
         options.columns = [{
             data: "reference"
         }, {
-                data: "status.name"
-            }, {
-                data: "name"
-            }, {
-                data: "description"
-            }, {
-                data: "zone.name"
-            }, {
-                data: "total"
-            }, {
-                data: "endDate"
-			}, {
-				data: "percentage",
-				render: function(data){
-					return data*100 + " %";
-				}
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwGeneralAPI.deletePwMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='pwGeneralAPI.editPw(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "status.name"
+        }, {
+            data: "name"
+        }, {
+            data: "description"
+        }, {
+            data: "zone.name"
+        }, {
+            data: "total"
+        }, {
+            data: "endDate"
+        }, {
+            data: "percentage",
+            render: function (data) {
+                return data * 100 + " %";
+            }
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                html = "";
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwGeneralAPI.deletePwMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='pwGeneralAPI.editPw(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_pw').dataTable(options);
     },
     searchPw: function () {
@@ -130,7 +131,19 @@ var pwGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                pwGeneralAPI.loadPwsTable(data);
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    if (user.worker) {
+                        data.forEach(function (d) {
+                            if (d.initInCharge.id == user.worker.id) {
+                                data2.push(d);
+                            }
+                        });
+                    }
+                } else {
+                    data2 = data;
+                }
+                pwGeneralAPI.loadPwsTable(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);

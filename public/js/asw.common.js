@@ -329,6 +329,7 @@ var aswInit = {
         $('#administration').hide();
         $('#pwman').hide();
         $('#store').hide();
+        $('#report').hide();
         if (user.perAdm) {
             $('#administration').show();
         }
@@ -345,6 +346,9 @@ var aswInit = {
             if (!user.itemOutGeneral) $('#itemOutGeneral').hide();
             if (!user.inventoryGeneral) $('#inventoryGeneral').hide();
         }
+        if (user.perReport) {
+            $('#report').show();
+        }        
     }
 }
 

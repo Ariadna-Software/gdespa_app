@@ -109,13 +109,17 @@
         "perAdm": "Acceso al menú Administración",
         "perGes": "Acceso al menú de Gestión",
         "perStore": "Acceso al menú de Almacenes",
+        "perReport": "Acceso al menú de Informes",
         "PwGeneral": "--> Propuestas",
         "WoGeneral": "--> Partes de trabajo",
         "ClosureGeneral": "--> Cierres",
         "DeliveryGeneral": "--> Reservas / Entregas",
         "ItemInGeneral": "--> Entradas",
         "ItemOutGeneral": "--> Salidas",
-        "InventoryGeneral": "--> Inventarios"
+        "InventoryGeneral": "--> Inventarios",
+        "ModPw": "Poder modificar una propuesta aceptada",
+        "SeeNotOwner": "Ver registros de los que no se es responsable",
+        "ModWoClosed": "Poder modificar partes cerrados"
     },
     "workerGeneral": {
         "title": "Mantenimiento de trabajadores",

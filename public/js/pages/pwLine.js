@@ -35,9 +35,13 @@ var pwLineAPI = {
             }, {
                 data: "id",
                 render: function (data, type, row) {
+                    var html = "";
                     var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwLineAPI.deletePwLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                     var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#pwModal' onclick='pwModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                    html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                    if (vm.sStatus() > 0 && !user.modPw){
+                        html = "";
+                    }
                     return html;
                 }
             }];
