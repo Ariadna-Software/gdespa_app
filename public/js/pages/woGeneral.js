@@ -23,11 +23,15 @@ var woGeneralAPI = {
         $('#btnSearch').click(woGeneralAPI.searchWo());
         //
         $('#chkClosed').change(woGeneralAPI.checkClosedChange());
+        // 
+        if (!user.modWoClosed){
+            $("#seeClosed").hide();
+        }
         // check if there's an id
         var id = aswUtil.gup('id');
         if (id) {
             woGeneralAPI.getWo(id);
-        }else{
+        } else {
             woGeneralAPI.getWos('', false);
         }
     },
@@ -38,24 +42,24 @@ var woGeneralAPI = {
         options.columns = [{
             data: "pw.name"
         }, {
-                data: "initDate",
-                render: function (data, type, row) {
-                    // LANG: var html = moment(data).format(i18n.t('util.date_format'));
-                    var html = moment(data).format('DD/MM/YYYY');
-                    html = "<div class='asw-center'>" + html + "</div>";
-                    return html;
-                }
-            }, {
-                data: "worker.name"
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woGeneralAPI.deleteWoMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='woGeneralAPI.editWo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "initDate",
+            render: function (data, type, row) {
+                // LANG: var html = moment(data).format(i18n.t('util.date_format'));
+                var html = moment(data).format('DD/MM/YYYY');
+                html = "<div class='asw-center'>" + html + "</div>";
+                return html;
+            }
+        }, {
+            data: "worker.name"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woGeneralAPI.deleteWoMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='woGeneralAPI.editWo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_wo').dataTable(options);
     },
     searchWo: function () {
@@ -83,7 +87,7 @@ var woGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                var name = data[0].pw.name + " [" + moment(data[0].initDate).format(i18n.t('util.date_format')) + " - " + moment(data[0].endDate).format(i18n.t('util.date_format')) + "]" ;
+                var name = data[0].pw.name + " [" + moment(data[0].initDate).format(i18n.t('util.date_format')) + " - " + moment(data[0].endDate).format(i18n.t('util.date_format')) + "]";
                 var fn = sprintf('woGeneralAPI.deleteWo(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
@@ -125,7 +129,19 @@ var woGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                woGeneralAPI.loadWosTable(data);
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    if (user.worker) {
+                        data.forEach(function (d) {
+                            if (d.worker.id == user.worker.id) {
+                                data2.push(d);
+                            }
+                        });
+                    }
+                } else {
+                    data2 = data;
+                }
+                woGeneralAPI.loadWosTable(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -163,7 +179,7 @@ var woGeneralAPI = {
     checkClosedChange: function () {
         var mf = function () {
             var chk = $(this).is(':checked');
-           woGeneralAPI.getWos('',chk);
+            woGeneralAPI.getWos('', chk);
         }
         return mf;
     }

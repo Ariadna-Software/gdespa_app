@@ -25,7 +25,7 @@ var closureGeneralAPI = {
         var id = aswUtil.gup('id');
         if (id) {
             closureGeneralAPI.getClosure(id);
-        }else{
+        } else {
             closureGeneralAPI.getClosure('');
         }
     },
@@ -36,24 +36,24 @@ var closureGeneralAPI = {
         options.columns = [{
             data: "worker.name"
         }, {
-                data: "closureDate",
-                render: function (data, type, row) {
-                    // LANG: var html = moment(data).format(i18n.t('util.date_format'));
-                    var html = moment(data).format('DD/MM/YYYY');
-                    html = "<div class='asw-center'>" + html + "</div>";
-                    return html;
-                }
-            }, {
-                data: "comments"
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='closureGeneralAPI.deleteClosureMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='closureGeneralAPI.editClosure(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "closureDate",
+            render: function (data, type, row) {
+                // LANG: var html = moment(data).format(i18n.t('util.date_format'));
+                var html = moment(data).format('DD/MM/YYYY');
+                html = "<div class='asw-center'>" + html + "</div>";
+                return html;
+            }
+        }, {
+            data: "comments"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='closureGeneralAPI.deleteClosureMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='closureGeneralAPI.editClosure(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_closure').dataTable(options);
     },
     searchClosure: function () {
@@ -81,7 +81,7 @@ var closureGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                var name = data[0].worker.name + " [" + moment(data[0].closureDate).format(i18n.t('util.date_format'))  + "]" ;
+                var name = data[0].worker.name + " [" + moment(data[0].closureDate).format(i18n.t('util.date_format')) + "]";
                 var fn = sprintf('closureGeneralAPI.deleteClosure(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
@@ -140,7 +140,19 @@ var closureGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                closureGeneralAPI.loadClosuresTable(data);
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    if (user.worker) {
+                        data.forEach(function (d) {
+                            if (d.worker.id == user.worker.id) {
+                                data2.push(d);
+                            }
+                        });
+                    }
+                } else {
+                    data2 = data;
+                }
+                closureGeneralAPI.loadClosuresTable(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
