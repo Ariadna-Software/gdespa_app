@@ -243,6 +243,7 @@
             "work_order": "Partes de trabajo",
             "worker": "Trabajadores"
         },
+        "print": "Imprimir",
         "title": "Detalle propuesta",
         "name": "Nombre",
         "reference": "Ref. GDES-LINEMAN",

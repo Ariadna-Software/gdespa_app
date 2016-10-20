@@ -33,7 +33,7 @@ var pwDetailAPI = {
         // combos
         $('#cmbWorkers').select2(select2_languages[lang]);
         pwDetailAPI.loadWorkers();
-        if (user.worker){
+        if (user.worker) {
             pwDetailAPI.loadWorkers(user.worker.id);
         }
         $('#cmbCompanies').select2(select2_languages[lang]);
@@ -44,6 +44,7 @@ var pwDetailAPI = {
         pwDetailAPI.loadZones(0);
         // buttons click events
         $('#btnOk').click(pwDetailAPI.btnOk());
+        $('#btnPrint').click(pwDetailAPI.btnPrint());
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('pwGeneral.html', '_self');
@@ -185,8 +186,8 @@ var pwDetailAPI = {
         // if we have tabs we should change wiget title
         $('#pwDetailTitle').html(" <strong>[" + vm.name() + "]</strong>");
         // New button visibility
-        if (vm.sStatus() > 0){
-            if (!user.modPw){
+        if (vm.sStatus() > 0) {
+            if (!user.modPw) {
                 $('#btnNewLine').hide();
             }
         }
@@ -278,7 +279,7 @@ var pwDetailAPI = {
                 total: vm.total(),
                 zone: { id: vm.sZone() }
             };
-            if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()){
+            if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()) {
                 data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
             }
             var url = "", type = "";
@@ -414,23 +415,23 @@ var pwDetailAPI = {
                 return html;
             }
         }, {
-                data: "endDate",
-                render: function (data, type, row) {
-                    var html = moment(data).format(i18n.t("util.date_format"));
-                    return html;
-                }
-            }, {
-                data: "workerName"
-            }, {
-                data: "comments"
-            }, {
-                data: "woId",
-                render: function (data, type, row) {
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='pwDetailAPI.editWo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "endDate",
+            render: function (data, type, row) {
+                var html = moment(data).format(i18n.t("util.date_format"));
+                return html;
+            }
+        }, {
+            data: "workerName"
+        }, {
+            data: "comments"
+        }, {
+            data: "woId",
+            render: function (data, type, row) {
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='pwDetailAPI.editWo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_wo').dataTable(options);
     },
     getWo: function (id) {
@@ -459,5 +460,36 @@ var pwDetailAPI = {
     },
     editWo: function (id) {
         window.open(sprintf('woDetail.html?id=%s', id), '_blank');
-    }
+    },
+    btnPrint: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            // validate form
+            if (!pwDetailAPI.dataOk()) return;
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            url = sprintf('%s/report/pwR1/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    // process report data
+                    aswReport.reportPDF(data, 'Sk6i2fr1x');
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    },
 };
