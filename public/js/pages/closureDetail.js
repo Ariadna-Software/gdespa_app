@@ -260,12 +260,6 @@ var closureDetailAPI = {
                 return html;
             }
         }, {
-                data: "endDate",
-                render: function (data, type, row) {
-                    var html = moment(data).format(i18n.t("util.date_format"));
-                    return html;
-                }
-            }, {
                 data: "worker.name"
             }, {
                 data: "comments"

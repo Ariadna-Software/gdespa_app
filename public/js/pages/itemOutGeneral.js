@@ -36,28 +36,28 @@ var itemOutGeneralAPI = {
         options.columns = [{
             data: "store.name"
         }, {
-                data: "dateOut",
-                render: function (data, type, row) {
-                    // LANG: var html = moment(data).format(i18n.t('util.date_format'));
-                    var html = moment(data).format('DD/MM/YYYY');
-                    html = "<div class='asw-center'>" + html + "</div>";
-                    return html;
-                }
-            }, {
-                data: "worker.name",
-            }, {
-                data: "pw.name",
-            },{
-                data: "comments"
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='itemOutGeneralAPI.deleteItemOutMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='itemOutGeneralAPI.editItemOut(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "dateOut",
+            render: function (data, type, row) {
+                // LANG: var html = moment(data).format(i18n.t('util.date_format'));
+                var html = moment(data).format('DD/MM/YYYY');
+                html = "<div class='asw-center'>" + html + "</div>";
+                return html;
+            }
+        }, {
+            data: "worker.name",
+        }, {
+            data: "pw.name",
+        }, {
+            data: "comments"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='itemOutGeneralAPI.deleteItemOutMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='itemOutGeneralAPI.editItemOut(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_itemOut').dataTable(options);
     },
     searchItemOut: function () {
@@ -126,7 +126,19 @@ var itemOutGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemOutGeneralAPI.loadItemOutsTable(data);
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    if (user.worker) {
+                        data.forEach(function (d) {
+                            if (d.worker.id == user.worker.id) {
+                                data2.push(d);
+                            }
+                        });
+                    }
+                } else {
+                    data2 = data;
+                }                
+                itemOutGeneralAPI.loadItemOutsTable(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -144,7 +156,19 @@ var itemOutGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemOutGeneralAPI.loadItemOutsTable(data);
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    if (user.worker) {
+                        data.forEach(function (d) {
+                            if (d.worker.id == user.worker.id) {
+                                data2.push(d);
+                            }
+                        });
+                    }
+                } else {
+                    data2 = data;
+                }
+                itemOutGeneralAPI.loadItemOutsTable(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);

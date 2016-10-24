@@ -142,7 +142,19 @@ var itemInGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemInGeneralAPI.loaditemInsTable(data);
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    if (user.worker) {
+                        data.forEach(function (d) {
+                            if (d.worker.id == user.worker.id) {
+                                data2.push(d);
+                            }
+                        });
+                    }
+                } else {
+                    data2 = data;
+                }                
+                itemInGeneralAPI.loaditemInsTable(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);

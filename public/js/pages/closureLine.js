@@ -17,13 +17,19 @@ var closureLineAPI = {
         }, {
                 data: "estimate",
                 render: function (data, type, row) {
-                    var html = (data * 100)  ;
+                    var html = parseInt(data * 100)  ;
+                    return html;
+                }
+            }, {
+                data: "amount",
+                render: function (data, type, row) {
+                    var html = data;
                     return html;
                 }
             }, {
                 data: "done",
                 render: function (data, type, row) {
-                    var html = (data * 100)  ;
+                    var html = parseInt(data * 100);
                     return html;
                 }
             }, {
