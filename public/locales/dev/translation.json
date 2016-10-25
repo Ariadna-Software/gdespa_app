@@ -9,6 +9,7 @@
     "warning": "ADVERTENCIA",
     "yes": "Si",
     "no": "No",
+    "accept": "Aceptar",
     "new_record": "NUEVO REGISTRO",
     "record_lines": "Registro correctamente dado de alta. Introduzca las lineas asociadas más abajo en esta misma página",
     "serve_lines": "Las cantidades de material servido se han actualizado. Puede comprobarlo en las lineas más abajo. Pulse en el botón salir para regresar a la pantalla anterior.",
@@ -315,7 +316,8 @@
         "worker2": "Trabajador",
         "cost": "Coste",
         "newWorker": "Nuevo trabajador",
-        "quantity2": "Dias"
+        "quantity2": "Dias",
+        "estimate_exceed": "La cantidad excede a la presupuestada para esta unidad constructiva"
     },
     "itemInGeneral": {
         "title": "Entradas",

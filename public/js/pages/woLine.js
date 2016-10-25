@@ -23,21 +23,21 @@ var woLineAPI = {
         options.columns = [{
             data: "cunit.name"
         }, {
-                data: "estimate",
-                className: "asw-center"
-            }, {
-                data: "done",
-                className: "asw-center"
-            }, {
-                data: "id",
-                width: "10%",
-                render: function (data, type, row) {
-                    var html = '<label class="input">';
-                    html += sprintf('<input class="asw-center" id="qty%s" name="qty%s" type="text"/>', data, data);
-                    html += '</label>';
-                    return html;
-                }
-            }];
+            data: "estimate",
+            className: "asw-center"
+        }, {
+            data: "done",
+            className: "asw-center"
+        }, {
+            data: "id",
+            width: "10%",
+            render: function (data, type, row) {
+                var html = '<label class="input">';
+                html += sprintf('<input class="asw-center" id="qty%s" name="qty%s" type="text"/>', data, data);
+                html += '</label>';
+                return html;
+            }
+        }];
         $('#dt_woLine').dataTable(options);
     },
     newWoLine: function () {
@@ -131,6 +131,12 @@ var woLineAPI = {
                     done: v.done,
                     quantity: quantity
                 };
+                if ((data.quantity + data.done) > data.estimate) {
+                    var message = i18n.t("woDetail.estimate_exceed");
+                    aswNotif.generalMessage(message);
+                    $(field).val(0);
+                    data.quantity = 0;
+                }
                 var url = "", type = "";
                 // updating record
                 var type = "PUT";
@@ -159,16 +165,16 @@ var woLineAPI = {
         options.columns = [{
             data: "worker.name"
         }, {
-                data: "quantity"
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woLineAPI.deleteWoWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#woModal2' onclick='woModal2API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "quantity"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woLineAPI.deleteWoWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#woModal2' onclick='woModal2API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_worker').dataTable(options);
     },
     newWoWorker: function () {

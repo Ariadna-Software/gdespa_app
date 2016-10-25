@@ -231,6 +231,19 @@ var aswNotif = {
             //timeout: 8000,
             icon: "fa fa-bell swing animated"
         });
+    },
+    generalMessage: function (message) {
+        // mount message
+        var msg = message;
+        var btn1 = sprintf("<a href='javascript:void(0);' class='btn btn-warning btn-sm'>%s</a>", i18n.t('accept'));
+        msg += sprintf("<p class='text-align-right'>%s</p>", btn1);
+        $.smallBox({
+            title: i18n.t('warning'),
+            content: msg,
+            color: "#C79121",
+            //timeout: 8000,
+            icon: "fa fa-bell swing animated"
+        });
     }
 }
 
