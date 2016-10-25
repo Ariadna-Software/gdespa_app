@@ -38,6 +38,7 @@ var itemOutDetailAPI = {
             e.preventDefault();
             window.open('itemOutGeneral.html', '_self');
         })
+        $('#btnPrint').click(itemOutDetailAPI.btnPrint());
         // init lines table
         itemOutLineAPI.init();
         // init modal form
@@ -247,7 +248,38 @@ var itemOutDetailAPI = {
                 }
             }
         });
-    }
+    },
+    btnPrint: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            // validate form
+            if (!itemOutDetailAPI.dataOk()) return;
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            url = sprintf('%s/report/itemOut/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    // process report data
+                    aswReport.reportPDF(data, 'HJjovjn1g');
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    }  
 };
 
 

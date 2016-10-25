@@ -36,6 +36,7 @@ var itemInDetailAPI = {
             e.preventDefault();
             window.open('itemInGeneral.html', '_self');
         })
+        $('#btnPrint').click(itemInDetailAPI.btnPrint());
         // init lines table
         itemInLineAPI.init();
         // init modal form
@@ -212,7 +213,38 @@ var itemInDetailAPI = {
                 }
             }
         });
-    }
+    },
+    btnPrint: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            // validate form
+            if (!itemInDetailAPI.dataOk()) return;
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            url = sprintf('%s/report/itemIn/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    // process report data
+                    aswReport.reportPDF(data, 'HJ8pejnyl');
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    }   
 };
 
 

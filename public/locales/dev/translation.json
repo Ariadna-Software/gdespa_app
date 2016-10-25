@@ -294,6 +294,7 @@
             "general": "General",
             "worker": "Trabajadores"
         },
+        "print": "Imprimir",
         "title": "Detalle parte de trabajo",
         "initDate": "Fecha inicial",
         "endDate": "Fecha final",
@@ -323,6 +324,7 @@
     },
     "itemInDetail": {
         "title": "Detalle entrada",
+        "print": "Imprimir",
         "dateIn": "Fecha",
         "worker": "Responsable",
         "store": "Almacen entrada",
@@ -343,6 +345,7 @@
     },
     "itemOutDetail": {
         "title": "Detalle salida",
+        "print": "Imprimir",
         "dateOut": "Fecha",
         "worker": "Responsable",
         "store": "Almacen salida",
@@ -453,6 +456,6 @@
         "newLine": "Nueva linea",
         "associated_lines": "Lineas del inventario",
         "modal_title": "Linea del inventario",
-        "print":"Imprimir"
+        "print": "Imprimir"
     }
 }

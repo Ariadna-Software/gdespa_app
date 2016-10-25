@@ -35,7 +35,8 @@ var woDetailAPI = {
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('woGeneral.html', '_self');
-        })
+        });
+        $('#btnPrint').click(woDetailAPI.btnPrint());
         // init lines table
         woLineAPI.init();
         // init modal form
@@ -231,7 +232,38 @@ var woDetailAPI = {
                 }
             }
         });
-    }
+    },
+    btnPrint: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            // validate form
+            if (!woDetailAPI.dataOk()) return;
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            url = sprintf('%s/report/wo/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    // process report data
+                    aswReport.reportPDF(data, 'HkhE43nJg');
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    }  
 };
 
 
