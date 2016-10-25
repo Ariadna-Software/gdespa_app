@@ -52,6 +52,15 @@ router.get('/:id', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/lastclose/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    closureDb.getLastByPwId(id, function (err, closures) {
+        if (err) return res.status(500).send(err.message);
+        res.json(closures);
+    }, test);
+});
+
 router.put('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

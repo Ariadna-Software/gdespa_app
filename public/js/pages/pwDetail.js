@@ -97,6 +97,7 @@ var pwDetailAPI = {
         self.payRef = ko.observable();
         self.endDate = ko.observable();
         self.mainK = ko.observable();
+        self.lastClose = ko.observable();
         // status combo
         self.optionsStatus = ko.observableArray([]);
         self.selectedStatus = ko.observableArray([]);
@@ -237,16 +238,16 @@ var pwDetailAPI = {
                 }
             }
         });
-        /*
-        // update progress
-        url = sprintf("%s/pw/per/%s?api_key=%s", myconfig.apiUrl, id, api_key);
+        // last closure
+        url = sprintf("%s/closure/lastclose/%s?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
                 if (data && data.length > 0) {
-                    $('#progress').text((data[0].percentage * 100) + "%");
+                    vm.lastClose(aswUtil.round2(data[0].estimate * 100));
+                    $('#lastclose').text(vm.lastClose() * 1 + " %");
                 }
             },
             error: function (err) {
@@ -256,7 +257,6 @@ var pwDetailAPI = {
                 }
             }
         });
-        */
     },
     btnOk: function () {
         var mf = function (e) {

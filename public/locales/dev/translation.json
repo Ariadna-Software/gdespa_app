@@ -243,6 +243,7 @@
             "work_order": "Partes de trabajo",
             "worker": "Trabajadores"
         },
+        "lastClose": "Ultimo cierre",
         "print": "Imprimir",
         "title": "Detalle propuesta",
         "name": "Nombre",
