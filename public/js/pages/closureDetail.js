@@ -34,7 +34,8 @@ var closureDetailAPI = {
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('closureGeneral.html', '_self');
-        })
+        });
+        $('#btnPrint').click(closureDetailAPI.btnPrint());
         // avoid sending form 
         $('#closureDetail-form').submit(function () {
             return false;
@@ -304,7 +305,40 @@ var closureDetailAPI = {
     },
     editWo: function (id) {
         window.open(sprintf('woDetail.html?id=%s', id), '_blank');
-    }
+    },
+    btnPrint: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            // validate form
+            if (!closureDetailAPI.dataOk()) return;
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            url = sprintf('%s/report/closure/open/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+            if (vm.close()){
+                url = sprintf('%s/report/closure/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+            }
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    // process report data
+                    aswReport.reportPDF(data, 'rJRclWCkx');
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    }   
 };
 
 

@@ -62,5 +62,23 @@ router.get('/wo/:id', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/closure/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    reportDb.getClosureClosedById(id, function (err, reports) {
+        if (err) return res.status(500).send(err.message);
+        res.json(reports);
+    }, test);
+});
+
+router.get('/closure/open/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    reportDb.getClosureOpenById(id, function (err, reports) {
+        if (err) return res.status(500).send(err.message);
+        res.json(reports);
+    }, test);
+});
+
 
 module.exports = router;
