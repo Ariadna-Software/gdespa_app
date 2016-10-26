@@ -62,6 +62,10 @@ var inventoryLineAPI = {
                 if ($(field).val() != ""){
                     quantity = parseFloat($(field).val());
                 }
+                if (quantity < 0){
+                    aswNotif.generalMessage(i18n.t('negative_inventory'));
+                    return;
+                }
                 var data = {
                     id: v.id,
                     inventory: {
