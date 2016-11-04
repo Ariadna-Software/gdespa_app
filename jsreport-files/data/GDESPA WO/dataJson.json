@@ -17,5 +17,16 @@
         "done": 2,
         "quantity": 0
         }
+    ],
+    "workers":[
+        {
+            "worker": "Trabajador 1",
+            "days": "1"
+        },
+        {
+            "worker": "Trabajador 2",
+            "days": "2"
+        }
+        
     ]
 }

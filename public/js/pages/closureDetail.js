@@ -327,7 +327,7 @@ var closureDetailAPI = {
                 data: JSON.stringify(data),
                 success: function (data, status) {
                     // process report data
-                    aswReport.reportPDF(data, 'rJRclWCkx');
+                    aswReport.reportPDF(data, 'rk0YxJ9gx');
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

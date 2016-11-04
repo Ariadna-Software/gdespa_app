@@ -47,5 +47,21 @@
             </tr>
             {{/each}}
         </tbody>
-    </table>            
+    </table>      
+    <table class="table table-stripped table-forum  table-bordered">
+        <thead class="txt-color-blue">
+            <tr>
+                <th>Trabajador</th>
+                <th>Dias</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each workers}}
+            <tr>
+                <td>{{worker}}</td>
+                <td>{{days}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>     
 </div>
