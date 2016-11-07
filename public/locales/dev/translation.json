@@ -20,6 +20,7 @@
     "closure_ready": "El cierre está preparado. Modifique las líneas que desee y cuando esté listo haga clic en el botón 'X' esto hará el cierre efectivo.",
     "inventory_ready": "El inventario está preparado. Modifique las líneas que desee y cuando esté listo haga clic en el botón 'X' esto hará el inventario efectivo.",
     "negative_inventory": "No se permiten cantidades negativas en el inventario",
+    "recalc_pw": "Este proceso recalculará la propuesta con los datos de coste de las unidades constructivas",
     "error": {
         "general": "Se ha producido un error, ver detalles más abajo.",
         "ajax_general": "Se ha producido un error general. Posiblemente falla la conexión.",
@@ -247,6 +248,7 @@
         },
         "lastClose": "Ultimo cierre",
         "print": "Imprimir",
+        "calc": "Recalcular la propuesta",
         "title": "Detalle propuesta",
         "name": "Nombre",
         "reference": "Ref. GDES-LINEMAN",

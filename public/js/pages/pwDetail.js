@@ -45,6 +45,7 @@ var pwDetailAPI = {
         // buttons click events
         $('#btnOk').click(pwDetailAPI.btnOk());
         $('#btnPrint').click(pwDetailAPI.btnPrint());
+        $('#btnCalc').click(pwDetailAPI.btnCalc());
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('pwGeneral.html', '_self');
@@ -492,4 +493,35 @@ var pwDetailAPI = {
         }
         return mf;
     },
+    btnCalc: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            // 
+            var message = i18n.t('recalc_pw');
+            var fn = sprintf('pwDetailAPI.btnCalcDo(%s);', id);
+            aswNotif.generalQuestion(message, fn);
+        }
+        return mf;
+    },
+    btnCalcDo: function () {
+        type = "GET";
+        url = sprintf('%s/pw/recalc/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+        $.ajax({
+            type: type,
+            url: url,
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data, status) {
+                // reload page
+                window.open(sprintf('pwDetail.html?id=%s', vm.id()), '_self');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    }
 };
