@@ -493,7 +493,7 @@ var pwDetailAPI = {
         }
         return mf;
     },
-    btnCalc: function () {
+    btnCalc: function (id) {
         var mf = function (e) {
             // avoid default accion
             e.preventDefault();
