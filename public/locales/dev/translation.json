@@ -472,6 +472,8 @@
         "closure_title": "Informe detallado de cierre",
         "closure_detail": "Cierre",
         "pwStatus_title": "Informe estado de obra",
-        "pwStatus_detail": "Obra a informar"
+        "pwStatus_detail": "Obra a informar",
+        "pwConsume_title": "Informe consumo de obra",
+        "pwConsume_detail": "Obra a informar"
     }
 }
