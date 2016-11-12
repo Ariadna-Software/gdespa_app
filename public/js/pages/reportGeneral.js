@@ -30,7 +30,7 @@ var reportGeneralAPI = {
         // combos
         $('#cmbPwStatus').select2(select2_languages[lang]);
         reportGeneralAPI.loadPwStatus();
-        $('#btnPrintStatus').click(reportGeneralAPI.btnPrintStatus());
+        $('#btnPrintPwStatus').click(reportGeneralAPI.btnPrintPwStatus());
         // avoid sending form 
         $('#pwStatusDetail-form').submit(function() {
             return false;
@@ -121,7 +121,7 @@ var reportGeneralAPI = {
 
             // fecth report data
             type = "GET";
-            url = sprintf('%s/report/closure/%s/?api_key=%s', myconfig.apiUrl, vm.sPwStatus(), api_key);
+            url = sprintf('%s/report/pwR2/%s/?api_key=%s', myconfig.apiUrl, vm.sPwStatus(), api_key);
             $.ajax({
                 type: type,
                 url: url,

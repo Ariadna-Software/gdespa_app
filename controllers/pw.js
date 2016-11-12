@@ -30,6 +30,17 @@ router.get('/', common.midChkApiKey, function (req, res) {
     }
 });
 
+router.get('/report_pw/', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    pwDb.getReportPwStatus(function (err, closures) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(closures);
+        }
+    }, test);
+});
+
 router.post('/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var pw = req.body;
