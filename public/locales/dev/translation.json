@@ -470,6 +470,8 @@
         "print": "Imprimir",
         "wel1": "Seleccione los criterios del informe que desea obtener en el apartado correspondiente y haga clic en el botón asociado",
         "closure_title": "Informe detallado de cierre",
-        "closure_detail": "Cierre"
+        "closure_detail": "Cierre",
+        "pwStatus_title": "Informe estado de obra",
+        "pwStatus_detail": "Estado obra"
     }
 }
