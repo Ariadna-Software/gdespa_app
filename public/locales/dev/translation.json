@@ -77,7 +77,8 @@
             "inventory": "Inventario"
         },
         "report": {
-            "main": "Informes"
+            "main": "Informes",
+            "general": "Informes varios"
         }
     },
     "index": {
@@ -463,5 +464,12 @@
         "associated_lines": "Lineas del inventario",
         "modal_title": "Linea del inventario",
         "print": "Imprimir"
+    },
+    "reportGeneral": {
+        "title": "Informes generales",
+        "print": "Imprimir",
+        "wel1": "Seleccione los criterios del informe que desea obtener en el apartado correspondiente y haga clic en el botón asociado",
+        "closure_title": "Informe detallado de cierre",
+        "closure_detail": "Cierre"
     }
 }
