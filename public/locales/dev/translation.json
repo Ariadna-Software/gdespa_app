@@ -474,6 +474,9 @@
         "pwStatus_title": "Informe estado de obra",
         "pwStatus_detail": "Obra a informar",
         "pwConsume_title": "Informe consumo de obra",
-        "pwConsume_detail": "Obra a informar"
+        "pwConsume_detail": "Obra a informar",
+        "pwStore_title": "Informe stock de almacén",
+        "pwStore_detail": "Almacén a informar"
+        
     }
 }

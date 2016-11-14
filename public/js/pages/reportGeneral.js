@@ -43,6 +43,14 @@ var reportGeneralAPI = {
         $('#pwConsumeDetail-form').submit(function() {
             return false;
         });        
+        // combos
+        $('#cmbPwStore').select2(select2_languages[lang]);
+        reportGeneralAPI.loadPwStore();
+        $('#btnPrintPwStore').click(reportGeneralAPI.btnPrintPwStore());
+        // avoid sending form 
+        $('#pwStoreDetail-form').submit(function() {
+            return false;
+        });          
     },
     pageData: function() {
         var self = this;
@@ -58,6 +66,10 @@ var reportGeneralAPI = {
         self.optionsPwConsume = ko.observableArray([]);
         self.selectedPwConsume = ko.observableArray([]);
         self.sPwConsume = ko.observable();        
+        // pw store combo
+        self.optionsPwStore = ko.observableArray([]);
+        self.selectedPwStore = ko.observableArray([]);
+        self.sPwStore = ko.observable();         
     },
     loadClosures: function(id) {
         $.ajax({
@@ -189,6 +201,53 @@ var reportGeneralAPI = {
                 success: function(data, status) {
                     // process report data
                     aswReport.reportPDF(data, 'By-R2R4Wl');
+                },
+                error: function(err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    },
+    loadPwStore: function(id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/store/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function(data, status) {
+                var options = [{ id: 0, name: " " }].concat(data);
+                vm.optionsPwStore(options);
+                $("#cmbPwStore").val([id]).trigger('change');
+            },
+            error: function(err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    btnPrintPwStore: function() {
+        var mf = function(e) {
+            // avoid default accion
+            e.preventDefault();
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            url = sprintf('%s/report/store/%s/?api_key=%s', myconfig.apiUrl, vm.sPwConsume(), api_key);
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function(data, status) {
+                    // process report data
+                    aswReport.reportPDF(data, 'SyaBYZwbg');
                 },
                 error: function(err) {
                     aswNotif.errAjax(err);
