@@ -377,7 +377,40 @@
 									</fieldset>
 								</form>
 							</div>
-						</div>															
+						</div>				
+						<div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+								<h2 data-i18n="reportGeneral.pwItem_title">* Cierre detallado</h2>
+							</header>
+							<div class="widget-body">
+								<form id="pwItemDetail-form" class="smart-form">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-8">
+												<label class="label" data-i18n="reportGeneral.pwItem_detail">*Cierre:</label>
+												<select style="width:100%;" id="cmbPwItem" name="cmbPwItem" data-bind="options: optionsPwItem, optionsText: 'name', optionsValue: 'id', 
+													value: sPwItem, valueAllowUnset: true, selectedOptions: selectedPwItem, selected2:{}">
+												</select>
+											</section>
+											<section class="col col-md-4">
+												<label class="label" data-i18n="reportGeneral.pwStore_detail">*Cierre:</label>
+												<select style="width:100%;" id="cmbPwStore2" name="cmbPwStore2" data-bind="options: optionsPwStore2, optionsText: 'name', optionsValue: 'id', 
+													value: sPwStore2, valueAllowUnset: true, selectedOptions: selectedPwStore2, selected2:{}">
+												</select>
+											</section>
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnPrintPwItem" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+												<i class="fa fa-lg fa-print"></i>
+											</button>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>																	
 					</article>
 				</div>
 			</section>

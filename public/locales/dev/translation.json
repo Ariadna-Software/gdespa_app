@@ -21,6 +21,7 @@
     "inventory_ready": "El inventario está preparado. Modifique las líneas que desee y cuando esté listo haga clic en el botón 'X' esto hará el inventario efectivo.",
     "negative_inventory": "No se permiten cantidades negativas en el inventario",
     "recalc_pw": "Este proceso recalculará la propuesta con los datos de coste de las unidades constructivas",
+    "no_movement": "No ha habido movimientos de este artículo",
     "error": {
         "general": "Se ha producido un error, ver detalles más abajo.",
         "ajax_general": "Se ha producido un error general. Posiblemente falla la conexión.",
@@ -476,7 +477,8 @@
         "pwConsume_title": "Informe consumo de obra",
         "pwConsume_detail": "Obra a informar",
         "pwStore_title": "Informe stock de almacén",
-        "pwStore_detail": "Almacén a informar"
-        
+        "pwStore_detail": "Almacén a informar",
+        "pwItem_title": "Informe movimientos de artículo",
+        "pwItem_detail": "Artículo"        
     }
 }

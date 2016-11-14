@@ -11,7 +11,7 @@ var data = null;
 var vm = null;
 
 var reportGeneralAPI = {
-    init: function() {
+    init: function () {
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
@@ -24,7 +24,7 @@ var reportGeneralAPI = {
         reportGeneralAPI.loadClosures();
         $('#btnPrintClosure').click(reportGeneralAPI.btnPrintClosure());
         // avoid sending form 
-        $('#closureDetail-form').submit(function() {
+        $('#closureDetail-form').submit(function () {
             return false;
         });
         // combos
@@ -32,7 +32,7 @@ var reportGeneralAPI = {
         reportGeneralAPI.loadPwStatus();
         $('#btnPrintPwStatus').click(reportGeneralAPI.btnPrintPwStatus());
         // avoid sending form 
-        $('#pwStatusDetail-form').submit(function() {
+        $('#pwStatusDetail-form').submit(function () {
             return false;
         });
         // combos
@@ -40,19 +40,29 @@ var reportGeneralAPI = {
         reportGeneralAPI.loadPwConsume();
         $('#btnPrintPwConsume').click(reportGeneralAPI.btnPrintPwConsume());
         // avoid sending form 
-        $('#pwConsumeDetail-form').submit(function() {
+        $('#pwConsumeDetail-form').submit(function () {
             return false;
-        });        
+        });
         // combos
         $('#cmbPwStore').select2(select2_languages[lang]);
         reportGeneralAPI.loadPwStore();
         $('#btnPrintPwStore').click(reportGeneralAPI.btnPrintPwStore());
         // avoid sending form 
-        $('#pwStoreDetail-form').submit(function() {
+        $('#pwStoreDetail-form').submit(function () {
             return false;
-        });          
+        });
+        // combos
+        $('#cmbPwStore2').select2(select2_languages[lang]);
+        reportGeneralAPI.loadPwStore2();
+        $('#cmbPwItem').select2(select2_languages[lang]);
+        reportGeneralAPI.loadPwItem();
+        $('#btnPrintPwItem').click(reportGeneralAPI.btnPrintPwItem());
+        // avoid sending form 
+        $('#pwItemDetail-form').submit(function () {
+            return false;
+        });
     },
-    pageData: function() {
+    pageData: function () {
         var self = this;
         // closure combo
         self.optionsClosures = ko.observableArray([]);
@@ -65,24 +75,32 @@ var reportGeneralAPI = {
         // pw consume combo
         self.optionsPwConsume = ko.observableArray([]);
         self.selectedPwConsume = ko.observableArray([]);
-        self.sPwConsume = ko.observable();        
+        self.sPwConsume = ko.observable();
         // pw store combo
         self.optionsPwStore = ko.observableArray([]);
         self.selectedPwStore = ko.observableArray([]);
-        self.sPwStore = ko.observable();         
+        self.sPwStore = ko.observable();
+        // pw store item
+        self.optionsPwStore2 = ko.observableArray([]);
+        self.selectedPwStore2 = ko.observableArray([]);
+        self.sPwStore2 = ko.observable();
+        self.optionsPwItem = ko.observableArray([]);
+        self.selectedPwItem = ko.observableArray([]);
+        self.sPwItem = ko.observable();
+
     },
-    loadClosures: function(id) {
+    loadClosures: function (id) {
         $.ajax({
             type: "GET",
             url: sprintf('%s/closure/report_closures/?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
-            success: function(data, status) {
+            success: function (data, status) {
                 var options = [{ id: 0, name: " " }].concat(data);
                 vm.optionsClosures(options);
                 $("#cmbClosures").val([id]).trigger('change');
             },
-            error: function(err) {
+            error: function (err) {
                 aswNotif.errAjax(err);
                 if (err.status == 401) {
                     window.open('index.html', '_self');
@@ -90,8 +108,8 @@ var reportGeneralAPI = {
             }
         });
     },
-    btnPrintClosure: function() {
-        var mf = function(e) {
+    btnPrintClosure: function () {
+        var mf = function (e) {
             // avoid default accion
             e.preventDefault();
             var url = "", type = "";
@@ -104,11 +122,11 @@ var reportGeneralAPI = {
                 url: url,
                 contentType: "application/json",
                 data: JSON.stringify(data),
-                success: function(data, status) {
+                success: function (data, status) {
                     // process report data
                     aswReport.reportPDF(data, 'rJRclWCkx');
                 },
-                error: function(err) {
+                error: function (err) {
                     aswNotif.errAjax(err);
                     if (err.status == 401) {
                         window.open('index.html', '_self');
@@ -118,18 +136,18 @@ var reportGeneralAPI = {
         }
         return mf;
     },
-    loadPwStatus: function(id) {
+    loadPwStatus: function (id) {
         $.ajax({
             type: "GET",
             url: sprintf('%s/pw/report_pw/?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
-            success: function(data, status) {
+            success: function (data, status) {
                 var options = [{ id: 0, name: " " }].concat(data);
                 vm.optionsPwStatus(options);
                 $("#cmbPwStatus").val([id]).trigger('change');
             },
-            error: function(err) {
+            error: function (err) {
                 aswNotif.errAjax(err);
                 if (err.status == 401) {
                     window.open('index.html', '_self');
@@ -137,8 +155,8 @@ var reportGeneralAPI = {
             }
         });
     },
-    btnPrintPwStatus: function() {
-        var mf = function(e) {
+    btnPrintPwStatus: function () {
+        var mf = function (e) {
             // avoid default accion
             e.preventDefault();
             var url = "", type = "";
@@ -151,11 +169,11 @@ var reportGeneralAPI = {
                 url: url,
                 contentType: "application/json",
                 data: JSON.stringify(data),
-                success: function(data, status) {
+                success: function (data, status) {
                     // process report data
                     aswReport.reportPDF(data, 'S12MqKVWl');
                 },
-                error: function(err) {
+                error: function (err) {
                     aswNotif.errAjax(err);
                     if (err.status == 401) {
                         window.open('index.html', '_self');
@@ -165,18 +183,18 @@ var reportGeneralAPI = {
         }
         return mf;
     },
-    loadPwConsume: function(id) {
+    loadPwConsume: function (id) {
         $.ajax({
             type: "GET",
             url: sprintf('%s/pw/report_pw/?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
-            success: function(data, status) {
+            success: function (data, status) {
                 var options = [{ id: 0, name: " " }].concat(data);
                 vm.optionsPwConsume(options);
                 $("#cmbPwConsume").val([id]).trigger('change');
             },
-            error: function(err) {
+            error: function (err) {
                 aswNotif.errAjax(err);
                 if (err.status == 401) {
                     window.open('index.html', '_self');
@@ -184,8 +202,8 @@ var reportGeneralAPI = {
             }
         });
     },
-    btnPrintPwConsume: function() {
-        var mf = function(e) {
+    btnPrintPwConsume: function () {
+        var mf = function (e) {
             // avoid default accion
             e.preventDefault();
             var url = "", type = "";
@@ -198,11 +216,11 @@ var reportGeneralAPI = {
                 url: url,
                 contentType: "application/json",
                 data: JSON.stringify(data),
-                success: function(data, status) {
+                success: function (data, status) {
                     // process report data
                     aswReport.reportPDF(data, 'By-R2R4Wl');
                 },
-                error: function(err) {
+                error: function (err) {
                     aswNotif.errAjax(err);
                     if (err.status == 401) {
                         window.open('index.html', '_self');
@@ -212,18 +230,18 @@ var reportGeneralAPI = {
         }
         return mf;
     },
-    loadPwStore: function(id) {
+    loadPwStore: function (id) {
         $.ajax({
             type: "GET",
             url: sprintf('%s/store/?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
-            success: function(data, status) {
+            success: function (data, status) {
                 var options = [{ id: 0, name: " " }].concat(data);
                 vm.optionsPwStore(options);
                 $("#cmbPwStore").val([id]).trigger('change');
             },
-            error: function(err) {
+            error: function (err) {
                 aswNotif.errAjax(err);
                 if (err.status == 401) {
                     window.open('index.html', '_self');
@@ -231,8 +249,8 @@ var reportGeneralAPI = {
             }
         });
     },
-    btnPrintPwStore: function() {
-        var mf = function(e) {
+    btnPrintPwStore: function () {
+        var mf = function (e) {
             // avoid default accion
             e.preventDefault();
             var url = "", type = "";
@@ -245,11 +263,11 @@ var reportGeneralAPI = {
                 url: url,
                 contentType: "application/json",
                 data: JSON.stringify(data),
-                success: function(data, status) {
+                success: function (data, status) {
                     // process report data
                     aswReport.reportPDF(data, 'SyaBYZwbg');
                 },
-                error: function(err) {
+                error: function (err) {
                     aswNotif.errAjax(err);
                     if (err.status == 401) {
                         window.open('index.html', '_self');
@@ -258,7 +276,93 @@ var reportGeneralAPI = {
             });
         }
         return mf;
-    }    
+    },
+    loadPwStore2: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/store/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 0, name: " " }].concat(data);
+                vm.optionsPwStore2(options);
+                $("#cmbPwStore2").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadPwItem: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/item/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 0, name: " " }].concat(data);
+                vm.optionsPwItem(options);
+                $("#cmbPwItem").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    btnPrintPwItem: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            var url = "", type = "";
+            // validate
+            $('#pwItemDetail-form').validate({
+                rules: {
+                    cmbPwItem: { required: true },
+                    cmbPwStore2: { required: true }
+                },
+                // Messages for form validation
+                messages: {
+                },
+                // Do not change code below
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element.parent());
+                }
+            });
+            if (!$('#pwItemDetail-form').valid()) {
+                return;
+            }
+            // fecth report data
+            type = "GET";
+            url = sprintf('%s/report/item/%s/%s/?api_key=%s', myconfig.apiUrl, vm.sPwItem(), vm.sPwStore2(), api_key);
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    // process report data
+                    if (!data) {
+                        aswNotif.generalMessage(i18n.t('no_movement'));
+                    } else {
+                        aswReport.reportPDF(data, 'r1dPvIP-x');
+                    }
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    }
 
 
 };
