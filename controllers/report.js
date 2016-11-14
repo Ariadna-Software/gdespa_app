@@ -53,6 +53,15 @@ router.get('/pwR3/:id', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/store/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    reportDb.getReportStoreMain(id, function (err, reports) {
+        if (err) return res.status(500).send(err.message);
+        res.json(reports);
+    }, test);
+});
+
 router.get('/itemIn/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
