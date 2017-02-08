@@ -25,9 +25,9 @@ var itemOutDetailAPI = {
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
         itemOutDetailAPI.loadWorkers();
-        if (user.worker){
+        if (user.worker) {
             itemOutDetailAPI.loadWorkers(user.worker.id);
-        }        
+        }
         $('#cmbStores').select2(select2_languages[lang]);
         itemOutDetailAPI.loadStores();
         $('#cmbPws').select2(select2_languages[lang]);
@@ -101,9 +101,9 @@ var itemOutDetailAPI = {
                 error.insertAfter(element.parent());
             }
         };
-        if ($('#chkGenerated').is(':checked')){
-            options.rules.cmbPws = { required: true};
-            options.messages.cmbPws = {required: i18n.t("itemOutDetail.pw_required")};
+        if ($('#chkGenerated').is(':checked')) {
+            options.rules.cmbPws = { required: true };
+            options.messages.cmbPws = { required: i18n.t("itemOutDetail.pw_required") };
         }
         $('#itemOut-form').validate(options);
         return $('#itemOut-form').valid();
@@ -158,7 +158,7 @@ var itemOutDetailAPI = {
                 // creating new record
                 type = "POST";
                 url = sprintf('%s/item_out?api_key=%s', myconfig.apiUrl, api_key);
-                if ($('#chkGenerated').is(':checked')){
+                if ($('#chkGenerated').is(':checked')) {
                     url = sprintf('%s/item_out/generated/?api_key=%s', myconfig.apiUrl, api_key);
                 }
             } else {
@@ -218,7 +218,18 @@ var itemOutDetailAPI = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ id: null, name: "" }].concat(data);
+                var options = [{ id: null, name: "" }];
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    data.forEach(function (d) {
+                        if (user.seeZone && (d.zoneId == user.zoneId)) {
+                            data2.push(d);
+                        }
+                    });
+                } else {
+                    data2 = data;
+                }
+                options = options.concat(data2);
                 vm.optionsStores(options);
                 $("#cmbStores").val([id]).trigger('change');
             },
@@ -237,7 +248,18 @@ var itemOutDetailAPI = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ id: null, name: "" }].concat(data);
+                var options = [{ id: null, name: "" }];
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    data.forEach(function (d) {
+                        if (user.workOnlyZone && (d.zone.id == user.zoneId)) {
+                            data2.push(d);
+                        }
+                    });
+                } else {
+                    data2 = data;
+                }
+                options = options.concat(data2);
                 vm.optionsPws(options);
                 $("#cmbPws").val([id]).trigger('change');
             },
@@ -279,7 +301,7 @@ var itemOutDetailAPI = {
             });
         }
         return mf;
-    }  
+    }
 };
 
 

@@ -110,6 +110,9 @@
         "ok": "Guardar",
         "group": "Grupo",
         "login": "Login",
+        "zone": "Zona",
+        "seeZone": "Ver registros de su zona",
+        "workOnlyZone":" Trabaja solo su zona",
         "password": "Contraseña",
         "perAdm": "Acceso al menú Administración",
         "perGes": "Acceso al menú de Gestión",
@@ -175,7 +178,8 @@
         "item": "Articulo",
         "stock": "Stock",
         "lastInvDate": "Último inventario",
-        "lastStock": "Stock inventario"
+        "lastStock": "Stock inventario",
+        "zone": "Zona"
     },
     "unitGeneral": {
         "title": "Mantenimiento unidades",

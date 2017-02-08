@@ -23,10 +23,12 @@ var storeDetailAPI = {
         ko.applyBindings(vm);
         // buttons click events
         $('#btnOk').click(storeDetailAPI.btnOk());
-        $('#btnExit').click(function(e){
+        $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('storeGeneral.html', '_self');
         })
+        $('#cmbZones').select2(select2_languages[lang]);
+        storeDetailAPI.loadZones();
         // init item table
         storeDetailAPI.initItemTable();
         // check if an id have been passed
@@ -38,10 +40,15 @@ var storeDetailAPI = {
         var self = this;
         self.id = ko.observable();
         self.name = ko.observable();
+        // user zone combo
+        self.optionsZones = ko.observableArray([]);
+        self.selectedZones = ko.observableArray([]);
+        self.sZone = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
         vm.name(data.name);
+        storeDetailAPI.loadZones(data.zoneId);
         // show big name
         var html = sprintf('<strong>[%s]</strong>', vm.name());
         $('#storeName').html(html);
@@ -92,7 +99,8 @@ var storeDetailAPI = {
             // dat for post or put
             var data = {
                 id: vm.id(),
-                name: vm.name()
+                name: vm.name(),
+                zoneId: vm.sZone()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -129,16 +137,16 @@ var storeDetailAPI = {
         options.columns = [{
             data: "item.name"
         }, {
-                data: "stock"
-            }, {
-                data: "lastInvDate",
-                render: function (data, type, row) {
-                    var html = moment(data).format('DD/MM/YYYY');
-                    return html;
-                }
-            }, {
-                data: "lastStock"
-            }];
+            data: "stock"
+        }, {
+            data: "lastInvDate",
+            render: function (data, type, row) {
+                var html = moment(data).format('DD/MM/YYYY');
+                return html;
+            }
+        }, {
+            data: "lastStock"
+        }];
         $('#dt_item').dataTable(options);
     },
     getItem: function (id) {
@@ -164,6 +172,25 @@ var storeDetailAPI = {
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
         $("#tb_item").show();
+    },
+    loadZones: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/zone/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 0, name: " " }].concat(data);
+                vm.optionsZones(options);
+                $("#cmbZones").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
     }
 };
 storeDetailAPI.init();

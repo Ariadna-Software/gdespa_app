@@ -32,7 +32,8 @@ var userDetailAPI = {
         userDetailAPI.loadLanguages();
         $('#cmbGroups').select2(select2_languages[lang]);
         userDetailAPI.loadGroups();
-
+        $('#cmbZones').select2(select2_languages[lang]);
+        userDetailAPI.loadZones();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         userDetailAPI.getUserGroup(id);
@@ -69,6 +70,13 @@ var userDetailAPI = {
         self.optionsGroups = ko.observableArray([]);
         self.selectedGroups = ko.observableArray([]);
         self.sGroup = ko.observable();
+        // user zone combo
+        self.optionsZones = ko.observableArray([]);
+        self.selectedZones = ko.observableArray([]);
+        self.sZone = ko.observable();
+        
+        self.seeZone = ko.observable();
+        self.workOnlyZone = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -79,6 +87,7 @@ var userDetailAPI = {
         vm.lang(data.lang);
         userDetailAPI.loadLanguages(vm.lang());
         userDetailAPI.loadGroups(vm.userGroupId());
+        userDetailAPI.loadZones(data.zoneId);
         vm.perAdm(data.perAdm);
         vm.perGes(data.perGes);
         vm.perStore(data.perStore);
@@ -94,6 +103,8 @@ var userDetailAPI = {
         vm.SeeNotOwner(data.seeNotOwner);
         vm.ModWoClosed(data.modWoClosed);
         vm.ModPw(data.modPw);
+        vm.seeZone(data.seeZone);
+        vm.workOnlyZone(data.workOnlyZone);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -103,7 +114,8 @@ var userDetailAPI = {
                 txtLogin: { required: true },
                 txtPassword: { required: true },
                 cmbLanguages: { required: true },
-                cmbGroups: { required: true }
+                cmbGroups: { required: true },
+                cmbZones: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -173,7 +185,10 @@ var userDetailAPI = {
                 inventoryGeneral: vm.InventoryGeneral() ? 1 : 0,
                 seeNotOwner: vm.SeeNotOwner() ? 1 : 0,
                 modPw: vm.ModPw() ? 1 : 0,
-                modWoClosed: vm.ModWoClosed() ? 1: 0
+                modWoClosed: vm.ModWoClosed() ? 1 : 0,
+                zoneId: vm.sZone(),
+                seeZone: vm.seeZone(),
+                workOnlyZone: vm.workOnlyZone()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -224,6 +239,25 @@ var userDetailAPI = {
                 var options = [{ id: 0, name: " " }].concat(data);
                 vm.optionsGroups(options);
                 $("#cmbGroups").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadZones: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/zone/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 0, name: " " }].concat(data);
+                vm.optionsZones(options);
+                $("#cmbZones").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);

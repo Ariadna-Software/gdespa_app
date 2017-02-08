@@ -25,11 +25,11 @@ var itemInDetailAPI = {
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
         itemInDetailAPI.loadWorkers();
-        if (user.worker){
+        if (user.worker) {
             itemInDetailAPI.loadWorkers(user.worker.id);
-        }        
+        }
         $('#cmbStores').select2(select2_languages[lang]);
-        itemInDetailAPI.loadStores();        
+        itemInDetailAPI.loadStores();
         // buttons click events
         $('#btnOk').click(itemInDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
@@ -202,7 +202,18 @@ var itemInDetailAPI = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ id: null, name: "" }].concat(data);
+                var options = [{ id: null, name: "" }];
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    data.forEach(function(d){
+                        if (user.seeZone && (d.zoneId == user.zoneId)){
+                            data2.push(d);
+                        }
+                    });
+                } else {
+                    data2 = data;
+                }
+                options = options.concat(data2);
                 vm.optionsStores(options);
                 $("#cmbStores").val([id]).trigger('change');
             },
@@ -244,7 +255,7 @@ var itemInDetailAPI = {
             });
         }
         return mf;
-    }   
+    }
 };
 
 

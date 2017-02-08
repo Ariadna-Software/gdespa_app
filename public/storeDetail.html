@@ -291,12 +291,18 @@
 										<form id="storeDetail-form" class="smart-form">
 											<fieldset>
 												<div class="row">
-													<section class="col col-md-12">
+													<section class="col col-md-9">
 														<label class="label" data-i18n="storeDetail.name">Nombre:</label>
 														<label class="input">
-													<input id="txtName" name="txtName" data-bind="value: name">
-												</label>
+															<input id="txtName" name="txtName" data-bind="value: name">
+														</label>
 													</section>
+													<section class="col col-md-3">
+														<label class="label" data-i18n="storeDetail.zone">Grupo:</label>
+														<select style="width:100%;" id="cmbZones" name="cmbZones" data-bind="options: optionsZones, optionsText: 'name', optionsValue: 'id', 
+															value: sZone, valueAllowUnset: true, selectedOptions: selectedZones, selected2:{}">
+														</select>
+													</section>													
 												</div>
 											</fieldset>
 											<fieldset>

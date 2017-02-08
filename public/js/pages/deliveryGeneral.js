@@ -27,17 +27,17 @@ var deliveryGeneralAPI = {
         options.columns = [{
             data: "reference"
         }, {
-                data: "name",
-            }, {
-                data: "initInCharge.name"
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='deliveryGeneralAPI.getDeliveryPw(" + data + ");' title='Editar registro'> <i class='fa fa-external-link fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "name",
+        }, {
+            data: "initInCharge.name"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='deliveryGeneralAPI.getDeliveryPw(" + data + ");' title='Editar registro'> <i class='fa fa-external-link fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_delivery').dataTable(options);
     },
     editDelivery: function (id) {
@@ -52,7 +52,25 @@ var deliveryGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                deliveryGeneralAPI.loadDeliveryPwTable(data);
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    if (user.worker) {
+                        data.forEach(function (d) {
+                            if (d.initInCharge.id == user.worker.id) {
+                                data2.push(d);
+                            } else {
+                                if (user.seeZone) {
+                                    if (d.zone.id == user.zoneId) {
+                                        data2.push(d);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                } else {
+                    data2 = data;
+                }
+                deliveryGeneralAPI.loadDeliveryPwTable(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);

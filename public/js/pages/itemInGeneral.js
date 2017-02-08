@@ -36,26 +36,26 @@ var itemInGeneralAPI = {
         options.columns = [{
             data: "store.name"
         }, {
-                data: "dateIn",
-                render: function (data, type, row) {
-                    // LANG: var html = moment(data).format(i18n.t('util.date_format'));
-                    var html = moment(data).format('DD/MM/YYYY');
-                    html = "<div class='asw-center'>" + html + "</div>";
-                    return html;
-                }
-            }, {
-                data: "worker.name",
-            }, {
-                data: "comments"
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='itemInGeneralAPI.deleteitemInMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='itemInGeneralAPI.edititemIn(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "dateIn",
+            render: function (data, type, row) {
+                // LANG: var html = moment(data).format(i18n.t('util.date_format'));
+                var html = moment(data).format('DD/MM/YYYY');
+                html = "<div class='asw-center'>" + html + "</div>";
+                return html;
+            }
+        }, {
+            data: "worker.name",
+        }, {
+            data: "comments"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='itemInGeneralAPI.deleteitemInMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='itemInGeneralAPI.edititemIn(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_itemIn').dataTable(options);
     },
     searchitemIn: function () {
@@ -124,7 +124,23 @@ var itemInGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemInGeneralAPI.loaditemInsTable(data);
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    data.forEach(function (d) {
+                        if (d.worker.id == user.worker.id) {
+                            data2.push(d);
+                        } else {
+                            if (user.seeZone) {
+                                if (d.zoneId == user.zoneId) {
+                                    data2.push(d);
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    data2 = data;
+                }
+                itemInGeneralAPI.loaditemInsTable(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -153,7 +169,7 @@ var itemInGeneralAPI = {
                     }
                 } else {
                     data2 = data;
-                }                
+                }
                 itemInGeneralAPI.loaditemInsTable(data2);
             },
             error: function (err) {
