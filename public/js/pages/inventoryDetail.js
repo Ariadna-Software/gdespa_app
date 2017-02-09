@@ -211,7 +211,18 @@ var inventoryDetailAPI = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ id: null, name: "" }].concat(data);
+                                var options = [{ id: null, name: "" }];
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    data.forEach(function (d) {
+                        if (user.seeZone && (d.zoneId == user.zoneId)) {
+                            data2.push(d);
+                        }
+                    });
+                } else {
+                    data2 = data;
+                }
+                options = options.concat(data2);
                 vm.optionsStores(options);
                 $("#cmbStores").val([id]).trigger('change');
             },
