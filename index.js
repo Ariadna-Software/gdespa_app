@@ -86,6 +86,7 @@ app.use('/api/delivery_line', require('./controllers/delivery_line'));
 app.use('/api/report', require('./controllers/report'));
 app.use('/api/inventory', require('./controllers/inventory'));
 app.use('/api/inventory_line', require('./controllers/inventory_line'));
+app.use('/api/chapter', require('./controllers/chapter'));
 
 // general API to export
 

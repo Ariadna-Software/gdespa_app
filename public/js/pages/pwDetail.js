@@ -55,6 +55,7 @@ var pwDetailAPI = {
         pwModalAPI.init();
         pwModal2API.init();
         pwModal3API.init();
+        pwModal4API.init();
         // init tabs
         pwDetailAPI.initWoTable();
         // check if an id have been passed
@@ -143,6 +144,11 @@ var pwDetailAPI = {
         self.optionsWorkers3 = ko.observableArray([]);
         self.selectedWorkers3 = ko.observableArray([]);
         self.sWorker3 = ko.observable();
+        // -- Model related (4)
+        self.chapterId = ko.observable();
+        self.chapterOrder = ko.observable();
+        self.chapterName = ko.observable();
+        self.chapterComments = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -180,7 +186,6 @@ var pwDetailAPI = {
         vm.payRef(data.payRef);
         vm.sZone(data.zone.id);
         pwDetailAPI.loadZones(vm.sZone());
-        console.log(data);
         $('#progress').text((data.percentage * 100) + " %");
         $('#cost').text(data.cost * 1 + " USD");
         // if we have tabs we should change wiget title

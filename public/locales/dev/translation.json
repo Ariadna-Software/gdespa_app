@@ -277,6 +277,7 @@
         "modal_title": "Unidad constructiva",
         "modal_title2": "Cambiar estado",
         "modal_title3": "Trabajador en propuesta",
+        "modal_title4": "Capítulo",
         "validate": {
             "items": "Debe elegir un artículo",
             "units": "Debe elegir una unidad"
@@ -291,7 +292,11 @@
         "change_status": "Cambiar el estado",
         "worker": "Trabajador",
         "newWorker": "Nuevo trabajador",
-        "zone": "Zona"
+        "zone": "Zona",
+        "chapterName": "Nombre",
+        "chapterOrder": "Orden",
+        "chapterComments": "Comentarios del capítulo",
+        "newChapter": "Nuevo capítulo"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",

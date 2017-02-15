@@ -12,40 +12,79 @@ var pwLineAPI = {
         });
         $('#pwDetailWorker-form').submit(function () {
             return false;
-        });        
+        });
     },
     // ---------- PW_LINE
     initPwLineTable: function () {
         var options = aswInit.initTableOptions('dt_pwLine');
         options.data = data;
         options.columns = [{
+            data: "composite"
+        }, {
             data: "line"
         }, {
-                data: "cunit.name"
-            }, {
-                data: "cost"
-            }, {
-                data: "quantity"
-            }, {
-                data: "k"
-            }, {
-                data: "amount"
-            }, {
-                data: "comments"
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var html = "";
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwLineAPI.deletePwLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#pwModal' onclick='pwModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    if (vm.sStatus() > 0 && !user.modPw){
-                        html = "";
-                    }
-                    return html;
+            data: "cunit.name"
+        }, {
+            data: "cost"
+        }, {
+            data: "quantity"
+        }, {
+            data: "k"
+        }, {
+            data: "amount"
+        }, {
+            data: "comments"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var html = "";
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwLineAPI.deletePwLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#pwModal' onclick='pwModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                if (vm.sStatus() > 0 && !user.modPw) {
+                    html = "";
                 }
-            }];
-        $('#dt_pwLine').dataTable(options);
+                return html;
+            }
+        }];
+        // Group by chapter
+        options.drawCallback = function (oSettings) {
+            responsiveHelper_dt_basic.respond();
+            var api = this.api();
+            var rows = api.rows({
+                page: 'current'
+            }).nodes();
+            var last = null;
+            api.column(0, {
+                page: 'current'
+            }).data().each(function (group, i, v1, v2, v3, v4) {
+                if (last !== group) {
+                    var composite = JSON.parse(group);
+                    var html = "<tr class='group'><td colspan='9'>";
+                    html += sprintf("<h3><i class='fa fa-edit fa-bookmark-o'></i> <strong>CAPITULO %s: </strong> %s </h3>", composite.chapterOrder, composite.chapterName);
+                    html += composite.chapterComments;
+                    html += " <button class='btn btn-circle btn-success btn-lg pull-right'><i class='fa fa-edit fa-fw'></i></button> ";
+                    html += " <button class='btn btn-circle btn-danger btn-lg pull-right'><i class='fa fa-trash fa-fw'></i></button> ";
+                    html += " <button class='btn btn-circle btn-primary btn-lg pull-right'><i class='fa fa-sitemap fa-fw'></i></button> ";
+                    /*
+                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwLineAPI.deletePwLineMessage(" + composite.chapterId + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#pwModal' onclick='pwModalAPI.editLine(" + datchapterId + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                    html += "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                    */
+                    html += "</td></tr>"
+                    $(rows).eq(i).before(
+                        html
+                    );
+                    last = group;
+                }
+            });
+            var mdata = api.column(0, {
+                page: 'current'
+            }).data();
+            var stop = true;
+        }
+        var dtTable = $('#dt_pwLine').DataTable(options);
+        dtTable.columns(0).visible(false);
     },
     newPwLine: function () {
         var mf = function (e) {
@@ -130,14 +169,14 @@ var pwLineAPI = {
         options.columns = [{
             data: "worker.name"
         }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwLineAPI.deletePwWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#pwModal3' onclick='pwModal3API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "id",
+            render: function (data, type, row) {
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwLineAPI.deletePwWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#pwModal3' onclick='pwModal3API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_worker').dataTable(options);
     },
     newPwWorker: function () {
