@@ -16,6 +16,7 @@
     "evolution": "EVOLUCIÓN",
     "progress": "PROGRESO",
     "delete_warning": "¿Desea realmente borrar el registro: ",
+    "delete_warning_chapter": "¿Desea realmente borrar el registro %s? Recuerde que se borrarán también las líneas asociadas. ",
     "search_name": "Introduzca el texto a buscar (Déjelo vacio para ver todos)",
     "closure_ready": "El cierre está preparado. Modifique las líneas que desee y cuando esté listo haga clic en el botón 'X' esto hará el cierre efectivo.",
     "inventory_ready": "El inventario está preparado. Modifique las líneas que desee y cuando esté listo haga clic en el botón 'X' esto hará el inventario efectivo.",

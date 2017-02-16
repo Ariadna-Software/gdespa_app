@@ -96,11 +96,12 @@ var pwModal4API = {
             data: JSON.stringify(data),
             success: function (data, status) {
                 $('#pwModal4').modal('hide');
-                // pwChapterAPI.getPwChapters(vm.id());
+                // pwpwModal4API.getPwChapters(vm.id());
                 // pwDetailAPI.getPw(vm.id());
                 if (type == "POST") {
                     vm.currentChapterId(data.chapterId);
-                    pwModalAPI.newLine();
+                    vm.chapterId(data.chapterId);
+                    pwModalAPI.newLine(data.chapterId);
                     $('#pwModal').modal('show');
                 }
             },
@@ -143,9 +144,56 @@ var pwModal4API = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ chapterId: null, name: "" }].concat(data);
+                var options = [{
+                    chapterId: null,
+                    name: ""
+                }].concat(data);
                 vm.optionsChapters(options);
                 $("#cmbChapters").val([chapterId]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    deleteChapterMessage: function (id) {
+        var url = sprintf("%s/chapter/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                var name = data[0].name;
+                var fn = sprintf('pwModal4API.deleteChapter(%s);', id);
+                aswNotif.deleteChapterQuestion(name, fn);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    deleteChapter: function (id) {
+        var url = sprintf("%s/chapter/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        var data = {
+            id: id,
+            pw: {
+                id: vm.id()
+            }
+        };
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data, status) {
+                // pwLineAPI.getPwLines(vm.id());
+                pwDetailAPI.getPw(vm.id());
             },
             error: function (err) {
                 aswNotif.errAjax(err);

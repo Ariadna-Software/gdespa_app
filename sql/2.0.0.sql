@@ -20,3 +20,5 @@ FROM pw;
 UPDATE pw_line AS pwl, chapter AS ch
 SET pwl.chapterId = ch.chapterId
 WHERE pwl.pwId = ch.pwId;
+
+

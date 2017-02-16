@@ -71,14 +71,13 @@ router.put('/:id', midCheck, function (req, res) {
     }, test);
 });
 
-router.delete('/:id', midCheck, function (req, res) {
+router.delete('/:chapterId', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
-    var id = req.params.id;
-    var chapter = req.body;
-    if (!chapter.id) {
-        return res.status(400).send('Store with id in body needed');
+    var chapterId = req.params.chapterId;
+    if (!chapterId) {
+        return res.status(400).send('Chapter ID needed');
     }
-    chapterDb.delete(chapter, function (err) {
+    chapterDb.delete(chapterId, function (err) {
         if (err) {
             res.status(500).send(err.message);
         } else {

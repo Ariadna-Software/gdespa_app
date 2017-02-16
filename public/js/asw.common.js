@@ -17,11 +17,13 @@ var breakpointDefinition = {
 /*
  * aswLanguage
  * api with function language related
-*/
+ */
 var aswLanguage = {
     changeLanguage: function (lg) {
         // change page language
-        i18n.init({ lng: lg }, function (t) {
+        i18n.init({
+            lng: lg
+        }, function (t) {
             $(".I18N").i18n();
         });
         var flag = "flag flag-es";
@@ -71,7 +73,7 @@ var aswLanguage = {
  * aswCookies
  * to mannage cookies in the app
  * this funtions come from http://www.w3schools.com/js/js_cookies.asp
-*/
+ */
 var aswCookies = {
     are_cookies_enabled: function () {
         var cookieEnabled = (navigator.cookieEnabled) ? true : false;
@@ -112,7 +114,7 @@ var aswCookies = {
 /* 
  * aswNotification
  * An api to build and show messages
-*/
+ */
 var aswNotif = {
     errAjax: function (err) {
         var lg = i18n.lng();
@@ -161,7 +163,21 @@ var aswNotif = {
     },
     deleteRecordQuestion: function (name, fn) {
         // mount message
-        var msg = sprintf("%s %s ?", i18n.t('delete_warning'), name);
+        var msg = sprintf(i18n.t('delete_warning'),  name);
+        var btn1 = sprintf("<a href='javascript:void(0);' onClick='%s' class='btn btn-warning btn-sm'>%s</a>", fn, i18n.t('yes'));
+        var btn2 = sprintf("<a href='javascript:void(0);' class='btn btn-warning btn-sm'>%s</a>", i18n.t('no'));
+        msg += sprintf("<p class='text-align-right'>%s %s</p>", btn1, btn2);
+        $.smallBox({
+            title: i18n.t('warning'),
+            content: msg,
+            color: "#C79121",
+            //timeout: 8000,
+            icon: "fa fa-bell swing animated"
+        });
+    },
+    deleteChapterQuestion: function (name, fn) {
+        // mount message
+        var msg = sprintf(i18n.t('delete_warning_chapter'), name);
         var btn1 = sprintf("<a href='javascript:void(0);' onClick='%s' class='btn btn-warning btn-sm'>%s</a>", fn, i18n.t('yes'));
         var btn2 = sprintf("<a href='javascript:void(0);' class='btn btn-warning btn-sm'>%s</a>", i18n.t('no'));
         msg += sprintf("<p class='text-align-right'>%s %s</p>", btn1, btn2);
@@ -250,7 +266,7 @@ var aswNotif = {
 /*
  * aswInit
  * Api witn init functions
-*/
+ */
 
 var aswInit = {
     // login.html initialization
@@ -271,8 +287,7 @@ var aswInit = {
         }
 
         // i18next
-        i18n.init({
-        }, function (t) {
+        i18n.init({}, function (t) {
             $('.I18N').i18n();
         });
 
@@ -304,8 +319,8 @@ var aswInit = {
         var lang = aswCookies.getCookie('gdespa_lang');
         var options = {
             "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
-            "t" +
-            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+                "t" +
+                "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
             "autoWidth": true,
             "preDrawCallback": function () {
                 // Initialize the responsive datatables helper once.
@@ -327,13 +342,30 @@ var aswInit = {
     },
     //
     getStatus: function () {
-        var sts = [
-            { id: 0, name: i18n.t("status.INIT") },
-            { id: 1, name: i18n.t("status.ACCEPTED") },
-            { id: 2, name: i18n.t("status.DONE") },
-            { id: 3, name: i18n.t("status.VALIDATED") },
-            { id: 4, name: i18n.t("status.INVOICED") },
-            { id: 5, name: i18n.t("status.PAID") }
+        var sts = [{
+                id: 0,
+                name: i18n.t("status.INIT")
+            },
+            {
+                id: 1,
+                name: i18n.t("status.ACCEPTED")
+            },
+            {
+                id: 2,
+                name: i18n.t("status.DONE")
+            },
+            {
+                id: 3,
+                name: i18n.t("status.VALIDATED")
+            },
+            {
+                id: 4,
+                name: i18n.t("status.INVOICED")
+            },
+            {
+                id: 5,
+                name: i18n.t("status.PAID")
+            }
         ];
         return sts;
     },
@@ -361,14 +393,14 @@ var aswInit = {
         }
         if (user.perReport) {
             $('#report').show();
-        }        
+        }
     }
 }
 
 /*
  * aswUtil
  * Some general utilities
-*/
+ */
 
 var aswUtil = {
     // gup stands from Get Url Parameters
