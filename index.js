@@ -87,6 +87,7 @@ app.use('/api/report', require('./controllers/report'));
 app.use('/api/inventory', require('./controllers/inventory'));
 app.use('/api/inventory_line', require('./controllers/inventory_line'));
 app.use('/api/chapter', require('./controllers/chapter'));
+app.use('/api/resourceType', require('./controllers/resourceType'));
 
 // general API to export
 

@@ -58,7 +58,7 @@
             "main": "Administracion",
             "user_group": "Grupo usuarios",
             "user": "Usuarios",
-            "worker": "Trabajadores",
+            "worker": "Recursos",
             "company": "Empresas",
             "store": "Almacenes",
             "unit": "Unidades",
@@ -132,12 +132,12 @@
         "ModWoClosed": "Poder modificar partes cerrados"
     },
     "workerGeneral": {
-        "title": "Mantenimiento de trabajadores",
-        "new": "Nuevo trabajador",
-        "search": "Buscar trabajadores"
+        "title": "Mantenimiento de recursos",
+        "new": "Nuevo recurso",
+        "search": "Buscar recursos"
     },
     "workerDetail": {
-        "title": "Detalle de trabajador",
+        "title": "Detalle de recurso",
         "name": "Nombre",
         "ssId": "DNI",
         "address": "Dirección",
@@ -152,7 +152,9 @@
         "position": "Cargo",
         "department": "Departamento",
         "cost": "Coste",
-        "blood_type": "Grupo sanguíneo"
+        "blood_type": "Grupo sanguíneo",
+        "license": "Matricula",
+        "resourceType": "Tipo de recurso"
     },
     "companyGeneral": {
         "title": "Mantenimiento empresas",
@@ -252,7 +254,7 @@
         "tabs": {
             "general": "General",
             "work_order": "Partes de trabajo",
-            "worker": "Trabajadores"
+            "worker": "Recursos"
         },
         "lastClose": "Ultimo cierre",
         "print": "Imprimir",
@@ -278,7 +280,7 @@
         "associated_items": "Unidades constructivas asociadas",
         "modal_title": "Unidad constructiva",
         "modal_title2": "Cambiar estado",
-        "modal_title3": "Trabajador en propuesta",
+        "modal_title3": "Recurso en propuesta",
         "modal_title4": "Capítulo",
         "validate": {
             "items": "Debe elegir un artículo",
@@ -292,8 +294,8 @@
         "cunit": "Unidad Cons.",
         "inCharge": "Responsable",
         "change_status": "Cambiar el estado",
-        "worker": "Trabajador",
-        "newWorker": "Nuevo trabajador",
+        "worker": "Recurso",
+        "newWorker": "Nuevo recurso",
         "zone": "Zona",
         "chapterName": "Nombre",
         "chapterOrder": "Orden",
@@ -309,7 +311,7 @@
     "woDetail": {
         "tabs": {
             "general": "General",
-            "worker": "Trabajadores"
+            "worker": "Recursos"
         },
         "print": "Imprimir",
         "title": "Detalle parte de trabajo",
@@ -328,10 +330,10 @@
         "newLine": "Nueva linea",
         "associated_lines": "Lineas del parte",
         "modal_title": "Linea del parte",
-        "modal_title2": "Trabajador del parte",
-        "worker2": "Trabajador",
+        "modal_title2": "Recurso del parte",
+        "worker2": "Recurso",
         "cost": "Coste",
-        "newWorker": "Nuevo trabajador",
+        "newWorker": "Nuevo recurso",
         "quantity2": "Dias",
         "estimate_exceed": "La cantidad excede a la presupuestada para esta unidad constructiva",
         "chapterName": "Nombre",

@@ -1,7 +1,7 @@
 /*
  * workerDetail.js
  * Function for the page workerDetail.html
-*/
+ */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
 var lang = aswCookies.getCookie('gdespa_lang');
@@ -31,9 +31,27 @@ var workerDetailAPI = {
         $('#cmbUsers').select2(select2_languages[lang]);
         workerDetailAPI.loadUsers();
 
+        $('#cmbResourceTypes').select2(select2_languages[lang]);
+        workerDetailAPI.loadResources();
+        $("#cmbResourceTypes").select2().on('change', function (e) {
+            if (e.added) {
+                if (e.added.id == 0) {
+                    $("#asWorker").show();
+                    $("#asVehicle").hide();
+                } else {
+                    $("#asWorker").hide();
+                    $("#asVehicle").show();
+                }
+            }
+        });
+
         // check if an id have been passed
         var id = aswUtil.gup('id');
         workerDetailAPI.getWorker(id);
+        if (id == 0) {
+            $("#asWorker").hide();
+            $("#asVehicle").hide();
+        }
     },
     pageData: function () {
         // knockout objects
@@ -58,6 +76,12 @@ var workerDetailAPI = {
         self.optionsUsers = ko.observableArray([]);
         self.selectedUsers = ko.observableArray([]);
         self.sUser = ko.observable();
+        // users combos
+        self.optionsResourceTypes = ko.observableArray([]);
+        self.selectedResourceTypes = ko.observableArray([]);
+        self.sResourceType = ko.observable();
+        self.license = ko.observable();
+        //
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -77,17 +101,28 @@ var workerDetailAPI = {
         vm.cost(data.cost);
         vm.bloodType(data.bloodType);
         workerDetailAPI.loadUsers(vm.userId());
+        workerDetailAPI.loadResources(data.resTypeId);
+        vm.license(data.license);
+        // control de visualización
+        if (data.resTypeId == 1) {
+            $("#asWorker").hide();
+        } else {
+            $("#asVehicle").hide();
+        }
     },
     // Validates form (jquery validate) 
     dataOk: function () {
         $('#workerDetail-form').validate({
             rules: {
-                txtName: { required: true },
-                txtEmail: { email: true }
+                txtName: {
+                    required: true
+                },
+                cmbResourceTypes: {
+                    required: true
+                }
             },
             // Messages for form validation
-            messages: {
-            },
+            messages: {},
             // Do not change code below
             errorPlacement: function (error, element) {
                 error.insertAfter(element.parent());
@@ -134,7 +169,7 @@ var workerDetailAPI = {
                 city: vm.city(),
                 province: vm.province(),
                 state: vm.state(),
-                user:{
+                user: {
                     id: vm.sUser()
                 },
                 phone: vm.phone(),
@@ -143,9 +178,12 @@ var workerDetailAPI = {
                 position: vm.position(),
                 department: vm.department(),
                 cost: vm.cost(),
-                bloodType: vm.bloodType()
+                bloodType: vm.bloodType(),
+                resTypeId: vm.sResourceType(),
+                license: vm.license()
             };
-            var url = "", type = "";
+            var url = "",
+                type = "";
             if (vm.id() == 0) {
                 // creating new record
                 type = "POST";
@@ -181,9 +219,34 @@ var workerDetailAPI = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ id: 0, name: " " }].concat(data);
+                var options = [{
+                    id: 0,
+                    name: " "
+                }].concat(data);
                 vm.optionsUsers(options);
                 $("#cmbUsers").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadResources: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/resourceType?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{
+                    resTypeId: 0,
+                    name: " "
+                }].concat(data);
+                vm.optionsResourceTypes(options);
+                $("#cmbResourceTypes").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);

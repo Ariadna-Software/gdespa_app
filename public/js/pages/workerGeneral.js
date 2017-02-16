@@ -34,7 +34,7 @@ var workerGeneralAPI = {
         options.columns = [{
             data: "name"
         }, {
-                data: "user.name"
+                data: "resName"
             }, {
                 data: "id",
                 render: function (data, type, row) {

@@ -6,55 +6,41 @@
 	<title> GDES PANAMA </title>
 	<meta name="description" content="">
 	<meta name="author" content="">
-
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 	<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 	<script src="js/plugin/pace/pace.js"></script>
-
 	<!-- Basic Styles -->
 	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
-
 	<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
 	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production-plugins.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.min.css">
-
 	<!-- SmartAdmin RTL Support -->
 	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/ariadna-style.css">
 	<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
-
 	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-
-
 	<!-- FAVICONS -->
 	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
-
 	<!-- GOOGLE FONT -->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
-
-
 	<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
 	<link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png">
 	<link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png">
 	<link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="img/splash/touch-icon-ipad-retina.png">
-
 	<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
 	<!-- Startup image for web apps -->
 	<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 	<link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 	<link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
-
 </head>
 
 <body class="I18N">
@@ -111,7 +97,6 @@
 			</ul>
 		</div>
 	</header>
-
 	<!-- #NAVIGATION -->
 	<aside id="left-panel">
 		<!-- User info -->
@@ -181,7 +166,7 @@
 							<a href="zoneGeneral.html">
 								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span data-i18n="menu.administration.zone">Blank</span>
 							</a>
-						</li>	
+						</li>
 					</ul>
 				</li>
 				<li id="pwman" class="">
@@ -215,7 +200,7 @@
 							<a href="deliveryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-archive"></i> <span data-i18n="menu.store.delivery">Blank</span>
 							</a>
-						</li>					
+						</li>
 						<li id="itemInGeneral" class="">
 							<a href="itemInGeneral.html">
 								<i class="fa fa-lg fa-fw fa-sign-in"></i> <span data-i18n="menu.store.itemIn">Blank</span>
@@ -230,7 +215,7 @@
 							<a href="inventoryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-table"></i> <span data-i18n="menu.store.inventory">Blank</span>
 							</a>
-						</li>						
+						</li>
 					</ul>
 				</li>
 				<li id="report" class="">
@@ -242,14 +227,13 @@
 							<a href="reportGeneral.html">
 								<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span data-i18n="menu.report.general">Blank</span>
 							</a>
-						</li>					
-					</ul>					
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</nav>
 		<span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
 	</aside>
-
 	<!-- MAIN PANEL -->
 	<div id="main" role="main">
 		<!-- Ribbon -->
@@ -297,94 +281,122 @@
 												</label>
 											</section>
 											<section class="col col-md-4">
-												<label class="label" data-i18n="workerDetail.user">Usuario:</label>
-												<select style="width:100%;" id="cmbUsers" name="cmbUsers" data-bind="options: optionsUsers, optionsText: 'name', optionsValue: 'id', 
-													value: sUser, valueAllowUnset: true, selectedOptions: selectedUsers, selected2:{}">
+												<label class="label" data-i18n="workerDetail.resourceType">RESOURC:</label>
+												<select style="width:100%;" id="cmbResourceTypes" name="cmbResourceTypes" data-bind="options: optionsResourceTypes, optionsText: 'name', optionsValue: 'resTypeId', 
+													value: sResourceType, valueAllowUnset: true, selectedOptions: selectedResourceTypes, selected2:{}">
 												</select>
 											</section>
 										</div>
-										<div class="row">
-											<setion class="col col-md-4">
-												<label class="label" data-i18n="workerDetail.position">Cargo:</label>
-												<label class="input">
+										<div id="asWorker">
+											<div class="row">
+												<section class="col col-md-8"></section>
+												<section class="col col-md-4">
+													<label class="label" data-i18n="workerDetail.user">Usuario:</label>
+													<select style="width:100%;" id="cmbUsers" name="cmbUsers" data-bind="options: optionsUsers, optionsText: 'name', optionsValue: 'id', 
+													value: sUser, valueAllowUnset: true, selectedOptions: selectedUsers, selected2:{}">
+												</select>
+												</section>
+											</div>
+											<div class="row">
+												<setion class="col col-md-4">
+													<label class="label" data-i18n="workerDetail.position">Cargo:</label>
+													<label class="input">
 													<input id="txtPosition" name="txtPosition" data-bind="value: position">
 												</label>
-											</setion>
-											<section class="col col-md-4">
-												<label class="label" data-i18n="workerDetail.department">Departamento:</label>
-												<label class="input">
+												</setion>
+												<section class="col col-md-4">
+													<label class="label" data-i18n="workerDetail.department">Departamento:</label>
+													<label class="input">
 													<input id="txtDepartment" name="txtDepartment" data-bind="value: department">
 												</label>
-											</section>
-											<section class="col col-md-2">
-												<label class="label" data-i18n="workerDetail.cost">COSTE:</label>
-												<label class="input">
+												</section>
+												<section class="col col-md-2">
+													<label class="label" data-i18n="workerDetail.cost">COSTE:</label>
+													<label class="input">
 													<input id="txtCost" name="txtCost" data-bind="value: cost">
 												</label>
-											</section>
-											<section class="col col-md-2">
-												<label class="label" data-i18n="workerDetail.blood_type">GRUPO:</label>
-												<label class="input">
+												</section>
+												<section class="col col-md-2">
+													<label class="label" data-i18n="workerDetail.blood_type">GRUPO:</label>
+													<label class="input">
 													<input id="txtBloodType" name="txtBloodType" data-bind="value: bloodType">
 												</label>
-											</section>
-											
-										</div>
-										<div class="row">
-											<section class="col col-md-4">
-												<label class="label" data-i18n="workerDetail.ssId">DNI:</label>
-												<label class="input">
+												</section>
+											</div>
+											<div class="row">
+												<section class="col col-md-4">
+													<label class="label" data-i18n="workerDetail.ssId">DNI:</label>
+													<label class="input">
 													<input id="txtSsId" name="txtSsid" data-bind="value: ssId">
 												</label>
-											</section>
-											<section class="col col-md-4">
-												<label class="label" data-i18n="workerDetail.phone">Teléfono:</label>
-												<label class="input">
+												</section>
+												<section class="col col-md-4">
+													<label class="label" data-i18n="workerDetail.phone">Teléfono:</label>
+													<label class="input">
 													<input id="txtPhone" name="txtPhone" data-bind="value: phone">
 												</label>
-											</section>
-											<section class="col col-md-4">
-												<label class="label" data-i18n="workerDetail.email">Correo:</label>
-												<label class="input">
+												</section>
+												<section class="col col-md-4">
+													<label class="label" data-i18n="workerDetail.email">Correo:</label>
+													<label class="input">
 													<input id="txtEmail" name="txtEmail" data-bind="value: email">
 												</label>
-											</section>
-										</div>
-										<div class="row">
-											<setion class="col col-md-6">
-												<label class="label" data-i18n="workerDetail.address">Dirección:</label>
-												<label class="input">
+												</section>
+											</div>
+											<div class="row">
+												<setion class="col col-md-6">
+													<label class="label" data-i18n="workerDetail.address">Dirección:</label>
+													<label class="input">
 													<input id="txtAddress" name="txtAddress" data-bind="value: address">
 												</label>
-											</setion>
-											<section class="col col-md-2">
-												<label class="label" data-i18n="workerDetail.zip">Cod Postal:</label>
-												<label class="input">
+												</setion>
+												<section class="col col-md-2">
+													<label class="label" data-i18n="workerDetail.zip">Cod Postal:</label>
+													<label class="input">
 													<input id="txtZip" name="txtZip" data-bind="value: zip">
 												</label>
-											</section>
-											<section class="col col-md-4">
-												<label class="label" data-i18n="workerDetail.city">Localidad:</label>
-												<label class="input">
+												</section>
+												<section class="col col-md-4">
+													<label class="label" data-i18n="workerDetail.city">Localidad:</label>
+													<label class="input">
 													<input id="txtCity" name="txtCity" data-bind="value: city">
 												</label>
-											</section>
-										</div>
-										<div class="row">
-											<setion class="col col-md-6">
-												<label class="label" data-i18n="workerDetail.province">Provincia:</label>
-												<label class="input">
+												</section>
+											</div>
+											<div class="row">
+												<setion class="col col-md-6">
+													<label class="label" data-i18n="workerDetail.province">Provincia:</label>
+													<label class="input">
 													<input id="txtProvince" name="txtProvince" data-bind="value: province">
 												</label>
-											</setion>
-											<section class="col col-md-6">
-												<label class="label" data-i18n="workerDetail.state">Comunidad / Estado:</label>
-												<label class="input">
+												</setion>
+												<section class="col col-md-6">
+													<label class="label" data-i18n="workerDetail.state">Comunidad / Estado:</label>
+													<label class="input">
 													<input id="txtState" name="txtState" data-bind="value: state">
 												</label>
-											</section>
+												</section>
+											</div>
 										</div>
+										<div id="asVehicle">
+											<div class="row">
+												<section class="col col-md-7">
 
+												</section>
+												<section class="col col-md-2">
+													<label class="label" data-i18n="workerDetail.cost">COSTE:</label>
+													<label class="input">
+													<input id="txtCost2" name="txtCost2" data-bind="value: cost">
+												</label>
+												</section>
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.license">MATRICULA:</label>
+													<label class="input">
+													<input id="txtLicense" name="txtLicense" data-bind="value: license">
+												</label>
+												</section>
+											</div>
+										</div>
 									</fieldset>
 									<fieldset>
 										<div class="pull-right">
@@ -412,31 +424,27 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
 		Note: These tiles are completely responsive,
 		you can add as many as you like
 		-->
 	<div id="shortcut">
-
 	</div>
 	<!-- END SHORTCUT AREA -->
-
 	<!--================================================== -->
-
 	<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
-			if (!window.jQuery) {
-				document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
-			}
-		</script>
+		if (!window.jQuery) {
+			document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
+		}
+	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script>
-			if (!window.jQuery.ui) {
-				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
-			}
-		</script>
+		if (!window.jQuery.ui) {
+			document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+		}
+	</script>
 	<!-- IMPORTANT: APP CONFIG -->
 	<script src="js/app.config.js"></script>
 	<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
@@ -466,7 +474,6 @@
 	<!--[if IE 8]>
 		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
 		<![endif]-->
-
 	<!-- MAIN APP JS FILE -->
 	<script src="js/app.min.js"></script>
 	<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
@@ -495,26 +502,21 @@
 	<script src="js/plugin/datatables/dataTables.tableTools.min.js"></script>
 	<script src="js/plugin/datatables/dataTables.bootstrap.min.js"></script>
 	<script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
-
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
 	<script src="js/pages/workerDetail.js"></script>
-
-
-
 	<script type="text/javascript">
-		$(document).ready(function() {
-				pageSetUp();
+		$(document).ready(function () {
+			pageSetUp();
 		})
 	</script>
-
 	<!-- Your GOOGLE ANALYTICS CODE Below -->
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-			_gaq.push(['_trackPageview']);
-		(function() {
+		_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+		_gaq.push(['_trackPageview']);
+		(function () {
 			var ga = document.createElement('script');
 			ga.type = 'text/javascript';
 			ga.async = true;
