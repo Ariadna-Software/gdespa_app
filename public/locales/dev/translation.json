@@ -22,6 +22,7 @@
     "negative_inventory": "No se permiten cantidades negativas en el inventario",
     "recalc_pw": "Este proceso recalculará la propuesta con los datos de coste de las unidades constructivas",
     "no_movement": "No ha habido movimientos de este artículo",
+    "chapter": "Capítulo",
     "error": {
         "general": "Se ha producido un error, ver detalles más abajo.",
         "ajax_general": "Se ha producido un error general. Posiblemente falla la conexión.",

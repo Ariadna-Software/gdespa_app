@@ -49,10 +49,11 @@ router.get('/pw/:id', midCheck, function (req, res) {
     }, test);
 });
 
-router.get('/newline/:id', midCheck, function (req, res) {
+router.get('/newline/:id/:chapterId', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    pwLineDb.getNewLineNumber(id, function (err, lines) {
+    var chapterId = req.params.chapterId;
+    pwLineDb.getNewLineNumber(id, chapterId, function (err, lines) {
         if (err) return res.status(500).send(err.message);
         res.json(lines);
     }, test);

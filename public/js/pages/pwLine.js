@@ -60,27 +60,19 @@ var pwLineAPI = {
             }).data().each(function (group, i, v1, v2, v3, v4) {
                 if (last !== group) {
                     var composite = JSON.parse(group);
+
                     var html = "<tr class='group'><td colspan='9'>";
                     html += sprintf("<h3><i class='fa fa-pencil fa-bookmark-o'></i> <strong>CAPITULO %s: </strong> %s </h3>", composite.chapterOrder, composite.chapterName);
                     html += composite.chapterComments;
-                    /*
-                    <!--
-                    <button id='btnNewLine' data-i18n='[title]pwDetail.newLine' data-toggle="modal" data-target='#pwModal' class="btn btn-success btn-circle btn-md">
-                    </button>
-                    -->                    
-                    */
                     var editButton = "onclick='pwModal4API.editChapter(" + composite.chapterId + ");'";
                     html += "<div>";
                     html += " <button " + editButton + " class='btn btn-circle btn-success btn-md pull-right'><i class='fa fa-pencil fa-fw'></i></button> ";
                     html += " <button class='btn btn-circle btn-danger btn-md pull-right'><i class='fa fa-trash fa-fw'></i></button> ";
-                    html += " <button id='btnNewLine' data-i18n='[title]pwDetail.newLine' data-toggle='modal' data-target='#pwModal' class='btn btn-circle btn-primary btn-md pull-right'><i class='fa fa-sitemap fa-fw'></i></button> ";
+                    var newButton = "onclick='pwModalAPI.newLine(" + composite.chapterId + ");'";
+                    html += " <button id='btnNewLine'" + newButton + " data-i18n='[title]pwDetail.newLine' data-toggle='modal' data-target='#pwModal' class='btn btn-circle btn-primary btn-md pull-right'><i class='fa fa-sitemap fa-fw'></i></button> ";
                     html += "</div>";
-                    /*
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-md' onclick='pwLineAPI.deletePwLineMessage(" + composite.chapterId + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-md' data-toggle='modal' data-target='#pwModal' onclick='pwModalAPI.editLine(" + datchapterId + ");' title='Editar registro'> <i class='fa fa-pencil fa-fw'></i> </button>";
-                    html += "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    */
                     html += "</td></tr>"
+
                     $(rows).eq(i).before(
                         html
                     );

@@ -149,6 +149,12 @@ var pwDetailAPI = {
         self.chapterOrder = ko.observable();
         self.chapterName = ko.observable();
         self.chapterComments = ko.observable();
+        // chapter combo
+        self.optionsChapters = ko.observableArray([]);
+        self.selectedChapters = ko.observableArray([]);
+        self.sChapter = ko.observable();
+        self.currentChapterId = ko.observable();
+
     },
     loadData: function (data) {
         vm.id(data.id);

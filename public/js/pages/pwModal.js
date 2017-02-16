@@ -35,9 +35,11 @@ var pwModalAPI = {
         });
         return $('#pwModal-form').valid();
     },
-    newLine: function () {
+    newLine: function (chapterId) {
         // new line id is zero.
         vm.pwLineId(0);
+        vm.chapterId(chapterId);
+        vm.currentChapterId(chapterId);
         // clean other fields
         vm.line(null);
         vm.quantity(null);
@@ -46,8 +48,9 @@ var pwModalAPI = {
         vm.amount(null);
         vm.comments(null);
         pwModalAPI.loadCUnits(null);
+        pwModal4API.loadChapters(vm.currentChapterId(), vm.id());
         // obtain next line number
-        pwModalAPI.newLineNumber(vm.id());
+        pwModalAPI.newLineNumber(vm.id(), vm.currentChapterId());
     },
     editLine: function (id) {
         $.ajax({
@@ -65,6 +68,8 @@ var pwModalAPI = {
                     vm.k(data[0].k);
                     vm.amount(data[0].amount);
                     vm.comments(data[0].comments);
+                    vm.currentChapterId(data[0].chapterId);
+                    pwModal4API.loadChapters(vm.currentChapterId(), vm.id());
                 }
             },
             error: function (err) {
@@ -93,7 +98,8 @@ var pwModalAPI = {
                 k: vm.k(),
                 cost: vm.cost(),
                 amount: vm.amount(),
-                comments: vm.comments()
+                comments: vm.comments(),
+                chapterId: vm.currentChapterId()
             };
             var url = "", type = "";
             if (vm.pwLineId() == 0) {
@@ -174,10 +180,10 @@ var pwModalAPI = {
         };
         return mf;
     },
-    newLineNumber: function (id) {
+    newLineNumber: function (id, chapterId) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/pw_line/newline/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            url: sprintf('%s/pw_line/newline/%s/%s?api_key=%s', myconfig.apiUrl, id, chapterId, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
