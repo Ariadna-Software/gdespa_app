@@ -1,7 +1,7 @@
 /*
  * pwDetail.js
  * Function for the page pwDetail.html
-*/
+ */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
 var lang = aswCookies.getCookie('gdespa_lang');
@@ -207,16 +207,27 @@ var pwDetailAPI = {
     dataOk: function () {
         $('#pwDetail-form').validate({
             rules: {
-                txtName: { required: true },
-                txtReference: { required: true },
-                txtInitDate: { required: true },
-                txtDefaultK: { required: true },
-                cmbCompanies: { required: true },
-                cmbWorkers: { required: true }
+                txtName: {
+                    required: true
+                },
+                txtReference: {
+                    required: true
+                },
+                txtInitDate: {
+                    required: true
+                },
+                txtDefaultK: {
+                    required: true
+                },
+                cmbCompanies: {
+                    required: true
+                },
+                cmbWorkers: {
+                    required: true
+                }
             },
             // Messages for form validation
-            messages: {
-            },
+            messages: {},
             // Do not change code below
             errorPlacement: function (error, element) {
                 error.insertAfter(element.parent());
@@ -277,22 +288,31 @@ var pwDetailAPI = {
             // dat for post or put
             var data = {
                 id: vm.id(),
-                status: { id: vm.sStatus() },
+                status: {
+                    id: vm.sStatus()
+                },
                 name: vm.name(),
                 reference: vm.reference(),
                 description: vm.description(),
                 initDate: moment(vm.initDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso")),
-                initInCharge: { id: vm.sWorker() },
-                company: { id: vm.sCompany() },
+                initInCharge: {
+                    id: vm.sWorker()
+                },
+                company: {
+                    id: vm.sCompany()
+                },
                 defaultK: vm.defaultK(),
                 mainK: vm.mainK(),
                 total: vm.total(),
-                zone: { id: vm.sZone() }
+                zone: {
+                    id: vm.sZone()
+                }
             };
             if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()) {
                 data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
             }
-            var url = "", type = "";
+            var url = "",
+                type = "";
             if (vm.id() == 0) {
                 // creating new record
                 type = "POST";
@@ -337,7 +357,10 @@ var pwDetailAPI = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ id: 0, name: " " }].concat(data);
+                var options = [{
+                    id: 0,
+                    name: " "
+                }].concat(data);
                 vm.optionsCompanies(options);
                 $("#cmbCompanies").val([id]).trigger('change');
             },
@@ -356,7 +379,10 @@ var pwDetailAPI = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ id: 0, name: " " }].concat(data);
+                var options = [{
+                    id: 0,
+                    name: " "
+                }].concat(data);
                 vm.optionsWorkers(options);
                 $("#cmbWorkers").val([id]).trigger('change');
             },
@@ -425,12 +451,6 @@ var pwDetailAPI = {
                 return html;
             }
         }, {
-            data: "endDate",
-            render: function (data, type, row) {
-                var html = moment(data).format(i18n.t("util.date_format"));
-                return html;
-            }
-        }, {
             data: "workerName"
         }, {
             data: "comments"
@@ -477,7 +497,8 @@ var pwDetailAPI = {
             e.preventDefault();
             // validate form
             if (!pwDetailAPI.dataOk()) return;
-            var url = "", type = "";
+            var url = "",
+                type = "";
 
             // fecth report data
             type = "GET";
