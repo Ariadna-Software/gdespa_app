@@ -49,9 +49,10 @@ var pwModal4API = {
                 if (data.length) {
                     vm.chapterId(data[0].chapterId);
                     vm.chapterOrder(data[0].order);
-                    vm.chapterName(data[0].chapterName);
-                    vm.chapterComments(data[0].chapterComments);
+                    vm.chapterName(data[0].name);
+                    vm.chapterComments(data[0].comments);
                 }
+                $('#pwModal4').modal('show');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -80,7 +81,7 @@ var pwModal4API = {
         } else {
             // updating record
             type = "PUT";
-            url = sprintf('%s/chapter/%s/?api_key=%s', myconfig.apiUrl, vm.pwChapterId(), api_key);
+            url = sprintf('%s/chapter/%s/?api_key=%s', myconfig.apiUrl, vm.chapterId(), api_key);
         }
         $.ajax({
             type: type,
