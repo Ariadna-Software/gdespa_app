@@ -21,6 +21,8 @@ var woLineAPI = {
         options.paging = false;
         options.bSort = false;
         options.columns = [{
+            data: "composite"
+        },{
             data: "cunit.name"
         }, {
             data: "estimate",
@@ -38,7 +40,39 @@ var woLineAPI = {
                 return html;
             }
         }];
-        $('#dt_woLine').dataTable(options);
+        // Group by chapter
+        options.drawCallback = function (oSettings) {
+            responsiveHelper_dt_basic.respond();
+            var api = this.api();
+            var rows = api.rows({
+                page: 'current'
+            }).nodes();
+            var last = null;
+            api.column(0, {
+                page: 'current'
+            }).data().each(function (group, i, v1, v2, v3, v4) {
+                if (last !== group) {
+                    var composite = JSON.parse(group);
+
+                    var html = "<tr class='group'><td colspan='9'>";
+                    html += sprintf("<h3><i class='fa fa-pencil fa-bookmark-o'></i> <strong>CAPITULO %s: </strong> %s </h3>", composite.chapterOrder, composite.chapterName);
+                    if (composite.chapterComments) html += composite.chapterComments;
+                    var editButton = "onclick='pwModal4API.editChapter(" + composite.chapterId + ");'";
+                    html += "</td></tr>"
+
+                    $(rows).eq(i).before(
+                        html
+                    );
+                    last = group;
+                }
+            });
+            var mdata = api.column(0, {
+                page: 'current'
+            }).data();
+            var stop = true;
+        }        
+        var dtTable = $('#dt_woLine').DataTable(options);
+        dtTable.columns(0).visible(false);
     },
     newWoLine: function () {
         var mf = function (e) {

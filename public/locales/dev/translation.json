@@ -114,7 +114,7 @@
         "login": "Login",
         "zone": "Zona",
         "seeZone": "Ver registros de su zona",
-        "workOnlyZone":" Trabaja solo su zona",
+        "workOnlyZone": " Trabaja solo su zona",
         "password": "Contraseña",
         "perAdm": "Acceso al menú Administración",
         "perGes": "Acceso al menú de Gestión",
@@ -333,7 +333,11 @@
         "cost": "Coste",
         "newWorker": "Nuevo trabajador",
         "quantity2": "Dias",
-        "estimate_exceed": "La cantidad excede a la presupuestada para esta unidad constructiva"
+        "estimate_exceed": "La cantidad excede a la presupuestada para esta unidad constructiva",
+        "chapterName": "Nombre",
+        "chapterOrder": "Orden",
+        "chapterComments": "Comentarios del capítulo",
+        "newChapter": "Nuevo capítulo"
     },
     "itemInGeneral": {
         "title": "Entradas",
@@ -490,6 +494,6 @@
         "pwStore_title": "Informe stock de almacén",
         "pwStore_detail": "Almacén a informar",
         "pwItem_title": "Informe movimientos de artículo",
-        "pwItem_detail": "Artículo"        
+        "pwItem_detail": "Artículo"
     }
 }
