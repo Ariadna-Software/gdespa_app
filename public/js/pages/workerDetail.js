@@ -38,9 +38,13 @@ var workerDetailAPI = {
                 if (e.added.id == 0) {
                     $("#asWorker").show();
                     $("#asVehicle").hide();
+                    $("#asWorker").css('visibility', 'visible');
+                    $("#asVehicle").css('visibility', 'hidden');
                 } else {
                     $("#asWorker").hide();
                     $("#asVehicle").show();
+                    $("#asWorker").css('visibility', 'hidden');
+                    $("#asVehicle").css('visibility', 'visible');
                 }
             }
         });
@@ -51,6 +55,8 @@ var workerDetailAPI = {
         if (id == 0) {
             $("#asWorker").hide();
             $("#asVehicle").hide();
+            $("#asWorker").css('visibility', 'hidden');
+            $("#asVehicle").css('visibility', 'hidden');
         }
     },
     pageData: function () {
@@ -106,8 +112,10 @@ var workerDetailAPI = {
         // control de visualización
         if (data.resTypeId == 1) {
             $("#asWorker").hide();
+            $("#asWorker").css('visibility', 'hidden');
         } else {
             $("#asVehicle").hide();
+            $("#asVehicle").css('visibility', 'hidden');
         }
     },
     // Validates form (jquery validate) 
