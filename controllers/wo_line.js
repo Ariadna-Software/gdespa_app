@@ -49,6 +49,15 @@ router.get('/wo/:id', midCheck, function (req, res) {
     }, test);
 });
 
+router.get('/wo/worker/:id', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    woLineDb.getByWoIdWorker(id, function (err, lines) {
+        if (err) return res.status(500).send(err.message);
+        res.json(lines);
+    }, test);
+});
+
 router.put('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

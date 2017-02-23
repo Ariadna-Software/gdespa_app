@@ -30,6 +30,28 @@ router.get('/', common.midChkApiKey, function (req, res) {
     }
 });
 
+router.get('/worker', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    userDb.getWorker(function (err, workers) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(workers);
+        }
+    }, test);
+});
+
+router.get('/vehicle', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    userDb.getVehicle(function (err, vehicles) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(vehicles);
+        }
+    }, test);
+});
+
 router.post('/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var user = req.body;

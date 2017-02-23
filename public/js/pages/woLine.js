@@ -3,6 +3,7 @@ var woLineAPI = {
         // init tables
         woLineAPI.initWoLineTable();
         woLineAPI.initWoWorkerTable();
+        woLineAPI.initWoVehicleTable();
         // button handlers
         $('#btnNewLine').click(woLineAPI.newWoLine());
         $('#btnNewWorker').click(woLineAPI.newWoWorker());
@@ -13,6 +14,9 @@ var woLineAPI = {
         $('#woDetailWorker-form').submit(function () {
             return false;
         });
+        $('#woDetailVehicle-form').submit(function () {
+            return false;
+        });        
     },
     // WO_LINE
     initWoLineTable: function () {
@@ -22,7 +26,7 @@ var woLineAPI = {
         options.bSort = false;
         options.columns = [{
             data: "composite"
-        },{
+        }, {
             data: "cunit.name"
         }, {
             data: "estimate",
@@ -70,7 +74,7 @@ var woLineAPI = {
                 page: 'current'
             }).data();
             var stop = true;
-        }        
+        }
         var dtTable = $('#dt_woLine').DataTable(options);
         dtTable.columns(0).visible(false);
     },
@@ -199,6 +203,10 @@ var woLineAPI = {
         options.columns = [{
             data: "worker.name"
         }, {
+            data: "normalHours"
+        }, {
+            data: "extraHours"
+        }, {
             data: "quantity"
         }, {
             data: "id",
@@ -210,6 +218,26 @@ var woLineAPI = {
             }
         }];
         $('#dt_worker').dataTable(options);
+    },
+    initWoVehicleTable: function () {
+        var options = aswInit.initTableOptions('dt_vehicle');
+        options.data = data;
+        options.columns = [{
+            data: "worker.name"
+        }, {
+            data: "totalKm"
+        }, {
+            data: "quantity"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woLineAPI.deleteWoWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#woModal3' onclick='woModal3API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
+        $('#dt_vehicle').dataTable(options);
     },
     newWoWorker: function () {
         var mf = function (e) {
@@ -260,7 +288,7 @@ var woLineAPI = {
         });
     },
     getWoWorkers: function (id) {
-        var url = sprintf("%s/wo_worker/wo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        var url = sprintf("%s/wo_worker/wo/worker/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
@@ -282,6 +310,78 @@ var woLineAPI = {
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
         $("#tb_worker").show();
+    },
+    getWoVehicles: function (id) {
+        var url = sprintf("%s/wo_worker/wo/vehicle/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                woLineAPI.loadWoVehiclesTable(data);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadWoVehiclesTable: function (data) {
+        var dt = $('#dt_vehicle').dataTable();
+        dt.fnClearTable();
+        if (data.length && data.length > 0) dt.fnAddData(data);
+        dt.fnDraw();
+        $("#tb_vehicle").show();
+    },
+    newWoVehicle: function () {
+        var mf = function (e) {
+            // show modal form
+            e.preventDefault();
+            woModal3API.newLine();
+        };
+        return mf;
+    },
+    deleteWoVehicleMessage: function (id) {
+        var url = sprintf("%s/wo_worker/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                var name = data[0].worker.name + " (Horas: " + data[0].quantity + ")";
+                var fn = sprintf('woLineAPI.deleteWoVehicle(%s);', id);
+                aswNotif.deleteRecordQuestion(name, fn);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    deleteWoVehicle: function (id) {
+        var url = sprintf("%s/wo_worker/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        var data = {
+            id: id
+        };
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data, status) {
+                woLineAPI.getWoVehicles(vm.id());
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
     }
 
 };

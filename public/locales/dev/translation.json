@@ -310,8 +310,9 @@
     },
     "woDetail": {
         "tabs": {
-            "general": "General",
-            "worker": "Recursos"
+            "general": "Unidades constructivas",
+            "worker": "Trabajadores",
+            "vehicles": "Maquinaria / vehículos"
         },
         "print": "Imprimir",
         "title": "Detalle parte de trabajo",
@@ -330,16 +331,27 @@
         "newLine": "Nueva linea",
         "associated_lines": "Lineas del parte",
         "modal_title": "Linea del parte",
-        "modal_title2": "Recurso del parte",
-        "worker2": "Recurso",
+        "modal_title2": "Trabajadores del parte",
+        "modal_title3": "Vehículos / maquinaria del parte",
+        "worker2": "Trabajador",
+        "worker3": "Vehiculo / maquinaria",
         "cost": "Coste",
         "newWorker": "Nuevo recurso",
-        "quantity2": "Dias",
+        "quantity2": "Horas totales",
+        "quantity3": "Horas totales",
         "estimate_exceed": "La cantidad excede a la presupuestada para esta unidad constructiva",
         "chapterName": "Nombre",
         "chapterOrder": "Orden",
         "chapterComments": "Comentarios del capítulo",
-        "newChapter": "Nuevo capítulo"
+        "newChapter": "Nuevo capítulo",
+        "wehicle": "Maquinaria / vehículo",
+        "normalHours": "Horas normales",
+        "extraHours": "Horas extras",
+        "initialKm": "Km. iniciales",
+        "finalKm": "Km. finales",
+        "totalKm": "Km. Totales",
+        "fuel": "Combustible",
+        "btnNewVehicle": "Nuevo datos vehiculo / maquinaria"
     },
     "itemInGeneral": {
         "title": "Entradas",

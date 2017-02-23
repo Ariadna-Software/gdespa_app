@@ -9,6 +9,9 @@ var woModal2API = {
         woModal2API.loadWorkers2();
         // button events
         $('#btnSaveLine2').click(woModal2API.saveLine());
+        // lost focus
+        $("#txtNormalHours").blur(woModal2API.changeHours);
+        $("#txtExtraHours").blur(woModal2API.changeHours);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -30,6 +33,8 @@ var woModal2API = {
     newLine: function () {
         vm.woWorkerId(0);
         vm.quantity2(0);
+        vm.normalHours(0);
+        vm.extraHours(0);
         woModal2API.loadWorkers2(null);
     },
     editLine: function (id) {
@@ -42,6 +47,8 @@ var woModal2API = {
                 if (data.length) {
                     vm.woWorkerId(data[0].id);
                     vm.quantity2(data[0].quantity);
+                    vm.normalHours(data[0].normalHours);
+                    vm.extraHours(data[0].extraHours);
                     woModal2API.loadWorkers2(data[0].worker.id);
                 }
             },
@@ -66,7 +73,9 @@ var woModal2API = {
                 worker: {
                     id: vm.sWorker2()
                 },
-                quantity: vm.quantity2()
+                quantity: vm.quantity2(),
+                normalHours: vm.normalHours(),
+                extraHours: vm.extraHours()
             };
             var url = "", type = "";
             if (vm.woWorkerId() == 0) {
@@ -101,7 +110,7 @@ var woModal2API = {
     loadWorkers2: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/worker?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/worker/worker?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
@@ -116,5 +125,8 @@ var woModal2API = {
                 }
             }
         });
+    },
+    changeHours: function () {
+        vm.quantity2((vm.normalHours() * 1) + (vm.extraHours() * 1));
     }
 };

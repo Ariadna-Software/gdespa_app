@@ -1,21 +1,24 @@
-var woModal2API = {
+var woModal3API = {
     init: function () {
         // avoid sending form 
-        $('#woModal2-form').submit(function () {
+        $('#woModal3-form').submit(function () {
             return false;
         });
         // 
-        $('#cmbWorkers2').select2(select2_languages[lang]);
-        woModal2API.loadWorkers2();
+        $('#cmbWorkers3').select2(select2_languages[lang]);
+        woModal3API.loadWorkers3();
         // button events
-        $('#btnSaveLine2').click(woModal2API.saveLine());
+        $('#btnSaveLine3').click(woModal3API.saveLine());
+        // lost focus
+        $("#txtInitialKm").blur(woModal3API.changeKms);
+        $("#txtFinalKm").blur(woModal3API.changeKms);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#woModal2-form').validate({
+        $('#woModal3-form').validate({
             rules: {
-                cmbWorkers2: { required: true },
-                txtQuantity2: { required: true }
+                cmbWorkers3: { required: true },
+                txtQuantity3: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -25,12 +28,18 @@ var woModal2API = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#woModal2-form').valid();
+        return $('#woModal3-form').valid();
     },
     newLine: function () {
         vm.woWorkerId(0);
         vm.quantity2(0);
-        woModal2API.loadWorkers2(null);
+        vm.normalHours(0);
+        vm.extraHours(0);
+        vm.initialKm(0);
+        vm.finalKm(0);
+        vm.fuel(0);
+        vm.totalKm(0);
+        woModal3API.loadWorkers3(null);
     },
     editLine: function (id) {
         $.ajax({
@@ -41,8 +50,13 @@ var woModal2API = {
             success: function (data, status) {
                 if (data.length) {
                     vm.woWorkerId(data[0].id);
-                    vm.quantity2(data[0].quantity);
-                    woModal2API.loadWorkers2(data[0].worker.id);
+                    vm.quantity3(data[0].quantity);
+                    vm.normalHours(data[0].normalHours);
+                    vm.extraHours(data[0].extraHours);
+                    vm.initialKm(data[0].initialKm);
+                    vm.finalKm(data[0].finalKm);
+                    vm.fuel(data[0].fuel);
+                    woModal3API.loadWorkers2(data[0].worker.id);
                 }
             },
             error: function (err) {
@@ -56,7 +70,7 @@ var woModal2API = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
-            if (!woModal2API.dataOk()) return;
+            if (!woModal3API.dataOk()) return;
             // mount line to save 
             var data = {
                 id: vm.woWorkerId(),
@@ -64,9 +78,15 @@ var woModal2API = {
                     id: vm.id()
                 },
                 worker: {
-                    id: vm.sWorker2()
+                    id: vm.sWorker3()
                 },
-                quantity: vm.quantity2()
+                quantity: vm.quantity3(),
+                normalHours: vm.normalHours(),
+                extraHours: vm.extraHours(),
+                initialKm: vm.initialKm(),
+                finalKm: vm.finalKm(),
+                totalKm: vm.totalKm(),
+                fuel: vm.fuel()
             };
             var url = "", type = "";
             if (vm.woWorkerId() == 0) {
@@ -84,7 +104,7 @@ var woModal2API = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#woModal2').modal('hide');
+                    $('#woModal3').modal('hide');
                     // woLineAPI.getPwLines(vm.id());
                     woDetailAPI.getWo(vm.id());
                 },
@@ -98,16 +118,16 @@ var woModal2API = {
         };
         return mf;
     },
-    loadWorkers2: function (id) {
+    loadWorkers3: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/worker?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/worker/vehicle?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 var options = [{ id: null, name: "" }].concat(data);
-                vm.optionsWorkers2(options);
-                $("#cmbWorkers2").val([id]).trigger('change');
+                vm.optionsWorkers3(options);
+                $("#cmbWorkers3").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -116,5 +136,8 @@ var woModal2API = {
                 }
             }
         });
+    },
+    changeKms: function () {
+        vm.totalKm((vm.finalKm() * 1) - (vm.initialKm() * 1));
     }
 };

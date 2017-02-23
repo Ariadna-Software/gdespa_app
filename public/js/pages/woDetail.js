@@ -43,6 +43,8 @@ var woDetailAPI = {
         woModalAPI.init();
         // init modal 2 form
         woModal2API.init();
+        // init modal 3 form
+        woModal3API.init();
 
         // check if an id have been passed
         var id = aswUtil.gup('id');
@@ -86,6 +88,19 @@ var woDetailAPI = {
         self.optionsWorkers2 = ko.observableArray([]);
         self.selectedWorkers2 = ko.observableArray([]);
         self.sWorker2 = ko.observable();
+        //
+        self.normalHours = ko.observable();
+        self.extraHours = ko.observable();
+        self.initialKm = ko.observable();
+        self.finalKm = ko.observable();
+        self.totalKm = ko.observable();
+        self.fuel = ko.observable();
+        // -- Modal related (3)
+        self.quantity3 = ko.observable();
+        // worker3 combo
+        self.optionsWorkers3 = ko.observableArray([]);
+        self.selectedWorkers3 = ko.observableArray([]);
+        self.sWorker3 = ko.observable();        
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -130,6 +145,7 @@ var woDetailAPI = {
                 woDetailAPI.loadData(data[0]);
                 woLineAPI.getWoLines(data[0].id);
                 woLineAPI.getWoWorkers(data[0].id);
+                woLineAPI.getWoVehicles(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
