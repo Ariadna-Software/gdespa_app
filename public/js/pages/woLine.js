@@ -7,6 +7,7 @@ var woLineAPI = {
         // button handlers
         $('#btnNewLine').click(woLineAPI.newWoLine());
         $('#btnNewWorker').click(woLineAPI.newWoWorker());
+        $('#btnNewVehicle').click(woLineAPI.newWoVehicle());
         // avoid sending form 
         $('#woDetailLine-form').submit(function () {
             return false;
@@ -231,7 +232,7 @@ var woLineAPI = {
         }, {
             data: "id",
             render: function (data, type, row) {
-                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woLineAPI.deleteWoWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woLineAPI.deleteWoVehicleMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                 var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#woModal3' onclick='woModal3API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                 return html;
@@ -287,6 +288,46 @@ var woLineAPI = {
             }
         });
     },
+    deleteWoVehicleMessage: function (id) {
+        var url = sprintf("%s/wo_worker/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                var name = data[0].worker.name + " (Horas: " + data[0].quantity + ")";
+                var fn = sprintf('woLineAPI.deleteWoVehicle(%s);', id);
+                aswNotif.deleteRecordQuestion(name, fn);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    deleteWoVehicle: function (id) {
+        var url = sprintf("%s/wo_worker/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        var data = {
+            id: id
+        };
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data, status) {
+                woLineAPI.getWoVehicles(vm.id());
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },    
     getWoWorkers: function (id) {
         var url = sprintf("%s/wo_worker/wo/worker/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
@@ -343,6 +384,14 @@ var woLineAPI = {
         };
         return mf;
     },
+    newPwVehicle: function () {
+        var mf = function (e) {
+            // show modal form
+            e.preventDefault();
+            pwModal3API.newLine();
+        };
+        return mf;
+    },    
     deleteWoVehicleMessage: function (id) {
         var url = sprintf("%s/wo_worker/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({

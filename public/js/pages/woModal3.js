@@ -32,7 +32,7 @@ var woModal3API = {
     },
     newLine: function () {
         vm.woWorkerId(0);
-        vm.quantity2(0);
+        vm.quantity3(null);
         vm.normalHours(0);
         vm.extraHours(0);
         vm.initialKm(0);
@@ -56,7 +56,7 @@ var woModal3API = {
                     vm.initialKm(data[0].initialKm);
                     vm.finalKm(data[0].finalKm);
                     vm.fuel(data[0].fuel);
-                    woModal3API.loadWorkers2(data[0].worker.id);
+                    woModal3API.loadWorkers3(data[0].worker.id);
                 }
             },
             error: function (err) {
@@ -81,8 +81,6 @@ var woModal3API = {
                     id: vm.sWorker3()
                 },
                 quantity: vm.quantity3(),
-                normalHours: vm.normalHours(),
-                extraHours: vm.extraHours(),
                 initialKm: vm.initialKm(),
                 finalKm: vm.finalKm(),
                 totalKm: vm.totalKm(),

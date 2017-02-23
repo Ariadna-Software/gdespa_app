@@ -32,7 +32,7 @@ var woModal2API = {
     },
     newLine: function () {
         vm.woWorkerId(0);
-        vm.quantity2(0);
+        vm.quantity2(null);
         vm.normalHours(0);
         vm.extraHours(0);
         woModal2API.loadWorkers2(null);

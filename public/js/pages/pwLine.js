@@ -185,7 +185,7 @@ var pwLineAPI = {
         var mf = function (e) {
             // show modal form
             e.preventDefault();
-            pwModal3API.newLine();
+            pwModal2API.newLine();
         };
         return mf;
     },
