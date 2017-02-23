@@ -283,7 +283,7 @@ var aswInit = {
         var user = aswCookies.getCookie('gdespa_user');
         var gdespa_lang = aswCookies.getCookie('gdespa_lang');
         if (!user) {
-            window.open('login.html', '_self');
+            window.open('index.html', '_self');
         }
 
         // i18next
