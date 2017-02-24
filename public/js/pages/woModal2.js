@@ -75,7 +75,8 @@ var woModal2API = {
                 },
                 quantity: vm.quantity2(),
                 normalHours: vm.normalHours(),
-                extraHours: vm.extraHours()
+                extraHours: vm.extraHours(),
+                planHours: vm.planHours()
             };
             var url = "", type = "";
             if (vm.woWorkerId() == 0) {

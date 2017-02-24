@@ -419,7 +419,10 @@
 													</th>
 													<th data-hide="phone">
 														<span data-i18n="woDetail.extraHours"></span>
-													</th>																										
+													</th>		
+													<th data-hide="phone">
+														<span data-i18n="woDetail.planHours"></span>
+													</th>																																					
 													<th data-hide="phone">
 														<span data-i18n="woDetail.quantity2"></span>
 													</th>
@@ -453,6 +456,9 @@
 													<th data-hide="phone">
 														<span data-i18n="woDetail.totalKm"></span>
 													</th>
+													<th data-hide="phone">
+														<span data-i18n="woDetail.planHours"></span>
+													</th>													
 													<th data-hide="phone">
 														<span data-i18n="woDetail.quantity3"></span>
 													</th>
@@ -580,8 +586,14 @@
                                             <input id="txtExtraHours" name="txtExtraHours" type="text" data-bind="value: extraHours" />
                                         </label>
 									</section>
-									<section class="col col-md-6">
-									</section>									
+									<section class="col col-md-4">
+									</section>	
+									<section class="col col-md-2">
+										<label class="label" data-i18n="woDetail.plaHours">PH.:</label>
+										<label class="input">
+                                            <input id="txtPlanHours" name="txtPlanHours" type="text" data-bind="value: planHours" />
+                                        </label>
+									</section>																	
 									<section class="col col-md-2">
 										<label class="label" data-i18n="woDetail.quantity2">Dias:</label>
 										<label class="input">
@@ -660,6 +672,10 @@
                                         </label>
 									</section>
 									<section class="col col-md-2">
+										<label class="label" data-i18n="woDetail.plaHours">PH.:</label>
+										<label class="input">
+                                            <input id="txtPlanHours" name="txtPlanHours" type="text" data-bind="value: planHours" />
+                                        </label>
 									</section>									
 									<section class="col col-md-2">
 										<label class="label" data-i18n="woDetail.quantity3">Dias:</label>

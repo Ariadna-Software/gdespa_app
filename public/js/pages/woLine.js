@@ -17,7 +17,7 @@ var woLineAPI = {
         });
         $('#woDetailVehicle-form').submit(function () {
             return false;
-        });        
+        });
     },
     // WO_LINE
     initWoLineTable: function () {
@@ -208,6 +208,8 @@ var woLineAPI = {
         }, {
             data: "extraHours"
         }, {
+            data: "planHours"
+        }, {
             data: "quantity"
         }, {
             data: "id",
@@ -227,6 +229,8 @@ var woLineAPI = {
             data: "worker.name"
         }, {
             data: "totalKm"
+        }, {
+            data: "planHours"
         }, {
             data: "quantity"
         }, {
@@ -327,7 +331,7 @@ var woLineAPI = {
                 }
             }
         });
-    },    
+    },
     getWoWorkers: function (id) {
         var url = sprintf("%s/wo_worker/wo/worker/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
@@ -391,7 +395,7 @@ var woLineAPI = {
             pwModal3API.newLine();
         };
         return mf;
-    },    
+    },
     deleteWoVehicleMessage: function (id) {
         var url = sprintf("%s/wo_worker/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({

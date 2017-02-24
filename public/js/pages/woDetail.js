@@ -95,6 +95,7 @@ var woDetailAPI = {
         self.finalKm = ko.observable();
         self.totalKm = ko.observable();
         self.fuel = ko.observable();
+        self.planHours = ko.observable();
         // -- Modal related (3)
         self.quantity3 = ko.observable();
         // worker3 combo

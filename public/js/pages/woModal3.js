@@ -84,7 +84,8 @@ var woModal3API = {
                 initialKm: vm.initialKm(),
                 finalKm: vm.finalKm(),
                 totalKm: vm.totalKm(),
-                fuel: vm.fuel()
+                fuel: vm.fuel(),
+                planHours: vm.planHours()
             };
             var url = "", type = "";
             if (vm.woWorkerId() == 0) {
