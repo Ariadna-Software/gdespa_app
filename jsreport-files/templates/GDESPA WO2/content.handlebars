@@ -1,0 +1,113 @@
+<meta charset="utf-8">
+<!-- #CSS Links -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<img src='{#image logo-gdes-lineman}' style="display:none;"/>
+<div class="container-fluid">
+    <div class="row">
+        <div style="text-align:right;">
+            <h1>{{nreport}}</h1>
+        </div>
+        <table class="table table-stripped table-forum">
+        <thead class="txt-color-blue">
+            <tr>
+                <th>FECHA</th>
+                <th>RESPONSABLE</th>
+                <th>REFERENCIA</th>
+                <th>OBRA</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{initDate}}</td>
+                <td>{{workerName}}</td>
+                <td>{{reference}}</td>
+                <td>{{pwName}}</td>
+            </tr>
+        </tbody>
+        </table>        
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Trabajadores</h2>
+            <table class="table table-stripped table-forum  table-bordered">
+                <thead class="txt-color-blue">
+                    <tr>
+                        <th>Trabajador</th>
+                        <th>Horas planificadas</th>
+                        <th>Horas normales</th>
+                        <th>Horas extras</th>
+                        <th>Horas totales</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each workers}}
+                    <tr>
+                        <td>{{worker}}</td>
+                        <td>{{planHours}}</td>
+                        <td>{{normalHours}}</td>
+                        <td>{{extraHours}}</td>
+                        <td>{{totalHours}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>     
+            <h2>Vehículos / Maquinaria</h2>
+            <table class="table table-stripped table-forum  table-bordered">
+                <thead class="txt-color-blue">
+                    <tr>
+                        <th>Vehiculo</th>
+                        <th>Km. iniciales</th>
+                        <th>Km. finales</th>
+                        <th>Km. totales</th>
+                        <th>Combustible</th>
+                        <th>Horas planificadas</th>
+                        <th>Horas totales</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each vehicles}}
+                    <tr>
+                        <td>{{worker}}</td>
+                        <td>{{initialKm}}</td>
+                        <td>{{finalKm}}</td>
+                        <td>{{totalKm}}</td>
+                        <td>{{fuel}}</td>
+                        <td>{{planHours}}</td>
+                        <td>{{totalHours}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>             
+        </div>
+        <div class="col-md-4">
+            <h2>Trabajo realizado</h2>
+            <table class="table table-stripped table-forum  table-bordered">
+                <thead class="txt-color-blue">
+                    <tr>
+                        <th>Unidad constructiva</th>
+                        <th>Pres</th>
+                        <th>Hecho</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each lines}}
+                    <tr>
+                        <td>{{cunit}}</td>
+                        <td>{{estimate}}</td>
+                        <td>{{done}}</td>
+                        <td>{{quantity}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>            
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <strong>Observaciones: </strong>
+        <br/>{{comments}}
+    </div>
+</div>

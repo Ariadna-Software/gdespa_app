@@ -1,0 +1,59 @@
+{
+    "nreport": "PARTE TRABAJO",
+    "initDate": "09/10/2016",
+    "workerName": "SAGEL, GASPAR ",
+    "pwName": "Ubencio Atencio Hidrogo",
+    "comments": "Comentarios",
+    "reference": "FSTYTS45822",
+    "lines": [
+        {
+        "cunit": "02304000 - POSTE HORMIGÓN PRETENSADO CENTRIFUGADO 300 daN 10,5 M",
+        "estimate": 6,
+        "done": 6,
+        "quantity": 0
+        },
+        {
+        "cunit": "04322200 - ARMADO SIMPLE CIRC. MONOF. ÁNGULO 5 a 30º, ACSR 1/0",
+        "estimate": 4,
+        "done": 2,
+        "quantity": 0
+        }
+    ],
+    "workers":[
+        {
+            "worker": "Trabajador 1",
+            "normalHours": 23,
+            "extraHours": 65,
+            "planHours": 13,
+            "totalHours": 15
+        },
+        {
+            "worker": "Trabajador 2",
+            "days": "2",
+            "normalHours": 23,
+            "extraHours": 10,
+            "planHours": 12,
+            "totalHours": 13
+        }
+    ],
+    "vehicles":[
+        {
+            "worker": "Este es un vehúclo con el nombre largo 1",
+            "initialKm": 23,
+            "finalKm": 65,
+            "totalKm": 22,
+            "fuel": 11,
+            "planHours": 13,
+            "totalHours": 15
+        },
+        {
+            "worker": "Trabajador 2",
+            "initialKm": 23,
+            "finalKm": 65,
+            "totalKm": 22,
+            "fuel": 11,
+            "planHours": 13,
+            "totalHours": 15
+        }
+    ]
+}

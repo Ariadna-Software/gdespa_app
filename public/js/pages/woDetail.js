@@ -271,7 +271,7 @@ var woDetailAPI = {
 
             // fecth report data
             type = "GET";
-            url = sprintf('%s/report/wo/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+            url = sprintf('%s/report/wo2/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
 
             $.ajax({
                 type: type,
@@ -280,7 +280,7 @@ var woDetailAPI = {
                 data: JSON.stringify(data),
                 success: function (data, status) {
                     // process report data
-                    aswReport.reportPDF(data, 'HkhE43nJg');
+                    aswReport.reportPDF(data, 'BJ8C0_TKg');
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
