@@ -154,7 +154,7 @@ var pwDetailAPI = {
         self.selectedChapters = ko.observableArray([]);
         self.sChapter = ko.observable();
         self.currentChapterId = ko.observable();
-
+        self.plannedQuantity = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);

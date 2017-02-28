@@ -43,6 +43,7 @@ var pwModalAPI = {
         // clean other fields
         vm.line(null);
         vm.quantity(null);
+        vm.plannedQuantity(null);
         vm.cost(null);
         vm.k(vm.defaultK());
         vm.amount(null);
@@ -63,6 +64,7 @@ var pwModalAPI = {
                     vm.pwLineId(data[0].id);
                     vm.line(data[0].line);
                     pwModalAPI.loadCUnits(data[0].cunit.id);
+                    vm.plannedQuantity(data[0].plannedQuantity);
                     vm.quantity(data[0].quantity);
                     vm.cost(data[0].cost);
                     vm.k(data[0].k);
@@ -95,6 +97,7 @@ var pwModalAPI = {
                     id: vm.sCUnit()
                 },
                 quantity: vm.quantity(),
+                plannedQuantity: vm.plannedQuantity(),
                 k: vm.k(),
                 cost: vm.cost(),
                 amount: vm.amount(),
