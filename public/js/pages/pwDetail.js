@@ -43,6 +43,7 @@ var pwDetailAPI = {
         // buttons click events
         $('#btnOk').click(pwDetailAPI.btnOk());
         $('#btnPrint').click(pwDetailAPI.btnPrint());
+        $('#btnPrint2').click(pwDetailAPI.btnPrint2());
         $('#btnCalc').click(pwDetailAPI.btnCalc());
         $('#btnExit').click(function (e) {
             e.preventDefault();
@@ -512,6 +513,38 @@ var pwDetailAPI = {
                 success: function (data, status) {
                     // process report data
                     aswReport.reportPDF(data, 'Sk6i2fr1x');
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    },
+    btnPrint2: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            // validate form
+            if (!pwDetailAPI.dataOk()) return;
+            var url = "",
+                type = "";
+
+            // fecth report data
+            type = "GET";
+            url = sprintf('%s/report/pwR1/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    // process report data
+                    aswReport.reportPDF(data, 'HJJjHyz5x');
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

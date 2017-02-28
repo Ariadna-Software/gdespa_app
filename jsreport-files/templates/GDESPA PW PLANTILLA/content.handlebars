@@ -10,7 +10,7 @@
 </style>
 <div class="well">
     <div style="text-align:right;">
-        <h1>{{nreport}}</h1>
+        <h1>PLANTILLA OBRA PARA PARTE</h1>
     </div>
     <table>
         <tr>
@@ -40,10 +40,8 @@
                 <strong>Zona: </strong><br/>{{zone}}
             </td>
             <td style="padding:5px;">
-                <strong>K: </strong><br/>{{globalK}}
             </td>            
             <td style="padding:5px;">
-                <strong>Total: </strong><br/>{{total}}
             </td>            
         </tr>          
         <tr>
@@ -61,11 +59,8 @@
             <tr>
                 <th>Linea</th>
                 <th>Unida constructiva</th>
-                <th>Coste</th>
-                <th>Cantidad</th>
-                <th>K</th>
-                <th>Importe</th>
                 <th>Observaciones</th>
+                <th>Cantidad</th>
             </tr>
             <br/>
         </thead>
@@ -74,34 +69,8 @@
             <tr style="font-size:110%">
                 <td>{{line}}</td>
                 <td>{{cunit}}</td>
-                <td>{{cost}}</td>
-                <td>{{quantity}}</td>
-                <td>{{k}}</td>
-                <td>{{amount}}</td>
                 <td>{{comments}}</td>
-            </tr>
-            <tr>
-                {{#each items}}
-                <tr>
-                    <td></td>
-                    <td colspan="4">
-                        <strong>Artículo: </strong><br/>
-                        {{item}}
-                    </td>
-                    <td>
-                        <strong>C.UC: </strong><br/>
-                        {{qUc}}
-                    </td>
-                    <td>
-                        <strong>C.PR: </strong><br/>
-                        {{qPw}}
-                    </td>
-                </tr>
-                {{/each}}
-            </tr>
-            <tr>
-                <td colspan="7">
-                </td>
+                <td></td>
             </tr>
             {{/each}}
         </tbody>
