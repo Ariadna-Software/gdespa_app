@@ -302,7 +302,8 @@
         "chapterName": "Nombre",
         "chapterOrder": "Orden",
         "chapterComments": "Comentarios del capítulo",
-        "newChapter": "Nuevo capítulo"
+        "newChapter": "Nuevo capítulo",
+        "subZone": "Subzona"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",

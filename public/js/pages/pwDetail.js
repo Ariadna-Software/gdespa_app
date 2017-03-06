@@ -156,6 +156,8 @@ var pwDetailAPI = {
         self.sChapter = ko.observable();
         self.currentChapterId = ko.observable();
         self.plannedQuantity = ko.observable();
+        // 
+        self.subZone = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -192,6 +194,7 @@ var pwDetailAPI = {
         vm.invRef(data.invRef);
         vm.payRef(data.payRef);
         vm.sZone(data.zone.id);
+        vm.subZone(data.subZone);
         pwDetailAPI.loadZones(vm.sZone());
         $('#progress').text((data.percentage * 100) + " %");
         $('#cost').text(data.cost * 1 + " USD");
@@ -307,7 +310,8 @@ var pwDetailAPI = {
                 total: vm.total(),
                 zone: {
                     id: vm.sZone()
-                }
+                },
+                subZone: vm.subZone()
             };
             if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()) {
                 data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
