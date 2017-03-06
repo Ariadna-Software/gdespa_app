@@ -277,6 +277,7 @@
         "total": "TOTAL",
         "cancel": "Salir sin guardar",
         "ok": "Guardar",
+        "okNew": "Guardar y siguiente",
         "newLine": "Nueva linea",
         "associated_items": "Unidades constructivas asociadas",
         "modal_title": "Unidad constructiva",

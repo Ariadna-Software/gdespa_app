@@ -10,6 +10,7 @@ var pwModalAPI = {
         });
         // button events
         $('#btnSaveLine').click(pwModalAPI.saveLine());
+        $('#btnSaveLineNew').click(pwModalAPI.saveLineNew());
         // lostfocus events
         $("#txtCost").blur(pwModalAPI.updateTotal());
         $("#txtK").blur(pwModalAPI.updateTotal());
@@ -134,6 +135,57 @@ var pwModalAPI = {
         };
         return mf;
     },
+    saveLineNew: function () {
+        var mf = function (e) {
+            e.preventDefault();
+            if (!pwModalAPI.dataOk()) return;
+            // mount line to save 
+            var data = {
+                id: vm.pwLineId(),
+                line: vm.line(),
+                pw: {
+                    id: vm.id()
+                },
+                cunit: {
+                    id: vm.sCUnit()
+                },
+                quantity: vm.quantity(),
+                plannedQuantity: vm.plannedQuantity(),
+                k: vm.k(),
+                cost: vm.cost(),
+                amount: vm.amount(),
+                comments: vm.comments(),
+                chapterId: vm.currentChapterId()
+            };
+            var url = "", type = "";
+            if (vm.pwLineId() == 0) {
+                // creating new record
+                type = "POST";
+                url = sprintf('%s/pw_line?api_key=%s', myconfig.apiUrl, api_key);
+            } else {
+                // updating record
+                type = "PUT";
+                url = sprintf('%s/pw_line/%s/?api_key=%s', myconfig.apiUrl, vm.pwLineId(), api_key);
+            }
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    pwDetailAPI.getPw(vm.id());
+                    pwModalAPI.newLine(vm.chapterId());
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        };
+        return mf;
+    },    
     loadCUnits: function (id) {
         $.ajax({
             type: "GET",
