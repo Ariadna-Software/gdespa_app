@@ -14,7 +14,8 @@ var pwModalAPI = {
         // lostfocus events
         $("#txtCost").blur(pwModalAPI.updateTotal());
         $("#txtK").blur(pwModalAPI.updateTotal());
-        $("#txtQuantity").blur(pwModalAPI.updateTotal());
+        $("#txtQuantity").blur(pwModalAPI.updateTotal);
+        $("#txtPlannedQuantity").blur(pwModalAPI.changePlannedQuantity);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -185,7 +186,7 @@ var pwModalAPI = {
             });
         };
         return mf;
-    },    
+    },
     loadCUnits: function (id) {
         $.ajax({
             type: "GET",
@@ -216,8 +217,9 @@ var pwModalAPI = {
                 if (data.length) {
                     // TODO: cost
                     vm.cost(data[0].cost);
+                    vm.plannedQuantity(1);
                     vm.quantity(1);
-                    pwModalAPI.updateTotal()();
+                    pwModalAPI.updateTotal();
                 }
             },
             error: function (err) {
@@ -229,11 +231,8 @@ var pwModalAPI = {
         })
     },
     updateTotal: function () {
-        var mf = function () {
-            var t = vm.cost() * vm.quantity() * vm.k();
-            vm.amount(aswUtil.round2(t));
-        };
-        return mf;
+        var t = vm.cost() * vm.quantity() * vm.k();
+        vm.amount(aswUtil.round2(t));
     },
     newLineNumber: function (id, chapterId) {
         $.ajax({
@@ -253,6 +252,12 @@ var pwModalAPI = {
                 }
             }
         });
+    },
+    changePlannedQuantity: function () {
+        if (vm.pwLineId() == 0) {
+            vm.quantity(vm.plannedQuantity());
+            updateTotal();
+        }
     }
 
 };
