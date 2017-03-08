@@ -1,0 +1,50 @@
+<meta charset="utf-8">
+<!-- #CSS Links -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<img src='{#image logo-gdes-lineman}' style="display:none;"/>
+<div class="container-fluid">
+    <div class="row">
+        <div style="text-align:right;">
+            <h1>{{nreport}}</h1>
+            <h2>Desde {{initDate}} hasta {{endDate}}</h2>
+        </div>
+    </div>
+    {{#each workers}}
+    <div>
+        <h2>{{workerName}}</h2>
+        <table class="table table-stripped table-forum  table-bordered">
+            <thead class="txt-color-blue">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Zona</th>
+                    <th>Obra</th>
+                    <th style="text-align:right;">Horas normales</th>
+                    <th style="text-align:right;">Horas extras</th>
+                    <th style="text-align:right;">Horas totales</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each lines}}
+                <tr>
+                    <td>{{date}}</td>
+                    <td>{{zone}}</td>
+                    <td>{{pw}}</td>
+                    <td style="text-align:right;">{{normalHours}}</td>
+                    <td style="text-align:right;">{{extraHours}}</td>
+                    <td style="text-align:right;">{{quantity}}</td>
+                </tr>
+                {{/each}}
+                <tr>
+                    <td colspan="3" style="text-align:right;">
+                        TOTALES...:
+                    </td>
+                    <td style="text-align:right;">{{totalNormalHours}}</td>
+                    <td style="text-align:right;">{{totalExtraHours}}</td>
+                    <td style="text-align:right;">{{totalHours}}</td>                    
+                </tr>
+            </tbody>
+        </table>          
+    </div>
+    {{/each}}
+</div>

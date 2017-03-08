@@ -1,0 +1,164 @@
+{
+"nreport": "HORAS POR TRABAJADOR",
+"initDate": "01/02/2017",
+"endDate": "28/02/2017",
+"workers": [
+{
+"workerName": "AGUILAR, VALENTINA ",
+"lines": [
+{
+"woId": 167,
+"woWorkerId": 602,
+"date": "19/02/2017",
+"zone": "David",
+"pw": "UBENCIO ATENCIO HIDROGO",
+"normalHours": 0,
+"extraHours": 0
+},
+{
+"woId": 168,
+"woWorkerId": 605,
+"date": "20/02/2017",
+"zone": "David",
+"pw": "UBENCIO ATENCIO HIDROGO",
+"normalHours": 0,
+"extraHours": 0
+},
+{
+"woId": 169,
+"woWorkerId": 608,
+"date": "22/02/2017",
+"zone": "David",
+"pw": "UBENCIO ATENCIO HIDROGO",
+"normalHours": 0,
+"extraHours": 0
+}
+],
+"totalHours": 0,
+"totalNormalHours": 0,
+"totalExtraHours": 0
+},
+{
+"workerName": "ARCIA, BELISARIO ",
+"lines": [
+{
+"woId": 170,
+"woWorkerId": 611,
+"date": "23/02/2017",
+"zone": "Provincias Centrales",
+"pw": "oercorotu",
+"normalHours": 8,
+"extraHours": 0
+}
+],
+"totalHours": 8,
+"totalNormalHours": 8,
+"totalExtraHours": 0
+},
+{
+"workerName": "CASTREJON, TOMAS ",
+"lines": [
+{
+"woId": 167,
+"woWorkerId": 601,
+"date": "19/02/2017",
+"zone": "David",
+"pw": "UBENCIO ATENCIO HIDROGO",
+"normalHours": 0,
+"extraHours": 0
+},
+{
+"woId": 168,
+"woWorkerId": 604,
+"date": "20/02/2017",
+"zone": "David",
+"pw": "UBENCIO ATENCIO HIDROGO",
+"normalHours": 0,
+"extraHours": 0
+},
+{
+"woId": 169,
+"woWorkerId": 610,
+"date": "22/02/2017",
+"zone": "David",
+"pw": "UBENCIO ATENCIO HIDROGO",
+"normalHours": 6,
+"extraHours": 0
+},
+{
+"woId": 169,
+"woWorkerId": 607,
+"date": "22/02/2017",
+"zone": "David",
+"pw": "UBENCIO ATENCIO HIDROGO",
+"normalHours": 0,
+"extraHours": 0
+}
+],
+"totalHours": 6,
+"totalNormalHours": 6,
+"totalExtraHours": 0
+},
+{
+"workerName": "DE LEON, DAYAN ",
+"lines": [
+{
+"woId": 166,
+"woWorkerId": 600,
+"date": "12/02/2017",
+"zone": "Provincias Centrales",
+"pw": "OBRA PRUEBA1",
+"normalHours": 5,
+"extraHours": 0
+},
+{
+"woId": 167,
+"woWorkerId": 603,
+"date": "19/02/2017",
+"zone": "David",
+"pw": "UBENCIO ATENCIO HIDROGO",
+"normalHours": 0,
+"extraHours": 0
+},
+{
+"woId": 168,
+"woWorkerId": 606,
+"date": "20/02/2017",
+"zone": "David",
+"pw": "UBENCIO ATENCIO HIDROGO",
+"normalHours": 0,
+"extraHours": 0
+},
+{
+"woId": 169,
+"woWorkerId": 609,
+"date": "22/02/2017",
+"zone": "David",
+"pw": "UBENCIO ATENCIO HIDROGO",
+"normalHours": 0,
+"extraHours": 0
+}
+],
+"totalHours": 5,
+"totalNormalHours": 5,
+"totalExtraHours": 0
+},
+{
+"workerName": "ORTEGA, YORLINIS ",
+"lines": [
+{
+"woId": 165,
+"woWorkerId": 599,
+"date": "16/02/2017",
+"zone": "David",
+"pw": "OER GALERITA",
+"normalHours": 0,
+"extraHours": 0
+}
+],
+"totalHours": 0,
+"totalNormalHours": 0,
+"totalExtraHours": 0
+}
+]
+}

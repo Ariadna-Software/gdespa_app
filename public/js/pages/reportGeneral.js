@@ -14,12 +14,18 @@ var reportGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
+        validator_languages(lang);
+        datepicker_languages(lang);
         // make active menu option
         $('#reportGeneral').attr('class', 'active');
         // knockout management
         vm = new reportGeneralAPI.pageData();
         ko.applyBindings(vm);
         // combos
+        $('#cmbWorkers').select2(select2_languages[lang]);
+        reportGeneralAPI.loadWorkers();        
+        $('#btnPrintWorker').click(reportGeneralAPI.btnPrintWorker());
+       
         $('#cmbClosures').select2(select2_languages[lang]);
         reportGeneralAPI.loadClosures();
         $('#btnPrintClosure').click(reportGeneralAPI.btnPrintClosure());
@@ -64,6 +70,12 @@ var reportGeneralAPI = {
     },
     pageData: function () {
         var self = this;
+        self.initDate = ko.observable();
+        self.endDate = ko.observable();
+        // worker combo
+        self.optionsWorkers = ko.observableArray([]);
+        self.selectedWorkers = ko.observableArray([]);
+        self.sWorker = ko.observable();
         // closure combo
         self.optionsClosures = ko.observableArray([]);
         self.selectedClosures = ko.observableArray([]);
@@ -89,6 +101,25 @@ var reportGeneralAPI = {
         self.sPwItem = ko.observable();
 
     },
+    loadWorkers: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/worker/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 0, name: "--- TODOS -----" }].concat(data);
+                vm.optionsWorkers(options);
+                $("#cmbWorkers").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },    
     loadClosures: function (id) {
         $.ajax({
             type: "GET",
@@ -108,6 +139,37 @@ var reportGeneralAPI = {
             }
         });
     },
+    btnPrintWorker: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            // http://localhost:5080/api/report/worker-hours/2017-02-01/2017-02-28/0?api_key=5jJHv
+            var initDate = moment(vm.initDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
+            var endDate = moment(vm.endDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
+            url = sprintf('%s/report/worker-hours/%s/%s/%s?api_key=%s', myconfig.apiUrl, initDate, endDate, vm.sWorker(), api_key);
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    // process report data
+                    aswReport.reportPDF(data, 'Hkwmbrp9x');
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        }
+        return mf;
+    },    
     btnPrintClosure: function () {
         var mf = function (e) {
             // avoid default accion

@@ -513,6 +513,10 @@
         "pwStore_title": "Informe stock de almacén",
         "pwStore_detail": "Almacén a informar",
         "pwItem_title": "Informe movimientos de artículo",
-        "pwItem_detail": "Artículo"
+        "pwItem_detail": "Artículo",
+        "workerHours": "Horas por trabajador",
+        "worker": "Trabajador",
+        "initDate": "Desde fecha",
+        "endDate": "Hasta fecha"
     }
 }
