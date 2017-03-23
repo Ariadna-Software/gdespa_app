@@ -532,6 +532,7 @@ var pwDetailAPI = {
         var mf = function (e) {
             // avoid default accion
             e.preventDefault();
+            
             // validate form
             if (!pwDetailAPI.dataOk()) return;
             var url = "",
