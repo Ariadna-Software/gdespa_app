@@ -356,7 +356,9 @@
         "totalKm": "Km. Totales",
         "fuel": "Combustible",
         "btnNewVehicle": "Nuevo datos vehiculo / maquinaria",
-        "planHours": "Horas planificadas"
+        "planHours": "Horas planificadas",
+        "thirdParty": "Parte de trabajo realizado por companía ajena",
+        "thirdPartyCompany": "Compañía externa que ha realizado el trabajo"
     },
     "itemInGeneral": {
         "title": "Entradas",

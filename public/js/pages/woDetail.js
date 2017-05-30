@@ -101,7 +101,10 @@ var woDetailAPI = {
         // worker3 combo
         self.optionsWorkers3 = ko.observableArray([]);
         self.selectedWorkers3 = ko.observableArray([]);
-        self.sWorker3 = ko.observable();        
+        self.sWorker3 = ko.observable();      
+        // 
+        self.thirdParty = ko.observable();
+        self.thirdPartyCompany = ko.observable();  
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -110,6 +113,9 @@ var woDetailAPI = {
         vm.comments(data.comments);
         woDetailAPI.loadPws(data.pw.id);
         woDetailAPI.loadWorkers(data.worker.id);
+        //
+        vm.thirdParty(data.thirdParty);
+        vm.thirdPartyCompany(data.thirdPartyCompany);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -173,7 +179,9 @@ var woDetailAPI = {
                 pw: {
                     id: vm.sPw()
                 },
-                comments: vm.comments()
+                comments: vm.comments(),
+                thirdParty: vm.thirdParty(),
+                thirdPartyCompany: vm.thirdPartyCompany()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
