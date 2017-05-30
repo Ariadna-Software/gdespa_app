@@ -6,6 +6,9 @@ var pwModal4API = {
         });
         $('#cmbChapters').select2(select2_languages[lang]);
         pwModal4API.loadChapters();
+        $("#cmbChapters").select2().on('change', function (e) {
+            pwModal4API.changeChapter(e.added);
+        });        
         // button events
         $('#btnSaveChapter').click(pwModal4API.saveChapter);
         $('#btnNewChapter').click(pwModal4API.newChapter);
@@ -150,6 +153,9 @@ var pwModal4API = {
                 }].concat(data);
                 vm.optionsChapters(options);
                 $("#cmbChapters").val([chapterId]).trigger('change');
+                if (chapterId == 0){
+                    $("#cmbChapters").prop("disabled", false);
+                }
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -202,6 +208,12 @@ var pwModal4API = {
                 }
             }
         });
+    },
+    changeChapter: function (data) {
+        if (!data) return;
+        if (data.id){
+            vm.currentChapterId(data.id);
+        }
     }
 
 };
