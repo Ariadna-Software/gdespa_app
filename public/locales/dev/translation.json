@@ -522,5 +522,23 @@
         "worker": "Trabajador",
         "initDate": "Desde fecha",
         "endDate": "Hasta fecha"
+    },
+    "teamGeneral": {
+        "title": "Brigadas",
+        "new": "Nueva brigada",
+        "search": "Buscar brigadas"
+    },
+    "teamDetail": {
+        "title": "Detalle brigada",
+        "print": "Imprimir",
+        "name": "Nombre brigada",
+        "workerInCharge": "Responsable",
+        "worker": "Trabajador",
+        "comments": "Observaciones",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "newLine": "Nueva linea",
+        "associated_lines": "Lineas de la brigada",
+        "modal_title": "Linea de la brigada"
     }
 }

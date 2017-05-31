@@ -260,8 +260,8 @@
 		<div id="ribbon">
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
-				<li data-i18n="menu.store.main">Home</li>
-				<li data-i18n="menu.store.itemIn">Home</li>
+				<li data-i18n="menu.administration.main">Home</li>
+				<li data-i18n="menu.administration.team">Home</li>
 			</ol>
 		</div>
 		<!-- Main content -->
@@ -270,7 +270,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-sign-in"></i> <span data-i18n="menu.store.itemIn">Inicio</span>
+						<i class="fa-fw fa fa-user-circle"></i> <span data-i18n="menu.administration.team">Inicio</span>
 					</h1>
 				</div>
 			</div>
@@ -282,10 +282,10 @@
 						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-								<h2 data-i18n="itemInGeneral.title">Mantenimiento</h2>
+								<h2 data-i18n="teamGeneral.title">Mantenimiento</h2>
 							</header>
 							<div class="row">
-								<form id="itemInGeneral-form" class="smart-form">
+								<form id="teamGeneral-form" class="smart-form">
 									<fieldset>
 										<div class="row">
 											<section class="col col-md-12">
@@ -298,10 +298,10 @@
 									</fieldset>
 									<fieldset>
 										<div class="pull-right">
-											<button id="btnSearch" data-i18n="[title]itemInGeneral.search" class="btn btn-primary btn-circle btn-lg">
+											<button id="btnSearch" data-i18n="[title]teamGeneral.search" class="btn btn-primary btn-circle btn-lg">
                                                 <i class="fa fa-lg fa-search"></i>
                                             </button>
-											<button id="btnNew" data-i18n="[title]itemInGeneral.new" class="btn btn-success btn-circle btn-lg">
+											<button id="btnNew" data-i18n="[title]teamGeneral.new" class="btn btn-success btn-circle btn-lg">
                                         		<i class="fa fa-lg fa-plus"></i>
                                         	</button>
 										</div>
@@ -309,22 +309,16 @@
 								</form>
 							</div>
 							<div class="row">
-								<div id="tb_itemIn" style="display:none;">
-									<table id="dt_itemIn" class="table table-striped table-bordered table-hover" width="100%">
+								<div id="tb_team" style="display:none;">
+									<table id="dt_team" class="table table-striped table-bordered table-hover" width="100%">
 										<thead>
 											<tr>
 												<th data-class="expand">
-													<i class="fa fa-fw fa-database text-muted hidden-md hidden-sm hidden-xs"></i>
-													<span data-i18n="itemInDetail.store">R</span>
-												</th>
-												<th data-hide="phone" class="asw-center">
-													<span data-i18n="itemInDetail.dateIn"></span>
+													<i class="fa fa-fw fa-user-circle text-muted hidden-md hidden-sm hidden-xs"></i>
+													<span data-i18n="teamDetail.name">R</span>
 												</th>
 												<th>
-													<span data-i18n="itemInDetail.worker"></span>
-												</th>
-												<th>
-													<span data-i18n="itemInDetail.comments"></span>
+													<span data-i18n="teamDetail.workerInCharge"></span>
 												</th>
 												<th>
 												</th>
@@ -433,7 +427,7 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/itemInGeneral.js"></script>
+	<script src="js/pages/teamGeneral.js"></script>
 
 
 
