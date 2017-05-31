@@ -217,7 +217,8 @@
         "ownItem": "Artículo propio",
         "minStock": "Stock mínimo",
         "store": "Almacen",
-        "stock": "Stock"
+        "stock": "Stock",
+        "cost": "Coste"
     },
     "cUnitGeneral": {
         "title": "Mantenimiento unidades constructivas",

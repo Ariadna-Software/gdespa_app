@@ -52,6 +52,7 @@ var itemDetailAPI = {
         //
         self.ownItem = ko.observable();
         self.minStock = ko.observable();
+        self.cost = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -63,6 +64,7 @@ var itemDetailAPI = {
         itemDetailAPI.loadUnits(vm.unitId());
         vm.ownItem(data.ownItem);
         vm.minStock(data.minStock);
+        vm.cost(data.cost);
         // show big name
         var html = sprintf('<strong>[%s]</strong>', vm.name());
         $('#itemName').html(html);
@@ -74,7 +76,8 @@ var itemDetailAPI = {
                 txtName: { required: true },
                 txtReference: { required: true },
                 cmbUnits: { required: true },
-                txtMinStock: { number: true }
+                txtMinStock: { number: true },
+                txtCost: {number: true}
             },
             // Messages for form validation
             messages: {
@@ -130,7 +133,8 @@ var itemDetailAPI = {
                     id: vm.sUnit()
                 },
                 ownItem: vm.ownItem(),
-                minStock: vm.minStock()
+                minStock: vm.minStock(),
+                cost: vm.cost()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
