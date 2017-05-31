@@ -64,7 +64,8 @@
             "unit": "Unidades",
             "item": "Articulos",
             "cUnit": "Unidades constructivas",
-            "zone": "Zonas"
+            "zone": "Zonas",
+            "team": "Brigadas"
         },
         "pwman": {
             "main": "Obras y servicios",

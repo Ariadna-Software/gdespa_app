@@ -29,7 +29,7 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
 	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-	<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
+
 
 	<!-- FAVICONS -->
 	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -37,6 +37,7 @@
 
 	<!-- GOOGLE FONT -->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
 
 	<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
@@ -171,21 +172,11 @@
 								<i class="fa fa-lg fa-fw fa-cube"></i> <span data-i18n="menu.administration.item">Blank</span>
 							</a>
 						</li>
-						<li id="cUnitGeneral" class="">
+						<li id="woGeneral" class="">
 							<a href="cUnitGeneral.html">
 								<i class="fa fa-lg fa-fw fa-cubes"></i> <span data-i18n="menu.administration.cUnit">Blank</span>
 							</a>
 						</li>
-						<li id="zoneGeneral" class="">
-							<a href="zoneGeneral.html">
-								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span data-i18n="menu.administration.zone">Blank</span>
-							</a>
-						</li>	
-						<li id="team" class="">
-							<a href="teamGeneral.html">
-								<i class="fa fa-lg fa-fw fa-user-circle"></i> <span data-i18n="menu.administration.team">Blank</span>
-							</a>
-						</li>	
 					</ul>
 				</li>
 				<li id="pwman" class="">
@@ -234,7 +225,7 @@
 							<a href="inventoryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-table"></i> <span data-i18n="menu.store.inventory">Blank</span>
 							</a>
-						</li>						
+						</li>
 					</ul>
 				</li>
 				<li id="report" class="">
@@ -260,8 +251,8 @@
 		<div id="ribbon">
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
-				<li data-i18n="menu.administration.main">Home</li>
-				<li data-i18n="menu.administration.unit">Home</li>
+				<li data-i18n="menu.store.main">Home</li>
+				<li data-i18n="menu.store.itemIn">Home</li>
 			</ol>
 		</div>
 		<!-- Main content -->
@@ -270,7 +261,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-wrench"></i> <span data-i18n="menu.administration.unit">Inicio</span>
+						<i class="fa-fw fa fa-sign-in"></i> <span data-i18n="menu.store.itemIn">Inicio</span>
 					</h1>
 				</div>
 			</div>
@@ -281,38 +272,107 @@
 						<!-- Widget ID (each widget will need unique ID)-->
 						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
-								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-								<h2 data-i18n="unitDetail.title">Mantenimiento</h2>
+								<span class="widget-icon"> <i class="fa fa-cogs"></i> </span>
+								<h2 data-i18n="itemInDetail.title">Mantenimiento</h2>
 							</header>
 							<div class="widget-body">
-								<form id="unitDetail-form" class="smart-form">
-									<fieldset>
-										<div class="row">
-											<section class="col col-md-8">
-												<label class="label" data-i18n="unitDetail.name">Nombre:</label>
-												<label class="input">
-													<input id="txtName" name="txtName" data-bind="value: name">
+								<div class="row">
+									<form id="itemIn-form" class="smart-form">
+										<fieldset>
+											<div class="row">
+												<section class="col col-md-2">
+													<label class="label" data-i18n="itemInDetail.dateIn">Fecha inicio:</label>
+													<label class="input">
+														<input id="txDateIn" name="txtDateIn" data-bind="value: dateIn" class="datepicker" data-dateformat="dd/mm/yy">
+													</label>
+												</section>
+												<section class="col col-md-5">
+													<label class="label" data-18n="itemInDetail.worker">Responsable:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}"></select><i></i>
+													</label>
+												</section>
+												<section class="col col-md-5">
+													<label class="label" data-18n="itemInDetail.store">Almacen:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbStores" name="cmbStores" data-bind="options: optionsStores, optionsText: 'name', optionsValue: 'id', value: sStore, valueAllowUnset: true, selectedOptions: selectedStores, selected2:{}"></select><i></i>
+													</label>
+												</section>
+											</div>
+											<div class="row">
+												<section class="col col-md-2">
+													<label class="label" data-i18n="itemInDetail.deliveryNote">Alb. Proveedor:</label>
+													<label class="input">
+													<input id="txtDeliveryNote" name="txtDeliveryNote" type="text" data-bind="value: deliveryNote" />
 												</label>
-											</section>
-											<section class="col col-md-4">
-												<label class="label" data-i18n="unitDetail.abb">Abreviatura:</label>
-												<label class="input">
-													<input id="txtAbb" name="txtAbb" data-bind="value: abb">
-												</label>
-											</section>
-										</div>
-									</fieldset>
-									<fieldset>
-										<div class="pull-right">
-											<button id="btnExit" data-i18n="[title]unitDetail.cancel" class="btn btn-warning btn-circle btn-lg">
-											<i class="fa fa-lg fa-sign-out"></i>
-										</button>
-											<button id="btnOk" data-i18n="[title]unitDetail.ok" class="btn btn-success btn-circle btn-lg">
-											<i class="fa fa-lg fa-check"></i>
-										</button>
-										</div>
-									</fieldset>
-								</form>
+												</section>
+												<section class="col col-md-10">
+
+												</section>
+											</div>
+											<div class="row">
+												<section class="col col-md-12">
+													<label class="label" data-i18n="itemInDetail.comments">Onservaciones:</label>
+													<label class="textarea textarea-resizable">
+                                                        <textarea id="txtComments" rows="3" class="custom-scroll" data-bind="value:comments"></textarea>
+	                                                </label>
+												</section>
+											</div>
+										</fieldset>
+										<fieldset>
+											<div class="pull-right">
+												<button id="btnExit" data-i18n="[title]itemInDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+													<i class="fa fa-lg fa-sign-out"></i>
+												</button>
+												<button id="btnPrint" data-i18n="[title]itemInDetail.print" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-print"></i>
+												</button>												
+												<button id="btnOk" data-i18n="[title]itemInDetail.ok" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-check"></i>
+												</button>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false"
+							style="display:none;">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
+								<h2 data-i18n="itemInDetail.associated_lines">Mantenimiento</h2>
+							</header>
+							<div class="widget-body">
+								<div class="row">
+									<form id="itemInDetail-form" class="smart-form">
+										<fieldset>
+											<div class="pull-right">
+												<button id="btnNewLine" data-i18n="[title]itemInDetail.newLine" data-toggle="modal" data-target="#itemInModal" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-plus"></i>
+												</button>
+											</div>
+										</fieldset>
+										<fieldset>
+											<div id="tb_itemInLine">
+												<table id="dt_itemInLine" class="table table-striped table-bordered table-hover" width="100%">
+													<thead>
+														<tr>
+															<th data-class="expand">
+																<i class="fa fa-fw fa-cube text-muted hidden-md hidden-sm hidden-xs"></i>
+																<span data-i18n="itemInDetail.item">R</span>
+															</th>
+															<th data-hide="phone">
+																<span data-i18n="itemInDetail.quantity"></span>
+															</th>
+															<th>
+															</th>
+														</tr>
+													</thead>
+												</table>
+											</div>
+										</fieldset>
+									</form>
+								</div>
 							</div>
 						</div>
 					</article>
@@ -329,7 +389,55 @@
 		</div>
 	</div>
 
-	<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+	<!-- Modal -->
+	<div class="modal fade" id="itemInModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+					<h4 class="modal-title">
+						<i class="fa fa-sitemap"></i> <span data-i18n="itemInDetail.modal_title">ART</span>
+					</h4>
+				</div>
+				<div class="modal-body no-padding">
+					<form id="itemInModal-form" class="smart-form">
+						<fieldset>
+							<section>
+								<div class="row">
+									<section class="col col-md-10">
+										<label class="label" data-18n="itemInDetail.item">Articulo:</label>
+										<label style="width:100%;">
+                                            <select style="width:100%" id="cmbItems" name="cmbItems" data-bind="options: optionsItems, optionsText: 'name', optionsValue: 'id', value: sItem, valueAllowUnset: true, selectedOptions: selectedItems, selected2:{}"></select><i></i>
+                                        </label>
+									</section>
+									<section class="col col-md-2">
+										<label class="label" data-i18n="itemInDetail.quantity">Cantidad:</label>
+										<label class="input">
+                                            <input id="txtQuantity" name="txtQuantity" type="text" data-bind="value: quantity" />
+                                        </label>
+									</section>
+								</div>
+							</section>
+						</fieldset>
+						<footer>
+							<button id="btnSaveLine" class="btn btn-primary">
+                                <span data-i18n="itemInDetail.ok">A</span>
+                            </button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+                                <span data-i18n="itemInDetail.cancel">C</span>
+                            </button>
+						</footer>
+					</form>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking wo name tag)
 		Note: These tiles are completely responsive,
 		you can add as many as you like
 		-->
@@ -405,7 +513,6 @@
 	<script src="locales/numeral-languages.js"></script>
 	<script src="locales/datepicker-languages.js"></script>
 	<script src="locales/select2-languages.js"></script>
-	<script src="locales/numeral-languages.js"></script>
 	<!-- PAGE RELATED PLUGIN(S) -->
 	<script src="js/plugin/datatables/jquery.dataTables.min.js"></script>
 	<script src="js/plugin/datatables/dataTables.colVis.min.js"></script>
@@ -416,13 +523,16 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/unitDetail.js"></script>
+	<script src="js/pages/itemInModal.js"></script>
+	<script src="js/pages/itemInLine.js"></script>
+	<script src="js/pages/itemInDetail.js"></script>
 
 
 
 	<script type="text/javascript">
 		$(document).ready(function() {
 				pageSetUp();
+				itemInDetailAPI.init();
 		})
 	</script>
 
