@@ -22,3 +22,11 @@ CREATE TABLE `team_line`(
 ALTER TABLE `wo`   
   ADD COLUMN `teamId` INT(11) NULL AFTER `thirdPartyCompany`,
   ADD CONSTRAINT `ref_wo_team` FOREIGN KEY (`teamId`) REFERENCES `team`(`teamId`);
+
+CREATE TABLE `mea`(  
+  `meaId` INT(11) NOT NULL AUTO_INCREMENT,
+  `reference` VARCHAR(255),
+  `name` VARCHAR(255),
+  `cost` DECIMAL(12,2),
+  PRIMARY KEY (`meaId`)
+);

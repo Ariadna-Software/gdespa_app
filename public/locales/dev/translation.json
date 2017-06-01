@@ -65,7 +65,8 @@
             "item": "Articulos",
             "cUnit": "Unidades constructivas",
             "zone": "Zonas",
-            "team": "Brigadas"
+            "team": "Brigadas",
+            "mea": "Medidores"
         },
         "pwman": {
             "main": "Obras y servicios",
@@ -541,5 +542,19 @@
         "newLine": "Nueva linea",
         "associated_lines": "Lineas de la brigada",
         "modal_title": "Linea de la brigada"
+    },
+    "meaGeneral": {
+        "title": "Mantenimiento medidores",
+        "new": "Nuevo medidor",
+        "search": "Buscar medidores"
+    },
+    "meaDetail": {
+        "tabs": {
+            "general": "General"
+        },
+        "title": "Detalle medidor",
+        "name": "Nombre",
+        "reference": "Referencia",
+        "cost": "Coste"
     }
 }
