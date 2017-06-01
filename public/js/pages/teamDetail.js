@@ -1,6 +1,6 @@
 /*
- * itemIn.js
- * Function for the page itemIn.html
+ * team.js
+ * Function for the page team.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
@@ -10,7 +10,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 var data = null;
 var vm = null;
 
-var itemInDetailAPI = {
+var teamDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
@@ -18,75 +18,64 @@ var itemInDetailAPI = {
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
-        $('#itemInGeneral').attr('class', 'active');
+        $('#teamGeneral').attr('class', 'active');
         // knockout management
-        vm = new itemInDetailAPI.pageData();
+        vm = new teamDetailAPI.pageData();
         ko.applyBindings(vm);
         //
-        $('#cmbWorkers').select2(select2_languages[lang]);
-        itemInDetailAPI.loadWorkers();
+        $('#cmbWorkerInCharges').select2(select2_languages[lang]);
+        teamDetailAPI.loadWorkerInCharges();
         if (user.worker) {
-            itemInDetailAPI.loadWorkers(user.worker.id);
+            teamDetailAPI.loadWorkerInCharges(user.worker.id);
         }
-        $('#cmbStores').select2(select2_languages[lang]);
-        itemInDetailAPI.loadStores();
+
         // buttons click events
-        $('#btnOk').click(itemInDetailAPI.btnOk());
+        $('#btnOk').click(teamDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
             e.preventDefault();
-            window.open('itemInGeneral.html', '_self');
+            window.open('teamGeneral.html', '_self');
         })
-        $('#btnPrint').click(itemInDetailAPI.btnPrint());
+        $('#btnPrint').click(teamDetailAPI.btnPrint());
         // init lines table
-        itemInLineAPI.init();
+        teamLineAPI.init();
         // init modal form
-        itemInModalAPI.init();
+        teamModalAPI.init();
         // check if an id have been passed
         var id = aswUtil.gup('id');
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
         }
-        itemInDetailAPI.getItemIn(id);
+        teamDetailAPI.getTeam(id);
     },
     pageData: function () {
         // knockout objects
         var self = this;
         self.id = ko.observable();
-        self.dateIn = ko.observable();
-        self.comments = ko.observable();
-        self.deliveryNote = ko.observable();
+        self.name = ko.observable();
+        // worker combo
+        self.optionsWorkerInCharges = ko.observableArray([]);
+        self.selectedWorkerInCharges = ko.observableArray([]);
+        self.sWorkerInCharge = ko.observable();
+        // -- Modal related
+        self.lineId = ko.observable();
+        self.workerId = ko.observable();
         // worker combo
         self.optionsWorkers = ko.observableArray([]);
         self.selectedWorkers = ko.observableArray([]);
-        self.sWorker = ko.observable();
-        // store combo
-        self.optionsStores = ko.observableArray([]);
-        self.selectedStores = ko.observableArray([]);
-        self.sStore = ko.observable();
-        // -- Modal related
-        self.lineId = ko.observable();
-        self.quantity = ko.observable();
-        // item combo
-        self.optionsItems = ko.observableArray([]);
-        self.selectedItems = ko.observableArray([]);
-        self.sItem = ko.observable();
+        self.sWorker = ko.observable();        
     },
     loadData: function (data) {
-        vm.id(data.id);
-        vm.dateIn(moment(data.datIn).format(i18n.t('util.date_format')));
-        vm.comments(data.comments);
-        vm.deliveryNote(data.deliveryNote);
-        itemInDetailAPI.loadWorkers(data.worker.id);
-        itemInDetailAPI.loadStores(data.store.id);
+        vm.id(data.teamId);
+        vm.name(data.name);
+        teamDetailAPI.loadWorkerInCharges(data.workerInChargeId);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#itemIn-form').validate({
+        $('#team-form').validate({
             rules: {
-                txtDateIn: { required: true },
-                cmbWorkers: { required: true },
-                cmbStores: { required: true }
+                txtName: { required: true },
+                cmbWorkerInCharges: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -96,23 +85,23 @@ var itemInDetailAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#itemIn-form').valid();
+        return $('#team-form').valid();
     },
     // obtain a  wo group from the API
-    getItemIn: function (id) {
+    getTeam: function (id) {
         if (!id || (id == 0)) {
             // new wo group
             vm.id(0);
             return;
         }
-        var url = sprintf("%s/item_in/%s?api_key=%s", myconfig.apiUrl, id, api_key);
+        var url = sprintf("%s/team/%s?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemInDetailAPI.loadData(data[0]);
-                itemInLineAPI.getItemInLines(data[0].id);
+                teamDetailAPI.loadData(data[0]);
+                teamLineAPI.getTeamLines(data[0].teamId);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -127,29 +116,22 @@ var itemInDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!itemInDetailAPI.dataOk()) return;
+            if (!teamDetailAPI.dataOk()) return;
             // dat for post or put
             var data = {
-                id: vm.id(),
-                dateIn: moment(vm.dateIn(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
-                worker: {
-                    id: vm.sWorker()
-                },
-                store: {
-                    id: vm.sStore()
-                },
-                comments: vm.comments(),
-                deliveryNote: vm.deliveryNote()
+                teamId: vm.id(),
+                name: vm.name(),
+                workerInChargeId: vm.sWorkerInCharge()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/item_in?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/team?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/item_in/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+                url = sprintf('%s/team/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
             }
             $.ajax({
                 type: type,
@@ -158,11 +140,11 @@ var itemInDetailAPI = {
                 data: JSON.stringify(data),
                 success: function (data, status) {
                     if (type == "POST") {
-                        vm.id(data.id);
+                        vm.id(data.teamId);
                         $('#wid-id-1').show();
                         aswNotif.newMainLines();
                     } else {
-                        var url = sprintf('itemInGeneral.html?id=%s', data.id);
+                        var url = sprintf('teamGeneral.html?id=%s', data.teamId);
                         window.open(url, '_self');
                     }
                 },
@@ -176,7 +158,7 @@ var itemInDetailAPI = {
         }
         return mf;
     },
-    loadWorkers: function (id) {
+    loadWorkerInCharges: function (id) {
         $.ajax({
             type: "GET",
             url: sprintf('%s/worker?api_key=%s', myconfig.apiUrl, api_key),
@@ -184,38 +166,8 @@ var itemInDetailAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 var options = [{ id: null, name: "" }].concat(data);
-                vm.optionsWorkers(options);
-                $("#cmbWorkers").val([id]).trigger('change');
-            },
-            error: function (err) {
-                aswNotif.errAjax(err);
-                if (err.status == 401) {
-                    window.open('index.html', '_self');
-                }
-            }
-        });
-    },
-    loadStores: function (id) {
-        $.ajax({
-            type: "GET",
-            url: sprintf('%s/store?api_key=%s', myconfig.apiUrl, api_key),
-            dataType: "json",
-            contentType: "application/json",
-            success: function (data, status) {
-                var options = [{ id: null, name: "" }];
-                var data2 = [];
-                if (!user.seeNotOwner) {
-                    data.forEach(function(d){
-                        if (user.seeZone && (d.zoneId == user.zoneId)){
-                            data2.push(d);
-                        }
-                    });
-                } else {
-                    data2 = data;
-                }
-                options = options.concat(data2);
-                vm.optionsStores(options);
-                $("#cmbStores").val([id]).trigger('change');
+                vm.optionsWorkerInCharges(options);
+                $("#cmbWorkerInCharges").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -230,12 +182,12 @@ var itemInDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!itemInDetailAPI.dataOk()) return;
+            if (!teamDetailAPI.dataOk()) return;
             var url = "", type = "";
 
             // fecth report data
             type = "GET";
-            url = sprintf('%s/report/itemIn/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+            url = sprintf('%s/report/team/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
 
             $.ajax({
                 type: type,
