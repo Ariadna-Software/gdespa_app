@@ -25,9 +25,12 @@ var woDetailAPI = {
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
         woDetailAPI.loadWorkers();
-        if (user.worker){
+        if (user.worker) {
             woDetailAPI.loadWorkers(user.worker.id);
-        }        
+        }
+        $('#cmbTeams').select2(select2_languages[lang]);
+        woDetailAPI.loadTeams();
+
         $('#cmbPws').select2(select2_languages[lang]);
         woDetailAPI.loadPws();
         // buttons click events
@@ -62,12 +65,16 @@ var woDetailAPI = {
         var self = this;
         self.id = ko.observable();
         self.initDate = ko.observable();
-      //  self.endDate = ko.observable();
+        //  self.endDate = ko.observable();
         self.comments = ko.observable();
         // worker combo
         self.optionsWorkers = ko.observableArray([]);
         self.selectedWorkers = ko.observableArray([]);
         self.sWorker = ko.observable();
+        // team combo
+        self.optionsTeams = ko.observableArray([]);
+        self.selectedTeams = ko.observableArray([]);
+        self.sTeam = ko.observable();
         // pw combo
         self.optionsPws = ko.observableArray([]);
         self.selectedPws = ko.observableArray([]);
@@ -101,18 +108,19 @@ var woDetailAPI = {
         // worker3 combo
         self.optionsWorkers3 = ko.observableArray([]);
         self.selectedWorkers3 = ko.observableArray([]);
-        self.sWorker3 = ko.observable();      
+        self.sWorker3 = ko.observable();
         // 
         self.thirdParty = ko.observable();
-        self.thirdPartyCompany = ko.observable();  
+        self.thirdPartyCompany = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
         vm.initDate(moment.parseZone(data.initDate).format(i18n.t('util.date_format')));
-       // vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
+        // vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
         woDetailAPI.loadPws(data.pw.id);
         woDetailAPI.loadWorkers(data.worker.id);
+        woDetailAPI.loadTeams(data.teamId);
         //
         vm.thirdParty(data.thirdParty);
         vm.thirdPartyCompany(data.thirdPartyCompany);
@@ -122,7 +130,7 @@ var woDetailAPI = {
         $('#woDetail-form').validate({
             rules: {
                 txtInitDate: { required: true },
-        //        txtEndDate: { required: true },
+                //        txtEndDate: { required: true },
                 cmbWorkers: { required: true },
                 cmbPws: { required: true },
             },
@@ -172,7 +180,7 @@ var woDetailAPI = {
             var data = {
                 id: vm.id(),
                 initDate: moment(vm.initDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
-        //        endDate: moment(vm.endDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
+                //        endDate: moment(vm.endDate(), i18n.t('util.date_format')).format(i18n.t('util.date_iso')),
                 worker: {
                     id: vm.sWorker()
                 },
@@ -181,7 +189,8 @@ var woDetailAPI = {
                 },
                 comments: vm.comments(),
                 thirdParty: vm.thirdParty(),
-                thirdPartyCompany: vm.thirdPartyCompany()
+                thirdPartyCompany: vm.thirdPartyCompany(),
+                teamId: vm.sTeam()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -239,6 +248,25 @@ var woDetailAPI = {
             }
         });
     },
+    loadTeams: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/team?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ teamId: null, name: "" }].concat(data);
+                vm.optionsTeams(options);
+                $("#cmbTeams").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
     loadPws: function (id) {
         $.ajax({
             type: "GET",
@@ -248,13 +276,13 @@ var woDetailAPI = {
             success: function (data, status) {
                 var options = [{ id: null, name: "" }];
                 var data2 = [];
-                if (!user.seeNotOwner){
-                    data.forEach(function(d){
-                        if (user.workOnlyZone && (d.zone.id == user.zoneId)){
+                if (!user.seeNotOwner) {
+                    data.forEach(function (d) {
+                        if (user.workOnlyZone && (d.zone.id == user.zoneId)) {
                             data2.push(d);
                         }
                     });
-                }else{
+                } else {
                     data2 = data;
                 }
                 options = options.concat(data2);
@@ -299,7 +327,7 @@ var woDetailAPI = {
             });
         }
         return mf;
-    }  
+    }
 };
 
 

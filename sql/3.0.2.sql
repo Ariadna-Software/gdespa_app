@@ -17,3 +17,8 @@ CREATE TABLE `team_line`(
   CONSTRAINT `ref_team` FOREIGN KEY (`teamId`) REFERENCES `team`(`teamId`) ON DELETE CASCADE,
   CONSTRAINT `ref_team_worker` FOREIGN KEY (`workerId`) REFERENCES `worker`(`workerId`)
 );
+
+
+ALTER TABLE `wo`   
+  ADD COLUMN `teamId` INT(11) NULL AFTER `thirdPartyCompany`,
+  ADD CONSTRAINT `ref_wo_team` FOREIGN KEY (`teamId`) REFERENCES `team`(`teamId`);
