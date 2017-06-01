@@ -1,35 +1,35 @@
 /*
- * itemGeneral.js
- * Function for the page itemGeneral.html
+ * meaGeneral.js
+ * Function for the page meaGeneral.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
 
 var data = null;
 
-var itemGeneralAPI = {
+var meaGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
-        $('#itemGeneral').attr('class', 'active');
-        itemGeneralAPI.initWorkerTable();
+        $('#meaGeneral').attr('class', 'active');
+        meaGeneralAPI.initMeaTable();
         // avoid sending form 
-        $('#itemGeneral-form').submit(function () {
+        $('#meaGeneral-form').submit(function () {
             return false;
         });
         // buttons click events 
-        $('#btnNew').click(itemGeneralAPI.newWorker());
-        $('#btnSearch').click(itemGeneralAPI.searchWorker());
+        $('#btnNew').click(meaGeneralAPI.newMea());
+        $('#btnSearch').click(meaGeneralAPI.searchMea());
         // check if there's an id
         var id = aswUtil.gup('id');
         if (id) {
-            itemGeneralAPI.getWorker(id);
+            meaGeneralAPI.getMea(id);
         }
     },
     // initializes the table
-    initWorkerTable: function () {
-        var options = aswInit.initTableOptions('dt_item');
+    initMeaTable: function () {
+        var options = aswInit.initTableOptions('dt_mea');
         options.data = data;
         options.columns = [{
             data: "reference"
@@ -38,41 +38,41 @@ var itemGeneralAPI = {
             }, {
                 data: "id",
                 render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='itemGeneralAPI.deleteWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='itemGeneralAPI.editWorker(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='meaGeneralAPI.deleteMeaMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='meaGeneralAPI.editMea(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                     var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                     return html;
                 }
             }];
-        $('#dt_item').dataTable(options);
+        $('#dt_mea').dataTable(options);
     },
-    searchWorker: function () {
+    searchMea: function () {
         var mf = function () {
             // obtain strin to search 
             var search = $('#txtSearch').val();
-            itemGeneralAPI.getItems(search);
+            meaGeneralAPI.getMeas(search);
         };
         return mf;
     },
-    newWorker: function () {
+    newMea: function () {
         // Its an event handler, return function
         var mf = function () {
-            window.open(sprintf('itemDetail.html?id=%s', 0), '_self');
+            window.open(sprintf('meaDetail.html?id=%s', 0), '_self');
         }
         return mf;
     },
-    editWorker: function (id) {
-        window.open(sprintf('itemDetail.html?id=%s', id), '_self');
+    editMea: function (id) {
+        window.open(sprintf('meaDetail.html?id=%s', id), '_self');
     },
-    deleteWorkerMessage: function (id) {
-        var url = sprintf("%s/item/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteMeaMessage: function (id) {
+        var url = sprintf("%s/mea/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].name;
-                var fn = sprintf('itemGeneralAPI.deleteWorker(%s);', id);
+                var fn = sprintf('meaGeneralAPI.deleteMea(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -83,8 +83,8 @@ var itemGeneralAPI = {
             }
         });
     },
-    deleteWorker: function (id) {
-        var url = sprintf("%s/item/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteMea: function (id) {
+        var url = sprintf("%s/mea/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         var data = {
             id: id
         };
@@ -94,7 +94,7 @@ var itemGeneralAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                itemGeneralAPI.getItems('');
+                meaGeneralAPI.getMeas('');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -105,14 +105,14 @@ var itemGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getItems: function (name) {
-        var url = sprintf("%s/item?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+    getMeas: function (name) {
+        var url = sprintf("%s/mea?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemGeneralAPI.loadItemsTable(data);
+                meaGeneralAPI.loadMeasTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -123,14 +123,14 @@ var itemGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getWorker: function (id) {
-        var url = sprintf("%s/item/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    getMea: function (id) {
+        var url = sprintf("%s/mea/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                itemGeneralAPI.loadItemsTable(data);
+                meaGeneralAPI.loadMeasTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -140,13 +140,13 @@ var itemGeneralAPI = {
             }
         });
     },
-    loadItemsTable: function (data) {
-        var dt = $('#dt_item').dataTable();
+    loadMeasTable: function (data) {
+        var dt = $('#dt_mea').dataTable();
         dt.fnClearTable();
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-        $("#tb_item").show();
+        $("#tb_mea").show();
     }
 };
 
-itemGeneralAPI.init();
+meaGeneralAPI.init();
