@@ -1,6 +1,6 @@
 {
   "name": "gdes_app",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Server and API for GDES_PANAMA application",
   "main": "index.js",
   "scripts": {
