@@ -25,6 +25,9 @@ var teamDetailAPI = {
         //
         $('#cmbWorkerInCharges').select2(select2_languages[lang]);
         teamDetailAPI.loadWorkerInCharges();
+        $('#cmbZones').select2(select2_languages[lang]);
+        teamDetailAPI.loadZones();
+
         if (user.worker) {
             teamDetailAPI.loadWorkerInCharges(user.worker.id);
         }
@@ -57,25 +60,31 @@ var teamDetailAPI = {
         self.optionsWorkerInCharges = ko.observableArray([]);
         self.selectedWorkerInCharges = ko.observableArray([]);
         self.sWorkerInCharge = ko.observable();
+        // zone combo
+        self.optionsZones = ko.observableArray([]);
+        self.selectedZones = ko.observableArray([]);
+        self.sZone = ko.observable();        
         // -- Modal related
         self.lineId = ko.observable();
         self.workerId = ko.observable();
         // worker combo
         self.optionsWorkers = ko.observableArray([]);
         self.selectedWorkers = ko.observableArray([]);
-        self.sWorker = ko.observable();        
+        self.sWorker = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.teamId);
         vm.name(data.name);
         teamDetailAPI.loadWorkerInCharges(data.workerInChargeId);
+        teamDetailAPI.loadZones(data.zoneId);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
         $('#team-form').validate({
             rules: {
                 txtName: { required: true },
-                cmbWorkerInCharges: { required: true }
+                cmbWorkerInCharges: { required: true },
+                cmbZones: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -121,7 +130,8 @@ var teamDetailAPI = {
             var data = {
                 teamId: vm.id(),
                 name: vm.name(),
-                workerInChargeId: vm.sWorkerInCharge()
+                workerInChargeId: vm.sWorkerInCharge(),
+                zoneId: vm.sZone()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -168,6 +178,25 @@ var teamDetailAPI = {
                 var options = [{ id: null, name: "" }].concat(data);
                 vm.optionsWorkerInCharges(options);
                 $("#cmbWorkerInCharges").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadZones: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/zone?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: null, name: "" }].concat(data);
+                vm.optionsZones(options);
+                $("#cmbZones").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);

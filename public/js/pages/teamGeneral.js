@@ -36,6 +36,8 @@ var teamGeneralAPI = {
         options.columns = [{
             data: "name"
         }, {
+            data: "zoneName",
+        }, {
             data: "workerInChargeName",
         }, {
             data: "teamId",

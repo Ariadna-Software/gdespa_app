@@ -528,13 +528,15 @@
     "teamGeneral": {
         "title": "Brigadas",
         "new": "Nueva brigada",
-        "search": "Buscar brigadas"
+        "search": "Buscar brigadas",
+        "zone": "Zona"
     },
     "teamDetail": {
         "title": "Detalle brigada",
         "print": "Imprimir",
         "name": "Nombre brigada",
         "workerInCharge": "Responsable",
+        "zone": "Zona",
         "worker": "Trabajador",
         "comments": "Observaciones",
         "cancel": "Salir sin guardar",
