@@ -1,22 +1,22 @@
-var woModal2API = {
+var moModal2API = {
     init: function () {
         // avoid sending form 
-        $('#woModal2-form').submit(function () {
+        $('#moModal2-form').submit(function () {
             return false;
         });
         // 
         $('#cmbWorkers2').select2(select2_languages[lang]);
-        woModal2API.loadWorkers2();
+        moModal2API.loadWorkers2();
         // button events
-        $('#btnSaveLine2').click(woModal2API.saveLine());
+        $('#btnSaveLine2').click(moModal2API.saveLine());
         // lost focus
-        $("#txtNormalHours").blur(woModal2API.changeHours);
-        $("#txtExtraHours").blur(woModal2API.changeHours);
-        $("#txtExtraHoursNight").blur(woModal2API.changeHours);
+        $("#txtNormalHours").blur(moModal2API.changeHours);
+        $("#txtExtraHours").blur(moModal2API.changeHours);
+        $("#txtExtraHoursNight").blur(moModal2API.changeHours);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#woModal2-form').validate({
+        $('#moModal2-form').validate({
             rules: {
                 cmbWorkers2: { required: true },
                 txtQuantity2: { required: true }
@@ -29,32 +29,32 @@ var woModal2API = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#woModal2-form').valid();
+        return $('#moModal2-form').valid();
     },
     newLine: function () {
-        vm.woWorkerId(0);
+        vm.moWorkerId(0);
         vm.quantity2(null);
         vm.normalHours(0);
         vm.extraHours(0);
         vm.extraHoursNight(0);
         vm.expenses(0);
-        woModal2API.loadWorkers2(null);
+        moModal2API.loadWorkers2(null);
     },
     editLine: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/wo_worker/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            url: sprintf('%s/mo_worker/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 if (data.length) {
-                    vm.woWorkerId(data[0].id);
+                    vm.moWorkerId(data[0].id);
                     vm.quantity2(data[0].quantity);
                     vm.normalHours(data[0].normalHours);
                     vm.extraHours(data[0].extraHours);
                     vm.extraHoursNight(data[0].extraHoursNight);
                     vm.expenses(data[0].expenses);
-                    woModal2API.loadWorkers2(data[0].worker.id);
+                    moModal2API.loadWorkers2(data[0].worker.id);
                 }
             },
             error: function (err) {
@@ -68,11 +68,11 @@ var woModal2API = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
-            if (!woModal2API.dataOk()) return;
+            if (!moModal2API.dataOk()) return;
             // mount line to save 
             var data = {
-                id: vm.woWorkerId(),
-                wo: {
+                id: vm.moWorkerId(),
+                mo: {
                     id: vm.id()
                 },
                 worker: {
@@ -86,14 +86,14 @@ var woModal2API = {
                 expenses: vm.expenses()
             };
             var url = "", type = "";
-            if (vm.woWorkerId() == 0) {
+            if (vm.moWorkerId() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/wo_worker?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/mo_worker?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/wo_worker/%s/?api_key=%s', myconfig.apiUrl, vm.woWorkerId(), api_key);
+                url = sprintf('%s/mo_worker/%s/?api_key=%s', myconfig.apiUrl, vm.moWorkerId(), api_key);
             }
             $.ajax({
                 type: type,
@@ -101,9 +101,9 @@ var woModal2API = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#woModal2').modal('hide');
-                    // woLineAPI.getPwLines(vm.id());
-                    woDetailAPI.getWo(vm.id());
+                    $('#moModal2').modal('hide');
+                    // moLineAPI.getPwLines(vm.id());
+                    moDetailAPI.getMo(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

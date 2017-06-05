@@ -272,7 +272,7 @@
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
 				<li data-i18n="menu.pwman.main">Home</li>
-				<li data-i18n="menu.pwman.wo">Home</li>
+				<li data-i18n="menu.pwman.mo">Home</li>
 			</ol>
 		</div>
 		<!-- Main content -->
@@ -281,7 +281,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-cogs"></i> <span data-i18n="menu.pwman.wo">Inicio</span>
+						<i class="fa-fw fa fa-compass"></i> <span data-i18n="menu.pwman.mo">Inicio</span>
 					</h1>
 				</div>
 			</div>
@@ -292,29 +292,27 @@
 						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-cogs"></i> </span>
-								<h2 data-i18n="woDetail.title">Mantenimiento</h2>
+								<h2 data-i18n="moDetail.title">Mantenimiento</h2>
 							</header>
 							<div class="widget-body">
 								<div class="row">
-									<form id="woDetail-form" class="smart-form">
+									<form id="moDetail-form" class="smart-form">
 										<fieldset>
 											<div class="row">
 												<section class="col col-md-2">
-													<label class="label" data-i18n="woDetail.initDate">Fecha inicio:</label>
+													<label class="label" data-i18n="moDetail.initDate">Fecha inicio:</label>
 													<label class="input">
 														<input id="txInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy">
 													</label>
 												</section>
-												<section class="col col-md-2">
-													<!--
-															<label class="label" data-i18n="woDetail.endDate">Fecha final:</label>
-															<label class="input">
-																	<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy">
-															</label>
-															-->
+												<section class="col col-md-4">
+													<label class="label" data-18n="moDetail.zone">Zona:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbZones" name="cmbZones" data-bind="options: optionsZones, optionsText: 'name', optionsValue: 'id', value: sZone, valueAllowUnset: true, selectedOptions: selectedZones, selected2:{}"></select><i></i>
+													</label>													
 												</section>
-												<section class="col col-md-8">
-													<label class="label" data-18n="woDetail.worker">Responsable:</label>
+												<section class="col col-md-6">
+													<label class="label" data-18n="moDetail.worker">Responsable:</label>
 													<label style="width:100%;">
 														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}"></select><i></i>
 													</label>
@@ -322,50 +320,28 @@
 											</div>
 											<div class="row">
 												<section class="col col-md-4">
-													<label class="label" data-18n="woDetail.team">Brigada:</label>
+													<label class="label" data-18n="moDetail.team">Brigada:</label>
 													<label style="width:100%;">
 														<select style="width:100%" id="cmbTeams" name="cmbTeams" data-bind="options: optionsTeams, optionsText: 'name', optionsValue: 'teamId', value: sTeam, valueAllowUnset: true, selectedOptions: selectedTeams, selected2:{}"></select><i></i>
 													</label>													
-												</section>
+												</section>												
 												<section class="col col-md-8">
-													<label class="label" data-18n="woDetail.pw">Propuesta:</label>
-													<label style="width:100%;">
-														<select style="width:100%" id="cmbPws" name="cmbPws" data-bind="options: optionsPws, optionsText: 'name', optionsValue: 'id', value: sPw, valueAllowUnset: true, selectedOptions: selectedPws, selected2:{}"></select><i></i>
-													</label>
-												</section>
-											</div>
-											<div class="row">
-												<section class="col col-md-12">
-													<label class="label" data-i18n="woDetail.comments">Onservaciones:</label>
+													<label class="label" data-i18n="moDetail.comments">Onservaciones:</label>
 													<label class="textarea textarea-resizable">
                                                         <textarea id="txtComments" rows="3" class="custom-scroll" data-bind="value:comments"></textarea>
 	                                                </label>
 												</section>
 											</div>
-											<div class="row">
-												<section class="col col-md-4">
-                                                    <label class="checkbox">
-                                                        <input id="chkThridParty" type="checkbox" name="chkThirdParty" data-bind="checked: thirdParty">
-                                                        <i></i><span data-18n="woDetail.thridParty"></span>Este parte de trabajo ha sido realizado por otra compañía
-                                                    </label>
-                                                </section>
-												<section class="col col-md-8">
-													<label class="label" data-i18n="woDetail.thirdPartyCompany">Empresa externa:</label>
-													<label class="input">
-														<input id="txtThirdPartyCompany" name="txtThirdPartyCompany" type="text" data-bind="value: thirdPartyCompany"  />
-													</label>
-												</section>												
-											</div>
 										</fieldset>
 										<fieldset>
 											<div class="pull-right">
-												<button id="btnExit" data-i18n="[title]woDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+												<button id="btnExit" data-i18n="[title]moDetail.cancel" class="btn btn-warning btn-circle btn-lg">
 													<i class="fa fa-lg fa-sign-out"></i>
 												</button>
-												<button id="btnPrint" data-i18n="[title]woDetail.print" class="btn btn-success btn-circle btn-lg">
+												<button id="btnPrint" data-i18n="[title]moDetail.print" class="btn btn-success btn-circle btn-lg">
 													<i class="fa fa-lg fa-print"></i>
 												</button>
-												<button id="btnOk" data-i18n="[title]woDetail.ok" class="btn btn-success btn-circle btn-lg">
+												<button id="btnOk" data-i18n="[title]moDetail.ok" class="btn btn-success btn-circle btn-lg">
 													<i class="fa fa-lg fa-check"></i>
 												</button>
 											</div>
@@ -374,55 +350,55 @@
 								</div>
 							</div>
 						</div>
-						<ul class="nav nav-tabs bordered" id="woDetail_GT">
+						<ul class="nav nav-tabs bordered" id="moDetail_GT">
 							<li class="active">
 								<a data-toggle="tab" href="#s1">
-									<i class="fa fa-fw fa-sitemap"></i> <span data-i18n="woDetail.tabs.general"GENERAL</span>
+									<i class="fa fa-fw fa-sitemap"></i> <span data-i18n="moDetail.tabs.general"GENERAL</span>
 								</a>
 							</li>
 							<li>
 								<a data-toggle="tab" href="#s2">
-									 <i class="fa fa-fw fa-male"></i> <span data-i18n="woDetail.tabs.worker">TRABAJADOR</span>
+									 <i class="fa fa-fw fa-male"></i> <span data-i18n="moDetail.tabs.worker">TRABAJADOR</span>
 								</a>
 							</li>
 							<li>
 								<a data-toggle="tab" href="#s3" >
-									 <i class="fa fa-fw fa-truck"></i><span data-i18n="woDetail.tabs.vehicles">VEHICULOS</span>
+									 <i class="fa fa-fw fa-truck"></i><span data-i18n="moDetail.tabs.vehicles">VEHICULOS</span>
 								</a>
 							</li>
 						</ul>
-						<div class="tab-content padding-10" id="woDetail_GT1">
+						<div class="tab-content padding-10" id="moDetail_GT1">
 							<div class="tab-pane fade in active" id="s1">
 								<!-- Widget ID (each widget will need unique ID)-->
 								<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false"
 									style="display:none;">
 									<header>
 										<span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
-										<h2 data-i18n="woDetail.associated_lines">Mantenimiento</h2>
+										<h2 data-i18n="moDetail.associated_lines">Mantenimiento</h2>
 									</header>
 									<div class="widget-body">
 										<div class="row">
-											<form id="woDetailLine-form" class="smart-form">
+											<form id="moDetailLine-form" class="smart-form">
 												<fieldset>
-													<div id="tb_woLine">
-														<table id="dt_woLine" class="table table-striped table-bordered table-hover" width="100%">
+													<div id="tb_moLine">
+														<table id="dt_moLine" class="table table-striped table-bordered table-hover" width="100%">
 															<thead>
 																<tr>
 																	<th>
-																		<span data-i18n="woDetail.chapterName"></span>
+																		<span data-i18n="moDetail.chapterName"></span>
 																	</th>
 																	<th data-class="expand">
 																		<i class="fa fa-fw fa-cogs text-muted hidden-md hidden-sm hidden-xs"></i>
-																		<span data-i18n="woDetail.cunit">R</span>
+																		<span data-i18n="moDetail.cunit">R</span>
 																	</th>
 																	<th data-hide="phone" class="asw-center">
-																		<span data-i18n="woDetail.estimate"></span>
+																		<span data-i18n="moDetail.estimate"></span>
 																	</th>
 																	<th data-hide="phone" class="asw-cente">
-																		<span data-i18n="woDetail.done"></span>
+																		<span data-i18n="moDetail.done"></span>
 																	</th>
 																	<th data-hide="phone" class="asw-center">
-																		<span data-i18n="woDetail.quantity"></span>
+																		<span data-i18n="moDetail.quantity"></span>
 																	</th>
 																</tr>
 															</thead>
@@ -435,37 +411,37 @@
 							</div>
 						</div>
 						<div class="tab-pane fade" id="s2">
-							<form id="woDetailWorker-form" class="smart-form">
+							<form id="moDetailWorker-form" class="smart-form">
 								<fieldset>
 									<div class="pull-right">
-										<button id="btnNewWorker" data-i18n="[title]woDetail.newWorker" data-toggle="modal" data-target="#woModal2" class="btn btn-success btn-circle btn-lg">
+										<button id="btnNewWorker" data-i18n="[title]moDetail.newWorker" data-toggle="modal" data-target="#moModal2" class="btn btn-success btn-circle btn-lg">
 													<i class="fa fa-lg fa-plus"></i>
 												</button>
 									</div>
 								</fieldset>
 								<fieldset>
-									<div id="tb_worker">
-										<table id="dt_worker" class="table table-striped table-bordered table-hover" width="100%">
+									<div id="tb_morker">
+										<table id="dt_morker" class="table table-striped table-bordered table-hover" width="100%">
 											<thead>
 												<tr>
 													<th data-class="expand">
 														<i class="fa fa-fw fa-male text-muted hidden-md hidden-sm hidden-xs"></i>
-														<span data-i18n="woDetail.worker2">R</span>
+														<span data-i18n="moDetail.morker2">R</span>
 													</th>
 													<th data-hide="phone">
-														<span data-i18n="woDetail.normalHours"></span>
+														<span data-i18n="moDetail.normalHours"></span>
 													</th>
 													<th data-hide="phone">
-														<span data-i18n="woDetail.extraHours"></span>
+														<span data-i18n="moDetail.extraHours"></span>
 													</th>		
 													<th data-hide="phone">
-														<span data-i18n="woDetail.extraHoursNight"></span>
+														<span data-i18n="moDetail.extraHoursNight"></span>
 													</th>																																					
 													<th data-hide="phone">
-														<span data-i18n="woDetail.quantity2"></span>
+														<span data-i18n="moDetail.quantity2"></span>
 													</th>
 													<th data-hide="phone">
-														<span data-i18n="woDetail.expenses"></span>
+														<span data-i18n="moDetail.expenses"></span>
 													</th>
 													<th>
 													</th>
@@ -477,10 +453,10 @@
 							</form>
 						</div>
 						<div class="tab-pane fade" id="s3">
-							<form id="woDetailVehicle-form" class="smart-form">
+							<form id="moDetailVehicle-form" class="smart-form">
 								<fieldset>
 									<div class="pull-right">
-										<button id="btnNewVehicle" data-i18n="[title]woDetail.newVehicle" data-toggle="modal" data-target="#woModal3" class="btn btn-success btn-circle btn-lg">
+										<button id="btnNewVehicle" data-i18n="[title]moDetail.newVehicle" data-toggle="modal" data-target="#moModal3" class="btn btn-success btn-circle btn-lg">
 													<i class="fa fa-lg fa-plus"></i>
 												</button>
 									</div>
@@ -492,16 +468,16 @@
 												<tr>
 													<th data-class="expand">
 														<i class="fa fa-fw fa-truck text-muted hidden-md hidden-sm hidden-xs"></i>
-														<span data-i18n="woDetail.worker3">R</span>
+														<span data-i18n="moDetail.worker3">R</span>
 													</th>
 													<th data-hide="phone">
-														<span data-i18n="woDetail.totalKm"></span>
+														<span data-i18n="moDetail.totalKm"></span>
 													</th>
 													<th data-hide="phone">
-														<span data-i18n="woDetail.planHours"></span>
+														<span data-i18n="moDetail.planHours"></span>
 													</th>													
 													<th data-hide="phone">
-														<span data-i18n="woDetail.quantity3"></span>
+														<span data-i18n="moDetail.quantity3"></span>
 													</th>
 													<th>
 													</th>
@@ -528,7 +504,7 @@
 	</div>
 
 	<!-- Modal -->
-	<div class="modal fade" id="woModal" tabindex="-1" role="dialog">
+	<div class="modal fade" id="moModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -536,34 +512,34 @@
                         &times;
                     </button>
 					<h4 class="modal-title">
-						<i class="fa fa-sitemap"></i> <span data-i18n="woDetail.modal_title">ART</span>
+						<i class="fa fa-sitemap"></i> <span data-i18n="moDetail.modal_title">ART</span>
 					</h4>
 				</div>
 				<div class="modal-body no-padding">
-					<form id="woModal-form" class="smart-form">
+					<form id="moModal-form" class="smart-form">
 						<fieldset>
 							<section>
 								<div class="row">
 									<section class="col col-md-6">
-										<label class="label" data-18n="woDetail.cunit">Unidad constructiva:</label>
+										<label class="label" data-18n="moDetail.cunit">Unidad constructiva:</label>
 										<label style="width:100%;">
                                             <select style="width:100%" id="cmbCUnits" name="cmbCUnits" data-bind="options: optionsCUnits, optionsText: 'name', optionsValue: 'id', value: sCUnit, valueAllowUnset: true, selectedOptions: selectedCUnits, selected2:{}"></select><i></i>
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-18n="woDetail.estimate">Presupuestado:</label>
+										<label class="label" data-18n="moDetail.estimate">Presupuestado:</label>
 										<label>
 											<span data-bind="text: estimate"></span>
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-18n="woDetail.done">Realizado:</label>
+										<label class="label" data-18n="moDetail.done">Realizado:</label>
 										<label>
 											<span data-bind="text: done"></span>
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.quantity">Cantidad:</label>
+										<label class="label" data-i18n="moDetail.quantity">Cantidad:</label>
 										<label class="input">
                                             <input id="txtQuantity" name="txtQuantity" type="text" data-bind="value: quantity" />
                                         </label>
@@ -573,10 +549,10 @@
 						</fieldset>
 						<footer>
 							<button id="btnSaveLine" class="btn btn-primary">
-                                <span data-i18n="woDetail.ok">A</span>
+                                <span data-i18n="moDetail.ok">A</span>
                             </button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">
-                                <span data-i18n="woDetail.cancel">C</span>
+                                <span data-i18n="moDetail.cancel">C</span>
                             </button>
 						</footer>
 					</form>
@@ -588,7 +564,7 @@
 	</div>
 
 	<!-- Modal 2-->
-	<div class="modal fade" id="woModal2" tabindex="-1" role="dialog">
+	<div class="modal fade" id="moModal2" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -596,16 +572,16 @@
                         &times;
                     </button>
 					<h4 class="modal-title">
-						<i class="fa fa-male"></i> <span data-i18n="woDetail.modal_title2">ART</span>
+						<i class="fa fa-male"></i> <span data-i18n="moDetail.modal_title2">ART</span>
 					</h4>
 				</div>
 				<div class="modal-body no-padding">
-					<form id="woModal2-form" class="smart-form">
+					<form id="moModal2-form" class="smart-form">
 						<fieldset>
 							<section>
 								<div class="row">
 									<section class="col col-md-12">
-										<label class="label" data-i18n="woDetail.worker2">Trabajador:</label>
+										<label class="label" data-i18n="moDetail.morker2">Trabajador:</label>
 										<label style="width:100%;">
 											<select style="width:100%" id="cmbWorkers2" name="cmbWorkers2" 
 												data-bind="options: optionsWorkers2, optionsText: 'name', optionsValue: 'id', value: sWorker2, valueAllowUnset: true, selectedOptions: selectedWorkers2, selected2:{}">
@@ -616,37 +592,37 @@
 								</div>
 								<div class="row">
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.normalHours">H.N.:</label>
+										<label class="label" data-i18n="moDetail.normalHours">H.N.:</label>
 										<label class="input">
                                             <input id="txtNormalHours" name="txtNormalHours" type="text" data-bind="value: normalHours" />
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.extraHours">H.E.:</label>
+										<label class="label" data-i18n="moDetail.extraHours">H.E.:</label>
 										<label class="input">
                                             <input id="txtExtraHours" name="txtExtraHours" type="text" data-bind="value: extraHours" />
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.extraHoursNight">H.E.N.:</label>
+										<label class="label" data-i18n="moDetail.extraHoursNight">H.E.N.:</label>
 										<label class="input">
                                             <input id="txtExtraHoursNight" name="txtExtraHoursNight" type="text" data-bind="value: extraHoursNight" />
                                         </label>
 									</section>	
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.quantity2">Dias:</label>
+										<label class="label" data-i18n="moDetail.quantity2">Dias:</label>
 										<label class="input">
                                             <input id="txtQuantity2" name="txtQuantity2" type="text" data-bind="value: quantity2" disabled />
                                         </label>
 									</section>																	
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.planHours">PH.:</label>
+										<label class="label" data-i18n="moDetail.planHours">PH.:</label>
 										<label class="input">
                                             <input id="txtPlanHours" name="txtPlanHours" type="text" data-bind="value: planHours" />
                                         </label>
 									</section>																	
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.expenses">H.E.N.:</label>
+										<label class="label" data-i18n="moDetail.expenses">H.E.N.:</label>
 										<label class="input">
                                             <input id="txtExpenses" name="txtExpenses" type="text" data-bind="value: expenses" />
                                         </label>
@@ -656,10 +632,10 @@
 						</fieldset>
 						<footer>
 							<button id="btnSaveLine2" class="btn btn-primary">
-                                <span data-i18n="woDetail.ok">A</span>
+                                <span data-i18n="moDetail.ok">A</span>
                             </button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">
-                                <span data-i18n="woDetail.cancel">C</span>
+                                <span data-i18n="moDetail.cancel">C</span>
                             </button>
 						</footer>
 					</form>
@@ -671,7 +647,7 @@
 	</div>
 
 	<!-- Modal 3-->
-	<div class="modal fade" id="woModal3" tabindex="-1" role="dialog">
+	<div class="modal fade" id="moModal3" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -679,16 +655,16 @@
                         &times;
                     </button>
 					<h4 class="modal-title">
-						<i class="fa fa-truck"></i> <span data-i18n="woDetail.modal_title3">VEH</span>
+						<i class="fa fa-truck"></i> <span data-i18n="moDetail.modal_title3">VEH</span>
 					</h4>
 				</div>
 				<div class="modal-body no-padding">
-					<form id="woModal3-form" class="smart-form">
+					<form id="moModal3-form" class="smart-form">
 						<fieldset>
 							<section>
 								<div class="row">
 									<section class="col col-md-12">
-										<label class="label" data-i18n="woDetail.worker3">Trabajador:</label>
+										<label class="label" data-i18n="moDetail.morker3">Trabajador:</label>
 										<label style="width:100%;">
 											<select style="width:100%" id="cmbWorkers3" name="cmbWorkers3" 
 												data-bind="options: optionsWorkers3, optionsText: 'name', optionsValue: 'id', value: sWorker3, valueAllowUnset: true, selectedOptions: selectedWorkers3, selected2:{}">
@@ -699,37 +675,37 @@
 								</div>
 								<div class="row">
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.initialKm">KMI.:</label>
+										<label class="label" data-i18n="moDetail.initialKm">KMI.:</label>
 										<label class="input">
                                             <input id="txtInitialKm" name="txtInitialKm" type="text" data-bind="value: initialKm" />
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.finalKm">KMF.:</label>
+										<label class="label" data-i18n="moDetail.finalKm">KMF.:</label>
 										<label class="input">
                                             <input id="txtFinalKm" name="txtFinalKm" type="text" data-bind="value: finalKm" />
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.totalKm">TKM.:</label>
+										<label class="label" data-i18n="moDetail.totalKm">TKM.:</label>
 										<label class="input">
                                             <input id="txtTotalKm" name="txtTotalKm" type="text" data-bind="value: totalKm" disabled />
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.fuel">FUE.:</label>
+										<label class="label" data-i18n="moDetail.fuel">FUE.:</label>
 										<label class="input">
                                             <input id="txtFuel" name="txtFuel" type="text" data-bind="value: fuel" />
                                         </label>
 									</section>
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.planHours">PH.:</label>
+										<label class="label" data-i18n="moDetail.planHours">PH.:</label>
 										<label class="input">
                                             <input id="txtPlanHours" name="txtPlanHours" type="text" data-bind="value: planHours" />
                                         </label>
 									</section>									
 									<section class="col col-md-2">
-										<label class="label" data-i18n="woDetail.quantity3">Dias:</label>
+										<label class="label" data-i18n="moDetail.quantity3">Dias:</label>
 										<label class="input">
                                             <input id="txtQuantity3" name="txtQuantity3" type="text" data-bind="value: quantity3" />
                                         </label>
@@ -739,10 +715,10 @@
 						</fieldset>
 						<footer>
 							<button id="btnSaveLine3" class="btn btn-primary">
-                                <span data-i18n="woDetail.ok">A</span>
+                                <span data-i18n="moDetail.ok">A</span>
                             </button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">
-                                <span data-i18n="woDetail.cancel">C</span>
+                                <span data-i18n="moDetail.cancel">C</span>
                             </button>
 						</footer>
 					</form>
@@ -753,7 +729,7 @@
 		<!-- /.modal-dialog -->
 	</div>
 
-	<!-- SHORTCUT AREA : With large tiles (activated via clicking wo name tag)
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking mo name tag)
 		Note: These tiles are completely responsive,
 		you can add as many as you like
 		-->
@@ -839,18 +815,18 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/woModal3.js"></script>
-	<script src="js/pages/woModal2.js"></script>
-	<script src="js/pages/woModal.js"></script>
-	<script src="js/pages/woLine.js"></script>
-	<script src="js/pages/woDetail.js"></script>
+	<script src="js/pages/moModal3.js"></script>
+	<script src="js/pages/moModal2.js"></script>
+	<script src="js/pages/moModal.js"></script>
+	<script src="js/pages/moLine.js"></script>
+	<script src="js/pages/moDetail.js"></script>
 
 
 
 	<script type="text/javascript">
 		$(document).ready(function () {
 			pageSetUp();
-			woDetailAPI.init();
+			moDetailAPI.init();
 		})
 	</script>
 

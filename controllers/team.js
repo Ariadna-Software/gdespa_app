@@ -52,6 +52,16 @@ router.get('/:id', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/zone/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    teamDb.getByZoneId(id, function (err, teams) {
+        if (err) return res.status(500).send(err.message);
+        if (teams.length == 0) return res.status(404).send('Team in not found');
+        res.json(teams);
+    }, test);
+});
+
 router.put('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

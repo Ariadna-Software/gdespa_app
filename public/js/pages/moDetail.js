@@ -1,6 +1,6 @@
 /*
- * woDetail.js
- * Function for the page woDetail.html
+ * moDetail.js
+ * Function for the page moDetail.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
@@ -10,7 +10,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 var data = null;
 var vm = null;
 
-var woDetailAPI = {
+var moDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
@@ -18,36 +18,40 @@ var woDetailAPI = {
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
-        $('#woGeneral').attr('class', 'active');
+        $('#moGeneral').attr('class', 'active');
         // knockout management
-        vm = new woDetailAPI.pageData();
+        vm = new moDetailAPI.pageData();
         ko.applyBindings(vm);
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
-        woDetailAPI.loadWorkers();
+        moDetailAPI.loadWorkers();
         if (user.worker) {
-            woDetailAPI.loadWorkers(user.worker.id);
+            moDetailAPI.loadWorkers(user.worker.id);
         }
         $('#cmbTeams').select2(select2_languages[lang]);
-        woDetailAPI.loadTeams();
 
-        $('#cmbPws').select2(select2_languages[lang]);
-        woDetailAPI.loadPws();
+        moDetailAPI.loadTeams();
+
+        $('#cmbZones').select2(select2_languages[lang]);
+        moDetailAPI.loadZones();
+        $("#cmbZones").select2().on('change', function (e) {
+            moDetailAPI.changeZone(e.added);
+        });
         // buttons click events
-        $('#btnOk').click(woDetailAPI.btnOk());
+        $('#btnOk').click(moDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
             e.preventDefault();
-            window.open('woGeneral.html', '_self');
+            window.open('moGeneral.html', '_self');
         });
-        $('#btnPrint').click(woDetailAPI.btnPrint());
+        $('#btnPrint').click(moDetailAPI.btnPrint());
         // init lines table
-        woLineAPI.init();
+        moLineAPI.init();
         // init modal form
-        woModalAPI.init();
+        moModalAPI.init();
         // init modal 2 form
-        woModal2API.init();
+        moModal2API.init();
         // init modal 3 form
-        woModal3API.init();
+        moModal3API.init();
 
         // check if an id have been passed
         var id = aswUtil.gup('id');
@@ -58,7 +62,7 @@ var woDetailAPI = {
             // new record
             $('#s2').hide();
         }
-        woDetailAPI.getWo(id);
+        moDetailAPI.getMo(id);
     },
     pageData: function () {
         // knockout objects
@@ -76,9 +80,9 @@ var woDetailAPI = {
         self.selectedTeams = ko.observableArray([]);
         self.sTeam = ko.observable();
         // pw combo
-        self.optionsPws = ko.observableArray([]);
-        self.selectedPws = ko.observableArray([]);
-        self.sPw = ko.observable();
+        self.optionsZones = ko.observableArray([]);
+        self.selectedZones = ko.observableArray([]);
+        self.sZone = ko.observable();
         // -- Modal related (1)
         self.lineId = ko.observable();
         self.estimate = ko.observable();
@@ -89,7 +93,7 @@ var woDetailAPI = {
         self.selectedCUnits = ko.observableArray([]);
         self.sCUnit = ko.observable();
         // -- Modal related (2)
-        self.woWorkerId = ko.observable();
+        self.moWorkerId = ko.observable();
         self.quantity2 = ko.observable();
         // worker2 combo
         self.optionsWorkers2 = ko.observableArray([]);
@@ -120,21 +124,21 @@ var woDetailAPI = {
         vm.initDate(moment.parseZone(data.initDate).format(i18n.t('util.date_format')));
         // vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
-        woDetailAPI.loadPws(data.pw.id);
-        woDetailAPI.loadWorkers(data.worker.id);
-        woDetailAPI.loadTeams(data.teamId);
+        moDetailAPI.loadZones(data.pw.id);
+        moDetailAPI.loadWorkers(data.worker.id);
+        moDetailAPI.loadTeams(data.teamId);
         //
         vm.thirdParty(data.thirdParty);
         vm.thirdPartyCompany(data.thirdPartyCompany);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#woDetail-form').validate({
+        $('#moDetail-form').validate({
             rules: {
                 txtInitDate: { required: true },
                 //        txtEndDate: { required: true },
                 cmbWorkers: { required: true },
-                cmbPws: { required: true },
+                cmbZones: { required: true },
             },
             // Messages for form validation
             messages: {
@@ -144,25 +148,25 @@ var woDetailAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#woDetail-form').valid();
+        return $('#moDetail-form').valid();
     },
-    // obtain a  wo group from the API
-    getWo: function (id) {
+    // obtain a  mo group from the API
+    getMo: function (id) {
         if (!id || (id == 0)) {
-            // new wo group
+            // new mo group
             vm.id(0);
             return;
         }
-        var url = sprintf("%s/wo/%s?api_key=%s", myconfig.apiUrl, id, api_key);
+        var url = sprintf("%s/mo/%s?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                woDetailAPI.loadData(data[0]);
-                woLineAPI.getWoLines(data[0].id);
-                woLineAPI.getWoWorkers(data[0].id);
-                woLineAPI.getWoVehicles(data[0].id);
+                moDetailAPI.loadData(data[0]);
+                moLineAPI.getMoLines(data[0].id);
+                moLineAPI.getMoWorkers(data[0].id);
+                moLineAPI.getMoVehicles(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -177,7 +181,7 @@ var woDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!woDetailAPI.dataOk()) return;
+            if (!moDetailAPI.dataOk()) return;
             // dat for post or put
             var data = {
                 id: vm.id(),
@@ -186,23 +190,18 @@ var woDetailAPI = {
                 worker: {
                     id: vm.sWorker()
                 },
-                pw: {
-                    id: vm.sPw()
-                },
                 comments: vm.comments(),
-                thirdParty: vm.thirdParty(),
-                thirdPartyCompany: vm.thirdPartyCompany(),
                 teamId: vm.sTeam()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/wo/generated/?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/mo/generated/?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/wo/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+                url = sprintf('%s/mo/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
             }
             $.ajax({
                 type: type,
@@ -214,10 +213,10 @@ var woDetailAPI = {
                         vm.id(data.id);
                         $('#wid-id-1').show();
                         aswNotif.newMainLines();
-                        woDetailAPI.getWo(data.id);
+                        moDetailAPI.getMo(data.id);
                         $('#s2').show();
                     } else {
-                        var url = sprintf('woGeneral.html?id=%s', data.id);
+                        var url = sprintf('moGeneral.html?id=%s', data.id);
                         window.open(url, '_self');
                     }
                 },
@@ -269,27 +268,16 @@ var woDetailAPI = {
             }
         });
     },
-    loadPws: function (id) {
+    loadZones: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/pw?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/zone?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                var options = [{ id: null, name: "" }];
-                var data2 = [];
-                if (!user.seeNotOwner) {
-                    data.forEach(function (d) {
-                        if (user.workOnlyZone && (d.zone.id == user.zoneId)) {
-                            data2.push(d);
-                        }
-                    });
-                } else {
-                    data2 = data;
-                }
-                options = options.concat(data2);
-                vm.optionsPws(options);
-                $("#cmbPws").val([id]).trigger('change');
+                var options = [{ teamId: null, name: "" }].concat(data);
+                vm.optionsZones(options);
+                $("#cmbZones").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -304,12 +292,12 @@ var woDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!woDetailAPI.dataOk()) return;
+            if (!moDetailAPI.dataOk()) return;
             var url = "", type = "";
 
             // fecth report data
             type = "GET";
-            url = sprintf('%s/report/wo2/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+            url = sprintf('%s/report/mo2/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
 
             $.ajax({
                 type: type,
@@ -329,7 +317,27 @@ var woDetailAPI = {
             });
         }
         return mf;
-    }
+    },
+    changeZone: function (data) {
+        if (!data) return;
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/team/zone/%s/?api_key=%s', myconfig.apiUrl, data.id, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ teamId: null, name: "" }].concat(data);
+                vm.optionsTeams(options);
+                $("#cmbTeams").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        })
+    },
 };
 
 

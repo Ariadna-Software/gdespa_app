@@ -1,15 +1,15 @@
-var woModalAPI = {
+var moModalAPI = {
     init: function () {
         // avoid sending form 
-        $('#woModal-form').submit(function () {
+        $('#moModal-form').submit(function () {
             return false;
         });
         // button events
-        $('#btnSaveLine').click(woModalAPI.saveLine());
+        $('#btnSaveLine').click(moModalAPI.saveLine());
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#woModal-form').validate({
+        $('#moModal-form').validate({
             rules: {
                 txtQuantity: {
                     required: true,
@@ -25,7 +25,7 @@ var woModalAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#woModal-form').valid();
+        return $('#moModal-form').valid();
     },
     newLine: function () {
         // new line id is zero.
@@ -36,15 +36,15 @@ var woModalAPI = {
         vm.done(null);
         // combos
         $('#cmbCUnits').select2(select2_languages[lang]);
-        woModalAPI.loadCUnits(null);
+        moModalAPI.loadCUnits(null);
         $("#cmbCUnits").select2().on('change', function (e) {
-            woModalAPI.changeCUnit(e.added);
+            moModalAPI.changeCUnit(e.added);
         });
     },
     editLine: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/wo_line/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            url: sprintf('%s/mo_line/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
@@ -55,13 +55,13 @@ var woModalAPI = {
                     vm.quantity(data[0].quantity);
                     //
                     $('#cmbCUnits').select2(select2_languages[lang]);
-                    woModalAPI.loadCUnits(data[0].cunit.id);
+                    moModalAPI.loadCUnits(data[0].cunit.id);
                     var data = {
                         id: data[0].cunit.id
                     };
-                    woModalAPI.changeCUnit(data);
+                    moModalAPI.changeCUnit(data);
                     $("#cmbCUnits").select2().on('change', function (e) {
-                        woModalAPI.changeCUnit(e.added);
+                        moModalAPI.changeCUnit(e.added);
                     });
                 }
             },
@@ -76,11 +76,11 @@ var woModalAPI = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
-            if (!woModalAPI.dataOk()) return;
+            if (!moModalAPI.dataOk()) return;
             // mount line to save 
             var data = {
                 id: vm.lineId(),
-                wo: {
+                mo: {
                     id: vm.id()
                 },
                 cunit: {
@@ -94,11 +94,11 @@ var woModalAPI = {
             if (vm.lineId() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/wo_line?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/mo_line?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/wo_line/%s/?api_key=%s', myconfig.apiUrl, vm.lineId(), api_key);
+                url = sprintf('%s/mo_line/%s/?api_key=%s', myconfig.apiUrl, vm.lineId(), api_key);
             }
             $.ajax({
                 type: type,
@@ -106,8 +106,8 @@ var woModalAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#woModal').modal('hide');
-                    woLineAPI.getWoLines(vm.id());
+                    $('#moModal').modal('hide');
+                    moLineAPI.getMoLines(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

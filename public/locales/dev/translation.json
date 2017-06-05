@@ -617,6 +617,7 @@
         "planHours": "Hrs. planificadas",
         "thirdParty": "Parte de trabajo realizado por companía ajena",
         "thirdPartyCompany": "Compañía externa que ha realizado el trabajo",
-        "team1": "Brigada"
+        "team1": "Brigada",
+        "team": "Brigada"
     }
 }

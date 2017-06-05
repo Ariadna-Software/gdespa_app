@@ -1,46 +1,46 @@
 /*
- * woGeneral.js
- * Function for the page woGeneral.html
+ * moGeneral.js
+ * Function for the page moGeneral.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
 
 var data = null;
 
-var woGeneralAPI = {
+var moGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
-        $('#woGeneral').attr('class', 'active');
-        woGeneralAPI.initWoTable();
+        $('#moGeneral').attr('class', 'active');
+        moGeneralAPI.initMoTable();
         // avoid sending form 
-        $('#woGeneral-form').submit(function () {
+        $('#moGeneral-form').submit(function () {
             return false;
         });
         // buttons click events 
-        $('#btnNew').click(woGeneralAPI.newWo());
-        $('#btnSearch').click(woGeneralAPI.searchWo());
+        $('#btnNew').click(moGeneralAPI.newMo());
+        $('#btnSearch').click(moGeneralAPI.searchMo());
         //
-        $('#chkClosed').change(woGeneralAPI.checkClosedChange());
+        $('#chkClosed').change(moGeneralAPI.checkClosedChange());
         // 
-        if (!user.modWoClosed){
+        if (!user.modMoClosed){
             $("#seeClosed").hide();
         }
         // check if there's an id
         var id = aswUtil.gup('id');
         if (id) {
-            woGeneralAPI.getWo(id);
+            moGeneralAPI.getMo(id);
         } else {
-            woGeneralAPI.getWos('', false);
+            moGeneralAPI.getMos('', false);
         }
     },
     // initializes the table
-    initWoTable: function () {
-        var options = aswInit.initTableOptions('dt_wo');
+    initMoTable: function () {
+        var options = aswInit.initTableOptions('dt_mo');
         options.data = data;
         options.columns = [{
-            data: "pw.name"
+            data: "teamName"
         }, {
             data: "initDate",
             render: function (data, type, row) {
@@ -54,41 +54,41 @@ var woGeneralAPI = {
         }, {
             data: "id",
             render: function (data, type, row) {
-                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woGeneralAPI.deleteWoMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='woGeneralAPI.editWo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='moGeneralAPI.deleteMoMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='moGeneralAPI.editMo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                 return html;
             }
         }];
-        $('#dt_wo').dataTable(options);
+        $('#dt_mo').dataTable(options);
     },
-    searchWo: function () {
+    searchMo: function () {
         var mf = function () {
             // obtain strin to search 
             var search = $('#txtSearch').val();
-            woGeneralAPI.getWos(search);
+            moGeneralAPI.getMos(search);
         };
         return mf;
     },
-    newWo: function () {
+    newMo: function () {
         // Its an event handler, return function
         var mf = function () {
-            window.open(sprintf('woDetail.html?id=%s', 0), '_self');
+            window.open(sprintf('moDetail.html?id=%s', 0), '_self');
         }
         return mf;
     },
-    editWo: function (id) {
-        window.open(sprintf('woDetail.html?id=%s', id), '_self');
+    editMo: function (id) {
+        window.open(sprintf('moDetail.html?id=%s', id), '_self');
     },
-    deleteWoMessage: function (id) {
-        var url = sprintf("%s/wo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteMoMessage: function (id) {
+        var url = sprintf("%s/mo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].pw.name + " [" + moment(data[0].initDate).format(i18n.t('util.date_format')) + " - " + moment(data[0].endDate).format(i18n.t('util.date_format')) + "]";
-                var fn = sprintf('woGeneralAPI.deleteWo(%s);', id);
+                var fn = sprintf('moGeneralAPI.deleteMo(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -99,8 +99,8 @@ var woGeneralAPI = {
             }
         });
     },
-    deleteWo: function (id) {
-        var url = sprintf("%s/wo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteMo: function (id) {
+        var url = sprintf("%s/mo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         var data = {
             id: id
         };
@@ -110,7 +110,7 @@ var woGeneralAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                woGeneralAPI.getWos('');
+                moGeneralAPI.getMos('');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -121,9 +121,9 @@ var woGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getWos: function (name, chk) {
-        var url = sprintf("%s/wo?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
-        if (chk) url = sprintf("%s/wo/all/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+    getMos: function (name, chk) {
+        var url = sprintf("%s/mo?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+        if (chk) url = sprintf("%s/mo/all/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
         $.ajax({
             type: "GET",
             url: url,
@@ -141,7 +141,7 @@ var woGeneralAPI = {
                 } else {
                     data2 = data;
                 }
-                woGeneralAPI.loadWosTable(data2);
+                moGeneralAPI.loadMosTable(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -152,14 +152,14 @@ var woGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getWo: function (id) {
-        var url = sprintf("%s/wo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    getMo: function (id) {
+        var url = sprintf("%s/mo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                woGeneralAPI.loadWosTable(data);
+                moGeneralAPI.loadMosTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -169,20 +169,20 @@ var woGeneralAPI = {
             }
         });
     },
-    loadWosTable: function (data) {
-        var dt = $('#dt_wo').dataTable();
+    loadMosTable: function (data) {
+        var dt = $('#dt_mo').dataTable();
         dt.fnClearTable();
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-        $("#tb_wo").show();
+        $("#tb_mo").show();
     },
     checkClosedChange: function () {
         var mf = function () {
             var chk = $(this).is(':checked');
-            woGeneralAPI.getWos('', chk);
+            moGeneralAPI.getMos('', chk);
         }
         return mf;
     }
 };
 
-woGeneralAPI.init();
+moGeneralAPI.init();

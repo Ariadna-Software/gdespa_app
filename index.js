@@ -92,6 +92,8 @@ app.use('/api/streport', require('./report-controller/reportdb'));
 app.use('/api/team', require('./controllers/team'));
 app.use('/api/team_line', require('./controllers/team_line'));
 app.use('/api/mea', require('./controllers/mea'));
+app.use('/api/mo', require('./controllers/mo'));
+app.use('/api/mo_line', require('./controllers/mo_line'));
 
 // general API to export
 

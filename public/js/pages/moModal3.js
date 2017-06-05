@@ -1,21 +1,21 @@
-var woModal3API = {
+var moModal3API = {
     init: function () {
         // avoid sending form 
-        $('#woModal3-form').submit(function () {
+        $('#moModal3-form').submit(function () {
             return false;
         });
         // 
         $('#cmbWorkers3').select2(select2_languages[lang]);
-        woModal3API.loadWorkers3();
+        moModal3API.loadWorkers3();
         // button events
-        $('#btnSaveLine3').click(woModal3API.saveLine());
+        $('#btnSaveLine3').click(moModal3API.saveLine());
         // lost focus
-        $("#txtInitialKm").blur(woModal3API.changeKms);
-        $("#txtFinalKm").blur(woModal3API.changeKms);
+        $("#txtInitialKm").blur(moModal3API.changeKms);
+        $("#txtFinalKm").blur(moModal3API.changeKms);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#woModal3-form').validate({
+        $('#moModal3-form').validate({
             rules: {
                 cmbWorkers3: { required: true },
                 txtQuantity3: { required: true }
@@ -28,10 +28,10 @@ var woModal3API = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#woModal3-form').valid();
+        return $('#moModal3-form').valid();
     },
     newLine: function () {
-        vm.woWorkerId(0);
+        vm.moWorkerId(0);
         vm.quantity3(null);
         vm.normalHours(0);
         vm.extraHours(0);
@@ -39,24 +39,24 @@ var woModal3API = {
         vm.finalKm(0);
         vm.fuel(0);
         vm.totalKm(0);
-        woModal3API.loadWorkers3(null);
+        moModal3API.loadWorkers3(null);
     },
     editLine: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/wo_worker/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            url: sprintf('%s/mo_worker/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 if (data.length) {
-                    vm.woWorkerId(data[0].id);
+                    vm.moWorkerId(data[0].id);
                     vm.quantity3(data[0].quantity);
                     vm.normalHours(data[0].normalHours);
                     vm.extraHours(data[0].extraHours);
                     vm.initialKm(data[0].initialKm);
                     vm.finalKm(data[0].finalKm);
                     vm.fuel(data[0].fuel);
-                    woModal3API.loadWorkers3(data[0].worker.id);
+                    moModal3API.loadWorkers3(data[0].worker.id);
                 }
             },
             error: function (err) {
@@ -70,11 +70,11 @@ var woModal3API = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
-            if (!woModal3API.dataOk()) return;
+            if (!moModal3API.dataOk()) return;
             // mount line to save 
             var data = {
-                id: vm.woWorkerId(),
-                wo: {
+                id: vm.moWorkerId(),
+                mo: {
                     id: vm.id()
                 },
                 worker: {
@@ -88,14 +88,14 @@ var woModal3API = {
                 planHours: vm.planHours()
             };
             var url = "", type = "";
-            if (vm.woWorkerId() == 0) {
+            if (vm.moWorkerId() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/wo_worker?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/mo_worker?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/wo_worker/%s/?api_key=%s', myconfig.apiUrl, vm.woWorkerId(), api_key);
+                url = sprintf('%s/mo_worker/%s/?api_key=%s', myconfig.apiUrl, vm.moWorkerId(), api_key);
             }
             $.ajax({
                 type: type,
@@ -103,9 +103,9 @@ var woModal3API = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#woModal3').modal('hide');
-                    // woLineAPI.getPwLines(vm.id());
-                    woDetailAPI.getWo(vm.id());
+                    $('#moModal3').modal('hide');
+                    // moLineAPI.getPwLines(vm.id());
+                    moDetailAPI.getMo(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

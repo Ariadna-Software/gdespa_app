@@ -7,19 +7,17 @@ CREATE TABLE `mo` (
   `initDate` date DEFAULT NULL,
   `endDate` date DEFAULT NULL,
   `workerId` int(11) DEFAULT NULL,
-  `pwId` int(11) DEFAULT NULL,
+  `zoneId` int(11) DEFAULT NULL,
   `comments` text,
   `closureId` int(11) DEFAULT NULL,
-  `thirdParty` tinyint(1) DEFAULT '0',
-  `thirdPartyCompany` varchar(255) DEFAULT NULL,
   `teamId` int(11) DEFAULT NULL,
   PRIMARY KEY (`moId`),
-  KEY `ref_mo_pw` (`pwId`),
+  KEY `ref_mo_zone` (`zoneId`),
   KEY `ref_mo_worker` (`workerId`),
   KEY `ref_mo_closure` (`closureId`),
   KEY `ref_mo_team` (`teamId`),
   CONSTRAINT `ref_mo_closure` FOREIGN KEY (`closureId`) REFERENCES `closure` (`closureId`),
-  CONSTRAINT `ref_mo_pw` FOREIGN KEY (`pwId`) REFERENCES `pw` (`pwId`),
+  CONSTRAINT `ref_mo_zone` FOREIGN KEY (`zoneId`) REFERENCES `zone` (`zoneId`),
   CONSTRAINT `ref_mo_team` FOREIGN KEY (`teamId`) REFERENCES `team` (`teamId`),
   CONSTRAINT `ref_mo_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
@@ -60,4 +58,3 @@ CREATE TABLE `mo_worker` (
   CONSTRAINT `ref_mow_mo` FOREIGN KEY (`moId`) REFERENCES `mo` (`moId`) ON DELETE CASCADE,
   CONSTRAINT `ref_mow_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`) ON DELETE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
-
