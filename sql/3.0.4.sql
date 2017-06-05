@@ -60,3 +60,4 @@ CREATE TABLE `mo_worker` (
   CONSTRAINT `ref_mow_mo` FOREIGN KEY (`moId`) REFERENCES `mo` (`moId`) ON DELETE CASCADE,
   CONSTRAINT `ref_mow_worker` FOREIGN KEY (`workerId`) REFERENCES `worker` (`workerId`) ON DELETE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+
