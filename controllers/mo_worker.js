@@ -43,7 +43,7 @@ router.get('/:id', midCheck, function (req, res) {
 router.get('/mo/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    moWorkerDb.getByWoId(id, function (err, lines) {
+    moWorkerDb.getByMoId(id, function (err, lines) {
         if (err) return res.status(500).send(err.message);
         res.json(lines);
     }, test);
@@ -52,7 +52,7 @@ router.get('/mo/:id', midCheck, function (req, res) {
 router.get('/mo/worker/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    moWorkerDb.getByWoIdWorker(id, function (err, lines) {
+    moWorkerDb.getByMoIdWorker(id, function (err, lines) {
         if (err) return res.status(500).send(err.message);
         res.json(lines);
     }, test);
@@ -61,7 +61,7 @@ router.get('/mo/worker/:id', midCheck, function (req, res) {
 router.get('/mo/vehicle/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    moWorkerDb.getByWoIdVehicle(id, function (err, lines) {
+    moWorkerDb.getByMoIdVehicle(id, function (err, lines) {
         if (err) return res.status(500).send(err.message);
         res.json(lines);
     }, test);

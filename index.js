@@ -94,6 +94,7 @@ app.use('/api/team_line', require('./controllers/team_line'));
 app.use('/api/mea', require('./controllers/mea'));
 app.use('/api/mo', require('./controllers/mo'));
 app.use('/api/mo_line', require('./controllers/mo_line'));
+app.use('/api/mo_worker', require('./controllers/mo_worker'));
 
 // general API to export
 

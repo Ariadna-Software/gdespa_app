@@ -139,6 +139,7 @@ var moDetailAPI = {
                 //        txtEndDate: { required: true },
                 cmbWorkers: { required: true },
                 cmbZones: { required: true },
+                cmbTeams: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -191,7 +192,8 @@ var moDetailAPI = {
                     id: vm.sWorker()
                 },
                 comments: vm.comments(),
-                teamId: vm.sTeam()
+                teamId: vm.sTeam(),
+                zoneId: vm.sZone()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -337,7 +339,7 @@ var moDetailAPI = {
                 }
             }
         })
-    },
+    }
 };
 
 

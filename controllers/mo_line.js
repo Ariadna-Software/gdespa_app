@@ -35,7 +35,7 @@ router.get('/:id', midCheck, function (req, res) {
     var id = req.params.id;
     moLineDb.getById(id, function (err, lines) {
         if (err) return res.status(500).send(err.message);
-        if (lines.length == 0) return res.status(404).send('Work order line not found');
+        if (lines.length == 0) return res.status(404).send('Mork order line not found');
         res.json(lines);
     }, test);
 });
@@ -76,7 +76,7 @@ router.delete('/:id', midCheck, function (req, res) {
     var id = req.params.id;
     var moLine = req.body;
     if (!moLine.id) {
-        return res.status(400).send('Work order line with id in body needed');
+        return res.status(400).send('Mork order line with id in body needed');
     }
     moLineDb.delete(moLine, function (err) {
         if (err) {
