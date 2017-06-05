@@ -12,6 +12,7 @@ var woModal2API = {
         // lost focus
         $("#txtNormalHours").blur(woModal2API.changeHours);
         $("#txtExtraHours").blur(woModal2API.changeHours);
+        $("#txtExtraHoursNight").blur(woModal2API.changeHours);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -35,6 +36,8 @@ var woModal2API = {
         vm.quantity2(null);
         vm.normalHours(0);
         vm.extraHours(0);
+        vm.extraHoursNight(0);
+        vm.expenses(0);
         woModal2API.loadWorkers2(null);
     },
     editLine: function (id) {
@@ -49,6 +52,8 @@ var woModal2API = {
                     vm.quantity2(data[0].quantity);
                     vm.normalHours(data[0].normalHours);
                     vm.extraHours(data[0].extraHours);
+                    vm.extraHoursNight(data[0].extraHoursNight);
+                    vm.expenses(data[0].expenses);
                     woModal2API.loadWorkers2(data[0].worker.id);
                 }
             },
@@ -76,7 +81,9 @@ var woModal2API = {
                 quantity: vm.quantity2(),
                 normalHours: vm.normalHours(),
                 extraHours: vm.extraHours(),
-                planHours: vm.planHours()
+                planHours: vm.planHours(),
+                extraHoursNight: vm.extraHoursNight(),
+                expenses: vm.expenses()
             };
             var url = "", type = "";
             if (vm.woWorkerId() == 0) {
@@ -128,6 +135,6 @@ var woModal2API = {
         });
     },
     changeHours: function () {
-        vm.quantity2((vm.normalHours() * 1) + (vm.extraHours() * 1));
+        vm.quantity2((vm.normalHours() * 1) + (vm.extraHours() * 1) + (vm.extraHoursNight() * 1));
     }
 };

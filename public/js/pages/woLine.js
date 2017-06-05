@@ -208,9 +208,11 @@ var woLineAPI = {
         }, {
             data: "extraHours"
         }, {
-            data: "planHours"
+            data: "extraHoursNight"
         }, {
             data: "quantity"
+        }, {
+            data: "expenses"
         }, {
             data: "id",
             render: function (data, type, row) {
