@@ -86,19 +86,21 @@ router.get('/:id', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
-router.get('/closure/:id', common.midChkApiKey, function (req, res) {
+router.get('/closure/:id/:workerId', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    moDb.getByClosureId(id, function (err, mos) {
+    var workerId = req.params.workerId;
+    moDb.getByClosureId(id, workerId, function (err, mos) {
         if (err) return res.status(500).send(err.message);
         res.json(mos);
     }, test);
 });
 
-router.get('/closure2/:id', common.midChkApiKey, function (req, res) {
+router.get('/closure2/:id/:workerId', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    moDb.getByClosureId2(id, function (err, mos) {
+    var workerId = req.params.workerId;
+    moDb.getByClosureId2(id, workerId, function (err, mos) {
         if (err) return res.status(500).send(err.message);
         res.json(mos);
     }, test);

@@ -139,7 +139,15 @@ var woGeneralAPI = {
                         });
                     }
                 } else {
-                    data2 = data;
+                    if (user.seeZone) {
+                        data.forEach(function(d){
+                            if (d.zoneId == user.zoneId) {
+                                data2.push(d);
+                            }
+                        })
+                    } else {
+                        data2 = data;
+                    }                    
                 }
                 woGeneralAPI.loadWosTable(data2);
             },

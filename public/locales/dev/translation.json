@@ -420,7 +420,8 @@
     "closureDetail": {
         "tabs": {
             "general": "General",
-            "work_order": "Partes de trabajo"
+            "work_order": "Partes de trabajo",
+            "mo": "Partes de contadores"
         },
         "close_message": "Al realizar un cierre todos los partes relacionados se dan por cerrados, sin permitir modificaciones. ¿Está seguro? (esta acción no puede deshacerse)",
         "title": "Detalle cierre",

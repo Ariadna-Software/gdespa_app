@@ -137,17 +137,19 @@ var pwGeneralAPI = {
                         data.forEach(function (d) {
                             if (d.initInCharge.id == user.worker.id) {
                                 data2.push(d);
-                            }else{
-                                if (user.seeZone){
-                                    if (d.zone.id == user.zoneId){
-                                        data2.push(d);
-                                    }
-                                }
                             }
                         });
                     }
                 } else {
-                    data2 = data;
+                    if (user.seeZone) {
+                        data.forEach(function (d) {
+                            if (d.zone.id == user.zoneId) {
+                                data2.push(d);
+                            }
+                        })
+                    } else {
+                        data2 = data;
+                    }
                 }
                 pwGeneralAPI.loadPwsTable(data2);
             },
