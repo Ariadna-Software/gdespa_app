@@ -619,6 +619,7 @@
         "thirdPartyCompany": "Compañía externa que ha realizado el trabajo",
         "team1": "Brigada",
         "team": "Brigada",
-        "mea": "Medidor"
+        "mea": "Medidor",
+        "price": "Precio"
     }
 }

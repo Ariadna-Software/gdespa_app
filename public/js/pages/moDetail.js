@@ -124,12 +124,9 @@ var moDetailAPI = {
         vm.initDate(moment.parseZone(data.initDate).format(i18n.t('util.date_format')));
         // vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
-        moDetailAPI.loadZones(data.pw.id);
+        moDetailAPI.loadZones(data.zoneId);
         moDetailAPI.loadWorkers(data.worker.id);
         moDetailAPI.loadTeams(data.teamId);
-        //
-        vm.thirdParty(data.thirdParty);
-        vm.thirdPartyCompany(data.thirdPartyCompany);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
