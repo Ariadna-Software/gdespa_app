@@ -382,6 +382,7 @@ var aswInit = {
             $('#pwman').show();
             if (!user.pwGeneral) $('#pwGeneral').hide();
             if (!user.woGeneral) $('#woGeneral').hide();
+            if (!user.perMea) $('#moGeneral').hide();
             if (!user.closureGeneral) $('#closureGeneral').hide();
         }
         if (user.perStore) {

@@ -132,7 +132,8 @@
         "InventoryGeneral": "--> Inventarios",
         "ModPw": "Poder modificar una propuesta aceptada",
         "SeeNotOwner": "Ver registros de los que no se es responsable",
-        "ModWoClosed": "Poder modificar partes cerrados"
+        "ModWoClosed": "Poder modificar partes cerrados",
+        "MeaGeneral": "--> Parte contadores"
     },
     "workerGeneral": {
         "title": "Mantenimiento de recursos",

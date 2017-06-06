@@ -55,6 +55,7 @@ var userDetailAPI = {
         self.PwGeneral = ko.observable();
         self.WoGeneral = ko.observable();
         self.ClosureGeneral = ko.observable();
+        self.MeaGeneral = ko.observable();
         self.DeliveryGeneral = ko.observable();
         self.ItemInGeneral = ko.observable();
         self.ItemOutGeneral = ko.observable();
@@ -96,6 +97,7 @@ var userDetailAPI = {
         vm.PwGeneral(data.pwGeneral);
         vm.WoGeneral(data.woGeneral);
         vm.ClosureGeneral(data.closureGeneral);
+        vm.MeaGeneral(data.perMea);
         vm.DeliveryGeneral(data.deliveryGeneral);
         vm.ItemInGeneral(data.itemInGeneral);
         vm.ItemOutGeneral(data.itemOutGeneral);
@@ -188,7 +190,8 @@ var userDetailAPI = {
                 modWoClosed: vm.ModWoClosed() ? 1 : 0,
                 zoneId: vm.sZone(),
                 seeZone: vm.seeZone(),
-                workOnlyZone: vm.workOnlyZone()
+                workOnlyZone: vm.workOnlyZone(),
+                perMea: vm.MeaGeneral() ? 1 : 0,
             };
             var url = "", type = "";
             if (vm.id() == 0) {

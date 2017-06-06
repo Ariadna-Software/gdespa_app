@@ -1,0 +1,2 @@
+ALTER TABLE `user`   
+  ADD COLUMN `perMea` BOOL DEFAULT FALSE NULL AFTER `workOnlyZone`;
