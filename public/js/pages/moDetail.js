@@ -34,6 +34,11 @@ var moDetailAPI = {
 
         $('#cmbZones').select2(select2_languages[lang]);
         moDetailAPI.loadZones();
+        if (user.zoneId) {
+            moDetailAPI.loadZones(user.zoneId);
+            var data = {id: user.zoneId};
+            moDetailAPI.changeZone(data);
+        }        
         $("#cmbZones").select2().on('change', function (e) {
             moDetailAPI.changeZone(e.added);
         });

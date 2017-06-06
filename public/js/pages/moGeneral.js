@@ -133,14 +133,20 @@ var moGeneralAPI = {
                 if (!user.seeNotOwner) {
                     if (user.worker) {
                         data.forEach(function (d) {
-                            if (d.worker.id == user.worker.id) {
+                            if (d.worker.id  == user.worker.id) {
                                 data2.push(d);
+                            }else{
+                                if (user.seeZone){
+                                    if (d.zoneId == user.zoneId){
+                                        data2.push(d);
+                                    }
+                                }
                             }
                         });
                     }
                 } else {
                     data2 = data;
-                }
+                }                
                 moGeneralAPI.loadMosTable(data2);
             },
             error: function (err) {
