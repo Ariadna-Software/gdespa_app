@@ -21,29 +21,24 @@ var moLineAPI = {
     },
     // WO_LINE
     initMoLineTable: function () {
-        var options = aswInit.initTableOptions('dt_moLine');
+        var options = aswInit.initTableOptions('dt_moline');
         options.data = data;
-        options.paging = false;
-        options.bSort = false;
         options.columns = [{
             data: "meaName"
         }, {
-            data: "done",
-            className: "asw-center"
+            data: "quantity"
         }, {
-            data: "cost",
-            className: "asw-center"
-        }, , {
+            data: "cost"
+        }, {
             data: "moLineId",
-            width: "10%",
             render: function (data, type, row) {
-                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='moLineAPI.deleteMoVehicleMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#moModal3' onclick='moModal3API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='moLineAPI.deleteMoLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#moModal' onclick='moModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                 return html;
             }
         }];
-        $('#dt_moLine').dataTable(options);
+        $('#dt_moline').dataTable(options);
     },
     newMoLine: function () {
         var mf = function (e) {
@@ -60,7 +55,7 @@ var moLineAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                var name = data[0].cunit.name + " (Cantidad: " + data[0].quantity + ")";
+                var name = data[0].meaName + " (Cantidad: " + data[0].quantity + ")";
                 var fn = sprintf('moLineAPI.deleteMoLine(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
@@ -111,11 +106,11 @@ var moLineAPI = {
         });
     },
     loadMoLinesTable: function (data) {
-        var dt = $('#dt_moLine').dataTable();
+        var dt = $('#dt_moline').dataTable();
         dt.fnClearTable();
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-        $("#tb_moLine").show();
+        $("#tb_moline").show();
 
     },
     // WO_WORKER

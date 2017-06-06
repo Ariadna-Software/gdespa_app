@@ -163,7 +163,7 @@ var aswNotif = {
     },
     deleteRecordQuestion: function (name, fn) {
         // mount message
-        var msg = sprintf(i18n.t('delete_warning'),  name);
+        var msg = sprintf(i18n.t('delete_warning') + " %s?" ,  name);
         var btn1 = sprintf("<a href='javascript:void(0);' onClick='%s' class='btn btn-warning btn-sm'>%s</a>", fn, i18n.t('yes'));
         var btn2 = sprintf("<a href='javascript:void(0);' class='btn btn-warning btn-sm'>%s</a>", i18n.t('no'));
         msg += sprintf("<p class='text-align-right'>%s %s</p>", btn1, btn2);

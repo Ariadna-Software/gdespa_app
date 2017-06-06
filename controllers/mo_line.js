@@ -61,7 +61,7 @@ router.get('/mo/worker/:id', midCheck, function (req, res) {
 router.put('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    var woLine = req.body;
+    var moLine = req.body;
     moLineDb.put(moLine, function (err, group) {
         if (err) {
             res.status(500).send(err.message);

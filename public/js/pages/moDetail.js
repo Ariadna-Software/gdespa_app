@@ -88,10 +88,10 @@ var moDetailAPI = {
         self.estimate = ko.observable();
         self.done = ko.observable();
         self.quantity = ko.observable();
-        // cunit combo
-        self.optionsCUnits = ko.observableArray([]);
-        self.selectedCUnits = ko.observableArray([]);
-        self.sCUnit = ko.observable();
+        // mea combo
+        self.optionsMeas = ko.observableArray([]);
+        self.selectedMeas = ko.observableArray([]);
+        self.sMea = ko.observable();
         // -- Modal related (2)
         self.moWorkerId = ko.observable();
         self.quantity2 = ko.observable();
@@ -116,8 +116,8 @@ var moDetailAPI = {
         self.selectedWorkers3 = ko.observableArray([]);
         self.sWorker3 = ko.observable();
         // 
-        self.thirdParty = ko.observable();
-        self.thirdPartyCompany = ko.observable();
+        self.price = ko.observable();
+        self.cost = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);

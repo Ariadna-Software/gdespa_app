@@ -6,6 +6,9 @@ var moModalAPI = {
         });
         // button events
         $('#btnSaveLine').click(moModalAPI.saveLine());
+        // lost focus
+        $("#txtPrice").blur(moModalAPI.changePriceQuantity);
+        $("#txtQuantity").blur(moModalAPI.changePriceQuantity);        
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -15,7 +18,7 @@ var moModalAPI = {
                     required: true,
                     number: true
                 },
-                cmbCUnits: { required: true }
+                cmbMeas: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -32,13 +35,13 @@ var moModalAPI = {
         vm.lineId(0);
         // clean other fields
         vm.quantity(null);
-        vm.estimate(null);
-        vm.done(null);
+        vm.price(null);
+        vm.cost(null);
         // combos
-        $('#cmbCUnits').select2(select2_languages[lang]);
-        moModalAPI.loadCUnits(null);
-        $("#cmbCUnits").select2().on('change', function (e) {
-            moModalAPI.changeCUnit(e.added);
+        $('#cmbMeas').select2(select2_languages[lang]);
+        moModalAPI.loadMeas(null);
+        $("#cmbMeas").select2().on('change', function (e) {
+            moModalAPI.changeMea(e.added);
         });
     },
     editLine: function (id) {
@@ -49,19 +52,19 @@ var moModalAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 if (data.length) {
-                    vm.lineId(data[0].id);
-                    vm.estimate(data[0].estimate);
-                    vm.done(data[0].done);
+                    vm.lineId(data[0].moLineId);
+                    vm.price(data[0].price);
+                    vm.cost(data[0].cost);
                     vm.quantity(data[0].quantity);
                     //
-                    $('#cmbCUnits').select2(select2_languages[lang]);
-                    moModalAPI.loadCUnits(data[0].cunit.id);
+                    $('#cmbMeas').select2(select2_languages[lang]);
+                    moModalAPI.loadMeas(data[0].meaId);
                     var data = {
-                        id: data[0].cunit.id
+                        id: data[0].meaId
                     };
-                    moModalAPI.changeCUnit(data);
-                    $("#cmbCUnits").select2().on('change', function (e) {
-                        moModalAPI.changeCUnit(e.added);
+                    moModalAPI.changeMea(data);
+                    $("#cmbMeas").select2().on('change', function (e) {
+                        moModalAPI.changeMea(e.added);
                     });
                 }
             },
@@ -79,15 +82,11 @@ var moModalAPI = {
             if (!moModalAPI.dataOk()) return;
             // mount line to save 
             var data = {
-                id: vm.lineId(),
-                mo: {
-                    id: vm.id()
-                },
-                cunit: {
-                    id: vm.sCUnit()
-                },
-                estimate: vm.estimate(),
-                done: vm.done(),
+                moLineId: vm.lineId(),
+                moId: vm.id(),
+                meaId: vm.sMea(),
+                price: vm.price(),
+                cost: vm.cost(),
                 quantity: vm.quantity()
             };
             var url = "", type = "";
@@ -119,16 +118,16 @@ var moModalAPI = {
         };
         return mf;
     },
-    loadCUnits: function (id) {
+    loadMeas: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/cunit/pw/%s/?api_key=%s', myconfig.apiUrl, vm.sPw(), api_key),
+            url: sprintf('%s/mea/?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 var options = [{ id: null, name: "" }].concat(data);
-                vm.optionsCUnits(options);
-                $("#cmbCUnits").val([id]).trigger('change');
+                vm.optionsMeas(options);
+                $("#cmbMeas").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -138,20 +137,18 @@ var moModalAPI = {
             }
         });
     },
-    changeCUnit: function (data) {
+    changeMea: function (data) {
         if (!data) return;
         $.ajax({
             type: "GET",
-            url: sprintf('%s/cunit/estdone/?api_key=%s&cunitId=%s&pwId=%s', myconfig.apiUrl, api_key, data.id, vm.sPw()),
+            url: sprintf('%s/mea/%s/?api_key=%s', myconfig.apiUrl, data.id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 if (data.length) {
-                    vm.estimate(data[0].estimate);
-                    vm.done(data[0].done);
+                    vm.price(data[0].cost);
                 } else {
-                    vm.estimate(0);
-                    vm.done(0);
+                    vm.price(0);
                 }
             },
             error: function (err) {
@@ -161,5 +158,8 @@ var moModalAPI = {
                 }
             }
         })
-    }
+    },
+    changePriceQuantity: function () {
+        vm.cost((vm.quantity() * 1) * (vm.price() * 1));
+    }    
 };
