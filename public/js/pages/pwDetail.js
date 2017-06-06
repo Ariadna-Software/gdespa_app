@@ -28,7 +28,7 @@ var pwDetailAPI = {
         ko.applyBindings(vm);
         // default values
         vm.defaultK(1);
-        // combos
+        // combos //
         $('#cmbWorkers').select2(select2_languages[lang]);
         pwDetailAPI.loadWorkers();
         if (user.worker) {
