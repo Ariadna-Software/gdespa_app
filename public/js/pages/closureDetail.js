@@ -57,8 +57,6 @@ var closureDetailAPI = {
             vm.closureDate(moment(new Date()).format('DD/MM/YYYY'));
         }
         closureDetailAPI.getClosure(id);
-        closureDetailAPI.getWo(id);
-        closureDetailAPI.getMo(id);
     },
     pageData: function () {
         // knockout objects
@@ -87,6 +85,8 @@ var closureDetailAPI = {
         vm.comments(data.comments);
         vm.close(data.close);
         closureDetailAPI.loadWorkers(data.worker.id);
+        closureDetailAPI.getWo(data.id);
+        closureDetailAPI.getMo(data.id, data.worker.id);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -264,17 +264,17 @@ var closureDetailAPI = {
                 return html;
             }
         }, {
-                data: "worker.name"
-            }, {
-                data: "comments"
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='closureDetailAPI.editWo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "worker.name"
+        }, {
+            data: "comments"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='closureDetailAPI.editWo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_wo').dataTable(options);
     },
     getWo: function (id) {
@@ -317,17 +317,17 @@ var closureDetailAPI = {
                 return html;
             }
         }, {
-                data: "worker.name"
-            }, {
-                data: "comments"
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='closureDetailAPI.editMo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "worker.name"
+        }, {
+            data: "comments"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='closureDetailAPI.editMo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_mo').dataTable(options);
     },
     getMo: function (id, workerId) {
@@ -359,7 +359,7 @@ var closureDetailAPI = {
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
         $("#tb_mo").show();
-    },    
+    },
     editWo: function (id) {
         window.open(sprintf('woDetail.html?id=%s', id), '_blank');
     },
@@ -374,7 +374,7 @@ var closureDetailAPI = {
             // fecth report data
             type = "GET";
             url = sprintf('%s/report/closure/open/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
-            if (vm.close()){
+            if (vm.close()) {
                 url = sprintf('%s/report/closure/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
             }
             $.ajax({
@@ -395,7 +395,7 @@ var closureDetailAPI = {
             });
         }
         return mf;
-    }   
+    }
 };
 
 

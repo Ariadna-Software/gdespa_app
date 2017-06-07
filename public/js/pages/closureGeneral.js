@@ -32,6 +32,7 @@ var closureGeneralAPI = {
     // initializes the table
     initClosureTable: function () {
         var options = aswInit.initTableOptions('dt_closure');
+        options.bSort = false;
         options.data = data;
         options.columns = [{
             data: "worker.name"
