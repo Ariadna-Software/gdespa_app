@@ -36,16 +36,22 @@ var zoneDetailAPI = {
         var self = this;
         self.id = ko.observable();
         self.name = ko.observable();
+        self.woK = ko.observable();
+        self.moK = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
         vm.name(data.name);
+        vm.moK(data.moK);
+        vm.woK(data.woK);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
         $('#zoneDetail-form').validate({
             rules: {
-                txtName: { required: true }
+                txtName: { required: true },
+                txtWoK: {required: true, number: true},
+                txtMoK: {required: true, number: true}
             },
             // Do not change code below
             errorPlacement: function (error, element) {
@@ -86,7 +92,9 @@ var zoneDetailAPI = {
             // dat for post or put
             var data = {
                 id: vm.id(),
-                name: vm.name()
+                name: vm.name(),
+                woK: vm.woK(),
+                moK: vm.moK()
             };
             var url = "", type = "";
             if (vm.id() == 0) {

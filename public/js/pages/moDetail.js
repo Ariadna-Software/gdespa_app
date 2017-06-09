@@ -30,15 +30,17 @@ var moDetailAPI = {
         }
         $('#cmbTeams').select2(select2_languages[lang]);
 
+        $('#cmbDayTypes').select2(select2_languages[lang]);
+        moDetailAPI.loadDayTypes();
         moDetailAPI.loadTeams();
 
         $('#cmbZones').select2(select2_languages[lang]);
         moDetailAPI.loadZones();
         if (user.zoneId) {
             moDetailAPI.loadZones(user.zoneId);
-            var data = {id: user.zoneId};
+            var data = { id: user.zoneId };
             moDetailAPI.changeZone(data);
-        }        
+        }
         $("#cmbZones").select2().on('change', function (e) {
             moDetailAPI.changeZone(e.added);
         });
@@ -84,6 +86,10 @@ var moDetailAPI = {
         self.optionsTeams = ko.observableArray([]);
         self.selectedTeams = ko.observableArray([]);
         self.sTeam = ko.observable();
+        // day type combo
+        self.optionsDayTypes = ko.observableArray([]);
+        self.selectedDayTypes = ko.observableArray([]);
+        self.sDayType = ko.observable();
         // pw combo
         self.optionsZones = ko.observableArray([]);
         self.selectedZones = ko.observableArray([]);
@@ -93,6 +99,8 @@ var moDetailAPI = {
         self.estimate = ko.observable();
         self.done = ko.observable();
         self.quantity = ko.observable();
+        self.moK = ko.observable();
+        self.moLineK = ko.observable();
         // mea combo
         self.optionsMeas = ko.observableArray([]);
         self.selectedMeas = ko.observableArray([]);
@@ -130,8 +138,10 @@ var moDetailAPI = {
         // vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
         moDetailAPI.loadZones(data.zoneId);
+        moDetailAPI.loadZoneK(data.zoneId);
         moDetailAPI.loadWorkers(data.worker.id);
         moDetailAPI.loadTeams(data.teamId);
+        moDetailAPI.loadDayTypes(data.dayTypeId);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -141,6 +151,7 @@ var moDetailAPI = {
                 //        txtEndDate: { required: true },
                 cmbWorkers: { required: true },
                 cmbZones: { required: true },
+                cmbDayTypes: { required: true },
                 cmbTeams: { required: true }
             },
             // Messages for form validation
@@ -195,7 +206,8 @@ var moDetailAPI = {
                 },
                 comments: vm.comments(),
                 teamId: vm.sTeam(),
-                zoneId: vm.sZone()
+                zoneId: vm.sZone(),
+                dayTypeId: vm.sDayType()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -291,6 +303,25 @@ var moDetailAPI = {
             }
         });
     },
+    loadDayTypes: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/day_type?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: null, name: "" }].concat(data);
+                vm.optionsDayTypes(options);
+                $("#cmbDayTypes").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
     btnPrint: function () {
         var mf = function (e) {
             // avoid default accion
@@ -324,15 +355,34 @@ var moDetailAPI = {
     },
     changeZone: function (data) {
         if (!data) return;
+        // cargar las brigadas de la zona
+        var id = data.id;
         $.ajax({
             type: "GET",
-            url: sprintf('%s/team/zone/%s/?api_key=%s', myconfig.apiUrl, data.id, api_key),
+            url: sprintf('%s/team/zone/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
                 var options = [{ teamId: null, name: "" }].concat(data);
                 vm.optionsTeams(options);
-                $("#cmbTeams").val([id]).trigger('change');
+                moDetailAPI.loadZoneK(id);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        })
+    },
+    loadZoneK: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/zone/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                vm.moK(data[0].moK);
             },
             error: function (err) {
                 aswNotif.errAjax(err);

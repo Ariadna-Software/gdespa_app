@@ -312,6 +312,10 @@
 																	<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy">
 															</label>
 															-->
+													<label class="label" data-18n="woDetail.dayType">Tipo de jornada:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbDayTypes" name="cmbDayTypes" data-bind="options: optionsDayTypes, optionsText: 'name', optionsValue: 'id', value: sDayType, valueAllowUnset: true, selectedOptions: selectedDayTypes, selected2:{}"></select><i></i>
+													</label>															
 												</section>
 												<section class="col col-md-8">
 													<label class="label" data-18n="woDetail.worker">Responsable:</label>
@@ -439,8 +443,8 @@
 								<fieldset>
 									<div class="pull-right">
 										<button id="btnNewWorker" data-i18n="[title]woDetail.newWorker" data-toggle="modal" data-target="#woModal2" class="btn btn-success btn-circle btn-lg">
-													<i class="fa fa-lg fa-plus"></i>
-												</button>
+											<i class="fa fa-lg fa-plus"></i>
+										</button>
 									</div>
 								</fieldset>
 								<fieldset>
@@ -481,8 +485,8 @@
 								<fieldset>
 									<div class="pull-right">
 										<button id="btnNewVehicle" data-i18n="[title]woDetail.newVehicle" data-toggle="modal" data-target="#woModal3" class="btn btn-success btn-circle btn-lg">
-													<i class="fa fa-lg fa-plus"></i>
-												</button>
+											<i class="fa fa-lg fa-plus"></i>
+										</button>
 									</div>
 								</fieldset>
 								<fieldset>

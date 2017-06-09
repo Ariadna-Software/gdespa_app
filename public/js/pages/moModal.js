@@ -8,7 +8,8 @@ var moModalAPI = {
         $('#btnSaveLine').click(moModalAPI.saveLine());
         // lost focus
         $("#txtPrice").blur(moModalAPI.changePriceQuantity);
-        $("#txtQuantity").blur(moModalAPI.changePriceQuantity);        
+        $("#txtQuantity").blur(moModalAPI.changePriceQuantity);
+        $("#txtMoK").blur(moModalAPI.changePriceQuantity);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -37,6 +38,7 @@ var moModalAPI = {
         vm.quantity(null);
         vm.price(null);
         vm.cost(null);
+        vm.moLineK(vm.moK());
         // combos
         $('#cmbMeas').select2(select2_languages[lang]);
         moModalAPI.loadMeas(null);
@@ -56,6 +58,7 @@ var moModalAPI = {
                     vm.price(data[0].price);
                     vm.cost(data[0].cost);
                     vm.quantity(data[0].quantity);
+                    vm.moLineK(data[0].moK);
                     //
                     $('#cmbMeas').select2(select2_languages[lang]);
                     moModalAPI.loadMeas(data[0].meaId);
@@ -87,7 +90,8 @@ var moModalAPI = {
                 meaId: vm.sMea(),
                 price: vm.price(),
                 cost: vm.cost(),
-                quantity: vm.quantity()
+                quantity: vm.quantity(),
+                moK: vm.moLineK()
             };
             var url = "", type = "";
             if (vm.lineId() == 0) {
@@ -160,6 +164,6 @@ var moModalAPI = {
         })
     },
     changePriceQuantity: function () {
-        vm.cost((vm.quantity() * 1) * (vm.price() * 1));
-    }    
+        vm.cost((vm.quantity() * 1) * (vm.price() * 1) * (vm.moLineK() * 1));
+    }
 };

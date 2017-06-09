@@ -319,13 +319,19 @@
 												</section>
 											</div>
 											<div class="row">
+												<section class="col col-md-2">
+													<label class="label" data-18n="moDetail.dayType">Tipo de jornada:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbDayTypes" name="cmbDayTypes" data-bind="options: optionsDayTypes, optionsText: 'name', optionsValue: 'id', value: sDayType, valueAllowUnset: true, selectedOptions: selectedDayTypes, selected2:{}"></select><i></i>
+													</label>													
+												</section>
 												<section class="col col-md-4">
 													<label class="label" data-18n="moDetail.team">Brigada:</label>
 													<label style="width:100%;">
 														<select style="width:100%" id="cmbTeams" name="cmbTeams" data-bind="options: optionsTeams, optionsText: 'name', optionsValue: 'teamId', value: sTeam, valueAllowUnset: true, selectedOptions: selectedTeams, selected2:{}"></select><i></i>
 													</label>													
 												</section>												
-												<section class="col col-md-8">
+												<section class="col col-md-6">
 													<label class="label" data-i18n="moDetail.comments">Onservaciones:</label>
 													<label class="textarea textarea-resizable">
                                                         <textarea id="txtComments" rows="3" class="custom-scroll" data-bind="value:comments"></textarea>
@@ -512,12 +518,18 @@
 						<fieldset>
 							<section>
 								<div class="row">
-									<section class="col col-md-6">
+									<section class="col col-md-5">
 										<label class="label" data-18n="moDetail.mea">Medidor:</label>
 										<label style="width:100%;">
                                             <select style="width:100%" id="cmbMeas" name="cmbMeas" data-bind="options: optionsMeas, optionsText: 'name', optionsValue: 'id', value: sMea, valueAllowUnset: true, selectedOptions: selectedMeas, selected2:{}"></select><i></i>
                                         </label>
 									</section>
+									<section class="col col-md-1">
+										<label class="label" data-i18n="moDetail.moK">Precio:</label>
+										<label class="input">
+                                            <input id="txtMoK" name="txtMoK" type="text" data-bind="value: moLineK" />
+                                        </label>
+									</section>									
 									<section class="col col-md-2">
 										<label class="label" data-i18n="moDetail.price">Precio:</label>
 										<label class="input">

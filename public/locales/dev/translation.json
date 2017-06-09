@@ -366,7 +366,8 @@
         "planHours": "Hrs. planificadas",
         "thirdParty": "Parte de trabajo realizado por companía ajena",
         "thirdPartyCompany": "Compañía externa que ha realizado el trabajo",
-        "team1": "Brigada"
+        "team1": "Brigada",
+        "dayType": "Tipo jornada"
     },
     "itemInGeneral": {
         "title": "Entradas",
@@ -452,7 +453,9 @@
         "title": "Detalle zona",
         "name": "Nombre",
         "cancel": "Salir sin guardar",
-        "ok": "Guardar"
+        "ok": "Guardar",
+        "woK": "K Obras",
+        "moK": "K Contadores"
     },
     "deliveryGeneral": {
         "title": "Reservas / Entregas",
@@ -622,6 +625,8 @@
         "team1": "Brigada",
         "team": "Brigada",
         "mea": "Medidor",
-        "price": "Precio"
+        "price": "Precio",
+        "dayType": "Tipo jornada",
+        "moK": "K"
     }
 }

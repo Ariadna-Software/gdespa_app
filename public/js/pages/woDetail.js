@@ -31,6 +31,9 @@ var woDetailAPI = {
         $('#cmbTeams').select2(select2_languages[lang]);
         woDetailAPI.loadTeams();
 
+        $('#cmbDayTypes').select2(select2_languages[lang]);
+        woDetailAPI.loadDayTypes();
+
         $('#cmbPws').select2(select2_languages[lang]);
         woDetailAPI.loadPws();
         // buttons click events
@@ -79,6 +82,10 @@ var woDetailAPI = {
         self.optionsPws = ko.observableArray([]);
         self.selectedPws = ko.observableArray([]);
         self.sPw = ko.observable();
+        // day type combo
+        self.optionsDayTypes = ko.observableArray([]);
+        self.selectedDayTypes = ko.observableArray([]);
+        self.sDayType = ko.observable();        
         // -- Modal related (1)
         self.lineId = ko.observable();
         self.estimate = ko.observable();
@@ -123,6 +130,7 @@ var woDetailAPI = {
         woDetailAPI.loadPws(data.pw.id);
         woDetailAPI.loadWorkers(data.worker.id);
         woDetailAPI.loadTeams(data.teamId);
+        woDetailAPI.loadDayTypes(data.dayTypeId);
         //
         vm.thirdParty(data.thirdParty);
         vm.thirdPartyCompany(data.thirdPartyCompany);
@@ -134,6 +142,7 @@ var woDetailAPI = {
                 txtInitDate: { required: true },
                 //        txtEndDate: { required: true },
                 cmbWorkers: { required: true },
+                cmbDayTypes: { required: true },
                 cmbPws: { required: true },
             },
             // Messages for form validation
@@ -192,7 +201,8 @@ var woDetailAPI = {
                 comments: vm.comments(),
                 thirdParty: vm.thirdParty(),
                 thirdPartyCompany: vm.thirdPartyCompany(),
-                teamId: vm.sTeam()
+                teamId: vm.sTeam(),
+                dayTypeId: vm.sDayType()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -299,6 +309,25 @@ var woDetailAPI = {
             }
         });
     },
+    loadDayTypes: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/day_type?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: null, name: "" }].concat(data);
+                vm.optionsDayTypes(options);
+                $("#cmbDayTypes").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },    
     btnPrint: function () {
         var mf = function (e) {
             // avoid default accion
