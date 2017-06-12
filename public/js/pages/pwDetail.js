@@ -516,7 +516,7 @@ var pwDetailAPI = {
                 data: JSON.stringify(data),
                 success: function (data, status) {
                     // process report data
-                    aswReport.reportPDF(data, 'Sk6i2fr1x');
+                    window.open('infPwOne.html?pwId='+ vm.id(), '_new');
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

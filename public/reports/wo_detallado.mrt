@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <CalculationMode>Interpretation</CalculationMode>
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <GDESPA Ref="2" type="Stimulsoft.Report.Dictionary.StiMySqlDatabase" isKey="true">
+        <Alias>GDESPA</Alias>
+        <ConnectionStringEncrypted>43q5Cc0yWm3iT5zMZHTgXot43YlGTNO84gih3GFM4DvGUtvrYV2jpO1Y4YBqVGRnxFrVK8Zd+/XtXISEwwjhP9jE2ctGS0uZ+Xc=</ConnectionStringEncrypted>
+        <Name>GDESPA</Name>
+      </GDESPA>
+    </Databases>
+    <DataSources isList="true" count="2">
+      <CABWO Ref="3" type="Stimulsoft.Report.Dictionary.StiMySqlSource" isKey="true">
+        <Alias>CABWO</Alias>
+        <Columns isList="true" count="9">
+          <value>CabeceraParte,System.String</value>
+          <value>ObraID,System.Nullable`1[System.Int32]</value>
+          <value>ObraNombre,System.String</value>
+          <value>ObraReferencia,System.String</value>
+          <value>ObraResponsable,System.String</value>
+          <value>ParteFecha,System.DateTime</value>
+          <value>ParteID,System.Int32</value>
+          <value>ParteObservaciones,System.String</value>
+          <value>getDateTime,System.DateTime</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>CABWO</Name>
+        <NameInSource>GDESPA</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT 
+'CABWO' AS CabeceraParte, woId AS ParteID, DATE_FORMAT(wo.initDate, '%Y-%m-%d') AS ParteFecha, comments AS ParteObservaciones,
+wo.pwId AS ObraID, pw.reference AS ObraReferencia, pw.name AS ObraNombre, w.name ObraResponsable
+FROM wo
+LEFT JOIN pw ON pw.pwId = wo.pwId
+LEFT JOIN worker AS w ON w.workerId = wo.workerId;</SqlCommand>
+      </CABWO>
+      <LINWO Ref="4" type="Stimulsoft.Report.Dictionary.StiMySqlSource" isKey="true">
+        <Alias>LINWO</Alias>
+        <Columns isList="true" count="6">
+          <value>LineaParte,System.String</value>
+          <value>ParteID,System.Int32</value>
+          <value>ParteLineaID,System.Int32</value>
+          <value>LineaParteUC,System.String</value>
+          <value>ParteLineaCantidad,System.Decimal</value>
+          <value>ParteLineaCosteUnidad,System.Decimal</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>LINWO</Name>
+        <NameInSource>GDESPA</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT
+'LINWO' AS LineaParte, wol.woId AS ParteID, woLineId AS ParteLineaID, 
+cu.name AS LineaParteUC, wol.quantity AS ParteLineaCantidad,
+COALESCE((pwl.amount / pwl.quantity), 0) AS ParteLineaCosteUnidad
+FROM wo_line AS wol
+LEFT JOIN pw_line AS pwl ON pwl.pwLineId = wol.pwLineId
+LEFT JOIN cunit AS cu ON cu.cunitId = wol.cunitId;</SqlCommand>
+      </LINWO>
+    </DataSources>
+    <Relations isList="true" count="1">
+      <CAB_LIN Ref="5" type="DataRelation" isKey="true">
+        <Alias>CAB_LIN</Alias>
+        <ChildColumns isList="true" count="1">
+          <value>ParteID</value>
+        </ChildColumns>
+        <ChildSource isRef="4" />
+        <Dictionary isRef="1" />
+        <Name>CAB_LIN</Name>
+        <NameInSource>CAB_LIN</NameInSource>
+        <ParentColumns isList="true" count="1">
+          <value>ParteID</value>
+        </ParentColumns>
+        <ParentSource isRef="3" />
+      </CAB_LIN>
+    </Relations>
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="6" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="4">
+        <HeaderCABWO Ref="7" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19.01,0.8</ClientRectangle>
+          <ComponentPlacement>h.ap.Page1</ComponentPlacement>
+          <Components isList="true" count="9">
+            <HeaderCABWO_CabeceraParte Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCABWO_CabeceraParte</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>CabeceraParte</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCABWO_CabeceraParte>
+            <HeaderCABWO_ObraID Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.2,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCABWO_ObraID</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>ObraID</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCABWO_ObraID>
+            <HeaderCABWO_ObraNombre Ref="10" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.4,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCABWO_ObraNombre</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>ObraNombre</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCABWO_ObraNombre>
+            <HeaderCABWO_ObraReferencia Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.6,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCABWO_ObraReferencia</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>ObraReferencia</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCABWO_ObraReferencia>
+            <HeaderCABWO_ObraResponsable Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.8,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCABWO_ObraResponsable</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>ObraResponsable</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCABWO_ObraResponsable>
+            <HeaderCABWO_ParteFecha Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCABWO_ParteFecha</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>ParteFecha</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCABWO_ParteFecha>
+            <HeaderCABWO_ParteID Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.2,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCABWO_ParteID</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>ParteID</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCABWO_ParteID>
+            <HeaderCABWO_ParteObservaciones Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15.4,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCABWO_ParteObservaciones</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>ParteObservaciones</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCABWO_ParteObservaciones>
+            <HeaderCABWO_getDateTime Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17.6,0,1.4,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCABWO_getDateTime</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>getDateTime</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCABWO_getDateTime>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderCABWO</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </HeaderCABWO>
+        <DataCABWO Ref="17" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,2,19.01,0.8</ClientRectangle>
+          <ComponentPlacement>d.Page1</ComponentPlacement>
+          <Components isList="true" count="9">
+            <DataCABWO_CabeceraParte Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCABWO_CabeceraParte</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{CABWO.CabeceraParte}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCABWO_CabeceraParte>
+            <DataCABWO_ObraID Ref="19" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2.2,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCABWO_ObraID</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{CABWO.ObraID}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCABWO_ObraID>
+            <DataCABWO_ObraNombre Ref="20" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4.4,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCABWO_ObraNombre</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{CABWO.ObraNombre}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCABWO_ObraNombre>
+            <DataCABWO_ObraReferencia Ref="21" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.6,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCABWO_ObraReferencia</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{CABWO.ObraReferencia}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCABWO_ObraReferencia>
+            <DataCABWO_ObraResponsable Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>8.8,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCABWO_ObraResponsable</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{CABWO.ObraResponsable}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCABWO_ObraResponsable>
+            <DataCABWO_ParteFecha Ref="23" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>11,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCABWO_ParteFecha</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{CABWO.ParteFecha}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCABWO_ParteFecha>
+            <DataCABWO_ParteID Ref="24" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>13.2,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCABWO_ParteID</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{CABWO.ParteID}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCABWO_ParteID>
+            <DataCABWO_ParteObservaciones Ref="25" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>15.4,0,2.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCABWO_ParteObservaciones</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{CABWO.ParteObservaciones}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCABWO_ParteObservaciones>
+            <DataCABWO_getDateTime Ref="26" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>17.6,0,1.4,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataCABWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCABWO_getDateTime</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{CABWO.getDateTime}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCABWO_getDateTime>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName>CABWO</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataCABWO</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Sort isList="true" count="0" />
+        </DataCABWO>
+        <HeaderLINWO Ref="27" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,3.6,19.01,0.8</ClientRectangle>
+          <ComponentPlacement>h.ap.Page1</ComponentPlacement>
+          <Components isList="true" count="6">
+            <HeaderLINWO_LineaParte Ref="28" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>0,0,3.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderLINWO_LineaParte</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>LineaParte</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderLINWO_LineaParte>
+            <HeaderLINWO_ParteID Ref="29" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>3.2,0,3.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderLINWO_ParteID</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>ParteID</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderLINWO_ParteID>
+            <HeaderLINWO_ParteLineaID Ref="30" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>6.4,0,3.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderLINWO_ParteLineaID</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>ParteLineaID</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderLINWO_ParteLineaID>
+            <HeaderLINWO_LineaParteUC Ref="31" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>9.6,0,3.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderLINWO_LineaParteUC</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>LineaParteUC</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderLINWO_LineaParteUC>
+            <HeaderLINWO_ParteLineaCantidad Ref="32" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>12.8,0,3.2,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderLINWO_ParteLineaCantidad</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>ParteLineaCantidad</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderLINWO_ParteLineaCantidad>
+            <HeaderLINWO_ParteLineaCosteUnidad Ref="33" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>16,0,3,0.8</ClientRectangle>
+              <ComponentPlacement>h.ap.HeaderLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderLINWO_ParteLineaCosteUnidad</Name>
+              <Page isRef="6" />
+              <Parent isRef="27" />
+              <Text>ParteLineaCosteUnidad</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderLINWO_ParteLineaCosteUnidad>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderLINWO</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </HeaderLINWO>
+        <DataLINWO Ref="34" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,5.2,19.01,0.8</ClientRectangle>
+          <ComponentPlacement>d.Page1</ComponentPlacement>
+          <Components isList="true" count="6">
+            <DataLINWO_LineaParte Ref="35" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,3.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataLINWO_LineaParte</Name>
+              <Page isRef="6" />
+              <Parent isRef="34" />
+              <Text>{LINWO.LineaParte}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataLINWO_LineaParte>
+            <DataLINWO_ParteID Ref="36" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>3.2,0,3.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataLINWO_ParteID</Name>
+              <Page isRef="6" />
+              <Parent isRef="34" />
+              <Text>{LINWO.ParteID}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataLINWO_ParteID>
+            <DataLINWO_ParteLineaID Ref="37" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.4,0,3.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataLINWO_ParteLineaID</Name>
+              <Page isRef="6" />
+              <Parent isRef="34" />
+              <Text>{LINWO.ParteLineaID}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataLINWO_ParteLineaID>
+            <DataLINWO_LineaParteUC Ref="38" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>9.6,0,3.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataLINWO_LineaParteUC</Name>
+              <Page isRef="6" />
+              <Parent isRef="34" />
+              <Text>{LINWO.LineaParteUC}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataLINWO_LineaParteUC>
+            <DataLINWO_ParteLineaCantidad Ref="39" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.8,0,3.2,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataLINWO_ParteLineaCantidad</Name>
+              <Page isRef="6" />
+              <Parent isRef="34" />
+              <Text>{LINWO.ParteLineaCantidad}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataLINWO_ParteLineaCantidad>
+            <DataLINWO_ParteLineaCosteUnidad Ref="40" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>16,0,3,0.8</ClientRectangle>
+              <ComponentPlacement>d.DataLINWO</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataLINWO_ParteLineaCosteUnidad</Name>
+              <Page isRef="6" />
+              <Parent isRef="34" />
+              <Text>{LINWO.ParteLineaCosteUnidad}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataLINWO_ParteLineaCosteUnidad>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName>CAB_LIN</DataRelationName>
+          <DataSourceName>LINWO</DataSourceName>
+          <Filters isList="true" count="0" />
+          <MasterComponent isRef="17" />
+          <Name>DataLINWO</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Sort isList="true" count="0" />
+        </DataLINWO>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>daab92cc1be66e500a8b5194df7862d0</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.69</PageHeight>
+      <PageWidth>21.01</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="41" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="42" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>woDetail</ReportAlias>
+  <ReportAuthor>rafa@myariadna.com</ReportAuthor>
+  <ReportChanged>6/12/2017 6:55:56 PM</ReportChanged>
+  <ReportCreated>6/12/2017 8:44:23 PM</ReportCreated>
+  <ReportDescription>Partes detallados</ReportDescription>
+  <ReportFile />
+  <ReportGuid>82b948c63c364285921379b66cf18ae5</ReportGuid>
+  <ReportImage isNull="true" />
+  <ReportName>woDetail</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2017.1.6.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.ReportControls;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    
+    public class SimpleList : Stimulsoft.Report.StiReport
+    {
+        
+		public SimpleList()
+        {
+            this.InitializeComponent();
+        }
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>
