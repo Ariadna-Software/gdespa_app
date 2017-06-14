@@ -1,27 +1,27 @@
-var moLineAPI = {
+var luLineAPI = {
     init: function () {
         // init tables
-        moLineAPI.initMoLineTable();
-        moLineAPI.initMoWorkerTable();
-        moLineAPI.initMoVehicleTable();
+        luLineAPI.initMoLineTable();
+        luLineAPI.initMoWorkerTable();
+        luLineAPI.initMoVehicleTable();
         // button handlers
-        $('#btnNewLine').click(moLineAPI.newMoLine());
-        $('#btnNewWorker').click(moLineAPI.newMoWorker());
-        $('#btnNewVehicle').click(moLineAPI.newMoVehicle());
+        $('#btnNewLine').click(luLineAPI.newMoLine());
+        $('#btnNewWorker').click(luLineAPI.newMoWorker());
+        $('#btnNewVehicle').click(luLineAPI.newMoVehicle());
         // avoid sending form 
-        $('#moDetailLine-form').submit(function () {
+        $('#luDetailLine-form').submit(function () {
             return false;
         });
-        $('#moDetailWorker-form').submit(function () {
+        $('#luDetailWorker-form').submit(function () {
             return false;
         });
-        $('#moDetailVehicle-form').submit(function () {
+        $('#luDetailVehicle-form').submit(function () {
             return false;
         });
     },
     // WO_LINE
     initMoLineTable: function () {
-        var options = aswInit.initTableOptions('dt_moline');
+        var options = aswInit.initTableOptions('dt_luline');
         options.data = data;
         options.columns = [{
             data: "meaName"
@@ -32,19 +32,19 @@ var moLineAPI = {
         }, {
             data: "moLineId",
             render: function (data, type, row) {
-                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='moLineAPI.deleteMoLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#moModal' onclick='moModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='luLineAPI.deleteMoLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#luModal' onclick='luModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                 return html;
             }
         }];
-        $('#dt_moline').dataTable(options);
+        $('#dt_luline').dataTable(options);
     },
     newMoLine: function () {
         var mf = function (e) {
             // show modal form
             e.preventDefault();
-            moModalAPI.newLine();
+            luModalAPI.newLine();
         };
         return mf;
     },
@@ -56,7 +56,7 @@ var moLineAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].meaName + " (Cantidad: " + data[0].quantity + ")";
-                var fn = sprintf('moLineAPI.deleteMoLine(%s);', id);
+                var fn = sprintf('luLineAPI.deleteMoLine(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -78,7 +78,7 @@ var moLineAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                moLineAPI.getMoLines(vm.id());
+                luLineAPI.getMoLines(vm.id());
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -95,7 +95,7 @@ var moLineAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                moLineAPI.loadMoLinesTable(data);
+                luLineAPI.loadMoLinesTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -106,11 +106,11 @@ var moLineAPI = {
         });
     },
     loadMoLinesTable: function (data) {
-        var dt = $('#dt_moline').dataTable();
+        var dt = $('#dt_luline').dataTable();
         dt.fnClearTable();
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-        $("#tb_moline").show();
+        $("#tb_luline").show();
 
     },
     // WO_WORKER
@@ -132,8 +132,8 @@ var moLineAPI = {
         }, {
             data: "id",
             render: function (data, type, row) {
-                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='moLineAPI.deleteMoWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#moModal2' onclick='moModal2API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='luLineAPI.deleteMoWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#luModal2' onclick='luModal2API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                 return html;
             }
@@ -154,8 +154,8 @@ var moLineAPI = {
         }, {
             data: "id",
             render: function (data, type, row) {
-                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='moLineAPI.deleteMoVehicleMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#moModal3' onclick='moModal3API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='luLineAPI.deleteMoVehicleMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#luModal3' onclick='luModal3API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                 return html;
             }
@@ -166,7 +166,7 @@ var moLineAPI = {
         var mf = function (e) {
             // show modal form
             e.preventDefault();
-            moModal2API.newLine();
+            luModal2API.newLine();
         };
         return mf;
     },
@@ -178,7 +178,7 @@ var moLineAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].worker.name + " (Dias: " + data[0].quantity + ")";
-                var fn = sprintf('moLineAPI.deleteMoWorker(%s);', id);
+                var fn = sprintf('luLineAPI.deleteMoWorker(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -200,7 +200,7 @@ var moLineAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                moLineAPI.getMoWorkers(vm.id());
+                luLineAPI.getMoWorkers(vm.id());
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -218,7 +218,7 @@ var moLineAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].worker.name + " (Horas: " + data[0].quantity + ")";
-                var fn = sprintf('moLineAPI.deleteMoVehicle(%s);', id);
+                var fn = sprintf('luLineAPI.deleteMoVehicle(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -240,7 +240,7 @@ var moLineAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                moLineAPI.getMoVehicles(vm.id());
+                luLineAPI.getMoVehicles(vm.id());
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -257,7 +257,7 @@ var moLineAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                moLineAPI.loadMoWorkersTable(data);
+                luLineAPI.loadMoWorkersTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -281,7 +281,7 @@ var moLineAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                moLineAPI.loadMoVehiclesTable(data);
+                luLineAPI.loadMoVehiclesTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -302,7 +302,7 @@ var moLineAPI = {
         var mf = function (e) {
             // show modal form
             e.preventDefault();
-            moModal3API.newLine();
+            luModal3API.newLine();
         };
         return mf;
     },
@@ -322,7 +322,7 @@ var moLineAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].worker.name + " (Horas: " + data[0].quantity + ")";
-                var fn = sprintf('moLineAPI.deleteMoVehicle(%s);', id);
+                var fn = sprintf('luLineAPI.deleteMoVehicle(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -344,7 +344,7 @@ var moLineAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                moLineAPI.getMoVehicles(vm.id());
+                luLineAPI.getMoVehicles(vm.id());
             },
             error: function (err) {
                 aswNotif.errAjax(err);

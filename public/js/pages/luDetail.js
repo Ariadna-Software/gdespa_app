@@ -1,6 +1,6 @@
 /*
- * moDetail.js
- * Function for the page moDetail.html
+ * luDetail.js
+ * Function for the page luDetail.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
@@ -10,7 +10,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 var data = null;
 var vm = null;
 
-var moDetailAPI = {
+var luDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
@@ -18,50 +18,50 @@ var moDetailAPI = {
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
-        $('#moGeneral').attr('class', 'active');
+        $('#luGeneral').attr('class', 'active');
         // knockout management
-        vm = new moDetailAPI.pageData();
+        vm = new luDetailAPI.pageData();
         ko.applyBindings(vm);
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
-        moDetailAPI.loadWorkers();
+        luDetailAPI.loadWorkers();
         if (user.worker) {
-            moDetailAPI.loadWorkers(user.worker.id);
+            luDetailAPI.loadWorkers(user.worker.id);
         }
         $('#cmbTeams').select2(select2_languages[lang]);
 
         $('#cmbDayTypes').select2(select2_languages[lang]);
-        moDetailAPI.loadDayTypes();
-        moDetailAPI.loadTeams();
+        luDetailAPI.loadDayTypes();
+        luDetailAPI.loadTeams();
 
         $('#cmbMeaTypes').select2(select2_languages[lang]);
-        moDetailAPI.loadMeaTypes(0);        
+        luDetailAPI.loadMeaTypes(1);        
 
         $('#cmbZones').select2(select2_languages[lang]);
-        moDetailAPI.loadZones();
+        luDetailAPI.loadZones();
         if (user.zoneId) {
-            moDetailAPI.loadZones(user.zoneId);
+            luDetailAPI.loadZones(user.zoneId);
             var data = { id: user.zoneId };
-            moDetailAPI.changeZone(data);
+            luDetailAPI.changeZone(data);
         }
         $("#cmbZones").select2().on('change', function (e) {
-            moDetailAPI.changeZone(e.added);
+            luDetailAPI.changeZone(e.added);
         });
         // buttons click events
-        $('#btnOk').click(moDetailAPI.btnOk());
+        $('#btnOk').click(luDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
             e.preventDefault();
-            window.open('moGeneral.html', '_self');
+            window.open('luGeneral.html', '_self');
         });
-        $('#btnPrint').click(moDetailAPI.btnPrint());
+        $('#btnPrint').click(luDetailAPI.btnPrint());
         // init lines table
-        moLineAPI.init();
+        luLineAPI.init();
         // init modal form
-        moModalAPI.init();
+        luModalAPI.init();
         // init modal 2 form
-        moModal2API.init();
-        // init modal 3 form
-        moModal3API.init();
+        luModal2API.init();
+        // init ludal 3 form
+        luModal3API.init();
 
         // check if an id have been passed
         var id = aswUtil.gup('id');
@@ -72,7 +72,7 @@ var moDetailAPI = {
             // new record
             $('#s2').hide();
         }
-        moDetailAPI.getMo(id);
+        luDetailAPI.getMo(id);
     },
     pageData: function () {
         // knockout objects
@@ -144,16 +144,16 @@ var moDetailAPI = {
         vm.initDate(moment.parseZone(data.initDate).format(i18n.t('util.date_format')));
         // vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
-        moDetailAPI.loadZones(data.zoneId);
-        moDetailAPI.loadZoneK(data.zoneId);
-        moDetailAPI.loadWorkers(data.worker.id);
-        moDetailAPI.loadTeams(data.teamId);
-        moDetailAPI.loadDayTypes(data.dayTypeId);
-        moDetailAPI.loadMeaTypes(data.meaTypeId);
+        luDetailAPI.loadZones(data.zoneId);
+        luDetailAPI.loadZoneK(data.zoneId);
+        luDetailAPI.loadWorkers(data.worker.id);
+        luDetailAPI.loadTeams(data.teamId);
+        luDetailAPI.loadDayTypes(data.dayTypeId);
+        luDetailAPI.loadMeaTypes(data.meaTypeId);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#moDetail-form').validate({
+        $('#luDetail-form').validate({
             rules: {
                 txtInitDate: { required: true },
                 //        txtEndDate: { required: true },
@@ -171,7 +171,7 @@ var moDetailAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#moDetail-form').valid();
+        return $('#luDetail-form').valid();
     },
     // obtain a  mo group from the API
     getMo: function (id) {
@@ -186,10 +186,10 @@ var moDetailAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                moDetailAPI.loadData(data[0]);
-                moLineAPI.getMoLines(data[0].id);
-                moLineAPI.getMoWorkers(data[0].id);
-                moLineAPI.getMoVehicles(data[0].id);
+                luDetailAPI.loadData(data[0]);
+                luLineAPI.getMoLines(data[0].id);
+                luLineAPI.getMoWorkers(data[0].id);
+                luLineAPI.getMoVehicles(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -204,7 +204,7 @@ var moDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!moDetailAPI.dataOk()) return;
+            if (!luDetailAPI.dataOk()) return;
             // dat for post or put
             var data = {
                 id: vm.id(),
@@ -239,10 +239,10 @@ var moDetailAPI = {
                         vm.id(data.id);
                         $('#wid-id-1').show();
                         aswNotif.newMainLines();
-                        moDetailAPI.getMo(data.id);
+                        luDetailAPI.getMo(data.id);
                         $('#s2').show();
                     } else {
-                        var url = sprintf('moGeneral.html?id=%s', data.id);
+                        var url = sprintf('luGeneral.html?id=%s', data.id);
                         window.open(url, '_self');
                     }
                 },
@@ -356,7 +356,7 @@ var moDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!moDetailAPI.dataOk()) return;
+            if (!luDetailAPI.dataOk()) return;
             var url = "", type = "";
 
             // fecth report data
@@ -394,7 +394,7 @@ var moDetailAPI = {
             success: function (data, status) {
                 var options = [{ teamId: null, name: "" }].concat(data);
                 vm.optionsTeams(options);
-                moDetailAPI.loadZoneK(id);
+                luDetailAPI.loadZoneK(id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);

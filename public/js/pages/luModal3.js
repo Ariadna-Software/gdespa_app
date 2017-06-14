@@ -1,21 +1,21 @@
-var moModal3API = {
+var luModal3API = {
     init: function () {
         // avoid sending form 
-        $('#moModal3-form').submit(function () {
+        $('#luModal3-form').submit(function () {
             return false;
         });
         // 
         $('#cmbWorkers3').select2(select2_languages[lang]);
-        moModal3API.loadWorkers3();
+        luModal3API.loadWorkers3();
         // button events
-        $('#btnSaveLine3').click(moModal3API.saveLine());
+        $('#btnSaveLine3').click(luModal3API.saveLine());
         // lost focus
-        $("#txtInitialKm").blur(moModal3API.changeKms);
-        $("#txtFinalKm").blur(moModal3API.changeKms);
+        $("#txtInitialKm").blur(luModal3API.changeKms);
+        $("#txtFinalKm").blur(luModal3API.changeKms);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#moModal3-form').validate({
+        $('#luModal3-form').validate({
             rules: {
                 cmbWorkers3: { required: true },
                 txtQuantity3: { required: true }
@@ -28,7 +28,7 @@ var moModal3API = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#moModal3-form').valid();
+        return $('#luModal3-form').valid();
     },
     newLine: function () {
         vm.moWorkerId(0);
@@ -39,7 +39,7 @@ var moModal3API = {
         vm.finalKm(0);
         vm.fuel(0);
         vm.totalKm(0);
-        moModal3API.loadWorkers3(null);
+        luModal3API.loadWorkers3(null);
     },
     editLine: function (id) {
         $.ajax({
@@ -56,7 +56,7 @@ var moModal3API = {
                     vm.initialKm(data[0].initialKm);
                     vm.finalKm(data[0].finalKm);
                     vm.fuel(data[0].fuel);
-                    moModal3API.loadWorkers3(data[0].worker.id);
+                    luModal3API.loadWorkers3(data[0].worker.id);
                 }
             },
             error: function (err) {
@@ -70,7 +70,7 @@ var moModal3API = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
-            if (!moModal3API.dataOk()) return;
+            if (!luModal3API.dataOk()) return;
             // mount line to save 
             var data = {
                 id: vm.moWorkerId(),
@@ -95,7 +95,7 @@ var moModal3API = {
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/mo_worker/%s/?api_key=%s', myconfig.apiUrl, vm.moWorkerId(), api_key);
+                url = sprintf('%s/mo_worker/%s/?api_key=%s', myconfig.apiUrl, vm.luWorkerId(), api_key);
             }
             $.ajax({
                 type: type,
@@ -103,9 +103,9 @@ var moModal3API = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#moModal3').modal('hide');
-                    // moLineAPI.getPwLines(vm.id());
-                    moDetailAPI.getMo(vm.id());
+                    $('#luModal3').modal('hide');
+                    // luLineAPI.getPwLines(vm.id());
+                    luDetailAPI.getMo(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

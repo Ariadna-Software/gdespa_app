@@ -1,19 +1,19 @@
-var moModalAPI = {
+var luModalAPI = {
     init: function () {
         // avoid sending form 
-        $('#moModal-form').submit(function () {
+        $('#luModal-form').submit(function () {
             return false;
         });
         // button events
-        $('#btnSaveLine').click(moModalAPI.saveLine());
+        $('#btnSaveLine').click(luModalAPI.saveLine());
         // lost focus
-        $("#txtPrice").blur(moModalAPI.changePriceQuantity);
-        $("#txtQuantity").blur(moModalAPI.changePriceQuantity);
-        $("#txtMoK").blur(moModalAPI.changePriceQuantity);
+        $("#txtPrice").blur(luModalAPI.changePriceQuantity);
+        $("#txtQuantity").blur(luModalAPI.changePriceQuantity);
+        $("#txtMoK").blur(luModalAPI.changePriceQuantity);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#moModal-form').validate({
+        $('#luModal-form').validate({
             rules: {
                 txtQuantity: {
                     required: true,
@@ -29,7 +29,7 @@ var moModalAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#moModal-form').valid();
+        return $('#luModal-form').valid();
     },
     newLine: function () {
         // new line id is zero.
@@ -41,9 +41,9 @@ var moModalAPI = {
         vm.moLineK(vm.moK());
         // combos
         $('#cmbMeas').select2(select2_languages[lang]);
-        moModalAPI.loadMeas(null);
+        luModalAPI.loadMeas(null);
         $("#cmbMeas").select2().on('change', function (e) {
-            moModalAPI.changeMea(e.added);
+            luModalAPI.changeMea(e.added);
         });
     },
     editLine: function (id) {
@@ -61,13 +61,13 @@ var moModalAPI = {
                     vm.moLineK(data[0].moK);
                     //
                     $('#cmbMeas').select2(select2_languages[lang]);
-                    moModalAPI.loadMeas(data[0].meaId);
+                    luModalAPI.loadMeas(data[0].meaId);
                     var data = {
                         id: data[0].meaId
                     };
-                    moModalAPI.changeMea(data);
+                    luModalAPI.changeMea(data);
                     $("#cmbMeas").select2().on('change', function (e) {
-                        moModalAPI.changeMea(e.added);
+                        luModalAPI.changeMea(e.added);
                     });
                 }
             },
@@ -82,7 +82,7 @@ var moModalAPI = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
-            if (!moModalAPI.dataOk()) return;
+            if (!luModalAPI.dataOk()) return;
             // mount line to save 
             var data = {
                 moLineId: vm.lineId(),
@@ -109,8 +109,8 @@ var moModalAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#moModal').modal('hide');
-                    moLineAPI.getMoLines(vm.id());
+                    $('#luModal').modal('hide');
+                    luLineAPI.getMoLines(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
@@ -125,7 +125,7 @@ var moModalAPI = {
     loadMeas: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/mea/contadores/?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/mea/luminarias/?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {

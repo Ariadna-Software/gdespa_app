@@ -1,22 +1,22 @@
-var moModal2API = {
+var luModal2API = {
     init: function () {
         // avoid sending form 
-        $('#moModal2-form').submit(function () {
+        $('#luModal2-form').submit(function () {
             return false;
         });
         // 
         $('#cmbWorkers2').select2(select2_languages[lang]);
-        moModal2API.loadWorkers2();
+        luModal2API.loadWorkers2();
         // button events
-        $('#btnSaveLine2').click(moModal2API.saveLine());
+        $('#btnSaveLine2').click(luModal2API.saveLine());
         // lost focus
-        $("#txtNormalHours").blur(moModal2API.changeHours);
-        $("#txtExtraHours").blur(moModal2API.changeHours);
-        $("#txtExtraHoursNight").blur(moModal2API.changeHours);
+        $("#txtNormalHours").blur(luModal2API.changeHours);
+        $("#txtExtraHours").blur(luModal2API.changeHours);
+        $("#txtExtraHoursNight").blur(luModal2API.changeHours);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#moModal2-form').validate({
+        $('#luModal2-form').validate({
             rules: {
                 cmbWorkers2: { required: true },
                 txtQuantity2: { required: true }
@@ -29,7 +29,7 @@ var moModal2API = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#moModal2-form').valid();
+        return $('#luModal2-form').valid();
     },
     newLine: function () {
         vm.moWorkerId(0);
@@ -38,7 +38,7 @@ var moModal2API = {
         vm.extraHours(0);
         vm.extraHoursNight(0);
         vm.expenses(0);
-        moModal2API.loadWorkers2(null);
+        luModal2API.loadWorkers2(null);
     },
     editLine: function (id) {
         $.ajax({
@@ -54,7 +54,7 @@ var moModal2API = {
                     vm.extraHours(data[0].extraHours);
                     vm.extraHoursNight(data[0].extraHoursNight);
                     vm.expenses(data[0].expenses);
-                    moModal2API.loadWorkers2(data[0].worker.id);
+                    luModal2API.loadWorkers2(data[0].worker.id);
                 }
             },
             error: function (err) {
@@ -68,7 +68,7 @@ var moModal2API = {
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
-            if (!moModal2API.dataOk()) return;
+            if (!luModal2API.dataOk()) return;
             // mount line to save 
             var data = {
                 id: vm.moWorkerId(),
@@ -101,9 +101,9 @@ var moModal2API = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    $('#moModal2').modal('hide');
-                    // moLineAPI.getPwLines(vm.id());
-                    moDetailAPI.getMo(vm.id());
+                    $('#luModal2').modal('hide');
+                    // luLineAPI.getPwLines(vm.id());
+                    luDetailAPI.getMo(vm.id());
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

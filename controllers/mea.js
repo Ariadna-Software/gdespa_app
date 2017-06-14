@@ -32,7 +32,7 @@ router.get('/', common.midChkApiKey, function (req, res) {
 
 router.get('/contadores/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
-    meaDb.getContadores(id, function (err, meas) {
+    meaDb.getContadores(function (err, meas) {
         if (err) return res.status(500).send(err.message);
         if (meas.length == 0) return res.status(404).send('Measurer not found');
         res.json(meas);
@@ -41,7 +41,7 @@ router.get('/contadores/', common.midChkApiKey, function (req, res) {
 
 router.get('/luminarias/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
-    meaDb.getLuminarias(id, function (err, meas) {
+    meaDb.getLuminarias(function (err, meas) {
         if (err) return res.status(500).send(err.message);
         if (meas.length == 0) return res.status(404).send('Measurer not found');
         res.json(meas);
