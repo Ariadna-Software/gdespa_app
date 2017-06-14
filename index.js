@@ -96,6 +96,7 @@ app.use('/api/mo', require('./controllers/mo'));
 app.use('/api/mo_line', require('./controllers/mo_line'));
 app.use('/api/mo_worker', require('./controllers/mo_worker'));
 app.use('/api/day_type', require('./controllers/day_type'));
+app.use('/api/mea_type', require('./controllers/mea_type'));
 
 // general API to export
 

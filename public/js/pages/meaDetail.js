@@ -20,6 +20,10 @@ var meaDetailAPI = {
         // knockout management
         vm = new meaDetailAPI.pageData();
         ko.applyBindings(vm);
+
+        $('#cmbMeaTypes').select2(select2_languages[lang]);
+        meaDetailAPI.loadMeaTypes();         
+
         // buttons click events
         $('#btnOk').click(meaDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
@@ -38,12 +42,17 @@ var meaDetailAPI = {
         self.name = ko.observable();
         self.reference = ko.observable();
         self.cost = ko.observable();
+        // mea type combo
+        self.optionsMeaTypes = ko.observableArray([]);
+        self.selectedMeaTypes = ko.observableArray([]);
+        self.sMeaType = ko.observable();         
     },
     loadData: function (data) {
         vm.id(data.id);
         vm.name(data.name);
         vm.reference(data.reference);
         vm.cost(data.cost);
+        meaDetailAPI.loadMeaTypes(data.meaTypeId);
         // show big name
         var html = sprintf('<strong>[%s]</strong>', vm.name());
         $('#meaName').html(html);
@@ -54,7 +63,8 @@ var meaDetailAPI = {
             rules: {
                 txtName: { required: true },
                 txtReference: { required: true },
-                txtCost: {number: true}
+                txtCost: {number: true},
+                cmbMeaTypes: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -100,7 +110,8 @@ var meaDetailAPI = {
                 id: vm.id(),
                 reference: vm.reference(),
                 name: vm.name(),
-                cost: vm.cost()
+                cost: vm.cost(),
+                meaTypeId: vm.sMeaType()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
@@ -130,7 +141,26 @@ var meaDetailAPI = {
             });
         }
         return mf;
-    }
+    },
+    loadMeaTypes: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/mea_type?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: null, name: "" }].concat(data);
+                vm.optionsMeaTypes(options);
+                $("#cmbMeaTypes").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    }    
 };
 
 meaDetailAPI.init();

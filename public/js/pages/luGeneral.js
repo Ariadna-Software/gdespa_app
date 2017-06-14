@@ -122,8 +122,8 @@ var moGeneralAPI = {
     },
     // obtain user groups from the API
     getMos: function (name, chk) {
-        var url = sprintf("%s/mo/contadores/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
-        if (chk) url = sprintf("%s/mo/contadores/all/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+        var url = sprintf("%s/mo?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+        if (chk) url = sprintf("%s/mo/all/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
         $.ajax({
             type: "GET",
             url: url,

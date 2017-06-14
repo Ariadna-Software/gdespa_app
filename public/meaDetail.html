@@ -213,6 +213,11 @@
 							<a href="moGeneral.html">
 								<i class="fa fa-lg fa-fw fa-compass"></i> <span data-i18n="menu.pwman.mo">Blank</span>
 							</a>
+						</li>		
+						<li id="luGeneral" class="">
+							<a href="luGeneral.html">
+								<i class="fa fa-lg fa-fw fa-lightbulb-o"></i> <span data-i18n="menu.pwman.lu">Blank</span>
+							</a>
 						</li>						
 						<li id="closureGeneral" class="">
 							<a href="closureGeneral.html">
@@ -306,13 +311,19 @@
 										<form id="meaDetail-form" class="smart-form">
 											<fieldset>
 												<div class="row">
+												<section class="col col-md-2">
+													<label class="label" data-18n="meaDetail.type">Tipo:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbMeaTypes" name="cmbMeaTypes" data-bind="options: optionsMeaTypes, optionsText: 'name', optionsValue: 'id', value: sMeaType, valueAllowUnset: true, selectedOptions: selectedMeaTypes, selected2:{}"></select><i></i>
+													</label>													
+												</section>													
 													<section class="col col-md-2">
 														<label class="label" data-i18n="meaDetail.reference">Referencia:</label>
 														<label class="input">
 															<input id="txtReference" name="txtReference" data-bind="value: reference">
 														</label>
 													</section>
-													<section class="col col-md-8">
+													<section class="col col-md-6">
 														<label class="label" data-i18n="meaDetail.name">Nombre:</label>
 														<label class="input">
 															<input id="txtName" name="txtName" data-bind="value: name">

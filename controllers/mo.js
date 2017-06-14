@@ -52,6 +52,93 @@ router.get('/all/', common.midChkApiKey, function (req, res) {
     }
 });
 
+router.get('/contadores', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var name = req.query.name;
+    if (name) {
+        moDb.getByNameContadores(name, function (err, mos) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(mos);
+            }
+        }, test);
+    } else {
+        moDb.getContadores(function (err, mos) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(mos);
+            }
+        }, test);
+    }
+});
+
+router.get('/contadores/all/', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var name = req.query.name;
+    if (name) {
+        moDb.getByNameAllContadores(name, function (err, mos) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(mos);
+            }
+        }, test);
+    } else {
+        moDb.getAllContadores(function (err, mos) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(mos);
+            }
+        }, test);
+    }
+});
+
+router.get('/luminarias', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var name = req.query.name;
+    if (name) {
+        moDb.getByNameLuminarias(name, function (err, mos) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(mos);
+            }
+        }, test);
+    } else {
+        moDb.getLuminarias(function (err, mos) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(mos);
+            }
+        }, test);
+    }
+});
+
+router.get('/luminarias/all/', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var name = req.query.name;
+    if (name) {
+        moDb.getByNameAllLuminarias(name, function (err, mos) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(mos);
+            }
+        }, test);
+    } else {
+        moDb.getAllLuminarias(function (err, mos) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(mos);
+            }
+        }, test);
+    }
+});
 router.post('/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var mo = req.body;

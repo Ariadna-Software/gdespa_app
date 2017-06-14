@@ -66,13 +66,14 @@
             "cUnit": "Unidades constructivas",
             "zone": "Zonas",
             "team": "Brigadas",
-            "mea": "Medidores"
+            "mea": "Otras UC"
         },
         "pwman": {
             "main": "Obras y servicios",
             "pw": "Propuestas",
             "wo": "Partes de trabajo",
             "mo": "Partes de contadores",
+            "lu": "Partes de luminarias",
             "closure": "Cierres"
         },
         "store": {
@@ -554,18 +555,19 @@
         "modal_title": "Linea de la brigada"
     },
     "meaGeneral": {
-        "title": "Mantenimiento medidores",
-        "new": "Nuevo medidor",
-        "search": "Buscar medidores"
+        "title": "Mantenimiento otras UC",
+        "new": "Nuevo otra UC",
+        "search": "Buscar otra UC"
     },
     "meaDetail": {
         "tabs": {
             "general": "General"
         },
-        "title": "Detalle medidor",
+        "title": "Detalle otra UC",
         "name": "Nombre",
         "reference": "Referencia",
-        "cost": "Coste"
+        "cost": "Coste",
+        "type": "Tipo"
     },
     "moGeneral": {
         "title": "Mantenimiento partes de contadores",
@@ -627,6 +629,7 @@
         "mea": "Medidor",
         "price": "Precio",
         "dayType": "Tipo jornada",
+        "meaType": "Tipo parte",
         "moK": "K"
     }
 }
