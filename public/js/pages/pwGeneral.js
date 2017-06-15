@@ -143,7 +143,7 @@ var pwGeneralAPI = {
                 } else {
                     if (user.seeZone) {
                         data.forEach(function (d) {
-                            if (d.zone.id == user.zoneId) {
+                            if (d.zone.id == user.zoneId || d.zoneId2 == user.zoneId) {
                                 data2.push(d);
                             }
                         })

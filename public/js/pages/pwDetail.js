@@ -40,6 +40,8 @@ var pwDetailAPI = {
         pwDetailAPI.loadStatus(0);
         $('#cmbZone').select2(select2_languages[lang]);
         pwDetailAPI.loadZones(0);
+        $('#cmbZone2').select2(select2_languages[lang]);
+        pwDetailAPI.loadZones2(0);
         $("#cmbZone").select2().on('change', function (e) {
             pwDetailAPI.loadZoneK(e.added);
         });
@@ -118,6 +120,10 @@ var pwDetailAPI = {
         self.optionsZone = ko.observableArray([]);
         self.selectedZone = ko.observableArray([]);
         self.sZone = ko.observable();
+        // zone combo2
+        self.optionsZone2 = ko.observableArray([]);
+        self.selectedZone2 = ko.observableArray([]);
+        self.sZone2 = ko.observable();
 
         // -- Modal related
         self.pwLineId = ko.observable();
@@ -197,8 +203,10 @@ var pwDetailAPI = {
         vm.invRef(data.invRef);
         vm.payRef(data.payRef);
         vm.sZone(data.zone.id);
+        vm.sZone2(data.zoneId2);
         vm.subZone(data.subZone);
         pwDetailAPI.loadZones(vm.sZone());
+        pwDetailAPI.loadZones2(vm.sZone2());
         $('#progress').text((data.percentage * 100) + " %");
         $('#cost').text(data.cost * 1 + " USD");
         // if we have tabs we should change wiget title
@@ -230,6 +238,9 @@ var pwDetailAPI = {
                     required: true
                 },
                 cmbWorkers: {
+                    required: true
+                },
+                cmbZone: {
                     required: true
                 }
             },
@@ -314,7 +325,8 @@ var pwDetailAPI = {
                 zone: {
                     id: vm.sZone()
                 },
-                subZone: vm.subZone()
+                subZone: vm.subZone(),
+                zoneId2: vm.sZone2()
             };
             if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()) {
                 data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
@@ -440,6 +452,25 @@ var pwDetailAPI = {
             }
         });
     },
+    loadZones2: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/zone?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = data;
+                vm.optionsZone2(options);
+                $("#cmbZone2").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },    
     newPwStatus: function () {
         var mf = function (e) {
             // show modal form

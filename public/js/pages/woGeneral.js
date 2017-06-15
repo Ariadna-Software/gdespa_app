@@ -141,7 +141,7 @@ var woGeneralAPI = {
                 } else {
                     if (user.seeZone) {
                         data.forEach(function(d){
-                            if (d.zoneId == user.zoneId) {
+                            if (d.zoneId == user.zoneId || d.zoneId2 == user.zoneId) {
                                 data2.push(d);
                             }
                         })

@@ -367,7 +367,7 @@
 																</label>
 															</section>
 															<section class="col col-md-2">
-																<label class="label" data-i18n="pwDetail.endDate">Fecha final:</label>
+																<label class="label" data-i18n="pwDetail.endDate">Fec. Final:</label>
 																<label class="input">
 																	<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy"/>
 																</label>
@@ -392,7 +392,16 @@
 															</section>
 														</div>
 														<div class="row">
-															<section class="col col-md-12">
+															<section class="col col-md-4">
+																<label class="label" data-18n="pwDetail.zone2">ZONA (2):</label>
+																<label style="width:100%;">
+																	<select style="width:100%" id="cmbZone2" name="cmbZone2" 
+																		data-bind="options: optionsZone2, optionsText: 'name', optionsValue: 'id', value: sZone2, valueAllowUnset: true, selectedOptions: selectedZone2, selected2:{}">
+																	</select>
+																	<i></i>
+																</label>
+															</section>															
+															<section class="col col-md-8">
 																<label class="label" data-i18n="pwDetail.subZone">SBZ:</label>
 																<label class="input">
 																	<input id="txtSubZone" name="txtSubZone" data-bind="value: subZone">

@@ -290,7 +290,7 @@ var woDetailAPI = {
                 var data2 = [];
                 if (!user.seeNotOwner) {
                     data.forEach(function (d) {
-                        if (user.workOnlyZone && (d.zone.id == user.zoneId)) {
+                        if (user.workOnlyZone && (d.zone.id == user.zoneId || d.zoneId2 == user.zoneId)) {
                             data2.push(d);
                         }
                     });
