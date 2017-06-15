@@ -422,8 +422,8 @@
     "closureDetail": {
         "tabs": {
             "general": "General",
-            "work_order": "Partes de trabajo",
-            "mo": "Partes de contadores"
+            "work_order": "Partes de obra",
+            "mo": "Partes de otras UC"
         },
         "close_message": "Al realizar un cierre todos los partes relacionados se dan por cerrados, sin permitir modificaciones. ¿Está seguro? (esta acción no puede deshacerse)",
         "title": "Detalle cierre",
@@ -444,7 +444,8 @@
         "ok": "Guardar",
         "newLine": "Nueva linea",
         "associated_lines": "Lineas del cierre",
-        "modal_title": "Linea del cierre"
+        "modal_title": "Linea del cierre",
+        "type": "Tipo"
     },
     "zoneGeneral": {
         "title": "Mantenimiento zonas",

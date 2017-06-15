@@ -40,6 +40,9 @@ var pwDetailAPI = {
         pwDetailAPI.loadStatus(0);
         $('#cmbZone').select2(select2_languages[lang]);
         pwDetailAPI.loadZones(0);
+        $("#cmbZone").select2().on('change', function (e) {
+            pwDetailAPI.loadZoneK(e.added);
+        });
         // buttons click events
         $('#btnOk').click(pwDetailAPI.btnOk());
         $('#btnPrint').click(pwDetailAPI.btnPrint());
@@ -516,7 +519,7 @@ var pwDetailAPI = {
                 data: JSON.stringify(data),
                 success: function (data, status) {
                     // process report data
-                    window.open('infPwOne.html?pwId='+ vm.id(), '_new');
+                    window.open('infPwOne.html?pwId=' + vm.id(), '_new');
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
@@ -532,7 +535,7 @@ var pwDetailAPI = {
         var mf = function (e) {
             // avoid default accion
             e.preventDefault();
-            
+
             // validate form
             if (!pwDetailAPI.dataOk()) return;
             var url = "",
@@ -591,5 +594,24 @@ var pwDetailAPI = {
                 }
             }
         });
+    },
+    loadZoneK: function (data) {
+        if (!data) return;
+        var id = data.id;
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/zone/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                vm.defaultK(data[0].woK);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        })
     }
 };

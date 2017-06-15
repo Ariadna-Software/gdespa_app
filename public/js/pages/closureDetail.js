@@ -317,6 +317,10 @@ var closureDetailAPI = {
                 return html;
             }
         }, {
+            data: "meaType"
+        }, {
+            data: "teamName"
+        }, {
             data: "worker.name"
         }, {
             data: "comments"
@@ -363,6 +367,9 @@ var closureDetailAPI = {
     editWo: function (id) {
         window.open(sprintf('woDetail.html?id=%s', id), '_blank');
     },
+    editMo: function (id) {
+        window.open(sprintf('moDetail.html?id=%s', id), '_blank');
+    },    
     btnPrint: function () {
         var mf = function (e) {
             // avoid default accion
