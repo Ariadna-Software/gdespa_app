@@ -36,6 +36,15 @@ var woDetailAPI = {
 
         $('#cmbPws').select2(select2_languages[lang]);
         woDetailAPI.loadPws();
+        $("#cmbPws").select2().on('change', function (e) {
+            woDetailAPI.changePw(e.added);
+        });             
+
+        $('#cmbZones').select2(select2_languages[lang]);
+        woDetailAPI.loadZones();   
+        $("#cmbZones").select2().on('change', function (e) {
+            woDetailAPI.changeZone(e.added);
+        });             
         // buttons click events
         $('#btnOk').click(woDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
@@ -85,7 +94,11 @@ var woDetailAPI = {
         // day type combo
         self.optionsDayTypes = ko.observableArray([]);
         self.selectedDayTypes = ko.observableArray([]);
-        self.sDayType = ko.observable();        
+        self.sDayType = ko.observable();      
+        // zone combo
+        self.optionsZones = ko.observableArray([]);
+        self.selectedZones = ko.observableArray([]);
+        self.sZone = ko.observable();          
         // -- Modal related (1)
         self.lineId = ko.observable();
         self.estimate = ko.observable();
@@ -131,6 +144,7 @@ var woDetailAPI = {
         woDetailAPI.loadWorkers(data.worker.id);
         woDetailAPI.loadTeams(data.teamId);
         woDetailAPI.loadDayTypes(data.dayTypeId);
+        woDetailAPI.loadZones(data.zoneId);        
         //
         vm.thirdParty(data.thirdParty);
         vm.thirdPartyCompany(data.thirdPartyCompany);
@@ -143,6 +157,7 @@ var woDetailAPI = {
                 //        txtEndDate: { required: true },
                 cmbWorkers: { required: true },
                 cmbDayTypes: { required: true },
+                cmbZones: { required: true },
                 cmbPws: { required: true },
             },
             // Messages for form validation
@@ -358,7 +373,72 @@ var woDetailAPI = {
             });
         }
         return mf;
-    }
+    },
+    loadZones: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/zone?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ teamId: null, name: "" }].concat(data);
+                vm.optionsZones(options);
+                $("#cmbZones").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },    
+    changeZone: function (data) {
+        if (!data) return;
+        // cargar las brigadas de la zona
+        var id = data.id;
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/team/zone/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ teamId: null, name: "" }].concat(data);
+                vm.optionsTeams(options);
+                moDetailAPI.loadZoneK(id);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        })
+    },    
+    changePw: function (data) {
+        if (!data) return;
+        // cargar las brigadas de la zona
+        var id = data.id;
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/pw/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                woDetailAPI.loadZones(data[0].zoneId);
+                var data2 = {
+                    id: data[0].zoneId
+                }
+                woDetailAPI.changeZone(data2);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        })
+    }    
 };
 
 

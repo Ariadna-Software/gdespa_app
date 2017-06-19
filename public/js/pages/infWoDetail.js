@@ -200,7 +200,7 @@ var rptWoDetail = function (sql) {
     if (vm.detalle()) {
         // informe detallado
         if (vm.sZona()) {
-            sql += " AND pw.zoneId = " + vm.sZona();
+            sql += " AND wo.zoneId = " + vm.sZona();
         }
         if (vm.sObra()) {
             sql += " AND pw.pwId = " + vm.sObra();
@@ -209,7 +209,7 @@ var rptWoDetail = function (sql) {
         // informe resumido GROUP BY 1,2,3,4,5
         var sql2 = "";
         if (vm.sZona()) {
-            sql2 += " AND pw.zoneId = " + vm.sZona();
+            sql2 += " AND wo.zoneId = " + vm.sZona();
         }
         if (vm.sObra()) {
             sql2 += " AND pw.pwId = " + vm.sObra();
