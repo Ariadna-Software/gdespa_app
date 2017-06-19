@@ -264,7 +264,7 @@ WHERE i.ownItem = 1 AND wol.quantity &lt;&gt; 0</SqlCommand>
         <PageFooterBand2 Ref="15" type="PageFooterBand" isKey="true">
           <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,40.82,27.69,1</ClientRectangle>
+          <ClientRectangle>0,18.01,27.69,1</ClientRectangle>
           <ComponentPlacement>pf.Page1</ComponentPlacement>
           <Components isList="true" count="2">
             <Text43 Ref="16" type="Text" isKey="true">
@@ -1651,11 +1651,11 @@ WHERE i.ownItem = 1 AND wol.quantity &lt;&gt; 0</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>woCosteObra</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>6/16/2017 1:37:25 PM</ReportChanged>
+  <ReportChanged>6/19/2017 4:22:43 PM</ReportChanged>
   <ReportCreated>12/31/1969 11:00:00 PM</ReportCreated>
   <ReportDescription>Partes detallados por obra</ReportDescription>
   <ReportFile />
-  <ReportGuid>1f67c97bc2c64bfea3f78ab225696ab8</ReportGuid>
+  <ReportGuid>ae138db8cde7401cade78b9c7ade31e2</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>woCosteObra</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
