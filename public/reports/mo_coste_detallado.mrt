@@ -550,9 +550,11 @@ WHERE w.resTypeId = 1</SqlCommand>
               <Name>HeaderCabTrabajador_GastosHorasTrabajador</Name>
               <Page isRef="8" />
               <Parent isRef="29" />
-              <Text>Gasto Horas</Text>
+              <Text>Gasto Horas *</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <ToolTip>Los costes de horas están calculados multiplicando el total de horas por el coste hora que figura en la ficha del trabajador.
+Sin tener en cuenta horas extraordinarias ni especiales.</ToolTip>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderCabTrabajador_GastosHorasTrabajador>
@@ -1252,11 +1254,11 @@ WHERE w.resTypeId = 1</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>Coste Otras UC</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>6/20/2017 4:53:57 PM</ReportChanged>
+  <ReportChanged>6/20/2017 5:43:34 PM</ReportChanged>
   <ReportCreated>12/31/1969 11:00:00 PM</ReportCreated>
   <ReportDescription>Partes detallados por obra</ReportDescription>
   <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\mo_coste_detallado.mrt</ReportFile>
-  <ReportGuid>2e1dd84f6f7043e38609f924ad193fcc</ReportGuid>
+  <ReportGuid>1bb8e3d6139e458d8834bcf0e1ae913b</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>woCosteObra</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
