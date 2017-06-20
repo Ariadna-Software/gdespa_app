@@ -1,0 +1,1289 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <CalculationMode>Interpretation</CalculationMode>
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <GDESPA Ref="2" type="Stimulsoft.Report.Dictionary.StiMySqlDatabase" isKey="true">
+        <Alias>GDESPA</Alias>
+        <ConnectionStringEncrypted>43q5Cc0yWm3iT5zMZHTgXot43YlGTNO84gih3GFM4DvGUtvrYV2jpO1Y4YBqVGRnxFrVK8Zd+/XtXISEwwjhP9jE2ctGS0uZ+Xc=</ConnectionStringEncrypted>
+        <Name>GDESPA</Name>
+      </GDESPA>
+    </Databases>
+    <DataSources isList="true" count="3">
+      <CabCoste Ref="3" type="Stimulsoft.Report.Dictionary.StiMySqlSource" isKey="true">
+        <Alias>CabCoste</Alias>
+        <Columns isList="true" count="7">
+          <value>ID,System.Int32</value>
+          <value>Fecha,System.DateTime</value>
+          <value>Zona,System.String</value>
+          <value>Tipo,System.String</value>
+          <value>Responsable,System.String</value>
+          <value>Brigada,System.String</value>
+          <value>Fecha2,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>CabCoste</Name>
+        <NameInSource>GDESPA</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT
+mo.moId AS ID, DATE_FORMAT(mo.initDate, '%Y-%m-%d') AS Fecha,
+DATE_FORMAT(mo.initDate, '%d/%m/%Y') AS Fecha2,
+z.name AS Zona, mt.name AS Tipo, w.name AS Responsable, t.name AS Brigada
+FROM mo
+LEFT JOIN team AS t ON t.teamId = mo.teamId
+LEFT JOIN mea_type AS mt ON mt.meaTypeId = mo.meaTypeId
+LEFT JOIN zone AS z ON z.zoneId = mo.zoneId
+LEFT JOIN worker AS w ON w.workerId = mo.workerId
+WHERE mo.initDate &gt;= '{dFecha}' AND mo.initDate &lt;= '{hFecha}'</SqlCommand>
+      </CabCoste>
+      <CabTrabajador Ref="4" type="Stimulsoft.Report.Dictionary.StiMySqlSource" isKey="true">
+        <Alias>CabTrabajador</Alias>
+        <Columns isList="true" count="14">
+          <value>Zona,System.String</value>
+          <value>Tipo,System.String</value>
+          <value>ID,System.Int32</value>
+          <value>Fecha,System.String</value>
+          <value>Responsable,System.String</value>
+          <value>Trabajador,System.String</value>
+          <value>HorasTotales,System.Decimal</value>
+          <value>Coste,System.Decimal</value>
+          <value>Codigo,System.Int32</value>
+          <value>HorasNormales,System.Decimal</value>
+          <value>HorasExtraDiurnas,System.Decimal</value>
+          <value>HorasExtraNocturnas,System.Decimal</value>
+          <value>Gastos,System.Decimal</value>
+          <value>GastosHorasTrabajador,System.Decimal</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>CabTrabajador</Name>
+        <NameInSource>GDESPA</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT
+z.name AS Zona, mt.name AS Tipo, mo.moId AS ID,
+DATE_FORMAT(mo.initDate, '%Y-%m-%d') AS Fecha, w1.name AS Responsable,
+w.name AS Trabajador, COALESCE(mok.quantity, 0) AS HorasTotales, w.cost AS Coste, w.code AS Codigo,
+COALESCE(mok.normalHours, 0) AS HorasNormales, 
+COALESCE(mok.extraHours, 0) AS HorasExtraDiurnas, 
+COALESCE(mok.extraHoursNight,0) AS HorasExtraNocturnas,
+COALESCE(mok.expenses, 0) AS Gastos,
+COALESCE(mok.quantity, 0) * w.cost AS GastosHorasTrabajador
+FROM mo_worker AS mok
+LEFT JOIN mo ON mo.moId = mok.moId
+LEFT JOIN mea_type AS mt ON mt.meaTypeId = mo.meaTypeId
+LEFT JOIN zone AS z ON z.zoneId = mo.zoneId
+LEFT JOIN worker AS w1 ON w1.workerId = mo.workerId
+LEFT JOIN worker AS w ON w.workerId = mok.workerId
+WHERE w.resTypeId = 0</SqlCommand>
+      </CabTrabajador>
+      <CabVehiculo Ref="5" type="Stimulsoft.Report.Dictionary.StiMySqlSource" isKey="true">
+        <Alias>CabVehiculo</Alias>
+        <Columns isList="true" count="12">
+          <value>Zona,System.String</value>
+          <value>Tipo,System.String</value>
+          <value>ID,System.Int32</value>
+          <value>Fecha,System.String</value>
+          <value>Responsable,System.String</value>
+          <value>Vehiculo,System.String</value>
+          <value>HorasTotales,System.Decimal</value>
+          <value>Coste,System.Decimal</value>
+          <value>Matricula,System.String</value>
+          <value>Kilometros,System.Decimal</value>
+          <value>Combustible,System.Decimal</value>
+          <value>GastoHorasVehiculo,System.Decimal</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>CabVehiculo</Name>
+        <NameInSource>GDESPA</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT
+z.name AS Zona, mt.name AS Tipo, mo.moId AS ID,
+DATE_FORMAT(mo.initDate, '%Y-%m-%d') AS Fecha, w1.name AS Responsable,
+w.name AS Vehiculo, COALESCE(mok.quantity, 0) AS HorasTotales, w.cost AS Coste, w.license AS Matricula,
+COALESCE(totalKm, 0) AS Kilometros, 
+COALESCE(fuel, 0) AS Combustible,
+COALESCE(mok.quantity, 0) * w.cost AS GastoHorasVehiculo
+FROM mo_worker AS mok
+LEFT JOIN mo ON mo.moId = mok.moId
+LEFT JOIN mea_type AS mt ON mt.meaTypeId = mo.meaTypeId
+LEFT JOIN zone AS z ON z.zoneId = mo.zoneId
+LEFT JOIN worker AS w1 ON w1.workerId = mo.workerId
+LEFT JOIN worker AS w ON w.workerId = mok.workerId
+WHERE w.resTypeId = 1</SqlCommand>
+      </CabVehiculo>
+    </DataSources>
+    <Relations isList="true" count="2">
+      <Rel1 Ref="6" type="DataRelation" isKey="true">
+        <Alias>Rel1</Alias>
+        <ChildColumns isList="true" count="1">
+          <value>ID</value>
+        </ChildColumns>
+        <ChildSource isRef="4" />
+        <Dictionary isRef="1" />
+        <Name>Rel1</Name>
+        <NameInSource>R1</NameInSource>
+        <ParentColumns isList="true" count="1">
+          <value>ID</value>
+        </ParentColumns>
+        <ParentSource isRef="3" />
+      </Rel1>
+      <Rel2 Ref="7" type="DataRelation" isKey="true">
+        <Alias>Rel2</Alias>
+        <ChildColumns isList="true" count="1">
+          <value>ID</value>
+        </ChildColumns>
+        <ChildSource isRef="5" />
+        <Dictionary isRef="1" />
+        <Name>Rel2</Name>
+        <NameInSource>R2</NameInSource>
+        <ParentColumns isList="true" count="1">
+          <value>ID</value>
+        </ParentColumns>
+        <ParentSource isRef="3" />
+      </Rel2>
+    </Relations>
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="4">
+      <value>,dFecha,dFecha,Fecha_x0020_desde,System.String,_x0032_017-01-01,False,False,False,False</value>
+      <value>,hFecha,hFecha,Hasta_x0020_fecha,System.String,_x0032_017-12-31,False,False,False,False</value>
+      <value>,dFechaR,dFechaR,,System.String,_x0030_1_x002F_05_x002F_2017,False,False,False,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_DateTimeType_x003E_DateAndTime_x003C__x002F_DateTimeType_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+      <value>,hFechaR,hFechaR,,System.String,_x0033_1_x002F_05_x002F_2017,False,False,False,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_DateTimeType_x003E_DateAndTime_x003C__x002F_DateTimeType_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="8" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="11">
+        <PageHeaderBand1 Ref="9" type="PageHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,27.69,2.2</ClientRectangle>
+          <ComponentPlacement>ph.Page1</ComponentPlacement>
+          <Components isList="true" count="3">
+            <Image1 Ref="10" type="Image" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.4,0.2,2,1.6</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Guid>c38428b04a8f6fb75fcb5e4c3265881e</Guid>
+              <Image>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</Image>
+              <Margins>0,0,0,0</Margins>
+              <Name>Image1</Name>
+              <Page isRef="8" />
+              <Parent isRef="9" />
+              <Stretch>True</Stretch>
+            </Image1>
+            <Text8 Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.8,0.2,23.8,0.8</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,16</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="8" />
+              <Parent isRef="9" />
+              <Text>Informe detallado de coste otras UC entre fechas</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text8>
+            <Text9 Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.8,1,23.8,1</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <Guid>00e6a6ed6364e0e87795fcdc548c767c</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="8" />
+              <Parent isRef="9" />
+              <Text>Desde {dFechaR} hasta {hFechaR}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text9>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageHeaderBand1</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </PageHeaderBand1>
+        <PageFooterBand2 Ref="13" type="PageFooterBand" isKey="true">
+          <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,25.61,27.69,1</ClientRectangle>
+          <ComponentPlacement>pf.Page1</ComponentPlacement>
+          <Components isList="true" count="2">
+            <Text43 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>21.6,0.1,5.8,0.6</ClientRectangle>
+              <ComponentPlacement>pf.PageFooterBand2</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text43</Name>
+              <Page isRef="8" />
+              <Parent isRef="13" />
+              <Text>Página {PageNumber} de {TotalPageCount}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text43>
+            <Text44 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.2,0.1,6,0.6</ClientRectangle>
+              <ComponentPlacement>pf.PageFooterBand2</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text44</Name>
+              <Page isRef="8" />
+              <Parent isRef="13" />
+              <Text>{Time}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="16" type="CustomFormat" isKey="true">
+                <StringFormat>dd/MM/yyyy HH:mm:ss</StringFormat>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text44>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageFooterBand2</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </PageFooterBand2>
+        <GroupHeaderBand2 Ref="17" type="GroupHeaderBand" isKey="true">
+          <Bookmark>{CabCoste.Zona}</Bookmark>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,3.4,27.69,0.8</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text16 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.4,0,27.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12</Font>
+              <Guid>0f9f80f3b4f345d8b8f5a5af921767ff</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="8" />
+              <Parent isRef="17" />
+              <Text>ZONA: {CabCoste.Zona}</Text>
+              <TextBrush>[79:97:40]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+          </Components>
+          <Condition>{CabCoste.Zona}</Condition>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeaderBand2</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </GroupHeaderBand2>
+        <GroupHeaderBand1 Ref="19" type="GroupHeaderBand" isKey="true">
+          <Bookmark> {CabCoste.Brigada}</Bookmark>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,5,27.69,0.8</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text13 Ref="20" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.8,0,26.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12</Font>
+              <Guid>8c75ae866995458896363b9363495915</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="8" />
+              <Parent isRef="19" />
+              <Text>BRIGADA: {CabCoste.Brigada}</Text>
+              <TextBrush>[36:64:97]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+          </Components>
+          <Condition>{CabCoste.Brigada}</Condition>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeaderBand1</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </GroupHeaderBand1>
+        <DataCabCoste Ref="21" type="DataBand" isKey="true">
+          <Bookmark>{CabCoste.Fecha2}</Bookmark>
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,6.6,27.69,0.8</ClientRectangle>
+          <Components isList="true" count="6">
+            <DataCabCoste_Responsable Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>10.6,0,9.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabCoste_Responsable</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>{CabCoste.Responsable}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabCoste_Responsable>
+            <Text1 Ref="23" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>21.8,0,5.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>1afe61ebaef04872adbe4efe3d2ff298</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>{CabCoste.Tipo}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text2 Ref="24" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>20.6,0,1.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>1ffa5e70de4c428683dd198acbc808e3</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>TIPO:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <DataCabCoste_Fecha Ref="25" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4,0,3.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabCoste_Fecha</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>{CabCoste.Fecha}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="26" type="DateFormat" isKey="true">
+                <StringFormat>dd/MM/yyyy</StringFormat>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabCoste_Fecha>
+            <HeaderCabCoste_Fecha Ref="27" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.2,0,2.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabCoste_Fecha</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>FECHA PARTE:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabCoste_Fecha>
+            <HeaderCabCoste_Responsable Ref="28" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.6,0,3,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabCoste_Responsable</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>RESPONSABLE:</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabCoste_Responsable>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>CabCoste</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataCabCoste</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+          <Sort isList="true" count="2">
+            <value>ASC</value>
+            <value>Fecha</value>
+          </Sort>
+        </DataCabCoste>
+        <HeaderCabTrabajador Ref="29" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,8.2,27.69,2</ClientRectangle>
+          <Components isList="true" count="9">
+            <HeaderCabTrabajador_Trabajador Ref="30" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.6,1,9.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabTrabajador_Trabajador</Name>
+              <Page isRef="8" />
+              <Parent isRef="29" />
+              <Text>Trabajador</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabTrabajador_Trabajador>
+            <HeaderCabTrabajador_HorasNormales Ref="31" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11,1,1.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabTrabajador_HorasNormales</Name>
+              <Page isRef="8" />
+              <Parent isRef="29" />
+              <Text>H.Norm.</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabTrabajador_HorasNormales>
+            <HeaderCabTrabajador_HorasExtraDiurnas Ref="32" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13,1,1.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabTrabajador_HorasExtraDiurnas</Name>
+              <Page isRef="8" />
+              <Parent isRef="29" />
+              <Text>H.Ex.Dia</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabTrabajador_HorasExtraDiurnas>
+            <HeaderCabTrabajador_HorasExtraNocturnas Ref="33" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15,1,2.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabTrabajador_HorasExtraNocturnas</Name>
+              <Page isRef="8" />
+              <Parent isRef="29" />
+              <Text>H.Ex.Noche</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabTrabajador_HorasExtraNocturnas>
+            <HeaderCabTrabajador_HorasTotales Ref="34" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17.4,1,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabTrabajador_HorasTotales</Name>
+              <Page isRef="8" />
+              <Parent isRef="29" />
+              <Text>HorasTotales</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabTrabajador_HorasTotales>
+            <HeaderCabTrabajador_Coste Ref="35" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>20,1,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabTrabajador_Coste</Name>
+              <Page isRef="8" />
+              <Parent isRef="29" />
+              <Text>Coste Hora</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabTrabajador_Coste>
+            <HeaderCabTrabajador_GastosHorasTrabajador Ref="36" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>22.2,1,2.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabTrabajador_GastosHorasTrabajador</Name>
+              <Page isRef="8" />
+              <Parent isRef="29" />
+              <Text>Gasto Horas</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabTrabajador_GastosHorasTrabajador>
+            <HeaderCabTrabajador_Gastos Ref="37" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25,1,2.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabTrabajador_Gastos</Name>
+              <Page isRef="8" />
+              <Parent isRef="29" />
+              <Text>Otros Gastos</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabTrabajador_Gastos>
+            <Text3 Ref="38" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.6,0.2,26,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>4cce7f93586347fc897918cca53c84f4</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="8" />
+              <Parent isRef="29" />
+              <Text>PERSONAL</Text>
+              <TextBrush>[247:150:70]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderCabTrabajador</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </HeaderCabTrabajador>
+        <DataCabTrabajador Ref="39" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,11,27.69,0.8</ClientRectangle>
+          <Components isList="true" count="8">
+            <DataCabTrabajador_Trabajador Ref="40" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.6,0,9.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabTrabajador_Trabajador</Name>
+              <Page isRef="8" />
+              <Parent isRef="39" />
+              <Text>{CabTrabajador.Trabajador}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabTrabajador_Trabajador>
+            <DataCabTrabajador_HorasNormales Ref="41" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>11,0,1.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabTrabajador_HorasNormales</Name>
+              <Page isRef="8" />
+              <Parent isRef="39" />
+              <Text>{CabTrabajador.HorasNormales}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="42" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabTrabajador_HorasNormales>
+            <DataCabTrabajador_HorasExtraDiurnas Ref="43" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>13,0,1.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabTrabajador_HorasExtraDiurnas</Name>
+              <Page isRef="8" />
+              <Parent isRef="39" />
+              <Text>{CabTrabajador.HorasExtraDiurnas}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="44" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabTrabajador_HorasExtraDiurnas>
+            <DataCabTrabajador_HorasExtraNocturnas Ref="45" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>15,0,2.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabTrabajador_HorasExtraNocturnas</Name>
+              <Page isRef="8" />
+              <Parent isRef="39" />
+              <Text>{CabTrabajador.HorasExtraNocturnas}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="46" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabTrabajador_HorasExtraNocturnas>
+            <DataCabTrabajador_HorasTotales Ref="47" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>17.4,0,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabTrabajador_HorasTotales</Name>
+              <Page isRef="8" />
+              <Parent isRef="39" />
+              <Text>{CabTrabajador.HorasTotales}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="48" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabTrabajador_HorasTotales>
+            <DataCabTrabajador_Coste Ref="49" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>20,0,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabTrabajador_Coste</Name>
+              <Page isRef="8" />
+              <Parent isRef="39" />
+              <Text>{CabTrabajador.Coste}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="50" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabTrabajador_Coste>
+            <DataCabTrabajador_GastosHorasTrabajador Ref="51" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>22.2,0,2.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabTrabajador_GastosHorasTrabajador</Name>
+              <Page isRef="8" />
+              <Parent isRef="39" />
+              <Text>{CabTrabajador.GastosHorasTrabajador}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="52" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabTrabajador_GastosHorasTrabajador>
+            <DataCabTrabajador_Gastos Ref="53" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>25,0,2.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabTrabajador_Gastos</Name>
+              <Page isRef="8" />
+              <Parent isRef="39" />
+              <Text>{CabTrabajador.Gastos}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="54" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabTrabajador_Gastos>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName>R1</DataRelationName>
+          <DataSourceName>CabTrabajador</DataSourceName>
+          <Filters isList="true" count="0" />
+          <MasterComponent isRef="21" />
+          <Name>DataCabTrabajador</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+          <Sort isList="true" count="0" />
+        </DataCabTrabajador>
+        <FooterBand1 Ref="55" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,12.6,27.69,0.8</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text4 Ref="56" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.8,0,9.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>78d8caa98a93437db25d748fe6e30534</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="8" />
+              <Parent isRef="55" />
+              <Text>TOTALES PERSONAL: </Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text5 Ref="57" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>22.2,0,2.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>31753320d7a14dd885839f86fd61ba55</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="8" />
+              <Parent isRef="55" />
+              <Text>{Sum(DataCabTrabajador,CabTrabajador.GastosHorasTrabajador)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="58" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text6 Ref="59" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>25,0,2.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>8cc8130c3a51437abcd2760823195ae2</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="8" />
+              <Parent isRef="55" />
+              <Text>{Sum(DataCabTrabajador,CabTrabajador.Gastos)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="60" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>FooterBand1</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </FooterBand1>
+        <HeaderCabVehiculo Ref="61" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,14.2,27.69,1.8</ClientRectangle>
+          <Components isList="true" count="8">
+            <HeaderCabVehiculo_Kilometros Ref="62" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.8,1,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabVehiculo_Kilometros</Name>
+              <Page isRef="8" />
+              <Parent isRef="61" />
+              <Text>Kilometros</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabVehiculo_Kilometros>
+            <HeaderCabVehiculo_Combustible Ref="63" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17,1,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabVehiculo_Combustible</Name>
+              <Page isRef="8" />
+              <Parent isRef="61" />
+              <Text>Combustible</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabVehiculo_Combustible>
+            <HeaderCabVehiculo_HorasTotales Ref="64" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>19.6,1,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabVehiculo_HorasTotales</Name>
+              <Page isRef="8" />
+              <Parent isRef="61" />
+              <Text>HorasTotales</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabVehiculo_HorasTotales>
+            <HeaderCabVehiculo_Coste Ref="65" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>22.2,1,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderCabVehiculo_Coste</Name>
+              <Page isRef="8" />
+              <Parent isRef="61" />
+              <Text>Coste Hora</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderCabVehiculo_Coste>
+            <Text7 Ref="66" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.6,1,8.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>0f4e5fb39c2247e18d8ba3d19baee90a</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="8" />
+              <Parent isRef="61" />
+              <Text>Vehiculo</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text10 Ref="67" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.6,1,4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>079a9a81c6964cf1a82d6586782f09be</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="8" />
+              <Parent isRef="61" />
+              <Text>Matricula</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="68" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>24.8,1,2.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>d3b9420253624ee78772ec42875be5f3</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="8" />
+              <Parent isRef="61" />
+              <Text>Gasto Horas</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text12 Ref="69" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.6,0.2,26,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>efeb68bb3c0944f39e1c8ef6e5d09c22</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="8" />
+              <Parent isRef="61" />
+              <Text>VEHÍCULOS</Text>
+              <TextBrush>[247:150:70]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderCabVehiculo</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </HeaderCabVehiculo>
+        <DataCabVehiculo Ref="70" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,16.8,27.69,0.8</ClientRectangle>
+          <Components isList="true" count="7">
+            <DataCabVehiculo_Vehiculo Ref="71" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.6,0,8.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabVehiculo_Vehiculo</Name>
+              <Page isRef="8" />
+              <Parent isRef="70" />
+              <Text>{CabVehiculo.Vehiculo}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabVehiculo_Vehiculo>
+            <DataCabVehiculo_Matricula Ref="72" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>10.6,0,4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabVehiculo_Matricula</Name>
+              <Page isRef="8" />
+              <Parent isRef="70" />
+              <Text>{CabVehiculo.Matricula}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabVehiculo_Matricula>
+            <DataCabVehiculo_Kilometros Ref="73" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>14.8,0,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabVehiculo_Kilometros</Name>
+              <Page isRef="8" />
+              <Parent isRef="70" />
+              <Text>{CabVehiculo.Kilometros}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="74" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabVehiculo_Kilometros>
+            <DataCabVehiculo_Combustible Ref="75" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>17,0,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabVehiculo_Combustible</Name>
+              <Page isRef="8" />
+              <Parent isRef="70" />
+              <Text>{CabVehiculo.Combustible}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="76" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabVehiculo_Combustible>
+            <DataCabVehiculo_HorasTotales Ref="77" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>19.6,0,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabVehiculo_HorasTotales</Name>
+              <Page isRef="8" />
+              <Parent isRef="70" />
+              <Text>{CabVehiculo.HorasTotales}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="78" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabVehiculo_HorasTotales>
+            <DataCabVehiculo_Coste Ref="79" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>22.2,0,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabVehiculo_Coste</Name>
+              <Page isRef="8" />
+              <Parent isRef="70" />
+              <Text>{CabVehiculo.Coste}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="80" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabVehiculo_Coste>
+            <DataCabVehiculo_GastoHorasVehiculo Ref="81" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>24.8,0,2.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataCabVehiculo_GastoHorasVehiculo</Name>
+              <Page isRef="8" />
+              <Parent isRef="70" />
+              <Text>{CabVehiculo.GastoHorasVehiculo}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="82" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataCabVehiculo_GastoHorasVehiculo>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName>R2</DataRelationName>
+          <DataSourceName>CabVehiculo</DataSourceName>
+          <Filters isList="true" count="0" />
+          <MasterComponent isRef="21" />
+          <Name>DataCabVehiculo</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+          <Sort isList="true" count="0" />
+        </DataCabVehiculo>
+        <FooterBand2 Ref="83" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,18.4,27.69,0.8</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text14 Ref="84" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>15.4,0,9.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>cd605c4e0e0143d9bb5a407176484673</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="8" />
+              <Parent isRef="83" />
+              <Text>TOTALES VEHÍCULOS: </Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text15 Ref="85" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>24.8,0,2.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>b1a28b661bff4d9b9a151474c9b8e1c7</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="8" />
+              <Parent isRef="83" />
+              <Text>{Sum(DataCabVehiculo,CabVehiculo.GastoHorasVehiculo)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="86" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>FooterBand2</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </FooterBand2>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>daab92cc1be66e500a8b5194df7862d0</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>21.01</PageHeight>
+      <PageWidth>29.69</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="87" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="88" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Coste Otras UC</ReportAlias>
+  <ReportAuthor>rafa@myariadna.com</ReportAuthor>
+  <ReportChanged>6/20/2017 4:53:57 PM</ReportChanged>
+  <ReportCreated>12/31/1969 11:00:00 PM</ReportCreated>
+  <ReportDescription>Partes detallados por obra</ReportDescription>
+  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\mo_coste_detallado.mrt</ReportFile>
+  <ReportGuid>2e1dd84f6f7043e38609f924ad193fcc</ReportGuid>
+  <ReportImage isNull="true" />
+  <ReportName>woCosteObra</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2017.1.6.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class woCosteObra : Stimulsoft.Report.StiReport
+    {
+        public woCosteObra()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>
