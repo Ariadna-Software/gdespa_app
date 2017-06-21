@@ -217,7 +217,8 @@ var woDetailAPI = {
                 thirdParty: vm.thirdParty(),
                 thirdPartyCompany: vm.thirdPartyCompany(),
                 teamId: vm.sTeam(),
-                dayTypeId: vm.sDayType()
+                dayTypeId: vm.sDayType(),
+                zoneId: vm.sZone()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
