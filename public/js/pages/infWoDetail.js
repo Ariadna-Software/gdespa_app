@@ -198,21 +198,23 @@ function datosOK() {
 
 var rptWoDetail = function (sql) {
     if (vm.detalle()) {
+        var sql2 = "";
         // informe detallado
         if (vm.sZona()) {
-            sql += " AND wo.zoneId = " + vm.sZona();
+            sql2 = " AND wo.zoneId = " + vm.sZona();
         }
         if (vm.sObra()) {
-            sql += " AND pw.pwId = " + vm.sObra();
+            sql2 = " AND wo.pwId = " + vm.sObra();
         }
+        sql += sql2;
     } else {
         // informe resumido GROUP BY 1,2,3,4,5
         var sql2 = "";
         if (vm.sZona()) {
-            sql2 += " AND wo.zoneId = " + vm.sZona();
+            sql2 = " AND wo.zoneId = " + vm.sZona();
         }
         if (vm.sObra()) {
-            sql2 += " AND pw.pwId = " + vm.sObra();
+            sql2 = " AND wo.pwId = " + vm.sObra();
         }       
         sql2 += "  GROUP BY 1,2,3,4,5";
         sql = sql.replace("GROUP BY 1,2,3,4,5", sql2);
