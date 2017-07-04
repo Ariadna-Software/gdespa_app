@@ -23,6 +23,8 @@ var woDetailAPI = {
         vm = new woDetailAPI.pageData();
         ko.applyBindings(vm);
         //
+        $("#process").hide();
+        //
         $('#cmbWorkers').select2(select2_languages[lang]);
         woDetailAPI.loadWorkers();
         if (user.worker) {
@@ -38,13 +40,13 @@ var woDetailAPI = {
         woDetailAPI.loadPws();
         $("#cmbPws").select2().on('change', function (e) {
             woDetailAPI.changePw(e.added);
-        });             
+        });
 
         $('#cmbZones').select2(select2_languages[lang]);
-        woDetailAPI.loadZones();   
+        woDetailAPI.loadZones();
         $("#cmbZones").select2().on('change', function (e) {
             woDetailAPI.changeZone(e.added);
-        });             
+        });
         // buttons click events
         $('#btnOk').click(woDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
@@ -94,11 +96,11 @@ var woDetailAPI = {
         // day type combo
         self.optionsDayTypes = ko.observableArray([]);
         self.selectedDayTypes = ko.observableArray([]);
-        self.sDayType = ko.observable();      
+        self.sDayType = ko.observable();
         // zone combo
         self.optionsZones = ko.observableArray([]);
         self.selectedZones = ko.observableArray([]);
-        self.sZone = ko.observable();          
+        self.sZone = ko.observable();
         // -- Modal related (1)
         self.lineId = ko.observable();
         self.estimate = ko.observable();
@@ -144,7 +146,7 @@ var woDetailAPI = {
         woDetailAPI.loadWorkers(data.worker.id);
         woDetailAPI.loadTeams(data.teamId);
         woDetailAPI.loadDayTypes(data.dayTypeId);
-        woDetailAPI.loadZones(data.zoneId);        
+        woDetailAPI.loadZones(data.zoneId);
         //
         vm.thirdParty(data.thirdParty);
         vm.thirdPartyCompany(data.thirdPartyCompany);
@@ -202,6 +204,8 @@ var woDetailAPI = {
             e.preventDefault();
             // validate form
             if (!woDetailAPI.dataOk()) return;
+            $("#btnOk").hide();
+            $("#process").show();
             // dat for post or put
             var data = {
                 id: vm.id(),
@@ -236,6 +240,8 @@ var woDetailAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
+                    $("#btnOk").show();
+                    $("#process").hide();
                     if (type == "POST") {
                         vm.id(data.id);
                         $('#wid-id-1').show();
@@ -248,6 +254,8 @@ var woDetailAPI = {
                     }
                 },
                 error: function (err) {
+                    $("#btnOk").show();
+                    $("#process").hide();                    
                     aswNotif.errAjax(err);
                     if (err.status == 401) {
                         window.open('index.html', '_self');
@@ -343,7 +351,7 @@ var woDetailAPI = {
                 }
             }
         });
-    },    
+    },
     btnPrint: function () {
         var mf = function (e) {
             // avoid default accion
@@ -393,7 +401,7 @@ var woDetailAPI = {
                 }
             }
         });
-    },    
+    },
     changeZone: function (data) {
         if (!data) return;
         // cargar las brigadas de la zona
@@ -415,7 +423,7 @@ var woDetailAPI = {
                 }
             }
         })
-    },    
+    },
     changePw: function (data) {
         if (!data) return;
         // cargar las brigadas de la zona
@@ -439,7 +447,7 @@ var woDetailAPI = {
                 }
             }
         })
-    }    
+    }
 };
 
 
