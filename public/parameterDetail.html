@@ -29,7 +29,7 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
 	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-
+	<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
 
 	<!-- FAVICONS -->
 	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -37,7 +37,6 @@
 
 	<!-- GOOGLE FONT -->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
-
 
 	<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
@@ -240,7 +239,7 @@
 							<a href="deliveryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-archive"></i> <span data-i18n="menu.store.delivery">Blank</span>
 							</a>
-						</li>
+						</li>					
 						<li id="itemInGeneral" class="">
 							<a href="itemInGeneral.html">
 								<i class="fa fa-lg fa-fw fa-sign-in"></i> <span data-i18n="menu.store.itemIn">Blank</span>
@@ -255,7 +254,7 @@
 							<a href="inventoryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-table"></i> <span data-i18n="menu.store.inventory">Blank</span>
 							</a>
-						</li>
+						</li>						
 					</ul>
 				</li>
 				<li id="report" class="">
@@ -281,8 +280,8 @@
 		<div id="ribbon">
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
-				<li data-i18n="menu.store.main">Home</li>
-				<li data-i18n="menu.store.inventory">Home</li>
+				<li data-i18n="menu.administration.main">Home</li>
+				<li data-i18n="menu.administration.zone">Home</li>
 			</ol>
 		</div>
 		<!-- Main content -->
@@ -291,7 +290,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-table"></i> <span data-i18n="menu.store.inventory">Inicio</span>
+						<i class="fa-fw fa fa-magnet"></i> <span data-i18n="menu.administration.parameters">Inicio</span>
 					</h1>
 				</div>
 			</div>
@@ -299,112 +298,141 @@
 			<section id="widget-grid" class="">
 				<div class="row">
 					<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<ul class="nav nav-tabs bordered" id="inventoryDetail_GT">
-							<li class="active"><a data-toggle="tab" href="#s1" data-i18n="inventoryDetail.tabs.general">GENERAL</a></li>
-						</ul>
-						<div class="tab-content padding-10" id="pwDetail_GT1">
-							<div class="tab-pane fade in active" id="s1">
-								<!-- Widget ID (each widget will need unique ID)-->
-								<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
-									<header>
-										<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-										<h2 data-i18n="inventoryDetail.title">Mantenimiento</h2>
-									</header>
-									<div class="widget-body">
+						<!-- Widget ID (each widget will need unique ID)-->
+						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+								<h2 data-i18n="parameterDetail.title">Mantenimiento</h2>
+							</header>
+							<div class="widget-body">
+								<form id="parameterDetail-form" class="smart-form">
+									<fieldset>
 										<div class="row">
-											<form id="inventoryDetail-form" class="smart-form">
-												<fieldset>
-													<div class="row">
-														<section class="col col-md-2">
-															<label class="label" data-i18n="inventoryDetail.inventoryDate">Fecha inicio:</label>
-															<label class="input">
-																<input id="txInitDate" name="txtInitDate" data-bind="value: inventoryDate" class="datepicker" data-dateformat="dd/mm/yy">
-															</label>
-														</section>
-														<section class="col col-md-5">
-															<label class="label" data-18n="inventoryDetail.store">Almacen:</label>
-															<label style="width:100%;">
-																<select style="width:100%" id="cmbStores" name="cmbStores" data-bind="options: optionsStores, optionsText: 'name', optionsValue: 'id', value: sStore, valueAllowUnset: true, selectedOptions: selectedStores, selected2:{}"></select><i></i>
-															</label>
-														</section>
-														<section class="col col-md-5">
-															<label class="label" data-18n="inventoryDetail.worker">Responsable:</label>
-															<label style="width:100%;">
-																<select style="width:100%" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}"></select><i></i>
-															</label>
-														</section>
-													</div>
-													<div class="row">
-														<section class="col col-md-12">
-															<label class="label" data-i18n="inventoryDetail.comments">Onservaciones:</label>
-															<label class="textarea textarea-resizable">
-																<textarea id="txtComments" rows="3" class="custom-scroll" data-bind="value:comments"></textarea>
-															</label>
-														</section>
-													</div>
-												</fieldset>
-												<fieldset>
-													<div class="pull-right">
-														<button id="btnExit" data-i18n="[title]inventoryDetail.cancel" class="btn btn-warning btn-circle btn-lg">
-													<i class="fa fa-lg fa-sign-out"></i>
-												</button>
-														<button id="btnPrint" data-i18n="[title]inventoryDetail.print" class="btn btn-success btn-circle btn-lg">
-													<i class="fa fa-lg fa-print"></i>
-												</button>
-														<button id="btnClose" data-i18n="[title]inventoryDetail.close" class="btn btn-primary btn-circle btn-lg">
-													<i class="fa fa-lg fa-times"></i>
-												</button>
-														<button id="btnOk" data-i18n="[title]inventoryDetail.ok" class="btn btn-success btn-circle btn-lg">
-													<i class="fa fa-lg fa-check"></i>
-												</button>
-													</div>
-												</fieldset>
-											</form>
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.nEHD"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtnEHD" name="txtnEHD" data-bind="value: nEHD">												
+											</section>												
 										</div>
-									</div>
-								</div>
-								<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false"
-									style="display:none;">
-									<header>
-										<span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
-										<h2 data-i18n="inventoryDetail.associated_lines">Mantenimiento</h2>
-									</header>
-									<div class="widget-body">
 										<div class="row">
-											<form id="inventoryDetailLine-form" class="smart-form">
-												<fieldset>
-													<!--
-											<div class="pull-right">
-												<button id="btnNewLine" data-i18n="[title]inventoryDetail.newLine" data-toggle="modal" data-target="#inventoryModal" class="btn btn-success btn-circle btn-lg">
-													<i class="fa fa-lg fa-plus"></i>
-												</button>
-											</div>
-											-->
-												</fieldset>
-												<fieldset>
-													<div id="tb_inventoryLine">
-														<table id="dt_inventoryLine" class="table table-striped table-bordered table-hover" width="100%">
-															<thead>
-																<tr>
-																	<th data-class="expand">
-																		<i class="fa fa-fw fa-cube text-muted hidden-md hidden-sm hidden-xs"></i>
-																		<span data-i18n="inventoryDetail.item">R</span>
-																	</th>
-																	<th data-hide="phone">
-																		<span data-i18n="inventoryDetail.oldStock"></span>
-																	</th>
-																	<th data-hide="phone">
-																		<span data-i18n="inventoryDetail.newStock"></span>
-																	</th>
-																</tr>
-															</thead>
-														</table>
-													</div>
-												</fieldset>
-											</form>
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.nEHN"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtnEHN" name="txtnEHN" data-bind="value: nEHN">												
+											</section>												
+										</div>			
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.neEHD"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtneEHD" name="txtneEHD" data-bind="value: neEHD">												
+											</section>												
+										</div>	
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.neEHN"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtneEHN" name="txtneEHN" data-bind="value: neEHN">												
+											</section>												
+										</div>	
+										<hr/><br/>	
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.sNH"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtsNH" name="txtsNH" data-bind="value: sNH">												
+											</section>												
+										</div>		
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.sEHD"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtsEHD" name="txtsEHD" data-bind="value: sEHD">												
+											</section>												
+										</div>		
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.sEHN"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtsEHN" name="txtsEHN" data-bind="value: sEHN">												
+											</section>												
+										</div>			
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.seEHD"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtseEHD" name="txtseEHD" data-bind="value: seEHD">												
+											</section>												
+										</div>					
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.seEHN"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtseEHN" name="txtseEHN" data-bind="value: seEHN">												
+											</section>												
+										</div>	
+										<hr/><br/>
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.hNH"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txthNH" name="txthNH" data-bind="value: hNH">												
+											</section>												
+										</div>		
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.hEHD"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txthEHD" name="txthEHD" data-bind="value: hEHD">												
+											</section>												
+										</div>		
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.hEHN"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txthEHN" name="txthEHN" data-bind="value: hEHN">												
+											</section>												
+										</div>			
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.heEHD"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtheEHD" name="txtheEHD" data-bind="value: heEHD">												
+											</section>												
+										</div>					
+										<div class="row">
+											<section class="col col-md-6">
+												<span data-i18n="parameterDetail.heEHN"></span>
+											</section>							
+											<section class="col col-md-6">
+												<input id="txtheEHN" name="txtheEHN" data-bind="value: heEHN">												
+											</section>												
+										</div>																																																																										
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnExit" data-i18n="[title]parameterDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+											<i class="fa fa-lg fa-sign-out"></i>
+										</button>
+											<button id="btnOk" data-i18n="[title]parameterDetail.ok" class="btn btn-success btn-circle btn-lg">
+											<i class="fa fa-lg fa-check"></i>
+										</button>
 										</div>
-									</div>
-								</div>
+									</fieldset>
+								</form>
 							</div>
 						</div>
 					</article>
@@ -421,7 +449,7 @@
 		</div>
 	</div>
 
-	<!-- SHORTCUT AREA : With large tiles (activated via clicking inventory name tag)
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
 		Note: These tiles are completely responsive,
 		you can add as many as you like
 		-->
@@ -507,16 +535,13 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/inventoryModal.js"></script>
-	<script src="js/pages/inventoryLine.js"></script>
-	<script src="js/pages/inventoryDetail.js"></script>
+	<script src="js/pages/parameterDetail.js"></script>
 
 
 
 	<script type="text/javascript">
 		$(document).ready(function() {
 				pageSetUp();
-				inventoryDetailAPI.init();
 		})
 	</script>
 

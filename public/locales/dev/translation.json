@@ -66,7 +66,8 @@
             "cUnit": "Unidades constructivas",
             "zone": "Zonas",
             "team": "Brigadas",
-            "mea": "Otras UC"
+            "mea": "Otras UC",
+            "parameters": "Parámetros"
         },
         "pwman": {
             "main": "Obras y servicios",
@@ -696,5 +697,25 @@
         "dayType": "Tipo jornada",
         "meaType": "Tipo parte",
         "moK": "K"
+    },
+    "parameterDetail": {
+        "title": "Parámetros",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "nEHD": "Horas extras diurnas (Dia normal)",
+        "nEHN": "Horas extras nocturnas (Dia normal)",
+        "neEHD": "Horas extras diurnas en exceso (Dia normal)",
+        "neEHN":"Horas extras nocturnas en exceso (Dia normal)",
+        "sNH":"Horas normales (Domingo / Descanso)",
+        "sEHD":"Horas extras diurnas (Domingo / Descanso)",
+        "sEHN":"Horas extras nocturnas (Domingo / Descanso)",
+        "seEHD":"Horas extras diurnas en exceso (Domingo / Descanso)",
+        "seEHN":"Horas extras nocturnas en exceso (Domingo / Descanso)",
+        "hNH":"Horas normales (Dia Nacional / Feriado)",
+        "hEHD":"Horas extras diurnas (Dia nacional / Feriado)",
+        "hEHN":"Horas extras nocturnas (Dia nacional / Feriado)",
+        "heEHD":"Horas extras diurnas en exceso (Dia nacional / Feriado)",
+        "heEHN":"Horas extras nocturnas en exceso (Dia nacional / Feriado)"
     }
 }
