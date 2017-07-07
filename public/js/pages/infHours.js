@@ -7,6 +7,7 @@ var responsiveHelper_datatable_tabletools = undefined;
 
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
+var lang = aswCookies.getCookie('gdespa_lang');
 
 
 
@@ -107,11 +108,23 @@ function initForm() {
     });
     vm.dFecha(moment().format('YYYY-MM-DD'));
     vm.hFecha(moment().format('YYYY-MM-DD'));
+    // combos
+    $('#cmbZonas').select2(select2_languages[lang]);
+    loadZonas();
+    $("#cmbZonas").select2().on('change', function (e) {
+        loadBrigadas(e.added);
+    });
+    $('#cmbBrigadas').select2(select2_languages[lang]);
+
     // comprobar llamada
-    var pwId = aswUtil.gup('pwId');
-    if (pwId != "") {
+    var pDfecha = aswUtil.gup('pDfecha');
+    var pHfecha = aswUtil.gup('pHfecha');
+    var workerId = aswUtil.gup('workerId');
+    if (pDfecha != "") {
         $("#selector").hide();
-        vm.pwId(pwId)
+        vm.dFecha(pDfecha);
+        vm.hFecha(pHfecha);
+        vm.workerId(workerId);
         obtainReport();
     }
 
@@ -122,11 +135,26 @@ function admData() {
     self.dFecha = ko.observable();
     self.hFecha = ko.observable();
     self.pwId = ko.observable();
+    self.pDfecha = ko.observable();
+    self.pHfecha = ko.observable();
+    self.workerId = ko.observable();
+    //
+    self.optionsZonas = ko.observableArray([]);
+    self.elegidosZonas = ko.observableArray([]);
+    self.posiblesZonas = ko.observableArray([]);
+    self.sZona = ko.observable();
+    //
+    self.optionsBrigadas = ko.observableArray([]);
+    self.elegidosBrigadas = ko.observableArray([]);
+    self.posiblesBrigadas = ko.observableArray([]);
+    self.sBrigada = ko.observable();
+    //
+    self.detalle = ko.observable();
 };
 
 var obtainReport = function () {
     if (!datosOK()) return;
-    var file = "../reports/pw_one_report.mrt";
+    var file = "../reports/worker_hours.mrt";
     // Create a new report instance
     var report = new Stimulsoft.Report.StiReport();
     report.loadFile(file);
@@ -136,63 +164,17 @@ var obtainReport = function () {
     connectionString += "Database=" + myconfig.report.database + ";"
     connectionString += "UserId=" + myconfig.report.user + ";"
     connectionString += "Pwd=" + myconfig.report.password + ";";
+    report.dictionary.databases.list[0].connectionString = connectionString;
+    // Parámetros
+    report.dictionary.variables.items[0].val = vm.dFecha();
+    report.dictionary.variables.items[1].val = vm.hFecha();
+    report.dictionary.variables.items[2].val = moment(vm.dFecha()).format("DD/MM/YYYY");
+    report.dictionary.variables.items[3].val = moment(vm.hFecha()).format("DD/MM/YYYY");
     var sql = report.dataSources.items[0].sqlCommand;
-    report.dataSources.items[0].sqlCommand = rptPwParametros(sql);
-
+    report.dataSources.items[0].sqlCommand = rptHousDetail(sql);
     // Assign report to the viewer, the report will be built automatically after rendering the viewer
     viewer.report = report;
 
-};
-
-var obtainReportPdf = function () {
-    var file = "../reports/factura_general.mrt";
-    // Create a new report instance
-    var report = new Stimulsoft.Report.StiReport();
-    verb = "GET";
-    url = myconfig.apiUrl + "/api/empresas/" + vm.sempresaId();
-    llamadaAjax(verb, url, null, function (err, data) {
-        var infFacturas = data.infFacturas;
-        file = "../reports/" + infFacturas + ".mrt";
-        report.loadFile(file);
-
-        var connectionString = "Server=" + myconfig.report.host + ";";
-        connectionString += "Database=" + myconfig.report.database + ";"
-        connectionString += "UserId=" + myconfig.report.user + ";"
-        connectionString += "Pwd=" + myconfig.report.password + ";";
-        report.dictionary.databases.list[0].connectionString = connectionString;
-        // obtener el indice de los sql que contiene el informe que trata 
-        // la cabecera ('pf.facturaId')
-        var pos = 0;
-        for (var i = 0; i < report.dataSources.items.length; i++) {
-            var str = report.dataSources.items[i];
-            if (str.indexOf("pf.facturaId") > -1) pos = i;
-        }
-        var sql = report.dataSources.items[pos].sqlCommand;
-        report.dataSources.items[pos].sqlCommand = rptPwParametros(sql);
-        // Render report
-        report.render();
-        // Create an PDF settings instance. You can change export settings.
-        var settings = new Stimulsoft.Report.Export.StiPdfExportSettings();
-        // Create an PDF service instance.
-        var service = new Stimulsoft.Report.Export.StiPdfExportService();
-
-        // Create a MemoryStream object.
-        var stream = new Stimulsoft.System.IO.MemoryStream();
-        // Export PDF using MemoryStream.
-        service.exportToAsync(function () {
-            // Get PDF data from MemoryStream object
-            var data = stream.toArray();
-            // Get report file name
-            var fileName = String.isNullOrEmpty(report.reportAlias) ? report.reportName : report.reportAlias;
-            // Save data to file
-            Object.saveAs(data, fileName + ".pdf", "application/pdf")
-        }, report, stream, settings);
-    });
-
-};
-
-var printReport = function (url) {
-    $("#reportArea").attr('src', url);
 };
 
 function datosOK() {
@@ -218,11 +200,10 @@ function datosOK() {
 }
 
 
-var rptPwParametros = function (sql) {
-    var dFecha = vm.dFecha();
-    var hFecha = vm.hFecha();
-    var pwId = vm.pwId();
-    sql = sql.replace('WHERE pw.pwId = 1016', 'WHERE pw.pwId = ' + pwId);
+var rptHousDetail = function (sql) {
+    if (vm.workerId()){
+        sql += " AND v.workerId = " + vm.workerId();
+    }
     return sql;
 }
 
@@ -247,3 +228,44 @@ var exportarPDF = function () {
         if (err) return;
     });
 }
+
+var loadZonas = function (id) {
+    $.ajax({
+        type: "GET",
+        url: sprintf('%s/zone/?api_key=%s', myconfig.apiUrl, api_key),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data, status) {
+            var options = [{ id: 0, name: "" }].concat(data);
+            vm.posiblesZonas(options);
+            $("#cmbZonas").val([id]).trigger('change');
+        },
+        error: function (err) {
+            aswNotif.errAjax(err);
+            if (err.status == 401) {
+                window.open('index.html', '_self');
+            }
+        }
+    });
+};
+
+var loadBrigadas = function (data) {
+    if (!data) return;
+    var id = data.id;
+    $.ajax({
+        type: "GET",
+        url: sprintf('%s/team/zone/%s?api_key=%s', myconfig.apiUrl, id, api_key),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data, status) {
+            var options = [{ teamId: 0, name: "" }].concat(data);
+            vm.posiblesBrigadas(options);
+        },
+        error: function (err) {
+            aswNotif.errAjax(err);
+            if (err.status == 401) {
+                window.open('index.html', '_self');
+            }
+        }
+    });
+};

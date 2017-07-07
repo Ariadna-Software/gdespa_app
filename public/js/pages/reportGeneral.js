@@ -150,23 +150,10 @@ var reportGeneralAPI = {
             // http://localhost:5080/api/report/worker-hours/2017-02-01/2017-02-28/0?api_key=5jJHv
             var initDate = moment(vm.initDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
             var endDate = moment(vm.endDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
-            url = sprintf('%s/report/worker-hours/%s/%s/%s?api_key=%s', myconfig.apiUrl, initDate, endDate, vm.sWorker(), api_key);
-            $.ajax({
-                type: type,
-                url: url,
-                contentType: "application/json",
-                data: JSON.stringify(data),
-                success: function (data, status) {
-                    // process report data
-                    aswReport.reportPDF(data, 'Hkwmbrp9x');
-                },
-                error: function (err) {
-                    aswNotif.errAjax(err);
-                    if (err.status == 401) {
-                        window.open('index.html', '_self');
-                    }
-                }
-            });
+            // vm.sWorker()
+            url = "infHours.html?pDfecha=" + initDate + "&pHfecha=" + endDate;
+            if (vm.sWorker()) url += "&workerId=" + vm.sWorker();
+            window.open(url,'_new');
         }
         return mf;
     },    
