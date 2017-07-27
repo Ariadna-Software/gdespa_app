@@ -98,7 +98,9 @@ app.use('/api/mo_worker', require('./controllers/mo_worker'));
 app.use('/api/day_type', require('./controllers/day_type'));
 app.use('/api/mea_type', require('./controllers/mea_type'));
 app.use('/api/parameters', require('./controllers/parameters'));
-
+app.use('/api/work_type', require('./controllers/work_type'));
+app.use('/api/ins_type', require('./controllers/ins_type'));
+app.use('/api/area_type', require('./controllers/area_type'));
 // general API to export
 
 var appAPI = {

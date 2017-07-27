@@ -67,7 +67,10 @@
             "zone": "Zonas",
             "team": "Brigadas",
             "mea": "Otras UC",
-            "parameters": "Parámetros"
+            "parameters": "Parámetros",
+            "work": "Tipos obra",
+            "ins": "Tipos instalaciones",
+            "area": "Tipos areas"
         },
         "pwman": {
             "main": "Obras y servicios",
@@ -717,5 +720,35 @@
         "hEHN":"Horas extras nocturnas (Dia nacional / Feriado)",
         "heEHD":"Horas extras diurnas en exceso (Dia nacional / Feriado)",
         "heEHN":"Horas extras nocturnas en exceso (Dia nacional / Feriado)"
+    },
+    "workGeneral": {
+        "title": "Mantenimiento tipos obra",
+        "new": "Nuevo tipo"
+    },
+    "workDetail": {
+        "title": "Detalle tipo",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar"
+    },
+    "insGeneral": {
+        "title": "Mantenimiento tipos isntalaciones",
+        "new": "Nuevo tipo"
+    },
+    "insDetail": {
+        "title": "Detalle tipo",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar"
+    },
+    "areaGeneral": {
+        "title": "Mantenimiento tipos areas",
+        "new": "Nuevo tipo"
+    },
+    "areaDetail": {
+        "title": "Detalle tipo",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar"
     }
 }
