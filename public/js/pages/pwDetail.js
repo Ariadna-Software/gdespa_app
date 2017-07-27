@@ -45,6 +45,14 @@ var pwDetailAPI = {
         $("#cmbZone").select2().on('change', function (e) {
             pwDetailAPI.loadZoneK(e.added);
         });
+
+        $('#cmbWork').select2(select2_languages[lang]);
+        pwDetailAPI.loadWork(0);
+        $('#cmbIns').select2(select2_languages[lang]);
+        pwDetailAPI.loadIns(0);
+        $('#cmbArea').select2(select2_languages[lang]);
+        pwDetailAPI.loadArea(0);
+
         // buttons click events
         $('#btnOk').click(pwDetailAPI.btnOk());
         $('#btnPrint').click(pwDetailAPI.btnPrint());
@@ -124,6 +132,25 @@ var pwDetailAPI = {
         self.optionsZone2 = ko.observableArray([]);
         self.selectedZone2 = ko.observableArray([]);
         self.sZone2 = ko.observable();
+
+        // work type combo
+        self.optionsWork = ko.observableArray([]);
+        self.selectedWork = ko.observableArray([]);
+        self.sWork = ko.observable();
+
+        // installation type combo
+        self.optionsIns = ko.observableArray([]);
+        self.selectedIns = ko.observableArray([]);
+        self.sIns = ko.observable();
+
+        // area type combo
+        self.optionsArea = ko.observableArray([]);
+        self.selectedArea = ko.observableArray([]);
+        self.sArea = ko.observable();
+
+        // SALVA fields
+        self.revDate = ko.observable();
+        self.revUser = ko.observable();
 
         // -- Modal related
         self.pwLineId = ko.observable();
@@ -205,8 +232,21 @@ var pwDetailAPI = {
         vm.sZone(data.zone.id);
         vm.sZone2(data.zoneId2);
         vm.subZone(data.subZone);
+
         pwDetailAPI.loadZones(vm.sZone());
         pwDetailAPI.loadZones2(vm.sZone2());
+
+        vm.sWork(data.workTypeId);
+        pwDetailAPI.loadWork(vm.sWork());
+        vm.sIns(data.insTypeId);
+        pwDetailAPI.loadIns(vm.sIns());
+        vm.sArea(data.areaTypeId);
+        pwDetailAPI.loadArea(vm.sArea());
+
+        if (moment(data.revDate).isValid())
+            vm.revDate(moment(data.revDate).format(i18n.t("util.date_format")));
+        vm.revUser(data.revUser);
+
         $('#progress').text((data.percentage * 100) + " %");
         $('#cost').text(data.cost * 1 + " USD");
         // if we have tabs we should change wiget title
@@ -326,11 +366,18 @@ var pwDetailAPI = {
                     id: vm.sZone()
                 },
                 subZone: vm.subZone(),
-                zoneId2: vm.sZone2()
+                zoneId2: vm.sZone2(),
+                workTypeId: vm.sWork(),
+                insTypeId: vm.sIns(),
+                areaTypeId: vm.sArea(),
+                revUser: vm.revUser()
             };
             if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()) {
                 data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
             }
+            if (moment(vm.revDate(), i18n.t("util.date_format")).isValid()) {
+                data.revDate = moment(vm.revDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
+            }            
             var url = "",
                 type = "";
             if (vm.id() == 0) {
@@ -470,7 +517,7 @@ var pwDetailAPI = {
                 }
             }
         });
-    },    
+    },
     newPwStatus: function () {
         var mf = function (e) {
             // show modal form
@@ -644,5 +691,62 @@ var pwDetailAPI = {
                 }
             }
         })
+    },
+    loadWork: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/work_type?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = data;
+                vm.optionsWork(options);
+                $("#cmbWork").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadIns: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/ins_type?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = data;
+                vm.optionsIns(options);
+                $("#cmbIns").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadArea: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/area_type?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = data;
+                vm.optionsArea(options);
+                $("#cmbArea").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
     }
 };

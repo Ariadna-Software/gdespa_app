@@ -310,12 +310,17 @@
         "worker": "Recurso",
         "newWorker": "Nuevo recurso",
         "zone": "Zona",
-        "zone2": "Zona (2)",
+        "zone2": "Zona [2]",
         "chapterName": "Nombre",
         "chapterOrder": "Orden",
         "chapterComments": "Comentarios del capítulo",
         "newChapter": "Nuevo capítulo",
-        "subZone": "Subzona"
+        "subZone": "Subzona",
+        "work": "Tipo obra",
+        "ins": "Tipo instalación",
+        "area": "Tipo area",
+        "revDate": "Fecha revisión",
+        "revUser": "Persona que revisa"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",
