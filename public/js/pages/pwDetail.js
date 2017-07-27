@@ -87,6 +87,8 @@ var pwDetailAPI = {
         self.reference = ko.observable();
         self.description = ko.observable();
         self.initDate = ko.observable();
+        self.revDate = ko.observable();
+//		self.revUser = ko.observable();
         self.initInCharge = ko.observable();
         self.companyId = ko.observable();
         self.defaultK = ko.observable();
@@ -176,6 +178,10 @@ var pwDetailAPI = {
         vm.name(data.name);
         vm.description(data.description);
         vm.initDate(moment(data.initDate).format(i18n.t("util.date_format")));
+        if (moment(data.revDate).isValid()) {
+			vm.revDate(moment(data.revDate).format(i18n.t("util.date_format")));
+		}
+//		vm.revUser(data.revUser);
         vm.sWorker(data.initInCharge.id);
         pwDetailAPI.loadWorkers(vm.sWorker());
         vm.sCompany(data.company.id);
@@ -304,6 +310,13 @@ var pwDetailAPI = {
             // validate form
             if (!pwDetailAPI.dataOk()) return;
             // dat for post or put
+			
+			
+//			var user = vm.revUser();
+//			if(vm.revDate() != "" && user == ""){
+//				user = "";
+//			}
+			
             var data = {
                 id: vm.id(),
                 status: {
@@ -313,6 +326,8 @@ var pwDetailAPI = {
                 reference: vm.reference(),
                 description: vm.description(),
                 initDate: moment(vm.initDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso")),
+				revDate: moment(vm.revDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso")),
+//				revUser: user,
                 initInCharge: {
                     id: vm.sWorker()
                 },
