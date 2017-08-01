@@ -297,15 +297,18 @@ var obtainReportWithExcess = function (regs) {
 
 
 var obtainHours = function (fromDate, toDate, workerId) {
+    $("#waitprocess").show();
     var url = sprintf("%s/worker/hours?api_key=%s&fromDate=%s&toDate=%s&workerId=%s", myconfig.apiUrl, api_key, fromDate, toDate, workerId);
     $.ajax({
         type: "GET",
         url: url,
         contentType: "application/json",
         success: function (data, status) {
+            $("#waitprocess").hide();
             obtainReportWithExcess(data);
         },
         error: function (err) {
+            $("#waitprocess").hide();
             aswNotif.errAjax(err);
             if (err.status == 401) {
                 window.open('index.html', '_self');

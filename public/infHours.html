@@ -31,7 +31,7 @@
     <script src="js/numeral.js"></script>
     <script src="js/sprintf/sprintf.min.js"></script>
     <!-- CUSTOM NOTIFICATION -->
-    <script src="js/notification/SmartNotification.min.js"></script>    
+    <script src="js/notification/SmartNotification.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <!--- KNOCKOUT JS -->
     <script src="js/knockout-3.1.0.js"></script>
@@ -51,17 +51,17 @@
         var viewer = new Stimulsoft.Viewer.StiViewer(null, "StiViewer", false);
     </script>
     -->
-	<!-- TRANSLATIONS -->
-	<script src="locales/validator-languages.js"></script>
-	<script src="locales/datatable-languages.js"></script>
-	<script src="locales/select2-languages.js"></script>
-	<script src="locales/numeral-languages.js"></script>
-	<script src="locales/datepicker-languages.js"></script>
-	<script src="locales/select2-languages.js"></script>    
-	<!-- ARIADNA Scripts -->
-	<script src="config.js"></script>
-	<script src="js/asw.common.js"></script>
-	<script src="js/pages/infHours.js"></script>
+    <!-- TRANSLATIONS -->
+    <script src="locales/validator-languages.js"></script>
+    <script src="locales/datatable-languages.js"></script>
+    <script src="locales/select2-languages.js"></script>
+    <script src="locales/numeral-languages.js"></script>
+    <script src="locales/datepicker-languages.js"></script>
+    <script src="locales/select2-languages.js"></script>
+    <!-- ARIADNA Scripts -->
+    <script src="config.js"></script>
+    <script src="js/asw.common.js"></script>
+    <script src="js/pages/infHours.js"></script>
 
 </head>
 
@@ -98,7 +98,7 @@
                                 <input id="chkDetalle" type="checkbox" name="chkDetalle" data-bind="checked: detalle">
                                     <i></i><span>Informe detallado</span>
                                 </label>
-                            </section>                            
+                            </section>
                         </div>
                     </fieldset>
                     <fieldset>
@@ -117,7 +117,11 @@
                 </form>
             </div>
         </div>
-        <div>
+        <div style="padding:10px; text-align:center; display:none;" id="waitprocess">
+            <i class="fa fa-spinner fa-spin fa-5x fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div id="report">
             <script type="text/javascript">
                 // Show the report viewer in this place
                 viewer.renderHtml();
