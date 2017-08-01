@@ -4,7 +4,7 @@
 */
 var express = require('express');
 var router = express.Router();
-var userDb = require('../lib/worker');
+var workerDb = require('../lib/worker');
 var auth = require('../lib/authorize');
 var common = require('./common');
 
@@ -12,7 +12,7 @@ router.get('/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var name = req.query.name;
     if (name) {
-        userDb.getByName(name, function (err, users) {
+        workerDb.getByName(name, function (err, users) {
             if (err) {
                 res.status(500).send(err.message);
             } else {
@@ -20,7 +20,7 @@ router.get('/', common.midChkApiKey, function (req, res) {
             }
         }, test);
     } else {
-        userDb.get(function (err, users) {
+        workerDb.get(function (err, users) {
             if (err) {
                 res.status(500).send(err.message);
             } else {
@@ -32,7 +32,22 @@ router.get('/', common.midChkApiKey, function (req, res) {
 
 router.get('/worker', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
-    userDb.getWorker(function (err, workers) {
+    workerDb.getWorker(function (err, workers) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(workers);
+        }
+    }, test);
+});
+
+
+router.get('/hours', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var fromDate = req.query.fromDate;
+    var toDate = req.query.toDate;
+    var workerId = req.query.workerId;
+    workerDb.getHours(fromDate, toDate, workerId, function (err, workers) {
         if (err) {
             res.status(500).send(err.message);
         } else {
@@ -43,7 +58,7 @@ router.get('/worker', common.midChkApiKey, function (req, res) {
 
 router.get('/vehicle', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
-    userDb.getVehicle(function (err, vehicles) {
+    workerDb.getVehicle(function (err, vehicles) {
         if (err) {
             res.status(500).send(err.message);
         } else {
@@ -55,7 +70,7 @@ router.get('/vehicle', common.midChkApiKey, function (req, res) {
 router.post('/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var user = req.body;
-    userDb.post(user, function (err, users) {
+    workerDb.post(user, function (err, users) {
         if (err) {
             res.status(500).send(err.message);
         } else {
@@ -67,7 +82,7 @@ router.post('/', common.midChkApiKey, function (req, res) {
 router.get('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    userDb.getById(id, function (err, users) {
+    workerDb.getById(id, function (err, users) {
         if (err) return res.status(500).send(err.message);
         if (users.length == 0) return res.status(404).send('User not found');
         res.json(users);
@@ -78,7 +93,7 @@ router.put('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
     var user = req.body;
-    userDb.put(user, function (err, user) {
+    workerDb.put(user, function (err, user) {
         if (err) {
             res.status(500).send(err.message);
         } else {
@@ -94,7 +109,7 @@ router.delete('/:id', common.midChkApiKey, function (req, res) {
     if (!user.id) {
         res.status(400).send('User with id needed in body');
     }
-    userDb.delete(user, function (err) {
+    workerDb.delete(user, function (err) {
         if (err) {
             res.status(500).send(err.message);
         } else {

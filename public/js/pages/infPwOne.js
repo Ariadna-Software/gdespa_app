@@ -160,13 +160,7 @@ var obtainReportPdf = function () {
         connectionString += "UserId=" + myconfig.report.user + ";"
         connectionString += "Pwd=" + myconfig.report.password + ";";
         report.dictionary.databases.list[0].connectionString = connectionString;
-        // obtener el indice de los sql que contiene el informe que trata 
-        // la cabecera ('pf.facturaId')
-        var pos = 0;
-        for (var i = 0; i < report.dataSources.items.length; i++) {
-            var str = report.dataSources.items[i];
-            if (str.indexOf("pf.facturaId") > -1) pos = i;
-        }
+
         var sql = report.dataSources.items[pos].sqlCommand;
         report.dataSources.items[pos].sqlCommand = rptPwParametros(sql);
         // Render report

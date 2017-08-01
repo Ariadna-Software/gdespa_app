@@ -8,6 +8,7 @@ var responsiveHelper_datatable_tabletools = undefined;
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
 var lang = aswCookies.getCookie('gdespa_lang');
+var api_key = aswCookies.getCookie('api_key')
 
 
 
@@ -20,7 +21,6 @@ var breakpointDefinition = {
 // Create the report viewer with default options
 var viewer = new Stimulsoft.Viewer.StiViewer(null, "StiViewer", false);
 var options = new Stimulsoft.Viewer.StiViewerOptions();
-StiOptions.WebServer.url = "/api/streport";
 Stimulsoft.Base.Localization.StiLocalization.setLocalizationFile("../Localization/es.xml", true);
 Stimulsoft.Base.StiLicense.key = "6vJhGtLLLz2GNviWmUTrhSqnOItdDwjBylQzQcAOiHltN9ZO4D78QwpEoh6+UpBm5mrGyhSAIsuWoljPQdUv6R6vgv" +
     "iStsx8W3jirJvfPH27oRYrC2WIPEmaoAZTNtqb+nDxUpJlSmG62eA46oRJDV8kJ2cJSEx19GMJXYgZvv7yQT9aJHYa" +
@@ -125,7 +125,8 @@ function initForm() {
         vm.dFecha(pDfecha);
         vm.hFecha(pHfecha);
         vm.workerId(workerId);
-        obtainReport();
+        // obtainReport();
+        obtainHours(vm.dFecha(), vm.hFecha(), vm.workerId());
     }
 
 }
@@ -154,6 +155,7 @@ function admData() {
 
 var obtainReport = function () {
     if (!datosOK()) return;
+    StiOptions.WebServer.url = "/api/streport";
     var file = "../reports/worker_hours.mrt";
     // Create a new report instance
     var report = new Stimulsoft.Report.StiReport();
@@ -174,7 +176,6 @@ var obtainReport = function () {
     report.dataSources.items[0].sqlCommand = rptHousDetail(sql);
     // Assign report to the viewer, the report will be built automatically after rendering the viewer
     viewer.report = report;
-
 };
 
 function datosOK() {
@@ -201,7 +202,7 @@ function datosOK() {
 
 
 var rptHousDetail = function (sql) {
-    if (vm.workerId()){
+    if (vm.workerId()) {
         sql += " AND v.workerId = " + vm.workerId();
     }
     return sql;
@@ -269,3 +270,46 @@ var loadBrigadas = function (data) {
         }
     });
 };
+
+var obtainReportWithExcess = function (regs) {
+    if (!datosOK()) return;
+    var file = "../reports/worker_hours_json.mrt";
+
+    // Create a new report instance
+    var report = new Stimulsoft.Report.StiReport();
+    report.loadFile(file);
+    //
+    var dataSet = new Stimulsoft.System.Data.DataSet("jsHours");
+    dataSet.readJson(JSON.stringify(regs));
+    // Remove all connections from the report template
+    report.dictionary.databases.clear();
+    //
+    report.dictionary.variables.items[0].val = vm.dFecha();
+    report.dictionary.variables.items[1].val = vm.hFecha();
+    report.dictionary.variables.items[2].val = moment(vm.dFecha()).format("DD/MM/YYYY");
+    report.dictionary.variables.items[3].val = moment(vm.hFecha()).format("DD/MM/YYYY");    
+    //
+    report.regData(dataSet.dataSetName, "", dataSet);
+    report.dictionary.synchronize();
+    // Assign report to the viewer, the report will be built automatically after rendering the viewer
+    viewer.report = report;
+};
+
+
+var obtainHours = function (fromDate, toDate, workerId) {
+    var url = sprintf("%s/worker/hours?api_key=%s&fromDate=%s&toDate=%s&workerId=%s", myconfig.apiUrl, api_key, fromDate, toDate, workerId);
+    $.ajax({
+        type: "GET",
+        url: url,
+        contentType: "application/json",
+        success: function (data, status) {
+            obtainReportWithExcess(data);
+        },
+        error: function (err) {
+            aswNotif.errAjax(err);
+            if (err.status == 401) {
+                window.open('index.html', '_self');
+            }
+        }
+    });
+}
