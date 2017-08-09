@@ -63,6 +63,7 @@ var pwDetailAPI = {
             window.open('pwGeneral.html', '_self');
         });
         $('#btnChangeStatus').click(pwDetailAPI.newPwStatus());
+        $('#ucinfo').click(pwDetailAPI.ucInfo);
         // init lines table
         pwLineAPI.init();
         // init modal form
@@ -748,5 +749,9 @@ var pwDetailAPI = {
                 }
             }
         });
+    },
+    ucInfo: function () {
+        if (!vm.sCUnit()) return;
+        window.open('cUnitDetail.html?id=' + vm.sCUnit() + '&ucinfo=1', '_blank');
     }
 };

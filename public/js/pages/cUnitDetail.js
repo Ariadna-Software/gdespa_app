@@ -9,6 +9,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 
 var data = null;
 var vm = null;
+var ucinfo = 0;
 
 var cUnitDetailAPI = {
     init: function () {
@@ -33,6 +34,16 @@ var cUnitDetailAPI = {
         cUnitModalAPI.init();
         // check if an id have been passed
         var id = aswUtil.gup('id');
+        ucinfo = aswUtil.gup('ucinfo');
+        if (ucinfo){
+            // called from pw no buttons availble.
+            $('#btnOk').hide();
+            $('#btnNewLine').hide();
+            $("#txtName").attr('disabled','disabled');
+            $("#txtReference").attr('disabled','disabled');
+            $("#txtDescription").attr('disabled','disabled');
+            $("#txtCost").attr('disabled','disabled');
+        }
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();

@@ -1,5 +1,5 @@
 var cUnitLineAPI = {
-    init: function(){
+    init: function () {
         // init tables
         cUnitLineAPI.initCUnitLineTable();
         // button handlers
@@ -15,24 +15,25 @@ var cUnitLineAPI = {
         options.columns = [{
             data: "line"
         }, {
-                data: "item.name"
-            }, {
-                data: "unit.abb"
-            }, {
-                data: "quantity"
-            }, {
-                data: "id",
-                render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='cUnitLineAPI.deleteCUnitLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#cUnitModal' onclick='cUnitModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "item.name"
+        }, {
+            data: "unit.abb"
+        }, {
+            data: "quantity"
+        }, {
+            data: "id",
+            render: function (data, type, row) {
+                var html = "";
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='cUnitLineAPI.deleteCUnitLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#cUnitModal' onclick='cUnitModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                if (!ucinfo) html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_cUnitLine').dataTable(options);
     },
-    newCUnitLine: function(){
-        var mf = function(e){
+    newCUnitLine: function () {
+        var mf = function (e) {
             // show modal form
             e.preventDefault();
             cUnitModalAPI.newLine();
