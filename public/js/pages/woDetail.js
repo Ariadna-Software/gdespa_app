@@ -139,7 +139,7 @@ var woDetailAPI = {
     },
     loadData: function (data) {
         vm.id(data.id);
-        vm.initDate(moment.parseZone(data.initDate).format(i18n.t('util.date_format')));
+        vm.initDate(moment(data.initDate).format(i18n.t('util.date_format')));
         // vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
         woDetailAPI.loadPws(data.pw.id);
