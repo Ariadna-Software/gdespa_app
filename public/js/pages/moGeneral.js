@@ -39,6 +39,7 @@ var moGeneralAPI = {
     initMoTable: function () {
         var options = aswInit.initTableOptions('dt_mo');
         options.data = data;
+        options.ordering = false;
         options.columns = [{
             data: "teamName"
         }, {

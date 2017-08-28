@@ -39,6 +39,7 @@ var luGeneralAPI = {
     initMoTable: function () {
         var options = aswInit.initTableOptions('dt_lu');
         options.data = data;
+        options.ordering = false;
         options.columns = [{
             data: "teamName"
         }, {

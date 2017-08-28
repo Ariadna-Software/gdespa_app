@@ -39,6 +39,7 @@ var woGeneralAPI = {
     initWoTable: function () {
         var options = aswInit.initTableOptions('dt_wo');
         options.data = data;
+        options.ordering = false;
         options.columns = [{
             data: "pw.name"
         }, {
