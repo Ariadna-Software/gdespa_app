@@ -8,6 +8,11 @@ var moLineAPI = {
         $('#btnNewLine').click(moLineAPI.newMoLine());
         $('#btnNewWorker').click(moLineAPI.newMoWorker());
         $('#btnNewVehicle').click(moLineAPI.newMoVehicle());
+        if (moLineAPI.seeNotChange()) {
+            $('#btnNewLine').hide();
+            $('#btnNewWorker').hide();
+            $('#btnNewVehicle').hide();
+        }
         // avoid sending form 
         $('#moDetailLine-form').submit(function () {
             return false;
@@ -35,6 +40,7 @@ var moLineAPI = {
                 var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='moLineAPI.deleteMoLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                 var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#moModal' onclick='moModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                if (moLineAPI.seeNotChange()) return "";
                 return html;
             }
         }];
@@ -135,6 +141,7 @@ var moLineAPI = {
                 var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='moLineAPI.deleteMoWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                 var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#moModal2' onclick='moModal2API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                if (moLineAPI.seeNotChange()) return "";
                 return html;
             }
         }];
@@ -157,6 +164,7 @@ var moLineAPI = {
                 var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='moLineAPI.deleteMoVehicleMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                 var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#moModal3' onclick='moModal3API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                if (moLineAPI.seeNotChange()) return "";
                 return html;
             }
         }];
@@ -353,6 +361,12 @@ var moLineAPI = {
                 }
             }
         });
+    },
+    seeNotChange: function () {
+        if (user.seeWoClosed && !user.modWoClosed)
+            return true;
+        else
+            return false;
     }
 
 };

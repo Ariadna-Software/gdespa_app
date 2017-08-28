@@ -54,6 +54,8 @@ var woDetailAPI = {
             window.open('woGeneral.html', '_self');
         });
         $('#btnPrint').click(woDetailAPI.btnPrint());
+        //
+        if (woDetailAPI.seeNotChange()) $('#btnOk').hide();
         // init lines table
         woLineAPI.init();
         // init modal form
@@ -255,7 +257,7 @@ var woDetailAPI = {
                 },
                 error: function (err) {
                     $("#btnOk").show();
-                    $("#process").hide();                    
+                    $("#process").hide();
                     aswNotif.errAjax(err);
                     if (err.status == 401) {
                         window.open('index.html', '_self');
@@ -447,6 +449,12 @@ var woDetailAPI = {
                 }
             }
         })
+    },
+    seeNotChange: function () {
+        if (user.seeWoClosed && !user.modWoClosed)
+            return true;
+        else
+            return false;
     }
 };
 

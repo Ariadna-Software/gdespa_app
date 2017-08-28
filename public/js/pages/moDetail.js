@@ -54,6 +54,7 @@ var moDetailAPI = {
             window.open('moGeneral.html', '_self');
         });
         $('#btnPrint').click(moDetailAPI.btnPrint());
+        if (moDetailAPI.seeNotChange()) $('#btnOk').hide();
         // init lines table
         moLineAPI.init();
         // init modal form
@@ -420,6 +421,12 @@ var moDetailAPI = {
                 }
             }
         })
+    },
+    seeNotChange: function () {
+        if (user.seeWoClosed && !user.modWoClosed)
+            return true;
+        else
+            return false;
     }
 };
 

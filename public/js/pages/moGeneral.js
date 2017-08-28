@@ -24,7 +24,7 @@ var moGeneralAPI = {
         //
         $('#chkClosed').change(moGeneralAPI.checkClosedChange());
         // 
-        if (!user.modWoClosed) {
+        if (!user.modWoClosed && !user.seeWoClosed){
             $("#seeClosed").hide();
         }
         // check if there's an id

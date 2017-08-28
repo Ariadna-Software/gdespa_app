@@ -78,6 +78,7 @@ var userDetailAPI = {
         
         self.seeZone = ko.observable();
         self.workOnlyZone = ko.observable();
+        self.seeWoClosed = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -107,6 +108,7 @@ var userDetailAPI = {
         vm.ModPw(data.modPw);
         vm.seeZone(data.seeZone);
         vm.workOnlyZone(data.workOnlyZone);
+        vm.seeWoClosed(data.seeWoClosed);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -192,6 +194,7 @@ var userDetailAPI = {
                 seeZone: vm.seeZone(),
                 workOnlyZone: vm.workOnlyZone(),
                 perMea: vm.MeaGeneral() ? 1 : 0,
+                seeWoClosed: vm.seeWoClosed() ? 1 : 0
             };
             var url = "", type = "";
             if (vm.id() == 0) {

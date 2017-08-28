@@ -1,0 +1,2 @@
+ALTER TABLE `user`   
+  ADD COLUMN `seeWoClosed` BOOL DEFAULT FALSE NULL AFTER `reUser`;

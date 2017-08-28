@@ -138,7 +138,8 @@
         "ModPw": "Poder modificar una propuesta aceptada",
         "SeeNotOwner": "Ver registros de los que no se es responsable",
         "ModWoClosed": "Poder modificar partes cerrados",
-        "MeaGeneral": "--> Parte contadores"
+        "MeaGeneral": "--> Parte contadores",
+        "SeeWoClosed": "Poder ver partes cerrados"
     },
     "workerGeneral": {
         "title": "Mantenimiento de recursos",

@@ -153,6 +153,7 @@ var woLineAPI = {
         data.forEach(function (v) {
             var field = "#qty" + v.id;
             $(field).val(v.quantity);
+            if (woLineAPI.seeNotChange()) $(field).attr('disabled', 'disabled');
             $(field).blur(function () {
                 var quantity = 0;
                 if ($(field).val() != "") {
@@ -219,6 +220,7 @@ var woLineAPI = {
                 var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woLineAPI.deleteWoWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                 var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#woModal2' onclick='woModal2API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                if (woLineAPI.seeNotChange()) return "";
                 return html;
             }
         }];
@@ -241,6 +243,7 @@ var woLineAPI = {
                 var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woLineAPI.deleteWoVehicleMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                 var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#woModal3' onclick='woModal3API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                if (woLineAPI.seeNotChange()) return "";
                 return html;
             }
         }];
@@ -437,6 +440,12 @@ var woLineAPI = {
                 }
             }
         });
+    },
+    seeNotChange: function () {
+        if (user.seeWoClosed && !user.modWoClosed)
+            return true;
+        else
+            return false;
     }
 
 };
