@@ -9,6 +9,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 
 var data = null;
 var vm = null;
+var clos = 0;
 
 var luDetailAPI = {
     init: function () {
@@ -54,6 +55,8 @@ var luDetailAPI = {
             window.open('luGeneral.html', '_self');
         });
         $('#btnPrint').click(luDetailAPI.btnPrint());
+        if (aswUtil.gup('closed') == "true") clos = 1;
+        if (luDetailAPI.seeNotChange()) $('#btnOk').hide();
         // init lines table
         luLineAPI.init();
         // init modal form
@@ -420,6 +423,12 @@ var luDetailAPI = {
                 }
             }
         })
+    },
+    seeNotChange: function () {
+        if (user.seeWoClosed && !user.modWoClosed && clos)
+            return true;
+        else
+            return false;
     }
 };
 

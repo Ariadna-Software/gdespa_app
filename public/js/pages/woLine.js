@@ -8,6 +8,11 @@ var woLineAPI = {
         $('#btnNewLine').click(woLineAPI.newWoLine());
         $('#btnNewWorker').click(woLineAPI.newWoWorker());
         $('#btnNewVehicle').click(woLineAPI.newWoVehicle());
+        if (woLineAPI.seeNotChange()) {
+            $('#btnNewLine').hide();
+            $('#btnNewWorker').hide();
+            $('#btnNewVehicle').hide();
+        }        
         // avoid sending form 
         $('#woDetailLine-form').submit(function () {
             return false;
@@ -442,7 +447,7 @@ var woLineAPI = {
         });
     },
     seeNotChange: function () {
-        if (user.seeWoClosed && !user.modWoClosed)
+        if (user.seeWoClosed && !user.modWoClosed && clos)
             return true;
         else
             return false;

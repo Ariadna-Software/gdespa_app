@@ -9,6 +9,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 
 var data = null;
 var vm = null;
+var clos = 0;
 
 var moDetailAPI = {
     init: function () {
@@ -54,6 +55,7 @@ var moDetailAPI = {
             window.open('moGeneral.html', '_self');
         });
         $('#btnPrint').click(moDetailAPI.btnPrint());
+        if (aswUtil.gup('closed') == "true") clos = 1;
         if (moDetailAPI.seeNotChange()) $('#btnOk').hide();
         // init lines table
         moLineAPI.init();
@@ -423,7 +425,7 @@ var moDetailAPI = {
         })
     },
     seeNotChange: function () {
-        if (user.seeWoClosed && !user.modWoClosed)
+        if (user.seeWoClosed && !user.modWoClosed && clos)
             return true;
         else
             return false;

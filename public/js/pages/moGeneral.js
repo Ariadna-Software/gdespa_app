@@ -81,7 +81,25 @@ var moGeneralAPI = {
         return mf;
     },
     editMo: function (id) {
-        window.open(sprintf('moDetail.html?id=%s', id), '_self');
+        var url = sprintf("%s/mo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                var closed = false;
+                if (data.length && data[0].closureId) {
+                    closed = true;
+                }                
+                window.open(sprintf('moDetail.html?id=%s&closed=%s', id, closed), '_self');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
     },
     deleteMoMessage: function (id) {
         var url = sprintf("%s/mo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);

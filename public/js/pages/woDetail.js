@@ -9,6 +9,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 
 var data = null;
 var vm = null;
+var clos = 0;
 
 var woDetailAPI = {
     init: function () {
@@ -47,6 +48,8 @@ var woDetailAPI = {
         $("#cmbZones").select2().on('change', function (e) {
             woDetailAPI.changeZone(e.added);
         });
+        // 
+        if (aswUtil.gup('closed') == "true") clos = 1;
         // buttons click events
         $('#btnOk').click(woDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
@@ -451,7 +454,7 @@ var woDetailAPI = {
         })
     },
     seeNotChange: function () {
-        if (user.seeWoClosed && !user.modWoClosed)
+        if (user.seeWoClosed && !user.modWoClosed && clos)
             return true;
         else
             return false;

@@ -8,6 +8,11 @@ var luLineAPI = {
         $('#btnNewLine').click(luLineAPI.newMoLine());
         $('#btnNewWorker').click(luLineAPI.newMoWorker());
         $('#btnNewVehicle').click(luLineAPI.newMoVehicle());
+        if (luLineAPI.seeNotChange()) {
+            $('#btnNewLine').hide();
+            $('#btnNewWorker').hide();
+            $('#btnNewVehicle').hide();
+        }         
         // avoid sending form 
         $('#luDetailLine-form').submit(function () {
             return false;
@@ -35,6 +40,7 @@ var luLineAPI = {
                 var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='luLineAPI.deleteMoLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                 var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#luModal' onclick='luModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                if (luLineAPI.seeNotChange()) return "";
                 return html;
             }
         }];
@@ -135,6 +141,7 @@ var luLineAPI = {
                 var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='luLineAPI.deleteMoWorkerMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                 var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#luModal2' onclick='luModal2API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                if (luLineAPI.seeNotChange()) return "";
                 return html;
             }
         }];
@@ -157,6 +164,7 @@ var luLineAPI = {
                 var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='luLineAPI.deleteMoVehicleMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                 var bt2 = "<button class='btn btn-circle btn-success btn-lg' data-toggle='modal' data-target='#luModal3' onclick='luModal3API.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                if (woLineAPI.seeNotChange()) return "";
                 return html;
             }
         }];
@@ -353,6 +361,12 @@ var luLineAPI = {
                 }
             }
         });
+    },
+    seeNotChange: function () {
+        if (user.seeWoClosed && !user.modWoClosed && clos)
+            return true;
+        else
+            return false;
     }
 
 };

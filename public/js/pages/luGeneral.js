@@ -24,7 +24,7 @@ var luGeneralAPI = {
         //
         $('#chkClosed').change(luGeneralAPI.checkClosedChange());
         // 
-        if (!user.modWoClosed) {
+        if (!user.modWoClosed && !user.seeWoClosed){
             $("#seeClosed").hide();
         }
         // check if there's an id
@@ -81,7 +81,25 @@ var luGeneralAPI = {
         return mf;
     },
     editMo: function (id) {
-        window.open(sprintf('luDetail.html?id=%s', id), '_self');
+        var url = sprintf("%s/mo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                var closed = false;
+                if (data.length && data[0].closureId) {
+                    closed = true;
+                }                
+                window.open(sprintf('luDetail.html?id=%s&closed=%s', id, closed), '_self');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });        
     },
     deleteMoMessage: function (id) {
         var url = sprintf("%s/lu/%s/?api_key=%s", myconfig.apiUrl, id, api_key);

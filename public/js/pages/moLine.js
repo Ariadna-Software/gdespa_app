@@ -363,7 +363,7 @@ var moLineAPI = {
         });
     },
     seeNotChange: function () {
-        if (user.seeWoClosed && !user.modWoClosed)
+        if (user.seeWoClosed && !user.modWoClosed && clos)
             return true;
         else
             return false;
