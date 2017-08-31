@@ -95,8 +95,13 @@ var pwModal2API = {
                 data: JSON.stringify(data),
                 success: function (data, status) {
                     $('#pwModal2').modal('hide');
-                    // pwLineAPI.getPwLines(vm.id());
-                    pwDetailAPI.getPw(vm.id());
+                    if (vm.sStatus2() == 2) {
+                        // Proposed Work (pw) closed 
+                        // Do you want to update line quantities?
+                        aswNotif.generalQuestion(i18n.t('pwDetail.updateLines'), 'pwModal2API.updatePwLinesFromWoLines()');
+                    } else {
+                        pwDetailAPI.getPw(vm.id());
+                    }
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
@@ -137,6 +142,25 @@ var pwModal2API = {
                 var options = data;
                 vm.optionsStatus2(options);
                 $("#cmbStatus2").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    updatePwLinesFromWoLines: function () {
+        var url = "", type = "";
+        type = "PUT";
+        url = sprintf('%s/pw/updateclosed/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+        $.ajax({
+            type: type,
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                pwDetailAPI.getPw(vm.id());
             },
             error: function (err) {
                 aswNotif.errAjax(err);

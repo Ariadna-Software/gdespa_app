@@ -321,7 +321,8 @@
         "ins": "Tipo instalación",
         "area": "Tipo area",
         "revDate": "Fecha revisión",
-        "revUser": "Persona que revisa"
+        "revUser": "Persona que revisa",
+        "updateLines": "¿Quiere que las cantidades de replanteo se igualen a las de los partes de trabajo? "
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",

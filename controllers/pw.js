@@ -121,6 +121,19 @@ router.put('/:id', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.put('/updateclosed/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    pwDb.putClosedPw(id, function (err, pw) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(pw);
+        }
+    }, test);
+});
+
+
 router.delete('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
