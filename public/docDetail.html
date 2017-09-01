@@ -347,7 +347,7 @@
 												</div>
 												<div class="row">
 													<section class="col col-md-12">
-														<div id="msgContainer" style="color:blue">												
+														<div id="msgContainer" style="color:blue">
 														</div>
 													</section>
 												</div>
@@ -371,6 +371,30 @@
 														<label class="input">
 																	<input id="txtName" name="txtName" data-bind="value: name">
 																</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-6">
+														<label class="label" data-i18n="docDetail.docDate">Fecha:</label>
+														<label class="input">
+															<input id="txDocDate" name="txtDocDate" data-bind="value: docDate" class="datepicker" data-dateformat="dd/mm/yy">
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-12">
+														<label class="label" data-18n="docDetail.pwName">Propuesta:</label>
+														<label style="width:100%;">
+															<select style="width:100%" id="cmbPws" name="cmbPws" data-bind="options: optionsPws, optionsText: 'name', optionsValue: 'id', value: sPw, valueAllowUnset: true, selectedOptions: selectedPws, selected2:{}"></select><i></i>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-12">
+														<label class="label" data-i18n="docDetail.comments">Onservaciones:</label>
+														<label class="textarea textarea-resizable">
+															<textarea id="txtComments" rows="5" class="custom-scroll" data-bind="value:comments"></textarea>
+														</label>
 													</section>
 												</div>
 											</section>
@@ -480,6 +504,7 @@
 	<script src="locales/numeral-languages.js"></script>
 	<script src="locales/datepicker-languages.js"></script>
 	<script src="locales/select2-languages.js"></script>
+
 	<!-- PAGE RELATED PLUGIN(S) -->
 	<script src="js/plugin/datatables/jquery.dataTables.min.js"></script>
 	<script src="js/plugin/datatables/dataTables.colVis.min.js"></script>

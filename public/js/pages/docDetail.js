@@ -14,6 +14,7 @@ var docDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
+        datepicker_languages(lang);        
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
@@ -26,7 +27,9 @@ var docDetailAPI = {
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('docGeneral.html', '_self');
-        })
+        });
+        $('#cmbPws').select2(select2_languages[lang]);
+        docDetailAPI.loadPws();        
         $('#upload-input').on('change', function () {
             var files = $(this).get(0).files;
             if (files.length > 0) {
@@ -93,6 +96,10 @@ var docDetailAPI = {
         self.docDate = ko.observable();
         self.comments = ko.observable();
         self.file = ko.observable();
+        // pw combo
+        self.optionsPws = ko.observableArray([]);
+        self.selectedPws = ko.observableArray([]);
+        self.sPw = ko.observable();        
     },
     loadData: function (data) {
         vm.docId(data.docId);
@@ -100,12 +107,15 @@ var docDetailAPI = {
         vm.docDate(moment(data.docDate).format(i18n.t("util.date_format")));
         vm.comments(data.comments);
         vm.file(data.file);
+        docDetailAPI.loadPws(data.pwId);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
         $('#docDetail-form').validate({
             rules: {
-                txtName: { required: true }
+                txtName: { required: true },
+                txtDocDate: { required: true },
+                cmbPws: { required: true }
             },
             // Do not change code below
             errorPlacement: function (error, element) {
@@ -143,7 +153,8 @@ var docDetailAPI = {
                 docId: vm.docId(),
                 name: vm.name(),
                 comments: vm.comments(),
-                file: vm.file()
+                file: vm.file(),
+                pwId: vm.sPw()
             };
             if (moment(vm.docDate(), i18n.t("util.date_format")).isValid()) {
                 data.docDate = moment(vm.docDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
@@ -193,6 +204,37 @@ var docDetailAPI = {
             $("#msgContainer").html(i18n.t('docDetail.noVisible'));
             $("#docContainer").html('');
         }
+    },
+    loadPws: function (id) {
+        var myId = id;
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/pw?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: null, name: "" }];
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    data.forEach(function (d) {
+                        if (user.workOnlyZone && (d.zone.id == user.zoneId || d.zoneId2 == user.zoneId)) {
+                            data2.push(d);
+                        }
+                    });
+                } else {
+                    data2 = data;
+                }
+                options = options.concat(data2);
+                vm.optionsPws(options);
+                $("#cmbPws").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
     }
 };
 docDetailAPI.init();
