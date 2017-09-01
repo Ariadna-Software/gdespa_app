@@ -1,15 +1,15 @@
 /*
- * company.js
+ * doc.js
  * handles user group related messages
 */
 var express = require('express');
 var router = express.Router();
-var companyDb = require('../lib/company'); // to access mysql db
+var docDb = require('../lib/doc'); // to access mysql db
 var midCheck = require('./common').midChkApiKey;
 
 router.get('/', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
-    companyDb.get(function (err, groups) {
+    docDb.get(function (err, groups) {
         if (err) {
             res.status(500).send(err.message);
         } else {
@@ -20,8 +20,8 @@ router.get('/', midCheck, function (req, res) {
 
 router.post('/', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
-    var company = req.body;
-    companyDb.post(company, function (err, groups) {
+    var doc = req.body;
+    docDb.post(doc, function (err, groups) {
         if (err) {
             res.status(500).send(err.message);
         } else {
@@ -33,9 +33,9 @@ router.post('/', midCheck, function (req, res) {
 router.get('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    companyDb.getById(id, function (err, groups) {
+    docDb.getById(id, function (err, groups) {
         if (err) return res.status(500).send(err.message);
-        if (groups.length == 0) return res.status(404).send('Company not found');
+        if (groups.length == 0) return res.status(404).send('Document not found');
         res.json(groups);
     }, test);
 });
@@ -43,8 +43,8 @@ router.get('/:id', midCheck, function (req, res) {
 router.put('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    var company = req.body;
-    companyDb.put(company, function (err, group) {
+    var doc = req.body;
+    docDb.put(doc, function (err, group) {
         if (err) {
             res.status(500).send(err.message);
         } else {
@@ -56,11 +56,11 @@ router.put('/:id', midCheck, function (req, res) {
 router.delete('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    var company = req.body;
-    if (!company.id) {
-        return res.status(400).send('Company with id in body needed');
+    var doc = req.body;
+    if (!doc.id) {
+        return res.status(400).send('Document with id in body needed');
     }
-    companyDb.delete(company, function (err) {
+    docDb.delete(doc, function (err) {
         if (err) {
             res.status(500).send(err.message);
         } else {

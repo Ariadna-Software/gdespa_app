@@ -101,6 +101,8 @@ app.use('/api/parameters', require('./controllers/parameters'));
 app.use('/api/work_type', require('./controllers/work_type'));
 app.use('/api/ins_type', require('./controllers/ins_type'));
 app.use('/api/area_type', require('./controllers/area_type'));
+app.use('/api/doc', require('./controllers/doc'));
+app.use('/api/upload', require('./controllers/upload'));
 // general API to export
 
 var appAPI = {

@@ -758,5 +758,19 @@
         "name": "Nombre",
         "cancel": "Salir sin guardar",
         "ok": "Guardar"
+    },
+    "docGeneral": {
+        "title": "Mantenimiento empresas",
+        "new": "Nueva empresa"
+    },
+    "docDetail": {
+        "title": "Detalle empresa",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "docDate":"Fecha documento",
+        "comments": "Observaciones",
+        "pwName": "Propuesta relacionada",
+        "file": "Fichero"
     }
 }

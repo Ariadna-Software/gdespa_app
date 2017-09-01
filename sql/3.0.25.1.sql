@@ -7,3 +7,6 @@ CREATE TABLE `doc`(
   PRIMARY KEY (`docId`),
   CONSTRAINT `ref_pw` FOREIGN KEY (`pwId`) REFERENCES `pw`(`pwId`)
 );
+
+ALTER TABLE `doc`   
+  ADD COLUMN `file` VARCHAR(255) NULL AFTER `pwId`;
