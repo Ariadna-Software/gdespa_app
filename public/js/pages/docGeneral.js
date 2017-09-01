@@ -34,7 +34,7 @@ var docGeneralAPI = {
         },{
             data: "comments"
         }, {
-                data: "id",
+                data: "docId",
                 render: function (data, type, row) {
                     var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='docGeneralAPI.deleteDocMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                     var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='docGeneralAPI.editDoc(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";

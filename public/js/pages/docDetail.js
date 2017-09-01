@@ -23,13 +23,67 @@ var docDetailAPI = {
         ko.applyBindings(vm);
         // buttons click events
         $('#btnOk').click(docDetailAPI.btnOk());
-        $('#btnExit').click(function(e){
+        $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('docGeneral.html', '_self');
         })
+        $('#upload-input').on('change', function () {
+            var files = $(this).get(0).files;
+            if (files.length > 0) {
+                // create a FormData object which will be sent as the data payload in the
+                // AJAX request
+                var formData = new FormData();
+                // loop through all the selected files and add them to the formData object
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    // add the files to formData object for the data payload
+                    formData.append('uploads[]', file, file.name);
+                }
+                $.ajax({
+                    url: '/api/upload',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        filename = data;
+                        docDetailAPI.checkVisibility(filename);
+                    },
+                    xhr: function () {
+                        // create an XMLHttpRequest
+                        var xhr = new XMLHttpRequest();
+                        // listen to the 'progress' event
+                        xhr.upload.addEventListener('progress', function (evt) {
+                            if (evt.lengthComputable) {
+                                // calculate the percentage of upload completed
+                                var percentComplete = evt.loaded / evt.total;
+                                percentComplete = parseInt(percentComplete * 100);
+                                // update the Bootstrap progress bar with the new percentage
+                                $('.progress-bar').text(percentComplete + '%');
+                                $('.progress-bar').width(percentComplete + '%');
+                                // once the upload reaches 100%, set the progress bar text to done
+                                if (percentComplete === 100) {
+                                    $('.progress-bar').html('Fichero subido');
+                                }
+                            }
+                        }, false);
+                        return xhr;
+                    }
+                });
+            }
+        });
         // check if an id have been passed
         var id = aswUtil.gup('id');
-        docDetailAPI.getDoc(id);
+        if (!id || (id == 0)) {
+            // new doc
+            vm.docId(0);
+            $("#P1Title").show();
+            $("#P2Title").show();
+            $("#P1Loader").show();
+            $("#P2Title").show();
+        } else {
+            docDetailAPI.getDoc(id);
+        }
     },
     pageData: function () {
         // knockout objects
@@ -60,13 +114,8 @@ var docDetailAPI = {
         });
         return $('#docDetail-form').valid();
     },
-    // obtain a  user group from the API
+    // obtain a doc from the API
     getDoc: function (id) {
-        if (!id || (id == 0)) {
-            // new user group
-            vm.docId(0);
-            return;
-        }
         var url = sprintf("%s/doc/%s?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
@@ -126,6 +175,24 @@ var docDetailAPI = {
             });
         }
         return mf;
+    },
+    checkVisibility: function (filename) {
+        var ext = filename.split('.').pop().toLowerCase();
+        if (ext == "pdf" || ext == "jpg" || ext == "png" || ext == "gif") {
+            // see it in container
+            var url = "/uploads/" + filename;
+            if (ext == "pdf") {
+                // <iframe src="" width="100%" height="600px"></iframe>
+                $("#docContainer").html('<iframe src="' + url + '"frameborder="0" width="100%" height="600px"></iframe>');
+            } else {
+                // .html("<img src=' + this.href + '>");
+                $("#docContainer").html('<img src="' + url + '" width="100%">');;
+            }
+            $("#msgContainer").html('');
+        } else {
+            $("#msgContainer").html(i18n.t('docDetail.noVisible'));
+            $("#docContainer").html('');
+        }
     }
 };
 docDetailAPI.init();

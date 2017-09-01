@@ -185,12 +185,12 @@
 							<a href="zoneGeneral.html">
 								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span data-i18n="menu.administration.zone">Blank</span>
 							</a>
-						</li>	
+						</li>
 						<li id="team" class="">
 							<a href="teamGeneral.html">
 								<i class="fa fa-lg fa-fw fa-user-circle"></i> <span data-i18n="menu.administration.team">Blank</span>
 							</a>
-						</li>	
+						</li>
 						<li id="mea" class="">
 							<a href="meaGeneral.html">
 								<i class="fa fa-lg fa-fw fa-compass"></i> <span data-i18n="menu.administration.mea">Blank</span>
@@ -237,12 +237,12 @@
 							<a href="moGeneral.html">
 								<i class="fa fa-lg fa-fw fa-compass"></i> <span data-i18n="menu.pwman.mo">Blank</span>
 							</a>
-						</li>		
+						</li>
 						<li id="luGeneral" class="">
 							<a href="luGeneral.html">
 								<i class="fa fa-lg fa-fw fa-lightbulb-o"></i> <span data-i18n="menu.pwman.lu">Blank</span>
 							</a>
-						</li>						
+						</li>
 						<li id="closureGeneral" class="">
 							<a href="closureGeneral.html">
 								<i class="fa fa-lg fa-fw fa-times-circle-o"></i> <span data-i18n="menu.pwman.closure">Blank</span>
@@ -259,7 +259,7 @@
 							<a href="deliveryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-archive"></i> <span data-i18n="menu.store.delivery">Blank</span>
 							</a>
-						</li>					
+						</li>
 						<li id="itemInGeneral" class="">
 							<a href="itemInGeneral.html">
 								<i class="fa fa-lg fa-fw fa-sign-in"></i> <span data-i18n="menu.store.itemIn">Blank</span>
@@ -274,7 +274,7 @@
 							<a href="inventoryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-table"></i> <span data-i18n="menu.store.inventory">Blank</span>
 							</a>
-						</li>						
+						</li>
 					</ul>
 				</li>
 				<li id="report" class="">
@@ -286,8 +286,8 @@
 							<a href="reportGeneral.html">
 								<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span data-i18n="menu.report.general">Blank</span>
 							</a>
-						</li>					
-					</ul>					
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</nav>
@@ -328,12 +328,53 @@
 								<form id="docDetail-form" class="smart-form">
 									<fieldset>
 										<div class="row">
-											<section class="col col-md-12">
-												<label class="label" data-i18n="docDetail.name">Nombre:</label>
-												<label class="input">
-													<input id="txtName" name="txtName" data-bind="value: name">
-												</label>
+											<!-- DOCUMENT -->
+											<section class="col col-md-8">
+												<div id="P1Title" class="row" style="display:none">
+													<section class="col col-md-12">
+														<h3 data-i18n="docDetail.step1">P1</h3>
+													</section>
+												</div>
+												<div id="P1Loader" class="row" style="display:none">
+													<section class="col col-md-6">
+														<div class="progress">
+															<div class="progress-bar" role="progressbar"></div>
+														</div>
+													</section>
+													<section class="col col-md-6">
+														<input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-12">
+														<div id="msgContainer" style="color:blue">												
+														</div>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-12">
+														<div id="docContainer"></div>
+													</section>
+												</div>
 											</section>
+											<!-- END DOCUMENT -->
+											<!-- DATA -->
+											<section class="col col-md-4">
+												<div id="P2Title" class="row" style="display:none">
+													<section class="col col-md-12">
+														<h3 data-i18n="docDetail.step2">P1</h3>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col col-md-12">
+														<label class="label" data-i18n="docDetail.name">Nombre:</label>
+														<label class="input">
+																	<input id="txtName" name="txtName" data-bind="value: name">
+																</label>
+													</section>
+												</div>
+											</section>
+											<!-- END DATA -->
 										</div>
 									</fieldset>
 									<fieldset>
@@ -377,16 +418,16 @@
 	<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
-			if (!window.jQuery) {
-				document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
-			}
-		</script>
+		if (!window.jQuery) {
+			document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
+		}
+	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script>
-			if (!window.jQuery.ui) {
-				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
-			}
-		</script>
+		if (!window.jQuery.ui) {
+			document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+		}
+	</script>
 	<!-- IMPORTANT: APP CONFIG -->
 	<script src="js/app.config.js"></script>
 	<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
@@ -454,17 +495,17 @@
 
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-				pageSetUp();
+		$(document).ready(function () {
+			pageSetUp();
 		})
 	</script>
 
 	<!-- Your GOOGLE ANALYTICS CODE Below -->
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-			_gaq.push(['_trackPageview']);
-		(function() {
+		_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+		_gaq.push(['_trackPageview']);
+		(function () {
 			var ga = document.createElement('script');
 			ga.type = 'text/javascript';
 			ga.async = true;

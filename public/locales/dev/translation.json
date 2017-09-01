@@ -771,6 +771,9 @@
         "docDate":"Fecha documento",
         "comments": "Observaciones",
         "pwName": "Propuesta relacionada",
-        "file": "Fichero"
+        "file": "Fichero",
+        "step1": "PASO (1) Escoja el documento / imagen a dar de alta",
+        "step2": "PASO (2) Rellene la información adicional del documento",
+        "noVisible": "El fichero que acaba de subir no puede ser previsualizado. Aun así, puede agregarlo a la base de datos rellenando la informacional adicional y haciendo clic en el botón aceptar"
     }
 }
