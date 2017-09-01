@@ -1,6 +1,6 @@
 /*
- * companyDetail.js
- * Function for the page companyDetail.html
+ * docDetail.js
+ * Function for the page docDetail.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
@@ -10,40 +10,46 @@ var lang = aswCookies.getCookie('gdespa_lang');
 var data = null;
 var vm = null;
 
-var companyDetailAPI = {
+var docDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
-        $('#companyGeneral').attr('class', 'active');
+        $('#docGeneral').attr('class', 'active');
         // knockout management
-        vm = new companyDetailAPI.pageData();
+        vm = new docDetailAPI.pageData();
         ko.applyBindings(vm);
         // buttons click events
-        $('#btnOk').click(companyDetailAPI.btnOk());
+        $('#btnOk').click(docDetailAPI.btnOk());
         $('#btnExit').click(function(e){
             e.preventDefault();
-            window.open('companyGeneral.html', '_self');
+            window.open('docGeneral.html', '_self');
         })
         // check if an id have been passed
         var id = aswUtil.gup('id');
-        companyDetailAPI.getCompany(id);
+        docDetailAPI.getDoc(id);
     },
     pageData: function () {
         // knockout objects
         var self = this;
-        self.id = ko.observable();
+        self.docId = ko.observable();
         self.name = ko.observable();
+        self.docDate = ko.observable();
+        self.comments = ko.observable();
+        self.file = ko.observable();
     },
     loadData: function (data) {
-        vm.id(data.id);
+        vm.docId(data.docId);
         vm.name(data.name);
+        vm.docDate(moment(data.docDate).format(i18n.t("util.date_format")));
+        vm.comments(data.comments);
+        vm.file(data.file);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#companyDetail-form').validate({
+        $('#docDetail-form').validate({
             rules: {
                 txtName: { required: true }
             },
@@ -52,22 +58,22 @@ var companyDetailAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#companyDetail-form').valid();
+        return $('#docDetail-form').valid();
     },
     // obtain a  user group from the API
-    getCompany: function (id) {
+    getDoc: function (id) {
         if (!id || (id == 0)) {
             // new user group
-            vm.id(0);
+            vm.docId(0);
             return;
         }
-        var url = sprintf("%s/company/%s?api_key=%s", myconfig.apiUrl, id, api_key);
+        var url = sprintf("%s/doc/%s?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                companyDetailAPI.loadData(data[0]);
+                docDetailAPI.loadData(data[0]);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -82,21 +88,26 @@ var companyDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!companyDetailAPI.dataOk()) return;
+            if (!docDetailAPI.dataOk()) return;
             // dat for post or put
             var data = {
-                id: vm.id(),
-                name: vm.name()
+                docId: vm.docId(),
+                name: vm.name(),
+                comments: vm.comments(),
+                file: vm.file()
             };
+            if (moment(vm.docDate(), i18n.t("util.date_format")).isValid()) {
+                data.docDate = moment(vm.docDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
+            }
             var url = "", type = "";
-            if (vm.id() == 0) {
+            if (vm.docId() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/company?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/doc?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/company/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+                url = sprintf('%s/doc/%s/?api_key=%s', myconfig.apiUrl, vm.docId(), api_key);
             }
             $.ajax({
                 type: type,
@@ -104,7 +115,7 @@ var companyDetailAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    window.open('companyGeneral.html', '_self');
+                    window.open('docGeneral.html', '_self');
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);
@@ -117,4 +128,4 @@ var companyDetailAPI = {
         return mf;
     }
 };
-companyDetailAPI.init();
+docDetailAPI.init();

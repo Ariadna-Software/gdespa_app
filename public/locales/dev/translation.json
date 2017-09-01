@@ -760,11 +760,11 @@
         "ok": "Guardar"
     },
     "docGeneral": {
-        "title": "Mantenimiento empresas",
-        "new": "Nueva empresa"
+        "title": "Mantenimiento documentos",
+        "new": "Nueva documento"
     },
     "docDetail": {
-        "title": "Detalle empresa",
+        "title": "Detalle documento",
         "name": "Nombre",
         "cancel": "Salir sin guardar",
         "ok": "Guardar",
