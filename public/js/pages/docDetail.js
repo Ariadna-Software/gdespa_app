@@ -226,7 +226,7 @@ var docDetailAPI = {
                 }
                 options = options.concat(data2);
                 vm.optionsPws(options);
-                $("#cmbPws").val([id]).trigger('change');
+                $("#cmbPws").val([ida]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
