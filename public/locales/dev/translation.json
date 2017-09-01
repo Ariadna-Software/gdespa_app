@@ -70,7 +70,8 @@
             "parameters": "Parámetros",
             "work": "Tipos obra",
             "ins": "Tipos instalaciones",
-            "area": "Tipos areas"
+            "area": "Tipos areas",
+            "doc": "Documentos"
         },
         "pwman": {
             "main": "Obras y servicios",
