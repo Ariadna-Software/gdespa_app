@@ -24,6 +24,10 @@ var docDetailAPI = {
         ko.applyBindings(vm);
         // buttons click events
         $('#btnOk').click(docDetailAPI.btnOk());
+        $('#btnDownload').click(function (e) {
+            e.preventDefault();
+            docDetailAPI.downloadDoc();
+        });
         $('#btnExit').click(function (e) {
             e.preventDefault();
             window.open('docGeneral.html', '_self');
@@ -41,7 +45,7 @@ var docDetailAPI = {
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     // add the files to formData object for the data payload
-                    formData.append('uploads[]', file, user.id + file.name);
+                    formData.append('uploads[]', file, user.id + "@" + file.name);
                 }
                 $.ajax({
                     url: '/api/upload',
@@ -51,6 +55,7 @@ var docDetailAPI = {
                     contentType: false,
                     success: function (data) {
                         filename = data;
+                        vm.file(filename);
                         docDetailAPI.checkVisibility(filename);
                     },
                     xhr: function () {
@@ -85,6 +90,7 @@ var docDetailAPI = {
             $("#P2Title").show();
             $("#P1Loader").show();
             $("#P2Title").show();
+            $('#btnDownload').hide();
         } else {
             docDetailAPI.getDoc(id);
         }
@@ -108,6 +114,7 @@ var docDetailAPI = {
         vm.docDate(moment(data.docDate).format(i18n.t("util.date_format")));
         vm.comments(data.comments);
         vm.file(data.file);
+        docDetailAPI.loadDoc(data.file, data.docId);
         docDetailAPI.loadPws(data.pwId);
     },
     // Validates form (jquery validate) 
@@ -205,6 +212,29 @@ var docDetailAPI = {
             $("#msgContainer").html(i18n.t('docDetail.noVisible'));
             $("#docContainer").html('');
         }
+    },
+    loadDoc: function (filename, id) {
+        var ext = filename.split('.').pop().toLowerCase();
+        if (ext == "pdf" || ext == "jpg" || ext == "png" || ext == "gif") {
+            // see it in container
+            var url = "/docs/" + id + "." + ext;
+            if (ext == "pdf") {
+                // <iframe src="" width="100%" height="600px"></iframe>
+                $("#docContainer").html('<iframe src="' + url + '"frameborder="0" width="100%" height="600px"></iframe>');
+            } else {
+                // .html("<img src=' + this.href + '>");
+                $("#docContainer").html('<img src="' + url + '" width="100%">');;
+            }
+            $("#msgContainer").html('');
+        } else {
+            $("#msgContainer").html(i18n.t('docDetail.noVisible'));
+            $("#docContainer").html('');
+        }
+    },
+    downloadDoc: function () {
+        var ext = vm.file().split('.').pop().toLowerCase();
+        var url = "/docs/" + vm.docId() + "." + ext;
+        window.open(url, '_new');
     },
     loadPws: function (id) {
         var myId = id;

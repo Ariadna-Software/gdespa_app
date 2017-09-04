@@ -56,12 +56,12 @@ router.put('/:id', midCheck, function (req, res) {
 
 router.delete('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
+    var file = req.query.file;
     var id = req.params.id;
-    var doc = req.body;
-    if (!doc.id) {
-        return res.status(400).send('Document with id in body needed');
+    if (!id || !file) {
+        return res.status(400).send('Document with id and file name needed');
     }
-    docDb.delete(doc, function (err) {
+    docDb.delete(id, function (err) {
         if (err) {
             res.status(500).send(err.message);
         } else {

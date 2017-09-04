@@ -767,6 +767,7 @@
         "title": "Detalle documento",
         "name": "Nombre",
         "cancel": "Salir sin guardar",
+        "download": "Descargar fichero",
         "ok": "Guardar",
         "docDate":"Fecha documento",
         "comments": "Observaciones",

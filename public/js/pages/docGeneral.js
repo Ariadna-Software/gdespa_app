@@ -29,19 +29,23 @@ var docGeneralAPI = {
         options.data = data;
         options.columns = [{
             data: "name"
-        },{
-            data: "docDate"
-        },{
+        }, {
+            data: "docDate",
+            render: function (data, type, row) {
+                var html = moment(data).format('DD/MM/YYYY');
+                return html;
+            }
+        }, {
             data: "comments"
         }, {
-                data: "docId",
-                render: function (data, type, row) {
-                    var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='docGeneralAPI.deleteDocMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                    var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='docGeneralAPI.editDoc(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
-                    var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
-                    return html;
-                }
-            }];
+            data: "docId",
+            render: function (data, type, row) {
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='docGeneralAPI.deleteDocMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='docGeneralAPI.editDoc(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
         $('#dt_doc').dataTable(options);
     },
     newDoc: function () {
@@ -62,7 +66,8 @@ var docGeneralAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].name;
-                var fn = sprintf('docGeneralAPI.deleteDoc(%s);', id);
+                var file = data[0].file;
+                var fn = sprintf('docGeneralAPI.deleteDoc(%s, %s);', id, file);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -73,8 +78,8 @@ var docGeneralAPI = {
             }
         });
     },
-    deleteDoc: function (id) {
-        var url = sprintf("%s/doc/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deleteDoc: function (id, file) {
+        var url = sprintf("%s/doc/%s/?api_key=%s&file=%s", myconfig.apiUrl, id, api_key, file);
         var data = {
             id: id
         };
