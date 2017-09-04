@@ -66,8 +66,7 @@ var docGeneralAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].name;
-                var file = data[0].file;
-                var fn = sprintf('docGeneralAPI.deleteDoc(%s, %s);', id, file);
+                var fn = sprintf("docGeneralAPI.deleteDoc(%s);", id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -78,18 +77,33 @@ var docGeneralAPI = {
             }
         });
     },
-    deleteDoc: function (id, file) {
-        var url = sprintf("%s/doc/%s/?api_key=%s&file=%s", myconfig.apiUrl, id, api_key, file);
-        var data = {
-            id: id
-        };
+    deleteDoc: function (id) {
+        var url = sprintf("%s/doc/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
-            type: "DELETE",
+            type: "GET",
             url: url,
             contentType: "application/json",
-            data: JSON.stringify(data),
             success: function (data, status) {
-                docGeneralAPI.getDocs();
+                var file = data[0].file;
+                var url = sprintf("%s/doc/%s/?api_key=%s&file=%s", myconfig.apiUrl, id, api_key, file);
+                var data = {
+                    id: id
+                };
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    success: function (data, status) {
+                        docGeneralAPI.getDocs();
+                    },
+                    error: function (err) {
+                        aswNotif.errAjax(err);
+                        if (err.status == 401) {
+                            window.open('index.html', '_self');
+                        }
+                    }
+                });                
             },
             error: function (err) {
                 aswNotif.errAjax(err);

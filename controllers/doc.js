@@ -61,7 +61,7 @@ router.delete('/:id', midCheck, function (req, res) {
     if (!id || !file) {
         return res.status(400).send('Document with id and file name needed');
     }
-    docDb.delete(id, function (err) {
+    docDb.delete(id, file, function (err) {
         if (err) {
             res.status(500).send(err.message);
         } else {
