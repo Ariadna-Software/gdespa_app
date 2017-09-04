@@ -14,7 +14,7 @@ var docDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
-        datepicker_languages(lang);        
+        datepicker_languages(lang);
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
@@ -29,7 +29,8 @@ var docDetailAPI = {
             window.open('docGeneral.html', '_self');
         });
         $('#cmbPws').select2(select2_languages[lang]);
-        docDetailAPI.loadPws();        
+        docDetailAPI.loadPws();
+        docDetailAPI.deleteUploads(user.id);
         $('#upload-input').on('change', function () {
             var files = $(this).get(0).files;
             if (files.length > 0) {
@@ -40,7 +41,7 @@ var docDetailAPI = {
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     // add the files to formData object for the data payload
-                    formData.append('uploads[]', file, file.name);
+                    formData.append('uploads[]', file, user.id + file.name);
                 }
                 $.ajax({
                     url: '/api/upload',
@@ -99,7 +100,7 @@ var docDetailAPI = {
         // pw combo
         self.optionsPws = ko.observableArray([]);
         self.selectedPws = ko.observableArray([]);
-        self.sPw = ko.observable();        
+        self.sPw = ko.observable();
     },
     loadData: function (data) {
         vm.docId(data.docId);
@@ -226,7 +227,24 @@ var docDetailAPI = {
                 }
                 options = options.concat(data2);
                 vm.optionsPws(options);
-                $("#cmbPws").val([ida]).trigger('change');
+                $("#cmbPws").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    deleteUploads: function (id) {
+        $.ajax({
+            type: "DELETE",
+            url: sprintf('%s/doc/uploads/%s?api_key=%s', myconfig.apiUrl, id, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                // files deleted nothig to do
             },
             error: function (err) {
                 aswNotif.errAjax(err);
