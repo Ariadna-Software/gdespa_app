@@ -266,7 +266,8 @@
         "tabs": {
             "general": "General",
             "work_order": "Partes de trabajo",
-            "worker": "Recursos"
+            "worker": "Recursos",
+            "doc": "Documentos"
         },
         "lastClose": "Ultimo cierre",
         "print": "Imprimir",

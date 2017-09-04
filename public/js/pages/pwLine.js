@@ -3,9 +3,11 @@ var pwLineAPI = {
         // init tables
         pwLineAPI.initPwLineTable();
         pwLineAPI.initPwWorkerTable();
+        pwLineAPI.initDocTable();
         // button handlers
         $('#btnNewLine').click(pwLineAPI.newPwLine());
         $('#btnNewWorker').click(pwLineAPI.newPwWorker());
+        $('#btnNewDoc').click(pwLineAPI.newDoc());
         // avoid sending form 
         $('#pwDetailLine-form').submit(function () {
             return false;
@@ -13,6 +15,9 @@ var pwLineAPI = {
         $('#pwDetailWorker-form').submit(function () {
             return false;
         });
+        $('#pwDoc-form').submit(function () {
+            return false;
+        });        
     },
     // ---------- PW_LINE
     initPwLineTable: function () {
@@ -256,6 +261,119 @@ var pwLineAPI = {
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
         $("#tb_worker").show();
-    }
-
+    },
+    // ----------- PW_DOCS
+    initDocTable: function () {
+        var options = aswInit.initTableOptions('dt_doc');
+        options.data = data;
+        options.columns = [{
+            data: "name"
+        }, {
+            data: "docDate",
+            render: function (data, type, row) {
+                var html = moment(data).format('DD/MM/YYYY');
+                return html;
+            }
+        }, {
+            data: "comments"
+        }, {
+            data: "docId",
+            render: function (data, type, row) {
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwLineAPI.deleteDocMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='pwLineAPI.editDoc(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                return html;
+            }
+        }];
+        $('#dt_doc').dataTable(options);
+    },
+    newDoc: function () {
+        // Its an event handler, return function
+        var mf = function () {
+            window.open(sprintf('docDetail.html?id=%s&pwId=%s', 0, vm.id()), '_self');
+        }
+        return mf;
+    },
+    editDoc: function (id) {
+        window.open(sprintf('docDetail.html?id=%s', id), '_new');
+    },
+    deleteDocMessage: function (id) {
+        var url = sprintf("%s/doc/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                var name = data[0].name;
+                var fn = sprintf("pwLineAPI.deleteDoc(%s);", id);
+                aswNotif.deleteRecordQuestion(name, fn);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    deleteDoc: function (id) {
+        var url = sprintf("%s/doc/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                var file = data[0].file;
+                var url = sprintf("%s/doc/%s/?api_key=%s&file=%s", myconfig.apiUrl, id, api_key, file);
+                var data = {
+                    id: id
+                };
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    success: function (data, status) {
+                        pwLineAPI.getDocs();
+                    },
+                    error: function (err) {
+                        aswNotif.errAjax(err);
+                        if (err.status == 401) {
+                            window.open('index.html', '_self');
+                        }
+                    }
+                });                
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    // obtain user groups from the API
+    getDocs: function (id) {
+        var url = sprintf("%s/doc/byPwId/%s/?&api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                pwLineAPI.loadDocsTable(data);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadDocsTable: function (data) {
+        var dt = $('#dt_doc').dataTable();
+        dt.fnClearTable();
+        if (data && data.length > 0) dt.fnAddData(data);
+        dt.fnDraw();
+    }  
 };

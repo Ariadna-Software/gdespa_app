@@ -9,6 +9,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 
 var data = null;
 var vm = null;
+var refPwId = 0;
 
 var docDetailAPI = {
     init: function () {
@@ -22,6 +23,7 @@ var docDetailAPI = {
         // knockout management
         vm = new docDetailAPI.pageData();
         ko.applyBindings(vm);
+        if (aswUtil.gup('pwId') != "") refPwId = aswUtil.gup('pwId');
         // buttons click events
         $('#btnOk').click(docDetailAPI.btnOk());
         $('#btnDownload').click(function (e) {
@@ -30,10 +32,19 @@ var docDetailAPI = {
         });
         $('#btnExit').click(function (e) {
             e.preventDefault();
-            window.open('docGeneral.html', '_self');
+            if (!refPwId){
+                window.open('docGeneral.html', '_self');
+            }else{
+                window.open('pwDetail.html?id=' + refPwId + "&doc=true", '_self');
+            }
         });
         $('#cmbPws').select2(select2_languages[lang]);
-        docDetailAPI.loadPws();
+        if (refPwId){
+            docDetailAPI.loadPws(refPwId);
+        }else{
+            docDetailAPI.loadPws();
+        }
+        
         docDetailAPI.deleteUploads(user.id);
         $('#upload-input').on('change', function () {
             var files = $(this).get(0).files;
@@ -183,7 +194,11 @@ var docDetailAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    window.open('docGeneral.html', '_self');
+                    if (refPwId){
+                        window.open('pwDetail.html?id=' + refPwId + "&doc=true", '_self');
+                    }else{
+                        window.open('docGeneral.html', '_self');
+                    }
                 },
                 error: function (err) {
                     aswNotif.errAjax(err);

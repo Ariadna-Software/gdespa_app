@@ -9,6 +9,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 
 var data = null;
 var vm = null;
+var doc = null;
 
 var pwDetailAPI = {
     init: function () {
@@ -75,6 +76,9 @@ var pwDetailAPI = {
         pwDetailAPI.initWoTable();
         // check if an id have been passed
         var id = aswUtil.gup('id');
+        if (aswUtil.gup('doc') != "") {
+            $('.nav-tabs a[href="#s4"]').tab('show');
+        } 
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
@@ -87,6 +91,7 @@ var pwDetailAPI = {
         }
         pwDetailAPI.getPw(id);
         pwDetailAPI.getWo(id);
+        pwLineAPI.getDocs(id);
     },
     pageData: function () {
         // knockout objects

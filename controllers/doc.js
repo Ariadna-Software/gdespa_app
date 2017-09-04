@@ -10,11 +10,11 @@ var midCheck = require('./common').midChkApiKey;
 
 router.get('/', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
-    docDb.get(function (err, groups) {
+    docDb.get(function (err, docs) {
         if (err) {
             res.status(500).send(err.message);
         } else {
-            res.json(groups);
+            res.json(docs);
         }
     }, test);
 });
@@ -22,11 +22,11 @@ router.get('/', midCheck, function (req, res) {
 router.post('/', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var doc = req.body;
-    docDb.post(doc, function (err, groups) {
+    docDb.post(doc, function (err, docs) {
         if (err) {
             res.status(500).send(err.message);
         } else {
-            res.json(groups);
+            res.json(docs);
         }
     }, test);
 });
@@ -34,12 +34,23 @@ router.post('/', midCheck, function (req, res) {
 router.get('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    docDb.getById(id, function (err, groups) {
+    docDb.getById(id, function (err, docs) {
         if (err) return res.status(500).send(err.message);
-        if (groups.length == 0) return res.status(404).send('Document not found');
-        res.json(groups);
+        if (docs.length == 0) return res.status(404).send('Document not found');
+        res.json(docs);
     }, test);
 });
+
+router.get('/byPwId/:id', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    docDb.getByPwId(id, function (err, docs) {
+        if (err) return res.status(500).send(err.message);
+        if (docs.length == 0) return res.status(404).send('Document not found');
+        res.json(docs);
+    }, test);
+});
+
 
 router.put('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
