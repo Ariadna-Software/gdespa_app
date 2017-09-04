@@ -277,6 +277,22 @@ var pwLineAPI = {
         }, {
             data: "comments"
         }, {
+            data: "file",
+            render: function (data, type, row) {
+                var ext = data.split('.').pop().toLowerCase();
+                var html = "DOCUMENTO NO VISUALIZABLE";
+                if (ext == "pdf" || ext == "jpg" || ext == "png" || ext == "gif") {
+                    // see it in container
+                    var url = "/docs/" + row.docId + "." + ext;
+                    if (ext == "pdf") {
+                        html = '<iframe src="' + url + '"frameborder="0" width="100%" height="250px"></iframe>'
+                    } else {
+                        html = '<img src="' + url + '" width="100%" height="250px">';
+                    }
+                } 
+                return html;
+            }
+        }, {
             data: "docId",
             render: function (data, type, row) {
                 var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='pwLineAPI.deleteDocMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
@@ -295,7 +311,7 @@ var pwLineAPI = {
         return mf;
     },
     editDoc: function (id) {
-        window.open(sprintf('docDetail.html?id=%s', id), '_new');
+        window.open(sprintf('docDetail.html?id=%s', id), '_blank');
     },
     deleteDocMessage: function (id) {
         var url = sprintf("%s/doc/%s/?api_key=%s", myconfig.apiUrl, id, api_key);

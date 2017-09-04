@@ -38,6 +38,22 @@ var docGeneralAPI = {
         }, {
             data: "comments"
         }, {
+            data: "file",
+            render: function (data, type, row) {
+                var ext = data.split('.').pop().toLowerCase();
+                var html = "DOCUMENTO NO VISUALIZABLE";
+                if (ext == "pdf" || ext == "jpg" || ext == "png" || ext == "gif") {
+                    // see it in container
+                    var url = "/docs/" + row.docId + "." + ext;
+                    if (ext == "pdf") {
+                        html = '<iframe src="' + url + '"frameborder="0" width="100%" height="600px"></iframe>'
+                    } else {
+                        html = '<img src="' + url + '" width="100%">';
+                    }
+                } 
+                return html;
+            }
+        }, {
             data: "docId",
             render: function (data, type, row) {
                 var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='docGeneralAPI.deleteDocMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
