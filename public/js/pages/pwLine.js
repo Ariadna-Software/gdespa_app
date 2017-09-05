@@ -265,6 +265,12 @@ var pwLineAPI = {
     // ----------- PW_DOCS
     initDocTable: function () {
         var options = aswInit.initTableOptions('dt_doc');
+        options.sDom = "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs' C  >r>" +
+        "t" +
+        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>";
+        options.oColVis = {
+            "buttonText": "Mostrar / ocultar columnas"
+        };
         options.data = data;
         options.columns = [{
             data: "name"
@@ -285,9 +291,9 @@ var pwLineAPI = {
                     // see it in container
                     var url = "/docs/" + row.docId + "." + ext;
                     if (ext == "pdf") {
-                        html = '<iframe src="' + url + '"frameborder="0" width="100%" height="250px"></iframe>'
+                        html = '<iframe src="' + url + '"frameborder="0" width="100%" height="600px"></iframe>'
                     } else {
-                        html = '<img src="' + url + '" width="100%" height="250px">';
+                        html = '<img src="' + url + '" width="100%">';
                     }
                 } 
                 return html;
@@ -301,7 +307,8 @@ var pwLineAPI = {
                 return html;
             }
         }];
-        $('#dt_doc').dataTable(options);
+        var tabla = $('#dt_doc').DataTable(options);
+        tabla.columns(3).visible(false);
     },
     newDoc: function () {
         // Its an event handler, return function
