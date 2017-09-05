@@ -181,12 +181,12 @@
 							<a href="zoneGeneral.html">
 								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span data-i18n="menu.administration.zone">Blank</span>
 							</a>
-						</li>	
+						</li>
 						<li id="team" class="">
 							<a href="teamGeneral.html">
 								<i class="fa fa-lg fa-fw fa-user-circle"></i> <span data-i18n="menu.administration.team">Blank</span>
 							</a>
-						</li>	
+						</li>
 						<li id="mea" class="">
 							<a href="meaGeneral.html">
 								<i class="fa fa-lg fa-fw fa-compass"></i> <span data-i18n="menu.administration.mea">Blank</span>
@@ -233,12 +233,12 @@
 							<a href="moGeneral.html">
 								<i class="fa fa-lg fa-fw fa-compass"></i> <span data-i18n="menu.pwman.mo">Blank</span>
 							</a>
-						</li>		
+						</li>
 						<li id="luGeneral" class="">
 							<a href="luGeneral.html">
 								<i class="fa fa-lg fa-fw fa-lightbulb-o"></i> <span data-i18n="menu.pwman.lu">Blank</span>
 							</a>
-						</li>						
+						</li>
 						<li id="closureGeneral" class="">
 							<a href="closureGeneral.html">
 								<i class="fa fa-lg fa-fw fa-times-circle-o"></i> <span data-i18n="menu.pwman.closure">Blank</span>
@@ -335,10 +335,10 @@
 									</section>
 									<section class="col col-md-6">
 										<a href="infMoCostDetail.html" target="_blank">Informe de costes (otras UC)</a>
-									</section>									
+									</section>
 								</div>
 							</div>
-						</div>						
+						</div>
 						<div class="jarviswidget" id="wid-id-5" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
@@ -353,18 +353,26 @@
 												<label class="input">
 													<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy"/>
 												</label>
-											</section>											
+											</section>
 											<section class="col col-md-2">
 												<label class="label" data-i18n="reportGeneral.endDate">*HFecha:</label>
 												<label class="input">
 													<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy"/>
 												</label>
-											</section>											
+											</section>
 											<section class="col col-md-8">
 												<label class="label" data-i18n="reportGeneral.worker">*Trabajador:</label>
 												<select style="width:100%;" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', 
 													value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}">
 												</select>
+											</section>
+										</div>
+										<div class="row">
+											<section class="col col-md-12">
+												<label class="checkbox">
+													<input id="chkRrhh" type="checkbox" name="chkRrhh" data-bind="checked: rrhh">
+													<i></i><span data-i18n="reportGeneral.rrhh"></span>
+												</label>
 											</section>
 										</div>
 									</fieldset>
@@ -377,7 +385,7 @@
 									</fieldset>
 								</form>
 							</div>
-						</div>						
+						</div>
 						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
@@ -431,7 +439,7 @@
 									</fieldset>
 								</form>
 							</div>
-						</div>		
+						</div>
 						<div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
@@ -485,7 +493,7 @@
 									</fieldset>
 								</form>
 							</div>
-						</div>				
+						</div>
 						<div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
@@ -518,7 +526,7 @@
 									</fieldset>
 								</form>
 							</div>
-						</div>																	
+						</div>
 					</article>
 				</div>
 			</section>
@@ -547,16 +555,16 @@
 	<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
-			if (!window.jQuery) {
-				document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
-			}
-		</script>
+		if (!window.jQuery) {
+			document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
+		}
+	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script>
-			if (!window.jQuery.ui) {
-				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
-			}
-		</script>
+		if (!window.jQuery.ui) {
+			document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+		}
+	</script>
 	<!-- IMPORTANT: APP CONFIG -->
 	<script src="js/app.config.js"></script>
 	<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
@@ -625,18 +633,18 @@
 
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-				pageSetUp();
-				aswInit.initPage();
+		$(document).ready(function () {
+			pageSetUp();
+			aswInit.initPage();
 		})
 	</script>
 
 	<!-- Your GOOGLE ANALYTICS CODE Below -->
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-			_gaq.push(['_trackPageview']);
-		(function() {
+		_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+		_gaq.push(['_trackPageview']);
+		(function () {
 			var ga = document.createElement('script');
 			ga.type = 'text/javascript';
 			ga.async = true;

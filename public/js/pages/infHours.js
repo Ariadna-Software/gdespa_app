@@ -274,6 +274,7 @@ var loadBrigadas = function (data) {
 var obtainReportWithExcess = function (regs) {
     if (!datosOK()) return;
     var file = "../reports/worker_hours_json.mrt";
+    if (aswUtil.gup('rrhh') != "") file = "../reports/rrhh_hours_json.mrt";
 
     // Create a new report instance
     var report = new Stimulsoft.Report.StiReport();

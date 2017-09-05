@@ -547,7 +547,8 @@
         "workerHours": "Horas por trabajador",
         "worker": "Trabajador",
         "initDate": "Desde fecha",
-        "endDate": "Hasta fecha"
+        "endDate": "Hasta fecha",
+        "rrhh": "Modelo para recursos humanos"
     },
     "teamGeneral": {
         "title": "Brigadas",

@@ -76,6 +76,7 @@ var reportGeneralAPI = {
         self.optionsWorkers = ko.observableArray([]);
         self.selectedWorkers = ko.observableArray([]);
         self.sWorker = ko.observable();
+        self.rrhh = ko.observable();
         // closure combo
         self.optionsClosures = ko.observableArray([]);
         self.selectedClosures = ko.observableArray([]);
@@ -152,6 +153,7 @@ var reportGeneralAPI = {
             var endDate = moment(vm.endDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
             // vm.sWorker()
             url = "infHours.html?pDfecha=" + initDate + "&pHfecha=" + endDate;
+            if (vm.rrhh()) url += "&rrhh=true";
             if (vm.sWorker()) url += "&workerId=" + vm.sWorker();
             window.open(url,'_new');
         }
