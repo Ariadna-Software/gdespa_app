@@ -46,7 +46,6 @@ router.get('/byPwId/:id', midCheck, function (req, res) {
     var id = req.params.id;
     docDb.getByPwId(id, function (err, docs) {
         if (err) return res.status(500).send(err.message);
-        if (docs.length == 0) return res.status(404).send('Document not found');
         res.json(docs);
     }, test);
 });
