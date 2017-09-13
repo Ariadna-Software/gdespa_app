@@ -40,6 +40,15 @@ router.get('/:id', midCheck, function (req, res) {
     }, test);
 });
 
+router.get('/byPwId/:pwId', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var pwId = req.params.pwId;
+    invoiceDb.getByPwId(pwId, function (err, groups) {
+        if (err) return res.status(500).send(err.message);
+        res.json(groups);
+    }, test);
+});
+
 router.put('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

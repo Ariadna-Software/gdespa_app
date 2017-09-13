@@ -272,7 +272,8 @@
             "general": "General",
             "work_order": "Partes de trabajo",
             "worker": "Recursos",
-            "doc": "Documentos"
+            "doc": "Documentos",
+            "invoice":"Facturas"
         },
         "lastClose": "Ultimo cierre",
         "print": "Imprimir",

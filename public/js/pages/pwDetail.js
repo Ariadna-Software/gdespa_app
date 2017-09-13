@@ -92,6 +92,7 @@ var pwDetailAPI = {
         pwDetailAPI.getPw(id);
         pwDetailAPI.getWo(id);
         pwLineAPI.getDocs(id);
+        pwLineAPI.getInvoices(id);
     },
     pageData: function () {
         // knockout objects

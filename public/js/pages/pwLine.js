@@ -4,6 +4,7 @@ var pwLineAPI = {
         pwLineAPI.initPwLineTable();
         pwLineAPI.initPwWorkerTable();
         pwLineAPI.initDocTable();
+        pwLineAPI.initInvoiceTable();
         // button handlers
         $('#btnNewLine').click(pwLineAPI.newPwLine());
         $('#btnNewWorker').click(pwLineAPI.newPwWorker());
@@ -395,6 +396,48 @@ var pwLineAPI = {
     },
     loadDocsTable: function (data) {
         var dt = $('#dt_doc').dataTable();
+        dt.fnClearTable();
+        if (data && data.length > 0) dt.fnAddData(data);
+        dt.fnDraw();
+    },
+    // ----------- PW_INOVICES
+    initInvoiceTable: function () {
+        var options = aswInit.initTableOptions('dt_invoice');
+        options.data = data;
+        options.columns = [{
+            data: "invoiceNumber"
+        },{
+            data: "invoiceDate",
+            render: function (data, type, row) {
+                var html = moment(data).format('DD/MM/YYYY');
+                return html;
+            }
+        },{
+            data: "amount"
+        },{
+            data: "comments"
+        }];
+        $('#dt_invoice').dataTable(options);
+    },
+    getInvoices: function (pwId) {
+        var url = sprintf("%s/invoice/byPwId/%s?api_key=%s", myconfig.apiUrl, pwId, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                pwLineAPI.loadInvoicesTable(data);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadInvoicesTable: function (data) {
+        var dt = $('#dt_invoice').dataTable();
         dt.fnClearTable();
         if (data && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
