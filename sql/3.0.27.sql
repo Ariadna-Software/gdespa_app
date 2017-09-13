@@ -10,3 +10,6 @@ CREATE TABLE `invoice`(
 );
 ALTER TABLE `user`   
   ADD COLUMN `perInvoice` TINYINT(1) DEFAULT 0 NULL AFTER `perReport`;
+
+ALTER TABLE `invoice`   
+  CHANGE `invoiceId` `invoiceId` INT(11) NOT NULL AUTO_INCREMENT;
