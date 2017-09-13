@@ -375,6 +375,7 @@ var aswInit = {
         $('#pwman').hide();
         $('#store').hide();
         $('#report').hide();
+        $('#invoice').hide();
         if (user.perAdm) {
             $('#administration').show();
         }
@@ -395,6 +396,10 @@ var aswInit = {
         if (user.perReport) {
             $('#report').show();
         }
+        if (user.perInvoice) {
+            $('#invoice').show();
+        }
+        
     }
 }
 

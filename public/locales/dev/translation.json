@@ -91,6 +91,10 @@
         "report": {
             "main": "Informes",
             "general": "Informes varios"
+        },
+        "invoice": {
+            "main": "Facturación",
+            "general": "Facturas"
         }
     },
     "index": {
@@ -129,6 +133,7 @@
         "perGes": "Acceso al menú de Gestión",
         "perStore": "Acceso al menú de Almacenes",
         "perReport": "Acceso al menú de Informes",
+        "perInvoice": "Acceso al menú de Facturación",
         "PwGeneral": "--> Propuestas",
         "WoGeneral": "--> Partes de trabajo",
         "ClosureGeneral": "--> Cierres",

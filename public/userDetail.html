@@ -278,6 +278,18 @@
 						</li>
 					</ul>
 				</li>
+				<li id="invoice" class="">
+					<a href="#">
+						<i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent" data-i18n="menu.invoice.main">Blank</span>
+					</a>
+					<ul>
+						<li id="invoiceGeneral" class="">
+							<a href="invoiceGeneral.html">
+								<i class="fa fa-lg fa-fw fa-money"></i> <span data-i18n="menu.invoice.general">Blank</span>
+							</a>
+						</li>					
+					</ul>					
+				</li>				
 				<li id="report" class="">
 					<a href="#">
 						<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span class="menu-item-parent" data-i18n="menu.report.main">Blank</span>
@@ -410,7 +422,12 @@
 													<i></i><span data-i18n="userDetail.DeliveryGeneral"></span>
 												</label>
 											</section>
-											<section class="col col-md-3"></section>
+											<section class="col col-md-3">
+												<label class="checkbox">
+												<input id="chkPerInvoice" type="checkbox" name="chkPerInvoice" data-bind="checked: perInvoice">
+													<i></i><span data-i18n="userDetail.perInvoice"></span>
+												</label>
+											</section>
 										</div>
 										<div class="row">
 											<section class="col col-md-3">

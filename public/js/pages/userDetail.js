@@ -51,6 +51,7 @@ var userDetailAPI = {
         self.perGes = ko.observable();
         self.perStore = ko.observable();
         self.perReport = ko.observable();
+        self.perInvoice = ko.observable();
         //
         self.PwGeneral = ko.observable();
         self.WoGeneral = ko.observable();
@@ -94,6 +95,7 @@ var userDetailAPI = {
         vm.perGes(data.perGes);
         vm.perStore(data.perStore);
         vm.perReport(data.perReport);
+        vm.perInvoice(data.perInvoice);
         //
         vm.PwGeneral(data.pwGeneral);
         vm.WoGeneral(data.woGeneral);
@@ -180,6 +182,7 @@ var userDetailAPI = {
                 perGes: vm.perGes() ? 1 : 0,
                 perStore: vm.perStore() ? 1 : 0,
                 perReport: vm.perReport() ? 1 : 0,
+                perInvoice: vm.perInvoice() ? 1 : 0,
                 pwGeneral: vm.PwGeneral() ? 1 : 0,
                 woGeneral: vm.WoGeneral() ? 1 : 0,
                 closureGeneral: vm.ClosureGeneral() ? 1 : 0,
