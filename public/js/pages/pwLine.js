@@ -282,6 +282,8 @@ var pwLineAPI = {
                 return html;
             }
         }, {
+            data: "typeName"
+        }, {
             data: "comments"
         }, {
             data: "file",
@@ -309,7 +311,7 @@ var pwLineAPI = {
             }
         }];
         var tabla = $('#dt_doc').DataTable(options);
-        tabla.columns(3).visible(false);
+        tabla.columns(4).visible(false);
     },
     newDoc: function () {
         // Its an event handler, return function

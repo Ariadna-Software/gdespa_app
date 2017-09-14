@@ -104,6 +104,7 @@ app.use('/api/area_type', require('./controllers/area_type'));
 app.use('/api/doc', require('./controllers/doc'));
 app.use('/api/upload', require('./controllers/upload'));
 app.use('/api/invoice', require('./controllers/invoice'));
+app.use('/api/doc_type', require('./controllers/doc_type'));
 // general API to export
 
 var appAPI = {

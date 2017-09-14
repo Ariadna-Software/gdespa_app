@@ -71,7 +71,8 @@
             "work": "Tipos obra",
             "ins": "Tipos instalaciones",
             "area": "Tipos areas",
-            "doc": "Documentos"
+            "doc": "Documentos",
+            "docType": "Tipos de documentos"
         },
         "pwman": {
             "main": "Obras y servicios",
@@ -785,7 +786,8 @@
         "file": "Fichero",
         "step1": "PASO (1) Escoja el documento / imagen a dar de alta",
         "step2": "PASO (2) Rellene la información adicional del documento",
-        "noVisible": "El fichero que acaba de subir no puede ser previsualizado. Aun así, puede agregarlo a la base de datos rellenando la informacional adicional y haciendo clic en el botón aceptar"
+        "noVisible": "El fichero que acaba de subir no puede ser previsualizado. Aun así, puede agregarlo a la base de datos rellenando la informacional adicional y haciendo clic en el botón aceptar",
+        "docType": "Tipo de documento"
     },
     "invoiceGeneral": {
         "title": "Mantenimiento facturas",
@@ -799,6 +801,16 @@
         "pwName": "Propuesta relacionada",
         "comments":"Observaciones",
         "amount": "Importe",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar"
+    },
+    "docTypeGeneral": {
+        "title": "Mantenimiento tipos documentos",
+        "new": "Nuevo tipo"
+    },
+    "docTypeDetail": {
+        "title": "Detalle tipo",
+        "name": "Nombre",
         "cancel": "Salir sin guardar",
         "ok": "Guardar"
     }

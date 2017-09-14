@@ -39,12 +39,13 @@ var docDetailAPI = {
             }
         });
         $('#cmbPws').select2(select2_languages[lang]);
+        $('#cmbDts').select2(select2_languages[lang]);
         if (refPwId){
             docDetailAPI.loadPws(refPwId);
         }else{
             docDetailAPI.loadPws();
         }
-        
+        docDetailAPI.loadDts();
         docDetailAPI.deleteUploads(user.id);
         $('#upload-input').on('change', function () {
             var files = $(this).get(0).files;
@@ -118,6 +119,10 @@ var docDetailAPI = {
         self.optionsPws = ko.observableArray([]);
         self.selectedPws = ko.observableArray([]);
         self.sPw = ko.observable();
+        // dt combo
+        self.optionsDts = ko.observableArray([]);
+        self.selectedDts = ko.observableArray([]);
+        self.sDt = ko.observable();        
     },
     loadData: function (data) {
         vm.docId(data.docId);
@@ -127,6 +132,7 @@ var docDetailAPI = {
         vm.file(data.file);
         docDetailAPI.loadDoc(data.file, data.docId);
         docDetailAPI.loadPws(data.pwId);
+        docDetailAPI.loadDts(data.docTypeId);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -134,7 +140,8 @@ var docDetailAPI = {
             rules: {
                 txtName: { required: true },
                 txtDocDate: { required: true },
-                cmbPws: { required: true }
+                cmbPws: { required: true },
+                cmbDts: { required: true }
             },
             // Do not change code below
             errorPlacement: function (error, element) {
@@ -173,7 +180,8 @@ var docDetailAPI = {
                 name: vm.name(),
                 comments: vm.comments(),
                 file: vm.file(),
-                pwId: vm.sPw()
+                pwId: vm.sPw(),
+                docTypeId: vm.sDt()
             };
             if (moment(vm.docDate(), i18n.t("util.date_format")).isValid()) {
                 data.docDate = moment(vm.docDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
@@ -282,6 +290,27 @@ var docDetailAPI = {
             }
         });
     },
+    loadDts: function (id) {
+        var myId = id;
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/doc_type?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: null, name: "" }];
+                options = options.concat(data);
+                vm.optionsDts(options);
+                $("#cmbDts").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },    
     deleteUploads: function (id) {
         $.ajax({
             type: "DELETE",
