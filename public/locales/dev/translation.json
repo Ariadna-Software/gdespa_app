@@ -343,7 +343,8 @@
         "tabs": {
             "general": "Unidades constructivas",
             "worker": "Trabajadores",
-            "vehicles": "Maquinaria / vehículos"
+            "vehicles": "Maquinaria / vehículos",
+            "doc": "Documentos"
         },
         "print": "Imprimir",
         "title": "Detalle parte de trabajo",
@@ -389,7 +390,8 @@
         "thirdParty": "Parte de trabajo realizado por companía ajena",
         "thirdPartyCompany": "Compañía externa que ha realizado el trabajo",
         "team1": "Brigada",
-        "dayType": "Tipo jornada"
+        "dayType": "Tipo jornada",
+        "noDocAllowed": "Para introducir documentos debe haber cantidades en el parte de trabajo"
     },
     "itemInGeneral": {
         "title": "Entradas",

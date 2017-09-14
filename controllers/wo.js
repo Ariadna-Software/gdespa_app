@@ -86,6 +86,16 @@ router.get('/:id', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/total-quantity/:id', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    woDb.getByTotalQuantityId(id, function (err, wos) {
+        if (err) return res.status(500).send(err.message);
+        res.json(wos);
+    }, test);
+});
+
+
 router.get('/closure/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

@@ -10,6 +10,7 @@ var lang = aswCookies.getCookie('gdespa_lang');
 var data = null;
 var vm = null;
 var refPwId = 0;
+var refWoId = 0;
 
 var docDetailAPI = {
     init: function () {
@@ -24,6 +25,7 @@ var docDetailAPI = {
         vm = new docDetailAPI.pageData();
         ko.applyBindings(vm);
         if (aswUtil.gup('pwId') != "") refPwId = aswUtil.gup('pwId');
+        if (aswUtil.gup('woId') != "") refWoId = aswUtil.gup('woId');
         // buttons click events
         $('#btnOk').click(docDetailAPI.btnOk());
         $('#btnDownload').click(function (e) {
@@ -32,19 +34,22 @@ var docDetailAPI = {
         });
         $('#btnExit').click(function (e) {
             e.preventDefault();
-            if (!refPwId){
-                window.open('docGeneral.html', '_self');
-            }else{
+            if (refPwId) {
                 window.open('pwDetail.html?id=' + refPwId + "&doc=true", '_self');
+            } else if (refWoId){
+                window.open('woDetail.html?id=' + refWoId + "&doc=true", '_self');
+            } else {
+                window.open('docGeneral.html', '_self');
             }
         });
         $('#cmbPws').select2(select2_languages[lang]);
         $('#cmbDts').select2(select2_languages[lang]);
-        if (refPwId){
+        if (refPwId) {
             docDetailAPI.loadPws(refPwId);
-        }else{
+        } else {
             docDetailAPI.loadPws();
         }
+        if (refWoId) $("#pwDiv").hide();
         docDetailAPI.loadDts();
         docDetailAPI.deleteUploads(user.id);
         $('#upload-input').on('change', function () {
@@ -122,7 +127,7 @@ var docDetailAPI = {
         // dt combo
         self.optionsDts = ko.observableArray([]);
         self.selectedDts = ko.observableArray([]);
-        self.sDt = ko.observable();        
+        self.sDt = ko.observable();
     },
     loadData: function (data) {
         vm.docId(data.docId);
@@ -136,7 +141,7 @@ var docDetailAPI = {
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#docDetail-form').validate({
+        var options = {
             rules: {
                 txtName: { required: true },
                 txtDocDate: { required: true },
@@ -147,7 +152,9 @@ var docDetailAPI = {
             errorPlacement: function (error, element) {
                 error.insertAfter(element.parent());
             }
-        });
+        };
+        if (refWoId) options.rules.cmbPws.required = false;
+        $('#docDetail-form').validate(options);
         return $('#docDetail-form').valid();
     },
     // obtain a doc from the API
@@ -183,6 +190,7 @@ var docDetailAPI = {
                 pwId: vm.sPw(),
                 docTypeId: vm.sDt()
             };
+            if (refWoId) data.woId = refWoId;
             if (moment(vm.docDate(), i18n.t("util.date_format")).isValid()) {
                 data.docDate = moment(vm.docDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
             }
@@ -202,9 +210,11 @@ var docDetailAPI = {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data, status) {
-                    if (refPwId){
+                    if (refPwId) {
                         window.open('pwDetail.html?id=' + refPwId + "&doc=true", '_self');
-                    }else{
+                    } else if (refWoId) {
+                        window.open('woDetail.html?id=' + refWoId + "&doc=true", '_self');
+                    } else {
                         window.open('docGeneral.html', '_self');
                     }
                 },
@@ -310,7 +320,7 @@ var docDetailAPI = {
                 }
             }
         });
-    },    
+    },
     deleteUploads: function (id) {
         $.ajax({
             type: "DELETE",

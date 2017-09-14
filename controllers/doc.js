@@ -50,6 +50,15 @@ router.get('/byPwId/:id', midCheck, function (req, res) {
     }, test);
 });
 
+router.get('/byWoId/:id', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    docDb.getByWoId(id, function (err, docs) {
+        if (err) return res.status(500).send(err.message);
+        res.json(docs);
+    }, test);
+});
+
 
 router.put('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
