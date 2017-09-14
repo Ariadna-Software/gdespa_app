@@ -554,7 +554,9 @@
         "worker": "Trabajador",
         "initDate": "Desde fecha",
         "endDate": "Hasta fecha",
-        "rrhh": "Modelo para recursos humanos"
+        "rrhh": "Modelo para recursos humanos",
+        "consolidate": "Consolidado",
+        "detail": "Informe detallado"
     },
     "teamGeneral": {
         "title": "Brigadas",

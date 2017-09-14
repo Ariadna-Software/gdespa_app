@@ -25,6 +25,7 @@ var reportGeneralAPI = {
         $('#cmbWorkers').select2(select2_languages[lang]);
         reportGeneralAPI.loadWorkers();        
         $('#btnPrintWorker').click(reportGeneralAPI.btnPrintWorker());
+        $('#btnPrintConsolidate').click(reportGeneralAPI.btnPrintConsolidate());
        
         $('#cmbClosures').select2(select2_languages[lang]);
         reportGeneralAPI.loadClosures();
@@ -67,6 +68,9 @@ var reportGeneralAPI = {
         $('#pwItemDetail-form').submit(function () {
             return false;
         });
+        $('#consolidate-form').submit(function () {
+            return false;
+        });
     },
     pageData: function () {
         var self = this;
@@ -100,6 +104,9 @@ var reportGeneralAPI = {
         self.optionsPwItem = ko.observableArray([]);
         self.selectedPwItem = ko.observableArray([]);
         self.sPwItem = ko.observable();
+        //
+        self.endDateCons = ko.observable();
+        self.consDetail = ko.observable();
 
     },
     loadWorkers: function (id) {
@@ -158,7 +165,23 @@ var reportGeneralAPI = {
             window.open(url,'_new');
         }
         return mf;
-    },    
+    },   
+    btnPrintConsolidate: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            var endDate = moment(vm.endDateCons(), "DD/MM/YYYY").format('YYYY-MM-DD');
+            // vm.sWorker()
+            url = "infConsolidado.html?pHfecha=" + endDate;
+            if (vm.consDetail()) url += "&consDetail=true";
+            window.open(url,'_new');
+        }
+        return mf;
+    },      
     btnPrintClosure: function () {
         var mf = function (e) {
             // avoid default accion

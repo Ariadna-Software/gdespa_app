@@ -351,6 +351,39 @@
 								</div>
 							</div>
 						</div>
+						<div class="jarviswidget" id="wid-id-7" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+								<h2 data-i18n="reportGeneral.consolidate">* Consolidado</h2>
+							</header>
+							<div class="widget-body">
+								<form id="consolidate-form" class="smart-form">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.endDate">*HFecha:</label>
+												<label class="input">
+													<input id="txtEndDateCons" name="txtEndDateCons" data-bind="value: endDateCons" class="datepicker" data-dateformat="dd/mm/yy"/>
+												</label>
+											</section>
+											<section class="col col-md-8">
+												<label class="checkbox">
+													<input id="chkDetail" type="checkbox" name="chkDetail" data-bind="checked: consDetail">
+													<i></i><span data-i18n="reportGeneral.detail"></span>
+												</label>
+											</section>
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnPrintConsolidate" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+												<i class="fa fa-lg fa-print"></i>
+											</button>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>						
 						<div class="jarviswidget" id="wid-id-5" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
