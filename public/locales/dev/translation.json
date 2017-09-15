@@ -331,7 +331,10 @@
         "area": "Tipo area",
         "revDate": "Fecha revisión",
         "revUser": "Persona que revisa",
-        "updateLines": "¿Quiere que las cantidades de replanteo se igualen a las de los partes de trabajo? "
+        "updateLines": "¿Quiere que las cantidades de replanteo se igualen a las de los partes de trabajo? ",
+        "produced": "Producido",
+        "invoiced": "Facturado",
+        "pending": "Pendiente"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",

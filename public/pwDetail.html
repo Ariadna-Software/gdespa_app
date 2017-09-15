@@ -277,9 +277,9 @@
 							<a href="invoiceGeneral.html">
 								<i class="fa fa-lg fa-fw fa-money"></i> <span data-i18n="menu.invoice.general">Blank</span>
 							</a>
-						</li>					
-					</ul>					
-				</li>				
+						</li>
+					</ul>
+				</li>
 				<li id="report" class="">
 					<a href="#">
 						<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span class="menu-item-parent" data-i18n="menu.report.main">Blank</span>
@@ -289,8 +289,8 @@
 							<a href="reportGeneral.html">
 								<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span data-i18n="menu.report.general">Blank</span>
 							</a>
-						</li>					
-					</ul>					
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</nav>
@@ -501,31 +501,38 @@
 											<section class="col col-md-2 asw-center">
 												<div class="row">
 													<hr/>
-													<h1 data-i18n="progress">P</h1>
-													<hr/>
+													<h4 data-i18n="progress">P</h4>
 												</div>
 												<div class="row" style="text-align:center">
-													<h1 id="progress">0 %</h1>
+													<h4 id="progress">0 %</h4>
 												</div>
-											</section>
-											<section class="col col-md-2 asw-center">
 												<div class="row">
 													<hr/>
-													<h1 data-i18n="pwDetail.lastClose">CLOSE</h1>
-													<hr/>
+													<h4 data-i18n="pwDetail.lastClose">CLOSE</h4>
 												</div>
 												<div class="row" style="text-align:center">
-													<h1 id="lastclose">0 %</h1>
+													<h4 id="lastclose">0 %</h4>
 												</div>
-											</section>
-											<section style="display: none;" class="col col-md-2 asw-center">
 												<div class="row">
 													<hr/>
-													<h1 data-i18n="pwDetail.cost">C</h1>
-													<hr/>
+													<h4 data-i18n="pwDetail.produced">PR</h4>
 												</div>
-												<div class="row" style="text-align:center">
-													<h1 id="cost">0 USD</h1>
+												<div class="row" style="text-align:center; color:blue">
+													<h4 id="produced"> 0 USD</h4>
+												</div>
+												<div class="row">
+													<hr/>
+													<h4 data-i18n="pwDetail.invoiced">IN</h4>
+												</div>
+												<div class="row" style="text-align:center; color:green">
+													<h4 id="invoiced"> 0 USD</h4>
+												</div>
+												<div class="row">
+													<hr/>
+													<h4 data-i18n="pwDetail.pending">PEN</h4>
+												</div>
+												<div class="row" style="text-align:center; color: red">
+													<h4 id="pending"> 0 USD</h4>
 												</div>
 											</section>
 										</div>
@@ -738,13 +745,13 @@
 														</th>
 														<th data-hide="phone">
 															<span data-i18n="docDetail.docType">TIPO</span>
-														</th>														
+														</th>
 														<th data-hide="phone">
 															<span data-i18n="docDetail.comments">OBSERVACIONES</span>
 														</th>
 														<th data-hide="phone">
 															<span data-i18n="docDetail.file">DOCUMENTO</span>
-														</th>														
+														</th>
 														<th>
 														</th>
 													</tr>
@@ -762,7 +769,7 @@
 												<thead>
 													<tr>
 														<th data-class="expand">
-															<i class="fa fa-fw fa-building text-muted hidden-md hidden-sm hidden-xs"></i> 
+															<i class="fa fa-fw fa-building text-muted hidden-md hidden-sm hidden-xs"></i>
 															<span data-i18n="invoiceDetail.invoiceNumber"> Num. Factura </span>
 														</th>
 														<th>
@@ -780,7 +787,7 @@
 										</div>
 									</fieldset>
 								</form>
-							</div>							
+							</div>
 						</div>
 					</article>
 				</div>
@@ -1152,6 +1159,7 @@
 	<script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
+	<script src="js/init.utilities.js"></script>
 	<script src="js/asw.common.js"></script>
 	<script src="js/pages/pwModal4.js"></script>
 	<script src="js/pages/pwModal3.js"></script>

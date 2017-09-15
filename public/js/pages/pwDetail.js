@@ -78,7 +78,7 @@ var pwDetailAPI = {
         var id = aswUtil.gup('id');
         if (aswUtil.gup('doc') != "") {
             $('.nav-tabs a[href="#s4"]').tab('show');
-        } 
+        }
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
@@ -201,6 +201,9 @@ var pwDetailAPI = {
         self.plannedQuantity = ko.observable();
         // 
         self.subZone = ko.observable();
+        //
+        self.prod = ko.observable();
+        self.totalf = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -240,6 +243,9 @@ var pwDetailAPI = {
         vm.sZone2(data.zoneId2);
         vm.subZone(data.subZone);
 
+        vm.prod(data.prod);
+        vm.totalf(data.totalf);
+
         pwDetailAPI.loadZones(vm.sZone());
         pwDetailAPI.loadZones2(vm.sZone2());
 
@@ -264,6 +270,11 @@ var pwDetailAPI = {
                 $('#btnNewLine').hide();
             }
         }
+        // new fields prod anf totalf
+        if (vm.prod()) $('#produced').text(numeral(data.prod).format('0,0.00') + " USD");
+        if (vm.totalf()) $('#invoiced').text(numeral(data.totalf).format('0,0.00') + " USD");
+        if (vm.prod() - vm.totalf()) $('#pending').text((numeral(data.prod - data.totalf).format('0,0.00') + " USD"));
+        if (parseInt(vm.prod() - vm.totalf()) == 0) $('#pending').css('color', 'black');
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -384,7 +395,7 @@ var pwDetailAPI = {
             }
             if (moment(vm.revDate(), i18n.t("util.date_format")).isValid()) {
                 data.revDate = moment(vm.revDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
-            }            
+            }
             var url = "",
                 type = "";
             if (vm.id() == 0) {
