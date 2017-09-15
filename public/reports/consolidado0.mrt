@@ -402,6 +402,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
         </HeaderBand2>
         <DataDatosPw Ref="27" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,8.8,19.01,0.8</ClientRectangle>
           <Components isList="true" count="8">
             <DataDatosPw_line Ref="28" type="Text" isKey="true">
@@ -603,7 +604,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
         <GroupFooterBand1 Ref="43" type="GroupFooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,12.2,19.01,3</ClientRectangle>
-          <Components isList="true" count="15">
+          <Components isList="true" count="13">
             <Text16 Ref="44" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
@@ -705,7 +706,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
             <Text20 Ref="51" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>9.4,1.2,2.2,0.6</ClientRectangle>
+              <ClientRectangle>3.6,2,2.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>cadba6c3ff5c41939cadf947c6effaa0</Guid>
@@ -731,7 +732,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
             <Text21 Ref="53" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>6,1.2,3.2,0.6</ClientRectangle>
+              <ClientRectangle>0.2,2,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>24c0e8567ada4910bdf20b0cd39d2a18</Guid>
@@ -749,7 +750,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
             <Text22 Ref="54" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>15.6,2,2.4,0.6</ClientRectangle>
+              <ClientRectangle>9.2,1.2,2.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>456aa7cc42c74e3db03f5967f39d2aed</Guid>
@@ -775,7 +776,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
             <Text23 Ref="56" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>12.4,2,3.2,0.6</ClientRectangle>
+              <ClientRectangle>6,1.2,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>e292de49090f447e921f01fc5ab99e15</Guid>
@@ -790,51 +791,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text23>
-            <Text24 Ref="57" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>3.4,2,2.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>f10b909b8b0149048d21b8bdd0c67fcd</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text24</Name>
-              <Page isRef="4" />
-              <Parent isRef="43" />
-              <Text>{Sum(GroupHeaderBand1,DatosPw.q1 * DatosPw.cost * DatosPw.k) - DatosPw.totalf}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="58" type="CurrencyFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>8</NegativePattern>
-                <PositivePattern>3</PositivePattern>
-                <Symbol>USD</Symbol>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text24>
-            <Text25 Ref="59" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>0.2,2,3.2,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>f857af04b93e439d94ea5d0bb679fbdf</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text25</Name>
-              <Page isRef="4" />
-              <Parent isRef="43" />
-              <Text>Pendiente presupuesto:</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text25>
-            <Text26 Ref="60" type="Text" isKey="true">
+            <Text26 Ref="57" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>9.2,2,2.4,0.6</ClientRectangle>
@@ -848,7 +805,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
               <Parent isRef="43" />
               <Text>{Sum(GroupHeaderBand1,DatosPw.q2 * DatosPw.cost * DatosPw.k) - DatosPw.totalf}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="61" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="58" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -860,7 +817,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text26>
-            <Text27 Ref="62" type="Text" isKey="true">
+            <Text27 Ref="59" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>6,2,3.2,0.6</ClientRectangle>
@@ -872,13 +829,13 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
               <Name>Text27</Name>
               <Page isRef="4" />
               <Parent isRef="43" />
-              <Text>Pendiente producción:</Text>
+              <Text>Pendiente facturar:</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text27>
-            <Text28 Ref="63" type="Text" isKey="true">
+            <Text28 Ref="60" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0.2,0.2,14.2,0.8</ClientRectangle>
@@ -895,7 +852,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text28>
-            <Text29 Ref="64" type="Text" isKey="true">
+            <Text29 Ref="61" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>15.6,1.2,2.4,0.6</ClientRectangle>
@@ -909,7 +866,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
               <Parent isRef="43" />
               <Text>{DatosPw.total}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="65" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="62" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -921,7 +878,7 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text29>
-            <Text30 Ref="66" type="Text" isKey="true">
+            <Text30 Ref="63" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>12.4,1.2,3.2,0.6</ClientRectangle>
@@ -954,13 +911,13 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
       <PageHeight>29.69</PageHeight>
       <PageWidth>21.01</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="67" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="64" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="68" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="65" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -973,10 +930,10 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>consolidado0</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>9/14/2017 10:27:55 AM</ReportChanged>
+  <ReportChanged>9/15/2017 10:55:39 AM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
   <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado0.mrt</ReportFile>
-  <ReportGuid>9e3060170ad64165a6b798ee51b44270</ReportGuid>
+  <ReportGuid>fe80aedcbc89495aa42c7ea278650443</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado0</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
