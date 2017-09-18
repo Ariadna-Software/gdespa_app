@@ -81,7 +81,7 @@ var pwModal2API = {
                     break;
                 case 5:
                     data.payInCharge = { id: vm.sWorker2() };
-                    data.payDate = moment(wm.initDate2(), i18n.t('util.date_format')).format(i18n.t('util.date_iso'));
+                    data.payDate = moment(vm.initDate2(), i18n.t('util.date_format')).format(i18n.t('util.date_iso'));
                     data.payRef = vm.reference2();
                     break;
             }
