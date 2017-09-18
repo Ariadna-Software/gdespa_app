@@ -64,7 +64,7 @@ GROUP BY 1,2,3,4,5</SqlCommand>
     <Page1 Ref="4" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
-      <Components isList="true" count="8">
+      <Components isList="true" count="10">
         <PageHeaderBand1 Ref="5" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,19.01,2.2</ClientRectangle>
@@ -192,27 +192,55 @@ GROUP BY 1,2,3,4,5</SqlCommand>
           <Page isRef="4" />
           <Parent isRef="4" />
         </GroupHeaderBand2>
-        <GroupHeaderBand1 Ref="15" type="GroupHeaderBand" isKey="true">
+        <GroupHeaderBand3 Ref="15" type="GroupHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,5,19.01,0.8</ClientRectangle>
-          <Components isList="true" count="2">
-            <Text1 Ref="16" type="Text" isKey="true">
+          <Components isList="true" count="1">
+            <Text14 Ref="16" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0.2,0,10.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
+              <Guid>083d261c9bc443baab70e2b783b7db7f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="4" />
+              <Parent isRef="15" />
+              <Text>BRIGADA: {DetalleWo.Brigada}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+          </Components>
+          <Condition>{DetalleWo.Brigada}</Condition>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeaderBand3</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </GroupHeaderBand3>
+        <GroupHeaderBand1 Ref="17" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,6.6,19.01,0.8</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text1 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.6,0,10.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="4" />
-              <Parent isRef="15" />
+              <Parent isRef="17" />
               <Text>OBRA: {DetalleWo.ObraNombre}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text1>
-            <Text2 Ref="17" type="Text" isKey="true">
+            <Text2 Ref="19" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>11.8,0,7,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -222,7 +250,7 @@ GROUP BY 1,2,3,4,5</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
               <Page isRef="4" />
-              <Parent isRef="15" />
+              <Parent isRef="17" />
               <Text>REF: {DetalleWo.ObraReferencia}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
@@ -235,43 +263,43 @@ GROUP BY 1,2,3,4,5</SqlCommand>
           <Page isRef="4" />
           <Parent isRef="4" />
         </GroupHeaderBand1>
-        <HeaderDetalleWo Ref="18" type="HeaderBand" isKey="true">
+        <HeaderDetalleWo Ref="20" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,6.6,19.01,0.8</ClientRectangle>
-          <Components isList="true" count="5">
-            <HeaderDetalleWo_ParteFecha Ref="19" type="Text" isKey="true">
+          <ClientRectangle>0,8.2,19.01,0.8</ClientRectangle>
+          <Components isList="true" count="4">
+            <HeaderDetalleWo_ParteFecha Ref="21" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.4,0,1.6,0.8</ClientRectangle>
+              <ClientRectangle>0.6,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDetalleWo_ParteFecha</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="20" />
               <Text>Fecha</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDetalleWo_ParteFecha>
-            <HeaderDetalleWo_ParteResponsable Ref="20" type="Text" isKey="true">
+            <HeaderDetalleWo_ParteResponsable Ref="22" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,0,5.4,0.8</ClientRectangle>
+              <ClientRectangle>2.4,0,9.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDetalleWo_ParteResponsable</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="20" />
               <Text>Responsable</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDetalleWo_ParteResponsable>
-            <HeaderDetalleWo_SumParteLineaCantidad Ref="21" type="Text" isKey="true">
+            <HeaderDetalleWo_SumParteLineaCantidad Ref="23" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>12.2,0,3.4,0.8</ClientRectangle>
@@ -281,14 +309,14 @@ GROUP BY 1,2,3,4,5</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDetalleWo_SumParteLineaCantidad</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="20" />
               <Text>Cant. UC Producido</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDetalleWo_SumParteLineaCantidad>
-            <HeaderDetalleWo_SumParteLineaImporte Ref="22" type="Text" isKey="true">
+            <HeaderDetalleWo_SumParteLineaImporte Ref="24" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>15.8,0,3.2,0.8</ClientRectangle>
@@ -298,30 +326,13 @@ GROUP BY 1,2,3,4,5</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDetalleWo_SumParteLineaImporte</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="20" />
               <Text>Importe producido</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDetalleWo_SumParteLineaImporte>
-            <Text12 Ref="23" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>7.8,0,4.2,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Guid>5bd837b252bd4a4e99e24d422547f020</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text12</Name>
-              <Page isRef="4" />
-              <Parent isRef="18" />
-              <Text>Brigada</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text12>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>HeaderDetalleWo</Name>
@@ -329,44 +340,45 @@ GROUP BY 1,2,3,4,5</SqlCommand>
           <Parent isRef="4" />
           <PrintIfEmpty>True</PrintIfEmpty>
         </HeaderDetalleWo>
-        <DataDetalleWo Ref="24" type="DataBand" isKey="true">
+        <DataDetalleWo Ref="25" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,8.2,19.01,0.8</ClientRectangle>
-          <Components isList="true" count="5">
-            <DataDetalleWo_ParteFecha Ref="25" type="Text" isKey="true">
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,9.8,19.01,0.8</ClientRectangle>
+          <Components isList="true" count="4">
+            <DataDetalleWo_ParteFecha Ref="26" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>0.4,0,1.6,0.8</ClientRectangle>
+              <ClientRectangle>0.6,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDetalleWo_ParteFecha</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DetalleWo.ParteFecha}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="26" type="DateFormat" isKey="true">
+              <TextFormat Ref="27" type="DateFormat" isKey="true">
                 <StringFormat>dd/MM/yyyy</StringFormat>
               </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDetalleWo_ParteFecha>
-            <DataDetalleWo_ParteResponsable Ref="27" type="Text" isKey="true">
+            <DataDetalleWo_ParteResponsable Ref="28" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>2.2,0,5.2,0.8</ClientRectangle>
+              <ClientRectangle>2.4,0,8.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDetalleWo_ParteResponsable</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DetalleWo.ParteResponsable}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDetalleWo_ParteResponsable>
-            <DataDetalleWo_SumParteLineaCantidad Ref="28" type="Text" isKey="true">
+            <DataDetalleWo_SumParteLineaCantidad Ref="29" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>12.2,0,3.4,0.8</ClientRectangle>
@@ -376,10 +388,10 @@ GROUP BY 1,2,3,4,5</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDetalleWo_SumParteLineaCantidad</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DetalleWo.SumParteLineaCantidad}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="29" type="NumberFormat" isKey="true">
+              <TextFormat Ref="30" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -388,7 +400,7 @@ GROUP BY 1,2,3,4,5</SqlCommand>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDetalleWo_SumParteLineaCantidad>
-            <DataDetalleWo_SumParteLineaImporte Ref="30" type="Text" isKey="true">
+            <DataDetalleWo_SumParteLineaImporte Ref="31" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>15.8,0,3.2,0.8</ClientRectangle>
@@ -398,10 +410,10 @@ GROUP BY 1,2,3,4,5</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDetalleWo_SumParteLineaImporte</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DetalleWo.SumParteLineaImporte}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="31" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="32" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -412,23 +424,6 @@ GROUP BY 1,2,3,4,5</SqlCommand>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDetalleWo_SumParteLineaImporte>
-            <Text13 Ref="32" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>7.8,0,4.2,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>d4d6c9c8b97049308028b138cd2d6ac8</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text13</Name>
-              <Page isRef="4" />
-              <Parent isRef="24" />
-              <Text>{DetalleWo.Brigada}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>DataColumn</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text13>
           </Components>
           <Conditions isList="true" count="0" />
           <DataSourceName>DetalleWo</DataSourceName>
@@ -443,7 +438,7 @@ GROUP BY 1,2,3,4,5</SqlCommand>
         </DataDetalleWo>
         <GroupFooterBand1 Ref="33" type="GroupFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,9.8,19.01,0.8</ClientRectangle>
+          <ClientRectangle>0,11.4,19.01,0.8</ClientRectangle>
           <Components isList="true" count="3">
             <Text3 Ref="34" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -521,40 +516,39 @@ GROUP BY 1,2,3,4,5</SqlCommand>
           <Page isRef="4" />
           <Parent isRef="4" />
         </GroupFooterBand1>
-        <GroupFooterBand2 Ref="39" type="GroupFooterBand" isKey="true">
-          <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+        <GroupFooterBand3 Ref="39" type="GroupFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,11.4,19.01,0.8</ClientRectangle>
+          <ClientRectangle>0,13,19.01,0.8</ClientRectangle>
           <Components isList="true" count="3">
-            <Text7 Ref="40" type="Text" isKey="true">
+            <Text15 Ref="40" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0.4,0,11.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,12</Font>
-              <Guid>56e637f501cc3164702b4b2647922fc8</Guid>
+              <Font>Arial,10</Font>
+              <Guid>26ed4e26534b4823afe54f115027b36a</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text7</Name>
+              <Name>Text15</Name>
               <Page isRef="4" />
               <Parent isRef="39" />
-              <Text>TOTAL ZONA: {DetalleWo.Zona}</Text>
+              <Text>TOTAL BRIGADA: {DetalleWo.Brigada}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text7>
-            <Text10 Ref="41" type="Text" isKey="true">
+            </Text15>
+            <Text16 Ref="41" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>12.2,0,3.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,12</Font>
-              <Guid>5fcd280570ef83a514a18daba6459b96</Guid>
+              <Font>Arial,10</Font>
+              <Guid>2b92158df9944d94ace5664d7f1a48d8</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text10</Name>
+              <Name>Text16</Name>
               <Page isRef="4" />
               <Parent isRef="39" />
               <Text>{Sum(DataDetalleWo,DetalleWo.SumParteLineaCantidad)}</Text>
@@ -568,8 +562,89 @@ GROUP BY 1,2,3,4,5</SqlCommand>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text17 Ref="43" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>15.8,0,3.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>5e8ce190a2a641ea86ccab4d43247a08</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="4" />
+              <Parent isRef="39" />
+              <Text>{Sum(DataDetalleWo,DetalleWo.SumParteLineaImporte)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="44" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>GroupFooterBand3</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </GroupFooterBand3>
+        <GroupFooterBand2 Ref="45" type="GroupFooterBand" isKey="true">
+          <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,14.6,19.01,0.8</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text7 Ref="46" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.4,0,11.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12</Font>
+              <Guid>56e637f501cc3164702b4b2647922fc8</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="4" />
+              <Parent isRef="45" />
+              <Text>TOTAL ZONA: {DetalleWo.Zona}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text10 Ref="47" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.2,0,3.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12</Font>
+              <Guid>5fcd280570ef83a514a18daba6459b96</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="4" />
+              <Parent isRef="45" />
+              <Text>{Sum(DataDetalleWo,DetalleWo.SumParteLineaCantidad)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="48" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text10>
-            <Text11 Ref="43" type="Text" isKey="true">
+            <Text11 Ref="49" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -581,10 +656,10 @@ GROUP BY 1,2,3,4,5</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
               <Page isRef="4" />
-              <Parent isRef="39" />
+              <Parent isRef="45" />
               <Text>{Sum(DataDetalleWo,DetalleWo.SumParteLineaImporte)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="44" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="50" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -610,13 +685,13 @@ GROUP BY 1,2,3,4,5</SqlCommand>
       <PageHeight>29.69</PageHeight>
       <PageWidth>21.01</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="45" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="51" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="46" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="52" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -629,15 +704,15 @@ GROUP BY 1,2,3,4,5</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>moDetalle</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>6/19/2017 11:57:57 AM</ReportChanged>
+  <ReportChanged>9/18/2017 11:30:46 AM</ReportChanged>
   <ReportCreated>1/1/1970 5:00:00 AM</ReportCreated>
   <ReportDescription>Partes detallados por obra</ReportDescription>
-  <ReportFile />
-  <ReportGuid>c0aa9e5a62f746bd866197111875e2b7</ReportGuid>
+  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\wo_resumido_obra.mrt</ReportFile>
+  <ReportGuid>6a451287dbf64acab1377ab96399ddc5</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>moDetalle</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
-  <ReportVersion>2017.1.6.0</ReportVersion>
+  <ReportVersion>2017.1.10.0</ReportVersion>
   <Script>using System;
 using System.Drawing;
 using System.Windows.Forms;
