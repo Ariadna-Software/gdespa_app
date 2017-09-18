@@ -5,6 +5,7 @@ var pwLineAPI = {
         pwLineAPI.initPwWorkerTable();
         pwLineAPI.initDocTable();
         pwLineAPI.initInvoiceTable();
+        pwLineAPI.initImgTable();
         // button handlers
         $('#btnNewLine').click(pwLineAPI.newPwLine());
         $('#btnNewWorker').click(pwLineAPI.newPwWorker());
@@ -380,7 +381,7 @@ var pwLineAPI = {
     },
     // obtain user groups from the API
     getDocs: function (id) {
-        var url = sprintf("%s/doc/byPwId/%s/?&api_key=%s", myconfig.apiUrl, id, api_key);
+        var url = sprintf("%s/doc/byPwId/docs/%s/?&api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
@@ -443,5 +444,70 @@ var pwLineAPI = {
         dt.fnClearTable();
         if (data && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-    }  
+    },  
+    // -- PW IMAGES
+    initImgTable: function () {
+        var options = aswInit.initTableOptions('dt_img');
+        options.sDom = "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs' C  >r>" +
+        "t" +
+        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>";
+        options.oColVis = {
+            "buttonText": "Mostrar / ocultar columnas"
+        };
+        options.data = data;
+        options.columns = [{
+            data: "name"
+        }, {
+            data: "docDate",
+            render: function (data, type, row) {
+                var html = moment(data).format('DD/MM/YYYY');
+                return html;
+            }
+        }, {
+            data: "typeName"
+        }, {
+            data: "comments"
+        }, {
+            data: "file",
+            render: function (data, type, row) {
+                var ext = data.split('.').pop().toLowerCase();
+                var html = "DOCUMENTO NO VISUALIZABLE";
+                if (ext == "pdf" || ext == "jpg" || ext == "png" || ext == "gif") {
+                    // see it in container
+                    var url = "/docs/" + row.docId + "." + ext;
+                    if (ext == "pdf") {
+                        html = '<iframe src="' + url + '"frameborder="0" width="100%" height="600px"></iframe>'
+                    } else {
+                        html = '<img src="' + url + '" width="100%">';
+                    }
+                } 
+                return html;
+            }
+        }];
+        var tabla = $('#dt_img').DataTable(options);
+        tabla.columns(4).visible(false);
+    },
+    getImgs: function (id) {
+        var url = sprintf("%s/doc/byPwId/images/%s/?&api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                pwLineAPI.loadImgsTable(data);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadImgsTable: function (data) {
+        var dt = $('#dt_img').dataTable();
+        dt.fnClearTable();
+        if (data && data.length > 0) dt.fnAddData(data);
+        dt.fnDraw();
+    }
 };

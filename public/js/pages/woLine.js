@@ -597,7 +597,7 @@ var woLineAPI = {
     },
     // obtain user groups from the API
     getDocs: function (id) {
-        var url = sprintf("%s/doc/byWoId/%s/?&api_key=%s", myconfig.apiUrl, id, api_key);
+        var url = sprintf("%s/doc/byWoId/images/%s/?&api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,

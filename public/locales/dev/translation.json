@@ -274,7 +274,8 @@
             "work_order": "Partes de trabajo",
             "worker": "Recursos",
             "doc": "Documentos",
-            "invoice":"Facturas"
+            "invoice":"Facturas",
+            "img": "Imágenes"
         },
         "lastClose": "Ultimo cierre",
         "print": "Imprimir",
@@ -347,7 +348,7 @@
             "general": "Unidades constructivas",
             "worker": "Trabajadores",
             "vehicles": "Maquinaria / vehículos",
-            "doc": "Documentos"
+            "doc": "Imágenes"
         },
         "print": "Imprimir",
         "title": "Detalle parte de trabajo",
@@ -792,7 +793,8 @@
         "step1": "PASO (1) Escoja el documento / imagen a dar de alta",
         "step2": "PASO (2) Rellene la información adicional del documento",
         "noVisible": "El fichero que acaba de subir no puede ser previsualizado. Aun así, puede agregarlo a la base de datos rellenando la informacional adicional y haciendo clic en el botón aceptar",
-        "docType": "Tipo de documento"
+        "docType": "Tipo de documento",
+        "onlyImages": "Solo se permiten imágenes en el parte de trabajo ['jpg', 'png', 'gif']"
     },
     "invoiceGeneral": {
         "title": "Mantenimiento facturas",

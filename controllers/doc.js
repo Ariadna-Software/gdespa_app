@@ -19,6 +19,29 @@ router.get('/', midCheck, function (req, res) {
     }, test);
 });
 
+router.get('/docs/', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    docDb.getDocs(function (err, docs) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(docs);
+        }
+    }, test);
+});
+
+router.get('/images/', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    docDb.getImages(function (err, docs) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(docs);
+        }
+    }, test);
+});
+
+
 router.post('/', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var doc = req.body;
@@ -50,6 +73,24 @@ router.get('/byPwId/:id', midCheck, function (req, res) {
     }, test);
 });
 
+router.get('/byPwId/docs/:id', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    docDb.getByPwIdDocs(id, function (err, docs) {
+        if (err) return res.status(500).send(err.message);
+        res.json(docs);
+    }, test);
+});
+
+router.get('/byPwId/images/:id', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    docDb.getByPwIdImages(id, function (err, docs) {
+        if (err) return res.status(500).send(err.message);
+        res.json(docs);
+    }, test);
+});
+
 router.get('/byWoId/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
@@ -59,6 +100,14 @@ router.get('/byWoId/:id', midCheck, function (req, res) {
     }, test);
 });
 
+router.get('/byWoId/images/:id', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    docDb.getByWoIdImages(id, function (err, docs) {
+        if (err) return res.status(500).send(err.message);
+        res.json(docs);
+    }, test);
+});
 
 router.put('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
