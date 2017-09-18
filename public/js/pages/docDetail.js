@@ -152,7 +152,6 @@ var docDetailAPI = {
     dataOk: function () {
         var options = {
             rules: {
-                txtName: { required: true },
                 txtDocDate: { required: true },
                 cmbPws: { required: true },
                 cmbDts: { required: true }

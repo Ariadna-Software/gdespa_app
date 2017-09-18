@@ -274,9 +274,7 @@ var pwLineAPI = {
             "buttonText": "Mostrar / ocultar columnas"
         };
         options.data = data;
-        options.columns = [{
-            data: "name"
-        }, {
+        options.columns = [ {
             data: "docDate",
             render: function (data, type, row) {
                 var html = moment(data).format('DD/MM/YYYY');
@@ -312,7 +310,7 @@ var pwLineAPI = {
             }
         }];
         var tabla = $('#dt_doc').DataTable(options);
-        tabla.columns(4).visible(false);
+        tabla.columns(3).visible(false);
     },
     newDoc: function () {
         // Its an event handler, return function
@@ -456,8 +454,6 @@ var pwLineAPI = {
         };
         options.data = data;
         options.columns = [{
-            data: "name"
-        }, {
             data: "docDate",
             render: function (data, type, row) {
                 var html = moment(data).format('DD/MM/YYYY');
@@ -485,7 +481,7 @@ var pwLineAPI = {
             }
         }];
         var tabla = $('#dt_img').DataTable(options);
-        tabla.columns(4).visible(false);
+        tabla.columns(3).visible(false);
     },
     getImgs: function (id) {
         var url = sprintf("%s/doc/byPwId/images/%s/?&api_key=%s", myconfig.apiUrl, id, api_key);

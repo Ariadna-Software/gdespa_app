@@ -34,8 +34,6 @@ var docGeneralAPI = {
         };
         options.data = data;
         options.columns = [{
-            data: "name"
-        }, {
             data: "docDate",
             render: function (data, type, row) {
                 var html = moment(data).format('DD/MM/YYYY');
@@ -71,7 +69,7 @@ var docGeneralAPI = {
             }
         }];
         var tabla = $('#dt_doc').DataTable(options);
-        tabla.columns(4).visible(false);
+        tabla.columns(3).visible(false);
     },
     newDoc: function () {
         // Its an event handler, return function
