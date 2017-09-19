@@ -80,6 +80,8 @@ var userDetailAPI = {
         self.seeZone = ko.observable();
         self.workOnlyZone = ko.observable();
         self.seeWoClosed = ko.observable();
+        self.perVerified = ko.observable();
+        self.perRRHH = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -111,6 +113,8 @@ var userDetailAPI = {
         vm.seeZone(data.seeZone);
         vm.workOnlyZone(data.workOnlyZone);
         vm.seeWoClosed(data.seeWoClosed);
+        vm.perVerified(data.perVerified);
+        vm.perRRHH(data.perRRHH);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -197,7 +201,9 @@ var userDetailAPI = {
                 seeZone: vm.seeZone(),
                 workOnlyZone: vm.workOnlyZone(),
                 perMea: vm.MeaGeneral() ? 1 : 0,
-                seeWoClosed: vm.seeWoClosed() ? 1 : 0
+                seeWoClosed: vm.seeWoClosed() ? 1 : 0,
+                perVerified: vm.perVerified() ? 1 : 0,
+                perRRHH: vm.perRRHH() ? 1 : 0
             };
             var url = "", type = "";
             if (vm.id() == 0) {

@@ -12,7 +12,11 @@ var workerGeneralAPI = {
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
-        $('#workerGeneral').attr('class', 'active');
+        if (aswUtil.gup('rrhh')== "true"){
+            $('#rrhh-worker').attr('class', 'active');
+        }else{
+            $('#workerGeneral').attr('class', 'active');
+        }
         workerGeneralAPI.initWorkerTable();
         // avoid sending form 
         $('#workerGeneral-form').submit(function () {

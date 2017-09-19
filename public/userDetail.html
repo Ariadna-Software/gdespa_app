@@ -294,6 +294,23 @@
 							</a>
 						</li>					
 					</ul>					
+				</li>	
+				<li id="rrhh" class="">
+					<a href="#">
+						<i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent" data-i18n="menu.rrhh.main">Blank</span>
+					</a>
+					<ul>
+						<li id="rrhh-worker" class="">
+							<a href="workerGeneral.html?rrhh=true">
+								<i class="fa fa-lg fa-fw fa-male"></i> <span data-i18n="menu.rrhh.worker">Blank</span>
+							</a>
+						</li>	
+						<li id="rrhh-report" class="">
+							<a href="rrHH.html">
+								<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span data-i18n="menu.rrhh.report">Blank</span>
+							</a>
+						</li>				
+					</ul>					
 				</li>				
 				<li id="report" class="">
 					<a href="#">
@@ -449,7 +466,12 @@
 													<i></i><span data-i18n="userDetail.ItemInGeneral"></span>
 												</label>
 											</section>
-											<section class="col col-md-3"></section>
+											<section class="col col-md-3">
+												<label class="checkbox">
+												<input id="chkperRRHH" type="checkbox" name="chkperRRHH" data-bind="checked: perRRHH">
+													<i></i><span data-i18n="userDetail.perRRHH"></span>
+												</label>
+											</section>
 										</div>
 										<div class="row">
 											<section class="col col-md-3">
@@ -526,6 +548,19 @@
 												</label>
 											</section>											
 										</div>
+										<div class="row">
+											<section class="col col-md-3">
+												<label class="checkbox">
+												<input id="chkperVerified" type="checkbox" name="chkperVerified" data-bind="checked: perVerified">
+													<i></i><span data-i18n="userDetail.perVerified"></span>
+												</label>
+											</section>																			
+											<section class="col col-md-3">
+											
+											</section>
+											<section class="col col-md-3">
+											</section>											
+										</div>										
 									</fieldset>
 									<fieldset>
 										<div class="pull-right">

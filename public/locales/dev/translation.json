@@ -96,6 +96,11 @@
         "invoice": {
             "main": "Facturación",
             "general": "Facturas"
+        },
+        "rrhh": {
+            "main":"Recursos humanos",
+            "worker": "Recursos",
+            "report": "Informes"
         }
     },
     "index": {
@@ -146,7 +151,9 @@
         "SeeNotOwner": "Ver registros de los que no se es responsable",
         "ModWoClosed": "Poder modificar partes cerrados",
         "MeaGeneral": "--> Parte contadores",
-        "SeeWoClosed": "Poder ver partes cerrados"
+        "SeeWoClosed": "Poder ver partes cerrados",
+        "perVerified": "Poder verificar obras",
+        "perRRHH": "Acceso al menú RRHH"
     },
     "workerGeneral": {
         "title": "Mantenimiento de recursos",
@@ -821,5 +828,8 @@
         "name": "Nombre",
         "cancel": "Salir sin guardar",
         "ok": "Guardar"
-    }
+    },
+    "rrHH": {
+        "title": "Informes recursos humanos"
+    }    
 }

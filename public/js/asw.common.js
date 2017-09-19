@@ -376,6 +376,7 @@ var aswInit = {
         $('#store').hide();
         $('#report').hide();
         $('#invoice').hide();
+        $('#rrhh').hide();
         if (user.perAdm) {
             $('#administration').show();
         }
@@ -398,6 +399,9 @@ var aswInit = {
         }
         if (user.perInvoice) {
             $('#invoice').show();
+        }
+        if (user.perRRHH){
+            $('#rrhh').show();
         }
         
     }
