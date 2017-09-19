@@ -335,7 +335,8 @@
         "updateLines": "¿Quiere que las cantidades de replanteo se igualen a las de los partes de trabajo? ",
         "produced": "Producido",
         "invoiced": "Facturado",
-        "pending": "Pendiente"
+        "pending": "Pendiente Facturar",
+        "verified": "Verificado"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",

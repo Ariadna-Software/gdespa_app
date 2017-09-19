@@ -1,0 +1,2 @@
+ALTER TABLE `pw`   
+  ADD COLUMN `verified` BOOL DEFAULT FALSE NULL AFTER `areaTypeId`;
