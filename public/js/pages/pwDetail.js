@@ -94,6 +94,10 @@ var pwDetailAPI = {
         pwLineAPI.getDocs(id);
         pwLineAPI.getInvoices(id);
         pwLineAPI.getImgs(id);
+        //
+        if (!user.perVerified) {
+            $("#seeVerified").hide();
+        }
     },
     pageData: function () {
         // knockout objects
