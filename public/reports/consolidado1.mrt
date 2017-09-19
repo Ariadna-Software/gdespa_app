@@ -172,7 +172,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
         <HeaderDatosPw Ref="13" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,3.4,27.69,0.8</ClientRectangle>
-          <Components isList="true" count="8">
+          <Components isList="true" count="7">
             <HeaderDatosPw_reference Ref="14" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
@@ -205,24 +205,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDatosPw_name>
-            <HeaderDatosPw_total Ref="16" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>10.8,0,2.4,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>HeaderDatosPw_total</Name>
-              <Page isRef="4" />
-              <Parent isRef="13" />
-              <Text>Total</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </HeaderDatosPw_total>
-            <HeaderDatosPw_prod Ref="17" type="Text" isKey="true">
+            <HeaderDatosPw_prod Ref="16" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>17.2,0,2.4,0.8</ClientRectangle>
@@ -239,7 +222,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDatosPw_prod>
-            <HeaderDatosPw_pres Ref="18" type="Text" isKey="true">
+            <HeaderDatosPw_pres Ref="17" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>13.4,0,2.8,0.8</ClientRectangle>
@@ -256,7 +239,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDatosPw_pres>
-            <HeaderDatosPw_totalf Ref="19" type="Text" isKey="true">
+            <HeaderDatosPw_totalf Ref="18" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>19.8,0,2.4,0.8</ClientRectangle>
@@ -273,7 +256,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDatosPw_totalf>
-            <HeaderDatosPw_STATUS Ref="20" type="Text" isKey="true">
+            <HeaderDatosPw_STATUS Ref="19" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>8.4,0,2.2,0.8</ClientRectangle>
@@ -290,7 +273,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDatosPw_STATUS>
-            <Text5 Ref="21" type="Text" isKey="true">
+            <Text5 Ref="20" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>24.8,0,2.8,0.8</ClientRectangle>
@@ -314,12 +297,12 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
           <Page isRef="4" />
           <Parent isRef="4" />
         </HeaderDatosPw>
-        <DataDatosPw Ref="22" type="DataBand" isKey="true">
+        <DataDatosPw Ref="21" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,5,27.69,0.8</ClientRectangle>
-          <Components isList="true" count="8">
-            <DataDatosPw_reference Ref="23" type="Text" isKey="true">
+          <Components isList="true" count="7">
+            <DataDatosPw_reference Ref="22" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0,0,2.4,0.8</ClientRectangle>
@@ -328,13 +311,13 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_reference</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="21" />
               <Text>{DatosPw.reference}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_reference>
-            <DataDatosPw_name Ref="24" type="Text" isKey="true">
+            <DataDatosPw_name Ref="23" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>2.4,0,5.8,0.8</ClientRectangle>
@@ -343,37 +326,13 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_name</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="21" />
               <Text>{DatosPw.name}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_name>
-            <DataDatosPw_total Ref="25" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>10.8,0,2.4,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>DataDatosPw_total</Name>
-              <Page isRef="4" />
-              <Parent isRef="22" />
-              <Text>{DatosPw.total}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="26" type="CurrencyFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>8</NegativePattern>
-                <PositivePattern>3</PositivePattern>
-                <Symbol>USD</Symbol>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <VertAlignment>Center</VertAlignment>
-            </DataDatosPw_total>
-            <DataDatosPw_prod Ref="27" type="Text" isKey="true">
+            <DataDatosPw_prod Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>17.2,0,2.4,0.8</ClientRectangle>
@@ -383,10 +342,10 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_prod</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="21" />
               <Text>{DatosPw.prod}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="28" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="25" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -397,7 +356,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_prod>
-            <DataDatosPw_pres Ref="29" type="Text" isKey="true">
+            <DataDatosPw_pres Ref="26" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>13.4,0,2.8,0.8</ClientRectangle>
@@ -407,10 +366,10 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_pres</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="21" />
               <Text>{DatosPw.pres}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="30" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="27" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -421,7 +380,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_pres>
-            <DataDatosPw_totalf Ref="31" type="Text" isKey="true">
+            <DataDatosPw_totalf Ref="28" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>19.8,0,2.4,0.8</ClientRectangle>
@@ -431,10 +390,10 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_totalf</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="21" />
               <Text>{DatosPw.totalf}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="32" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="29" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -445,7 +404,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_totalf>
-            <DataDatosPw_STATUS Ref="33" type="Text" isKey="true">
+            <DataDatosPw_STATUS Ref="30" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>8.4,0,2.2,0.8</ClientRectangle>
@@ -455,13 +414,13 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_STATUS</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="21" />
               <Text>{DatosPw.STATUS}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_STATUS>
-            <Text6 Ref="34" type="Text" isKey="true">
+            <Text6 Ref="31" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>24.8,0,2.8,0.8</ClientRectangle>
@@ -472,10 +431,10 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="4" />
-              <Parent isRef="22" />
+              <Parent isRef="21" />
               <Text>{DatosPw.prod - DatosPw.totalf}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="35" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="32" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -500,38 +459,11 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
             <value>{DatosPw.reference}</value>
           </Sort>
         </DataDatosPw>
-        <FooterDatosPw Ref="36" type="FooterBand" isKey="true">
+        <FooterDatosPw Ref="33" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,6.6,27.69,0.8</ClientRectangle>
-          <Components isList="true" count="5">
-            <Text7 Ref="37" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>10.8,0,2.4,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>27fe0d55957a4bd18f88172a5a31d030</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text7</Name>
-              <Page isRef="4" />
-              <Parent isRef="36" />
-              <Text>{Sum(DataDatosPw,DatosPw.total)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="38" type="CurrencyFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>8</NegativePattern>
-                <PositivePattern>3</PositivePattern>
-                <Symbol>USD</Symbol>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text7>
-            <Text8 Ref="39" type="Text" isKey="true">
+          <Components isList="true" count="4">
+            <Text8 Ref="34" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -543,10 +475,10 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text8</Name>
               <Page isRef="4" />
-              <Parent isRef="36" />
+              <Parent isRef="33" />
               <Text>{Sum(DataDatosPw,DatosPw.pres)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="40" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="35" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -558,7 +490,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text8>
-            <Text9 Ref="41" type="Text" isKey="true">
+            <Text9 Ref="36" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -570,10 +502,10 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="4" />
-              <Parent isRef="36" />
+              <Parent isRef="33" />
               <Text>{Sum(DataDatosPw,DatosPw.prod)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="42" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="37" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -585,7 +517,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
-            <Text10 Ref="43" type="Text" isKey="true">
+            <Text10 Ref="38" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -597,10 +529,10 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
               <Page isRef="4" />
-              <Parent isRef="36" />
+              <Parent isRef="33" />
               <Text>{Sum(DataDatosPw,DatosPw.totalf)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="44" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="39" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -612,7 +544,7 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text10>
-            <Text12 Ref="45" type="Text" isKey="true">
+            <Text12 Ref="40" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -624,10 +556,10 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text12</Name>
               <Page isRef="4" />
-              <Parent isRef="36" />
+              <Parent isRef="33" />
               <Text>{Sum(DataDatosPw,DatosPw.prod - DatosPw.totalf)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="46" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="41" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -654,13 +586,13 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
       <PageHeight>21.01</PageHeight>
       <PageWidth>29.69</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="47" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="42" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="48" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="43" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -673,10 +605,10 @@ LEFT JOIN `status` AS s ON s.statusId = t0.statusId</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>consolidado0</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>9/15/2017 10:56:36 AM</ReportChanged>
+  <ReportChanged>9/19/2017 11:57:10 AM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
   <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado1.mrt</ReportFile>
-  <ReportGuid>a0fdd46abbca4d04b30ea0699b45bf46</ReportGuid>
+  <ReportGuid>2f15b5b121154ed18b4d09895e85b93d</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado0</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
