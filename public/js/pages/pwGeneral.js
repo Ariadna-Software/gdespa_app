@@ -63,6 +63,11 @@ var pwGeneralAPI = {
                 return html;
             }
         }];
+        options.fnRowCallback = function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            if (aData.verified == "1") {
+                $('td', nRow).css('background-color', '#99ffbb');
+            }
+        };
         $('#dt_pw').dataTable(options);
     },
     searchPw: function () {

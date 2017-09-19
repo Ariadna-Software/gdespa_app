@@ -205,6 +205,8 @@ var pwDetailAPI = {
         //
         self.prod = ko.observable();
         self.totalf = ko.observable();
+        //
+        self.verified = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -246,6 +248,7 @@ var pwDetailAPI = {
 
         vm.prod(data.prod);
         vm.totalf(data.totalf);
+        vm.verified(data.verified);
 
         pwDetailAPI.loadZones(vm.sZone());
         pwDetailAPI.loadZones2(vm.sZone2());
@@ -389,7 +392,8 @@ var pwDetailAPI = {
                 workTypeId: vm.sWork(),
                 insTypeId: vm.sIns(),
                 areaTypeId: vm.sArea(),
-                revUser: vm.revUser()
+                revUser: vm.revUser(),
+                verified: vm.verified()
             };
             if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()) {
                 data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
