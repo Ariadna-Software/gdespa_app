@@ -84,6 +84,25 @@ var pwModalAPI = {
             }
         });
     },
+    infLine: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/pw_line/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                if (data.length) {
+                    window.open('cUnitDetail.html?id=' + data[0].cunit.id + '&ucinfo=1', '_blank');
+                }
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },    
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();

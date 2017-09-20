@@ -154,7 +154,8 @@
         "SeeWoClosed": "Poder ver partes cerrados",
         "perVerified": "Poder verificar obras",
         "perRRHH": "Acceso al menú RRHH",
-        "perPwClosed": "Poder modificar propuestas terminadas"
+        "perPwClosed": "Poder modificar propuestas terminadas",
+        "closedMessage": "Esta propuesta está cerrada, sólo puede consultar su información."
     },
     "workerGeneral": {
         "title": "Mantenimiento de recursos",

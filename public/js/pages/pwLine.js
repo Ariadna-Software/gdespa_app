@@ -47,12 +47,13 @@ var pwLineAPI = {
                 var html = "";
                 var bt1 = "<button class='btn btn-circle btn-danger btn-md' onclick='pwLineAPI.deletePwLineMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
                 var bt2 = "<button class='btn btn-circle btn-success btn-md' data-toggle='modal' data-target='#pwModal' onclick='pwModalAPI.editLine(" + data + ");' title='Editar registro'> <i class='fa fa-pencil fa-fw'></i> </button>";
-                html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
+                var bt3 = "<button class='btn btn-circle btn-primary btn-md' onclick='pwModalAPI.infLine(" + data + ");' title='Consultar UUCC'> <i class='fa fa-info fa-fw'></i> </button>";
+                html = "<div class='pull-right'>" + bt1 + " " + bt2 + " " + bt3 + "</div>";
                 if (vm.sStatus() > 0 && !user.modPw) {
-                    html = "";
+                    html = "<div class='pull-right'>" + bt3 + "</div>";
                 }
                 if (vm.status() > 1 && !user.perPwClosed) {
-                    html = "";
+                    html = "<div class='pull-right'>" + bt3 + "</div>";
                 }
                 return html;
             }

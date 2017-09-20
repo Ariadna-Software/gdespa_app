@@ -292,6 +292,7 @@ var pwDetailAPI = {
             $("#btnNewChapter").hide();
             $("#btnOk").hide();
             $("#btnNewWorker").hide();
+            aswNotif.generalMessage(i18n.t('userDetail.closedMessage'));
         }
     },
     // Validates form (jquery validate) 
