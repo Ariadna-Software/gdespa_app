@@ -153,7 +153,8 @@
         "MeaGeneral": "--> Parte contadores",
         "SeeWoClosed": "Poder ver partes cerrados",
         "perVerified": "Poder verificar obras",
-        "perRRHH": "Acceso al menú RRHH"
+        "perRRHH": "Acceso al menú RRHH",
+        "perPwClosed": "Poder modificar propuestas terminadas"
     },
     "workerGeneral": {
         "title": "Mantenimiento de recursos",

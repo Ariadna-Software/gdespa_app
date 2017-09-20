@@ -19,7 +19,7 @@ var pwLineAPI = {
         });
         $('#pwDoc-form').submit(function () {
             return false;
-        });        
+        });
     },
     // ---------- PW_LINE
     initPwLineTable: function () {
@@ -51,6 +51,9 @@ var pwLineAPI = {
                 if (vm.sStatus() > 0 && !user.modPw) {
                     html = "";
                 }
+                if (vm.status() > 1 && !user.perPwClosed) {
+                    html = "";
+                }
                 return html;
             }
         }];
@@ -80,7 +83,9 @@ var pwLineAPI = {
                     html += " <button id='btnNewLine'" + newButton + " data-i18n='[title]pwDetail.newLine' data-toggle='modal' data-target='#pwModal' class='btn btn-circle btn-primary btn-md pull-right'><i class='fa fa-sitemap fa-fw'></i></button> ";
                     html += "</div>";
                     html += "</td></tr>"
-
+                    if (vm.status() > 1 && !user.perPwClosed) {
+                        html = "";
+                    }
                     $(rows).eq(i).before(
                         html
                     );
@@ -268,13 +273,13 @@ var pwLineAPI = {
     initDocTable: function () {
         var options = aswInit.initTableOptions('dt_doc');
         options.sDom = "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs' C  >r>" +
-        "t" +
-        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>";
+            "t" +
+            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>";
         options.oColVis = {
             "buttonText": "Mostrar / ocultar columnas"
         };
         options.data = data;
-        options.columns = [ {
+        options.columns = [{
             data: "docDate",
             render: function (data, type, row) {
                 var html = moment(data).format('DD/MM/YYYY');
@@ -297,7 +302,7 @@ var pwLineAPI = {
                     } else {
                         html = '<img src="' + url + '" width="100%">';
                     }
-                } 
+                }
                 return html;
             }
         }, {
@@ -367,7 +372,7 @@ var pwLineAPI = {
                             window.open('index.html', '_self');
                         }
                     }
-                });                
+                });
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -407,15 +412,15 @@ var pwLineAPI = {
         options.data = data;
         options.columns = [{
             data: "invoiceNumber"
-        },{
+        }, {
             data: "invoiceDate",
             render: function (data, type, row) {
                 var html = moment(data).format('DD/MM/YYYY');
                 return html;
             }
-        },{
+        }, {
             data: "amount"
-        },{
+        }, {
             data: "comments"
         }];
         $('#dt_invoice').dataTable(options);
@@ -442,13 +447,13 @@ var pwLineAPI = {
         dt.fnClearTable();
         if (data && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-    },  
+    },
     // -- PW IMAGES
     initImgTable: function () {
         var options = aswInit.initTableOptions('dt_img');
         options.sDom = "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs' C  >r>" +
-        "t" +
-        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>";
+            "t" +
+            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>";
         options.oColVis = {
             "buttonText": "Mostrar / ocultar columnas"
         };
@@ -476,7 +481,7 @@ var pwLineAPI = {
                     } else {
                         html = '<img src="' + url + '" width="100%">';
                     }
-                } 
+                }
                 return html;
             }
         }];

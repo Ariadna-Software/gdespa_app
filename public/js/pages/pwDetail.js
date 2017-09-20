@@ -128,6 +128,7 @@ var pwDetailAPI = {
         self.optionsStatus = ko.observableArray([]);
         self.selectedStatus = ko.observableArray([]);
         self.sStatus = ko.observable();
+        self.status = ko.observable();
         // company combo
         self.optionsCompanies = ko.observableArray([]);
         self.selectedCompanies = ko.observableArray([]);
@@ -215,6 +216,7 @@ var pwDetailAPI = {
     loadData: function (data) {
         vm.id(data.id);
         vm.sStatus(data.status.id);
+        vm.status(data.status.id);
         pwDetailAPI.loadStatus(vm.sStatus());
         vm.reference(data.reference);
         vm.name(data.name);
@@ -283,6 +285,14 @@ var pwDetailAPI = {
         if (vm.totalf()) $('#invoiced').text(numeral(data.totalf).format('0,0.00') + " USD");
         if (vm.prod() - vm.totalf()) $('#pending').text((numeral(data.prod - data.totalf).format('0,0.00') + " USD"));
         if (parseInt(vm.prod() - vm.totalf()) == 0) $('#pending').css('color', 'black');
+        // control pw closed
+        if (vm.status() > 1 && !user.perPwClosed) {
+            $("#btnChangeStatus").hide();
+            $("#btnCalc").hide();
+            $("#btnNewChapter").hide();
+            $("#btnOk").hide();
+            $("#btnNewWorker").hide();
+        }
     },
     // Validates form (jquery validate) 
     dataOk: function () {
