@@ -374,6 +374,7 @@ var pwDetailAPI = {
             }
         });
     },
+    // force js change
     btnOk: function () {
         var mf = function (e) {
             // avoid default accion
