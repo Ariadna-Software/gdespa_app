@@ -570,7 +570,7 @@ var pwDetailAPI = {
         var options = aswInit.initTableOptions('dt_wo');
         options.data = data;
         options.columns = [{
-            data: "initDate",
+            data: "rDate",
             render: function (data, type, row) {
                 var html = moment(data).format(i18n.t("util.date_format"));
                 return html;
