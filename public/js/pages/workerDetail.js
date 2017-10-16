@@ -88,6 +88,8 @@ var workerDetailAPI = {
         self.sResourceType = ko.observable();
         self.license = ko.observable();
         //
+        self.administrative = ko.observable();
+        self.active = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -117,6 +119,9 @@ var workerDetailAPI = {
             $("#asVehicle").hide();
             $("#asVehicle").css('visibility', 'hidden');
         }
+        //
+        vm.administrative(data.administrative);
+        vm.active(data.active);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -188,7 +193,9 @@ var workerDetailAPI = {
                 cost: vm.cost(),
                 bloodType: vm.bloodType(),
                 resTypeId: vm.sResourceType(),
-                license: vm.license()
+                license: vm.license(),
+                administrative: vm.administrative(),
+                active: vm.active()
             };
             var url = "",
                 type = "";

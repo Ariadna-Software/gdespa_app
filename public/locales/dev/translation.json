@@ -180,7 +180,9 @@
         "cost": "Coste",
         "blood_type": "Grupo sanguíneo",
         "license": "Matricula",
-        "resourceType": "Tipo de recurso"
+        "resourceType": "Tipo de recurso",
+        "administrative": "Es personal administrativo",
+        "active": "El trabajador está activo"
     },
     "companyGeneral": {
         "title": "Mantenimiento empresas",

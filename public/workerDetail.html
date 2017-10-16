@@ -373,7 +373,18 @@
 										</div>
 										<div id="asWorker">
 											<div class="row">
-												<section class="col col-md-8"></section>
+												<section class="col col-md-4">
+													<label class="checkbox">
+														<input id="chkActive" type="checkbox" name="chkActive" data-bind="checked: active">
+															<i></i><span data-i18n="workerDetail.active">Activo</span>
+														</label>													
+												</section>
+												<section class="col col-md-4">
+													<label class="checkbox">
+														<input id="chkAdministrative" type="checkbox" name="chkAdministrative" data-bind="checked: administrative">
+															<i></i><span data-i18n="workerDetail.administrative">Administrativo</span>
+														</label>
+												</section>
 												<section class="col col-md-4">
 													<label class="label" data-i18n="workerDetail.user">Usuario:</label>
 													<select style="width:100%;" id="cmbUsers" name="cmbUsers" data-bind="options: optionsUsers, optionsText: 'name', optionsValue: 'id', 
