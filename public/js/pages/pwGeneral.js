@@ -36,7 +36,9 @@ var pwGeneralAPI = {
         options.data = data;
         options.columns = [{
             data: "reference"
-        }, {
+        },{
+            data: "companyName"
+        },{
             data: "status.name"
         }, {
             data: "name"
