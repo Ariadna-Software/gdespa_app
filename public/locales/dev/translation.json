@@ -33,7 +33,7 @@
     "status": {
         "INIT": "PRESUPUESTO",
         "ACCEPTED": "ACEPTADO",
-        "DONE": "REALIZADO",
+        "DONE": "TERMINADO",
         "VALIDATED": "CERTIFICADO",
         "INVOICED": "FACTURADO",
         "PAID": "PAGADO"
@@ -347,7 +347,9 @@
         "produced": "Producido",
         "invoiced": "Facturado",
         "pending": "Pendiente Facturar",
-        "verified": "Verificado"
+        "verified": "Verificado",
+        "profitLoses": "Perdidas / Ganancias",
+        "profitLosesQuestion": "Hay una diferencia entre producido y facturado de {0}. ¿Quiere llevar esa diferencua a perdidas / ganancias?"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",

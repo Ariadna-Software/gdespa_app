@@ -99,6 +99,12 @@ var pwModal2API = {
                         // Proposed Work (pw) closed 
                         // Do you want to update line quantities?
                         aswNotif.generalQuestion(i18n.t('pwDetail.updateLines'), 'pwModal2API.updatePwLinesFromWoLines()');
+                        if (vm.prod() - vm.totalf()){
+                            var difference = numeral(vm.prod() - vm.totalf()).format('0,0.00') + " USD"
+                            var question =    i18n.t('pwDetail.profitLosesQuestion').replace('{0}', difference);
+                            aswNotif.generalQuestion(question, 'pwModal2API.calcProfitLoses()');
+                        }
+
                     } else {
                         pwDetailAPI.getPw(vm.id());
                     }
@@ -158,6 +164,32 @@ var pwModal2API = {
         $.ajax({
             type: type,
             url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                pwDetailAPI.getPw(vm.id());
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    calcProfitLoses: function() {
+        data = {
+            id: vm.id(),
+            reference: vm.reference(),
+            name: vm.name(),
+            profitLoses: vm.prod() - vm.totalf()
+        };
+                var url = "", type = "";
+        type = "PUT";
+        url = sprintf('%s/pw/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+        $.ajax({
+            type: type,
+            url: url,
+            data: JSON.stringify(data),
             contentType: "application/json",
             success: function (data, status) {
                 pwDetailAPI.getPw(vm.id());

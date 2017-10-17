@@ -212,6 +212,7 @@ var pwDetailAPI = {
         self.totalf = ko.observable();
         //
         self.verified = ko.observable();
+        self.profitLoses = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -285,6 +286,7 @@ var pwDetailAPI = {
         if (vm.totalf()) $('#invoiced').text(numeral(data.totalf).format('0,0.00') + " USD");
         if (vm.prod() - vm.totalf()) $('#pending').text((numeral(data.prod - data.totalf).format('0,0.00') + " USD"));
         if (parseInt(vm.prod() - vm.totalf()) == 0) $('#pending').css('color', 'black');
+        if (vm.profitLoses()) $('#profitLoses').text(numeral(data.profitLoses).format('0,0.00') + " USD");
         // control pw closed
         if (vm.status() > 1 && !user.perPwClosed) {
             $("#btnChangeStatus").hide();
@@ -294,6 +296,8 @@ var pwDetailAPI = {
             $("#btnNewWorker").hide();
             aswNotif.generalMessage(i18n.t('userDetail.closedMessage'));
         }
+        //
+        vm.profitLoses(data.profitLoses);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -409,7 +413,8 @@ var pwDetailAPI = {
                 insTypeId: vm.sIns(),
                 areaTypeId: vm.sArea(),
                 revUser: vm.revUser(),
-                verified: vm.verified()
+                verified: vm.verified(),
+                profitLoses: vm.profitLoses()
             };
             if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()) {
                 data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));

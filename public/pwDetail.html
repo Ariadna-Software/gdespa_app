@@ -47,7 +47,8 @@
 	<!-- TOP OF THE PAGE -->
 	<header id="header">
 		<div>
-			<span id=""> <img src="img/logo-gdes-lineman.jpg" class="asw-logo" alt="GDES-LINEMAN"> </span>
+			<span id="">
+				<img src="img/logo-gdes-lineman.jpg" class="asw-logo" alt="GDES-LINEMAN"> </span>
 		</div>
 		<div class="project-context hidden-xs">
 			<span class="asw-project-title" data-i18n="company_info">Company Info</span>
@@ -56,41 +57,66 @@
 		<div class="pull-right">
 			<!-- collapse menu button -->
 			<div id="hide-menu" class="btn-header pull-right">
-				<span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu" data-i18n="[title]collapse_menu"><i class="fa fa-reorder"></i></a> </span>
+				<span>
+					<a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu" data-i18n="[title]collapse_menu">
+						<i class="fa fa-reorder"></i>
+					</a>
+				</span>
 			</div>
 			<!-- logout button -->
 			<div id="logout" class="btn-header transparent pull-right">
-				<span> <a href="index.html" title="Sign Out" data-i18n="[title]log_out"><i class="fa fa-sign-out"></i></a> </span>
+				<span>
+					<a href="index.html" title="Sign Out" data-i18n="[title]log_out">
+						<i class="fa fa-sign-out"></i>
+					</a>
+				</span>
 			</div>
 			<!-- search mobile button (this is hidden till mobile view port) -->
 			<div id="search-mobile" class="btn-header transparent pull-right">
-				<span> <a href="javascript:void(0)" title="Search" data-i18n="[title]search"><i class="fa fa-search"></i></a> </span>
+				<span>
+					<a href="javascript:void(0)" title="Search" data-i18n="[title]search">
+						<i class="fa fa-search"></i>
+					</a>
+				</span>
 			</div>
 			<!-- input: search field -->
 			<form action="#ajax/search.html" class="header-search pull-right">
 				<input id="search-fld" type="text" name="param" placeholder="Find reports and more" data-i18n="[placeholder]search_placeholder">
 				<button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-				<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+					<i class="fa fa-search"></i>
+				</button>
+				<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search">
+					<i class="fa fa-times"></i>
+				</a>
 			</form>
 			<!-- fullscreen button -->
 			<div id="fullscreen" class="btn-header transparent pull-right">
-				<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen" data-i18n="[title]full_screen"><i class="fa fa-arrows-alt"></i></a> </span>
+				<span>
+					<a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen" data-i18n="[title]full_screen">
+						<i class="fa fa-arrows-alt"></i>
+					</a>
+				</span>
 			</div>
 			<!-- multiple lang dropdown : find all flags in the flags page -->
 			<ul class="header-dropdown-list hidden-xs">
 				<li>
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img id="language-flag" src="img/blank.gif" class="flag flag-es" alt="Español (España)"> <span id="language-abrv"> ES</span>						<i class="fa fa-angle-down"></i> </a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<img id="language-flag" src="img/blank.gif" class="flag flag-es" alt="Español (España)">
+						<span id="language-abrv"> ES</span>
+						<i class="fa fa-angle-down"></i>
+					</a>
 					<ul class="dropdown-menu pull-right">
 						<li>
-							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('en');"><img src="img/blank.gif" class="flag flag-us" alt="en-US"> English (US)</a>
+							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('en');">
+								<img src="img/blank.gif" class="flag flag-us" alt="en-US"> English (US)</a>
 						</li>
 						<li>
-							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('es');"><img src="img/blank.gif" class="flag flag-es" alt="es"> Español (España)</a>
+							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('es');">
+								<img src="img/blank.gif" class="flag flag-es" alt="es"> Español (España)</a>
 						</li>
 						<li>
-							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('es-PA');"><img src="img/blank.gif" class="flag flag-pa" alt="es-pa"> Español (Panamá)</a>
+							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('es-PA');">
+								<img src="img/blank.gif" class="flag flag-pa" alt="es-pa"> Español (Panamá)</a>
 						</li>
 					</ul>
 				</li>
@@ -101,12 +127,13 @@
 	<aside id="left-panel">
 		<!-- User info -->
 		<div class="login-info">
-			<span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
+			<span>
+				<!-- User image size is adjusted inside CSS, it should stay as is -->
 				<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-					<img src="img/avatars/male.png" alt="me" class="online" /> 
+					<img src="img/avatars/male.png" alt="me" class="online" />
 					<span id="user_name"></span>
-			<i class="fa fa-angle-down"></i>
-			</a>
+					<i class="fa fa-angle-down"></i>
+				</a>
 			</span>
 		</div>
 		<!-- General menu -->
@@ -114,187 +141,223 @@
 			<ul>
 				<li id="index" class="">
 					<a href="index2.html">
-						<i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent" data-i18n="menu.home">Blank</span>
+						<i class="fa fa-lg fa-fw fa-home"></i>
+						<span class="menu-item-parent" data-i18n="menu.home">Blank</span>
 					</a>
 				</li>
 				<li id="administration" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-bank"></i> <span class="menu-item-parent" data-i18n="menu.administration.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-bank"></i>
+						<span class="menu-item-parent" data-i18n="menu.administration.main">Blank</span>
 					</a>
 					<ul>
 						<li id="parameters" class="">
 							<a href="parameterDetail.html">
-								<i class="fa fa-lg fa-fw fa-magnet"></i> <span data-i18n="menu.administration.parameters">Blank</span>
+								<i class="fa fa-lg fa-fw fa-magnet"></i>
+								<span data-i18n="menu.administration.parameters">Blank</span>
 							</a>
 						</li>
 						<li id="userGroupGeneral" class="">
 							<a href="userGroupGeneral.html">
-								<i class="fa fa-lg fa-fw fa-users"></i> <span data-i18n="menu.administration.user_group">Blank</span>
+								<i class="fa fa-lg fa-fw fa-users"></i>
+								<span data-i18n="menu.administration.user_group">Blank</span>
 							</a>
 						</li>
 						<li id="userGeneral" class="">
 							<a href="userGeneral.html">
-								<i class="fa fa-lg fa-fw fa-user"></i> <span data-i18n="menu.administration.user">Blank</span>
+								<i class="fa fa-lg fa-fw fa-user"></i>
+								<span data-i18n="menu.administration.user">Blank</span>
 							</a>
 						</li>
 						<li id="workerGeneral" class="">
 							<a href="workerGeneral.html">
-								<i class="fa fa-lg fa-fw fa-male"></i> <span data-i18n="menu.administration.worker">Blank</span>
+								<i class="fa fa-lg fa-fw fa-male"></i>
+								<span data-i18n="menu.administration.worker">Blank</span>
 							</a>
 						</li>
 						<li id="companyGeneral" class="">
 							<a href="companyGeneral.html">
-								<i class="fa fa-lg fa-fw fa-building"></i> <span data-i18n="menu.administration.company">Blank</span>
+								<i class="fa fa-lg fa-fw fa-building"></i>
+								<span data-i18n="menu.administration.company">Blank</span>
 							</a>
 						</li>
 						<li id="storeGeneral" class="">
 							<a href="storeGeneral.html">
-								<i class="fa fa-lg fa-fw fa-database"></i> <span data-i18n="menu.administration.store">Blank</span>
+								<i class="fa fa-lg fa-fw fa-database"></i>
+								<span data-i18n="menu.administration.store">Blank</span>
 							</a>
 						</li>
 						<li id="unitGeneral" class="">
 							<a href="unitGeneral.html">
-								<i class="fa fa-lg fa-fw fa-wrench"></i> <span data-i18n="menu.administration.unit">Blank</span>
+								<i class="fa fa-lg fa-fw fa-wrench"></i>
+								<span data-i18n="menu.administration.unit">Blank</span>
 							</a>
 						</li>
 						<li id="itemGeneral" class="">
 							<a href="itemGeneral.html">
-								<i class="fa fa-lg fa-fw fa-cube"></i> <span data-i18n="menu.administration.item">Blank</span>
+								<i class="fa fa-lg fa-fw fa-cube"></i>
+								<span data-i18n="menu.administration.item">Blank</span>
 							</a>
 						</li>
 						<li id="cUnitGeneral" class="">
 							<a href="cUnitGeneral.html">
-								<i class="fa fa-lg fa-fw fa-cubes"></i> <span data-i18n="menu.administration.cUnit">Blank</span>
+								<i class="fa fa-lg fa-fw fa-cubes"></i>
+								<span data-i18n="menu.administration.cUnit">Blank</span>
 							</a>
 						</li>
 						<li id="zoneGeneral" class="">
 							<a href="zoneGeneral.html">
-								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span data-i18n="menu.administration.zone">Blank</span>
+								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i>
+								<span data-i18n="menu.administration.zone">Blank</span>
 							</a>
 						</li>
 						<li id="team" class="">
 							<a href="teamGeneral.html">
-								<i class="fa fa-lg fa-fw fa-user-circle"></i> <span data-i18n="menu.administration.team">Blank</span>
+								<i class="fa fa-lg fa-fw fa-user-circle"></i>
+								<span data-i18n="menu.administration.team">Blank</span>
 							</a>
 						</li>
 						<li id="mea" class="">
 							<a href="meaGeneral.html">
-								<i class="fa fa-lg fa-fw fa-compass"></i> <span data-i18n="menu.administration.mea">Blank</span>
+								<i class="fa fa-lg fa-fw fa-compass"></i>
+								<span data-i18n="menu.administration.mea">Blank</span>
 							</a>
 						</li>
 						<li id="work" class="">
 							<a href="workGeneral.html">
-								<i class="fa fa-lg fa-fw fa-circle"></i> <span data-i18n="menu.administration.work">Blank</span>
+								<i class="fa fa-lg fa-fw fa-circle"></i>
+								<span data-i18n="menu.administration.work">Blank</span>
 							</a>
 						</li>
 						<li id="ins" class="">
 							<a href="insGeneral.html">
-								<i class="fa fa-lg fa-fw fa-circle-o"></i> <span data-i18n="menu.administration.ins">Blank</span>
+								<i class="fa fa-lg fa-fw fa-circle-o"></i>
+								<span data-i18n="menu.administration.ins">Blank</span>
 							</a>
 						</li>
 						<li id="area" class="">
 							<a href="areaGeneral.html">
-								<i class="fa fa-lg fa-fw fa-circle-o-notch"></i> <span data-i18n="menu.administration.area">Blank</span>
+								<i class="fa fa-lg fa-fw fa-circle-o-notch"></i>
+								<span data-i18n="menu.administration.area">Blank</span>
 							</a>
 						</li>
 						<li id="docType" class="">
 							<a href="docTypeGeneral.html">
-								<i class="fa fa-lg fa-fw fa-circle-o-notch"></i> <span data-i18n="menu.administration.docType">Blank</span>
+								<i class="fa fa-lg fa-fw fa-circle-o-notch"></i>
+								<span data-i18n="menu.administration.docType">Blank</span>
 							</a>
 						</li>
 						<li id="doc" class="">
 							<a href="docGeneral.html">
-								<i class="fa fa-lg fa-fw fa-file-o"></i> <span data-i18n="menu.administration.doc">Blank</span>
+								<i class="fa fa-lg fa-fw fa-file-o"></i>
+								<span data-i18n="menu.administration.doc">Blank</span>
 							</a>
 						</li>
 					</ul>
 				</li>
 				<li id="pwman" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-share-alt"></i> <span class="menu-item-parent" data-i18n="menu.pwman.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-share-alt"></i>
+						<span class="menu-item-parent" data-i18n="menu.pwman.main">Blank</span>
 					</a>
 					<ul>
 						<li id="pwGeneral" class="">
 							<a href="pwGeneral.html">
-								<i class="fa fa-lg fa-fw fa-cog"></i> <span data-i18n="menu.pwman.pw">Blank</span>
+								<i class="fa fa-lg fa-fw fa-cog"></i>
+								<span data-i18n="menu.pwman.pw">Blank</span>
 							</a>
 						</li>
 						<li id="woGeneral" class="">
 							<a href="woGeneral.html">
-								<i class="fa fa-lg fa-fw fa-cogs"></i> <span data-i18n="menu.pwman.wo">Blank</span>
+								<i class="fa fa-lg fa-fw fa-cogs"></i>
+								<span data-i18n="menu.pwman.wo">Blank</span>
 							</a>
 						</li>
 						<li id="moGeneral" class="">
 							<a href="moGeneral.html">
-								<i class="fa fa-lg fa-fw fa-compass"></i> <span data-i18n="menu.pwman.mo">Blank</span>
+								<i class="fa fa-lg fa-fw fa-compass"></i>
+								<span data-i18n="menu.pwman.mo">Blank</span>
 							</a>
 						</li>
 						<li id="luGeneral" class="">
 							<a href="luGeneral.html">
-								<i class="fa fa-lg fa-fw fa-lightbulb-o"></i> <span data-i18n="menu.pwman.lu">Blank</span>
+								<i class="fa fa-lg fa-fw fa-lightbulb-o"></i>
+								<span data-i18n="menu.pwman.lu">Blank</span>
 							</a>
 						</li>
 						<li id="closureGeneral" class="">
 							<a href="closureGeneral.html">
-								<i class="fa fa-lg fa-fw fa-times-circle-o"></i> <span data-i18n="menu.pwman.closure">Blank</span>
+								<i class="fa fa-lg fa-fw fa-times-circle-o"></i>
+								<span data-i18n="menu.pwman.closure">Blank</span>
 							</a>
 						</li>
 					</ul>
 				</li>
 				<li id="store" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-database"></i> <span class="menu-item-parent" data-i18n="menu.store.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-database"></i>
+						<span class="menu-item-parent" data-i18n="menu.store.main">Blank</span>
 					</a>
 					<ul>
 						<li id="deliveryGeneral" class="">
 							<a href="deliveryGeneral.html">
-								<i class="fa fa-lg fa-fw fa-archive"></i> <span data-i18n="menu.store.delivery">Blank</span>
+								<i class="fa fa-lg fa-fw fa-archive"></i>
+								<span data-i18n="menu.store.delivery">Blank</span>
 							</a>
 						</li>
 						<li id="itemInGeneral" class="">
 							<a href="itemInGeneral.html">
-								<i class="fa fa-lg fa-fw fa-sign-in"></i> <span data-i18n="menu.store.itemIn">Blank</span>
+								<i class="fa fa-lg fa-fw fa-sign-in"></i>
+								<span data-i18n="menu.store.itemIn">Blank</span>
 							</a>
 						</li>
 						<li id="itemOutGeneral" class="">
 							<a href="itemOutGeneral.html">
-								<i class="fa fa-lg fa-fw fa-sign-out"></i> <span data-i18n="menu.store.itemOut">Blank</span>
+								<i class="fa fa-lg fa-fw fa-sign-out"></i>
+								<span data-i18n="menu.store.itemOut">Blank</span>
 							</a>
 						</li>
 						<li id="inventoryGeneral" class="">
 							<a href="inventoryGeneral.html">
-								<i class="fa fa-lg fa-fw fa-table"></i> <span data-i18n="menu.store.inventory">Blank</span>
+								<i class="fa fa-lg fa-fw fa-table"></i>
+								<span data-i18n="menu.store.inventory">Blank</span>
 							</a>
 						</li>
 					</ul>
 				</li>
 				<li id="invoice" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent" data-i18n="menu.invoice.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-money"></i>
+						<span class="menu-item-parent" data-i18n="menu.invoice.main">Blank</span>
 					</a>
 					<ul>
 						<li id="invoiceGeneral" class="">
 							<a href="invoiceGeneral.html">
-								<i class="fa fa-lg fa-fw fa-money"></i> <span data-i18n="menu.invoice.general">Blank</span>
+								<i class="fa fa-lg fa-fw fa-money"></i>
+								<span data-i18n="menu.invoice.general">Blank</span>
 							</a>
 						</li>
 					</ul>
 				</li>
 				<li id="report" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span class="menu-item-parent" data-i18n="menu.report.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-file-pdf-o"></i>
+						<span class="menu-item-parent" data-i18n="menu.report.main">Blank</span>
 					</a>
 					<ul>
 						<li id="reportGeneral" class="">
 							<a href="reportGeneral.html">
-								<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span data-i18n="menu.report.general">Blank</span>
+								<i class="fa fa-lg fa-fw fa-file-pdf-o"></i>
+								<span data-i18n="menu.report.general">Blank</span>
 							</a>
 						</li>
 					</ul>
 				</li>
 			</ul>
 		</nav>
-		<span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
+		<span class="minifyme" data-action="minifyMenu">
+			<i class="fa fa-arrow-circle-left hit"></i>
+		</span>
 	</aside>
 	<!-- MAIN PANEL -->
 	<div id="main" role="main">
@@ -312,7 +375,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-cog"></i> <span data-i18n="menu.pwman.pw">Inicio</span>
+						<i class="fa-fw fa fa-cog"></i>
+						<span data-i18n="menu.pwman.pw">Inicio</span>
 						<span id="pwDetailTitle"></span>
 					</h1>
 				</div>
@@ -322,19 +386,33 @@
 				<div class="row">
 					<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<ul class="nav nav-tabs bordered" id="pwDetail_GT">
-							<li class="active"><a data-toggle="tab" href="#s1" data-i18n="pwDetail.tabs.general">GENERAL</a></li>
-							<li><a data-toggle="tab" href="#s2" data-i18n="pwDetail.tabs.work_order">PARTE</a></li>
-							<li><a data-toggle="tab" href="#s3" data-i18n="pwDetail.tabs.worker">TRABAJADOR</a></li>
-							<li><a data-toggle="tab" href="#s4" data-i18n="pwDetail.tabs.doc">DOCUMENTOS</a></li>
-							<li><a data-toggle="tab" href="#s5" data-i18n="pwDetail.tabs.invoice">FATURAS</a></li>
-							<li><a data-toggle="tab" href="#s6" data-i18n="pwDetail.tabs.img">IMAGENS</a></li>
+							<li class="active">
+								<a data-toggle="tab" href="#s1" data-i18n="pwDetail.tabs.general">GENERAL</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#s2" data-i18n="pwDetail.tabs.work_order">PARTE</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#s3" data-i18n="pwDetail.tabs.worker">TRABAJADOR</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#s4" data-i18n="pwDetail.tabs.doc">DOCUMENTOS</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#s5" data-i18n="pwDetail.tabs.invoice">FATURAS</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#s6" data-i18n="pwDetail.tabs.img">IMAGENS</a>
+							</li>
 						</ul>
 						<div class="tab-content padding-10" id="pwDetail_GT1">
 							<div class="tab-pane fade in active" id="s1">
 								<!-- Widget ID (each widget will need unique ID)-->
 								<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 									<header>
-										<span class="widget-icon"> <i class="fa fa-cog"></i> </span>
+										<span class="widget-icon">
+											<i class="fa fa-cog"></i>
+										</span>
 										<h2>
 											<span data-i18n="pwDetail.title">Mantenimiento</span>
 										</h2>
@@ -348,8 +426,7 @@
 															<section class="col col-md-2">
 																<label class="label" data-18n="pwDetail.status">ESTADO:</label>
 																<label style="width:100%;">
-																	<select style="width:100%" id="cmbStatus" name="cmbStatus" 
-																		data-bind="options: optionsStatus, optionsText: 'name', optionsValue: 'id', value: sStatus, valueAllowUnset: true, selectedOptions: selectedStatus, selected2:{}">
+																	<select style="width:100%" id="cmbStatus" name="cmbStatus" data-bind="options: optionsStatus, optionsText: 'name', optionsValue: 'id', value: sStatus, valueAllowUnset: true, selectedOptions: selectedStatus, selected2:{}">
 																	</select>
 																	<i></i>
 																</label>
@@ -357,14 +434,13 @@
 															<section class="col col-md-2">
 																<label class="label" data-i18n="pwDetail.initDate">Fecha Inicio:</label>
 																<label class="input">
-																	<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy"/>
+																	<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy" />
 																</label>
 															</section>
 															<section class="col col-md-4">
 																<label class="label" data-i18n="pwDetail.company">Empresa:</label>
 																<label style="width:100%;">
-																	<select style="width:100%" id="cmbCompanies" name="cmbCompanies" 
-																		data-bind="options: optionsCompanies, optionsText: 'name', optionsValue: 'id', value: sCompany, valueAllowUnset: true, selectedOptions: selectedCompanies, selected2:{}">
+																	<select style="width:100%" id="cmbCompanies" name="cmbCompanies" data-bind="options: optionsCompanies, optionsText: 'name', optionsValue: 'id', value: sCompany, valueAllowUnset: true, selectedOptions: selectedCompanies, selected2:{}">
 																	</select>
 																	<i></i>
 																</label>
@@ -372,32 +448,31 @@
 															<section class="col col-md-4">
 																<label class="label" data-i18n="pwDetail.initInCharge">Responsable inicial:</label>
 																<label style="width:100%;">
-														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" 
-															data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}">
-														</select>
-														<i></i>
-                                        			</label>
+																	<select style="width:100%" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}">
+																	</select>
+																	<i></i>
+																</label>
 															</section>
 														</div>
 														<div class="row">
 															<section class="col col-md-4">
 																<label class="label" data-i18n="pwDetail.reference">Referencia:</label>
 																<label class="input">
-														<input id="txtReference" name="txtReference" data-bind="value: reference">
-													</label>
+																	<input id="txtReference" name="txtReference" data-bind="value: reference">
+																</label>
 															</section>
 															<section class="col col-md-8">
 																<label class="label" data-i18n="pwDetail.name">Nombre:</label>
 																<label class="input">
-														<input id="txtName" name="txtName" data-bind="value: name">
-													</label>
+																	<input id="txtName" name="txtName" data-bind="value: name">
+																</label>
 															</section>
 														</div>
 														<div class="row">
 															<section class="col col-md-12">
 																<label class="label" data-i18n="pwDetail.description">Descripción:</label>
 																<label class="textarea textarea-resizable">
-																		<textarea id="txtDescription" rows="3" class="custom-scroll" data-bind="value:description"></textarea>
+																	<textarea id="txtDescription" rows="3" class="custom-scroll" data-bind="value:description"></textarea>
 																</label>
 															</section>
 														</div>
@@ -405,8 +480,7 @@
 															<section class="col col-md-4">
 																<label class="label" data-18n="pwDetail.zone">ZONA:</label>
 																<label style="width:100%;">
-																	<select style="width:100%" id="cmbZone" name="cmbZone" 
-																		data-bind="options: optionsZone, optionsText: 'name', optionsValue: 'id', value: sZone, valueAllowUnset: true, selectedOptions: selectedZone, selected2:{}">
+																	<select style="width:100%" id="cmbZone" name="cmbZone" data-bind="options: optionsZone, optionsText: 'name', optionsValue: 'id', value: sZone, valueAllowUnset: true, selectedOptions: selectedZone, selected2:{}">
 																	</select>
 																	<i></i>
 																</label>
@@ -414,7 +488,7 @@
 															<section class="col col-md-2">
 																<label class="label" data-i18n="pwDetail.endDate">Fec. Final:</label>
 																<label class="input">
-																	<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy"/>
+																	<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy" />
 																</label>
 															</section>
 															<section class="col col-md-2">
@@ -432,16 +506,15 @@
 															<section class="col col-md-2">
 																<label class="label" data-i18n="pwDetail.total">Total:</label>
 																<label class="input">
-														<input id="txtTotal" name="txtTotal" data-bind="value: total" disabled>
-													</label>
+																	<input id="txtTotal" name="txtTotal" data-bind="value: total" disabled>
+																</label>
 															</section>
 														</div>
 														<div class="row">
 															<section class="col col-md-4">
 																<label class="label" data-18n="pwDetail.zone2">ZONA (2):</label>
 																<label style="width:100%;">
-																	<select style="width:100%" id="cmbZone2" name="cmbZone2" 
-																		data-bind="options: optionsZone2, optionsText: 'name', optionsValue: 'id', value: sZone2, valueAllowUnset: true, selectedOptions: selectedZone2, selected2:{}">
+																	<select style="width:100%" id="cmbZone2" name="cmbZone2" data-bind="options: optionsZone2, optionsText: 'name', optionsValue: 'id', value: sZone2, valueAllowUnset: true, selectedOptions: selectedZone2, selected2:{}">
 																	</select>
 																	<i></i>
 																</label>
@@ -457,8 +530,7 @@
 															<section class="col col-md-4">
 																<label class="label" data-18n="pwDetail.work">Tipo obra:</label>
 																<label style="width:100%;">
-																	<select style="width:100%" id="cmbWork" name="cmbWork" 
-																		data-bind="options: optionsWork, optionsText: 'name', optionsValue: 'id', value: sWork, valueAllowUnset: true, selectedOptions: selectedWork, selected2:{}">
+																	<select style="width:100%" id="cmbWork" name="cmbWork" data-bind="options: optionsWork, optionsText: 'name', optionsValue: 'id', value: sWork, valueAllowUnset: true, selectedOptions: selectedWork, selected2:{}">
 																	</select>
 																	<i></i>
 																</label>
@@ -466,8 +538,7 @@
 															<section class="col col-md-4">
 																<label class="label" data-18n="pwDetail.ins">Tipo instalacion:</label>
 																<label style="width:100%;">
-																	<select style="width:100%" id="cmbIns" name="cmbIns" 
-																		data-bind="options: optionsIns, optionsText: 'name', optionsValue: 'id', value: sIns, valueAllowUnset: true, selectedOptions: selectedIns, selected2:{}">
+																	<select style="width:100%" id="cmbIns" name="cmbIns" data-bind="options: optionsIns, optionsText: 'name', optionsValue: 'id', value: sIns, valueAllowUnset: true, selectedOptions: selectedIns, selected2:{}">
 																	</select>
 																	<i></i>
 																</label>
@@ -475,8 +546,7 @@
 															<section class="col col-md-4">
 																<label class="label" data-18n="pwDetail.area">Tipo área:</label>
 																<label style="width:100%;">
-																	<select style="width:100%" id="cmbArea" name="cmbArea" 
-																		data-bind="options: optionsArea, optionsText: 'name', optionsValue: 'id', value: sArea, valueAllowUnset: true, selectedOptions: selectedArea, selected2:{}">
+																	<select style="width:100%" id="cmbArea" name="cmbArea" data-bind="options: optionsArea, optionsText: 'name', optionsValue: 'id', value: sArea, valueAllowUnset: true, selectedOptions: selectedArea, selected2:{}">
 																	</select>
 																	<i></i>
 																</label>
@@ -486,7 +556,7 @@
 															<section class="col col-md-2">
 																<label class="label" data-i18n="pwDetail.revDate">RevDate:</label>
 																<label class="input">
-																	<input id="txtRevDate" name="txtRevDate" data-bind="value: revDate" class="datepicker" data-dateformat="dd/mm/yy"/>
+																	<input id="txtRevDate" name="txtRevDate" data-bind="value: revDate" class="datepicker" data-dateformat="dd/mm/yy" />
 																</label>
 															</section>
 															<section class="col col-md-8">
@@ -499,10 +569,11 @@
 																<div id="seeVerified">
 																	<label class="checkbox">
 																		<input id="chkVerified" type="checkbox" name="chkVerified" data-bind="checked: verified">
-																		<i></i><span data-i18n="pwDetail.verified"></span>
+																		<i></i>
+																		<span data-i18n="pwDetail.verified"></span>
 																	</label>
 																</div>
-															</section>															
+															</section>
 														</div>
 													</fieldset>
 												</form>
@@ -543,6 +614,13 @@
 												<div class="row" style="text-align:center; color: red">
 													<h4 id="pending"> 0 USD</h4>
 												</div>
+												<div class="row">
+													<hr/>
+													<h4 data-i18n="pwDetail.profitLoses">PEN</h4>
+												</div>
+												<div class="row" style="text-align:center;">
+													<h4 id="profitLoses"> 0 USD</h4>
+												</div>
 											</section>
 										</div>
 										<div class="row">
@@ -551,7 +629,9 @@
 													<div class="row">
 														<section class="col col-md-2">
 															<div class="asw-center">
-																<strong><p data-i18n="status.INIT">INIT</p></strong>
+																<strong>
+																	<p data-i18n="status.INIT">INIT</p>
+																</strong>
 																<p data-bind="text: initDate"></p>
 																REF:
 																<p data-bind="text: reference"></p>
@@ -559,7 +639,9 @@
 														</section>
 														<section class="col col-md-2">
 															<div class="asw-center">
-																<strong><p data-i18n="status.ACCEPTED">INIT</p></strong>
+																<strong>
+																	<p data-i18n="status.ACCEPTED">INIT</p>
+																</strong>
 																<p data-bind="text: acepDate"></p>
 																REF:
 																<p data-bind="text: acepRef"></p>
@@ -567,7 +649,9 @@
 														</section>
 														<section class="col col-md-2">
 															<div class="asw-center">
-																<strong><p data-i18n="status.DONE">*</p></strong>
+																<strong>
+																	<p data-i18n="status.DONE">*</p>
+																</strong>
 																<p data-bind="text: finDate"></p>
 																REF:
 																<p data-bind="text: finRef"></p>
@@ -575,7 +659,9 @@
 														</section>
 														<section class="col col-md-2">
 															<div class="asw-center">
-																<strong><p data-i18n="status.VALIDATED">*</p></strong>
+																<strong>
+																	<p data-i18n="status.VALIDATED">*</p>
+																</strong>
 																<p data-bind="text: cerDate"></p>
 																REF:
 																<p data-bind="text: cerRef"></p>
@@ -583,7 +669,9 @@
 														</section>
 														<section class="col col-md-2">
 															<div class="asw-center">
-																<strong><p data-i18n="status.INVOICED">*</p></strong>
+																<strong>
+																	<p data-i18n="status.INVOICED">*</p>
+																</strong>
 																<p data-bind="text: invDate"></p>
 																REF:
 																<p data-bind="text: invRef"></p>
@@ -591,7 +679,9 @@
 														</section>
 														<section class="col col-md-2">
 															<div class="asw-center">
-																<strong><p data-i18n="status.PAID">*</p></strong>
+																<strong>
+																	<p data-i18n="status.PAID">*</p>
+																</strong>
 																<p data-bind="text: payDate"></p>
 																REF:
 																<p data-bind="text: payRef"></p>
@@ -602,7 +692,7 @@
 														<button id="btnChangeStatus" data-i18n="[title]pwDetail.change_status" data-toggle="modal" data-target="#pwModal2" class="btn btn-success btn-circle btn-lg"
 														 style="display:none;">
 															<i class="fa fa-lg fa-random"></i>
-															</button>
+														</button>
 														<button id="btnCalc" data-i18n="[title]pwDetail.calc" class="btn btn-success btn-circle btn-lg">
 															<i class="fa fa-lg fa-calculator"></i>
 														</button>
@@ -627,7 +717,9 @@
 								<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false"
 								 style="display:none;">
 									<header>
-										<span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
+										<span class="widget-icon">
+											<i class="fa fa-sitemap"></i>
+										</span>
 										<h2 data-i18n="pwDetail.associated_items">Mantenimiento</h2>
 									</header>
 									<div class="widget-body">
@@ -709,8 +801,8 @@
 									<fieldset>
 										<div class="pull-right">
 											<button id="btnNewWorker" data-i18n="[title]pwDetail.newWorker" data-toggle="modal" data-target="#pwModal3" class="btn btn-success btn-circle btn-lg">
-													<i class="fa fa-lg fa-plus"></i>
-												</button>
+												<i class="fa fa-lg fa-plus"></i>
+											</button>
 										</div>
 									</fieldset>
 									<fieldset>
@@ -818,7 +910,7 @@
 										</div>
 									</fieldset>
 								</form>
-							</div>							
+							</div>
 						</div>
 					</article>
 				</div>
@@ -829,7 +921,8 @@
 	<div class="page-footer">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<span class="txt-color-white">GDES PANAMA <span class="hidden-xs"> - Web Application </span> © 2016</span>
+				<span class="txt-color-white">GDES PANAMA
+					<span class="hidden-xs"> - Web Application </span> © 2016</span>
 			</div>
 		</div>
 	</div>
@@ -839,10 +932,11 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
+						&times;
+					</button>
 					<h4 class="modal-title">
-						<i class="fa fa-bookmark-o"></i> <span data-i18n="pwDetail.modal_title4">ART</span>
+						<i class="fa fa-bookmark-o"></i>
+						<span data-i18n="pwDetail.modal_title4">ART</span>
 					</h4>
 				</div>
 				<div class="modal-body no-padding">
@@ -851,18 +945,21 @@
 							<section class="col col-md-12">
 								<label class="label" data-i18n="chapter">CAPIT:</label>
 								<label style="width:100%;">
-								<select style="width:100%" id="cmbChapters" name="cmbChapters" data-bind="options: optionsChapters, optionsText: 'name', optionsValue: 'chapterId', value: sChapter, valueAllowUnset: true, selectedOptions: selectedChapters, selected2:{}" disabled></select><i></i>
-							</label>
+									<select style="width:100%" id="cmbChapters" name="cmbChapters" data-bind="options: optionsChapters, optionsText: 'name', optionsValue: 'chapterId', value: sChapter, valueAllowUnset: true, selectedOptions: selectedChapters, selected2:{}"
+									 disabled></select>
+									<i></i>
+								</label>
 							</section>
 						</fieldset>
 					</form>
 				</div>
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
+						&times;
+					</button>
 					<h4 class="modal-title">
-						<i class="fa fa-sitemap"></i> <span data-i18n="pwDetail.modal_title">ART</span>
+						<i class="fa fa-sitemap"></i>
+						<span data-i18n="pwDetail.modal_title">ART</span>
 					</h4>
 				</div>
 				<div class="modal-body no-padding">
@@ -873,70 +970,73 @@
 									<section class="col col-md-2">
 										<label class="label" data-i18n="pwDetail.line">Linea:</label>
 										<label class="input">
-                                            <input id="txtLinea" name="txtLinea" type="text" data-bind="value: line" />
-                                        </label>
+											<input id="txtLinea" name="txtLinea" type="text" data-bind="value: line" />
+										</label>
 									</section>
 									<section class="col col-md-6">
-										<label class="label" data-18n="pwDetail.cunit">Unidad constructiva: <i id="ucinfo" class="fa fa-info-circle"></i></label>
+										<label class="label" data-18n="pwDetail.cunit">Unidad constructiva:
+											<i id="ucinfo" class="fa fa-info-circle"></i>
+										</label>
 										<label style="width:100%;">
-                                            <select style="width:100%" id="cmbCUnits" name="cmbCUnits" data-bind="options: optionsCUnits, optionsText: 'name', optionsValue: 'id', value: sCUnit, valueAllowUnset: true, selectedOptions: selectedCUnits, selected2:{}"></select><i></i>
-                                        </label>
+											<select style="width:100%" id="cmbCUnits" name="cmbCUnits" data-bind="options: optionsCUnits, optionsText: 'name', optionsValue: 'id', value: sCUnit, valueAllowUnset: true, selectedOptions: selectedCUnits, selected2:{}"></select>
+											<i></i>
+										</label>
 									</section>
 									<section class="col col-md-4">
 										<label class="label" data-i18n="pwDetail.cost">Coste:</label>
 										<label class="input">
-                                            <input id="txtCost" name="txtCost" type="text" data-bind="value: cost" />
-                                        </label>
+											<input id="txtCost" name="txtCost" type="text" data-bind="value: cost" />
+										</label>
 									</section>
 								</div>
 								<div class="row">
 									<section class="col col-md-2">
 										<label class="label" data-i18n="pwDetail.plannedQuantity">Cantidad P.:</label>
 										<label class="input">
-                                            <input id="txtPlannedQuantity" name="txtPlannedQuantity" type="text" data-bind="value: plannedQuantity" />
-                                        </label>
+											<input id="txtPlannedQuantity" name="txtPlannedQuantity" type="text" data-bind="value: plannedQuantity" />
+										</label>
 									</section>
 									<section class="col col-md-4">
 									</section>
 									<section class="col col-md-2">
 										<label class="label" data-i18n="pwDetail.quantity">Cantidad:</label>
 										<label class="input">
-                                            <input id="txtQuantity" name="txtQuantity" type="text" data-bind="value: quantity" />
-                                        </label>
+											<input id="txtQuantity" name="txtQuantity" type="text" data-bind="value: quantity" />
+										</label>
 									</section>
 									<section class="col col-md-2">
 										<label class="label" data-i18n="pwDetail.k">K:</label>
 										<label class="input">
-                                            <input id="txtK" name="txtK" type="text" data-bind="value: k" />
-                                        </label>
+											<input id="txtK" name="txtK" type="text" data-bind="value: k" />
+										</label>
 									</section>
 									<section class="col col-md-2">
 										<label class="label" data-i18n="pwDetail.amount">Importe:</label>
 										<label class="input">
-                                            <input id="txtAmount" name="txtAmount" type="text" data-bind="value: amount" disabled />
-                                        </label>
+											<input id="txtAmount" name="txtAmount" type="text" data-bind="value: amount" disabled />
+										</label>
 									</section>
 								</div>
 								<div class="row">
 									<section class="col col-md-12">
 										<label class="label" data-i18n="pwDetail.comments">Observaciones:</label>
 										<label class="textarea textarea-resizable">
-                                                        <textarea id="txComments" rows="3" class="custom-scroll" data-bind="value:comments"></textarea>
-                                                </label>
+											<textarea id="txComments" rows="3" class="custom-scroll" data-bind="value:comments"></textarea>
+										</label>
 									</section>
 								</div>
 							</section>
 						</fieldset>
 						<footer>
 							<button id="btnSaveLineNew" class="btn btn-primary">
-                                <span data-i18n="pwDetail.okNew">A</span>
-                            </button>
+								<span data-i18n="pwDetail.okNew">A</span>
+							</button>
 							<button id="btnSaveLine" class="btn btn-primary">
-                                <span data-i18n="pwDetail.ok">A</span>
-                            </button>
+								<span data-i18n="pwDetail.ok">A</span>
+							</button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">
-                                <span data-i18n="pwDetail.cancel">C</span>
-                            </button>
+								<span data-i18n="pwDetail.cancel">C</span>
+							</button>
 						</footer>
 					</form>
 				</div>
@@ -951,10 +1051,11 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
+						&times;
+					</button>
 					<h4 class="modal-title">
-						<i class="fa fa-random"></i> <span data-i18n="pwDetail.modal_title2">ART</span>
+						<i class="fa fa-random"></i>
+						<span data-i18n="pwDetail.modal_title2">ART</span>
 					</h4>
 				</div>
 				<div class="modal-body no-padding">
@@ -965,8 +1066,7 @@
 									<section class="col col-md-2">
 										<label class="label" data-18n="pwDetail.status">ESTADO:</label>
 										<label style="width:100%;">
-											<select style="width:100%" id="cmbStatus2" name="cmbStatus2" 
-												data-bind="options: optionsStatus2, optionsText: 'name', optionsValue: 'id', value: sStatus2, valueAllowUnset: true, selectedOptions: selectedStatus2, selected2:{}">
+											<select style="width:100%" id="cmbStatus2" name="cmbStatus2" data-bind="options: optionsStatus2, optionsText: 'name', optionsValue: 'id', value: sStatus2, valueAllowUnset: true, selectedOptions: selectedStatus2, selected2:{}">
 											</select>
 											<i></i>
 										</label>
@@ -974,14 +1074,13 @@
 									<section class="col col-md-2">
 										<label class="label" data-i18n="pwDetail.initDate2">Fecha (2):</label>
 										<label class="input">
-											<input id="txtInitDate2" name="txtInitDate2" data-bind="value: initDate2" class="datepicker" data-dateformat="dd/mm/yy"/>
+											<input id="txtInitDate2" name="txtInitDate2" data-bind="value: initDate2" class="datepicker" data-dateformat="dd/mm/yy" />
 										</label>
 									</section>
 									<section class="col col-md-4">
 										<label class="label" data-i18n="pwDetail.inCharge">Responsable:</label>
 										<label style="width:100%;">
-											<select style="width:100%" id="cmbWorkers2" name="cmbWorkers2" 
-												data-bind="options: optionsWorkers2, optionsText: 'name', optionsValue: 'id', value: sWorker2, valueAllowUnset: true, selectedOptions: selectedWorkers2, selected2:{}">
+											<select style="width:100%" id="cmbWorkers2" name="cmbWorkers2" data-bind="options: optionsWorkers2, optionsText: 'name', optionsValue: 'id', value: sWorker2, valueAllowUnset: true, selectedOptions: selectedWorkers2, selected2:{}">
 											</select>
 											<i></i>
 										</label>
@@ -997,11 +1096,11 @@
 						</fieldset>
 						<footer>
 							<button id="btnSaveLine2" class="btn btn-primary">
-                                <span data-i18n="pwDetail.ok">A</span>
-                            </button>
+								<span data-i18n="pwDetail.ok">A</span>
+							</button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">
-                                <span data-i18n="pwDetail.cancel">C</span>
-                            </button>
+								<span data-i18n="pwDetail.cancel">C</span>
+							</button>
 						</footer>
 					</form>
 				</div>
@@ -1016,10 +1115,11 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
+						&times;
+					</button>
 					<h4 class="modal-title">
-						<i class="fa fa-male"></i> <span data-i18n="pwDetail.modal_title3">ART</span>
+						<i class="fa fa-male"></i>
+						<span data-i18n="pwDetail.modal_title3">ART</span>
 					</h4>
 				</div>
 				<div class="modal-body no-padding">
@@ -1030,8 +1130,7 @@
 									<section class="col col-md-12">
 										<label class="label" data-i18n="pwDetail.worker">Trabajador:</label>
 										<label style="width:100%;">
-											<select style="width:100%" id="cmbWorkers3" name="cmbWorkers3" 
-												data-bind="options: optionsWorkers3, optionsText: 'name', optionsValue: 'id', value: sWorker3, valueAllowUnset: true, selectedOptions: selectedWorkers3, selected2:{}">
+											<select style="width:100%" id="cmbWorkers3" name="cmbWorkers3" data-bind="options: optionsWorkers3, optionsText: 'name', optionsValue: 'id', value: sWorker3, valueAllowUnset: true, selectedOptions: selectedWorkers3, selected2:{}">
 											</select>
 											<i></i>
 										</label>
@@ -1041,11 +1140,11 @@
 						</fieldset>
 						<footer>
 							<button id="btnSaveLine3" class="btn btn-primary">
-                                <span data-i18n="pwDetail.ok">A</span>
-                            </button>
+								<span data-i18n="pwDetail.ok">A</span>
+							</button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">
-                                <span data-i18n="pwDetail.cancel">C</span>
-                            </button>
+								<span data-i18n="pwDetail.cancel">C</span>
+							</button>
 						</footer>
 					</form>
 				</div>
@@ -1060,10 +1159,11 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
+						&times;
+					</button>
 					<h4 class="modal-title">
-						<i class="fa fa-bookmark-o"></i> <span data-i18n="pwDetail.modal_title4">CHAP</span>
+						<i class="fa fa-bookmark-o"></i>
+						<span data-i18n="pwDetail.modal_title4">CHAP</span>
 					</h4>
 				</div>
 				<div class="modal-body no-padding">
@@ -1088,7 +1188,7 @@
 									<section class="col col-md-12">
 										<label class="label" data-i18n="pwDetail.chapterComments">NME:</label>
 										<label class="textarea textarea-resizable">
-												<textarea id="txtChapterComments" rows="3" class="custom-scroll" data-bind="value:chapterComments"></textarea>
+											<textarea id="txtChapterComments" rows="3" class="custom-scroll" data-bind="value:chapterComments"></textarea>
 										</label>
 									</section>
 								</div>
@@ -1096,11 +1196,11 @@
 						</fieldset>
 						<footer>
 							<button id="btnSaveChapter" class="btn btn-primary">
-                                <span data-i18n="pwDetail.ok">A</span>
-                            </button>
+								<span data-i18n="pwDetail.ok">A</span>
+							</button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">
-                                <span data-i18n="pwDetail.cancel">C</span>
-                            </button>
+								<span data-i18n="pwDetail.cancel">C</span>
+							</button>
 						</footer>
 					</form>
 				</div>
