@@ -114,7 +114,7 @@ var reportGeneralAPI = {
         //
         self.initDateCons2 = ko.observable();
         self.endDateCons2 = ko.observable();
-
+        self.excel = ko.observable();
     },
     loadWorkers: function (id) {
         $.ajax({
@@ -201,6 +201,7 @@ var reportGeneralAPI = {
             var endDate = moment(vm.endDateCons2(), "DD/MM/YYYY").format('YYYY-MM-DD');
             // vm.sWorker()
             url = "infConsolidado2.html?pDfecha=" + beginDate + "&pHfecha=" + endDate;
+            if (vm.excel()) url += "&excel=true";
             window.open(url,'_new');
         }
         return mf;

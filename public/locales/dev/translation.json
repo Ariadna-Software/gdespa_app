@@ -578,7 +578,8 @@
         "rrhh": "Modelo para recursos humanos",
         "consolidate": "Consolidado",
         "detail": "Informe detallado",
-        "consolidate2": "Consolidado periodo"
+        "consolidate2": "Consolidado periodo",
+        "excel": "En formato para exportacion excel"
     },
     "teamGeneral": {
         "title": "Brigadas",
