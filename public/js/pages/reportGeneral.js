@@ -26,12 +26,16 @@ var reportGeneralAPI = {
         reportGeneralAPI.loadWorkers();        
         $('#btnPrintWorker').click(reportGeneralAPI.btnPrintWorker());
         $('#btnPrintConsolidate').click(reportGeneralAPI.btnPrintConsolidate());
+        $('#btnPrintConsolidate2').click(reportGeneralAPI.btnPrintConsolidate2());
        
         $('#cmbClosures').select2(select2_languages[lang]);
         reportGeneralAPI.loadClosures();
         $('#btnPrintClosure').click(reportGeneralAPI.btnPrintClosure());
         // avoid sending form 
         $('#closureDetail-form').submit(function () {
+            return false;
+        });
+        $('#consolidate2-form').submit(function () {
             return false;
         });
         // combos
@@ -107,6 +111,9 @@ var reportGeneralAPI = {
         //
         self.endDateCons = ko.observable();
         self.consDetail = ko.observable();
+        //
+        self.initDateCons2 = ko.observable();
+        self.endDateCons2 = ko.observable();
 
     },
     loadWorkers: function (id) {
@@ -181,7 +188,23 @@ var reportGeneralAPI = {
             window.open(url,'_new');
         }
         return mf;
-    },      
+    },  
+    btnPrintConsolidate2: function () {
+        var mf = function (e) {
+            // avoid default accion
+            e.preventDefault();
+            var url = "", type = "";
+
+            // fecth report data
+            type = "GET";
+            var beginDate = moment(vm.initDateCons2(), "DD/MM/YYYY").format('YYYY-MM-DD');
+            var endDate = moment(vm.endDateCons2(), "DD/MM/YYYY").format('YYYY-MM-DD');
+            // vm.sWorker()
+            url = "infConsolidado2.html?pDfecha=" + beginDate + "&pHfecha=" + endDate;
+            window.open(url,'_new');
+        }
+        return mf;
+    },     
     btnPrintClosure: function () {
         var mf = function (e) {
             // avoid default accion

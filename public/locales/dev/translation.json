@@ -577,7 +577,8 @@
         "endDate": "Hasta fecha",
         "rrhh": "Modelo para recursos humanos",
         "consolidate": "Consolidado",
-        "detail": "Informe detallado"
+        "detail": "Informe detallado",
+        "consolidate2": "Consolidado periodo"
     },
     "teamGeneral": {
         "title": "Brigadas",
