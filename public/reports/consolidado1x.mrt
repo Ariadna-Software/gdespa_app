@@ -13,7 +13,7 @@
     <DataSources isList="true" count="1">
       <DatosPw Ref="3" type="Stimulsoft.Report.Dictionary.StiMySqlSource" isKey="true">
         <Alias>DatosPw</Alias>
-        <Columns isList="true" count="12">
+        <Columns isList="true" count="9">
           <value>reference,System.String</value>
           <value>name,System.String</value>
           <value>mainK,System.Decimal</value>
@@ -23,21 +23,15 @@
           <value>totalf,System.Decimal</value>
           <value>STATUS,System.String</value>
           <value>zone,System.String</value>
-          <value>profitLoses,System.Decimal</value>
-          <value>prod2,System.Decimal</value>
-          <value>totalf2,System.Decimal</value>
         </Columns>
         <CommandTimeout>30</CommandTimeout>
         <Dictionary isRef="1" />
         <Name>DatosPw</Name>
         <NameInSource>GDESPA</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>SELECT t0.reference, t0.name, t0.mainK, COALESCE(t0.total, 0) AS total, COALESCE(t0.profitLoses,0) AS profitLoses,
+        <SqlCommand>SELECT t0.reference, t0.name, t0.mainK, COALESCE(t0.total, 0) AS total, 
 COALESCE(t1.prod,0) AS prod, COALESCE(t2.pres,0) AS pres, 
-COALESCE(t4.totalf,0) AS totalf,
-COALESCE(t5.prod,0) AS prod2, 
-COALESCE(t7.totalf,0) AS totalf2, 
-s.name AS STATUS,
+COALESCE(t4.totalf,0) AS totalf, s.name AS STATUS,
 z.name AS zone
 FROM pw AS t0
 LEFT JOIN 
@@ -46,7 +40,7 @@ wo.pwId, COALESCE(SUM(wol.quantity * pwl.k * pwl.cost),0) AS prod
 FROM wo_line AS wol
 LEFT JOIN wo ON wo.woId = wol.woId
 LEFT JOIN pw_line AS pwl ON pwl.pwLineId = wol.pwLineId
-WHERE wo.initDate &lt; '{dFecha}'
+WHERE wo.initDate &lt; '{hFecha}'
 GROUP BY wo.pwId) AS t1 
 ON t1.pwId = t0.pwId
 LEFT JOIN
@@ -58,33 +52,20 @@ GROUP BY pwl.pwId) AS t2
 ON t2.pwId = t1.pwId
 LEFT JOIN
 (SELECT pwId, SUM(amount) AS totalf FROM invoice 
-WHERE invoiceDate &lt; '{dFecha}' GROUP BY pwId) AS t4 
+WHERE invoiceDate &lt;= '{hFecha}' GROUP BY pwId) AS t4 
 ON t4.pwId = t0.pwId
 LEFT JOIN `status` AS s ON s.statusId = t0.statusId
-LEFT JOIN zone AS z ON z.zoneId = t0.zoneId
-LEFT JOIN 
-(SELECT
-wo.pwId, COALESCE(SUM(wol.quantity * pwl.k * pwl.cost),0) AS prod
-FROM wo_line AS wol
-LEFT JOIN wo ON wo.woId = wol.woId
-LEFT JOIN pw_line AS pwl ON pwl.pwLineId = wol.pwLineId
-WHERE wo.initDate &gt;= '{dFecha}' AND wo.initDate &lt;= '{hFecha}'
-GROUP BY wo.pwId) AS t5 
-ON t5.pwId = t0.pwId
-LEFT JOIN
-(SELECT pwId, SUM(amount) AS totalf FROM invoice 
-WHERE invoiceDate &gt;= '{dFecha}' AND invoiceDate &lt;= '{hFecha}' GROUP BY pwId) AS t7 
-ON t7.pwId = t0.pwId</SqlCommand>
+LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
       </DatosPw>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Resources isList="true" count="0" />
     <Variables isList="true" count="4">
-      <value>,dFecha,dFecha,Fecha_x0020_desde,System.String,_x0032_017-10-01,False,False,False,False</value>
-      <value>,hFecha,hFecha,Hasta_x0020_fecha,System.String,_x0032_017-10-31,False,False,False,False</value>
-      <value>,dFechaR,dFechaR,,System.String,_x0030_1_x002F_10_x002F_2017,False,False,False,False</value>
-      <value>,hFechaR,hFechaR,,System.String,_x0033_1_x002F_10_x002F_2017,False,False,False,False</value>
+      <value>,dFecha,dFecha,Fecha_x0020_desde,System.String,_x0032_017-01-01,False,False,False,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_DateTimeType_x003E_DateAndTime_x003C__x002F_DateTimeType_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+      <value>,hFecha,hFecha,Hasta_x0020_fecha,System.String,_x0032_017-12-31,False,False,False,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_DateTimeType_x003E_DateAndTime_x003C__x002F_DateTimeType_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+      <value>,dFechaR,dFechaR,,System.String,_x0030_1_x002F_05_x002F_2017,False,False,False,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_DateTimeType_x003E_DateAndTime_x003C__x002F_DateTimeType_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+      <value>,hFechaR,hFechaR,,System.String,_x0033_1_x002F_05_x002F_2017,False,False,False,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_DateTimeType_x003E_DateAndTime_x003C__x002F_DateTimeType_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
@@ -97,11 +78,11 @@ ON t7.pwId = t0.pwId</SqlCommand>
       <Components isList="true" count="2">
         <HeaderDatosPw Ref="5" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.4,98,0.8</ClientRectangle>
-          <Components isList="true" count="10">
+          <ClientRectangle>0,0.4,48,0.8</ClientRectangle>
+          <Components isList="true" count="7">
             <HeaderDatosPw_reference Ref="6" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>8.4,0,5.6,0.8</ClientRectangle>
+              <ClientRectangle>3.6,0,4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
@@ -116,14 +97,14 @@ ON t7.pwId = t0.pwId</SqlCommand>
             </HeaderDatosPw_reference>
             <HeaderDatosPw_name Ref="7" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>14,0,17.8,0.8</ClientRectangle>
+              <ClientRectangle>12,0,22.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDatosPw_name</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>NOMBRE</Text>
+              <Text>OBRA</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
@@ -131,14 +112,14 @@ ON t7.pwId = t0.pwId</SqlCommand>
             </HeaderDatosPw_name>
             <HeaderDatosPw_prod Ref="8" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>35.8,0,5.2,0.8</ClientRectangle>
+              <ClientRectangle>39.2,0,4.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDatosPw_prod</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>PRODUCIDO_ANTERIOR</Text>
+              <Text>PRODUCIDO</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
@@ -146,7 +127,7 @@ ON t7.pwId = t0.pwId</SqlCommand>
             </HeaderDatosPw_prod>
             <HeaderDatosPw_pres Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>31.8,0,4,0.8</ClientRectangle>
+              <ClientRectangle>34.6,0,4.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
@@ -161,37 +142,22 @@ ON t7.pwId = t0.pwId</SqlCommand>
             </HeaderDatosPw_pres>
             <HeaderDatosPw_totalf Ref="10" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>41,0,4.6,0.8</ClientRectangle>
+              <ClientRectangle>44,0,4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderDatosPw_totalf</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>FACTURADO_ANTERIOR</Text>
+              <Text>FACTURADO</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDatosPw_totalf>
-            <HeaderDatosPw_STATUS Ref="11" type="Text" isKey="true">
+            <HeaderDatosPw_zone Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>5.4,0,3,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>HeaderDatosPw_STATUS</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>STATUS</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </HeaderDatosPw_STATUS>
-            <HeaderDatosPw_zone Ref="12" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,5.4,0.8</ClientRectangle>
+              <ClientRectangle>0,0,3.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
@@ -204,212 +170,139 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDatosPw_zone>
-            <HeaderDatosPw_profitLoses Ref="13" type="Text" isKey="true">
+            <HeaderDatosPw_STATUS Ref="12" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>55.4,0,4.8,0.8</ClientRectangle>
+              <ClientRectangle>7.6,0,4.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
-              <Name>HeaderDatosPw_profitLoses</Name>
+              <Name>HeaderDatosPw_STATUS</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>PERDIDAS</Text>
+              <Text>ESTADO</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </HeaderDatosPw_profitLoses>
-            <HeaderDatosPw_prod2 Ref="14" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>45.6,0,5.4,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>HeaderDatosPw_prod2</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>PRODUCIDO_PERIODO</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </HeaderDatosPw_prod2>
-            <HeaderDatosPw_totalf2 Ref="15" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>51,0,4.4,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>HeaderDatosPw_totalf2</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>FACTURADO_PERIODO</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </HeaderDatosPw_totalf2>
+            </HeaderDatosPw_STATUS>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>HeaderDatosPw</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
         </HeaderDatosPw>
-        <DataDatosPw Ref="16" type="DataBand" isKey="true">
+        <DataDatosPw Ref="13" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,2,98,0.8</ClientRectangle>
-          <Components isList="true" count="10">
-            <DataDatosPw_reference Ref="17" type="Text" isKey="true">
+          <ClientRectangle>0,2,48,0.8</ClientRectangle>
+          <Components isList="true" count="7">
+            <DataDatosPw_name Ref="14" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>8.4,0,5.6,0.8</ClientRectangle>
+              <ClientRectangle>12,0,22.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>DataDatosPw_reference</Name>
-              <Page isRef="4" />
-              <Parent isRef="16" />
-              <Text>{DatosPw.reference}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <VertAlignment>Center</VertAlignment>
-            </DataDatosPw_reference>
-            <DataDatosPw_name Ref="18" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>14,0,17.8,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
+              <Font>Arial,10</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_name</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="13" />
               <Text>{DatosPw.name}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_name>
-            <DataDatosPw_prod Ref="19" type="Text" isKey="true">
+            <DataDatosPw_prod Ref="15" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>35.8,0,5.2,0.8</ClientRectangle>
+              <ClientRectangle>39.2,0,4.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
+              <Font>Arial,10</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_prod</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="13" />
               <Text>{DatosPw.prod}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_prod>
-            <DataDatosPw_pres Ref="20" type="Text" isKey="true">
+            <DataDatosPw_pres Ref="16" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>31.8,0,4,0.8</ClientRectangle>
+              <ClientRectangle>34.6,0,4.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
+              <Font>Arial,10</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_pres</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="13" />
               <Text>{DatosPw.pres}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_pres>
-            <DataDatosPw_totalf Ref="21" type="Text" isKey="true">
+            <DataDatosPw_totalf Ref="17" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>41,0,4.6,0.8</ClientRectangle>
+              <ClientRectangle>44,0,4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
+              <Font>Arial,10</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_totalf</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="13" />
               <Text>{DatosPw.totalf}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_totalf>
-            <DataDatosPw_STATUS Ref="22" type="Text" isKey="true">
+            <DataDatosPw_zone Ref="18" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>5.4,0,3,0.8</ClientRectangle>
+              <ClientRectangle>0,0,3.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>DataDatosPw_STATUS</Name>
-              <Page isRef="4" />
-              <Parent isRef="16" />
-              <Text>{DatosPw.STATUS}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <VertAlignment>Center</VertAlignment>
-            </DataDatosPw_STATUS>
-            <DataDatosPw_zone Ref="23" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>0,0,5.4,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
+              <Font>Arial,10</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_zone</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="13" />
               <Text>{DatosPw.zone}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_zone>
-            <DataDatosPw_profitLoses Ref="24" type="Text" isKey="true">
+            <Text1 Ref="19" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>55.4,0,4.8,0.8</ClientRectangle>
+              <ClientRectangle>3.6,0,4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
+              <Font>Arial,10</Font>
+              <Guid>21ae219c902f4e9cadaf082c6990255c</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>DataDatosPw_profitLoses</Name>
+              <Name>Text1</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
-              <Text>{DatosPw.profitLoses}</Text>
+              <Parent isRef="13" />
+              <Text>{DatosPw.reference}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <DataDatosPw_STATUS Ref="20" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>7.6,0,4.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataDatosPw_STATUS</Name>
+              <Page isRef="4" />
+              <Parent isRef="13" />
+              <Text>{DatosPw.STATUS}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
-            </DataDatosPw_profitLoses>
-            <DataDatosPw_prod2 Ref="25" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>45.6,0,5.4,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>DataDatosPw_prod2</Name>
-              <Page isRef="4" />
-              <Parent isRef="16" />
-              <Text>{DatosPw.prod2}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <VertAlignment>Center</VertAlignment>
-            </DataDatosPw_prod2>
-            <DataDatosPw_totalf2 Ref="26" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>51,0,4.4,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>DataDatosPw_totalf2</Name>
-              <Page isRef="4" />
-              <Parent isRef="16" />
-              <Text>{DatosPw.totalf2}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <VertAlignment>Center</VertAlignment>
-            </DataDatosPw_totalf2>
+            </DataDatosPw_STATUS>
           </Components>
           <Conditions isList="true" count="0" />
           <DataSourceName>DatosPw</DataSourceName>
@@ -426,15 +319,15 @@ ON t7.pwId = t0.pwId</SqlCommand>
       <Name>Page1</Name>
       <Orientation>Landscape</Orientation>
       <PageHeight>21.01</PageHeight>
-      <PageWidth>100</PageWidth>
+      <PageWidth>50</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="27" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="21" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="28" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="22" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -445,14 +338,14 @@ ON t7.pwId = t0.pwId</SqlCommand>
     <value>Stimulsoft.Base.Dll</value>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
-  <ReportAlias>consolidado_periodo_excel</ReportAlias>
+  <ReportAlias>consolidado_excel</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>10/18/2017 6:46:05 PM</ReportChanged>
+  <ReportChanged>10/19/2017 9:20:36 AM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
-  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado10x.mrt</ReportFile>
-  <ReportGuid>7e4471228c784e6daa05566a0b4dcba0</ReportGuid>
+  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado1x.mrt</ReportFile>
+  <ReportGuid>f4ea711f28964c6996abfc00c1b1a8c9</ReportGuid>
   <ReportImage isNull="true" />
-  <ReportName>consolidado_periodo_excel</ReportName>
+  <ReportName>consolidado_excel</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2017.1.10.0</ReportVersion>
   <Script>using System;

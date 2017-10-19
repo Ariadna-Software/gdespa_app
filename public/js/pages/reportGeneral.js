@@ -185,6 +185,7 @@ var reportGeneralAPI = {
             // vm.sWorker()
             url = "infConsolidado.html?pHfecha=" + endDate;
             if (vm.consDetail()) url += "&consDetail=true";
+            if (vm.excel()) url += "&excel=true";
             window.open(url,'_new');
         }
         return mf;

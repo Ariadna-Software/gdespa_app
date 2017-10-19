@@ -120,11 +120,13 @@ function initForm() {
     var pDfecha = aswUtil.gup('pDfecha');
     var pHfecha = aswUtil.gup('pHfecha');
     var workerId = aswUtil.gup('workerId');
+    var excel = aswUtil.gup('excel');
     if (pHfecha != "") {
         $("#selector").hide();
         vm.dFecha(pDfecha);
         vm.hFecha(pHfecha);
         vm.workerId(workerId);
+        if (excel == "true") vm.excel(1); else vm.excel(0);
         obtainReport();
         
     }
@@ -151,12 +153,14 @@ function admData() {
     self.sBrigada = ko.observable();
     //
     self.detalle = ko.observable();
+    self.excel = ko.observable();
 };
 
 var obtainReport = function () {
     if (!datosOK()) return;
     StiOptions.WebServer.url = "/api/streport";
     var file = "../reports/consolidado1.mrt";
+    if (vm.excel()) file = "../reports/consolidado1x.mrt";
     if (aswUtil.gup('consDetail') == "true"){
         file = "../reports/consolidado0.mrt";
     }
