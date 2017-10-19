@@ -835,7 +835,9 @@
         "title": "Detalle tipo",
         "name": "Nombre",
         "cancel": "Salir sin guardar",
-        "ok": "Guardar"
+        "ok": "Guardar",
+        "needToOpen": "Necesario para abrir propuestas",
+        "needToClose": "Necesario para cerrar propuestas"
     },
     "rrHH": {
         "title": "Informes recursos humanos"

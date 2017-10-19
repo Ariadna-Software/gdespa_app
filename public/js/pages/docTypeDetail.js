@@ -36,10 +36,14 @@ var docTypeDetailAPI = {
         var self = this;
         self.id = ko.observable();
         self.name = ko.observable();
+        self.needToOpen = ko.observable();
+        self.needToClose = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
         vm.name(data.name);
+        vm.needToOpen(data.needToOpen);
+        vm.needToClose(data.needToClose);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -86,7 +90,9 @@ var docTypeDetailAPI = {
             // dat for post or put
             var data = {
                 id: vm.id(),
-                name: vm.name()
+                name: vm.name(),
+                needToOpen: vm.needToOpen(),
+                needToClose: vm.needToClose()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
