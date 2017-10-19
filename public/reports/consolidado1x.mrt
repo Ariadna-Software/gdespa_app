@@ -190,6 +190,7 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
           <Name>HeaderDatosPw</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
+          <PrintOn>OnlyFirstPage</PrintOn>
         </HeaderDatosPw>
         <DataDatosPw Ref="13" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
@@ -342,8 +343,8 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
   <ReportChanged>10/19/2017 9:20:36 AM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
-  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado1x.mrt</ReportFile>
-  <ReportGuid>f4ea711f28964c6996abfc00c1b1a8c9</ReportGuid>
+  <ReportFile />
+  <ReportGuid>6f00473c54dd41448937461b43567c68</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado_excel</ReportName>
   <ReportUnit>Centimeters</ReportUnit>

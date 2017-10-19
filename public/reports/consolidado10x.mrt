@@ -254,6 +254,7 @@ ON t7.pwId = t0.pwId</SqlCommand>
           <Name>HeaderDatosPw</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
+          <PrintOn>OnlyFirstPage</PrintOn>
         </HeaderDatosPw>
         <DataDatosPw Ref="16" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
@@ -449,8 +450,8 @@ ON t7.pwId = t0.pwId</SqlCommand>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
   <ReportChanged>10/18/2017 6:46:05 PM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
-  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado10x.mrt</ReportFile>
-  <ReportGuid>7e4471228c784e6daa05566a0b4dcba0</ReportGuid>
+  <ReportFile />
+  <ReportGuid>6233986f68a3424bbb424afb8fc78363</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado_periodo_excel</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
