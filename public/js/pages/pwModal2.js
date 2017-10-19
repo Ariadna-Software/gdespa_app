@@ -35,7 +35,7 @@ var pwModal2API = {
             vm.sStatus2(st)
         } else {
             // keep status
-            vm.sStatus2(vm.Status());
+            vm.sStatus2(vm.sStatus());
         }
         vm.reference2(null);
         vm.initDate2(null);
@@ -99,13 +99,14 @@ var pwModal2API = {
                         // Proposed Work (pw) closed 
                         // Do you want to update line quantities?
                         aswNotif.generalQuestion(i18n.t('pwDetail.updateLines'), 'pwModal2API.updatePwLinesFromWoLines()');
+                    } else if (vm.sStatus2() == 5) {
                         if (vm.prod() - vm.totalf()){
                             var difference = numeral(vm.prod() - vm.totalf()).format('0,0.00') + " USD"
                             var question =    i18n.t('pwDetail.profitLosesQuestion').replace('{0}', difference);
                             aswNotif.generalQuestion(question, 'pwModal2API.calcProfitLoses()');
                         }
-
-                    } else {
+                    }
+                     else {
                         pwDetailAPI.getPw(vm.id());
                     }
                 },

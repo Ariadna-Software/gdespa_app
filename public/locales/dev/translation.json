@@ -36,7 +36,7 @@
         "DONE": "TERMINADO",
         "VALIDATED": "CERTIFICADO",
         "INVOICED": "FACTURADO",
-        "PAID": "PAGADO"
+        "PAID": "CERRADO"
     },
     "util": {
         "date_iso": "YYYY-MM-DD",
