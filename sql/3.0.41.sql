@@ -1,0 +1,2 @@
+ALTER TABLE `user`   
+  ADD COLUMN `perNoDocsInOpen` BOOL DEFAULT FALSE NULL AFTER `perPwClosed`;

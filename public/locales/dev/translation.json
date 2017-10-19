@@ -155,7 +155,8 @@
         "perVerified": "Poder verificar obras",
         "perRRHH": "Acceso al menú RRHH",
         "perPwClosed": "Poder modificar propuestas terminadas",
-        "closedMessage": "Esta propuesta está cerrada, sólo puede consultar su información."
+        "closedMessage": "Esta propuesta está cerrada, sólo puede consultar su información.",
+        "perNoDocsInOpen": "Permitir que el usuario abra obras sin los documentos necesarios"
     },
     "workerGeneral": {
         "title": "Mantenimiento de recursos",

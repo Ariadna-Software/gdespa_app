@@ -75,7 +75,7 @@ var pwModal4API = {
         // Docs needed for open PW?
         pwDetailAPI.checkDocsNeedToOpen(vm.id(), function(err, data) {
             if (err) return aswNotif.errAjaxShort(err);
-            if (data[0].ndocs == 0) return aswNotif.generalMessage(i18n.t('pwDetail.docsNeedToOpen'));
+            if (data[0].ndocs == 0 && !user.perNoDocsInOpen) return aswNotif.generalMessage(i18n.t('pwDetail.docsNeedToOpen'));
             if (!pwModal4API.dataOk()) return;
             // mount line to save 
             var data = {

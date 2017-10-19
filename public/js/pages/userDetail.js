@@ -83,6 +83,7 @@ var userDetailAPI = {
         self.perVerified = ko.observable();
         self.perRRHH = ko.observable();
         self.perPwClosed = ko.observable();
+        self.perNoDocsInOpen = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -117,6 +118,7 @@ var userDetailAPI = {
         vm.perVerified(data.perVerified);
         vm.perRRHH(data.perRRHH);
         vm.perPwClosed(data.perPwClosed);
+        vm.perNoDocsInOpen(data.perNoDocsInOpen);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -206,7 +208,8 @@ var userDetailAPI = {
                 seeWoClosed: vm.seeWoClosed() ? 1 : 0,
                 perVerified: vm.perVerified() ? 1 : 0,
                 perRRHH: vm.perRRHH() ? 1 : 0,
-                perPwClosed: vm.perPwClosed() ? 1 : 0
+                perPwClosed: vm.perPwClosed() ? 1 : 0,
+                perNoDocsInOpen: vm.perNoDocsInOpen() ? 1 : 0
             };
             var url = "", type = "";
             if (vm.id() == 0) {
