@@ -796,5 +796,25 @@ var pwDetailAPI = {
     ucInfo: function () {
         if (!vm.sCUnit()) return;
         window.open('cUnitDetail.html?id=' + vm.sCUnit() + '&ucinfo=1', '_blank');
+    },
+    checkDocsNeedToOpen: function(id, done) {
+        var url = sprintf("%s/pw/docsNeedToOpen/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: "application/json",
+            success: function (data, status) {
+                // TODO: Control number
+                var numDocs = data;
+                done(null, data);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+                done(err);
+            }
+        })      
     }
 };

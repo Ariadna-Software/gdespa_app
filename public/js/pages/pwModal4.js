@@ -72,49 +72,54 @@ var pwModal4API = {
         });
     },
     saveChapter: function () {
-        if (!pwModal4API.dataOk()) return;
-        // mount line to save 
-        var data = {
-            chapterId: vm.chapterId(),
-            order: vm.chapterOrder(),
-            name: vm.chapterName(),
-            comments: vm.chapterComments(),
-            pwId: vm.id()
-        };
-        var url = "",
-            type = "";
-        if (vm.chapterId() == 0) {
-            // creating new record
-            type = "POST";
-            url = sprintf('%s/chapter?api_key=%s', myconfig.apiUrl, api_key);
-        } else {
-            // updating record
-            type = "PUT";
-            url = sprintf('%s/chapter/%s/?api_key=%s', myconfig.apiUrl, vm.chapterId(), api_key);
-        }
-        $.ajax({
-            type: type,
-            url: url,
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: function (data, status) {
-                $('#pwModal4').modal('hide');
-                // pwpwModal4API.getPwChapters(vm.id());
-                // pwDetailAPI.getPw(vm.id());
-                if (type == "POST") {
-                    vm.currentChapterId(data.chapterId);
-                    vm.chapterId(data.chapterId);
-                    pwModalAPI.newLine(data.chapterId);
-                    $('#pwModal').modal('show');
-                }
-            },
-            error: function (err) {
-                aswNotif.errAjax(err);
-                if (err.status == 401) {
-                    window.open('index.html', '_self');
-                }
+        // Docs needed for open PW?
+        pwDetailAPI.checkDocsNeedToOpen(vm.id(), function(err, data) {
+            if (err) return aswNotif.errAjaxShort(err);
+            if (data[0].ndocs == 0) return aswNotif.generalMessage(i18n.t('pwDetail.docsNeedToOpen'));
+            if (!pwModal4API.dataOk()) return;
+            // mount line to save 
+            var data = {
+                chapterId: vm.chapterId(),
+                order: vm.chapterOrder(),
+                name: vm.chapterName(),
+                comments: vm.chapterComments(),
+                pwId: vm.id()
+            };
+            var url = "",
+                type = "";
+            if (vm.chapterId() == 0) {
+                // creating new record
+                type = "POST";
+                url = sprintf('%s/chapter?api_key=%s', myconfig.apiUrl, api_key);
+            } else {
+                // updating record
+                type = "PUT";
+                url = sprintf('%s/chapter/%s/?api_key=%s', myconfig.apiUrl, vm.chapterId(), api_key);
             }
-        });
+            $.ajax({
+                type: type,
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data, status) {
+                    $('#pwModal4').modal('hide');
+                    // pwpwModal4API.getPwChapters(vm.id());
+                    // pwDetailAPI.getPw(vm.id());
+                    if (type == "POST") {
+                        vm.currentChapterId(data.chapterId);
+                        vm.chapterId(data.chapterId);
+                        pwModalAPI.newLine(data.chapterId);
+                        $('#pwModal').modal('show');
+                    }
+                },
+                error: function (err) {
+                    aswNotif.errAjax(err);
+                    if (err.status == 401) {
+                        window.open('index.html', '_self');
+                    }
+                }
+            });
+        })
     },
     newOrderNumber: function (id) {
         $.ajax({
