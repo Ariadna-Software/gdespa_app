@@ -98,7 +98,7 @@ ON t7.pwId = t0.pwId</SqlCommand>
         <HeaderDatosPw Ref="5" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,98,0.8</ClientRectangle>
-          <Components isList="true" count="10">
+          <Components isList="true" count="13">
             <HeaderDatosPw_reference Ref="6" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>8.4,0,5.6,0.8</ClientRectangle>
@@ -206,7 +206,7 @@ ON t7.pwId = t0.pwId</SqlCommand>
             </HeaderDatosPw_zone>
             <HeaderDatosPw_profitLoses Ref="13" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>55.4,0,4.8,0.8</ClientRectangle>
+              <ClientRectangle>70.4,0,4.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
@@ -249,6 +249,54 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDatosPw_totalf2>
+            <Text1 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>55.4,0,5.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>6d5a323087a143ccb2188418eb1ae873</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>PRODUCIDO_ACUMULADO</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text3 Ref="17" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>60.8,0,4.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>cd637c89c1be43119c328a8da9abefdb</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>FACTURADO_ACUMULADO</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text5 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>65.6,0,4.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>c4f70db2158e466d853bac744e20216c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>PENDIENTE_FACTURAR</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>HeaderDatosPw</Name>
@@ -256,12 +304,12 @@ ON t7.pwId = t0.pwId</SqlCommand>
           <Parent isRef="4" />
           <PrintOn>OnlyFirstPage</PrintOn>
         </HeaderDatosPw>
-        <DataDatosPw Ref="16" type="DataBand" isKey="true">
+        <DataDatosPw Ref="19" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,2,98,0.8</ClientRectangle>
-          <Components isList="true" count="10">
-            <DataDatosPw_reference Ref="17" type="Text" isKey="true">
+          <Components isList="true" count="13">
+            <DataDatosPw_reference Ref="20" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>8.4,0,5.6,0.8</ClientRectangle>
@@ -270,13 +318,13 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_reference</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="19" />
               <Text>{DatosPw.reference}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_reference>
-            <DataDatosPw_name Ref="18" type="Text" isKey="true">
+            <DataDatosPw_name Ref="21" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>14,0,17.8,0.8</ClientRectangle>
@@ -285,13 +333,13 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_name</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="19" />
               <Text>{DatosPw.name}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_name>
-            <DataDatosPw_prod Ref="19" type="Text" isKey="true">
+            <DataDatosPw_prod Ref="22" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>35.8,0,5.2,0.8</ClientRectangle>
@@ -300,13 +348,13 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_prod</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="19" />
               <Text>{DatosPw.prod}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_prod>
-            <DataDatosPw_pres Ref="20" type="Text" isKey="true">
+            <DataDatosPw_pres Ref="23" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>31.8,0,4,0.8</ClientRectangle>
@@ -315,13 +363,13 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_pres</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="19" />
               <Text>{DatosPw.pres}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_pres>
-            <DataDatosPw_totalf Ref="21" type="Text" isKey="true">
+            <DataDatosPw_totalf Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>41,0,4.6,0.8</ClientRectangle>
@@ -330,13 +378,13 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_totalf</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="19" />
               <Text>{DatosPw.totalf}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_totalf>
-            <DataDatosPw_STATUS Ref="22" type="Text" isKey="true">
+            <DataDatosPw_STATUS Ref="25" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>5.4,0,3,0.8</ClientRectangle>
@@ -345,13 +393,13 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_STATUS</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="19" />
               <Text>{DatosPw.STATUS}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_STATUS>
-            <DataDatosPw_zone Ref="23" type="Text" isKey="true">
+            <DataDatosPw_zone Ref="26" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0,0,5.4,0.8</ClientRectangle>
@@ -360,28 +408,28 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_zone</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="19" />
               <Text>{DatosPw.zone}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_zone>
-            <DataDatosPw_profitLoses Ref="24" type="Text" isKey="true">
+            <DataDatosPw_profitLoses Ref="27" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>55.4,0,4.8,0.8</ClientRectangle>
+              <ClientRectangle>70.4,0,4.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_profitLoses</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="19" />
               <Text>{DatosPw.profitLoses}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_profitLoses>
-            <DataDatosPw_prod2 Ref="25" type="Text" isKey="true">
+            <DataDatosPw_prod2 Ref="28" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>45.6,0,5.4,0.8</ClientRectangle>
@@ -390,13 +438,13 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_prod2</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="19" />
               <Text>{DatosPw.prod2}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_prod2>
-            <DataDatosPw_totalf2 Ref="26" type="Text" isKey="true">
+            <DataDatosPw_totalf2 Ref="29" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>51,0,4.4,0.8</ClientRectangle>
@@ -405,12 +453,63 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_totalf2</Name>
               <Page isRef="4" />
-              <Parent isRef="16" />
+              <Parent isRef="19" />
               <Text>{DatosPw.totalf2}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_totalf2>
+            <Text2 Ref="30" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>55.4,0,5.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>a71eec3b0ac54de2ac8aef659ffa3be5</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="19" />
+              <Text>{DatosPw.prod + DatosPw.prod2}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text4 Ref="31" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>60.8,0,4.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>57af87f9cb4940b7b2b7c66fff46d1e9</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="4" />
+              <Parent isRef="19" />
+              <Text>{DatosPw.totalf + DatosPw.totalf2}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text6 Ref="32" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>65.6,0,4.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>d6a001f732e94741847702a56e85d108</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="4" />
+              <Parent isRef="19" />
+              <Text>{(DatosPw.prod + DatosPw.prod2) - (DatosPw.totalf + DatosPw.totalf2)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
           </Components>
           <Conditions isList="true" count="0" />
           <DataSourceName>DatosPw</DataSourceName>
@@ -429,13 +528,13 @@ ON t7.pwId = t0.pwId</SqlCommand>
       <PageHeight>21.01</PageHeight>
       <PageWidth>100</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="27" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="33" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="28" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="34" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -448,10 +547,10 @@ ON t7.pwId = t0.pwId</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>consolidado_periodo_excel</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>10/18/2017 6:46:05 PM</ReportChanged>
+  <ReportChanged>10/19/2017 5:44:55 PM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
   <ReportFile />
-  <ReportGuid>6233986f68a3424bbb424afb8fc78363</ReportGuid>
+  <ReportGuid>6cf2d0dedf9e453d91d312040664636e</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado_periodo_excel</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
