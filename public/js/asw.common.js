@@ -248,6 +248,20 @@ var aswNotif = {
             icon: "fa fa-bell swing animated"
         });
     },
+    generalQuestionYesNo: function (message, fn1, fn2) {
+        // mount message
+        var msg = message;
+        var btn1 = sprintf("<a href='javascript:void(0);' onClick='%s' class='btn btn-warning btn-sm'>%s</a>", fn1, i18n.t('yes'));
+        var btn2 = sprintf("<a href='javascript:void(0);' onClick='%s' class='btn btn-warning btn-sm'>%s</a>", fn2, i18n.t('no'));
+        msg += sprintf("<p class='text-align-right'>%s %s</p>", btn1, btn2);
+        $.smallBox({
+            title: i18n.t('warning'),
+            content: msg,
+            color: "#C79121",
+            //timeout: 8000,
+            icon: "fa fa-bell swing animated"
+        });
+    },    
     generalMessage: function (message) {
         // mount message
         var msg = message;
@@ -426,6 +440,25 @@ var aswUtil = {
     },
     round2: function (num) {
         return +(Math.round(num + "e+2") + "e-2");
+    },
+    llamadaAjax: function (verbo, url, datos, fretorno) {
+        var opciones = {
+            type: verbo,
+            url: url,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status, request) {
+                fretorno(null, data, status, request);
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                fretorno(err);
+            }
+        };
+        if (datos) {
+            opciones.data = JSON.stringify(datos);
+        }
+        $.ajax(opciones);
     }
 }
 
