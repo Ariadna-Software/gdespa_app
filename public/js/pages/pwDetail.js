@@ -219,6 +219,7 @@ var pwDetailAPI = {
         //
         self.verified = ko.observable();
         self.profitLoses = ko.observable();
+        self.isMeaMo = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -304,6 +305,7 @@ var pwDetailAPI = {
         }
         //
         vm.profitLoses(data.profitLoses);
+        vm.isMeaMo(data.isMeaMo);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -420,7 +422,8 @@ var pwDetailAPI = {
                 areaTypeId: vm.sArea(),
                 revUser: vm.revUser(),
                 verified: vm.verified(),
-                profitLoses: vm.profitLoses()
+                profitLoses: vm.profitLoses(),
+                isMeaMo: vm.isMeaMo()
             };
             if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()) {
                 data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));

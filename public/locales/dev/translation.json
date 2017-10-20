@@ -353,7 +353,8 @@
         "profitLoses": "Perdidas / Ganancias",
         "profitLosesQuestion": "Hay una diferencia entre producido y facturado de {0}. ¿Quiere llevar esa diferencua a perdidas / ganancias?",
         "docsNeedToOpen": "Antes de introducir capítulos y UUCC debe dar de alta los documentos necesarios para apertura",
-        "docsNeedToClose": "Esta intentando cerrar una obra sin haber dado de alta los documentos de cierre. ¿Quiere continuar con el cierre?"
+        "docsNeedToClose": "Esta intentando cerrar una obra sin haber dado de alta los documentos de cierre. ¿Quiere continuar con el cierre?",
+        "isMeaMo": "Esta obra es de luminarias o contadores"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",
