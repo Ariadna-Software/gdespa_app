@@ -1,4 +1,5 @@
 var lang = aswCookies.getCookie('gdespa_lang');
+var oldStatus;
 
 var pwModal2API = {
     init: function () {
@@ -29,6 +30,7 @@ var pwModal2API = {
         return $('#pwModal2-form').valid();
     },
     newStatus: function () {
+        oldStatus = vm.sStatus(); // keep old status
         var st = vm.sStatus() + 1;
         if (st < 6) {
             // valid status
@@ -218,7 +220,7 @@ var pwModal2API = {
         // recover previous state
         var data = {
             id: vm.id(),
-            status: { id: vm.sStatus2() - 1 },
+            status: { id: oldStatus },
             reference: vm.reference(),
             name: vm.name(),
             payInCharge:  { id: null },
