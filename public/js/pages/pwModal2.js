@@ -106,7 +106,7 @@ var pwModal2API = {
                         if (vm.prod() - vm.totalf()) {
                             var difference = numeral(vm.prod() - vm.totalf()).format('0,0.00') + " USD"
                             var question = i18n.t('pwDetail.profitLosesQuestion').replace('{0}', difference);
-                            aswNotif.generalQuestion(question, 'pwModal2API.calcProfitLoses()');
+                            aswNotif.generalQuestionYesNo(question, 'pwModal2API.calcProfitLoses()','pwModal2API.dontClose()');
                         }
                         // close documents control
                         type = "GET";
@@ -115,7 +115,7 @@ var pwModal2API = {
                             if (err) return;
                             if (data[0].ndocs == 0) {
                                 var question = i18n.t('pwDetail.docsNeedToClose');
-                                aswNotif.generalQuestionYesNo(question,  'pwModal2API.closeDocumentsPresent()','pwModal2API.closeDocumentsNotPresent()');
+                                aswNotif.generalQuestionYesNo(question,  'pwModal2API.closeDocumentsPresent()','pwModal2API.dontClose()');
                             }
                         })
                     }
@@ -216,7 +216,7 @@ var pwModal2API = {
             }
         });
     },
-    closeDocumentsNotPresent: function () {
+    dontClose: function () {
         // recover previous state
         var data = {
             id: vm.id(),
