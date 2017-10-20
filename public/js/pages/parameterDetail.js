@@ -14,6 +14,7 @@ var parameterDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
+        datepicker_languages(lang);
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
@@ -50,6 +51,7 @@ var parameterDetailAPI = {
         self.hEHN = ko.observable();
         self.heEHD = ko.observable();
         self.heEHN = ko.observable();
+        self.initControlDocs = ko.observable();
 
     },
     loadData: function (data) {
@@ -68,12 +70,13 @@ var parameterDetailAPI = {
         vm.hEHN(data.hEHN);
         vm.heEHD(data.heEHD);
         vm.heEHN(data.heEHN);
+        vm.initControlDocs(moment(data.initControlDocs).format(i18n.t("util.date_format")));
     },
     // Validates form (jquery validate) 
     dataOk: function () {
         $('#parameterDetail-form').validate({
             rules: {
-
+                txtInitControlDocs: { required: true }
             },
             // Do not change code below
             errorPlacement: function (error, element) {
@@ -122,7 +125,8 @@ var parameterDetailAPI = {
                 hEHD: vm.hEHD(),
                 hEHN: vm.hEHN(),
                 heEHD: vm.heEHD(),
-                heEHN: vm.heEHN()
+                heEHN: vm.heEHN(),
+                initControlDocs: moment(vm.initControlDocs(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"))
             };
             var url = "", type = "";
             // updating record

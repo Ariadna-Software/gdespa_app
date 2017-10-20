@@ -765,7 +765,8 @@
         "hEHD":"Horas extras diurnas (Dia nacional / Feriado)",
         "hEHN":"Horas extras nocturnas (Dia nacional / Feriado)",
         "heEHD":"Horas extras diurnas en exceso (Dia nacional / Feriado)",
-        "heEHN":"Horas extras nocturnas en exceso (Dia nacional / Feriado)"
+        "heEHN":"Horas extras nocturnas en exceso (Dia nacional / Feriado)",
+        "initControlDocs": "Fecha a partir de la cual se controlan documentos en propuestas"
     },
     "workGeneral": {
         "title": "Mantenimiento tipos obra",
