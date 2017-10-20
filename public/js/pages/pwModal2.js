@@ -113,7 +113,9 @@ var pwModal2API = {
                         url = sprintf('%s/pw/docsNeedToClose/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
                         aswUtil.llamadaAjax(type, url, null, function(err, data){
                             if (err) return;
-                            if (data[0].ndocs == 0) {
+                            var myInitDate = moment(vm.initDate(), 'DD/MM/YYYY').toDate();
+                            var myInitControl = moment(parameters.initControlDocs).toDate();
+                            if (data[0].ndocs == 0 && myInitDate >= myInitControl) {
                                 var question = i18n.t('pwDetail.docsNeedToClose');
                                 aswNotif.generalQuestionYesNo(question,  'pwModal2API.closeDocumentsPresent()','pwModal2API.dontClose()');
                             }

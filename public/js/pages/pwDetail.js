@@ -5,7 +5,7 @@
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
 var lang = aswCookies.getCookie('gdespa_lang');
-
+var parameters = {};
 
 var data = null;
 var vm = null;
@@ -79,6 +79,12 @@ var pwDetailAPI = {
         if (aswUtil.gup('doc') != "") {
             $('.nav-tabs a[href="#s4"]').tab('show');
         }
+        // read parameters
+        var url = sprintf("%s/parameters/?api_key=%s", myconfig.apiUrl, api_key);
+        aswUtil.llamadaAjax("GET", url, null, function(err, data){
+            if (err) return;
+            parameters = data[0];
+        })
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
