@@ -77,7 +77,7 @@ var pwModal4API = {
             if (err) return aswNotif.errAjaxShort(err);
             var myInitDate = moment(vm.initDate(), 'DD/MM/YYYY').toDate();
             var myInitControl = moment(parameters.initControlDocs).toDate();
-            if (data[0].ndocs == 0 && !user.perNoDocsInOpen && myInitDate >= myInitControl) return aswNotif.generalMessage(i18n.t('pwDetail.docsNeedToOpen'));
+            if (data[0].ndocs < 3 && !user.perNoDocsInOpen && myInitDate >= myInitControl) return aswNotif.generalMessage(i18n.t('pwDetail.docsNeedToOpen'));
             if (!pwModal4API.dataOk()) return;
             // mount line to save 
             var data = {
