@@ -582,7 +582,8 @@
         "consolidate": "Consolidado",
         "detail": "Informe detallado",
         "consolidate2": "Consolidado periodo",
-        "excel": "En formato para exportacion excel"
+        "excel": "En formato para exportacion excel",
+        "status": "Estado"
     },
     "teamGeneral": {
         "title": "Brigadas",

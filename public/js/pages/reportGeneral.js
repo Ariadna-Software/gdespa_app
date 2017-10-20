@@ -23,11 +23,15 @@ var reportGeneralAPI = {
         ko.applyBindings(vm);
         // combos
         $('#cmbWorkers').select2(select2_languages[lang]);
-        reportGeneralAPI.loadWorkers();        
+        reportGeneralAPI.loadWorkers();
+        $('#cmbStatus').select2(select2_languages[lang]);
+        reportGeneralAPI.loadStatus();        
+        $('#cmbStatus2').select2(select2_languages[lang]);
+        reportGeneralAPI.loadStatus2();         
         $('#btnPrintWorker').click(reportGeneralAPI.btnPrintWorker());
         $('#btnPrintConsolidate').click(reportGeneralAPI.btnPrintConsolidate());
         $('#btnPrintConsolidate2').click(reportGeneralAPI.btnPrintConsolidate2());
-       
+
         $('#cmbClosures').select2(select2_languages[lang]);
         reportGeneralAPI.loadClosures();
         $('#btnPrintClosure').click(reportGeneralAPI.btnPrintClosure());
@@ -115,6 +119,14 @@ var reportGeneralAPI = {
         self.initDateCons2 = ko.observable();
         self.endDateCons2 = ko.observable();
         self.excel = ko.observable();
+        // status combo
+        self.optionsStatus = ko.observableArray([]);
+        self.selectedStatus = ko.observableArray([]);
+        self.sStatus = ko.observable();
+        // status2 combo
+        self.optionsStatus2 = ko.observableArray([]);
+        self.selectedStatus2 = ko.observableArray([]);
+        self.sStatus2 = ko.observable();        
     },
     loadWorkers: function (id) {
         $.ajax({
@@ -126,6 +138,44 @@ var reportGeneralAPI = {
                 var options = [{ id: 0, name: "--- TODOS -----" }].concat(data);
                 vm.optionsWorkers(options);
                 $("#cmbWorkers").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadStatus: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/status/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 99, name: "--- TODOS -----" }].concat(data);
+                vm.optionsStatus(options);
+                $("#cmbStatus").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },    
+    loadStatus2: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/status/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 99, name: "--- TODOS -----" }].concat(data);
+                vm.optionsStatus2(options);
+                $("#cmbStatus2").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -169,10 +219,10 @@ var reportGeneralAPI = {
             url = "infHours.html?pDfecha=" + initDate + "&pHfecha=" + endDate;
             if (vm.rrhh()) url += "&rrhh=true";
             if (vm.sWorker()) url += "&workerId=" + vm.sWorker();
-            window.open(url,'_new');
+            window.open(url, '_new');
         }
         return mf;
-    },   
+    },
     btnPrintConsolidate: function () {
         var mf = function (e) {
             // avoid default accion
@@ -186,10 +236,11 @@ var reportGeneralAPI = {
             url = "infConsolidado.html?pHfecha=" + endDate;
             if (vm.consDetail()) url += "&consDetail=true";
             if (vm.excel()) url += "&excel=true";
-            window.open(url,'_new');
+            if (vm.sStatus() != 99) url += "&status=" + vm.sStatus();
+            window.open(url, '_new');
         }
         return mf;
-    },  
+    },
     btnPrintConsolidate2: function () {
         var mf = function (e) {
             // avoid default accion
@@ -203,10 +254,11 @@ var reportGeneralAPI = {
             // vm.sWorker()
             url = "infConsolidado2.html?pDfecha=" + beginDate + "&pHfecha=" + endDate;
             if (vm.excel()) url += "&excel=true";
-            window.open(url,'_new');
+            if (vm.sStatus2() != 99) url += "&status=" + vm.sStatus2();
+            window.open(url, '_new');
         }
         return mf;
-    },     
+    },
     btnPrintClosure: function () {
         var mf = function (e) {
             // avoid default accion

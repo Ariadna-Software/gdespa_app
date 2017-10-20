@@ -121,14 +121,15 @@ function initForm() {
     var pHfecha = aswUtil.gup('pHfecha');
     var workerId = aswUtil.gup('workerId');
     var excel = aswUtil.gup('excel');
+    var status = aswUtil.gup('status');
     if (pHfecha != "") {
         $("#selector").hide();
         vm.dFecha(pDfecha);
         vm.hFecha(pHfecha);
         vm.workerId(workerId);
+        vm.status(status);
         if (excel == "true") vm.excel(1); else vm.excel(0);
         obtainReport();
-        
     }
 
 }
@@ -154,6 +155,7 @@ function admData() {
     //
     self.detalle = ko.observable();
     self.excel = ko.observable();
+    self.status = ko.observable();
 };
 
 var obtainReport = function () {
@@ -180,6 +182,11 @@ var obtainReport = function () {
     report.dictionary.variables.items[2].val = moment(vm.dFecha()).format("DD/MM/YYYY");
     report.dictionary.variables.items[3].val = moment(vm.hFecha()).format("DD/MM/YYYY");
     // Assign report to the viewer, the report will be built automatically after rendering the viewer
+    if (vm.status() != ""){
+        var sql = report.dataSources.items[0].sqlCommand;
+        sql += " WHERE t0.statusId = " + vm.status();
+        report.dataSources.items[0].sqlCommand = sql;
+    }
     viewer.report = report;
 };
 

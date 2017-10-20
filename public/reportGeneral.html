@@ -393,13 +393,19 @@
 													<input id="txtEndDateCons" name="txtEndDateCons" data-bind="value: endDateCons" class="datepicker" data-dateformat="dd/mm/yy"/>
 												</label>
 											</section>
-											<section class="col col-md-4">
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.status">*Estado:</label>
+												<select style="width:100%;" id="cmbStatus" name="cmbStatus" data-bind="options: optionsStatus, optionsText: 'name', optionsValue: 'id', 
+													value: sStatus, valueAllowUnset: true, selectedOptions: selectedStatus, selected2:{}">
+												</select>
+											</section>											
+											<section class="col col-md-3">
 												<label class="checkbox">
 													<input id="chkDetail" type="checkbox" name="chkDetail" data-bind="checked: consDetail">
 													<i></i><span data-i18n="reportGeneral.detail"></span>
 												</label>
 											</section>
-											<section class="col col-md-4">
+											<section class="col col-md-3">
 												<label class="checkbox">
 													<input id="chkExcel" type="checkbox" name="chkExcel" data-bind="checked: excel">
 													<i></i><span data-i18n="reportGeneral.excel"></span>
@@ -438,7 +444,13 @@
 													<input id="txtEndDateCons2" name="txtEndDateCons2" data-bind="value: endDateCons2" class="datepicker" data-dateformat="dd/mm/yy"/>
 												</label>
 											</section>
-											<section class="col col-md-8">
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.status">*Estado:</label>
+												<select style="width:100%;" id="cmbStatus2" name="cmbStatus2" data-bind="options: optionsStatus2, optionsText: 'name', optionsValue: 'id', 
+													value: sStatus2, valueAllowUnset: true, selectedOptions: selectedStatus2, selected2:{}">
+												</select>
+											</section>											
+											<section class="col col-md-6">
 												<label class="checkbox">
 													<input id="chkExcel" type="checkbox" name="chkExcel" data-bind="checked: excel">
 													<i></i><span data-i18n="reportGeneral.excel"></span>
