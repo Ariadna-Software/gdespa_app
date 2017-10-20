@@ -30,6 +30,28 @@ router.get('/', common.midChkApiKey, function (req, res) {
     }
 });
 
+router.get('/notverified/', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var name = req.query.name;
+    if (name) {
+        pwDb.getByNameNotVerified(name, function (err, pws) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(pws);
+            }
+        }, test);
+    } else {
+        pwDb.getNotVerified(function (err, pws) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(pws);
+            }
+        }, test);
+    }
+});
+
 router.get('/report_pw/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     pwDb.getReportPwStatus(function (err, closures) {

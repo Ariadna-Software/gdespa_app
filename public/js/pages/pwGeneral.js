@@ -21,6 +21,7 @@ var pwGeneralAPI = {
         // buttons click events 
         $('#btnNew').click(pwGeneralAPI.newPw());
         $('#btnSearch').click(pwGeneralAPI.searchPw());
+        $('#chkVerified').change(pwGeneralAPI.checkVerifiedChange());
         // check if there's an id
         var id = aswUtil.gup('id');
         if (id) {
@@ -131,8 +132,9 @@ var pwGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getPws: function (name) {
-        var url = sprintf("%s/pw?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+    getPws: function (name, verified) {
+        var url = sprintf("%s/pw/notverified/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+        if (verified) url = sprintf("%s/pw?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
         $.ajax({
             type: "GET",
             url: url,
@@ -193,6 +195,13 @@ var pwGeneralAPI = {
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
         $("#tb_pw").show();
+    },
+    checkVerifiedChange: function () {
+        var mf = function () {
+            var chk = $(this).is(':checked');
+            pwGeneralAPI.getPws('', chk);
+        }
+        return mf;
     }
 };
 

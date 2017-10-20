@@ -278,7 +278,8 @@
     "pwGeneral": {
         "title": "Mantenimiento propuestas",
         "new": "Nueva propuesta",
-        "search": "Buscar propuestas"
+        "search": "Buscar propuestas",
+        "verified": "Ver también propuestas verificadas"
     },
     "pwDetail": {
         "tabs": {
