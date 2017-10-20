@@ -55,7 +55,7 @@ pwl.pwId, COALESCE(SUM(pwl.quantity * pwl.k * pwl.cost),0) AS pres
 FROM pw_line AS pwl
 WHERE NOT pwl.pwId IS NULL
 GROUP BY pwl.pwId) AS t2
-ON t2.pwId = t1.pwId
+ON t2.pwId = t0.pwId
 LEFT JOIN
 (SELECT pwId, SUM(amount) AS totalf FROM invoice 
 WHERE invoiceDate &lt; '{dFecha}' GROUP BY pwId) AS t4 
@@ -351,10 +351,15 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Parent isRef="19" />
               <Text>{DatosPw.prod}</Text>
               <TextBrush>Black</TextBrush>
+              <TextFormat Ref="23" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_prod>
-            <DataDatosPw_pres Ref="23" type="Text" isKey="true">
+            <DataDatosPw_pres Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>31.8,0,4,0.8</ClientRectangle>
@@ -366,10 +371,15 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Parent isRef="19" />
               <Text>{DatosPw.pres}</Text>
               <TextBrush>Black</TextBrush>
+              <TextFormat Ref="25" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_pres>
-            <DataDatosPw_totalf Ref="24" type="Text" isKey="true">
+            <DataDatosPw_totalf Ref="26" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>41,0,4.6,0.8</ClientRectangle>
@@ -381,10 +391,15 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Parent isRef="19" />
               <Text>{DatosPw.totalf}</Text>
               <TextBrush>Black</TextBrush>
+              <TextFormat Ref="27" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_totalf>
-            <DataDatosPw_STATUS Ref="25" type="Text" isKey="true">
+            <DataDatosPw_STATUS Ref="28" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>5.4,0,3,0.8</ClientRectangle>
@@ -399,7 +414,7 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_STATUS>
-            <DataDatosPw_zone Ref="26" type="Text" isKey="true">
+            <DataDatosPw_zone Ref="29" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0,0,5.4,0.8</ClientRectangle>
@@ -414,7 +429,7 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_zone>
-            <DataDatosPw_profitLoses Ref="27" type="Text" isKey="true">
+            <DataDatosPw_profitLoses Ref="30" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>70.4,0,4.8,0.8</ClientRectangle>
@@ -426,10 +441,15 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Parent isRef="19" />
               <Text>{DatosPw.profitLoses}</Text>
               <TextBrush>Black</TextBrush>
+              <TextFormat Ref="31" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_profitLoses>
-            <DataDatosPw_prod2 Ref="28" type="Text" isKey="true">
+            <DataDatosPw_prod2 Ref="32" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>45.6,0,5.4,0.8</ClientRectangle>
@@ -441,10 +461,15 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Parent isRef="19" />
               <Text>{DatosPw.prod2}</Text>
               <TextBrush>Black</TextBrush>
+              <TextFormat Ref="33" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_prod2>
-            <DataDatosPw_totalf2 Ref="29" type="Text" isKey="true">
+            <DataDatosPw_totalf2 Ref="34" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>51,0,4.4,0.8</ClientRectangle>
@@ -456,10 +481,15 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Parent isRef="19" />
               <Text>{DatosPw.totalf2}</Text>
               <TextBrush>Black</TextBrush>
+              <TextFormat Ref="35" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_totalf2>
-            <Text2 Ref="30" type="Text" isKey="true">
+            <Text2 Ref="36" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>55.4,0,5.4,0.8</ClientRectangle>
@@ -472,11 +502,16 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Parent isRef="19" />
               <Text>{DatosPw.prod + DatosPw.prod2}</Text>
               <TextBrush>Black</TextBrush>
+              <TextFormat Ref="37" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text2>
-            <Text4 Ref="31" type="Text" isKey="true">
+            <Text4 Ref="38" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>60.8,0,4.8,0.8</ClientRectangle>
@@ -489,11 +524,16 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Parent isRef="19" />
               <Text>{DatosPw.totalf + DatosPw.totalf2}</Text>
               <TextBrush>Black</TextBrush>
+              <TextFormat Ref="39" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
-            <Text6 Ref="32" type="Text" isKey="true">
+            <Text6 Ref="40" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>65.6,0,4.8,0.8</ClientRectangle>
@@ -506,6 +546,11 @@ ON t7.pwId = t0.pwId</SqlCommand>
               <Parent isRef="19" />
               <Text>{(DatosPw.prod + DatosPw.prod2) - (DatosPw.totalf + DatosPw.totalf2)}</Text>
               <TextBrush>Black</TextBrush>
+              <TextFormat Ref="41" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -528,13 +573,13 @@ ON t7.pwId = t0.pwId</SqlCommand>
       <PageHeight>21.01</PageHeight>
       <PageWidth>100</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="33" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="42" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="34" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="43" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -547,10 +592,10 @@ ON t7.pwId = t0.pwId</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>consolidado_periodo_excel</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>10/19/2017 5:44:55 PM</ReportChanged>
+  <ReportChanged>10/20/2017 4:33:34 PM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
-  <ReportFile />
-  <ReportGuid>6cf2d0dedf9e453d91d312040664636e</ReportGuid>
+  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado10x.mrt</ReportFile>
+  <ReportGuid>8fb5ff8a7e344875b9b78cb727785d3e</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado_periodo_excel</ReportName>
   <ReportUnit>Centimeters</ReportUnit>

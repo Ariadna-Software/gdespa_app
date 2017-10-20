@@ -49,7 +49,7 @@ pwl.pwId, COALESCE(SUM(pwl.quantity * pwl.k * pwl.cost),0) AS pres
 FROM pw_line AS pwl
 WHERE NOT pwl.pwId IS NULL
 GROUP BY pwl.pwId) AS t2
-ON t2.pwId = t1.pwId
+ON t2.pwId = t0.pwId
 LEFT JOIN
 (SELECT pwId, SUM(amount) AS totalf FROM invoice 
 WHERE invoiceDate &lt;= '{hFecha}' GROUP BY pwId) AS t4 
@@ -330,6 +330,7 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
         </HeaderDatosPw>
         <DataDatosPw Ref="23" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,6.6,27.69,0.8</ClientRectangle>
           <Components isList="true" count="7">
             <DataDatosPw_reference Ref="24" type="Text" isKey="true">
@@ -789,10 +790,10 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>consolidado0</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>9/19/2017 12:03:13 PM</ReportChanged>
+  <ReportChanged>10/20/2017 4:32:07 PM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
   <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado1.mrt</ReportFile>
-  <ReportGuid>fd894bca580a4193bbadad1c898282b9</ReportGuid>
+  <ReportGuid>aeacf71b46ee48479596cf452b60ffaa</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado0</ReportName>
   <ReportUnit>Centimeters</ReportUnit>

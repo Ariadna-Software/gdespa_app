@@ -55,7 +55,7 @@ pwl.pwId, COALESCE(SUM(pwl.quantity * pwl.k * pwl.cost),0) AS pres
 FROM pw_line AS pwl
 WHERE NOT pwl.pwId IS NULL
 GROUP BY pwl.pwId) AS t2
-ON t2.pwId = t1.pwId
+ON t2.pwId = t0.pwId
 LEFT JOIN
 (SELECT pwId, SUM(amount) AS totalf FROM invoice 
 WHERE invoiceDate &lt; '{dFecha}' GROUP BY pwId) AS t4 
@@ -1255,10 +1255,10 @@ ON t7.pwId = t0.pwId</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>consolidado0</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>10/19/2017 5:39:11 PM</ReportChanged>
+  <ReportChanged>10/20/2017 4:33:07 PM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
-  <ReportFile />
-  <ReportGuid>ae4e17d91f7c4f5a952fa0004690c240</ReportGuid>
+  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado10.mrt</ReportFile>
+  <ReportGuid>7710b59b7283482cb5834614ee9b1a21</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado0</ReportName>
   <ReportUnit>Centimeters</ReportUnit>

@@ -930,10 +930,10 @@ LEFT JOIN cunit AS t5 ON t5.cunitId =t1.cunitId</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>consolidado0</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>9/15/2017 10:55:39 AM</ReportChanged>
+  <ReportChanged>10/20/2017 4:34:06 PM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
   <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado0.mrt</ReportFile>
-  <ReportGuid>fe80aedcbc89495aa42c7ea278650443</ReportGuid>
+  <ReportGuid>1fff433823664344ab7353fc19216619</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado0</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
