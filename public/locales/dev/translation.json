@@ -350,7 +350,7 @@
         "invoiced": "Facturado",
         "pending": "Pendiente Facturar",
         "verified": "Verificado",
-        "profitLoses": "Perdidas / Ganancias",
+        "profitLoses": "Pérdida",
         "profitLosesQuestion": "Hay una diferencia entre producido y facturado de {0}. ¿Quiere llevar esa diferencua a perdidas / ganancias?",
         "docsNeedToOpen": "Antes de introducir capítulos y UUCC debe dar de alta los documentos necesarios para apertura. <br/> Recuerde que necesita tres documentos.",
         "docsNeedToClose": "Esta intentando cerrar una obra sin haber dado de alta los documentos de cierre. ¿Quiere continuar con el cierre?",
