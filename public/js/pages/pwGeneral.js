@@ -133,8 +133,8 @@ var pwGeneralAPI = {
     },
     // obtain user groups from the API
     getPws: function (name, verified) {
-        var url = sprintf("%s/pw/notverified/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
-        if (verified) url = sprintf("%s/pw?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+        var url = sprintf("%s/pw?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+        if (verified) url = sprintf("%s/pw/notverified/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
         $.ajax({
             type: "GET",
             url: url,
