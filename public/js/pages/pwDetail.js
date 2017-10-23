@@ -288,6 +288,7 @@ var pwDetailAPI = {
                 $('#btnNewLine').hide();
             }
         }
+        vm.profitLoses(data.profitLoses);
         // new fields prod anf totalf
         if (vm.prod()) $('#produced').text(numeral(data.prod).format('0,0.00') + " USD");
         if (vm.totalf()) $('#invoiced').text(numeral(data.totalf).format('0,0.00') + " USD");
@@ -304,7 +305,6 @@ var pwDetailAPI = {
             aswNotif.generalMessage(i18n.t('userDetail.closedMessage'));
         }
         //
-        vm.profitLoses(data.profitLoses);
         vm.isMeaMo(data.isMeaMo);
     },
     // Validates form (jquery validate) 
