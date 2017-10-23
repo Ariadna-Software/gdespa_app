@@ -220,6 +220,13 @@ var pwDetailAPI = {
         self.verified = ko.observable();
         self.profitLoses = ko.observable();
         self.isMeaMo = ko.observable();
+        // names
+        self.initInChargeName = ko.observable();
+        self.acepInChargeName = ko.observable();
+        self.finInChargeName = ko.observable();
+        self.cerInChargeName = ko.observable();
+        self.invInChargeName = ko.observable();
+        self.payInChargeName = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -306,6 +313,13 @@ var pwDetailAPI = {
         }
         //
         vm.isMeaMo(data.isMeaMo);
+        // 
+        vm.initInChargeName(data.initInChargeName);
+        vm.acepInChargeName(data.acepInChargeName);
+        vm.finInChargeName(data.finInChargeName);
+        vm.cerInChargeName(data.cerInChargeName);
+        vm.invInChargeName(data.invInChargeName);
+        vm.payInChargeName(data.payInChargeName);
     },
     // Validates form (jquery validate) 
     dataOk: function () {

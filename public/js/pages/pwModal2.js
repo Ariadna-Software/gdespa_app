@@ -107,6 +107,7 @@ var pwModal2API = {
                             var difference = numeral(vm.prod() - vm.totalf()).format('0,0.00') + " USD"
                             var question = i18n.t('pwDetail.profitLosesQuestion').replace('{0}', difference);
                             aswNotif.generalQuestionYesNo(question, 'pwModal2API.calcProfitLoses()','pwModal2API.dontClose()');
+                            pwDetailAPI.getPw(vm.id());
                         }
                         // close documents control
                         type = "GET";
@@ -118,6 +119,7 @@ var pwModal2API = {
                             if (data[0].ndocs == 0 && myInitDate >= myInitControl) {
                                 var question = i18n.t('pwDetail.docsNeedToClose');
                                 aswNotif.generalQuestionYesNo(question,  'pwModal2API.closeDocumentsPresent()','pwModal2API.dontClose()');
+                                pwDetailAPI.getPw(vm.id());
                             }
                         })
                     }
