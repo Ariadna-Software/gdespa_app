@@ -53,7 +53,7 @@ var reportGeneralAPI = {
         // combos
         $('#cmbPwConsume').select2(select2_languages[lang]);
         reportGeneralAPI.loadPwConsume();
-        $('#btnPrintPwConsume').click(reportGeneralAPI.btnPrintPwConsume());
+        $('#btnPrintPwConsume').click(reportGeneralAPI.btnPrintConsumoObra);
         // avoid sending form 
         $('#pwConsumeDetail-form').submit(function () {
             return false;
@@ -522,6 +522,10 @@ var reportGeneralAPI = {
         url = "infMovArticulo.html?storeId=" + vm.sPwStore2() + "&itemId=" + vm.sPwItem() +
             "&pDfecha=" + moment(vm.initDate(), 'DD/MM/YYYY').format('YYYY-MM-DD') +
             "&pHfecha=" + moment(vm.endDate(), 'DD/MM/YYYY').format('YYYY-MM-DD');
+        window.open(url, '_blank');
+    },
+    btnPrintConsumoObra: function () {
+        url = "infConsumoObra.html?pwId=" + vm.sPwConsume();
         window.open(url, '_blank');
     }
 
