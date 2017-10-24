@@ -25,9 +25,9 @@ var reportGeneralAPI = {
         $('#cmbWorkers').select2(select2_languages[lang]);
         reportGeneralAPI.loadWorkers();
         $('#cmbStatus').select2(select2_languages[lang]);
-        reportGeneralAPI.loadStatus();        
+        reportGeneralAPI.loadStatus();
         $('#cmbStatus2').select2(select2_languages[lang]);
-        reportGeneralAPI.loadStatus2();         
+        reportGeneralAPI.loadStatus2();
         $('#btnPrintWorker').click(reportGeneralAPI.btnPrintWorker());
         $('#btnPrintConsolidate').click(reportGeneralAPI.btnPrintConsolidate());
         $('#btnPrintConsolidate2').click(reportGeneralAPI.btnPrintConsolidate2());
@@ -61,7 +61,7 @@ var reportGeneralAPI = {
         // combos
         $('#cmbPwStore').select2(select2_languages[lang]);
         reportGeneralAPI.loadPwStore();
-        $('#btnPrintPwStore').click(reportGeneralAPI.btnPrintPwStore());
+        $('#btnPrintPwStore').click(reportGeneralAPI.btnPrintEstadoAlmacen);
         // avoid sending form 
         $('#pwStoreDetail-form').submit(function () {
             return false;
@@ -126,7 +126,7 @@ var reportGeneralAPI = {
         // status2 combo
         self.optionsStatus2 = ko.observableArray([]);
         self.selectedStatus2 = ko.observableArray([]);
-        self.sStatus2 = ko.observable();        
+        self.sStatus2 = ko.observable();
     },
     loadWorkers: function (id) {
         $.ajax({
@@ -165,7 +165,7 @@ var reportGeneralAPI = {
                 }
             }
         });
-    },    
+    },
     loadStatus2: function (id) {
         $.ajax({
             type: "GET",
@@ -184,7 +184,7 @@ var reportGeneralAPI = {
                 }
             }
         });
-    },    
+    },
     loadClosures: function (id) {
         $.ajax({
             type: "GET",
@@ -427,6 +427,10 @@ var reportGeneralAPI = {
             });
         }
         return mf;
+    },
+    btnPrintEstadoAlmacen: function () {
+        url = "infEstadoAlmacen.html?storeId=" + vm.sPwStore();
+        window.open(url, '_blank');
     },
     loadPwStore2: function (id) {
         $.ajax({
