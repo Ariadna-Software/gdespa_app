@@ -94,6 +94,9 @@ var pwDetailAPI = {
             $('#s2').hide();
             $('#s3').hide();
             $('#wid-id-1').hide();
+            // assign default date to initDate
+            var dateFormat = "DD/MM/YYYY";  // i18n.t('util.date_format');
+            vm.initDate(moment(new Date()).format(dateFormat));
         }
         pwDetailAPI.getPw(id);
         pwDetailAPI.getWo(id);
