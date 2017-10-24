@@ -323,6 +323,10 @@ var pwDetailAPI = {
         vm.cerInChargeName(data.cerInChargeName);
         vm.invInChargeName(data.invInChargeName);
         vm.payInChargeName(data.payInChargeName);
+        if (!user.perChangePwDate){
+            var html = "<span>" + vm.initDate() + "</span>";
+            $("#pwDate").html(html);
+        }        
     },
     // Validates form (jquery validate) 
     dataOk: function () {

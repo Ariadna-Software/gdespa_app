@@ -11,7 +11,7 @@
     "no": "No",
     "accept": "Aceptar",
     "new_record": "NUEVO REGISTRO",
-    "record_lines": "Registro correctamente dado de alta. Introduzca las lineas asociadas más abajo en esta misma página. <br/> IMPORTANTE: Recuerde que debe dar de alta los documentos de apertura para poder introducir capítulos y UUCC",
+    "record_lines": "Registro correctamente dado de alta. Introduzca las lineas asociadas más abajo en esta misma página.",
     "serve_lines": "Las cantidades de material servido se han actualizado. Puede comprobarlo en las lineas más abajo. Pulse en el botón salir para regresar a la pantalla anterior.",
     "evolution": "EVOLUCIÓN",
     "progress": "PROGRESO",
@@ -156,7 +156,8 @@
         "perRRHH": "Acceso al menú RRHH",
         "perPwClosed": "Poder modificar propuestas terminadas",
         "closedMessage": "Esta propuesta está cerrada, sólo puede consultar su información.",
-        "perNoDocsInOpen": "Permitir que el usuario abra obras sin los documentos necesarios"
+        "perNoDocsInOpen": "Permitir que el usuario abra obras sin los documentos necesarios",
+        "perChangePwDate": "Puede cambiar la fecha de las obras / propuestas"
     },
     "workerGeneral": {
         "title": "Mantenimiento de recursos",
