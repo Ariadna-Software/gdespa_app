@@ -30,6 +30,7 @@ var woDetailAPI = {
         woDetailAPI.loadWorkers();
         if (user.worker) {
             woDetailAPI.loadWorkers(user.worker.id);
+            $("#cmbWorkers").attr('disabled', 'disabled');
         }
         $('#cmbTeams').select2(select2_languages[lang]);
         woDetailAPI.loadTeams();

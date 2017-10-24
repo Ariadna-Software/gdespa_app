@@ -28,6 +28,7 @@ var moDetailAPI = {
         moDetailAPI.loadWorkers();
         if (user.worker) {
             moDetailAPI.loadWorkers(user.worker.id);
+            $("#cmbWorkers").attr('disabled', 'disabled');
         }
         $('#cmbTeams').select2(select2_languages[lang]);
 

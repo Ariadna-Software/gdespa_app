@@ -28,6 +28,7 @@ var luDetailAPI = {
         luDetailAPI.loadWorkers();
         if (user.worker) {
             luDetailAPI.loadWorkers(user.worker.id);
+            $("#cmbWorkers").attr('disabled', 'disabled');
         }
         $('#cmbTeams').select2(select2_languages[lang]);
 

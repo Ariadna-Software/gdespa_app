@@ -27,6 +27,7 @@ var deliveryDetailAPI = {
         deliveryDetailAPI.loadWorkers();
         if (user.worker){
             deliveryDetailAPI.loadWorkers(user.worker.id);
+            $("#cmbWorkers").attr('disabled', 'disabled');
         }        
         $('#cmbStores').select2(select2_languages[lang]);
         deliveryDetailAPI.loadStores();

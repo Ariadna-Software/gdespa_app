@@ -27,6 +27,7 @@ var closureDetailAPI = {
         closureDetailAPI.loadWorkers();
         if (user.worker) {
             closureDetailAPI.loadWorkers(user.worker.id);
+            $("#cmbWorkers").attr('disabled', 'disabled');
         }
         // buttons click events
         $('#btnOk').click(closureDetailAPI.btnOk());

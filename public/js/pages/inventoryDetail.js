@@ -29,6 +29,7 @@ var inventoryDetailAPI = {
         inventoryDetailAPI.loadWorkers();
         if (user.worker){
             inventoryDetailAPI.loadWorkers(user.worker.id);
+            $("#cmbWorkers").attr('disabled', 'disabled');
         }        
         // prevent submit form
         $('#inventoryDetail-form').submit(function () {
