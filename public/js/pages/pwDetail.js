@@ -324,8 +324,9 @@ var pwDetailAPI = {
         vm.invInChargeName(data.invInChargeName);
         vm.payInChargeName(data.payInChargeName);
         if (!user.perChangePwDate){
-            var html = "<span>" + vm.initDate() + "</span>";
-            $("#pwDate").html(html);
+            // var html = "<span>" + vm.initDate() + "</span>";
+            // $("#pwDate").html(html);
+            $("#txtInitDate").attr('disabled', 'disabled');
         }        
     },
     // Validates form (jquery validate) 
