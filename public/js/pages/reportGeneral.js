@@ -71,7 +71,7 @@ var reportGeneralAPI = {
         reportGeneralAPI.loadPwStore2();
         $('#cmbPwItem').select2(select2_languages[lang]);
         reportGeneralAPI.loadPwItem();
-        $('#btnPrintPwItem').click(reportGeneralAPI.btnPrintPwItem());
+        $('#btnPrintPwItem').click(reportGeneralAPI.btnPrintMovimientosArticulo);
         // avoid sending form 
         $('#pwItemDetail-form').submit(function () {
             return false;
@@ -517,6 +517,12 @@ var reportGeneralAPI = {
             });
         }
         return mf;
+    },
+    btnPrintMovimientosArticulo: function () {
+        url = "infMovArticulo.html?storeId=" + vm.sPwStore2() + "&itemId=" + vm.sPwItem() +
+            "&pDfecha=" + moment(vm.initDate(), 'DD/MM/YYYY').format('YYYY-MM-DD') +
+            "&pHfecha=" + moment(vm.endDate(), 'DD/MM/YYYY').format('YYYY-MM-DD');
+        window.open(url, '_blank');
     }
 
 
