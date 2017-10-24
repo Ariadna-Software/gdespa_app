@@ -45,7 +45,7 @@ var reportGeneralAPI = {
         // combos
         $('#cmbPwStatus').select2(select2_languages[lang]);
         reportGeneralAPI.loadPwStatus();
-        $('#btnPrintPwStatus').click(reportGeneralAPI.btnPrintPwStatus());
+        $('#btnPrintPwStatus').click(reportGeneralAPI.btnPrintInfProdServ);
         // avoid sending form 
         $('#pwStatusDetail-form').submit(function () {
             return false;
@@ -526,6 +526,10 @@ var reportGeneralAPI = {
     },
     btnPrintConsumoObra: function () {
         url = "infConsumoObra.html?pwId=" + vm.sPwConsume();
+        window.open(url, '_blank');
+    },
+    btnPrintInfProdServ: function () {
+        url = "infProdServ.html?pwId=" + vm.sPwStatus();
         window.open(url, '_blank');
     }
 

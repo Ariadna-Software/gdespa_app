@@ -586,7 +586,8 @@
         "detail": "Informe detallado",
         "consolidate2": "Consolidado periodo",
         "excel": "En formato para exportacion excel",
-        "status": "Estado"
+        "status": "Estado",
+        "pwProdServ": "Diferencias entre cantidas producidas y salidas de almacén"
     },
     "teamGeneral": {
         "title": "Brigadas",
