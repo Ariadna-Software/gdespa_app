@@ -101,27 +101,27 @@ var pwModal2API = {
                         // Proposed Work (pw) closed 
                         // Do you want to update line quantities?
                         aswNotif.generalQuestion(i18n.t('pwDetail.updateLines'), 'pwModal2API.updatePwLinesFromWoLines()');
-                    } else if (vm.sStatus2() == 5) {
-                        // Profit / loses control
-                        if (vm.prod() - vm.totalf()) {
-                            var difference = numeral(vm.prod() - vm.totalf()).format('0,0.00') + " USD"
-                            var question = i18n.t('pwDetail.profitLosesQuestion').replace('{0}', difference);
-                            aswNotif.generalQuestionYesNo(question, 'pwModal2API.calcProfitLoses()','pwModal2API.dontClose()');
-                            pwDetailAPI.getPw(vm.id());
-                        }
                         // close documents control
                         type = "GET";
                         url = sprintf('%s/pw/docsNeedToClose/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
-                        aswUtil.llamadaAjax(type, url, null, function(err, data){
+                        aswUtil.llamadaAjax(type, url, null, function (err, data) {
                             if (err) return;
                             var myInitDate = moment(vm.initDate(), 'DD/MM/YYYY').toDate();
                             var myInitControl = moment(parameters.initControlDocs).toDate();
                             if (data[0].ndocs == 0 && myInitDate >= myInitControl) {
                                 var question = i18n.t('pwDetail.docsNeedToClose');
-                                aswNotif.generalQuestionYesNo(question,  'pwModal2API.closeDocumentsPresent()','pwModal2API.dontClose()');
+                                aswNotif.generalQuestionYesNo(question, 'pwModal2API.closeDocumentsPresent()', 'pwModal2API.dontClose()');
                                 pwDetailAPI.getPw(vm.id());
                             }
-                        })
+                        });
+                    } else if (vm.sStatus2() == 5) {
+                        // Profit / loses control
+                        if (vm.prod() - vm.totalf()) {
+                            var difference = numeral(vm.prod() - vm.totalf()).format('0,0.00') + " USD"
+                            var question = i18n.t('pwDetail.profitLosesQuestion').replace('{0}', difference);
+                            aswNotif.generalQuestionYesNo(question, 'pwModal2API.calcProfitLoses()', 'pwModal2API.dontClose()');
+                            pwDetailAPI.getPw(vm.id());
+                        }
                     }
                     else {
                         pwDetailAPI.getPw(vm.id());
@@ -227,15 +227,15 @@ var pwModal2API = {
             status: { id: oldStatus },
             reference: vm.reference(),
             name: vm.name(),
-            payInCharge:  { id: null },
+            payInCharge: { id: null },
             payDate: null,
-            payRef: null            
+            payRef: null
         };
         // save this state in pw
         var url = "", type = "";
         type = "PUT";
         url = sprintf('%s/pw/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
-        aswUtil.llamadaAjax(type,url,data, function(err){
+        aswUtil.llamadaAjax(type, url, data, function (err) {
             if (err) return;
             pwDetailAPI.getPw(vm.id());
         });
@@ -245,5 +245,5 @@ var pwModal2API = {
         pwDetailAPI.getPw(vm.id());
         return;
     }
-    
+
 };
