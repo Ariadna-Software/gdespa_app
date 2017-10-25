@@ -13,7 +13,7 @@
     <DataSources isList="true" count="1">
       <DatosPw Ref="3" type="Stimulsoft.Report.Dictionary.StiMySqlSource" isKey="true">
         <Alias>DatosPw</Alias>
-        <Columns isList="true" count="9">
+        <Columns isList="true" count="10">
           <value>reference,System.String</value>
           <value>name,System.String</value>
           <value>mainK,System.Decimal</value>
@@ -23,13 +23,14 @@
           <value>totalf,System.Decimal</value>
           <value>STATUS,System.String</value>
           <value>zone,System.String</value>
+          <value>profitLoses,System.Decimal</value>
         </Columns>
         <CommandTimeout>30</CommandTimeout>
         <Dictionary isRef="1" />
         <Name>DatosPw</Name>
         <NameInSource>GDESPA</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>SELECT t0.reference, t0.name, t0.mainK, COALESCE(t0.total, 0) AS total, 
+        <SqlCommand>SELECT t0.reference, t0.name, t0.mainK, COALESCE(t0.total, 0) AS total, COALESCE(t0.profitLoses,0) AS profitLoses,
 COALESCE(t1.prod,0) AS prod, COALESCE(t2.pres,0) AS pres, 
 COALESCE(t4.totalf,0) AS totalf, s.name AS STATUS,
 z.name AS zone
@@ -79,7 +80,7 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
         <HeaderDatosPw Ref="5" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,48,0.8</ClientRectangle>
-          <Components isList="true" count="7">
+          <Components isList="true" count="9">
             <HeaderDatosPw_reference Ref="6" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>3.6,0,4,0.8</ClientRectangle>
@@ -97,7 +98,7 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
             </HeaderDatosPw_reference>
             <HeaderDatosPw_name Ref="7" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>12,0,22.6,0.8</ClientRectangle>
+              <ClientRectangle>12,0,13.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
@@ -112,7 +113,7 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
             </HeaderDatosPw_name>
             <HeaderDatosPw_prod Ref="8" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>39.2,0,4.8,0.8</ClientRectangle>
+              <ClientRectangle>30.4,0,4.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
@@ -127,7 +128,7 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
             </HeaderDatosPw_prod>
             <HeaderDatosPw_pres Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>34.6,0,4.6,0.8</ClientRectangle>
+              <ClientRectangle>25.8,0,4.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
@@ -142,7 +143,7 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
             </HeaderDatosPw_pres>
             <HeaderDatosPw_totalf Ref="10" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>44,0,4,0.8</ClientRectangle>
+              <ClientRectangle>35.2,0,4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
@@ -185,6 +186,38 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderDatosPw_STATUS>
+            <Text2 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>39.2,0,4.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>5e963cf792104faf8d85491762a18e58</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>PENDIENTE_FACTURAR</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text3 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>44,0,4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>5f2628a8a73a4212aa7d9c803b227760</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>PERDIDAS</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>HeaderDatosPw</Name>
@@ -192,57 +225,37 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
           <Parent isRef="4" />
           <PrintOn>OnlyFirstPage</PrintOn>
         </HeaderDatosPw>
-        <DataDatosPw Ref="13" type="DataBand" isKey="true">
+        <DataDatosPw Ref="15" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,2,48,0.8</ClientRectangle>
-          <Components isList="true" count="7">
-            <DataDatosPw_name Ref="14" type="Text" isKey="true">
+          <Components isList="true" count="9">
+            <DataDatosPw_name Ref="16" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>12,0,22.6,0.8</ClientRectangle>
+              <ClientRectangle>12,0,13.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_name</Name>
               <Page isRef="4" />
-              <Parent isRef="13" />
+              <Parent isRef="15" />
               <Text>{DatosPw.name}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_name>
-            <DataDatosPw_prod Ref="15" type="Text" isKey="true">
+            <DataDatosPw_prod Ref="17" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>39.2,0,4.8,0.8</ClientRectangle>
+              <ClientRectangle>30.4,0,4.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_prod</Name>
               <Page isRef="4" />
-              <Parent isRef="13" />
+              <Parent isRef="15" />
               <Text>{DatosPw.prod}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="16" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-              </TextFormat>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <VertAlignment>Center</VertAlignment>
-            </DataDatosPw_prod>
-            <DataDatosPw_pres Ref="17" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>34.6,0,4.6,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>DataDatosPw_pres</Name>
-              <Page isRef="4" />
-              <Parent isRef="13" />
-              <Text>{DatosPw.pres}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="18" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -251,18 +264,18 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
               </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
-            </DataDatosPw_pres>
-            <DataDatosPw_totalf Ref="19" type="Text" isKey="true">
+            </DataDatosPw_prod>
+            <DataDatosPw_pres Ref="19" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>44,0,4,0.8</ClientRectangle>
+              <ClientRectangle>25.8,0,4.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
               <Margins>0,0,0,0</Margins>
-              <Name>DataDatosPw_totalf</Name>
+              <Name>DataDatosPw_pres</Name>
               <Page isRef="4" />
-              <Parent isRef="13" />
-              <Text>{DatosPw.totalf}</Text>
+              <Parent isRef="15" />
+              <Text>{DatosPw.pres}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="20" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -271,8 +284,28 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
               </TextFormat>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
+            </DataDatosPw_pres>
+            <DataDatosPw_totalf Ref="21" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>35.2,0,4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataDatosPw_totalf</Name>
+              <Page isRef="4" />
+              <Parent isRef="15" />
+              <Text>{DatosPw.totalf}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="22" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
             </DataDatosPw_totalf>
-            <DataDatosPw_zone Ref="21" type="Text" isKey="true">
+            <DataDatosPw_zone Ref="23" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0,0,3.6,0.8</ClientRectangle>
@@ -281,13 +314,13 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_zone</Name>
               <Page isRef="4" />
-              <Parent isRef="13" />
+              <Parent isRef="15" />
               <Text>{DatosPw.zone}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_zone>
-            <Text1 Ref="22" type="Text" isKey="true">
+            <Text1 Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>3.6,0,4,0.8</ClientRectangle>
@@ -297,14 +330,14 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="4" />
-              <Parent isRef="13" />
+              <Parent isRef="15" />
               <Text>{DatosPw.reference}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text1>
-            <DataDatosPw_STATUS Ref="23" type="Text" isKey="true">
+            <DataDatosPw_STATUS Ref="25" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>7.6,0,4.4,0.8</ClientRectangle>
@@ -313,12 +346,56 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_STATUS</Name>
               <Page isRef="4" />
-              <Parent isRef="13" />
+              <Parent isRef="15" />
               <Text>{DatosPw.STATUS}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_STATUS>
+            <Text4 Ref="26" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>39.2,0,4.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>65f7374907284669881dcac3780c0fc6</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="4" />
+              <Parent isRef="15" />
+              <Text>{DatosPw.prod - DatosPw.totalf}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="27" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text5 Ref="28" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>44,0,4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <Guid>908f7696bff644889ee4c7b03d22627d</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="4" />
+              <Parent isRef="15" />
+              <Text>{DatosPw.profitLoses}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="29" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
           </Components>
           <Conditions isList="true" count="0" />
           <DataSourceName>DatosPw</DataSourceName>
@@ -337,13 +414,13 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
       <PageHeight>21.01</PageHeight>
       <PageWidth>50</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="24" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="30" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="25" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="31" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -356,10 +433,10 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>consolidado_excel</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>10/20/2017 4:32:41 PM</ReportChanged>
+  <ReportChanged>10/25/2017 5:41:12 PM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
-  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado1x.mrt</ReportFile>
-  <ReportGuid>ca72b3b62a7e49659333dc6b3ade71f6</ReportGuid>
+  <ReportFile />
+  <ReportGuid>ea154a6c62b645758212ddddd175c195</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado_excel</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
