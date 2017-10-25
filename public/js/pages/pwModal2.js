@@ -110,7 +110,9 @@ var pwModal2API = {
                             var myInitControl = moment(parameters.initControlDocs).toDate();
                             if (data[0].ndocs == 0 && myInitDate >= myInitControl) {
                                 var question = i18n.t('pwDetail.docsNeedToClose');
-                                aswNotif.generalQuestionYesNo(question, 'pwModal2API.closeDocumentsPresent()', 'pwModal2API.dontClose()');
+                                aswNotif.generalMessage(question);
+                                pwModal2API.dontCloseFin();
+                                // aswNotif.generalQuestionYesNo(question, 'pwModal2API.closeDocumentsPresent()', 'pwModal2API.dontClose()');
                                 pwDetailAPI.getPw(vm.id());
                             }
                         });
@@ -230,6 +232,26 @@ var pwModal2API = {
             payInCharge: { id: null },
             payDate: null,
             payRef: null
+        };
+        // save this state in pw
+        var url = "", type = "";
+        type = "PUT";
+        url = sprintf('%s/pw/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+        aswUtil.llamadaAjax(type, url, data, function (err) {
+            if (err) return;
+            pwDetailAPI.getPw(vm.id());
+        });
+    },
+    dontCloseFin: function () {
+        // recover previous state
+        var data = {
+            id: vm.id(),
+            status: { id: oldStatus },
+            reference: vm.reference(),
+            name: vm.name(),
+            finInCharge: { id: null },
+            finDate: null,
+            finRef: null
         };
         // save this state in pw
         var url = "", type = "";
