@@ -107,6 +107,10 @@ var pwDetailAPI = {
         if (!user.perVerified) {
             $("#seeVerified").hide();
         }
+        //
+        if (!user.perChangePwDate){
+            $("#txtInitDate").attr('disabled', 'disabled');
+        }  
     },
     pageData: function () {
         // knockout objects
@@ -323,11 +327,6 @@ var pwDetailAPI = {
         vm.cerInChargeName(data.cerInChargeName);
         vm.invInChargeName(data.invInChargeName);
         vm.payInChargeName(data.payInChargeName);
-        if (!user.perChangePwDate){
-            // var html = "<span>" + vm.initDate() + "</span>";
-            // $("#pwDate").html(html);
-            $("#txtInitDate").attr('disabled', 'disabled');
-        }        
     },
     // Validates form (jquery validate) 
     dataOk: function () {
