@@ -452,6 +452,8 @@ var pwDetailAPI = {
             if (moment(vm.revDate(), i18n.t("util.date_format")).isValid()) {
                 data.revDate = moment(vm.revDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
             }
+            data.revDate = moment(vm.initDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));;
+            data.revUser = $('#cmbWorkers').select2('data').text;
             var url = "",
                 type = "";
             if (vm.id() == 0) {
