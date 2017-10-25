@@ -80,7 +80,8 @@
             "wo": "Partes de trabajo",
             "mo": "Partes de contadores",
             "lu": "Partes de luminarias",
-            "closure": "Cierres"
+            "closure": "Cierres",
+            "pl": "Planificación"
         },
         "store": {
             "main": "Almacenes / Stock",
