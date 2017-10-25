@@ -1,43 +1,43 @@
 /*
- * woGeneral.js
- * Function for the page woGeneral.html
+ * plGeneral.js
+ * Function for the page plGeneral.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
 
 var data = null;
 
-var woGeneralAPI = {
+var plGeneralAPI = {
     init: function () {
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
-        $('#woGeneral').attr('class', 'active');
-        woGeneralAPI.initWoTable();
+        $('#plGeneral').attr('class', 'active');
+        plGeneralAPI.initPlTable();
         // avoid sending form 
-        $('#woGeneral-form').submit(function () {
+        $('#plGeneral-form').submit(function () {
             return false;
         });
         // buttons click events 
-        $('#btnNew').click(woGeneralAPI.newWo());
-        $('#btnSearch').click(woGeneralAPI.searchWo());
+        $('#btnNew').click(plGeneralAPI.newPl());
+        $('#btnSearch').click(plGeneralAPI.searchPl());
         //
-        $('#chkClosed').change(woGeneralAPI.checkClosedChange());
+        $('#chkClosed').change(plGeneralAPI.checkClosedChange());
         // 
-        if (!user.modWoClosed && !user.seeWoClosed){
+        if (!user.perSeePlansClosed){
             $("#seeClosed").hide();
         }
         // check if there's an id
         var id = aswUtil.gup('id');
         if (id) {
-            woGeneralAPI.getWo(id);
+            plGeneralAPI.getPl(id);
         } else {
-            woGeneralAPI.getWos('', false);
+            plGeneralAPI.getPls('', false);
         }
     },
     // initializes the table
-    initWoTable: function () {
-        var options = aswInit.initTableOptions('dt_wo');
+    initPlTable: function () {
+        var options = aswInit.initTableOptions('dt_pl');
         options.data = data;
         options.ordering = false;
         options.columns = [{
@@ -57,31 +57,31 @@ var woGeneralAPI = {
         }, {
             data: "id",
             render: function (data, type, row) {
-                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='woGeneralAPI.deleteWoMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='woGeneralAPI.editWo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='plGeneralAPI.deletePlMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='plGeneralAPI.editPl(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                 return html;
             }
         }];
-        $('#dt_wo').dataTable(options);
+        $('#dt_pl').dataTable(options);
     },
-    searchWo: function () {
+    searchPl: function () {
         var mf = function () {
             // obtain strin to search 
             var search = $('#txtSearch').val();
-            woGeneralAPI.getWos(search);
+            plGeneralAPI.getPls(search);
         };
         return mf;
     },
-    newWo: function () {
+    newPl: function () {
         // Its an event handler, return function
         var mf = function () {
-            window.open(sprintf('woDetail.html?id=%s', 0), '_self');
+            window.open(sprintf('plDetail.html?id=%s', 0), '_self');
         }
         return mf;
     },
-    editWo: function (id) {
-        var url = sprintf("%s/wo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    editPl: function (id) {
+        var url = sprintf("%s/pl/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
@@ -91,7 +91,7 @@ var woGeneralAPI = {
                 if (data.length && data[0].closureId) {
                     closed = true;
                 }
-                window.open(sprintf('woDetail.html?id=%s&closed=%s', id, closed), '_self');        
+                window.open(sprintf('plDetail.html?id=%s&closed=%s', id, closed), '_self');        
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -101,15 +101,15 @@ var woGeneralAPI = {
             }
         });        
     },
-    deleteWoMessage: function (id) {
-        var url = sprintf("%s/wo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deletePlMessage: function (id) {
+        var url = sprintf("%s/pl/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
                 var name = data[0].pw.name + " [" + moment(data[0].initDate).format(i18n.t('util.date_format')) + " - " + moment(data[0].endDate).format(i18n.t('util.date_format')) + "]";
-                var fn = sprintf('woGeneralAPI.deleteWo(%s);', id);
+                var fn = sprintf('plGeneralAPI.deletePl(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },
             error: function (err) {
@@ -120,8 +120,8 @@ var woGeneralAPI = {
             }
         });
     },
-    deleteWo: function (id) {
-        var url = sprintf("%s/wo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    deletePl: function (id) {
+        var url = sprintf("%s/pl/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         var data = {
             id: id
         };
@@ -131,7 +131,7 @@ var woGeneralAPI = {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data, status) {
-                woGeneralAPI.getWos('');
+                plGeneralAPI.getPls('');
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -142,9 +142,9 @@ var woGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getWos: function (name, chk) {
-        var url = sprintf("%s/wo?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
-        if (chk) url = sprintf("%s/wo/all/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+    getPls: function (name, chk) {
+        var url = sprintf("%s/pl?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
+        if (chk) url = sprintf("%s/pl/all/?api_key=%s&name=%s", myconfig.apiUrl, api_key, name);
         $.ajax({
             type: "GET",
             url: url,
@@ -170,7 +170,7 @@ var woGeneralAPI = {
                         data2 = data;
                     }                    
                 }
-                woGeneralAPI.loadWosTable(data2);
+                plGeneralAPI.loadPlsTable(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -181,14 +181,14 @@ var woGeneralAPI = {
         });
     },
     // obtain user groups from the API
-    getWo: function (id) {
-        var url = sprintf("%s/wo/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
+    getPl: function (id) {
+        var url = sprintf("%s/pl/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                woGeneralAPI.loadWosTable(data);
+                plGeneralAPI.loadPlsTable(data);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -198,20 +198,20 @@ var woGeneralAPI = {
             }
         });
     },
-    loadWosTable: function (data) {
-        var dt = $('#dt_wo').dataTable();
+    loadPlsTable: function (data) {
+        var dt = $('#dt_pl').dataTable();
         dt.fnClearTable();
         if (data.length && data.length > 0) dt.fnAddData(data);
         dt.fnDraw();
-        $("#tb_wo").show();
+        $("#tb_pl").show();
     },
     checkClosedChange: function () {
         var mf = function () {
             var chk = $(this).is(':checked');
-            woGeneralAPI.getWos('', chk);
+            plGeneralAPI.getPls('', chk);
         }
         return mf;
     }
 };
 
-woGeneralAPI.init();
+plGeneralAPI.init();

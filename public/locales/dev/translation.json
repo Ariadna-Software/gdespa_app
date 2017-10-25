@@ -158,7 +158,8 @@
         "perPwClosed": "Poder modificar propuestas terminadas",
         "closedMessage": "Esta propuesta está cerrada, sólo puede consultar su información.",
         "perNoDocsInOpen": "Permitir que el usuario abra obras sin los documentos necesarios",
-        "perChangePwDate": "Puede cambiar la fecha de las obras / propuestas"
+        "perChangePwDate": "Puede cambiar la fecha de las obras / propuestas",
+        "perSeePlansClosed": "Poder ver planificados ya usadas en partes"
     },
     "workerGeneral": {
         "title": "Mantenimiento de recursos",
@@ -851,5 +852,65 @@
     },
     "rrHH": {
         "title": "Informes recursos humanos"
-    }    
+    },
+    "plGeneral": {
+        "title": "Mantenimiento planificaciones",
+        "new": "Nuevo plan",
+        "search": "Buscar planes",
+        "closed": "Ver planes ya usados"
+    },
+    "plDetail": {
+        "tabs": {
+            "general": "Unidades constructivas",
+            "worker": "Trabajadores",
+            "vehicles": "Maquinaria / vehículos",
+            "doc": "Imágenes"
+        },
+        "print": "Imprimir",
+        "title": "Detalle parte de trabajo",
+        "initDate": "Fecha inicial",
+        "endDate": "Fecha final",
+        "worker": "Responsable",
+        "generate_from_pw": "Generar desde la propuesta",
+        "pw": "Propuesta",
+        "cunit": "Unidad constructiva",
+        "estimate": "Presupuestado",
+        "done": "Realizado",
+        "quantity": "Cantidad",
+        "comments": "Observaciones",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "newLine": "Nueva linea",
+        "associated_lines": "Lineas del plan",
+        "modal_title": "Linea del plan",
+        "modal_title2": "Trabajadores del plan",
+        "modal_title3": "Vehículos / maquinaria del plan",
+        "worker2": "Trabajador",
+        "worker3": "Vehiculo / maquinaria",
+        "cost": "Coste",
+        "newWorker": "Nuevo recurso",
+        "quantity2": "Hrs. totales",
+        "quantity3": "Hrs. totales",
+        "estimate_exceed": "La cantidad excede a la presupuestada para esta unidad constructiva",
+        "chapterName": "Nombre",
+        "chapterOrder": "Orden",
+        "chapterComments": "Comentarios del capítulo",
+        "newChapter": "Nuevo capítulo",
+        "wehicle": "Maquinaria / vehículo",
+        "normalHours": "Hrs. normales",
+        "extraHours": "Hrs. extras dia",
+        "extraHoursNight": "Hrs. extras noche",
+        "expenses": "Dietas y otros",
+        "initialKm": "Km. iniciales",
+        "finalKm": "Km. finales",
+        "totalKm": "Km. Totales",
+        "fuel": "Combustible",
+        "btnNewVehicle": "Nuevo datos vehiculo / maquinaria",
+        "planHours": "Hrs. planificadas",
+        "thirdParty": "Parte de trabajo realizado por companía ajena",
+        "thirdPartyCompany": "Compañía externa que ha realizado el trabajo",
+        "team1": "Brigada",
+        "dayType": "Tipo jornada",
+        "noDocAllowed": "Para introducir documentos debe haber cantidades en el parte de trabajo"
+    }        
 }

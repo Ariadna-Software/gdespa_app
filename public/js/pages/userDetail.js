@@ -85,6 +85,7 @@ var userDetailAPI = {
         self.perPwClosed = ko.observable();
         self.perNoDocsInOpen = ko.observable();
         self.perChangePwDate = ko.observable();
+        self.perSeePlansClosed = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -121,6 +122,7 @@ var userDetailAPI = {
         vm.perPwClosed(data.perPwClosed);
         vm.perNoDocsInOpen(data.perNoDocsInOpen);
         vm.perChangePwDate(data.perChangePwDate);
+        vm.perSeePlansClosed(data.perSeePlansClosed);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -212,7 +214,8 @@ var userDetailAPI = {
                 perRRHH: vm.perRRHH() ? 1 : 0,
                 perPwClosed: vm.perPwClosed() ? 1 : 0,
                 perNoDocsInOpen: vm.perNoDocsInOpen() ? 1 : 0,
-                perChangePwDate: vm.perChangePwDate() ? 1 : 0
+                perChangePwDate: vm.perChangePwDate() ? 1 : 0,
+                perSeePlansClosed: vm.perSeePlansClosed() ? 1 : 0
             };
             var url = "", type = "";
             if (vm.id() == 0) {

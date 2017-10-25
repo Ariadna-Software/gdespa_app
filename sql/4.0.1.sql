@@ -73,3 +73,14 @@ CREATE TABLE `pl_line` (
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
+
+/* -- Create relationship with wo */
+ALTER TABLE `wo`   
+  ADD COLUMN `plId` INT(11) NULL AFTER `zoneId`,
+  ADD CONSTRAINT `ref_wo-pl` FOREIGN KEY (`plId`) REFERENCES `pl`(`plId`);
+
+/*-- Permission to see used plans*/
+ALTER TABLE `user`   
+  ADD COLUMN `perSeePlansClosed` BOOL DEFAULT FALSE NULL AFTER `perChangePwDate`;
