@@ -1,6 +1,6 @@
 /*
- * woDetail.js
- * Function for the page woDetail.html
+ * plDetail.js
+ * Function for the page plDetail.html
 */
 var user = JSON.parse(aswCookies.getCookie('gdespa_user'));
 var api_key = aswCookies.getCookie('api_key')
@@ -11,7 +11,7 @@ var data = null;
 var vm = null;
 var clos = 0;
 
-var woDetailAPI = {
+var plDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
@@ -19,61 +19,61 @@ var woDetailAPI = {
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
-        $('#woGeneral').attr('class', 'active');
+        $('#plGeneral').attr('class', 'active');
         // knockout management
-        vm = new woDetailAPI.pageData();
+        vm = new plDetailAPI.pageData();
         ko.applyBindings(vm);
         //
         $("#process").hide();
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
-        woDetailAPI.loadWorkers();
+        plDetailAPI.loadWorkers();
         if (user.worker) {
-            woDetailAPI.loadWorkers(user.worker.id);
+            plDetailAPI.loadWorkers(user.worker.id);
             $("#cmbWorkers").attr('disabled', 'disabled');
         }
         $('#cmbTeams').select2(select2_languages[lang]);
-        woDetailAPI.loadTeams();
+        plDetailAPI.loadTeams();
 
         $('#cmbDayTypes').select2(select2_languages[lang]);
-        woDetailAPI.loadDayTypes();
+        plDetailAPI.loadDayTypes();
 
         $('#cmbPws').select2(select2_languages[lang]);
-        woDetailAPI.loadPws();
+        plDetailAPI.loadPws();
         $("#cmbPws").select2().on('change', function (e) {
-            woDetailAPI.changePw(e.added);
+            plDetailAPI.changePw(e.added);
         });
 
         $('#cmbZones').select2(select2_languages[lang]);
-        woDetailAPI.loadZones();
+        plDetailAPI.loadZones();
         $("#cmbZones").select2().on('change', function (e) {
-            woDetailAPI.changeZone(e.added);
+            plDetailAPI.changeZone(e.added);
         });
         // 
         if (aswUtil.gup('closed') == "true") clos = 1;
         // buttons click events
-        $('#btnOk').click(woDetailAPI.btnOk());
+        $('#btnOk').click(plDetailAPI.btnOk());
         $('#btnExit').click(function (e) {
             e.preventDefault();
-            window.open('woGeneral.html', '_self');
+            window.open('plGeneral.html', '_self');
         });
-        $('#btnPrint').click(woDetailAPI.btnPrint());
+        $('#btnPrint').click(plDetailAPI.btnPrint());
         //
-        if (woDetailAPI.seeNotChange()) $('#btnOk').hide();
+        if (plDetailAPI.seeNotChange()) $('#btnOk').hide();
         // init lines table
-        woLineAPI.init();
+        plLineAPI.init();
         // init modal form
-        woModalAPI.init();
+        plModalAPI.init();
         // init modal 2 form
-        woModal2API.init();
+        plModal2API.init();
         // init modal 3 form
-        woModal3API.init();
+        plModal3API.init();
 
         // check if an id have been passed
         var id = aswUtil.gup('id');
         if (aswUtil.gup('doc') != "") {
             $('.nav-tabs a[href="#s4"]').tab('show');
-        } 
+        }
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
@@ -81,7 +81,7 @@ var woDetailAPI = {
             // new record
             $('#s2').hide();
         }
-        woDetailAPI.getWo(id);
+        plDetailAPI.getWo(id);
     },
     pageData: function () {
         // knockout objects
@@ -120,7 +120,7 @@ var woDetailAPI = {
         self.selectedCUnits = ko.observableArray([]);
         self.sCUnit = ko.observable();
         // -- Modal related (2)
-        self.woWorkerId = ko.observable();
+        self.plWorkerId = ko.observable();
         self.quantity2 = ko.observable();
         // worker2 combo
         self.optionsWorkers2 = ko.observableArray([]);
@@ -151,18 +151,18 @@ var woDetailAPI = {
         vm.initDate(moment(data.initDate).format(i18n.t('util.date_format')));
         // vm.endDate(moment(data.endDate).format(i18n.t('util.date_format')));
         vm.comments(data.comments);
-        woDetailAPI.loadPws(data.pw.id);
-        woDetailAPI.loadWorkers(data.worker.id);
-        woDetailAPI.loadTeams(data.teamId);
-        woDetailAPI.loadDayTypes(data.dayTypeId);
-        woDetailAPI.loadZones(data.zoneId);
+        plDetailAPI.loadPws(data.pw.id);
+        plDetailAPI.loadWorkers(data.worker.id);
+        plDetailAPI.loadTeams(data.teamId);
+        plDetailAPI.loadDayTypes(data.dayTypeId);
+        plDetailAPI.loadZones(data.zoneId);
         //
         vm.thirdParty(data.thirdParty);
         vm.thirdPartyCompany(data.thirdPartyCompany);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
-        $('#woDetail-form').validate({
+        $('#plDetail-form').validate({
             rules: {
                 txtInitDate: { required: true },
                 //        txtEndDate: { required: true },
@@ -179,26 +179,26 @@ var woDetailAPI = {
                 error.insertAfter(element.parent());
             }
         });
-        return $('#woDetail-form').valid();
+        return $('#plDetail-form').valid();
     },
-    // obtain a  wo group from the API
+    // obtain a  pl group from the API
     getWo: function (id) {
         if (!id || (id == 0)) {
-            // new wo group
+            // new pl group
             vm.id(0);
             return;
         }
-        var url = sprintf("%s/wo/%s?api_key=%s", myconfig.apiUrl, id, api_key);
+        var url = sprintf("%s/pl/%s?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                woDetailAPI.loadData(data[0]);
-                woLineAPI.getWoLines(data[0].id);
-                woLineAPI.getWoWorkers(data[0].id);
-                woLineAPI.getWoVehicles(data[0].id);
-                woLineAPI.getDocs(data[0].id);
+                plDetailAPI.loadData(data[0]);
+                plLineAPI.getWoLines(data[0].id);
+                plLineAPI.getWoWorkers(data[0].id);
+                plLineAPI.getWoVehicles(data[0].id);
+                plLineAPI.getDocs(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -213,7 +213,7 @@ var woDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!woDetailAPI.dataOk()) return;
+            if (!plDetailAPI.dataOk()) return;
             $("#btnOk").hide();
             $("#process").show();
             // dat for post or put
@@ -238,11 +238,11 @@ var woDetailAPI = {
             if (vm.id() == 0) {
                 // creating new record
                 type = "POST";
-                url = sprintf('%s/wo/generated/?api_key=%s', myconfig.apiUrl, api_key);
+                url = sprintf('%s/pl/generated/?api_key=%s', myconfig.apiUrl, api_key);
             } else {
                 // updating record
                 type = "PUT";
-                url = sprintf('%s/wo/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+                url = sprintf('%s/pl/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
             }
             $.ajax({
                 type: type,
@@ -256,10 +256,10 @@ var woDetailAPI = {
                         vm.id(data.id);
                         $('#wid-id-1').show();
                         aswNotif.newMainLines();
-                        woDetailAPI.getWo(data.id);
+                        plDetailAPI.getWo(data.id);
                         $('#s2').show();
                     } else {
-                        var url = sprintf('woGeneral.html?id=%s', data.id);
+                        var url = sprintf('plGeneral.html?id=%s', data.id);
                         window.open(url, '_self');
                     }
                 },
@@ -324,7 +324,7 @@ var woDetailAPI = {
                 var data2 = [];
                 if (!user.seeNotOwner) {
                     data.forEach(function (d) {
-                        if (user.workOnlyZone && (d.zone.id == user.zoneId || d.zoneId2 == user.zoneId)) {
+                        if (user.plrkOnlyZone && (d.zone.id == user.zoneId || d.zoneId2 == user.zoneId)) {
                             data2.push(d);
                         }
                     });
@@ -367,12 +367,12 @@ var woDetailAPI = {
             // avoid default accion
             e.preventDefault();
             // validate form
-            if (!woDetailAPI.dataOk()) return;
+            if (!plDetailAPI.dataOk()) return;
             var url = "", type = "";
 
             // fecth report data
             type = "GET";
-            url = sprintf('%s/report/wo2/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+            url = sprintf('%s/report/pl2/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
 
             $.ajax({
                 type: type,
@@ -432,7 +432,36 @@ var woDetailAPI = {
                     window.open('index.html', '_self');
                 }
             }
-        })
+        });
+        // cargar las propuestas de la zona
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/pw/zone/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: null, name: "" }];
+                var data2 = [];
+                if (!user.seeNotOwner) {
+                    data.forEach(function (d) {
+                        if (user.plrkOnlyZone && (d.zone.id == user.zoneId || d.zoneId2 == user.zoneId)) {
+                            data2.push(d);
+                        }
+                    });
+                } else {
+                    data2 = data;
+                }
+                options = options.concat(data2);
+                vm.optionsPws(options);
+                $("#cmbPws").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
     },
     changePw: function (data) {
         if (!data) return;
@@ -444,11 +473,11 @@ var woDetailAPI = {
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
-                woDetailAPI.loadZones(data[0].zoneId);
+                plDetailAPI.loadZones(data[0].zoneId);
                 var data2 = {
                     id: data[0].zoneId
                 }
-                woDetailAPI.changeZone(data2);
+                plDetailAPI.changeZone(data2);
             },
             error: function (err) {
                 aswNotif.errAjax(err);

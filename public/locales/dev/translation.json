@@ -867,10 +867,10 @@
             "doc": "Imágenes"
         },
         "print": "Imprimir",
-        "title": "Detalle parte de trabajo",
-        "initDate": "Fecha inicial",
+        "title": "Detalle plan de trabajo",
+        "initDate": "Fecha planificada",
         "endDate": "Fecha final",
-        "worker": "Responsable",
+        "worker": "Responsable de la planificación",
         "generate_from_pw": "Generar desde la propuesta",
         "pw": "Propuesta",
         "cunit": "Unidad constructiva",
@@ -911,6 +911,6 @@
         "thirdPartyCompany": "Compañía externa que ha realizado el trabajo",
         "team1": "Brigada",
         "dayType": "Tipo jornada",
-        "noDocAllowed": "Para introducir documentos debe haber cantidades en el parte de trabajo"
+        "noDocAllowed": "Para introducir documentos debe haber cantidades en el plan de trabajo"
     }        
 }
