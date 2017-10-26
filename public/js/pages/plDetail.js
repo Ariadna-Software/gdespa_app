@@ -40,9 +40,6 @@ var plDetailAPI = {
 
         $('#cmbPws').select2(select2_languages[lang]);
         plDetailAPI.loadPws();
-        $("#cmbPws").select2().on('change', function (e) {
-            plDetailAPI.changePw(e.added);
-        });
 
         $('#cmbZones').select2(select2_languages[lang]);
         plDetailAPI.loadZones();
@@ -81,7 +78,7 @@ var plDetailAPI = {
             // new record
             $('#s2').hide();
         }
-        plDetailAPI.getWo(id);
+        plDetailAPI.getPl(id);
     },
     pageData: function () {
         // knockout objects
@@ -167,9 +164,9 @@ var plDetailAPI = {
                 txtInitDate: { required: true },
                 //        txtEndDate: { required: true },
                 cmbWorkers: { required: true },
-                cmbDayTypes: { required: true },
                 cmbZones: { required: true },
                 cmbPws: { required: true },
+                cmbTeams: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -182,7 +179,7 @@ var plDetailAPI = {
         return $('#plDetail-form').valid();
     },
     // obtain a  pl group from the API
-    getWo: function (id) {
+    getPl: function (id) {
         if (!id || (id == 0)) {
             // new pl group
             vm.id(0);
@@ -195,10 +192,7 @@ var plDetailAPI = {
             contentType: "application/json",
             success: function (data, status) {
                 plDetailAPI.loadData(data[0]);
-                plLineAPI.getWoLines(data[0].id);
-                plLineAPI.getWoWorkers(data[0].id);
-                plLineAPI.getWoVehicles(data[0].id);
-                plLineAPI.getDocs(data[0].id);
+                plLineAPI.getPlLines(data[0].id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -256,7 +250,7 @@ var plDetailAPI = {
                         vm.id(data.id);
                         $('#wid-id-1').show();
                         aswNotif.newMainLines();
-                        plDetailAPI.getWo(data.id);
+                        plDetailAPI.getPl(data.id);
                         $('#s2').show();
                     } else {
                         var url = sprintf('plGeneral.html?id=%s', data.id);
@@ -424,7 +418,6 @@ var plDetailAPI = {
             success: function (data, status) {
                 var options = [{ teamId: null, name: "" }].concat(data);
                 vm.optionsTeams(options);
-                moDetailAPI.loadZoneK(id);
             },
             error: function (err) {
                 aswNotif.errAjax(err);
@@ -463,32 +456,8 @@ var plDetailAPI = {
             }
         });
     },
-    changePw: function (data) {
-        if (!data) return;
-        // cargar las brigadas de la zona
-        var id = data.id;
-        $.ajax({
-            type: "GET",
-            url: sprintf('%s/pw/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
-            dataType: "json",
-            contentType: "application/json",
-            success: function (data, status) {
-                plDetailAPI.loadZones(data[0].zoneId);
-                var data2 = {
-                    id: data[0].zoneId
-                }
-                plDetailAPI.changeZone(data2);
-            },
-            error: function (err) {
-                aswNotif.errAjax(err);
-                if (err.status == 401) {
-                    window.open('index.html', '_self');
-                }
-            }
-        })
-    },
     seeNotChange: function () {
-        if (user.seeWoClosed && !user.modWoClosed && clos)
+        if (user.seePlClosed && !user.modPlClosed && clos)
             return true;
         else
             return false;
