@@ -76,6 +76,18 @@ router.post('/generated/', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.post('/create-wo/:plId', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var plId = req.params.plId;
+    plDb.postCreateWoFromPl(plId, function (err, pls) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(pls);
+        }
+    }, test);
+});
+
 router.get('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

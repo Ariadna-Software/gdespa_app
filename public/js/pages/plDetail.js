@@ -24,6 +24,10 @@ var plDetailAPI = {
         vm = new plDetailAPI.pageData();
         ko.applyBindings(vm);
         //
+        $('#plDetail-form').submit(function () {
+            return false;
+        });
+        //
         $("#process").hide();
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
@@ -55,6 +59,7 @@ var plDetailAPI = {
             window.open('plGeneral.html', '_self');
         });
         $('#btnPrint').click(plDetailAPI.btnPrint());
+        $('#btnWoNew').click(plDetailAPI.btnWoNew);
         //
         if (plDetailAPI.seeNotChange()) $('#btnOk').hide();
         // init lines table
@@ -461,8 +466,21 @@ var plDetailAPI = {
             return true;
         else
             return false;
+    },
+    btnWoNew: function () {
+        aswNotif.generalQuestion(i18n.t('plDetail.createWoFromPl'), 'plDetailAPI.woNewFromPl()');
+    },
+    woNewFromPl: function() {
+        var url = sprintf('%s/pl/create-wo/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+        aswUtil.llamadaAjax("POST", url, null, function (err, data) {
+            if (err) return;
+            // obtain new woId
+            var newWoId = data.id;
+            window.open("woDetail.html?id=" + newWoId, '_blank');
+        });
     }
 };
+
 
 
 

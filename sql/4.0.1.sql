@@ -84,3 +84,14 @@ ALTER TABLE `wo`
 /*-- Permission to see used plans*/
 ALTER TABLE `user`   
   ADD COLUMN `perSeePlansClosed` BOOL DEFAULT FALSE NULL AFTER `perChangePwDate`;
+
+/*-- New fields in worker order --*/
+ALTER TABLE `wo_line`   
+  ADD COLUMN `planned` DECIMAL(12,2) NULL AFTER `pwLineId`,
+  ADD COLUMN `plLineId` INT(11) NULL AFTER `planned`,
+  ADD CONSTRAINT `rel_wpl_pll` FOREIGN KEY (`plLineId`) REFERENCES `pl_line`(`plLineId`);
+
+/* -- I missed default value  --*/
+UPDATE wo_line SET planned = 0;
+ALTER TABLE `wo_line`   
+  CHANGE `planned` `planned` DECIMAL(12,2) DEFAULT 0 NULL;
