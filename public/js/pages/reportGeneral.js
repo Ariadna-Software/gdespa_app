@@ -54,6 +54,11 @@ var reportGeneralAPI = {
         $('#cmbPwConsume').select2(select2_languages[lang]);
         reportGeneralAPI.loadPwConsume();
         $('#btnPrintPwConsume').click(reportGeneralAPI.btnPrintConsumoObra);
+
+        $('#cmbPwPlanned').select2(select2_languages[lang]);
+        reportGeneralAPI.loadPwPlanned();
+        $('#btnPrintPlanned').click(reportGeneralAPI.btnPrintPlanned);
+
         // avoid sending form 
         $('#pwConsumeDetail-form').submit(function () {
             return false;
@@ -101,6 +106,10 @@ var reportGeneralAPI = {
         self.optionsPwConsume = ko.observableArray([]);
         self.selectedPwConsume = ko.observableArray([]);
         self.sPwConsume = ko.observable();
+        // pw planned combo
+        self.optionsPwPlanned = ko.observableArray([]);
+        self.selectedPwPlanned = ko.observableArray([]);
+        self.sPwPlanned = ko.observable();        
         // pw store combo
         self.optionsPwStore = ko.observableArray([]);
         self.selectedPwStore = ko.observableArray([]);
@@ -353,6 +362,25 @@ var reportGeneralAPI = {
             }
         });
     },
+    loadPwPlanned: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/pw/report_pw/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 0, name: " " }].concat(data);
+                vm.optionsPwPlanned(options);
+                $("#cmbPwPlanned").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },    
     btnPrintPwConsume: function () {
         var mf = function (e) {
             // avoid default accion
@@ -528,6 +556,11 @@ var reportGeneralAPI = {
         url = "infConsumoObra.html?pwId=" + vm.sPwConsume();
         window.open(url, '_blank');
     },
+    btnPrintPlanned: function () {
+        url = "infPlVsWo.html?pwId=" + vm.sPwPlanned();
+        window.open(url, '_blank');
+    },
+    
     btnPrintInfProdServ: function () {
         url = "infProdServ.html?pwId=" + vm.sPwStatus();
         window.open(url, '_blank');

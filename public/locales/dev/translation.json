@@ -591,7 +591,8 @@
         "consolidate2": "Consolidado periodo",
         "excel": "En formato para exportacion excel",
         "status": "Estado",
-        "pwProdServ": "Diferencias entre cantidas producidas y salidas de almacén"
+        "pwProdServ": "Diferencias entre cantidas producidas y salidas de almacén",
+        "plPlanned": "Informe de planeado frente a realizado por obra"
     },
     "teamGeneral": {
         "title": "Brigadas",
