@@ -71,6 +71,7 @@ var plLineAPI = {
         }
         var dtTable = $('#dt_plLine').DataTable(options);
         dtTable.columns(0).visible(false);
+        dtTable.columns(3).visible(false);
     },
     newPlLine: function () {
         var mf = function (e) {
