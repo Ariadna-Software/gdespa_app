@@ -76,6 +76,7 @@ var plDetailAPI = {
         if (aswUtil.gup('doc') != "") {
             $('.nav-tabs a[href="#s4"]').tab('show');
         }
+        vm.id(id);
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
@@ -116,6 +117,7 @@ var plDetailAPI = {
         self.lineId = ko.observable();
         self.estimate = ko.observable();
         self.done = ko.observable();
+        self.prevPlanned = ko.observable();
         self.quantity = ko.observable();
         // cunit combo
         self.optionsCUnits = ko.observableArray([]);

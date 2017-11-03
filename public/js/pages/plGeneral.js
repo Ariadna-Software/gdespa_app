@@ -108,7 +108,7 @@ var plGeneralAPI = {
             url: url,
             contentType: "application/json",
             success: function (data, status) {
-                var name = data[0].pw.name + " [" + moment(data[0].initDate).format(i18n.t('util.date_format')) + " - " + moment(data[0].endDate).format(i18n.t('util.date_format')) + "]";
+                var name = data[0].pw.name + " [" + moment(data[0].initDate).format(i18n.t('util.date_format')) + "]";
                 var fn = sprintf('plGeneralAPI.deletePl(%s);', id);
                 aswNotif.deleteRecordQuestion(name, fn);
             },

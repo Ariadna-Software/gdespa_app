@@ -915,6 +915,7 @@
         "team1": "Brigada",
         "dayType": "Tipo jornada",
         "noDocAllowed": "Para introducir documentos debe haber cantidades en el plan de trabajo",
-        "createWoFromPl": "Desea crear el parte de trabajo al que corresponde esta planificación"
+        "createWoFromPl": "Desea crear el parte de trabajo al que corresponde esta planificación",
+        "prevPlanned": "Planificado previo"
     }        
 }
