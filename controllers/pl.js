@@ -76,10 +76,12 @@ router.post('/generated/', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
-router.post('/create-wo/:plId', common.midChkApiKey, function (req, res) {
+router.post('/create-wo/:plId/:teamId/:pwId', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var plId = req.params.plId;
-    plDb.postCreateWoFromPl(plId, function (err, pls) {
+    var teamId = req.params.teamId;
+    var pwId = req.params.pwId;
+    plDb.postCreateWoFromPl(plId, teamId, pwId, function (err, pls) {
         if (err) {
             res.status(500).send(err.message);
         } else {

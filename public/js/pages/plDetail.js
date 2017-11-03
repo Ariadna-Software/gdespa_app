@@ -473,7 +473,7 @@ var plDetailAPI = {
         aswNotif.generalQuestion(i18n.t('plDetail.createWoFromPl'), 'plDetailAPI.woNewFromPl()');
     },
     woNewFromPl: function() {
-        var url = sprintf('%s/pl/create-wo/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
+        var url = sprintf('%s/pl/create-wo/%s/%s/%s/?api_key=%s', myconfig.apiUrl, vm.id(), vm.sTeam(), vm.sPw(), api_key);
         aswUtil.llamadaAjax("POST", url, null, function (err, data) {
             if (err) return;
             // obtain new woId
