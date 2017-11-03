@@ -111,6 +111,8 @@ app.use('/api/pl_line', require('./controllers/pl_line'));
 
 // general API to export
 
+app.use('/pwbi1', require('./controllers/pwbi1'));
+
 var appAPI = {
     app: app,
     init: function (config) {
