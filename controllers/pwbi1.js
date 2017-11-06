@@ -35,4 +35,18 @@ router.get('/workers', function (req, res) {
     });
 });
 
+router.get('/docspw', function (req, res) {
+    pwbi1Db.getDocsPw((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/doctypes', function (req, res) {
+    pwbi1Db.getDocsTypes((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
 module.exports = router;
