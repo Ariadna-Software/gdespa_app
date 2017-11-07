@@ -40,6 +40,7 @@ FROM wo
 LEFT JOIN wo_line AS wol ON wol.woId = wo.woId
 GROUP BY wo.woId) AS wopl ON wopl.woId = wo.woId
 WHERE NOT wo.woId IS NULL
+AND wo.initDate &gt;= '{dFecha}' AND wo.initDate &lt;= '{hFecha}'
 ORDER BY pwName, wo.initDate</SqlCommand>
       </PLVSDONE>
     </DataSources>
@@ -66,7 +67,7 @@ ORDER BY pwName, wo.initDate</SqlCommand>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,19.01,2.2</ClientRectangle>
           <ComponentPlacement>ph.Page1</ComponentPlacement>
-          <Components isList="true" count="2">
+          <Components isList="true" count="3">
             <Image1 Ref="6" type="Image" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.4,0.2,2,1.6</ClientRectangle>
@@ -95,18 +96,34 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text8>
+            <Text11 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3,1,15.8,0.8</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,16</Font>
+              <Guid>1847fc138f98495c90c159a605834567</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Desde {dFechaR} hasta {hFechaR}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text11>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>PageHeaderBand1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
         </PageHeaderBand1>
-        <PageFooterBand2 Ref="8" type="PageFooterBand" isKey="true">
+        <PageFooterBand2 Ref="9" type="PageFooterBand" isKey="true">
           <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,26.69,19.01,1</ClientRectangle>
           <Components isList="true" count="2">
-            <Text43 Ref="9" type="Text" isKey="true">
+            <Text43 Ref="10" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>13,0.11,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -115,13 +132,13 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text43</Name>
               <Page isRef="4" />
-              <Parent isRef="8" />
+              <Parent isRef="9" />
               <Text>Página {PageNumber} de {TotalPageCount}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text43>
-            <Text44 Ref="10" type="Text" isKey="true">
+            <Text44 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.2,0.11,6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -129,10 +146,10 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text44</Name>
               <Page isRef="4" />
-              <Parent isRef="8" />
+              <Parent isRef="9" />
               <Text>{Time}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="11" type="CustomFormat" isKey="true">
+              <TextFormat Ref="12" type="CustomFormat" isKey="true">
                 <StringFormat>dd/MM/yyyy HH:mm:ss</StringFormat>
               </TextFormat>
               <Type>Expression</Type>
@@ -144,11 +161,11 @@ ORDER BY pwName, wo.initDate</SqlCommand>
           <Page isRef="4" />
           <Parent isRef="4" />
         </PageFooterBand2>
-        <GroupHeaderBand1 Ref="12" type="GroupHeaderBand" isKey="true">
+        <GroupHeaderBand1 Ref="13" type="GroupHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,3.4,19.01,0.8</ClientRectangle>
           <Components isList="true" count="1">
-            <Text10 Ref="13" type="Text" isKey="true">
+            <Text10 Ref="14" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.2,0.2,18.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -156,7 +173,7 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
               <Page isRef="4" />
-              <Parent isRef="12" />
+              <Parent isRef="13" />
               <Text>OBRA: {PLVSDONE.pwName}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
@@ -168,11 +185,11 @@ ORDER BY pwName, wo.initDate</SqlCommand>
           <Page isRef="4" />
           <Parent isRef="4" />
         </GroupHeaderBand1>
-        <HeaderCabeceraObra Ref="14" type="HeaderBand" isKey="true">
+        <HeaderCabeceraObra Ref="15" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,5,19.01,0.8</ClientRectangle>
           <Components isList="true" count="5">
-            <HeaderCabeceraObra_pquantity Ref="15" type="Text" isKey="true">
+            <HeaderCabeceraObra_pquantity Ref="16" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>14.8,0,2,0.8</ClientRectangle>
@@ -182,14 +199,14 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderCabeceraObra_pquantity</Name>
               <Page isRef="4" />
-              <Parent isRef="14" />
+              <Parent isRef="15" />
               <Text>Planificado</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderCabeceraObra_pquantity>
-            <HeaderCabeceraObra_squantity Ref="16" type="Text" isKey="true">
+            <HeaderCabeceraObra_squantity Ref="17" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>12.8,0,1.8,0.8</ClientRectangle>
@@ -199,14 +216,14 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>HeaderCabeceraObra_squantity</Name>
               <Page isRef="4" />
-              <Parent isRef="14" />
+              <Parent isRef="15" />
               <Text>Realizado</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderCabeceraObra_squantity>
-            <Text2 Ref="17" type="Text" isKey="true">
+            <Text2 Ref="18" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>17,0,1.8,0.8</ClientRectangle>
@@ -217,14 +234,14 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
               <Page isRef="4" />
-              <Parent isRef="14" />
+              <Parent isRef="15" />
               <Text>Diferencia</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text2>
-            <Text1 Ref="18" type="Text" isKey="true">
+            <Text1 Ref="19" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.2,0,1.8,0.8</ClientRectangle>
@@ -234,14 +251,14 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="4" />
-              <Parent isRef="14" />
+              <Parent isRef="15" />
               <Text>Fecha</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text1>
-            <Text7 Ref="19" type="Text" isKey="true">
+            <Text7 Ref="20" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,0,10.2,0.8</ClientRectangle>
@@ -251,7 +268,7 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
               <Page isRef="4" />
-              <Parent isRef="14" />
+              <Parent isRef="15" />
               <Text>Responsable</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
@@ -264,12 +281,12 @@ ORDER BY pwName, wo.initDate</SqlCommand>
           <Page isRef="4" />
           <Parent isRef="4" />
         </HeaderCabeceraObra>
-        <DataCabeceraObra Ref="20" type="DataBand" isKey="true">
+        <DataCabeceraObra Ref="21" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,6.6,19.01,0.8</ClientRectangle>
           <Components isList="true" count="5">
-            <Text3 Ref="21" type="Text" isKey="true">
+            <Text3 Ref="22" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>17,0,1.8,0.8</ClientRectangle>
@@ -280,10 +297,10 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
               <Page isRef="4" />
-              <Parent isRef="20" />
+              <Parent isRef="21" />
               <Text>{PLVSDONE.quantity - PLVSDONE.planned}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="22" type="NumberFormat" isKey="true">
+              <TextFormat Ref="23" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -292,7 +309,7 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text3>
-            <Text4 Ref="23" type="Text" isKey="true">
+            <Text4 Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.2,0,1.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -300,14 +317,14 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
               <Page isRef="4" />
-              <Parent isRef="20" />
+              <Parent isRef="21" />
               <Text>{PLVSDONE.initDate}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="24" type="DateFormat" isKey="true" />
+              <TextFormat Ref="25" type="DateFormat" isKey="true" />
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
-            <Text5 Ref="25" type="Text" isKey="true">
+            <Text5 Ref="26" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>14.8,0,2,0.8</ClientRectangle>
@@ -318,10 +335,10 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
               <Page isRef="4" />
-              <Parent isRef="20" />
+              <Parent isRef="21" />
               <Text>{PLVSDONE.planned}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="26" type="NumberFormat" isKey="true">
+              <TextFormat Ref="27" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -330,7 +347,7 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text5>
-            <Text6 Ref="27" type="Text" isKey="true">
+            <Text6 Ref="28" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>12.8,0,1.8,0.8</ClientRectangle>
@@ -341,10 +358,10 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="4" />
-              <Parent isRef="20" />
+              <Parent isRef="21" />
               <Text>{PLVSDONE.quantity}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="28" type="NumberFormat" isKey="true">
+              <TextFormat Ref="29" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -353,7 +370,7 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text6>
-            <Text9 Ref="29" type="Text" isKey="true">
+            <Text9 Ref="30" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>2.4,0,10.2,0.8</ClientRectangle>
@@ -363,7 +380,7 @@ ORDER BY pwName, wo.initDate</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="4" />
-              <Parent isRef="20" />
+              <Parent isRef="21" />
               <Text>{PLVSDONE.wName}</Text>
               <TextBrush>Black</TextBrush>
               <Type>DataColumn</Type>
@@ -390,13 +407,13 @@ ORDER BY pwName, wo.initDate</SqlCommand>
       <PageHeight>29.69</PageHeight>
       <PageWidth>21.01</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="30" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="31" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="31" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="32" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -409,11 +426,11 @@ ORDER BY pwName, wo.initDate</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>moDetalle</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>10/27/2017 1:14:17 PM</ReportChanged>
+  <ReportChanged>11/7/2017 4:56:12 PM</ReportChanged>
   <ReportCreated>1/1/1970 5:00:00 AM</ReportCreated>
   <ReportDescription>Partes detallados por obra</ReportDescription>
-  <ReportFile />
-  <ReportGuid>31d2b38f86d24dca9c8423758ceba2e1</ReportGuid>
+  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\planned_vs_done.mrt</ReportFile>
+  <ReportGuid>35217a491e0c47a1aca6f62aa0a34184</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>moDetalle</ReportName>
   <ReportUnit>Centimeters</ReportUnit>

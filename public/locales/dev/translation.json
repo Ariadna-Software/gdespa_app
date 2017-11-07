@@ -592,7 +592,9 @@
         "excel": "En formato para exportacion excel",
         "status": "Estado",
         "pwProdServ": "Diferencias entre cantidas producidas y salidas de almacén",
-        "plPlanned": "Informe de planeado frente a realizado por obra"
+        "plPlanned": "Informe de planeado frente a realizado por obra",
+        "plPlannedTeam": "Informe de planeado frente a realizado por brigada",
+        "team": "Brigada a informar"
     },
     "teamGeneral": {
         "title": "Brigadas",

@@ -30,6 +30,17 @@ router.get('/', common.midChkApiKey, function (req, res) {
     }
 });
 
+router.get('/report', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    teamDb.get(function (err, teams) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(teams);
+        }
+    }, test);
+});
+
 router.post('/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var team = req.body;

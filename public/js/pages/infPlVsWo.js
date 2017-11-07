@@ -45,8 +45,12 @@ function initForm() {
     ko.applyBindings(vm);
     // comprobar llamada
     var pwId = aswUtil.gup('pwId');
+    var pDfecha = aswUtil.gup('pDfecha');
+    var pHfecha = aswUtil.gup('pHfecha');
     if (pwId != "") {
         vm.pwId(pwId);
+        vm.dFecha(pDfecha);
+        vm.hFecha(pHfecha);        
         obtainReport();
     }
 
@@ -56,6 +60,8 @@ function admData() {
     var self = this;
     //
     self.pwId = ko.observable();
+    self.dFecha = ko.observable();
+    self.hFecha = ko.observable();
 };
 
 var obtainReport = function () {
@@ -73,10 +79,10 @@ var obtainReport = function () {
     report.dictionary.databases.list[0].connectionString = connectionString;
 
     // Parámetros
-    report.dictionary.variables.items[0].val = "";
-    report.dictionary.variables.items[1].val = "";
-    report.dictionary.variables.items[2].val = "";
-    report.dictionary.variables.items[3].val = "";
+    report.dictionary.variables.items[0].val = vm.dFecha();
+    report.dictionary.variables.items[1].val = vm.hFecha();
+    report.dictionary.variables.items[2].val = moment(vm.dFecha()).format("DD/MM/YYYY");
+    report.dictionary.variables.items[3].val = moment(vm.hFecha()).format("DD/MM/YYYY"); 
     report.dictionary.variables.items[4].val = vm.pwId();
 
     viewer.report = report;

@@ -702,10 +702,22 @@
 								<h2 data-i18n="reportGeneral.plPlanned">* Cierre detallado</h2>
 							</header>
 							<div class="widget-body">
-								<form id="pwConsumeDetail-form" class="smart-form">
+								<form id="pwPlPwDetail-form" class="smart-form">
 									<fieldset>
 										<div class="row">
-											<section class="col col-md-12">
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.initDate">*DFecha:</label>
+												<label class="input">
+													<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy" />
+												</label>
+											</section>
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.endDate">*HFecha:</label>
+												<label class="input">
+													<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy" />
+												</label>
+											</section>											
+											<section class="col col-md-8">
 												<label class="label" data-i18n="reportGeneral.pwConsume_detail">*Cierre:</label>
 												<select style="width:100%;" id="cmbPwPlanned" name="cmbPwPlanned" data-bind="options: optionsPwPlanned, optionsText: 'name', optionsValue: 'id', 
 													value: sPwPlanned, valueAllowUnset: true, selectedOptions: selectedPwPlanned, selected2:{}">
@@ -722,7 +734,51 @@
 									</fieldset>
 								</form>
 							</div>
-						</div>						
+						</div>	
+
+						<div class="jarviswidget" id="wid-id-7" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+								<header>
+									<span class="widget-icon">
+										<i class="fa fa-edit"></i>
+									</span>
+									<h2 data-i18n="reportGeneral.plPlannedTeam">* Cierre detallado</h2>
+								</header>
+								<div class="widget-body">
+									<form id="pwPlPwTeam-form" class="smart-form">
+										<fieldset>
+											<div class="row">
+												<section class="col col-md-2">
+													<label class="label" data-i18n="reportGeneral.initDate">*DFecha:</label>
+													<label class="input">
+														<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy" />
+													</label>
+												</section>
+												<section class="col col-md-2">
+													<label class="label" data-i18n="reportGeneral.endDate">*HFecha:</label>
+													<label class="input">
+														<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy" />
+													</label>
+												</section>											
+												<section class="col col-md-8">
+													<label class="label" data-i18n="reportGeneral.team">*Cierre:</label>
+													<select style="width:100%;" id="cmbPwPlannedTeam" name="cmbPwPlannedTeam" data-bind="options: optionsPwPlannedTeam, optionsText: 'name', optionsValue: 'id', 
+														value: sPwPlannedTeam, valueAllowUnset: true, selectedOptions: selectedPwPlannedTeam, selected2:{}">
+													</select>
+												</section>
+											</div>
+										</fieldset>
+										<fieldset>
+											<div class="pull-right">
+												<button id="btnPrintPlannedTeam" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-print"></i>
+												</button>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+							</div>	
+															
+
 						<div class="jarviswidget" id="wid-id-3" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon">
