@@ -91,7 +91,7 @@ ORDER BY teamName, wo.initDate</SqlCommand>
             </Image1>
             <Text8 Ref="7" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.6,0.2,16.2,0.8</ClientRectangle>
+              <ClientRectangle>2.8,0.2,16,0.8</ClientRectangle>
               <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
               <Conditions isList="true" count="0" />
               <Font>Arial,16</Font>
@@ -100,13 +100,13 @@ ORDER BY teamName, wo.initDate</SqlCommand>
               <Name>Text8</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>Planificado y realizado en los partes de trabajo. Resumen brigada.</Text>
+              <Text>Planificado y realizado en los partes de trabajo. Resumen.</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text8>
             <Text11 Ref="8" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.6,1,16.2,0.8</ClientRectangle>
+              <ClientRectangle>2.8,1,16,0.8</ClientRectangle>
               <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
               <Conditions isList="true" count="0" />
               <Font>Arial,16</Font>
@@ -565,11 +565,11 @@ ORDER BY teamName, wo.initDate</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>moDetalle</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>11/8/2017 5:51:02 PM</ReportChanged>
+  <ReportChanged>11/8/2017 6:09:46 PM</ReportChanged>
   <ReportCreated>1/1/1970 5:00:00 AM</ReportCreated>
   <ReportDescription>Partes detallados por obra</ReportDescription>
   <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\planned_vs_done_team.mrt</ReportFile>
-  <ReportGuid>9115b29cec134ebd9663fce58f28403f</ReportGuid>
+  <ReportGuid>bb0d7e91b95d42bb8a13a61b53729de8</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>moDetalle</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
