@@ -61,7 +61,7 @@ var reportGeneralAPI = {
         reportGeneralAPI.loadPwPlannedTeam(0);
 
         $('#btnPrintPlanned').click(reportGeneralAPI.btnPrintPlanned);
-        $('#btnPrintPlannedteam').click(reportGeneralAPI.btnPrintPlannedTeam);
+        $('#btnPrintPlannedTeam').click(reportGeneralAPI.btnPrintPlannedTeam);
 
         // avoid sending form 
         $('#pwConsumeDetail-form').submit(function () {
@@ -598,7 +598,7 @@ var reportGeneralAPI = {
     btnPrintPlannedTeam: function () {
         var initDate = moment(vm.initDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
         var endDate = moment(vm.endDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
-        url = "infPlVsWo.html?pwId=" + vm.sPwPlanned() + "&pDfecha=" + initDate + "&pHfecha=" + endDate;
+        url = "infPlVsTeam.html?teamId=" + vm.sPwPlannedTeam() + "&pDfecha=" + initDate + "&pHfecha=" + endDate;
         window.open(url, '_blank');
     },    
     
