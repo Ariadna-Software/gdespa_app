@@ -55,7 +55,6 @@ function initForm() {
         vm.consDetail(consDetail)       ;
         obtainReport();
     }
-
 }
 
 function admData() {
