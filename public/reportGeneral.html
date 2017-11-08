@@ -736,7 +736,7 @@
 							</div>
 						</div>	
 
-						<div class="jarviswidget" id="wid-id-7" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+						<div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 								<header>
 									<span class="widget-icon">
 										<i class="fa fa-edit"></i>
@@ -759,12 +759,19 @@
 														<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy" />
 													</label>
 												</section>											
-												<section class="col col-md-8">
+												<section class="col col-md-6">
 													<label class="label" data-i18n="reportGeneral.team">*Cierre:</label>
 													<select style="width:100%;" id="cmbPwPlannedTeam" name="cmbPwPlannedTeam" data-bind="options: optionsPwPlannedTeam, optionsText: 'name', optionsValue: 'teamId', 
 														value: sPwPlannedTeam, valueAllowUnset: true, selectedOptions: selectedPwPlannedTeam, selected2:{}">
 													</select>
 												</section>
+												<section class="col col-md-2">
+													<label class="checkbox">
+														<input id="chkDetail" type="checkbox" name="chkDetail" data-bind="checked: consDetail">
+														<i></i>
+														<span data-i18n="reportGeneral.detail"></span>
+													</label>
+												</section>												
 											</div>
 										</fieldset>
 										<fieldset>

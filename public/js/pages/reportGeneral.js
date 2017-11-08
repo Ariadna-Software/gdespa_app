@@ -598,7 +598,7 @@ var reportGeneralAPI = {
     btnPrintPlannedTeam: function () {
         var initDate = moment(vm.initDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
         var endDate = moment(vm.endDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
-        url = "infPlVsTeam.html?teamId=" + vm.sPwPlannedTeam() + "&pDfecha=" + initDate + "&pHfecha=" + endDate;
+        url = "infPlVsTeam.html?teamId=" + vm.sPwPlannedTeam() + "&pDfecha=" + initDate + "&pHfecha=" + endDate + "&consDetail=" + vm.consDetail();
         window.open(url, '_blank');
     },    
     

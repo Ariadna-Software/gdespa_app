@@ -47,10 +47,12 @@ function initForm() {
     var teamId = aswUtil.gup('teamId');
     var pDfecha = aswUtil.gup('pDfecha');
     var pHfecha = aswUtil.gup('pHfecha');
+    var consDetail = aswUtil.gup('consDetail');
     if (teamId != "") {
         vm.teamId(teamId);
         vm.dFecha(pDfecha);
-        vm.hFecha(pHfecha);        
+        vm.hFecha(pHfecha); 
+        vm.consDetail(consDetail)       ;
         obtainReport();
     }
 
@@ -62,12 +64,13 @@ function admData() {
     self.teamId = ko.observable();
     self.dFecha = ko.observable();
     self.hFecha = ko.observable();
+    self.consDetail = ko.observable();
 };
 
 var obtainReport = function () {
     StiOptions.WebServer.url = "/api/streport";
-    var file = "../reports/planned_vs_done_team_r.mrt";
-    if (vm.teamId() != 'undefined') file = "../reports/planned_vs_done_team.mrt";
+    var file = "../reports/planned_vs_done_team.mrt";
+    if (vm.consDetail() == 'true') file = "../reports/planned_vs_done_team_detail.mrt";
     // Create a new report instance
     var report = new Stimulsoft.Report.StiReport();
     report.loadFile(file);
