@@ -137,7 +137,7 @@ ORDER BY teamName, wo.initDate</SqlCommand>
           <Components isList="true" count="2">
             <Text43 Ref="10" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>13,0.11,5.8,0.6</ClientRectangle>
+              <ClientRectangle>21.8,0.11,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <HorAlignment>Right</HorAlignment>
@@ -852,11 +852,11 @@ ORDER BY teamName, wo.initDate</SqlCommand>
   </ReferencedAssemblies>
   <ReportAlias>moDetalle</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>11/8/2017 1:28:57 PM</ReportChanged>
+  <ReportChanged>11/8/2017 6:20:11 PM</ReportChanged>
   <ReportCreated>1/1/1970 5:00:00 AM</ReportCreated>
   <ReportDescription>Partes detallados por obra</ReportDescription>
-  <ReportFile />
-  <ReportGuid>bcb4cdbe7b2542bca49424e20ea7db97</ReportGuid>
+  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\planned_vs_done_team_detail.mrt</ReportFile>
+  <ReportGuid>0105755d99ee4243a7a64fc8df75e831</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>moDetalle</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
