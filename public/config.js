@@ -3,8 +3,8 @@ var myconfig = {
     apiUrl: "/api",
     languages: ['es','es-PA', 'en'],
     report: {
-        host: "192.168.1.12",
-        port: 6603,
+        host: "localhost",
+        port: 3306,
         database: "gdespa_test",
         user: "root",
         password: "aritel"
