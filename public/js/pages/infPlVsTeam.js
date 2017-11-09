@@ -75,6 +75,7 @@ var obtainReport = function () {
     report.loadFile(file);
     
     var connectionString = "Server=" + myconfig.report.host + ";";
+    connectionString += "Port=" + myconfig.report.port + ";"
     connectionString += "Database=" + myconfig.report.database + ";"
     connectionString += "UserId=" + myconfig.report.user + ";"
     connectionString += "Pwd=" + myconfig.report.password + ";";

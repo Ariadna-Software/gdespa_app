@@ -168,6 +168,7 @@ var obtainReport = function () {
     //report.setVariable("vTest", "11,16,18");
     //var connectionString = "Server=localhost; Database=proasistencia;UserId=root; Pwd=aritel;";
     var connectionString = "Server=" + myconfig.report.host + ";";
+    connectionString += "Port=" + myconfig.report.port + ";"
     connectionString += "Database=" + myconfig.report.database + ";"
     connectionString += "UserId=" + myconfig.report.user + ";"
     connectionString += "Pwd=" + myconfig.report.password + ";";

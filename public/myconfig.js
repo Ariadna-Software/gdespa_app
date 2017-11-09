@@ -3,8 +3,9 @@
     apiUrl: "",
     idiomas: ['en','es'],
     report: {
-        host: "localhost",
-        database: "gdespa_tets",
+        host: "192.168.1.12",
+        database: "gdespa_test",
+        port: 6603,
         user: "root",
         password: "aritel"
     }
