@@ -291,7 +291,8 @@
             "worker": "Recursos",
             "doc": "Documentos",
             "invoice":"Facturas",
-            "img": "Imágenes"
+            "img": "Imágenes",
+            "map": "Mapa"
         },
         "lastClose": "Ultimo cierre",
         "print": "Imprimir",
@@ -315,6 +316,7 @@
         "cancel": "Salir sin guardar",
         "ok": "Guardar",
         "okNew": "Guardar y siguiente",
+        "showMap": "Mostrar mapa",
         "newLine": "Nueva linea",
         "associated_items": "Unidades constructivas asociadas",
         "modal_title": "Unidad constructiva",
@@ -358,7 +360,10 @@
         "docsNeedToOpen": "Antes de introducir capítulos y UUCC debe dar de alta los documentos necesarios para apertura. <br/> Recuerde que necesita tres documentos.",
         "docsNeedToClose": "Esta intentando cerrar una obra sin haber dado de alta los documentos de cierre. ¿Quiere continuar con el cierre?",
         "isMeaMo": "Esta obra es de luminarias o contadores",
-        "woNew": "Dar de alta parte desde planificación."
+        "woNew": "Dar de alta parte desde planificación.",
+        "map": "Mapa",
+        "longitude": "Longitud",
+        "latitude": "Latitud"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",
