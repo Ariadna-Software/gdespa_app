@@ -122,6 +122,9 @@ function admData() {
     self.sWorker = ko.observable();
     //
     self.detalle = ko.observable();
+    //
+    self.minWeekHours = ko.observable();
+    self.minReportHours = ko.observable();
 };
 
 var obtainReport = function () {
@@ -192,6 +195,8 @@ var obtainReportWithExcess = function (regs) {
     report.dictionary.variables.items[1].val = vm.hFecha();
     report.dictionary.variables.items[2].val = moment(vm.dFecha()).format("DD/MM/YYYY");
     report.dictionary.variables.items[3].val = moment(vm.hFecha()).format("DD/MM/YYYY");    
+    report.dictionary.variables.items[4].val = vm.minWeekHours();
+    report.dictionary.variables.items[5].val = vm.minReportHours();
     //
     report.regData(dataSet.dataSetName, "", dataSet);
     report.dictionary.synchronize();
