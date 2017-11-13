@@ -144,7 +144,7 @@
         <PageFooterBand2 Ref="10" type="PageFooterBand" isKey="true">
           <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,25.61,27.69,1</ClientRectangle>
+          <ClientRectangle>0,18.01,27.69,1</ClientRectangle>
           <Components isList="true" count="0" />
           <Conditions isList="true" count="0" />
           <Name>PageFooterBand2</Name>
@@ -945,7 +945,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>12.4,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="1">
-                <value>_x007B_Sum_x0028_DataWHors_x002C_root.nH_x0029__x0020__x003C__x0020_minWeekHours_x007D_,[255:0:0],[0:255:255:255],Arial_x002C_8,True,False,,,None</value>
+                <value>_x007B_Sum_x0028_DataWHors_x002C_root.nH_x0029__x0020__x003C__x0020_minWeekHours_x007D_,[255:0:0],[0:255:255:255],Arial_x002C_8,True,False,,,All</value>
               </Conditions>
               <Font>Arial,8</Font>
               <Guid>a8d1aa4773baae6d0999eafc3381719e</Guid>
@@ -1320,7 +1320,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>12.4,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="1">
-                <value>_x007B_Sum_x0028_DataWHors_x002C_root.nH_x0029__x0020__x003C__x0020_minReportHours_x007D_,[255:0:0],[0:255:255:255],Arial_x002C_8,True,False,,,None</value>
+                <value>_x007B_Sum_x0028_DataWHors_x002C_root.nH_x0029__x0020__x003C__x0020_minReportHours_x007D_,[255:0:0],[0:255:255:255],Arial_x002C_8,True,False,,,All</value>
               </Conditions>
               <Font>Arial,8</Font>
               <Guid>d6590cf53fd845da7b7473fd3c4be1cf</Guid>
@@ -1805,7 +1805,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>10.2,2.4,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="1">
-                <value>_x007B_Sum_x0028_DataWHors_x002C_root.nH_x0029__x0020__x003C__x0020_minReportHours_x007D_,[255:0:0],[0:255:255:255],Arial_x002C_8,True,False,,,None</value>
+                <value>_x007B_Sum_x0028_DataWHors_x002C_root.nH_x0029__x0020__x003C__x0020_minReportHours_x007D_,[255:0:0],[0:255:255:255],Arial_x002C_8,True,False,,,All</value>
               </Conditions>
               <Font>Arial,8</Font>
               <Guid>6b96759dfce4481690d56b53bc6de806</Guid>
@@ -2434,11 +2434,11 @@
   </ReferencedAssemblies>
   <ReportAlias>rrhhHours</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>11/10/2017 11:02:01 AM</ReportChanged>
+  <ReportChanged>11/13/2017 8:57:51 AM</ReportChanged>
   <ReportCreated>1/1/1970 11:00:00 AM</ReportCreated>
   <ReportDescription>Horas por trabajador</ReportDescription>
   <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\worker_hours_rrh1.mrt</ReportFile>
-  <ReportGuid>f2794f30fe4042a485a3c0c14f75d44b</ReportGuid>
+  <ReportGuid>d5b750503cda477b81e868f832827bad</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>rrhhHours</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
