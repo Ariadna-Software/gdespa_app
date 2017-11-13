@@ -10,6 +10,7 @@ var common = require('./common');
 
 router.get('/', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
+    var block = req.query.perCunitBlock && (req.query.perCunitBlock == 'true');
     var name = req.query.name;
     if (name) {
         cunitDb.getByName(name, function (err, cunits) {
@@ -20,7 +21,7 @@ router.get('/', common.midChkApiKey, function (req, res) {
             }
         }, test);
     } else {
-        cunitDb.get(function (err, cunits) {
+        cunitDb.get(block, function (err, cunits) {
             if (err) {
                 res.status(500).send(err.message);
             } else {

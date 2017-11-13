@@ -71,6 +71,7 @@ var cUnitDetailAPI = {
         self.optionsUnits = ko.observableArray([]);
         self.selectedUnits = ko.observableArray([]);
         self.sUnit = ko.observable();
+        self.block = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -79,6 +80,7 @@ var cUnitDetailAPI = {
         vm.description(data.description);
         vm.cost(data.cost);
         vm.image(data.image);
+        vm.block(data.block);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -138,7 +140,8 @@ var cUnitDetailAPI = {
                 reference: vm.reference(),
                 description: vm.description(),
                 image: vm.image(),
-                cost: vm.cost()
+                cost: vm.cost(),
+                block: vm.block()
             };
             var url = "", type = "";
             if (vm.id() == 0) {

@@ -102,7 +102,7 @@ var pwModalAPI = {
                 }
             }
         });
-    },    
+    },
     saveLine: function () {
         var mf = function (e) {
             e.preventDefault();
@@ -207,9 +207,13 @@ var pwModalAPI = {
         return mf;
     },
     loadCUnits: function (id) {
+        var url = sprintf('%s/cunit?api_key=%s', myconfig.apiUrl, api_key);
+        if (user.perCunitBlock) {
+            url += "&perCunitBlock=true";
+        }
         $.ajax({
             type: "GET",
-            url: sprintf('%s/cunit?api_key=%s', myconfig.apiUrl, api_key),
+            url: url,
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {

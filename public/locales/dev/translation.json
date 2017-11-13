@@ -157,7 +157,8 @@
         "perPwClosed": "Poder modificar propuestas terminadas",
         "closedMessage": "Esta propuesta está cerrada, sólo puede consultar su información.",
         "perNoDocsInOpen": "Permitir que el usuario abra obras sin los documentos necesarios",
-        "perChangePwDate": "Puede cambiar la fecha de las obras / propuestas"
+        "perChangePwDate": "Puede cambiar la fecha de las obras / propuestas",
+        "perCunitBlock": "Puede usar UUCC bloqueadas"
     },
     "workerGeneral": {
         "title": "Mantenimiento de recursos",
@@ -274,7 +275,8 @@
         "validate": {
             "items": "Debe elegir un artículo",
             "units": "Debe elegir una unidad"
-        }
+        },
+        "block": "Bloqueada"
     },
     "pwGeneral": {
         "title": "Mantenimiento propuestas",

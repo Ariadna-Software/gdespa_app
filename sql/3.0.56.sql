@@ -1,0 +1,5 @@
+ALTER TABLE `cunit`   
+  ADD COLUMN `block` BOOL DEFAULT FALSE NULL AFTER `cost`;
+
+ALTER TABLE `user`   
+  ADD COLUMN `perCunitBlock` BOOL DEFAULT FALSE NULL AFTER `perSeePlansClosed`;
