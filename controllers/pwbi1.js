@@ -49,4 +49,40 @@ router.get('/doctypes', function (req, res) {
     });
 });
 
+router.get('/chapters', function (req, res) {
+    pwbi1Db.getChapters((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/pwlines', function (req, res) {
+    pwbi1Db.getPwLines((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/cunits', function (req, res) {
+    pwbi1Db.getCUnits((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/cunitlines', function (req, res) {
+    pwbi1Db.getCunitLines((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/items', function (req, res) {
+    pwbi1Db.getItems((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+
 module.exports = router;
