@@ -108,6 +108,8 @@ app.use('/api/invoice', require('./controllers/invoice'));
 app.use('/api/doc_type', require('./controllers/doc_type'));
 // general API to export
 
+app.use('/pwbi1', require('./controllers/pwbi1'));
+
 var appAPI = {
     app: app,
     init: function (config) {
