@@ -105,4 +105,11 @@ router.get('/wolines', function (req, res) {
     });
 });
 
+router.get('/invoices', function (req, res) {
+    pwbi1Db.getInvoices((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
 module.exports = router;
