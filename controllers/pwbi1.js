@@ -84,5 +84,25 @@ router.get('/items', function (req, res) {
     });
 });
 
+router.get('/wos', function (req, res) {
+    pwbi1Db.getWos((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/teams', function (req, res) {
+    pwbi1Db.getTeams((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/wolines', function (req, res) {
+    pwbi1Db.getWoLines((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
 
 module.exports = router;
