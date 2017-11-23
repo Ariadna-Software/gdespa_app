@@ -77,6 +77,7 @@ var woDetailAPI = {
         // if it is an update show lines
         if (id != 0) {
             $('#wid-id-1').show();
+            $('#cmbPws').attr('disabled',true);
         } else {
             // new record
             $('#s2').hide();
