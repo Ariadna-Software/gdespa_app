@@ -95,7 +95,8 @@
         },
         "invoice": {
             "main": "Facturación",
-            "general": "Facturas"
+            "general": "Facturas",
+            "import": "Importación de facturas"
         },
         "rrhh": {
             "main":"Recursos humanos",
@@ -852,5 +853,39 @@
     },
     "rrHH": {
         "title": "Informes recursos humanos"
-    }    
+    },
+    "invoiceImport": {
+        "title": "Importación de facturas desde excel",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "download": "Descargar fichero",
+        "ok": "Guardar",
+        "docDate":"Fecha documento",
+        "comments": "Observaciones",
+        "pwName": "Obra relacionada",
+        "file": "Fichero",
+        "step1": "PASO (1) Escoja el libro excel que contienen la información",
+        "step2": "PASO (2) Indique como deben de ser procesados los campos y haga clic en el botón de aceptar.",
+        "step3": "PASO (3) Verifique las facturas a importar y haga clic en el botón de subida al final de la página",
+        "noFirstRow": "No procesar la primer fila (nombres de columnas)",
+        "sheetNumber": "Número de hoja que contiene los datos",
+        "nColInvoiceNumber": "Columna (Nro. Factura)",
+        "nColInvoiceDate": "Columna (Fecha factura)",
+        "nColReference": "Columna (SGT Obra)",
+        "nColAmount": "Columna (Importe positivo)",
+        "nColAmount2": "Columna (Importe negativo)",
+        "nColComments": "Columna (Observaciones)",
+        "onlyExcel": "Solo se permiten ficheros excel ['xls', 'xlsx']",
+        "firstDataRow": "Primera fila con datos",
+        "lastDataRow": "Última fila con datos",
+        "fileNeeded": "Se necesita seleccionar un fichero",
+        "invoiceId": "ID",
+        "invoiceNumber": "Nro.factura",
+        "invoiceDate": "Fecha factura",
+        "amount": "Importe",
+        "reference": "SGT",
+        "pwId": "PWID",
+        "explain": "Las filas con fondo morado corresponden a facturas de las que no se ha podido cruzar su referencia con una obra y no se darán de alta. Las filas con fondo azul corresponden a facturas ya dadas de alta y que se actualizarán con los nuevos valores.",
+        "endOk": "Las facturas han sido correctamente creadas o actualizadas. Use las opciones del menú para salir de la pantalla"
+    }        
 }

@@ -30,6 +30,31 @@ router.post('/', midCheck, function (req, res) {
     }, test);
 });
 
+router.post('/import/file', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var data = req.body;
+    invoiceDb.postImportFile(data, function (err, invoices) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(invoices);
+        }
+    }, test);
+});
+
+router.post('/import/import', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var data = req.body;
+    invoiceDb.postInvoicesUp(data, function (err, invoices) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(invoices);
+        }
+    }, test);
+});
+
+
 router.get('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
