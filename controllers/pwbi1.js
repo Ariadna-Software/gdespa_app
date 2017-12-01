@@ -119,4 +119,11 @@ router.get('/workedhours', function (req, res) {
     });
 });
 
+router.get('/teamlines', function (req, res) {
+    pwbi1Db.getTeamLines((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
 module.exports = router;
