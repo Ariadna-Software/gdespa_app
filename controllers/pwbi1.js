@@ -112,4 +112,11 @@ router.get('/invoices', function (req, res) {
     });
 });
 
+router.get('/workedhours', function (req, res) {
+    pwbi1Db.getWorkedHours((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
 module.exports = router;
