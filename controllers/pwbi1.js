@@ -126,4 +126,18 @@ router.get('/teamlines', function (req, res) {
     });
 });
 
+router.get('/lumhours', function (req, res) {
+    pwbi1Db.getLumHours((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/contahours', function (req, res) {
+    pwbi1Db.getContaHours((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
 module.exports = router;
