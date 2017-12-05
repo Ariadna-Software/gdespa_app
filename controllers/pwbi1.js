@@ -140,4 +140,18 @@ router.get('/contahours', function (req, res) {
     });
 });
 
+router.get('/woitems', function (req, res) {
+    pwbi1Db.getWoItems((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/pwitems', function (req, res) {
+    pwbi1Db.getPwItems((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
 module.exports = router;
