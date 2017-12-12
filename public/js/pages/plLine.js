@@ -40,6 +40,15 @@ var plLineAPI = {
                 html += '</label>';
                 return html;
             }
+        }, {
+            data: "id",
+            width: "10%",
+            render: function (data, type, row) {
+                var html = '<label class="input">';
+                html += sprintf('<input class="asw-center" id="cst%s" name="cst%s" type="text" disabled/>', data, data);
+                html += '</label>';
+                return html;
+            }
         }];
         // Group by chapter
         options.drawCallback = function (oSettings) {
@@ -148,7 +157,9 @@ var plLineAPI = {
         $("#tb_plLine").show();
         data.forEach(function (v) {
             var field = "#qty" + v.id;
+            var field2 = "#cst" + v.id;
             $(field).val(v.quantity);
+            $(field2).val(aswUtil.round2(v.quantity * v.unitCost));
             if (plLineAPI.seeNotChange()) $(field).attr('disabled', 'disabled');
             $(field).blur(function () {
                 var quantity = 0;
@@ -165,7 +176,8 @@ var plLineAPI = {
                     },
                     estimate: v.estimate,
                     done: v.done,
-                    quantity: quantity
+                    quantity: quantity,
+                    unitCost: v.unitCost
                 };
                 if ((data.quantity + data.done) > data.estimate) {
                     var message = i18n.t("plDetail.estimate_exceed");
@@ -173,6 +185,7 @@ var plLineAPI = {
                     $(field).val(0);
                     data.quantity = 0;
                 }
+                $(field2).val(aswUtil.round2(data.quantity * data.unitCost));
                 var url = "", type = "";
                 // updating record
                 var type = "PUT";
@@ -183,6 +196,23 @@ var plLineAPI = {
                     contentType: "application/json",
                     data: JSON.stringify(data),
                     success: function (data, status) {
+                        var type = "GET";
+                        var url = sprintf('%s/pl_line/pl/sumcost/%s/?api_key=%s', myconfig.apiUrl, v.pl.id, api_key);
+                        $.ajax({
+                            type: type,
+                            url: url,
+                            contentType: "application/json",
+                            data: JSON.stringify(data),
+                            success: function (data, status) {
+                                vm.totalCost(aswUtil.round2(data[0].TotalCost));
+                            },
+                            error: function (err) {
+                                aswNotif.errAjax(err);
+                                if (err.status == 401) {
+                                    window.open('index.html', '_self');
+                                }
+                            }
+                        });
                     },
                     error: function (err) {
                         aswNotif.errAjax(err);

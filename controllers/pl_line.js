@@ -58,6 +58,15 @@ router.get('/pl/plrker/:id', midCheck, function (req, res) {
     }, test);
 });
 
+router.get('/pl/sumcost/:id', midCheck, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    plLineDb.getByPlIdCost(id, function (err, lines) {
+        if (err) return res.status(500).send(err.message);
+        res.json(lines);
+    }, test);
+});
+
 router.put('/:id', midCheck, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

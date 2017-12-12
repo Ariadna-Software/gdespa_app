@@ -149,6 +149,8 @@ var plDetailAPI = {
         // 
         self.thirdParty = ko.observable();
         self.thirdPartyCompany = ko.observable();
+        //
+        self.totalCost = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -200,6 +202,23 @@ var plDetailAPI = {
             success: function (data, status) {
                 plDetailAPI.loadData(data[0]);
                 plLineAPI.getPlLines(data[0].id);
+                var type = "GET";
+                var url = sprintf('%s/pl_line/pl/sumcost/%s/?api_key=%s', myconfig.apiUrl, data[0].id, api_key);
+                $.ajax({
+                    type: type,
+                    url: url,
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    success: function (data, status) {
+                        vm.totalCost(aswUtil.round2(data[0].TotalCost));
+                    },
+                    error: function (err) {
+                        aswNotif.errAjax(err);
+                        if (err.status == 401) {
+                            window.open('index.html', '_self');
+                        }
+                    }
+                });
             },
             error: function (err) {
                 aswNotif.errAjax(err);

@@ -447,9 +447,10 @@
 												<section class="col col-md-12">
 													<label class="label" data-18n="plDetail.worker">Responsable planificación:</label>
 													<label style="width:100%;">
-														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}"></select><i></i>
+														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}"></select>
+														<i></i>
 													</label>
-												</section>												
+												</section>
 											</div>
 											<div class="row">
 												<section class="col col-md-2">
@@ -464,14 +465,14 @@
 														<select style="width:100%" id="cmbZones" name="cmbZones" data-bind="options: optionsZones, optionsText: 'name', optionsValue: 'id', value: sZone, valueAllowUnset: true, selectedOptions: selectedZones, selected2:{}"></select>
 														<i></i>
 													</label>
-												</section>	
+												</section>
 												<section class="col col-md-5">
 													<label class="label" data-18n="plDetail.team">Brigada:</label>
 													<label style="width:100%;">
 														<select style="width:100%" id="cmbTeams" name="cmbTeams" data-bind="options: optionsTeams, optionsText: 'name', optionsValue: 'teamId', value: sTeam, valueAllowUnset: true, selectedOptions: selectedTeams, selected2:{}"></select>
 														<i></i>
 													</label>
-												</section>																							
+												</section>
 											</div>
 											<div class="row">
 												<section class="col col-md-2"></section>
@@ -481,13 +482,19 @@
 														<select style="width:100%" id="cmbPws" name="cmbPws" data-bind="options: optionsPws, optionsText: 'name', optionsValue: 'id', value: sPw, valueAllowUnset: true, selectedOptions: selectedPws, selected2:{}"></select>
 														<i></i>
 													</label>
-												</section>												
+												</section>
 											</div>
 											<div class="row">
-												<section class="col col-md-12">
+												<section class="col col-md-9">
 													<label class="label" data-i18n="plDetail.comments">Onservaciones:</label>
 													<label class="textarea textarea-resizable">
 														<textarea id="txtComments" rows="3" class="custom-scroll" data-bind="value:comments"></textarea>
+													</label>
+												</section>
+												<section class="col col-md-3">
+													<label class="label" data-i18n="plDetail.cost">Onservaciones:</label>
+													<label class="input">
+														<input id="txtTotalCost" name="txtTotalCost" type="text" data-bind="value: totalCost" disabled />
 													</label>
 												</section>
 											</div>
@@ -511,7 +518,7 @@
 											<div class="pull-right">
 												<button id="btnWoNew" data-i18n="[title]plDetail.woNew" class="btn btn-primary btn-circle btn-lg">
 													<i class="fa fa-lg fa-cogs"></i>
-												</button>												
+												</button>
 												<button id="btnExit" data-i18n="[title]plDetail.cancel" class="btn btn-warning btn-circle btn-lg">
 													<i class="fa fa-lg fa-sign-out"></i>
 												</button>
@@ -568,14 +575,17 @@
 																	<th data-hide="phone" class="asw-center">
 																		<span data-i18n="plDetail.estimate"></span>
 																	</th>
-																	<th data-hide="phone" class="asw-cente">
+																	<th data-hide="phone" class="asw-center">
 																		<span data-i18n="plDetail.done"></span>
 																	</th>
 																	<th data-hide="phone" class="asw-cente">
 																		<span data-i18n="plDetail.prevPlanned"></span>
-																	</th>																	
+																	</th>
 																	<th data-hide="phone" class="asw-center">
 																		<span data-i18n="plDetail.quantity"></span>
+																	</th>
+																	<th data-hide="phone" class="asw-right">
+																		<span data-i18n="plDetail.cost"></span>
 																	</th>
 																</tr>
 															</thead>
