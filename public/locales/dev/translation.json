@@ -32,9 +32,9 @@
     },
     "status": {
         "INIT": "PRESUPUESTO",
-        "ACCEPTED": "ACEPTADO",
-        "DONE": "TERMINADO",
-        "VALIDATED": "CERTIFICADO",
+        "ACCEPTED": "REPLANTEO",
+        "DONE": "EN EJECUCIÓN",
+        "VALIDATED": "TERMINADO",
         "INVOICED": "FACTURADO",
         "PAID": "CERRADO"
     },

@@ -97,7 +97,7 @@ var pwModal2API = {
                 data: JSON.stringify(data),
                 success: function (data, status) {
                     $('#pwModal2').modal('hide');
-                    if (vm.sStatus2() == 2) {
+                    if (vm.sStatus2() == 3) {
                         // Proposed Work (pw) closed 
                         // Do you want to update line quantities?
                         aswNotif.generalQuestion(i18n.t('pwDetail.updateLines'), 'pwModal2API.updatePwLinesFromWoLines()');
