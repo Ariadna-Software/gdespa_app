@@ -50,7 +50,14 @@ var pwGeneralAPI = {
         }, {
             data: "total"
         }, {
-            data: "endDate"
+            data: "endDate",
+            render: function (data) {
+                html = "";
+                if (data) {
+                    html = moment(data).format('DD/MM/YYYY');
+                }
+                return html;
+            }
         }, {
             data: "percentage",
             render: function (data) {
