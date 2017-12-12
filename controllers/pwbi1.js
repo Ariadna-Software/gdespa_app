@@ -154,4 +154,18 @@ router.get('/pwitems', function (req, res) {
     });
 });
 
+router.get('/pl', function (req, res) {
+    pwbi1Db.getPl((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/pllines', function (req, res) {
+    pwbi1Db.getPlLines((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
 module.exports = router;
