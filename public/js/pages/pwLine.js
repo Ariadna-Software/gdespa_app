@@ -52,7 +52,7 @@ var pwLineAPI = {
                 if (vm.sStatus() > 0 && !user.modPw) {
                     html = "<div class='pull-right'>" + bt3 + "</div>";
                 }
-                if (vm.status() > 1 && !user.perPwClosed) {
+                if (vm.status() > 2 && !user.perPwClosed) {
                     html = "<div class='pull-right'>" + bt3 + "</div>";
                 }
                 return html;
@@ -84,7 +84,7 @@ var pwLineAPI = {
                     html += " <button id='btnNewLine'" + newButton + " data-i18n='[title]pwDetail.newLine' data-toggle='modal' data-target='#pwModal' class='btn btn-circle btn-primary btn-md pull-right'><i class='fa fa-sitemap fa-fw'></i></button> ";
                     html += "</div>";
                     html += "</td></tr>"
-                    if (vm.status() > 1 && !user.perPwClosed) {
+                    if (vm.status() > 2 && !user.perPwClosed) {
                         html = "";
                     }
                     $(rows).eq(i).before(
