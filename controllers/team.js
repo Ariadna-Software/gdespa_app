@@ -57,7 +57,7 @@ router.get('/zone/:id', common.midChkApiKey, function (req, res) {
     var id = req.params.id;
     teamDb.getByZoneId(id, function (err, teams) {
         if (err) return res.status(500).send(err.message);
-        if (teams.length == 0) return res.status(404).send('Team in not found');
+        // if (teams.length == 0) return res.status(404).send('Team in not found');
         res.json(teams);
     }, test);
 });
