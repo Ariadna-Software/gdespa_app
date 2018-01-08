@@ -13,6 +13,7 @@ var moModal2API = {
         $("#txtNormalHours").blur(moModal2API.changeHours);
         $("#txtExtraHours").blur(moModal2API.changeHours);
         $("#txtExtraHoursNight").blur(moModal2API.changeHours);
+        $("#txtExtraHoursMix").blur(moModal2API.changeHours);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -37,6 +38,7 @@ var moModal2API = {
         vm.normalHours(0);
         vm.extraHours(0);
         vm.extraHoursNight(0);
+        vm.extraHoursMix(0);
         vm.expenses(0);
         moModal2API.loadWorkers2(null);
     },
@@ -53,6 +55,7 @@ var moModal2API = {
                     vm.normalHours(data[0].normalHours);
                     vm.extraHours(data[0].extraHours);
                     vm.extraHoursNight(data[0].extraHoursNight);
+                    vm.extraHoursMix(data[0].extraHoursMix);
                     vm.expenses(data[0].expenses);
                     moModal2API.loadWorkers2(data[0].worker.id);
                 }
@@ -83,6 +86,7 @@ var moModal2API = {
                 extraHours: vm.extraHours(),
                 planHours: vm.planHours(),
                 extraHoursNight: vm.extraHoursNight(),
+                extraHoursMix: vm.extraHoursMix(),
                 expenses: vm.expenses()
             };
             var url = "", type = "";
@@ -135,6 +139,6 @@ var moModal2API = {
         });
     },
     changeHours: function () {
-        vm.quantity2((vm.normalHours() * 1) + (vm.extraHours() * 1) + (vm.extraHoursNight() * 1));
+        vm.quantity2((vm.normalHours() * 1) + (vm.extraHours() * 1) + (vm.extraHoursNight() * 1) + (vm.extraHoursMix() * 1));
     }
 };

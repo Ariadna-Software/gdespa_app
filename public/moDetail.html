@@ -513,7 +513,10 @@
 														</th>		
 														<th data-hide="phone">
 															<span data-i18n="moDetail.extraHoursNight"></span>
-														</th>																																					
+														</th>		
+														<th data-hide="phone">
+															<span data-i18n="moDetail.extraHoursMix"></span>
+														</th>																																																	
 														<th data-hide="phone">
 															<span data-i18n="moDetail.quantity2"></span>
 														</th>
@@ -694,6 +697,12 @@
                                         </label>
 									</section>	
 									<section class="col col-md-2">
+										<label class="label" data-i18n="moDetail.extraHoursMix">H.E.Mix:</label>
+										<label class="input">
+											<input id="txtExtraHoursMix" name="txtExtraHoursMix" type="text" data-bind="value: extraHoursMix" />
+										</label>
+									</section>	
+									<section class="col col-md-2">
 										<label class="label" data-i18n="moDetail.quantity2">Dias:</label>
 										<label class="input">
                                             <input id="txtQuantity2" name="txtQuantity2" type="text" data-bind="value: quantity2" disabled />
@@ -705,11 +714,14 @@
                                             <input id="txtPlanHours" name="txtPlanHours" type="text" data-bind="value: planHours" />
                                         </label>
 									</section>																	
+								</div>
+								<div class="row">
+									<section class="col col-md-10"></section>
 									<section class="col col-md-2">
 										<label class="label" data-i18n="moDetail.expenses">H.E.N.:</label>
 										<label class="input">
-                                            <input id="txtExpenses" name="txtExpenses" type="text" data-bind="value: expenses" />
-                                        </label>
+											<input id="txtExpenses" name="txtExpenses" type="text" data-bind="value: expenses" />
+										</label>
 									</section>
 								</div>
 							</section>

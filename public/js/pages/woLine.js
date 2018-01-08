@@ -223,6 +223,8 @@ var woLineAPI = {
         }, {
             data: "extraHoursNight"
         }, {
+            data: "extraHoursMix"
+        }, {
             data: "quantity"
         }, {
             data: "expenses"
