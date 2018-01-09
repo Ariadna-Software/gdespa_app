@@ -855,7 +855,12 @@
         "needToClose": "Necesario para cerrar propuestas"
     },
     "rrHH": {
-        "title": "Informes recursos humanos"
+        "title": "Informes recursos humanos",
+        "expExcel": "Exportar horas a excel",
+        "dFecha": "Desde fecha",
+        "hFecha": "Hasta fecha",
+        "generalReport": "Informes generales",
+        "expExcelOk": "Proceso de exportación finalizado, el archivo generado se abrirá en una nueva pantalla para descarga"
     },
     "invoiceImport": {
         "title": "Importación de facturas desde excel",

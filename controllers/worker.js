@@ -56,6 +56,25 @@ router.get('/hours', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/hoursxls', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var fromDate = req.query.fromDate;
+    var toDate = req.query.toDate;
+    var workerId = req.query.workerId;
+    workerDb.getHours(fromDate, toDate, workerId, function (err, workers) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            workerDb.getHoursXls(fromDate, toDate, workers, function(err, file){
+                if (err) return res.status(500).send(err.message);
+                res.json(file);
+            })
+            
+        }
+    }, test);
+});
+
+
 router.get('/vehicle', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     workerDb.getVehicle(function (err, vehicles) {
