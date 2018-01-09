@@ -152,7 +152,7 @@
         <PageFooterBand2 Ref="10" type="PageFooterBand" isKey="true">
           <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,18.01,27.69,1</ClientRectangle>
+          <ClientRectangle>0,29.42,27.69,1</ClientRectangle>
           <Components isList="true" count="3">
             <Text43 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -3196,7 +3196,7 @@
   <ReportChanged>1/8/2018 2:14:50 PM</ReportChanged>
   <ReportCreated>1/1/1970 11:00:00 AM</ReportCreated>
   <ReportDescription>Horas por trabajador</ReportDescription>
-  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\worker_hours_rrhMx.mrt</ReportFile>
+  <ReportFile />
   <ReportGuid>ff8327816b2b4ee797cd2963b8dd5988</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>rrhhHours</ReportName>

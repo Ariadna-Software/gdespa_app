@@ -14,36 +14,44 @@
     <DataSources isList="true" count="1">
       <root Ref="3" type="DataTableSource" isKey="true">
         <Alias>root</Alias>
-        <Columns isList="true" count="29">
-          <value>hEHD,System.Nullable`1[System.Decimal]</value>
-          <value>hEHN,System.Decimal</value>
-          <value>hH,System.Decimal</value>
-          <value>hXHD,System.Decimal</value>
-          <value>hXHN,System.Decimal</value>
+        <Columns isList="true" count="37">
+          <value>hEHD,System.Double</value>
+          <value>hEHN,System.Double</value>
+          <value>hH,System.Double</value>
+          <value>hXHD,System.Double</value>
+          <value>hXHN,System.Double</value>
           <value>initDate,System.String</value>
-          <value>nEHD,System.Decimal</value>
-          <value>nEHN,System.Decimal</value>
-          <value>nH,System.Decimal</value>
-          <value>nXHD,System.Decimal</value>
-          <value>nXHN,System.Decimal</value>
-          <value>sEHD,System.Decimal</value>
-          <value>sEHN,System.Decimal</value>
-          <value>sH,System.Decimal</value>
-          <value>sXHD,System.Decimal</value>
-          <value>sXHN,System.Decimal</value>
-          <value>vDate,System.String</value>
+          <value>nEHD,System.Double</value>
+          <value>nEHN,System.Double</value>
+          <value>nH,System.Double</value>
+          <value>nXHD,System.Double</value>
+          <value>nXHN,System.Double</value>
+          <value>sEHD,System.Double</value>
+          <value>sEHN,System.Double</value>
+          <value>sH,System.Double</value>
+          <value>sXHD,System.Double</value>
+          <value>sXHN,System.Double</value>
+          <value>vDate,System.DateTime</value>
           <value>vDay,System.String</value>
           <value>vName,System.String</value>
-          <value>vWeek,System.Decimal</value>
-          <value>vWokId,System.Decimal</value>
+          <value>vWeek,System.Double</value>
+          <value>vWokId,System.Double</value>
           <value>wDate,System.String</value>
           <value>wDayType,System.String</value>
-          <value>wDayTypeId,System.Decimal</value>
+          <value>wDayTypeId,System.String</value>
           <value>wPwName,System.String</value>
-          <value>wWeek,System.Decimal</value>
-          <value>wYear,System.Decimal</value>
+          <value>wWeek,System.String</value>
+          <value>wYear,System.String</value>
           <value>worker,System.String</value>
-          <value>workerId,System.Decimal</value>
+          <value>workerId,System.String</value>
+          <value>administrative,System.Double</value>
+          <value>active,System.Double</value>
+          <value>nEHM,System.Double</value>
+          <value>sEHM,System.Double</value>
+          <value>hEHM,System.Double</value>
+          <value>nXHM,System.Double</value>
+          <value>sXHM,System.Double</value>
+          <value>hXHM,System.Double</value>
         </Columns>
         <Dictionary isRef="1" />
         <Name>root</Name>
@@ -58,8 +66,8 @@
       <value>,hFecha,hFecha,Hasta_x0020_fecha,System.String,_x0032_017-05-31,False,False,False,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_DateTimeType_x003E_DateAndTime_x003C__x002F_DateTimeType_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
       <value>,dFechaR,dFechaR,,System.String,_x0030_1_x002F_05_x002F_2017,False,False,False,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_DateTimeType_x003E_DateAndTime_x003C__x002F_DateTimeType_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
       <value>,hFechaR,hFechaR,,System.String,_x0033_1_x002F_05_x002F_2017,False,False,False,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_DateTimeType_x003E_DateAndTime_x003C__x002F_DateTimeType_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
-      <value>,minWeekHours,minWeekHours,,System.Decimal,_x0038_,False,False,False,False</value>
-      <value>,minReportHours,minReportHours,,System.Decimal,_x0038_0,False,False,False,False</value>
+      <value>,minWeekHours,minWeekHours,,System.Decimal,_x0034_0,False,False,False,False</value>
+      <value>,minReportHours,minReportHours,,System.Decimal,_x0032_00,False,False,False,False</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
@@ -72,7 +80,7 @@
       <Components isList="true" count="8">
         <PageHeaderBand1 Ref="5" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.4,27.69,3</ClientRectangle>
+          <ClientRectangle>0,0.4,27.69,2.8</ClientRectangle>
           <ComponentPlacement>ph.Page1</ComponentPlacement>
           <Components isList="true" count="4">
             <Image1 Ref="6" type="Image" isKey="true">
@@ -90,7 +98,7 @@
             </Image1>
             <Text8 Ref="7" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.6,0.2,15,0.8</ClientRectangle>
+              <ClientRectangle>3.4,0.2,24.2,0.8</ClientRectangle>
               <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
               <Conditions isList="true" count="0" />
               <Font>Arial,16</Font>
@@ -105,7 +113,7 @@
             </Text8>
             <Text9 Ref="8" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.6,1,15,1</ClientRectangle>
+              <ClientRectangle>3.4,1,24.2,1</ClientRectangle>
               <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
               <Conditions isList="true" count="0" />
               <Font>Arial,14</Font>
@@ -125,7 +133,7 @@
               <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
               <Conditions isList="true" count="0" />
               <Font>Arial,14</Font>
-              <Guid>5e81a710a1f548069f404aed0b49df59</Guid>
+              <Guid>f620d75cd78e4e36ab70c17e879314d2</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text111</Name>
@@ -148,7 +156,7 @@
           <Components isList="true" count="3">
             <Text43 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>21.8,0.11,5.8,0.6</ClientRectangle>
+              <ClientRectangle>24.2,0.09,3.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <HorAlignment>Right</HorAlignment>
@@ -163,7 +171,7 @@
             </Text43>
             <Text44 Ref="12" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.2,0.11,3.6,0.6</ClientRectangle>
+              <ClientRectangle>0.2,0.09,3.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Margins>0,0,0,0</Margins>
@@ -180,7 +188,7 @@
             </Text44>
             <Text78 Ref="14" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>4,0.19,17.6,0.6</ClientRectangle>
+              <ClientRectangle>4,0.17,20,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>2729f285f87a794a1b389a1fb58e3a43</Guid>
@@ -189,7 +197,7 @@
               <Name>Text78</Name>
               <Page isRef="4" />
               <Parent isRef="10" />
-              <Text>N: Hora normal / ED: Extra diurna / EN: Extra nocturna / EED: Exceso extra diurna / EEN: Exceso extra nocturna.</Text>
+              <Text>N: Hora normal / ED: Extra diurna / EM: Extra mixta / EN: Extra nocturna / EED: Exceso extra diurna / EEM: Exceso extra mixta / EEN: Exceso extra nocturna.</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -203,7 +211,7 @@
         <GroupHeaderBand2 Ref="15" type="GroupHeaderBand" isKey="true">
           <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,4.2,27.69,0.8</ClientRectangle>
+          <ClientRectangle>0,4,27.69,0.8</ClientRectangle>
           <Components isList="true" count="1">
             <Text1 Ref="16" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
@@ -230,7 +238,7 @@
         </GroupHeaderBand2>
         <GroupHeaderBand1 Ref="17" type="GroupHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,5.8,27.69,0.8</ClientRectangle>
+          <ClientRectangle>0,5.6,27.69,0.8</ClientRectangle>
           <Components isList="true" count="1">
             <Text6 Ref="18" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
@@ -257,12 +265,12 @@
         </GroupHeaderBand1>
         <HeaderWHors Ref="19" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,7.4,27.69,2</ClientRectangle>
-          <Components isList="true" count="20">
+          <ClientRectangle>0,7.2,27.69,2</ClientRectangle>
+          <Components isList="true" count="26">
             <Text2 Ref="20" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.4,1,1.6,0.8</ClientRectangle>
+              <ClientRectangle>0,1,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Enabled>False</Enabled>
               <Font>Arial,8</Font>
@@ -278,7 +286,7 @@
             <Text3 Ref="21" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,1,9.8,0.8</ClientRectangle>
+              <ClientRectangle>1.8,1,4.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Enabled>False</Enabled>
               <Font>Arial,8</Font>
@@ -295,7 +303,7 @@
             <Text7 Ref="22" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.4,1,1,0.8</ClientRectangle>
+              <ClientRectangle>6.4,1,1,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>67f43383814e3965e0da78171e7bd4ba</Guid>
@@ -312,7 +320,7 @@
             <Text10 Ref="23" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>13.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>7.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>c1b3fcc5a149362b1e9270606c29f2c7</Guid>
@@ -329,7 +337,7 @@
             <Text11 Ref="24" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>9.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>936770985d0706c4b8e2cecec1bdad68</Guid>
@@ -346,7 +354,7 @@
             <Text12 Ref="25" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.4,0,5,0.8</ClientRectangle>
+              <ClientRectangle>6.4,0,7,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>7fdf75143d14b54307855379aac65ee0</Guid>
@@ -363,7 +371,7 @@
             <Text13 Ref="26" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>22.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>20.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>d10c8bead0452587460d7b9e80b98d04</Guid>
@@ -380,7 +388,7 @@
             <Text14 Ref="27" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>23.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>21.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>ddf1b5335ac8ff0e4d508413da7b7a88</Guid>
@@ -397,7 +405,7 @@
             <Text15 Ref="28" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>24.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>23.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>cd5824423a91bd42ddf78896f55d6bd4</Guid>
@@ -414,7 +422,7 @@
             <Text16 Ref="29" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>22.6,0,4.8,0.8</ClientRectangle>
+              <ClientRectangle>20.6,0,6.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>622242d8a362b574f3bf5911745df2aa</Guid>
@@ -431,7 +439,7 @@
             <Text17 Ref="30" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>13.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>abe0c59c6ce067c336d0330a3bb15a3c</Guid>
@@ -448,7 +456,7 @@
             <Text18 Ref="31" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>18.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>14.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>9be1e9ddef7398dec8944c411d58ff17</Guid>
@@ -465,7 +473,7 @@
             <Text19 Ref="32" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>19.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>16.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>e3b52f7293b13fbffd683ab4fdb8baaa</Guid>
@@ -482,7 +490,7 @@
             <Text20 Ref="33" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.6,0,4.8,0.8</ClientRectangle>
+              <ClientRectangle>13.6,0,6.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>2957b85cc4d5441ac524c51ef847d929</Guid>
@@ -499,7 +507,7 @@
             <Text54 Ref="34" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>10.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>8f75d23114d1cec4fedb7f4123587396</Guid>
@@ -516,7 +524,7 @@
             <Text58 Ref="35" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>12.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>3e1e2ac36cf57f8e13137100fb2cfd9d</Guid>
@@ -533,7 +541,7 @@
             <Text62 Ref="36" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>20.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>17.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>55e29aa67ec09f7931a650edfbe612d0</Guid>
@@ -550,7 +558,7 @@
             <Text66 Ref="37" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>21.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>19.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>4430f4f082da11c2e11c47c9bdc022d8</Guid>
@@ -567,7 +575,7 @@
             <Text70 Ref="38" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>25.6,1,0.8,0.8</ClientRectangle>
+              <ClientRectangle>24.6,1,0.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>b7f095c3c1e6fddad8129ae08f35184b</Guid>
@@ -598,6 +606,108 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text74>
+            <Text112 Ref="40" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.6,1,0.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>d09cf06703414235b629bdc8c5967fe0</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text112</Name>
+              <Page isRef="4" />
+              <Parent isRef="19" />
+              <Text>EEM</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text112>
+            <Text115 Ref="41" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.6,1,0.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>7a2ce134ba4842e2b833e3fec902ba6f</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text115</Name>
+              <Page isRef="4" />
+              <Parent isRef="19" />
+              <Text>EM</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text115>
+            <Text120 Ref="42" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15.6,1,0.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>ca9dc97bca3f49218bca461d70a91bd2</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text120</Name>
+              <Page isRef="4" />
+              <Parent isRef="19" />
+              <Text>EM</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text120>
+            <Text124 Ref="43" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18.6,1,0.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>186bdeca5a864d25a9c869f9d984d57a</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text124</Name>
+              <Page isRef="4" />
+              <Parent isRef="19" />
+              <Text>EEM</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text124>
+            <Text128 Ref="44" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>22.6,1,0.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>2e851ba06c0249e693a1a91431d3076e</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text128</Name>
+              <Page isRef="4" />
+              <Parent isRef="19" />
+              <Text>EM</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text128>
+            <Text132 Ref="45" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,1,0.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>56b9ea8adc00428db4f7c6fd1a3dbbb9</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text132</Name>
+              <Page isRef="4" />
+              <Parent isRef="19" />
+              <Text>EEM</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text132>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>HeaderWHors</Name>
@@ -605,48 +715,48 @@
           <Parent isRef="4" />
           <PrintIfEmpty>True</PrintIfEmpty>
         </HeaderWHors>
-        <DataWHors Ref="40" type="DataBand" isKey="true">
+        <DataWHors Ref="46" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,10.2,27.69,0.8</ClientRectangle>
-          <Components isList="true" count="17">
-            <Text4 Ref="41" type="Text" isKey="true">
+          <ClientRectangle>0,10,27.69,0.8</ClientRectangle>
+          <Components isList="true" count="23">
+            <Text4 Ref="47" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>2.2,0,9.8,0.6</ClientRectangle>
+              <ClientRectangle>1.8,0,4.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>2cd546f2ae9d0c1d653426b7dc5f006f</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
+              <Parent isRef="46" />
               <Text>{root.vDay}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
-            <Text5 Ref="42" type="Text" isKey="true">
+            <Text5 Ref="48" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.4,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>0,0,1.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
+              <Parent isRef="46" />
               <Text>{root.vDate}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="43" type="DateFormat" isKey="true">
+              <TextFormat Ref="49" type="DateFormat" isKey="true">
                 <StringFormat>dd/MM/yyyy</StringFormat>
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text5>
-            <Text21 Ref="44" type="Text" isKey="true">
+            <Text21 Ref="50" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.4,0,1,0.6</ClientRectangle>
+              <ClientRectangle>6.4,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>9d339f39703399ee0d0755c56bc185c6</Guid>
@@ -654,74 +764,8 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text21</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
+              <Parent isRef="46" />
               <Text>{root.nH}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="45" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text21>
-            <Text22 Ref="46" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>13.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>0e8be14c84865cb3e2e1b5e091acb7e3</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text22</Name>
-              <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.nEHD}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="47" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text22>
-            <Text23 Ref="48" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>14.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>6c3f0dd77eaad57a60969cfbab28af74</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text23</Name>
-              <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.nEHN}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="49" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text23>
-            <Text24 Ref="50" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>17.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>1cbd08dfcbf191370f31e28da168b96b</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text24</Name>
-              <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.sH}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="51" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -731,19 +775,19 @@
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text24>
-            <Text25 Ref="52" type="Text" isKey="true">
+            </Text21>
+            <Text22 Ref="52" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>18.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>7.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>a211e174b0a3192fd2349996f2c745fe</Guid>
+              <Guid>0e8be14c84865cb3e2e1b5e091acb7e3</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text25</Name>
+              <Name>Text22</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.sEHD}</Text>
+              <Parent isRef="46" />
+              <Text>{root.nEHD}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="53" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -753,19 +797,19 @@
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text25>
-            <Text26 Ref="54" type="Text" isKey="true">
+            </Text22>
+            <Text23 Ref="54" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>19.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>9.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>b4a68954098bf6283ae1e2537481f215</Guid>
+              <Guid>6c3f0dd77eaad57a60969cfbab28af74</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text26</Name>
+              <Name>Text23</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.sEHN}</Text>
+              <Parent isRef="46" />
+              <Text>{root.nEHN}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="55" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -775,19 +819,19 @@
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text26>
-            <Text27 Ref="56" type="Text" isKey="true">
+            </Text23>
+            <Text24 Ref="56" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>22.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>13.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>72ec24e462ed4140404474c6db0eea01</Guid>
+              <Guid>1cbd08dfcbf191370f31e28da168b96b</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text27</Name>
+              <Name>Text24</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.hH}</Text>
+              <Parent isRef="46" />
+              <Text>{root.sH}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="57" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -797,19 +841,19 @@
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text27>
-            <Text28 Ref="58" type="Text" isKey="true">
+            </Text24>
+            <Text25 Ref="58" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>23.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>14.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>06cb2cc774c1cfa8434f9a9b1554f6b3</Guid>
+              <Guid>a211e174b0a3192fd2349996f2c745fe</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text28</Name>
+              <Name>Text25</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.hEHD}</Text>
+              <Parent isRef="46" />
+              <Text>{root.sEHD}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="59" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -819,19 +863,19 @@
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text28>
-            <Text29 Ref="60" type="Text" isKey="true">
+            </Text25>
+            <Text26 Ref="60" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>24.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>16.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>6a35ef29b9f3749bf5c6cdc3a99f91cb</Guid>
+              <Guid>b4a68954098bf6283ae1e2537481f215</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text29</Name>
+              <Name>Text26</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.hEHN}</Text>
+              <Parent isRef="46" />
+              <Text>{root.sEHN}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="61" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -841,19 +885,19 @@
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text29>
-            <Text55 Ref="62" type="Text" isKey="true">
+            </Text26>
+            <Text27 Ref="62" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>20.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>f812f64e8cbf211b480640433c288899</Guid>
+              <Guid>72ec24e462ed4140404474c6db0eea01</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text55</Name>
+              <Name>Text27</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.nXHD}</Text>
+              <Parent isRef="46" />
+              <Text>{root.hH}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="63" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -861,21 +905,21 @@
                 <NegativePattern>1</NegativePattern>
                 <UseLocalSetting>False</UseLocalSetting>
               </TextFormat>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text55>
-            <Text59 Ref="64" type="Text" isKey="true">
+            </Text27>
+            <Text28 Ref="64" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>21.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>0b9e2be93eb40824598c652bf4b8b754</Guid>
+              <Guid>06cb2cc774c1cfa8434f9a9b1554f6b3</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text59</Name>
+              <Name>Text28</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.nXHN}</Text>
+              <Parent isRef="46" />
+              <Text>{root.hEHD}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="65" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -883,21 +927,21 @@
                 <NegativePattern>1</NegativePattern>
                 <UseLocalSetting>False</UseLocalSetting>
               </TextFormat>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text59>
-            <Text63 Ref="66" type="Text" isKey="true">
+            </Text28>
+            <Text29 Ref="66" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>20.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>23.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>21f233d631b09c13e6a41d10d7238a38</Guid>
+              <Guid>6a35ef29b9f3749bf5c6cdc3a99f91cb</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text63</Name>
+              <Name>Text29</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.sXHD}</Text>
+              <Parent isRef="46" />
+              <Text>{root.hEHN}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="67" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -905,21 +949,21 @@
                 <NegativePattern>1</NegativePattern>
                 <UseLocalSetting>False</UseLocalSetting>
               </TextFormat>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text63>
-            <Text67 Ref="68" type="Text" isKey="true">
+            </Text29>
+            <Text55 Ref="68" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>21.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>10.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>75eb66e6e54511ba46f5a55cb747b21d</Guid>
+              <Guid>f812f64e8cbf211b480640433c288899</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text67</Name>
+              <Name>Text55</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.sXHN}</Text>
+              <Parent isRef="46" />
+              <Text>{root.nXHD}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="69" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -929,19 +973,19 @@
               </TextFormat>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text67>
-            <Text71 Ref="70" type="Text" isKey="true">
+            </Text55>
+            <Text59 Ref="70" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>25.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>12.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>0f93b62880afb0a94cbccf73030edc09</Guid>
+              <Guid>0b9e2be93eb40824598c652bf4b8b754</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text71</Name>
+              <Name>Text59</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.hXHD}</Text>
+              <Parent isRef="46" />
+              <Text>{root.nXHN}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="71" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -951,19 +995,19 @@
               </TextFormat>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text71>
-            <Text75 Ref="72" type="Text" isKey="true">
+            </Text59>
+            <Text63 Ref="72" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>26.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>17.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>614733c0de188d304dc6bab43fc511f4</Guid>
+              <Guid>21f233d631b09c13e6a41d10d7238a38</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text75</Name>
+              <Name>Text63</Name>
               <Page isRef="4" />
-              <Parent isRef="40" />
-              <Text>{root.hXHN}</Text>
+              <Parent isRef="46" />
+              <Text>{root.sXHD}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="73" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -973,7 +1017,205 @@
               </TextFormat>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
+            </Text63>
+            <Text67 Ref="74" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>19.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>75eb66e6e54511ba46f5a55cb747b21d</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text67</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{root.sXHN}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="75" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text67>
+            <Text71 Ref="76" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>24.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>0f93b62880afb0a94cbccf73030edc09</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text71</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{root.hXHD}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="77" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text71>
+            <Text75 Ref="78" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>26.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>614733c0de188d304dc6bab43fc511f4</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text75</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{root.hXHN}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="79" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text75>
+            <Text113 Ref="80" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>6b0483a035854114bc6fc8563679a9bd</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text113</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{root.nEHM}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="81" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text113>
+            <Text116 Ref="82" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>560a40b9b35d4d06bc3d6bfb891e0b13</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text116</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{root.nEHM}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="83" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text116>
+            <Text121 Ref="84" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>11bd2f5eb0684e18aae5cce5e8886a36</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text121</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{root.sEHM}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="85" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text121>
+            <Text125 Ref="86" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>e001ad5fff83419b97a21e704c81e087</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text125</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{root.sXHM}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="87" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text125>
+            <Text129 Ref="88" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>22.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>d65394d2be494d57912131ac827f3a4b</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text129</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{root.hEHM}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="89" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text129>
+            <Text133 Ref="90" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>48d0377b4dfd48c58364a85ff14a8b60</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text133</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{root.hXHM}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="91" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text133>
           </Components>
           <Conditions isList="true" count="0" />
           <DataSourceName>root</DataSourceName>
@@ -989,14 +1231,14 @@
             <value>vDate</value>
           </Sort>
         </DataWHors>
-        <GroupFooterBand1 Ref="74" type="GroupFooterBand" isKey="true">
+        <GroupFooterBand1 Ref="92" type="GroupFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,11.8,27.69,0.8</ClientRectangle>
-          <Components isList="true" count="16">
-            <Text32 Ref="75" type="Text" isKey="true">
+          <ClientRectangle>0,11.6,27.69,0.8</ClientRectangle>
+          <Components isList="true" count="22">
+            <Text32 Ref="93" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.4,0,1,0.6</ClientRectangle>
+              <ClientRectangle>6.4,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="1">
                 <value>_x007B_Sum_x0028_DataWHors_x002C_root.nH_x0029__x0020__x003C__x0020_minWeekHours_x007D_,[255:0:0],[0:255:255:255],Arial_x002C_8,True,False,,,All</value>
               </Conditions>
@@ -1006,10 +1248,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text32</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.nH)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="76" type="NumberFormat" isKey="true">
+              <TextFormat Ref="94" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1018,10 +1260,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text32>
-            <Text33 Ref="77" type="Text" isKey="true">
+            <Text33 Ref="95" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>13.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>7.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>a648c049d9556418d15a4904f1835924</Guid>
@@ -1029,10 +1271,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text33</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.nEHD)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="78" type="NumberFormat" isKey="true">
+              <TextFormat Ref="96" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1041,10 +1283,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text33>
-            <Text34 Ref="79" type="Text" isKey="true">
+            <Text34 Ref="97" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>9.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>6ad782ea0caaaa9e368a1b4f13e4335e</Guid>
@@ -1052,10 +1294,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text34</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.nEHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="80" type="NumberFormat" isKey="true">
+              <TextFormat Ref="98" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1064,10 +1306,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text34>
-            <Text35 Ref="81" type="Text" isKey="true">
+            <Text35 Ref="99" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>13.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>dc9b027228a3a1dfa4587a0c9ac56418</Guid>
@@ -1075,10 +1317,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text35</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.sH)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="82" type="NumberFormat" isKey="true">
+              <TextFormat Ref="100" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1087,10 +1329,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text35>
-            <Text36 Ref="83" type="Text" isKey="true">
+            <Text36 Ref="101" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>18.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>14.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>6d59a0ea2b75c0511cf13a28d2dceb32</Guid>
@@ -1098,10 +1340,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text36</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.sEHD)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="84" type="NumberFormat" isKey="true">
+              <TextFormat Ref="102" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1110,10 +1352,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text36>
-            <Text37 Ref="85" type="Text" isKey="true">
+            <Text37 Ref="103" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>19.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>16.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>11c750c93255d5c10925fbde88d3aabd</Guid>
@@ -1121,10 +1363,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text37</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.sEHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="86" type="NumberFormat" isKey="true">
+              <TextFormat Ref="104" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1133,10 +1375,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text37>
-            <Text38 Ref="87" type="Text" isKey="true">
+            <Text38 Ref="105" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>22.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>20.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>98dde42507ffc797a7ecb43fb127dd0d</Guid>
@@ -1144,10 +1386,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text38</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.hH)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="88" type="NumberFormat" isKey="true">
+              <TextFormat Ref="106" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1156,10 +1398,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text38>
-            <Text39 Ref="89" type="Text" isKey="true">
+            <Text39 Ref="107" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>23.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>21.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>fc0494ab67ecb806ca5e0705c65cd551</Guid>
@@ -1167,10 +1409,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text39</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.hEHD)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="90" type="NumberFormat" isKey="true">
+              <TextFormat Ref="108" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1179,10 +1421,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text39>
-            <Text40 Ref="91" type="Text" isKey="true">
+            <Text40 Ref="109" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>24.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>23.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>a7a5fdcea296bf23f60058fd9960920d</Guid>
@@ -1190,10 +1432,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text40</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.hEHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="92" type="NumberFormat" isKey="true">
+              <TextFormat Ref="110" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1202,28 +1444,28 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text40>
-            <Text41 Ref="93" type="Text" isKey="true">
+            <Text41 Ref="111" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>0.6,0,11.6,0.6</ClientRectangle>
+              <ClientRectangle>0.2,0,6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,10</Font>
+              <Font>Arial,8</Font>
               <Guid>e9500d8cb444c3f71297aa211d8a9825</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text41</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
-              <Text>Semana {root.vWeek}: </Text>
+              <Parent isRef="92" />
+              <Text>Totales semana {root.vWeek}: </Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text41>
-            <Text56 Ref="94" type="Text" isKey="true">
+            <Text56 Ref="112" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>10.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>4d70589970faf283d30e31efcfb222f8</Guid>
@@ -1231,10 +1473,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text56</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.nXHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="95" type="NumberFormat" isKey="true">
+              <TextFormat Ref="113" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1243,10 +1485,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text56>
-            <Text60 Ref="96" type="Text" isKey="true">
+            <Text60 Ref="114" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>12.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>f25a1f97849da39ac5d3e9606d6afa74</Guid>
@@ -1254,10 +1496,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text60</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.nXHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="97" type="NumberFormat" isKey="true">
+              <TextFormat Ref="115" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1266,10 +1508,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text60>
-            <Text64 Ref="98" type="Text" isKey="true">
+            <Text64 Ref="116" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>20.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>17.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>7f4f4528656ffc9f4001cc05a1acbd3f</Guid>
@@ -1277,10 +1519,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text64</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.sXHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="99" type="NumberFormat" isKey="true">
+              <TextFormat Ref="117" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1289,10 +1531,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text64>
-            <Text68 Ref="100" type="Text" isKey="true">
+            <Text68 Ref="118" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>21.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>19.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>fef42d5bde5f4fd5882efac33b56a8bf</Guid>
@@ -1300,10 +1542,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text68</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.sXHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="101" type="NumberFormat" isKey="true">
+              <TextFormat Ref="119" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1312,10 +1554,10 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text68>
-            <Text72 Ref="102" type="Text" isKey="true">
+            <Text72 Ref="120" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>25.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>24.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>887b59e50a2ae5cadf00b6532eadc7f0</Guid>
@@ -1323,10 +1565,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text72</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.hXHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="103" type="NumberFormat" isKey="true">
+              <TextFormat Ref="121" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1335,7 +1577,7 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text72>
-            <Text76 Ref="104" type="Text" isKey="true">
+            <Text76 Ref="122" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>26.6,0,0.8,0.6</ClientRectangle>
@@ -1346,10 +1588,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text76</Name>
               <Page isRef="4" />
-              <Parent isRef="74" />
+              <Parent isRef="92" />
               <Text>{Sum(DataWHors,root.hEHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="105" type="NumberFormat" isKey="true">
+              <TextFormat Ref="123" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1358,33 +1600,21 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text76>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <Name>GroupFooterBand1</Name>
-          <Page isRef="4" />
-          <Parent isRef="4" />
-        </GroupFooterBand1>
-        <GroupFooterBand2 Ref="106" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,13.4,27.69,6.2</ClientRectangle>
-          <Components isList="true" count="50">
-            <Text42 Ref="107" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+            <Text114 Ref="124" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.4,0,1,0.6</ClientRectangle>
-              <Conditions isList="true" count="1">
-                <value>_x007B_Sum_x0028_DataWHors_x002C_root.nH_x0029__x0020__x003C__x0020_minReportHours_x007D_,[192:0:0],[0:255:255:255],Arial_x002C_8,True,False,,,All</value>
-              </Conditions>
+              <ClientRectangle>11.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>d6590cf53fd845da7b7473fd3c4be1cf</Guid>
+              <Guid>39261827059e4453a8ad3fc53817597a</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text42</Name>
+              <Name>Text114</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.nH)}</Text>
+              <Parent isRef="92" />
+              <Text>{Sum(DataWHors,root.nXHM)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="108" type="NumberFormat" isKey="true">
+              <TextFormat Ref="125" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1392,221 +1622,20 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text42>
-            <Text45 Ref="109" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+            </Text114>
+            <Text117 Ref="126" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>13.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>8.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>940fd07e0f33fbcac731ebaa792eff89</Guid>
+              <Guid>4aa9675c589047bcaee3fb240ad77d8e</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text45</Name>
+              <Name>Text117</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.nEHD)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="110" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text45>
-            <Text46 Ref="111" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>14.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>d5888dafa20100bef1944d562ff36bc9</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text46</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.nEHN)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="112" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text46>
-            <Text47 Ref="113" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>17.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>b7db2667f0e32c735554a1a9dd3a4024</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text47</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.sH)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="114" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text47>
-            <Text48 Ref="115" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>18.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>06a7b7da2070d2eb8839fa1baf1e3ab8</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text48</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.sEHD)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="116" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text48>
-            <Text49 Ref="117" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>19.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>35f345a10fb5502edab782550c1415d6</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text49</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.sEHN)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="118" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text49>
-            <Text50 Ref="119" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>22.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>9af2aaece5e3ba4d7af899e9a47da68f</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text50</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.hH)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="120" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text50>
-            <Text51 Ref="121" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>23.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>aad057981aa78fead7678a1d803b8a71</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text51</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.hEHD)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="122" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text51>
-            <Text52 Ref="123" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>24.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>09e3eb79e1a5a67369c1c7619259993a</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text52</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.hEHN)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="124" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text52>
-            <Text53 Ref="125" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>0.2,0,12,1</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,10</Font>
-              <Guid>21244f00f1bc0389a01bbac3435ff220</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text53</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Totales {Trim(root.vName)} desde {dFechaR} hasta {hFechaR}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-            </Text53>
-            <Text57 Ref="126" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>15.6,0,0.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>94072fd1e874ef4bcbcb5b6b855c0bf8</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text57</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.nXHN)}</Text>
+              <Parent isRef="92" />
+              <Text>{Sum(DataWHors,root.nEHM)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="127" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -1616,20 +1645,20 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text57>
-            <Text61 Ref="128" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+            </Text117>
+            <Text122 Ref="128" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>15.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>8bea5a1a6225f3060417f679cf9d2196</Guid>
+              <Guid>51ce634b054d4d968d5d783525a2d5c6</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text61</Name>
+              <Name>Text122</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.nXHN)}</Text>
+              <Parent isRef="92" />
+              <Text>{Sum(DataWHors,root.sEHM)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="129" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -1639,20 +1668,20 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text61>
-            <Text65 Ref="130" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+            </Text122>
+            <Text126 Ref="130" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>20.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>18.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>c94bd88e303c8ab3c1a9882d2eed771d</Guid>
+              <Guid>0c428aa6c6314f7cb355151f396dcd6e</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text65</Name>
+              <Name>Text126</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.sXHN)}</Text>
+              <Parent isRef="92" />
+              <Text>{Sum(DataWHors,root.sXHM)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="131" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -1662,20 +1691,20 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text65>
-            <Text69 Ref="132" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+            </Text126>
+            <Text130 Ref="132" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>21.6,0,0.8,0.6</ClientRectangle>
+              <ClientRectangle>22.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>964e57446e5df0502d2f730794dce222</Guid>
+              <Guid>020e5dc818a840d6bd972113656f2e4e</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text69</Name>
+              <Name>Text130</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.sXHN)}</Text>
+              <Parent isRef="92" />
+              <Text>{Sum(DataWHors,root.hEHM)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="133" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -1685,20 +1714,20 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text69>
-            <Text73 Ref="134" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+            </Text130>
+            <Text134 Ref="134" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>25.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>325dba441df6a3bb9673e2be602d474c</Guid>
+              <Guid>37e5b93db53b4998826ddb9ebe2ccb03</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text73</Name>
+              <Name>Text134</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.hXHN)}</Text>
+              <Parent isRef="92" />
+              <Text>{Sum(DataWHors,root.hXHM)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="135" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -1708,8 +1737,360 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
+            </Text134>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>GroupFooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </GroupFooterBand1>
+        <GroupFooterBand2 Ref="136" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,13.2,27.69,9.6</ClientRectangle>
+          <Components isList="true" count="68">
+            <Text42 Ref="137" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.4,0,1,0.6</ClientRectangle>
+              <Conditions isList="true" count="1">
+                <value>_x007B_Sum_x0028_DataWHors_x002C_root.nH_x0029__x0020__x003C__x0020_minReportHours_x007D_,[255:0:0],[0:255:255:255],Arial_x002C_8,True,False,,,All</value>
+              </Conditions>
+              <Font>Arial,8</Font>
+              <Guid>d6590cf53fd845da7b7473fd3c4be1cf</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text42</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nH)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="138" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text42>
+            <Text45 Ref="139" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>940fd07e0f33fbcac731ebaa792eff89</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text45</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nEHD)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="140" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text45>
+            <Text46 Ref="141" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>d5888dafa20100bef1944d562ff36bc9</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text46</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nEHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="142" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text46>
+            <Text47 Ref="143" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>b7db2667f0e32c735554a1a9dd3a4024</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text47</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sH)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="144" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text47>
+            <Text48 Ref="145" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>06a7b7da2070d2eb8839fa1baf1e3ab8</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text48</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sEHD)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="146" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text48>
+            <Text49 Ref="147" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>35f345a10fb5502edab782550c1415d6</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text49</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sEHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="148" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text49>
+            <Text50 Ref="149" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>20.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>9af2aaece5e3ba4d7af899e9a47da68f</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text50</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hH)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="150" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text50>
+            <Text51 Ref="151" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>21.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>aad057981aa78fead7678a1d803b8a71</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text51</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hEHD)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="152" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text51>
+            <Text52 Ref="153" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>23.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>09e3eb79e1a5a67369c1c7619259993a</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text52</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hEHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="154" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text52>
+            <Text53 Ref="155" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,6.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>21244f00f1bc0389a01bbac3435ff220</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text53</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Totales {root.vName} desde {dFechaR} hasta {hFechaR}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text53>
+            <Text57 Ref="156" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>94072fd1e874ef4bcbcb5b6b855c0bf8</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text57</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nXHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="157" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text57>
+            <Text61 Ref="158" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>8bea5a1a6225f3060417f679cf9d2196</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text61</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nXHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="159" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text61>
+            <Text65 Ref="160" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>c94bd88e303c8ab3c1a9882d2eed771d</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text65</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sXHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="161" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text65>
+            <Text69 Ref="162" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>19.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>964e57446e5df0502d2f730794dce222</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text69</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sXHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="163" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text69>
+            <Text73 Ref="164" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>24.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>325dba441df6a3bb9673e2be602d474c</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text73</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hXHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="165" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text73>
-            <Text77 Ref="136" type="Text" isKey="true">
+            <Text77 Ref="166" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>26.6,0,0.8,0.6</ClientRectangle>
@@ -1720,10 +2101,10 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text77</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
+              <Parent isRef="136" />
               <Text>{Sum(DataWHors,root.hXHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="137" type="NumberFormat" isKey="true">
+              <TextFormat Ref="167" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -1732,552 +2113,141 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text77>
-            <Text30 Ref="138" type="Text" isKey="true">
+            <Text30 Ref="168" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>5,1.4,22.6,0.6</ClientRectangle>
+              <ClientRectangle>4.8,0.8,22.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10</Font>
-              <Guid>7fae53b2eb584d938796a9a948831e50</Guid>
+              <Guid>57effac177e84ac3bc23d76a844439d1</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text30</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
+              <Parent isRef="136" />
               <Text>RESUMEN DE HORAS DE  {root.vName} DESDE {dFechaR} HASTA {hFechaR}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text30>
-            <Text31 Ref="139" type="Text" isKey="true">
+            <Text31 Ref="169" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>5,2.2,7.2,0.8</ClientRectangle>
+              <ClientRectangle>4.8,1.6,7.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>253441b53a764f7782a6f0157fa19d58</Guid>
+              <Guid>cccecfa3bad441b2bd0603f38be8d38f</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text31</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
+              <Parent isRef="136" />
               <Text>JORNADA NORMAL</Text>
               <TextBrush>[0:0:0]</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text31>
-            <Text79 Ref="140" type="Text" isKey="true">
+            <Text79 Ref="170" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>5,3,5.4,0.6</ClientRectangle>
+              <ClientRectangle>4.8,2.4,5.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>6573a9718f8a4ee894741104f1898b71</Guid>
+              <Guid>a854ca9b2c7e43a286c9d8bdb50fef3a</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text79</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
+              <Parent isRef="136" />
               <Text>Horas normales</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text79>
-            <Text80 Ref="141" type="Text" isKey="true">
+            <Text80 Ref="171" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>5,3.6,5.4,0.6</ClientRectangle>
+              <ClientRectangle>4.8,3,5.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>6b8acbc540864ecaae5a873fb62d4eeb</Guid>
+              <Guid>a6638e63c8344a8b87846a16ac94c70b</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text80</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
+              <Parent isRef="136" />
               <Text>Horas extra diurnas</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text80>
-            <Text81 Ref="142" type="Text" isKey="true">
+            <Text81 Ref="172" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>5,4.2,5.4,0.6</ClientRectangle>
+              <ClientRectangle>4.8,4.2,5.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>2079bbdac6a74966837d7f8ad91af310</Guid>
+              <Guid>8f4af14aa16f474180f4834847f42c54</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text81</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
+              <Parent isRef="136" />
               <Text>Horas extra nocturnas</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text81>
-            <Text82 Ref="143" type="Text" isKey="true">
+            <Text82 Ref="173" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>5,4.8,5.4,0.6</ClientRectangle>
+              <ClientRectangle>4.8,4.8,5.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>e9c71b15ade9466ea05b4da7e54fd739</Guid>
+              <Guid>e14b38224d8d4f3583dc1e0b7e45df92</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text82</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
+              <Parent isRef="136" />
               <Text>Horas extra diurnas en exceso</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text82>
-            <Text83 Ref="144" type="Text" isKey="true">
+            <Text83 Ref="174" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>5,5.4,5.4,0.6</ClientRectangle>
+              <ClientRectangle>4.8,6,5.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>83c1c5943e5c4abbb515916146e0ff12</Guid>
+              <Guid>b6f2df729e6f468282a33c423d7c6e8e</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text83</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
+              <Parent isRef="136" />
               <Text>Horas extra nocturnas en exceso</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text83>
-            <Text84 Ref="145" type="Text" isKey="true">
+            <Text84 Ref="175" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>10.4,3,1.8,0.6</ClientRectangle>
+              <ClientRectangle>10.2,2.4,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="1">
                 <value>_x007B_Sum_x0028_DataWHors_x002C_root.nH_x0029__x0020__x003C__x0020_minReportHours_x007D_,[255:0:0],[0:255:255:255],Arial_x002C_8,True,False,,,All</value>
               </Conditions>
               <Font>Arial,8</Font>
-              <Guid>637ef3a5a2b44db480f22a37c60a513e</Guid>
+              <Guid>6b96759dfce4481690d56b53bc6de806</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text84</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
+              <Parent isRef="136" />
               <Text>{Sum(DataWHors,root.nH)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="146" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text84>
-            <Text85 Ref="147" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>10.4,3.6,1.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>df64cf79514f452182eb84fb6406ec99</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text85</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.nEHD)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="148" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text85>
-            <Text86 Ref="149" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>10.4,4.2,1.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>f08fbf27a18b4605bb38317080c50e6b</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text86</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.nEHN)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="150" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text86>
-            <Text87 Ref="151" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>10.4,4.8,1.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>b6eecd7dcfec40969de2fcbf99db1de2</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text87</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.nXHN)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="152" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text87>
-            <Text88 Ref="153" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>10.4,5.4,1.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>d4f20fe1ef274224928ef94b6ee2c169</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text88</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.nXHN)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="154" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text88>
-            <Text89 Ref="155" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>12.8,2.2,7.2,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>2ac61482744d4ddf959db59f6107b92e</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text89</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>DOMINGO / DESCANSO</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text89>
-            <Text90 Ref="156" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>12.8,3,5.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>5f9f6c900fee435eb109f949d370abf9</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text90</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Horas normales</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text90>
-            <Text91 Ref="157" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>12.8,3.6,5.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>a9b4ef90cadc4b5b9183b3c2f66b023e</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text91</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Horas extra diurnas</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text91>
-            <Text92 Ref="158" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>12.8,4.2,5.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>20f063d2925244beb306866a4fb21760</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text92</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Horas extra nocturnas</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text92>
-            <Text93 Ref="159" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>12.8,4.8,5.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>18a83dd8f3d3422a981c03471d467148</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text93</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Horas extra diurnas en exceso</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text93>
-            <Text94 Ref="160" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>12.8,5.4,5.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>866b256ff14241b28591fa588852179a</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text94</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Horas extra nocturnas en exceso</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text94>
-            <Text95 Ref="161" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>20.4,2.2,7.2,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>38cfbf3d3a1d4f548d43dd58ee88a1eb</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text95</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>FESTIVO / FERIADO</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text95>
-            <Text96 Ref="162" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>20.4,3,5.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>eee2a611176149e7b73a0f0a5cd6e6af</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text96</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Horas normales</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text96>
-            <Text97 Ref="163" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>20.4,3.6,5.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>5331f68d3b3849aea0937847e33da05f</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text97</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Horas extra diurnas</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text97>
-            <Text98 Ref="164" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>20.4,4.2,5.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>1fa294d384344958963ee8ab800c310d</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text98</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Horas extra nocturnas</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text98>
-            <Text99 Ref="165" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>20.4,4.8,5.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>0930f3ee28bf424a9fbdd9811f5984c4</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text99</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Horas extra diurnas en exceso</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text99>
-            <Text100 Ref="166" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>20.4,5.4,5.4,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>11c975ab05364af08a6ec01dbc8d3b5d</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text100</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>Horas extra nocturnas en exceso</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text100>
-            <Text101 Ref="167" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>18.2,3,1.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>93a26c35b0d34d30860a80979c566421</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text101</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.sH)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="168" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text101>
-            <Text102 Ref="169" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>18.2,3.6,1.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>0f4d9eaeb2724a369ce4fe72fbbd1189</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text102</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.sEHD)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="170" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text102>
-            <Text103 Ref="171" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>18.2,4.2,1.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>9c6f67a77807462a88cb3d5001e1dabc</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text103</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.sEHN)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="172" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text103>
-            <Text104 Ref="173" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>18.2,4.8,1.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>09dc87561a2446bdbaacb1c3da4830d2</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text104</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.sXHN)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="174" type="NumberFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text104>
-            <Text105 Ref="175" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>18.2,5.4,1.8,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>e0f2daf3f2334264be5aa2e98536dbc6</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text105</Name>
-              <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.sXHN)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="176" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -2287,20 +2257,20 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text105>
-            <Text106 Ref="177" type="Text" isKey="true">
+            </Text84>
+            <Text85 Ref="177" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>25.8,3,1.8,0.6</ClientRectangle>
+              <ClientRectangle>10.2,3,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>ca85f554288a440798e3e62713c748d5</Guid>
+              <Guid>26ab73e301f84c48945ee032f11769f3</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text106</Name>
+              <Name>Text85</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.hH)}</Text>
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nEHD)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="178" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -2310,20 +2280,20 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text106>
-            <Text107 Ref="179" type="Text" isKey="true">
+            </Text85>
+            <Text86 Ref="179" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>25.8,3.6,1.8,0.6</ClientRectangle>
+              <ClientRectangle>10.2,4.2,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>4585455d172543cb8865a5e85f2a9b93</Guid>
+              <Guid>71433c8f29d14ea3bc96b31251ee8c07</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text107</Name>
+              <Name>Text86</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.hEHD)}</Text>
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nEHN)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="180" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -2333,20 +2303,20 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text107>
-            <Text108 Ref="181" type="Text" isKey="true">
+            </Text86>
+            <Text87 Ref="181" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>25.8,4.2,1.8,0.6</ClientRectangle>
+              <ClientRectangle>10.2,4.8,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>83a6095486e8425fab0dbfdf20abe909</Guid>
+              <Guid>7c064c9338974eaa9034a7a61ce4b836</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text108</Name>
+              <Name>Text87</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.hEHN)}</Text>
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nXHN)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="182" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -2356,20 +2326,20 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text108>
-            <Text109 Ref="183" type="Text" isKey="true">
+            </Text87>
+            <Text88 Ref="183" type="Text" isKey="true">
               <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>25.8,4.8,1.8,0.6</ClientRectangle>
+              <ClientRectangle>10.2,6,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>7978fcd245054302a0e2cb4216bd4207</Guid>
+              <Guid>ef88a2d31f644c24a88a5ff80fe5f73d</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text109</Name>
+              <Name>Text88</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
-              <Text>{Sum(DataWHors,root.hXHN)}</Text>
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nXHN)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="184" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -2379,22 +2349,433 @@
               </TextFormat>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text109>
-            <Text110 Ref="185" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+            </Text88>
+            <Text89 Ref="185" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>25.8,5.4,1.8,0.6</ClientRectangle>
+              <ClientRectangle>12.6,1.6,7.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>8eb954116ba3483cb09f0fefbd76e82f</Guid>
+              <Guid>d36723685b064d34be784b6db2a246ca</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text89</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>DOMINGO / DESCANSO</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text89>
+            <Text90 Ref="186" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.6,2.4,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>9f355709790642f3945e0e57699c27ad</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text90</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas normales</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text90>
+            <Text91 Ref="187" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.6,3,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>bc091317c34d427ea69438ca6d784fae</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text91</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra diurnas</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text91>
+            <Text92 Ref="188" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.6,4.2,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>0c630b66bea44776b456059f7e7f685a</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text92</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra nocturnas</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text92>
+            <Text93 Ref="189" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.6,4.8,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>40c0b1e26dab43f68f4a0d095cb9e161</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text93</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra diurnas en exceso</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text93>
+            <Text94 Ref="190" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.6,6,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>312e36d72ac5483ca87c7179fe699c66</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text94</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra nocturnas en exceso</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text94>
+            <Text95 Ref="191" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>20.2,1.6,7.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>b331c793e7cf4e31bb42c7c34d077396</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text95</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>FESTIVO / FERIADO</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text95>
+            <Text96 Ref="192" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>20.2,2.4,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>f437968880464869bfa3c7b04ace2bad</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text96</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas normales</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text96>
+            <Text97 Ref="193" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>20.2,3,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>59448b7c2215489e86169aa1ef84143c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text97</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra diurnas</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text97>
+            <Text98 Ref="194" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>20.2,4.2,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>26d8868e252248fb8a588473c090cfb2</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text98</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra nocturnas</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text98>
+            <Text99 Ref="195" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>20.2,4.8,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>ae296f1126fa4fc2867c272110642743</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text99</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra diurnas en exceso</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text99>
+            <Text100 Ref="196" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>20.2,6,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>599ee4a0cde14d66aea2ec35d11dc479</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text100</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra nocturnas en exceso</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text100>
+            <Text101 Ref="197" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,2.4,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>ef6e2de7f8b14dcfa4196333d83ea302</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text101</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sH)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="198" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text101>
+            <Text102 Ref="199" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,3,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>bf2ba33009ad4b4ebcc7803b0611e5bb</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text102</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sEHD)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="200" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text102>
+            <Text103 Ref="201" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,4.2,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>1c24fe23b75a40c4b99879f54da4c4d6</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text103</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sEHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="202" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text103>
+            <Text104 Ref="203" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,4.8,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>5fd243f07471445aaf1c204428c45bcf</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text104</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sXHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="204" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text104>
+            <Text105 Ref="205" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,6,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>debd5625553d4babada27d9244f2f680</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text105</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sXHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="206" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text105>
+            <Text106 Ref="207" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,2.4,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>6c4f9f12630d4d17889a3d7cdeedeb83</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text106</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hH)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="208" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text106>
+            <Text107 Ref="209" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,3,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>882f259fb5ad494d8b3d763ce196e6f4</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text107</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hEHD)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="210" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text107>
+            <Text108 Ref="211" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,4.2,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>65081d8e27ce4dee80444462aa1f7dea</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text108</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hEHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="212" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text108>
+            <Text109 Ref="213" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,4.8,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>c50c0319a05f402ba884582dafe1f68c</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text109</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hXHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="214" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text109>
+            <Text110 Ref="215" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,6,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>37b55dbbf9244f9bb83b9d0545764a64</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text110</Name>
               <Page isRef="4" />
-              <Parent isRef="106" />
+              <Parent isRef="136" />
               <Text>{Sum(DataWHors,root.hXHN)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="186" type="NumberFormat" isKey="true">
+              <TextFormat Ref="216" type="NumberFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -2403,6 +2784,384 @@
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
             </Text110>
+            <Text118 Ref="217" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>5dcb033f5c5545a189928805f9ffffae</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text118</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nEHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="218" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text118>
+            <Text119 Ref="219" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>2c61979404cc4826a7cc370df7a29e53</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text119</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nXHN)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="220" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text119>
+            <Text123 Ref="221" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>13b889959c284aaba2e136ce62e5c09c</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text123</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sEHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="222" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text123>
+            <Text127 Ref="223" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>e2206dbb7f174aea813f6e8535cf538d</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text127</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sXHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="224" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text127>
+            <Text131 Ref="225" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>22.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>c854553a7e4545b2af730ac6376de9d9</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text131</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hEHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="226" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text131>
+            <Text135 Ref="227" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>5b6ef0347e994eccb190d52bafad62d7</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text135</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hXHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="228" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text135>
+            <Text136 Ref="229" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4.8,3.6,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>59176e1398a3404f9a4c136551e76a44</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text136</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra mixtas</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text136>
+            <Text137 Ref="230" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.2,3.6,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>021b69d687754083b6ebf2bce011dbe0</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text137</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nEHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="231" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text137>
+            <Text138 Ref="232" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4.8,5.4,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>dc6d1938f8354a2bb009237a06ac318b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text138</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra mixtas en exceso</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text138>
+            <Text139 Ref="233" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.2,5.4,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>15207b41f55b451bb32afdd198aaafb5</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text139</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.nXHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="234" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text139>
+            <Text140 Ref="235" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.6,3.6,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>420eda1f3ced4d55be5d657183e526fe</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text140</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra mixtas</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text140>
+            <Text141 Ref="236" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,3.6,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>6e983be1018340e19f40ea91396bbf2f</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text141</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sEHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="237" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text141>
+            <Text142 Ref="238" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.6,5.4,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>969467548bac404aa5c45d915dff3dd6</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text142</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra mixtas en exceso</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text142>
+            <Text143 Ref="239" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,5.4,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>85d2c819ee04405989d3e66889c30161</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text143</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.sXHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="240" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text143>
+            <Text144 Ref="241" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>20.2,5.4,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>62cb1781482f40e9a5e848e898b32fd8</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text144</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra mixtas en exceso</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text144>
+            <Text145 Ref="242" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,5.4,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>fc9485bde395444ebd607dea509e0ba7</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text145</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hXHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="243" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text145>
+            <Text146 Ref="244" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>20.2,3.6,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>80759cee311b465681260688c5d7330c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text146</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>Horas extra mixtas</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text146>
+            <Text147 Ref="245" type="Text" isKey="true">
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.6,3.6,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>9d2c25fc8cc8408893554320c47003b3</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text147</Name>
+              <Page isRef="4" />
+              <Parent isRef="136" />
+              <Text>{Sum(DataWHors,root.hEHM)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="246" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text147>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>GroupFooterBand2</Name>
@@ -2419,13 +3178,13 @@
       <PageHeight>21.01</PageHeight>
       <PageWidth>29.69</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="187" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="247" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="188" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="248" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -2438,11 +3197,11 @@
   </ReferencedAssemblies>
   <ReportAlias>rrhhHours</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>11/13/2017 8:56:37 AM</ReportChanged>
+  <ReportChanged>1/9/2018 9:44:43 AM</ReportChanged>
   <ReportCreated>1/1/1970 11:00:00 AM</ReportCreated>
   <ReportDescription>Horas por trabajador</ReportDescription>
-  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\worker_hours_rrh0.mrt</ReportFile>
-  <ReportGuid>1fe20d61b1c54a9aba6bce51c1785272</ReportGuid>
+  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\worker_hours_rrhMx0.mrt</ReportFile>
+  <ReportGuid>df5bcdeb8468451db4c8bc90fc72b17c</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>rrhhHours</ReportName>
   <ReportUnit>Centimeters</ReportUnit>

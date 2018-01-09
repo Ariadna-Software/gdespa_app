@@ -152,11 +152,11 @@
         <PageFooterBand2 Ref="10" type="PageFooterBand" isKey="true">
           <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,18.01,27.69,1</ClientRectangle>
+          <ClientRectangle>0,29.42,27.69,1</ClientRectangle>
           <Components isList="true" count="3">
             <Text43 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>21.8,0.1,5.8,0.6</ClientRectangle>
+              <ClientRectangle>24.2,0.09,3.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <HorAlignment>Right</HorAlignment>
@@ -171,7 +171,7 @@
             </Text43>
             <Text44 Ref="12" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.2,0.1,3.6,0.6</ClientRectangle>
+              <ClientRectangle>0.2,0.09,3.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Margins>0,0,0,0</Margins>
@@ -188,7 +188,7 @@
             </Text44>
             <Text78 Ref="14" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>4,0.18,17.6,0.6</ClientRectangle>
+              <ClientRectangle>4,0.17,20,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Guid>2729f285f87a794a1b389a1fb58e3a43</Guid>
@@ -197,7 +197,7 @@
               <Name>Text78</Name>
               <Page isRef="4" />
               <Parent isRef="10" />
-              <Text>N: Hora normal / ED: Extra diurna / EN: Extra nocturna / EED: Exceso extra diurna / EEM: Exceso extra mixta / EEN: Exceso extra nocturna.</Text>
+              <Text>N: Hora normal / ED: Extra diurna / EM: Extra mixta / EN: Extra nocturna / EED: Exceso extra diurna / EEM: Exceso extra mixta / EEN: Exceso extra nocturna.</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -258,6 +258,7 @@
           </Components>
           <Condition>{root.vWeek}</Condition>
           <Conditions isList="true" count="0" />
+          <Enabled>False</Enabled>
           <Name>GroupHeaderBand1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
@@ -271,6 +272,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>0,1,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Enabled>False</Enabled>
               <Font>Arial,8</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
@@ -286,6 +288,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>1.8,1,4.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Enabled>False</Enabled>
               <Font>Arial,8</Font>
               <Guid>bf46496806baff20ac13fdff7561295b</Guid>
               <Margins>0,0,0,0</Margins>
@@ -1216,6 +1219,7 @@
           </Components>
           <Conditions isList="true" count="0" />
           <DataSourceName>root</DataSourceName>
+          <Enabled>False</Enabled>
           <Filters isList="true" count="0" />
           <Name>DataWHors</Name>
           <Page isRef="4" />
@@ -1232,7 +1236,7 @@
           <ClientRectangle>0,11.6,27.69,0.8</ClientRectangle>
           <Components isList="true" count="22">
             <Text32 Ref="93" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>6.4,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="1">
@@ -1257,7 +1261,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text32>
             <Text33 Ref="95" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>7.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1280,7 +1284,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text33>
             <Text34 Ref="97" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>9.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1303,7 +1307,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text34>
             <Text35 Ref="99" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>13.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1326,7 +1330,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text35>
             <Text36 Ref="101" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>14.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1349,7 +1353,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text36>
             <Text37 Ref="103" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>16.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1372,7 +1376,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text37>
             <Text38 Ref="105" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>20.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1395,7 +1399,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text38>
             <Text39 Ref="107" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>21.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1418,7 +1422,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text39>
             <Text40 Ref="109" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>23.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1459,7 +1463,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text41>
             <Text56 Ref="112" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>10.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1482,7 +1486,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text56>
             <Text60 Ref="114" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>12.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1505,7 +1509,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text60>
             <Text64 Ref="116" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>17.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1528,7 +1532,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text64>
             <Text68 Ref="118" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>19.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1551,7 +1555,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text68>
             <Text72 Ref="120" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>24.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1574,7 +1578,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text72>
             <Text76 Ref="122" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>26.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1597,7 +1601,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text76>
             <Text114 Ref="124" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1620,7 +1624,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text114>
             <Text117 Ref="126" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>8.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1643,7 +1647,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text117>
             <Text122 Ref="128" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>15.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1666,7 +1670,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text122>
             <Text126 Ref="130" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>18.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1689,7 +1693,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text126>
             <Text130 Ref="132" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>22.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1712,7 +1716,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text130>
             <Text134 Ref="134" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;[0:0:0]</Border>
+              <Border>None;Black;1;Solid;False;4;[0:0:0]</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>25.6,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -3193,11 +3197,11 @@
   </ReferencedAssemblies>
   <ReportAlias>rrhhHours</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>1/8/2018 2:14:50 PM</ReportChanged>
+  <ReportChanged>1/9/2018 9:44:43 AM</ReportChanged>
   <ReportCreated>1/1/1970 11:00:00 AM</ReportCreated>
   <ReportDescription>Horas por trabajador</ReportDescription>
-  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\worker_hours_rrhMx.mrt</ReportFile>
-  <ReportGuid>ff8327816b2b4ee797cd2963b8dd5988</ReportGuid>
+  <ReportFile />
+  <ReportGuid>df5bcdeb8468451db4c8bc90fc72b17c</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>rrhhHours</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
