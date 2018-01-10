@@ -30,4 +30,6 @@ _ReSharper*/
 node_modules
 public/uploads
 public/docs
+public/ficheros
+
 
