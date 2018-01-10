@@ -459,7 +459,22 @@ var aswUtil = {
             opciones.data = JSON.stringify(datos);
         }
         $.ajax(opciones);
-    }
+    },
+    spanishDate: function(v) {
+        var rd = moment(v).format('DD/MM/YYYY');
+        if (rd == 'Invalid date') {
+            rd = null;
+        }
+        return rd;
+    },
+    spanishDbDate: function(v) {
+        if (!v) {
+            return null;
+        }
+        var v2 = v.split('/');
+        rd = v2[2] + "-" + v2[1] + "-" + v2[0];
+        return rd;
+    }    
 }
 
 var aswReport = {

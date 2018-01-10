@@ -1,0 +1,17 @@
+ALTER TABLE `worker`   
+  ADD COLUMN `ss` VARCHAR(255) NULL AFTER `active`,
+  ADD COLUMN `dv` VARCHAR(255) NULL AFTER `ss`,
+  ADD COLUMN `bornDate` DATE NULL AFTER `dv`,
+  ADD COLUMN `sex` CHAR(1) NULL AFTER `bornDate`,
+  ADD COLUMN `contractDate` DATE NULL AFTER `sex`,
+  ADD COLUMN `riseDate` DATE NULL AFTER `contractDate`,
+  ADD COLUMN `employeeType` CHAR(1) NULL AFTER `riseDate`,
+  ADD COLUMN `payPeriod` INT(11) NULL AFTER `employeeType`,
+  ADD COLUMN `isrCode` CHAR(1) NULL AFTER `payPeriod`,
+  ADD COLUMN `achRoute` VARCHAR(255) NULL AFTER `isrCode`,
+  ADD COLUMN `bankAccount` VARCHAR(255) NULL AFTER `achRoute`,
+  ADD COLUMN `bankAccountType` INT(11) NULL AFTER `bankAccount`,
+  ADD COLUMN `teamId` INT(11) NULL AFTER `bankAccountType`,
+  ADD COLUMN `expirationDate` DATE NULL AFTER `teamId`,
+  ADD COLUMN `terminationDate` DATE NULL AFTER `expirationDate`,
+  ADD COLUMN `terminationReason` INT(11) NULL AFTER `terminationDate`;

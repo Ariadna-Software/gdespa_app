@@ -473,10 +473,83 @@
 												<section class="col col-md-6">
 													<label class="label" data-i18n="workerDetail.state">Comunidad / Estado:</label>
 													<label class="input">
-													<input id="txtState" name="txtState" data-bind="value: state">
-												</label>
+														<input id="txtState" name="txtState" data-bind="value: state">
+													</label>
 												</section>
 											</div>
+											<!-- New fields -->
+											<div class="row">
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.sex">Sex:</label>
+													<select style="width:100%;" id="cmbSex" name="cmbSex" data-bind="options: optionsSex, optionsText: 'sexName', optionsValue: 'sexId', 
+														value: sSex, valueAllowUnset: true, selectedOptions: selectedSex, selected2:{}">
+													</select>
+												</section>
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.bornDate">Fecha nac:</label>
+													<label class="input">
+														<input id="txBornDate" name="txtBornDate" data-bind="value: bornDate" class="datepicker" data-dateformat="dd/mm/yy">
+													</label>
+												</section>	
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.ss">SS:</label>
+													<label class="input">
+														<input id="txtSs" name="txtSs" data-bind="value: ss">
+													</label>
+												</section>
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.dv">DV:</label>
+													<label class="input">
+														<input id="txtDv" name="txtDv" data-bind="value: dv">
+													</label>
+												</section>
+											</div>	
+											<div class="row">
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.contractDate">Fecha ct:</label>
+													<label class="input">
+														<input id="txtContractDate" name="txtContractDate" data-bind="value: contractDate" class="datepicker" data-dateformat="dd/mm/yy">
+													</label>
+												</section>	
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.employeeType">EMPT:</label>
+													<select style="width:100%;" id="cmbEmployeeType" name="cmbEmployeeType" data-bind="options: optionsEmployeeType, optionsText: 'employeeTypeName', optionsValue: 'employeeTypeId', 
+														value: sEmployeeType, valueAllowUnset: true, selectedOptions: selectedEmployeeType, selected2:{}">
+													</select>
+												</section>	
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.payPeriod">PP:</label>
+													<label class="input">
+														<input id="txtPayPeriod" name="txtPayPeriod" data-bind="value: payPeriod">
+													</label>
+												</section>		
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.riseDate">Fecha rs:</label>
+													<label class="input">
+														<input id="txtRiseDate" name="txtRiseDate" data-bind="value: riseDate" class="datepicker" data-dateformat="dd/mm/yy">
+													</label>
+												</section>																																	
+											</div>	
+											<div class="row">
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.isrCode">ISR Code:</label>
+													<select style="width:100%;" id="cmbIsrCode" name="cmbIsrCode" data-bind="options: optionsIsrCode, optionsText: 'isrCodeName', optionsValue: 'isrCodeId', 
+														value: sIsrCode, valueAllowUnset: true, selectedOptions: selectedIsrCode, selected2:{}">
+													</select>
+												</section>		
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.bankAccountType">ISR Code:</label>
+													<select style="width:100%;" id="cmbBankAccountType" name="cmbBankAccountType" data-bind="options: optionsIsrCode, optionsText: 'bankAccountTypeName', optionsValue: 'bankAccountTypeId', 
+														value: sBankAccountType, valueAllowUnset: true, selectedOptions: selectedBankAccountType, selected2:{}">
+													</select>
+												</section>													
+												<section class="col col-md-3">
+													<label class="label" data-i18n="workerDetail.achRoute">PP:</label>
+													<label class="input">
+														<input id="txtAchRoute" name="txtAchRoute" data-bind="value: achRoute">
+													</label>
+												</section>																					
+											</div>																				
 										</div>
 										<div id="asVehicle">
 											<div class="row">

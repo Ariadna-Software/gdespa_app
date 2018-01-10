@@ -14,6 +14,7 @@ var workerDetailAPI = {
     init: function () {
         aswInit.initPage();
         validator_languages(lang);
+        datepicker_languages(lang);
         $('#user_name').text(user.name);
         aswInit.initPerm(user);
         // make active menu option
@@ -30,6 +31,14 @@ var workerDetailAPI = {
         // combos
         $('#cmbUsers').select2(select2_languages[lang]);
         workerDetailAPI.loadUsers();
+        $('#cmbSex').select2(select2_languages[lang]);
+        workerDetailAPI.loadSex();
+        $('#cmbEmployeeType').select2(select2_languages[lang]);
+        workerDetailAPI.loadEmployeeType();       
+        $('#cmbIsrCode').select2(select2_languages[lang]);
+        workerDetailAPI.loadIsrCode();       
+        $('#cmbBankAccountType').select2(select2_languages[lang]);
+        workerDetailAPI.loadBankAccountType();               
 
         $('#cmbResourceTypes').select2(select2_languages[lang]);
         workerDetailAPI.loadResources();
@@ -90,6 +99,46 @@ var workerDetailAPI = {
         //
         self.administrative = ko.observable();
         self.active = ko.observable();
+        // 
+        self.ss = ko.observable();
+        self.dv = ko.observable();
+        self.bornDate = ko.observable();
+        //
+        self.optionsSex = ko.observableArray([]);
+        self.selectedSex = ko.observableArray([]);
+        self.sSex = ko.observable();
+        //
+        self.contractDate = ko.observable();
+        self.riseDate = ko.observable();
+        //
+        self.optionsEmployeeType = ko.observableArray([]);
+        self.selectedEmployeeType = ko.observableArray([]);
+        self.sEmployeeType = ko.observable();
+        //
+        self.payPeriod = ko.observable();
+        //
+        self.optionsIsrCode = ko.observableArray([]);
+        self.selectedIsrCode = ko.observableArray([]);
+        self.sIsrCode = ko.observable();
+        //
+        self.achRoute = ko.observable();
+        self.bankAccount = ko.observable();
+        //
+        self.optionsBankAccountType = ko.observableArray([]);
+        self.selectedBankAccountType = ko.observableArray([]);
+        self.sBankAccountType = ko.observable();
+        //
+        self.optionsTeam = ko.observableArray([]);
+        self.selectedTeam = ko.observableArray([]);
+        self.sTeam = ko.observable();
+        //
+        self.expirationDate = ko.observable();
+        self.terminationDate = ko.observable();
+        //
+        self.optionsTerminationReason = ko.observableArray([]);
+        self.selectedTerminationReason = ko.observableArray([]);
+        self.sTerminationReason = ko.observable();
+
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -122,6 +171,22 @@ var workerDetailAPI = {
         //
         vm.administrative(data.administrative);
         vm.active(data.active);
+        vm.ss(data.ss);
+        vm.dv(data.dv);
+        vm.bornDate(aswUtil.spanishDate(data.bornDate));
+        workerDetailAPI.loadSex(data.sex);
+        vm.contractDate(aswUtil.spanishDate(data.contractDate));
+        vm.riseDate(data.riseDate);
+        workerDetailAPI.loadEmployeeType(data.employeeType);
+        vm.payPeriod(data.payPeriod);
+        workerDetailAPI.loadIsrCode(data.isrCode);
+        vm.achRoute(data.achRoute);
+        vm.bankAccount(data.bankAccount);
+        workerDetailAPI.loadBankAccountType(data.bankAccountType);
+        workerDetailAPI.loadTeams(data.teamId);
+        vm.expirationDate(aswUtil.spanishDate(data.expirationDate));
+        vm.terminationDate(aswUtil.spanishDate(data.terminationDate));
+        workerDetailAPI.loadTerminationReason(data.terminationReason);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -195,7 +260,23 @@ var workerDetailAPI = {
                 resTypeId: vm.sResourceType(),
                 license: vm.license(),
                 administrative: vm.administrative(),
-                active: vm.active()
+                active: vm.active(),
+                ss: vm.ss(),
+                dv: vm.dv(),
+                bornDate: aswUtil.spanishDbDate(vm.bornDate()),
+                sex: vm.sSex(),
+                contractDate: aswUtil.spanishDbDate(vm.contractDate()),
+                raiseDate: aswUtil.spanishDbDate(vm.raiseDate()),
+                employeeType: vm.sEmployeeType(),
+                payPeriod: vm.payPeriod(),
+                isrCode: vm.sIsrCode(),
+                achRoute: vm.achRoute(),
+                bankAccount: vm.bankAccount(),
+                bankAccountType: vm.sBankAccountType(),
+                teamId: vm.sTeam(),
+                expirationDate: aswUtil.spanishDbDate(vm.expirationDate()),
+                terminationDate: aswUtil.spanishDbDate(vm.terminationDate()),
+                terminationReason: vm.terminationReason()
             };
             var url = "",
                 type = "";
@@ -270,6 +351,77 @@ var workerDetailAPI = {
                 }
             }
         });
+    },
+    loadTeams: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/team?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{
+                    teamId: 0,
+                    name: " "
+                }].concat(data);
+                vm.optionsTeam(options);
+                $("#cmbTeam").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
+    loadSex: function (id) {
+        var options = [
+            { sexId: 'H', sexName: 'Hombre' },
+            { sexId: 'M', sexName: 'Mujer' }
+        ];
+        vm.optionsSex(options);
+        $("#cmbSex").val([id]).trigger('change');
+    },
+    loadEmployeeType: function (id) {
+        var options = [
+            { employeeTypeId: 'S', employeeTypeName: 'Salario fijo' },
+            { employeeTypeId: 'H', employeeTypeName: 'Por horas' }
+
+        ];
+        vm.optionsEmployeeType(options);
+        $("#cmbEmployeeType").val([id]).trigger('change');
+    },
+    loadIsrCode: function (id) {
+        var options = [
+            { isrCodeId: 'A', isrCodeName: 'Soltero' },
+            { isrCodeId: 'B', isrCodeName: 'Casado sin dependientes' },
+            { isrCodeId: 'C', isrCodeName: 'Casado con dependientes' },
+            { isrCodeId: 'E', isrCodeName: 'Casado con dependientes, cónyuge no trabaja' },
+
+        ];
+        vm.optionsIsrCode(options);
+        $("#cmbIsrCode").val([id]).trigger('change');
+    },
+    loadBankAccountType: function (id) {
+        var options = [
+            { bankAccountTypeId: 22, bankAccountTypeName: 'Corriente' },
+            { bankAccountTypeId: 32, bankAccountTypeName: 'Ahorro' }
+
+        ];
+        vm.optionsBankAccountType(options);
+        $("#cmbBankAccountType").val([id]).trigger('change');
+    },
+    loadTerminationReason: function (id) {
+        var options = [
+            { isrCodeId: 1, isrCodeName: 'Renuncia' },
+            { isrCodeId: 6, isrCodeName: 'Despido justificado' },
+            { isrCodeId: 7, isrCodeName: 'Despido injustificado' },
+            { isrCodeId: 9, isrCodeName: 'Contrato definido' },
+            { isrCodeId: 9, isrCodeName: 'Periodo probatorio' }
+
+        ];
+        vm.optionsTerminationReason(options);
+        $("#cmbTerminationReason").val([id]).trigger('change');
     }
 };
 
