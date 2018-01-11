@@ -39,6 +39,10 @@ var workerDetailAPI = {
         workerDetailAPI.loadIsrCode();       
         $('#cmbBankAccountType').select2(select2_languages[lang]);
         workerDetailAPI.loadBankAccountType();               
+        $('#cmbTeam').select2(select2_languages[lang]);
+        workerDetailAPI.loadTeams(); 
+        $('#cmbTerminationReason').select2(select2_languages[lang]);
+        workerDetailAPI.loadTerminationReason();         
 
         $('#cmbResourceTypes').select2(select2_languages[lang]);
         workerDetailAPI.loadResources();
@@ -266,7 +270,7 @@ var workerDetailAPI = {
                 bornDate: aswUtil.spanishDbDate(vm.bornDate()),
                 sex: vm.sSex(),
                 contractDate: aswUtil.spanishDbDate(vm.contractDate()),
-                raiseDate: aswUtil.spanishDbDate(vm.raiseDate()),
+                riseDate: aswUtil.spanishDbDate(vm.riseDate()),
                 employeeType: vm.sEmployeeType(),
                 payPeriod: vm.payPeriod(),
                 isrCode: vm.sIsrCode(),
@@ -276,7 +280,7 @@ var workerDetailAPI = {
                 teamId: vm.sTeam(),
                 expirationDate: aswUtil.spanishDbDate(vm.expirationDate()),
                 terminationDate: aswUtil.spanishDbDate(vm.terminationDate()),
-                terminationReason: vm.terminationReason()
+                terminationReason: vm.sTerminationReason()
             };
             var url = "",
                 type = "";
@@ -413,11 +417,11 @@ var workerDetailAPI = {
     },
     loadTerminationReason: function (id) {
         var options = [
-            { isrCodeId: 1, isrCodeName: 'Renuncia' },
-            { isrCodeId: 6, isrCodeName: 'Despido justificado' },
-            { isrCodeId: 7, isrCodeName: 'Despido injustificado' },
-            { isrCodeId: 9, isrCodeName: 'Contrato definido' },
-            { isrCodeId: 9, isrCodeName: 'Periodo probatorio' }
+            { terminationReasonId: 1, terminationReasonName: 'Renuncia' },
+            { terminationReasonId: 6, terminationReasonName: 'Despido justificado' },
+            { terminationReasonId: 7, terminationReasonName: 'Despido injustificado' },
+            { terminationReasonId: 9, terminationReasonName: 'Contrato definido' },
+            { terminationReasonId: 9, terminationReasonName: 'Periodo probatorio' }
 
         ];
         vm.optionsTerminationReason(options);
