@@ -1,8 +1,8 @@
 {
     "prod": {
-        "host": "aswmysql1.mysql.database.azure.com",
-        "user": "ariadna@aswmysql1",
-        "password": "20Aritel12",
+        "host": "localhost",
+        "user": "root   ",
+        "password": "aritel",
         "database": "gdespa_test",
         "port": 3306
     },

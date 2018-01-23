@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var MySQLAdapter = require('./MySQLAdapter');
+var MySQLAdapter = require('./mySqlAdapter');
 var FirebirdAdapter = require('./FirebirdAdapter');
-var MSSQLAdapter = require('./MSSQLAdapter');
+var MSSQLAdapter = require('./msSqlAdapter');
 var PostgreSQLAdapter = require('./PostgreSQLAdapter');
 var OracleAdapter = require('./OracleAdapter');
 
