@@ -4,7 +4,8 @@
     idiomas: ['en','es'],
     report: {
         host: "localhost",
-        database: "gdespa_tets",
+        database: "gdespa_test",
+        port: 3306,
         user: "root",
         password: "aritel"
     }

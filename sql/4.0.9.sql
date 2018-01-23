@@ -1,0 +1,2 @@
+ALTER TABLE `pl_line`   
+  ADD COLUMN `unitCost` DECIMAL(12,2) DEFAULT 0.00 NULL AFTER `pwLineId`;

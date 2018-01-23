@@ -277,6 +277,12 @@
 								<span data-i18n="menu.pwman.pw">Blank</span>
 							</a>
 						</li>
+						<li id="plGeneral" class="">
+							<a href="plGeneral.html">
+								<i class="fa fa-lg fa-fw fa-map-signs"></i>
+								<span data-i18n="menu.pwman.pl">Blank</span>
+							</a>
+						</li>
 						<li id="woGeneral" class="">
 							<a href="woGeneral.html">
 								<i class="fa fa-lg fa-fw fa-cogs"></i>
@@ -553,38 +559,39 @@
 									</fieldset>
 								</form>
 							</div>
-						</div <div class="jarviswidget" id="wid-id-5" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
-						<header>
-							<span class="widget-icon">
-								<i class="fa fa-edit"></i>
-							</span>
-							<h2 data-i18n="reportGeneral.workerHours">* Horas por trabajador</h2>
-						</header>
-						<div class="widget-body">
-							<form id="closureDetail-form" class="smart-form">
-								<fieldset>
-									<div class="row">
-										<section class="col col-md-2">
-											<label class="label" data-i18n="reportGeneral.initDate">*DFecha:</label>
-											<label class="input">
-												<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy" />
-											</label>
-										</section>
-										<section class="col col-md-2">
-											<label class="label" data-i18n="reportGeneral.endDate">*HFecha:</label>
-											<label class="input">
-												<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy" />
-											</label>
-										</section>
-										<section class="col col-md-8">
-											<label class="label" data-i18n="reportGeneral.worker">*Trabajador:</label>
-											<select style="width:100%;" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', 
+						</div>
+						<div class="jarviswidget" id="wid-id-5" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon">
+									<i class="fa fa-edit"></i>
+								</span>
+								<h2 data-i18n="reportGeneral.workerHours">* Horas por trabajador</h2>
+							</header>
+							<div class="widget-body">
+								<form id="closureDetail-form" class="smart-form">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.initDate">*DFecha:</label>
+												<label class="input">
+													<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy" />
+												</label>
+											</section>
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.endDate">*HFecha:</label>
+												<label class="input">
+													<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy" />
+												</label>
+											</section>
+											<section class="col col-md-8">
+												<label class="label" data-i18n="reportGeneral.worker">*Trabajador:</label>
+												<select style="width:100%;" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', 
 													value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}">
-											</select>
-										</section>
-									</div>
-									<div class="row">
-										<!--
+												</select>
+											</section>
+										</div>
+										<div class="row">
+											<!--
 											<section class="col col-md-12">
 												<label class="checkbox">
 													<input id="chkRrhh" type="checkbox" name="chkRrhh" data-bind="checked: rrhh">
@@ -592,188 +599,280 @@
 												</label>
 											</section>
 										-->
-									</div>
-								</fieldset>
-								<fieldset>
-									<div class="pull-right">
-										<button id="btnPrintWorker" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
-											<i class="fa fa-lg fa-print"></i>
-										</button>
-									</div>
-								</fieldset>
-							</form>
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnPrintWorker" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+												<i class="fa fa-lg fa-print"></i>
+											</button>
+										</div>
+									</fieldset>
+								</form>
+							</div>
 						</div>
-				</div>
-				<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
-					<header>
-						<span class="widget-icon">
-							<i class="fa fa-edit"></i>
-						</span>
-						<h2 data-i18n="reportGeneral.closure_title">* Cierre detallado</h2>
-					</header>
-					<div class="widget-body">
-						<form id="closureDetail-form" class="smart-form">
-							<fieldset>
-								<div class="row">
-									<section class="col col-md-12">
-										<label class="label" data-i18n="reportGeneral.closure_detail">*Closures:</label>
-										<select style="width:100%;" id="cmbClosures" name="cmbClosures" data-bind="options: optionsClosures, optionsText: 'name', optionsValue: 'id', 
+						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon">
+									<i class="fa fa-edit"></i>
+								</span>
+								<h2 data-i18n="reportGeneral.closure_title">* Cierre detallado</h2>
+							</header>
+							<div class="widget-body">
+								<form id="closureDetail-form" class="smart-form">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-12">
+												<label class="label" data-i18n="reportGeneral.closure_detail">*Closures:</label>
+												<select style="width:100%;" id="cmbClosures" name="cmbClosures" data-bind="options: optionsClosures, optionsText: 'name', optionsValue: 'id', 
 													value: sClosure, valueAllowUnset: true, selectedOptions: selectedClosures, selected2:{}">
-										</select>
-									</section>
-								</div>
-							</fieldset>
-							<fieldset>
-								<div class="pull-right">
-									<button id="btnPrintClosure" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
-										<i class="fa fa-lg fa-print"></i>
-									</button>
-								</div>
-							</fieldset>
-						</form>
-					</div>
-				</div>
-				<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
-					<header>
-						<span class="widget-icon">
-							<i class="fa fa-edit"></i>
-						</span>
-						<h2 data-i18n="reportGeneral.pwProdServ">* Cierre detallado</h2>
-					</header>
-					<div class="widget-body">
-						<form id="pwStatusDetail-form" class="smart-form">
-							<fieldset>
-								<div class="row">
-									<section class="col col-md-12">
-										<label class="label" data-i18n="reportGeneral.pwStatus_detail">*Cierre:</label>
-										<select style="width:100%;" id="cmbPwStatus" name="cmbPwStatus" data-bind="options: optionsPwStatus, optionsText: 'name', optionsValue: 'id', 
+												</select>
+											</section>
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnPrintClosure" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+												<i class="fa fa-lg fa-print"></i>
+											</button>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+						<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon">
+									<i class="fa fa-edit"></i>
+								</span>
+								<h2 data-i18n="reportGeneral.pwProdServ">* Cierre detallado</h2>
+							</header>
+							<div class="widget-body">
+								<form id="pwStatusDetail-form" class="smart-form">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-12">
+												<label class="label" data-i18n="reportGeneral.pwStatus_detail">*Cierre:</label>
+												<select style="width:100%;" id="cmbPwStatus" name="cmbPwStatus" data-bind="options: optionsPwStatus, optionsText: 'name', optionsValue: 'id', 
 													value: sPwStatus, valueAllowUnset: true, selectedOptions: selectedPwStatus, selected2:{}">
-										</select>
-									</section>
-								</div>
-							</fieldset>
-							<fieldset>
-								<div class="pull-right">
-									<button id="btnPrintPwStatus" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
-										<i class="fa fa-lg fa-print"></i>
-									</button>
-								</div>
-							</fieldset>
-						</form>
-					</div>
-				</div>
-				<div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
-					<header>
-						<span class="widget-icon">
-							<i class="fa fa-edit"></i>
-						</span>
-						<h2 data-i18n="reportGeneral.pwConsume_title">* Cierre detallado</h2>
-					</header>
-					<div class="widget-body">
-						<form id="pwConsumeDetail-form" class="smart-form">
-							<fieldset>
-								<div class="row">
-									<section class="col col-md-12">
-										<label class="label" data-i18n="reportGeneral.pwConsume_detail">*Cierre:</label>
-										<select style="width:100%;" id="cmbPwConsume" name="cmbPwConsume" data-bind="options: optionsPwConsume, optionsText: 'name', optionsValue: 'id', 
+												</select>
+											</section>
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnPrintPwStatus" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+												<i class="fa fa-lg fa-print"></i>
+											</button>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+						<div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon">
+									<i class="fa fa-edit"></i>
+								</span>
+								<h2 data-i18n="reportGeneral.pwConsume_title">* Cierre detallado</h2>
+							</header>
+							<div class="widget-body">
+								<form id="pwConsumeDetail-form" class="smart-form">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-12">
+												<label class="label" data-i18n="reportGeneral.pwConsume_detail">*Cierre:</label>
+												<select style="width:100%;" id="cmbPwConsume" name="cmbPwConsume" data-bind="options: optionsPwConsume, optionsText: 'name', optionsValue: 'id', 
 													value: sPwConsume, valueAllowUnset: true, selectedOptions: selectedPwConsume, selected2:{}">
-										</select>
-									</section>
+												</select>
+											</section>
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnPrintPwConsume" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+												<i class="fa fa-lg fa-print"></i>
+											</button>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+						<div class="jarviswidget" id="wid-id-6" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon">
+									<i class="fa fa-edit"></i>
+								</span>
+								<h2 data-i18n="reportGeneral.plPlanned">* Cierre detallado</h2>
+							</header>
+							<div class="widget-body">
+								<form id="pwPlPwDetail-form" class="smart-form">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.initDate">*DFecha:</label>
+												<label class="input">
+													<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy" />
+												</label>
+											</section>
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.endDate">*HFecha:</label>
+												<label class="input">
+													<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy" />
+												</label>
+											</section>											
+											<section class="col col-md-8">
+												<label class="label" data-i18n="reportGeneral.pwConsume_detail">*Cierre:</label>
+												<select style="width:100%;" id="cmbPwPlanned" name="cmbPwPlanned" data-bind="options: optionsPwPlanned, optionsText: 'name', optionsValue: 'id', 
+													value: sPwPlanned, valueAllowUnset: true, selectedOptions: selectedPwPlanned, selected2:{}">
+												</select>
+											</section>
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnPrintPlanned" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+												<i class="fa fa-lg fa-print"></i>
+											</button>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>	
+
+						<div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+								<header>
+									<span class="widget-icon">
+										<i class="fa fa-edit"></i>
+									</span>
+									<h2 data-i18n="reportGeneral.plPlannedTeam">* Cierre detallado</h2>
+								</header>
+								<div class="widget-body">
+									<form id="pwPlPwTeam-form" class="smart-form">
+										<fieldset>
+											<div class="row">
+												<section class="col col-md-2">
+													<label class="label" data-i18n="reportGeneral.initDate">*DFecha:</label>
+													<label class="input">
+														<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy" />
+													</label>
+												</section>
+												<section class="col col-md-2">
+													<label class="label" data-i18n="reportGeneral.endDate">*HFecha:</label>
+													<label class="input">
+														<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy" />
+													</label>
+												</section>											
+												<section class="col col-md-6">
+													<label class="label" data-i18n="reportGeneral.team">*Cierre:</label>
+													<select style="width:100%;" id="cmbPwPlannedTeam" name="cmbPwPlannedTeam" data-bind="options: optionsPwPlannedTeam, optionsText: 'name', optionsValue: 'teamId', 
+														value: sPwPlannedTeam, valueAllowUnset: true, selectedOptions: selectedPwPlannedTeam, selected2:{}">
+													</select>
+												</section>
+												<section class="col col-md-2">
+													<label class="checkbox">
+														<input id="chkDetail" type="checkbox" name="chkDetail" data-bind="checked: consDetail">
+														<i></i>
+														<span data-i18n="reportGeneral.detail"></span>
+													</label>
+												</section>												
+											</div>
+										</fieldset>
+										<fieldset>
+											<div class="pull-right">
+												<button id="btnPrintPlannedTeam" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-print"></i>
+												</button>
+											</div>
+										</fieldset>
+									</form>
 								</div>
-							</fieldset>
-							<fieldset>
-								<div class="pull-right">
-									<button id="btnPrintPwConsume" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
-										<i class="fa fa-lg fa-print"></i>
-									</button>
-								</div>
-							</fieldset>
-						</form>
-					</div>
-				</div>
-				<div class="jarviswidget" id="wid-id-3" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
-					<header>
-						<span class="widget-icon">
-							<i class="fa fa-edit"></i>
-						</span>
-						<h2 data-i18n="reportGeneral.pwStore_title">* Cierre detallado</h2>
-					</header>
-					<div class="widget-body">
-						<form id="pwStoreDetail-form" class="smart-form">
-							<fieldset>
-								<div class="row">
-									<section class="col col-md-12">
-										<label class="label" data-i18n="reportGeneral.pwStore_detail">*Cierre:</label>
-										<select style="width:100%;" id="cmbPwStore" name="cmbPwStore" data-bind="options: optionsPwStore, optionsText: 'name', optionsValue: 'id', 
+							</div>	
+															
+
+						<div class="jarviswidget" id="wid-id-3" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon">
+									<i class="fa fa-edit"></i>
+								</span>
+								<h2 data-i18n="reportGeneral.pwStore_title">* Cierre detallado</h2>
+							</header>
+							<div class="widget-body">
+								<form id="pwStoreDetail-form" class="smart-form">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-12">
+												<label class="label" data-i18n="reportGeneral.pwStore_detail">*Cierre:</label>
+												<select style="width:100%;" id="cmbPwStore" name="cmbPwStore" data-bind="options: optionsPwStore, optionsText: 'name', optionsValue: 'id', 
 													value: sPwStore, valueAllowUnset: true, selectedOptions: selectedPwStore, selected2:{}">
-										</select>
-									</section>
-								</div>
-							</fieldset>
-							<fieldset>
-								<div class="pull-right">
-									<button id="btnPrintPwStore" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
-										<i class="fa fa-lg fa-print"></i>
-									</button>
-								</div>
-							</fieldset>
-						</form>
-					</div>
-				</div>
-				<div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
-					<header>
-						<span class="widget-icon">
-							<i class="fa fa-edit"></i>
-						</span>
-						<h2 data-i18n="reportGeneral.pwItem_title">* Cierre detallado</h2>
-					</header>
-					<div class="widget-body">
-						<form id="pwItemDetail-form" class="smart-form">
-							<fieldset>
-								<div class="row">
-									<section class="col col-md-2">
-										<label class="label" data-i18n="reportGeneral.initDate">*DFecha:</label>
-										<label class="input">
-											<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy" />
-										</label>
-									</section>
-									<section class="col col-md-2">
-										<label class="label" data-i18n="reportGeneral.endDate">*HFecha:</label>
-										<label class="input">
-											<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy" />
-										</label>
-									</section>
-									<section class="col col-md-8"></section>
-								</div>
-								<div class="row">
-									<section class="col col-md-8">
-										<label class="label" data-i18n="reportGeneral.pwItem_detail">*Cierre:</label>
-										<select style="width:100%;" id="cmbPwItem" name="cmbPwItem" data-bind="options: optionsPwItem, optionsText: 'name', optionsValue: 'id', 
+												</select>
+											</section>
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnPrintPwStore" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+												<i class="fa fa-lg fa-print"></i>
+											</button>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+						<div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon">
+									<i class="fa fa-edit"></i>
+								</span>
+								<h2 data-i18n="reportGeneral.pwItem_title">* Cierre detallado</h2>
+							</header>
+							<div class="widget-body">
+								<form id="pwItemDetail-form" class="smart-form">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.initDate">*DFecha:</label>
+												<label class="input">
+													<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy" />
+												</label>
+											</section>
+											<section class="col col-md-2">
+												<label class="label" data-i18n="reportGeneral.endDate">*HFecha:</label>
+												<label class="input">
+													<input id="txtEndDate" name="txtEndDate" data-bind="value: endDate" class="datepicker" data-dateformat="dd/mm/yy" />
+												</label>
+											</section>
+											<section class="col col-md-8"></section>
+										</div>
+										<div class="row">
+											<section class="col col-md-8">
+												<label class="label" data-i18n="reportGeneral.pwItem_detail">*Cierre:</label>
+												<select style="width:100%;" id="cmbPwItem" name="cmbPwItem" data-bind="options: optionsPwItem, optionsText: 'name', optionsValue: 'id', 
 													value: sPwItem, valueAllowUnset: true, selectedOptions: selectedPwItem, selected2:{}">
-										</select>
-									</section>
-									<section class="col col-md-4">
-										<label class="label" data-i18n="reportGeneral.pwStore_detail">*Cierre:</label>
-										<select style="width:100%;" id="cmbPwStore2" name="cmbPwStore2" data-bind="options: optionsPwStore2, optionsText: 'name', optionsValue: 'id', 
+												</select>
+											</section>
+											<section class="col col-md-4">
+												<label class="label" data-i18n="reportGeneral.pwStore_detail">*Cierre:</label>
+												<select style="width:100%;" id="cmbPwStore2" name="cmbPwStore2" data-bind="options: optionsPwStore2, optionsText: 'name', optionsValue: 'id', 
 													value: sPwStore2, valueAllowUnset: true, selectedOptions: selectedPwStore2, selected2:{}">
-										</select>
-									</section>
-								</div>
-							</fieldset>
-							<fieldset>
-								<div class="pull-right">
-									<button id="btnPrintPwItem" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
-										<i class="fa fa-lg fa-print"></i>
-									</button>
-								</div>
-							</fieldset>
-						</form>
-					</div>
+												</select>
+											</section>
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="pull-right">
+											<button id="btnPrintPwItem" data-i18n="[title]reportGeneral.print" class="btn btn-success btn-circle btn-lg">
+												<i class="fa fa-lg fa-print"></i>
+											</button>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+					</article>
 				</div>
-				</article>
+			</section>
 		</div>
-		</section>
-	</div>
 	</div>
 	<!-- PAGE FOOTER -->
 	<div class="page-footer">

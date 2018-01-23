@@ -86,6 +86,7 @@ var userDetailAPI = {
         self.perNoDocsInOpen = ko.observable();
         self.perChangePwDate = ko.observable();
         self.perCunitBlock = ko.observable();
+        self.perSeePlansClosed = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -123,6 +124,7 @@ var userDetailAPI = {
         vm.perNoDocsInOpen(data.perNoDocsInOpen);
         vm.perChangePwDate(data.perChangePwDate);
         vm.perCunitBlock(data.perCunitBlock);
+        vm.perSeePlansClosed(data.perSeePlansClosed);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -215,7 +217,8 @@ var userDetailAPI = {
                 perPwClosed: vm.perPwClosed() ? 1 : 0,
                 perNoDocsInOpen: vm.perNoDocsInOpen() ? 1 : 0,
                 perChangePwDate: vm.perChangePwDate() ? 1 : 0,
-                perCunitBlock: vm.perCunitBlock() ? 1 : 0
+                perCunitBlock: vm.perCunitBlock() ? 1 : 0,
+                perSeePlansClosed: vm.perSeePlansClosed() ? 1 : 0
             };
             var url = "", type = "";
             if (vm.id() == 0) {

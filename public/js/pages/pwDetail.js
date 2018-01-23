@@ -56,6 +56,7 @@ var pwDetailAPI = {
 
         // buttons click events
         $('#btnOk').click(pwDetailAPI.btnOk());
+        $('#btnSaveMap').click(pwDetailAPI.btnOk());
         $('#btnPrint').click(pwDetailAPI.btnPrint());
         $('#btnPrint2').click(pwDetailAPI.btnPrint2());
         $('#btnCalc').click(pwDetailAPI.btnCalc());
@@ -65,6 +66,10 @@ var pwDetailAPI = {
         });
         $('#btnChangeStatus').click(pwDetailAPI.newPwStatus());
         $('#ucinfo').click(pwDetailAPI.ucInfo);
+        $('#btnShowMap').click(pwDetailAPI.showMapMod);
+        $('#pwMap-form').submit(function () {
+            return false;
+        });
         // init lines table
         pwLineAPI.init();
         // init modal form
@@ -81,7 +86,7 @@ var pwDetailAPI = {
         }
         // read parameters
         var url = sprintf("%s/parameters/?api_key=%s", myconfig.apiUrl, api_key);
-        aswUtil.llamadaAjax("GET", url, null, function(err, data){
+        aswUtil.llamadaAjax("GET", url, null, function (err, data) {
             if (err) return;
             parameters = data[0];
         })
@@ -111,6 +116,11 @@ var pwDetailAPI = {
         if (!user.perChangePwDate){
             $("#txtInitDate").attr('disabled', 'disabled');
         }  
+        $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+            if (e.target.hash == "#s7") {
+                pwDetailAPI.showMapMod();
+            }
+        })
     },
     pageData: function () {
         // knockout objects
@@ -234,6 +244,9 @@ var pwDetailAPI = {
         self.cerInChargeName = ko.observable();
         self.invInChargeName = ko.observable();
         self.payInChargeName = ko.observable();
+        // map
+        self.latitude = ko.observable();
+        self.longitude = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -327,6 +340,14 @@ var pwDetailAPI = {
         vm.cerInChargeName(data.cerInChargeName);
         vm.invInChargeName(data.invInChargeName);
         vm.payInChargeName(data.payInChargeName);
+        if (!user.perChangePwDate) {
+            // var html = "<span>" + vm.initDate() + "</span>";
+            // $("#pwDate").html(html);
+            $("#txtInitDate").attr('disabled', 'disabled');
+        }
+        // map
+        vm.latitude(data.latitude);
+        vm.longitude(data.longitude);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -444,7 +465,9 @@ var pwDetailAPI = {
                 revUser: vm.revUser(),
                 verified: vm.verified(),
                 profitLoses: vm.profitLoses(),
-                isMeaMo: vm.isMeaMo()
+                isMeaMo: vm.isMeaMo(),
+                latitude: vm.latitude(),
+                longitude: vm.longitude()
             };
             if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()) {
                 data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
@@ -829,7 +852,7 @@ var pwDetailAPI = {
         if (!vm.sCUnit()) return;
         window.open('cUnitDetail.html?id=' + vm.sCUnit() + '&ucinfo=1', '_blank');
     },
-    checkDocsNeedToOpen: function(id, done) {
+    checkDocsNeedToOpen: function (id, done) {
         var url = sprintf("%s/pw/docsNeedToOpen/%s/?api_key=%s", myconfig.apiUrl, id, api_key);
         $.ajax({
             type: "GET",
@@ -847,6 +870,36 @@ var pwDetailAPI = {
                 }
                 done(err);
             }
-        })      
+        })
+    },
+    showMap: function () {
+        var posMap = { lat: 8.9936, lng: -79.51973 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: { lat: 8.9936, lng: -79.51973 }
+        });
+        var marker = new google.maps.Marker({
+            position: posMap,
+            map: map
+        });
+    },
+    showMapMod: function () {
+        var posMap = {
+            lat: vm.latitude(),
+            lng: vm.longitude()
+        };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: posMap
+        });
+        var marker = new google.maps.Marker({
+            position: posMap,
+            map: map,
+            draggable: true
+        });
+        google.maps.event.addListener(marker, 'click', function (event) {
+            vm.latitude(event.latLng.lat());
+            vm.longitude(event.latLng.lng());
+        });
     }
 };

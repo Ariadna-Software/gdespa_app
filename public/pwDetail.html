@@ -267,6 +267,12 @@
 								<span data-i18n="menu.pwman.pw">Blank</span>
 							</a>
 						</li>
+						<li id="plGeneral" class="">
+							<a href="plGeneral.html">
+								<i class="fa fa-lg fa-fw fa-map-signs"></i>
+								<span data-i18n="menu.pwman.pl">Blank</span>
+							</a>
+						</li>
 						<li id="woGeneral" class="">
 							<a href="woGeneral.html">
 								<i class="fa fa-lg fa-fw fa-cogs"></i>
@@ -408,6 +414,9 @@
 							<li>
 								<a data-toggle="tab" href="#s6" data-i18n="pwDetail.tabs.img">IMAGENS</a>
 							</li>
+							<li>
+								<a data-toggle="tab" href="#s7" data-i18n="pwDetail.tabs.map">IMAGENS</a>
+							</li>
 						</ul>
 						<div class="tab-content padding-10" id="pwDetail_GT1">
 							<div class="tab-pane fade in active" id="s1">
@@ -429,7 +438,8 @@
 														<div class="row">
 															<section class="col col-md-4">
 																<h2 class="text-primary">
-																	PWID<span data-bind="text:id">PWID</span>
+																	PWID
+																	<span data-bind="text:id">PWID</span>
 																</h2>
 															</section>
 															<section class="col col-md-8">
@@ -439,7 +449,7 @@
 																		<i></i>
 																		<span data-i18n="pwDetail.isMeaMo"></span>
 																	</label>
-																</div>																
+																</div>
 															</section>
 														</div>
 														<div class="row">
@@ -454,7 +464,7 @@
 															<section class="col col-md-2">
 																<label class="label" data-i18n="pwDetail.initDate">Fecha Inicio:</label>
 																<label class="input" id="pwDate">
-																	<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy"/>
+																	<input id="txtInitDate" name="txtInitDate" data-bind="value: initDate" class="datepicker" data-dateformat="dd/mm/yy" />
 																</label>
 															</section>
 															<section class="col col-md-4">
@@ -937,6 +947,42 @@
 									</fieldset>
 								</form>
 							</div>
+							<div class="tab-pane fade" id="s7">
+								<div class="row">
+									<form id="pwMap-form" class="smart-form">
+											<fieldset>
+												<div class="row">
+													<section class="col col-md-6">
+														<label class="label" data-i18n="pwDetail.latitude">Nombre:</label>
+														<label class="input">
+															<input id="txtLatitude" name="txtLatitude" data-bind="value: latitude">
+														</label>
+													</section>
+													<section class="col col-md-6">
+														<label class="label" data-i18n="pwDetail.longitude">Nombre:</label>
+														<label class="input">
+															<input id="txtLongitude" name="txtLongitude" data-bind="value: longitude">
+														</label>
+													</section>
+												</div>
+											</fieldset>
+											<fieldset>
+												<div class="pull-right">
+													<button id="btnSaveMap" data-i18n="[title]pwDetail.ok" class="btn btn-success btn-circle btn-lg">
+														<i class="fa fa-lg fa-floppy-o"></i>
+													</button>
+													<button id="btnShowMap" data-i18n="[title]pwDetail.showMap" class="btn btn-success btn-circle btn-lg">
+														<i class="fa fa-lg fa-globe"></i>
+													</button>
+												</div>
+											</fieldset>
+										</form>
+								</div>
+								<div class="row">
+									<div id="map" style="height:400px; width:100%;">
+									</div>
+								</div>
+							</div>
 						</div>
 					</article>
 				</div>
@@ -1343,6 +1389,8 @@
 			var s = document.getElementsByTagName('script')[0];
 			s.parentNode.insertBefore(ga, s);
 		})();
+	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKJHa_Vmp2YnDru6KMSyoCATbl0VWQmB4&callback=pwDetailAPI.showMap">
 	</script>
 </body>
 

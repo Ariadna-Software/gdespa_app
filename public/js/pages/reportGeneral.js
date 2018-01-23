@@ -54,10 +54,25 @@ var reportGeneralAPI = {
         $('#cmbPwConsume').select2(select2_languages[lang]);
         reportGeneralAPI.loadPwConsume();
         $('#btnPrintPwConsume').click(reportGeneralAPI.btnPrintConsumoObra);
+
+        $('#cmbPwPlanned').select2(select2_languages[lang]);
+        reportGeneralAPI.loadPwPlanned();
+        $('#cmbPwPlannedTeam').select2(select2_languages[lang]);
+        reportGeneralAPI.loadPwPlannedTeam(0);
+
+        $('#btnPrintPlanned').click(reportGeneralAPI.btnPrintPlanned);
+        $('#btnPrintPlannedTeam').click(reportGeneralAPI.btnPrintPlannedTeam);
+
         // avoid sending form 
         $('#pwConsumeDetail-form').submit(function () {
             return false;
         });
+        $('#pwPlPwDetail-form').submit(function () {
+            return false;
+        });        
+        $('#pwPlPwTeam-form').submit(function () {
+            return false;
+        });        
         // combos
         $('#cmbPwStore').select2(select2_languages[lang]);
         reportGeneralAPI.loadPwStore();
@@ -101,6 +116,14 @@ var reportGeneralAPI = {
         self.optionsPwConsume = ko.observableArray([]);
         self.selectedPwConsume = ko.observableArray([]);
         self.sPwConsume = ko.observable();
+        // pw planned combo
+        self.optionsPwPlanned = ko.observableArray([]);
+        self.selectedPwPlanned = ko.observableArray([]);
+        self.sPwPlanned = ko.observable();    
+        // pw planned combo team
+        self.optionsPwPlannedTeam = ko.observableArray([]);
+        self.selectedPwPlannedTeam = ko.observableArray([]);
+        self.sPwPlannedTeam = ko.observable();            
         // pw store combo
         self.optionsPwStore = ko.observableArray([]);
         self.selectedPwStore = ko.observableArray([]);
@@ -353,6 +376,44 @@ var reportGeneralAPI = {
             }
         });
     },
+    loadPwPlanned: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/pw/report_pw/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 0, name: " " }].concat(data);
+                vm.optionsPwPlanned(options);
+                $("#cmbPwPlanned").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    }, 
+    loadPwPlannedTeam: function (id) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/team/report/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{ id: 0, name: " " }].concat(data);
+                vm.optionsPwPlannedTeam(options);
+                $("#cmbPwPlannedTeam").val([id]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },       
     btnPrintPwConsume: function () {
         var mf = function (e) {
             // avoid default accion
@@ -528,6 +589,19 @@ var reportGeneralAPI = {
         url = "infConsumoObra.html?pwId=" + vm.sPwConsume();
         window.open(url, '_blank');
     },
+    btnPrintPlanned: function () {
+        var initDate = moment(vm.initDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
+        var endDate = moment(vm.endDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
+        url = "infPlVsWo.html?pwId=" + vm.sPwPlanned() + "&pDfecha=" + initDate + "&pHfecha=" + endDate;
+        window.open(url, '_blank');
+    },
+    btnPrintPlannedTeam: function () {
+        var initDate = moment(vm.initDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
+        var endDate = moment(vm.endDate(), "DD/MM/YYYY").format('YYYY-MM-DD');
+        url = "infPlVsTeam.html?teamId=" + vm.sPwPlannedTeam() + "&pDfecha=" + initDate + "&pHfecha=" + endDate + "&consDetail=" + vm.consDetail();
+        window.open(url, '_blank');
+    },    
+    
     btnPrintInfProdServ: function () {
         url = "infProdServ.html?pwId=" + vm.sPwStatus();
         window.open(url, '_blank');

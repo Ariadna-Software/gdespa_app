@@ -80,7 +80,8 @@
             "wo": "Partes de trabajo",
             "mo": "Partes de contadores",
             "lu": "Partes de luminarias",
-            "closure": "Cierres"
+            "closure": "Cierres",
+            "pl": "Planificación"
         },
         "store": {
             "main": "Almacenes / Stock",
@@ -159,7 +160,8 @@
         "closedMessage": "Esta propuesta está cerrada, sólo puede consultar su información.",
         "perNoDocsInOpen": "Permitir que el usuario abra obras sin los documentos necesarios",
         "perChangePwDate": "Puede cambiar la fecha de las obras / propuestas",
-        "perCunitBlock": "Puede usar UUCC bloqueadas"
+        "perCunitBlock": "Puede usar UUCC bloqueadas",
+        "perSeePlansClosed": "Poder ver planificados ya usadas en partes"
     },
     "workerGeneral": {
         "title": "Mantenimiento de recursos",
@@ -308,7 +310,8 @@
             "worker": "Recursos",
             "doc": "Documentos",
             "invoice":"Facturas",
-            "img": "Imágenes"
+            "img": "Imágenes",
+            "map": "Mapa"
         },
         "lastClose": "Ultimo cierre",
         "print": "Imprimir",
@@ -332,6 +335,7 @@
         "cancel": "Salir sin guardar",
         "ok": "Guardar",
         "okNew": "Guardar y siguiente",
+        "showMap": "Mostrar mapa",
         "newLine": "Nueva linea",
         "associated_items": "Unidades constructivas asociadas",
         "modal_title": "Unidad constructiva",
@@ -373,8 +377,12 @@
         "profitLoses": "Pérdida",
         "profitLosesQuestion": "Hay una diferencia entre producido y facturado de {0}. ¿Quiere llevar esa diferencua a perdidas / ganancias?",
         "docsNeedToOpen": "Antes de introducir capítulos y UUCC debe dar de alta los documentos necesarios para apertura. <br/> Recuerde que necesita tres documentos.",
-        "docsNeedToClose": "Esta intentando cerrar una obra sin haber dado de alta los documentos de cierre. No puede darla por terminada hasta que no haya subido esos documentos.",
-        "isMeaMo": "Esta obra es de luminarias o contadores"
+        "docsNeedToClose": "Esta intentando cerrar una obra sin haber dado de alta los documentos de cierre. ¿Quiere continuar con el cierre?",
+        "isMeaMo": "Esta obra es de luminarias o contadores",
+        "woNew": "Dar de alta parte desde planificación.",
+        "map": "Mapa",
+        "longitude": "Longitud",
+        "latitude": "Latitud"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",
@@ -435,7 +443,8 @@
         "thirdPartyCompany": "Compañía externa que ha realizado el trabajo",
         "team1": "Brigada",
         "dayType": "Tipo jornada",
-        "noDocAllowed": "Para introducir documentos debe haber cantidades en el parte de trabajo"
+        "noDocAllowed": "Para introducir documentos debe haber cantidades en el parte de trabajo",
+        "planned": "Planificado"
     },
     "itemInGeneral": {
         "title": "Entradas",
@@ -607,7 +616,10 @@
         "consolidate2": "Consolidado periodo",
         "excel": "En formato para exportacion excel",
         "status": "Estado",
-        "pwProdServ": "Diferencias entre cantidas producidas y salidas de almacén"
+        "pwProdServ": "Diferencias entre cantidas producidas y salidas de almacén",
+        "plPlanned": "Informe de planeado frente a realizado por obra",
+        "plPlannedTeam": "Informe de planeado frente a realizado por brigada",
+        "team": "Brigada a informar"
     },
     "teamGeneral": {
         "title": "Brigadas",
@@ -911,5 +923,67 @@
         "pwId": "PWID",
         "explain": "Las filas con fondo morado corresponden a facturas de las que no se ha podido cruzar su referencia con una obra y no se darán de alta. Las filas con fondo azul corresponden a facturas ya dadas de alta y que se actualizarán con los nuevos valores.",
         "endOk": "Las facturas han sido correctamente creadas o actualizadas. Use las opciones del menú para salir de la pantalla"
+    },
+    "plGeneral": {
+        "title": "Mantenimiento planificaciones",
+        "new": "Nuevo plan",
+        "search": "Buscar planes",
+        "closed": "Ver planes ya usados"
+    },
+    "plDetail": {
+        "tabs": {
+            "general": "Unidades constructivas",
+            "worker": "Trabajadores",
+            "vehicles": "Maquinaria / vehículos",
+            "doc": "Imágenes"
+        },
+        "print": "Imprimir",
+        "title": "Detalle plan de trabajo",
+        "initDate": "Fecha planificada",
+        "endDate": "Fecha final",
+        "worker": "Responsable de la planificación",
+        "generate_from_pw": "Generar desde la propuesta",
+        "pw": "Propuesta",
+        "cunit": "Unidad constructiva",
+        "estimate": "Presupuestado",
+        "done": "Realizado",
+        "quantity": "Planificado",
+        "comments": "Observaciones",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "newLine": "Nueva linea",
+        "associated_lines": "Lineas del plan",
+        "modal_title": "Linea del plan",
+        "modal_title2": "Trabajadores del plan",
+        "modal_title3": "Vehículos / maquinaria del plan",
+        "worker2": "Trabajador",
+        "worker3": "Vehiculo / maquinaria",
+        "cost": "Coste",
+        "newWorker": "Nuevo recurso",
+        "quantity2": "Hrs. totales",
+        "quantity3": "Hrs. totales",
+        "estimate_exceed": "La cantidad excede a la presupuestada para esta unidad constructiva",
+        "chapterName": "Nombre",
+        "chapterOrder": "Orden",
+        "chapterComments": "Comentarios del capítulo",
+        "newChapter": "Nuevo capítulo",
+        "wehicle": "Maquinaria / vehículo",
+        "normalHours": "Hrs. normales",
+        "extraHours": "Hrs. extras dia",
+        "extraHoursNight": "Hrs. extras noche",
+        "expenses": "Dietas y otros",
+        "initialKm": "Km. iniciales",
+        "finalKm": "Km. finales",
+        "totalKm": "Km. Totales",
+        "fuel": "Combustible",
+        "btnNewVehicle": "Nuevo datos vehiculo / maquinaria",
+        "planHours": "Hrs. planificadas",
+        "thirdParty": "Parte de trabajo realizado por companía ajena",
+        "thirdPartyCompany": "Compañía externa que ha realizado el trabajo",
+        "team1": "Brigada",
+        "dayType": "Tipo jornada",
+        "noDocAllowed": "Para introducir documentos debe haber cantidades en el plan de trabajo",
+        "createWoFromPl": "<strong>IMPORTANTE:</strong> Si crea un nuevo parte se abrirá en una nueva pestaña, comprueba que los pop-ups no estan bloqueados. El nuevo parte no tendrá asignado el tipo de jornada, recuerde darle ese valor y guardarlo para que el cálculo de horas de trabajador funcione correctamente. <br/> ¿Desea crear el parte de trabajo al que corresponde esta planificación?",
+        "prevPlanned": "Planificado previo"
     }        
 }

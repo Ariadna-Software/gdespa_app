@@ -48,6 +48,9 @@ var woLineAPI = {
             data: "done",
             className: "asw-center"
         }, {
+            data: "planned",
+            className: "asw-center"
+        }, {
             data: "id",
             width: "10%",
             render: function (data, type, row) {
