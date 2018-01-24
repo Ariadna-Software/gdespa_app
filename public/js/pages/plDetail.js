@@ -455,7 +455,7 @@ var plDetailAPI = {
         // cargar las propuestas de la zona
         $.ajax({
             type: "GET",
-            url: sprintf('%s/pw/zone/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
+            url: sprintf('%s/pw/zone2/%s/?api_key=%s', myconfig.apiUrl, id, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {

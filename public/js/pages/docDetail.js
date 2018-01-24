@@ -201,7 +201,7 @@ var docDetailAPI = {
             if (refWoId) data.woId = refWoId;
             if (moment(vm.docDate(), i18n.t("util.date_format")).isValid()) {
                 data.docDate = moment(vm.docDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));
-            }
+            }w
             var url = "", type = "";
             if (vm.docId() == 0) {
                 // creating new record
