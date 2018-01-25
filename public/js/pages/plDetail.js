@@ -389,27 +389,7 @@ var plDetailAPI = {
             // validate form
             if (!plDetailAPI.dataOk()) return;
             var url = "", type = "";
-
-            // fecth report data
-            type = "GET";
-            url = sprintf('%s/report/pl2/%s/?api_key=%s', myconfig.apiUrl, vm.id(), api_key);
-
-            $.ajax({
-                type: type,
-                url: url,
-                contentType: "application/json",
-                data: JSON.stringify(data),
-                success: function (data, status) {
-                    // process report data
-                    aswReport.reportPDF(data, 'BJ8C0_TKg');
-                },
-                error: function (err) {
-                    aswNotif.errAjax(err);
-                    if (err.status == 401) {
-                        window.open('index.html', '_self');
-                    }
-                }
-            });
+            window.open('infPlOne.html?plId=' + vm.id(), '_new');
         }
         return mf;
     },
