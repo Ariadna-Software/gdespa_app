@@ -108,6 +108,7 @@ app.use('/api/invoice', require('./controllers/invoice'));
 app.use('/api/doc_type', require('./controllers/doc_type'));
 app.use('/api/pl', require('./controllers/pl'));
 app.use('/api/pl_line', require('./controllers/pl_line'));
+app.use('/api/holiday', require('./controllers/holiday'));
 
 // general API to export
 

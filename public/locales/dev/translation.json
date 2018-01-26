@@ -102,7 +102,8 @@
         "rrhh": {
             "main":"Recursos humanos",
             "worker": "Recursos",
-            "report": "Informes"
+            "report": "Informes",
+            "holiday": "Días festivos"
         }
     },
     "index": {
@@ -985,5 +986,19 @@
         "noDocAllowed": "Para introducir documentos debe haber cantidades en el plan de trabajo",
         "createWoFromPl": "<strong>IMPORTANTE:</strong> Si crea un nuevo parte se abrirá en una nueva pestaña, comprueba que los pop-ups no estan bloqueados. El nuevo parte no tendrá asignado el tipo de jornada, recuerde darle ese valor y guardarlo para que el cálculo de horas de trabajador funcione correctamente. <br/> ¿Desea crear el parte de trabajo al que corresponde esta planificación?",
         "prevPlanned": "Planificado previo"
-    }        
+    },
+    "holidayGeneral": {
+        "title": "Mantenimiento de festivos",
+        "new": "Nuevo festivo"
+    },
+    "holidayDetail": {
+        "title": "Detalle festivo",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "holidayDate": "Fecha",
+        "dayTypeName": "Tipo día",
+        "dayType": "Tipo día"
+
+    }
 }

@@ -354,8 +354,8 @@
 		<div id="ribbon">
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
-				<li data-i18n="menu.administration.main">Home</li>
-				<li data-i18n="menu.administration.invoice">Home</li>
+				<li data-i18n="menu.rrhh.main">Home</li>
+				<li data-i18n="menu.rrhh.holiday">Home</li>
 			</ol>
 		</div>
 		<!-- Main content -->
@@ -364,7 +364,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-money"></i> <span data-i18n="menu.administration.invoice">Inicio</span>
+						<i class="fa-fw fa fa-calendar-o"></i> <span data-i18n="menu.rrhh.holiday">Inicio</span>
 					</h1>
 				</div>
 			</div>
@@ -376,13 +376,13 @@
 						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
 								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-								<h2 data-i18n="invoiceGeneral.title">Mantenimiento</h2>
+								<h2 data-i18n="holidayGeneral.title">Mantenimiento</h2>
 							</header>
 							<div class="row">
-								<form id="invoiceGeneral-form" class="smart-form">
+								<form id="holidayGeneral-form" class="smart-form">
 									<fieldset>
 										<div class="pull-right">
-											<button id="btnNew" data-i18n="[title]invoiceGeneral.new" class="btn btn-success btn-circle btn-lg">
+											<button id="btnNew" data-i18n="[title]holidayGeneral.new" class="btn btn-success btn-circle btn-lg">
                                         	<i class="fa fa-lg fa-plus"></i>
                                         </button>
 										</div>
@@ -390,27 +390,20 @@
 								</form>
 							</div>
 							<div class="row">
-								<div id="tb_invoice">
-									<table id="dt_invoice" class="table table-striped table-bordered table-hover" width="100%">
+								<div id="tb_holiday">
+									<table id="dt_holiday" class="table table-striped table-bordered table-hover" width="100%">
 										<thead>
 											<tr>
 												<th data-class="expand">
-													<i class="fa fa-fw fa-building text-muted hidden-md hidden-sm hidden-xs"></i> 
-													<span data-i18n="invoiceDetail.invoiceNumber"> Num. Factura </span>
+													<i class="fa fa-fw fa-calendar-check-o text-muted hidden-md hidden-sm hidden-xs"></i>
+													<span data-i18n="holidayDetail.holidayDate">N</span>
 												</th>
-												<th>
-													<span data-i18n="invoiceDetail.invoiceDate"> Fecha</span>
+												<th data-hide="phone">
+													<span data-i18n="holidayDetail.name">N</span>
 												</th>
-												<th>
-													<span data-i18n="invoiceDetail.pwName"> Obra</span>
-												</th>
-												<th>
-													<span data-i18n="invoiceDetail.amount"> Importe</span>
-												</th>
-												<th>
-													<span data-i18n="invoiceDetail.comments"> Observaciones</span>
-												</th>
-												
+												<th data-hide="phone">
+													<span data-i18n="holidayDetail.dayType">N</span>
+												</th>																								
 												<th>
 												</th>
 											</tr>
@@ -501,8 +494,6 @@
 	<script src="js/sprintf/sprintf.min.js"></script>
 	<script src="js/numeral.js"></script>
 	<script src="js/moment.js"></script>
-	<script src="js/numeral.js"></script>
-	<script src="js/moment.js"></script>
 	<!-- TRANSLATIONS -->
 	<script src="js/libs/i18next-1.9.0.js"></script>
 	<script src="locales/validator-languages.js"></script>
@@ -510,6 +501,7 @@
 	<script src="locales/select2-languages.js"></script>
 	<script src="locales/numeral-languages.js"></script>
 	<script src="locales/datepicker-languages.js"></script>
+	
 	<!-- PAGE RELATED PLUGIN(S) -->
 	<script src="js/plugin/datatables/jquery.dataTables.min.js"></script>
 	<script src="js/plugin/datatables/dataTables.colVis.min.js"></script>
@@ -520,7 +512,7 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/invoiceGeneral.js"></script>
+	<script src="js/pages/holidayGeneral.js"></script>
 
 
 
