@@ -13,3 +13,15 @@ CREATE TABLE `abs_type`(
   `name` VARCHAR(255),
   PRIMARY KEY (`absTypeId`)
 );
+
+CREATE TABLE `abs`(  
+  `absId` INT(11) NOT NULL AUTO_INCREMENT,
+  `fromDate` DATE,
+  `toDate` DATE,
+  `workerId` INT(11),
+  `absTypeId` INT(11),
+  `comments` TEXT,
+  PRIMARY KEY (`absId`),
+  CONSTRAINT `ref_abs_worker` FOREIGN KEY (`workerId`) REFERENCES `worker`(`workerId`),
+  CONSTRAINT `ref_abs_absType` FOREIGN KEY (`absTypeId`) REFERENCES `abs_type`(`absTypeId`)
+);

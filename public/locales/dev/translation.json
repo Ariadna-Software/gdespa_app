@@ -104,7 +104,8 @@
             "worker": "Recursos",
             "report": "Informes",
             "holiday": "Días festivos",
-            "absType": "Tipos de ausencias"
+            "absType": "Tipos de ausencias",
+            "abs": "Partes de ausencias"
         }
     },
     "index": {
@@ -1011,5 +1012,21 @@
         "name": "Nombre",
         "cancel": "Salir sin guardar",
         "ok": "Guardar"
+    },
+    "absGeneral": {
+        "title": "Mantenimiento de partes de ausencias",
+        "new": "Nuevo parte"
+    },
+    "absDetail": {
+        "title": "Detalle parte ausencia",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar",
+        "fromDate": "Desde fecha",
+        "toDate": "Hasta fecha",
+        "absTypeName": "Tipo ausencia",
+        "absType": "Tipo ausencia",
+        "workerName": "Trabajador",
+        "comments":"Observaciones"
     }
 }
