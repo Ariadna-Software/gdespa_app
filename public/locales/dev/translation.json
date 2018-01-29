@@ -103,7 +103,8 @@
             "main":"Recursos humanos",
             "worker": "Recursos",
             "report": "Informes",
-            "holiday": "Días festivos"
+            "holiday": "Días festivos",
+            "absType": "Tipos de ausencias"
         }
     },
     "index": {
@@ -1000,5 +1001,15 @@
         "dayTypeName": "Tipo día",
         "dayType": "Tipo día"
 
+    },
+    "absTypeGeneral": {
+        "title": "Mantenimiento tipos ausencias",
+        "new": "Nuevo tipo"
+    },
+    "absTypeDetail": {
+        "title": "Detalle tipo ausencia",
+        "name": "Nombre",
+        "cancel": "Salir sin guardar",
+        "ok": "Guardar"
     }
 }

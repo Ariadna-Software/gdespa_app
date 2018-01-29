@@ -60,7 +60,8 @@
 	<!-- TOP OF THE PAGE -->
 	<header id="header">
 		<div>
-			<span id=""> <img src="img/logo-gdes-lineman.jpg" class="asw-logo" alt="GDES-LINEMAN"> </span>
+			<span id="">
+				<img src="img/logo-gdes-lineman.jpg" class="asw-logo" alt="GDES-LINEMAN"> </span>
 		</div>
 		<div class="project-context hidden-xs">
 			<span class="asw-project-title" data-i18n="company_info">Company Info</span>
@@ -69,41 +70,66 @@
 		<div class="pull-right">
 			<!-- collapse menu button -->
 			<div id="hide-menu" class="btn-header pull-right">
-				<span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu" data-i18n="[title]collapse_menu"><i class="fa fa-reorder"></i></a> </span>
+				<span>
+					<a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu" data-i18n="[title]collapse_menu">
+						<i class="fa fa-reorder"></i>
+					</a>
+				</span>
 			</div>
 			<!-- logout button -->
 			<div id="logout" class="btn-header transparent pull-right">
-				<span> <a href="index.html" title="Sign Out" data-i18n="[title]log_out"><i class="fa fa-sign-out"></i></a> </span>
+				<span>
+					<a href="index.html" title="Sign Out" data-i18n="[title]log_out">
+						<i class="fa fa-sign-out"></i>
+					</a>
+				</span>
 			</div>
 			<!-- search mobile button (this is hidden till mobile view port) -->
 			<div id="search-mobile" class="btn-header transparent pull-right">
-				<span> <a href="javascript:void(0)" title="Search" data-i18n="[title]search"><i class="fa fa-search"></i></a> </span>
+				<span>
+					<a href="javascript:void(0)" title="Search" data-i18n="[title]search">
+						<i class="fa fa-search"></i>
+					</a>
+				</span>
 			</div>
 			<!-- input: search field -->
 			<form action="#ajax/search.html" class="header-search pull-right">
 				<input id="search-fld" type="text" name="param" placeholder="Find reports and more" data-i18n="[placeholder]search_placeholder">
 				<button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-				<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+					<i class="fa fa-search"></i>
+				</button>
+				<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search">
+					<i class="fa fa-times"></i>
+				</a>
 			</form>
 			<!-- fullscreen button -->
 			<div id="fullscreen" class="btn-header transparent pull-right">
-				<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen" data-i18n="[title]full_screen"><i class="fa fa-arrows-alt"></i></a> </span>
+				<span>
+					<a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen" data-i18n="[title]full_screen">
+						<i class="fa fa-arrows-alt"></i>
+					</a>
+				</span>
 			</div>
 			<!-- multiple lang dropdown : find all flags in the flags page -->
 			<ul class="header-dropdown-list hidden-xs">
 				<li>
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img id="language-flag" src="img/blank.gif" class="flag flag-es" alt="Español (España)"> <span id="language-abrv"> ES</span>						<i class="fa fa-angle-down"></i> </a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<img id="language-flag" src="img/blank.gif" class="flag flag-es" alt="Español (España)">
+						<span id="language-abrv"> ES</span>
+						<i class="fa fa-angle-down"></i>
+					</a>
 					<ul class="dropdown-menu pull-right">
 						<li>
-							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('en');"><img src="img/blank.gif" class="flag flag-us" alt="en-US"> English (US)</a>
+							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('en');">
+								<img src="img/blank.gif" class="flag flag-us" alt="en-US"> English (US)</a>
 						</li>
 						<li>
-							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('es');"><img src="img/blank.gif" class="flag flag-es" alt="es"> Español (España)</a>
+							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('es');">
+								<img src="img/blank.gif" class="flag flag-es" alt="es"> Español (España)</a>
 						</li>
 						<li>
-							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('es-PA');"><img src="img/blank.gif" class="flag flag-pa" alt="es-pa"> Español (Panamá)</a>
+							<a href="javascript:void(0);" onclick="aswLanguage.changeLanguage('es-PA');">
+								<img src="img/blank.gif" class="flag flag-pa" alt="es-pa"> Español (Panamá)</a>
 						</li>
 					</ul>
 				</li>
@@ -115,12 +141,13 @@
 	<aside id="left-panel">
 		<!-- User info -->
 		<div class="login-info">
-			<span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
+			<span>
+				<!-- User image size is adjusted inside CSS, it should stay as is -->
 				<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-					<img src="img/avatars/male.png" alt="me" class="online" /> 
+					<img src="img/avatars/male.png" alt="me" class="online" />
 					<span id="user_name"></span>
-			<i class="fa fa-angle-down"></i>
-			</a>
+					<i class="fa fa-angle-down"></i>
+				</a>
 			</span>
 		</div>
 		<!-- General menu -->
@@ -128,109 +155,130 @@
 			<ul>
 				<li id="index" class="">
 					<a href="index2.html">
-						<i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent" data-i18n="menu.home">Blank</span>
+						<i class="fa fa-lg fa-fw fa-home"></i>
+						<span class="menu-item-parent" data-i18n="menu.home">Blank</span>
 					</a>
 				</li>
 				<li id="administration" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-bank"></i> <span class="menu-item-parent" data-i18n="menu.administration.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-bank"></i>
+						<span class="menu-item-parent" data-i18n="menu.administration.main">Blank</span>
 					</a>
 					<ul>
 						<li id="parameters" class="">
 							<a href="parameterDetail.html">
-								<i class="fa fa-lg fa-fw fa-magnet"></i> <span data-i18n="menu.administration.parameters">Blank</span>
+								<i class="fa fa-lg fa-fw fa-magnet"></i>
+								<span data-i18n="menu.administration.parameters">Blank</span>
 							</a>
 						</li>
 						<li id="userGroupGeneral" class="">
 							<a href="userGroupGeneral.html">
-								<i class="fa fa-lg fa-fw fa-users"></i> <span data-i18n="menu.administration.user_group">Blank</span>
+								<i class="fa fa-lg fa-fw fa-users"></i>
+								<span data-i18n="menu.administration.user_group">Blank</span>
 							</a>
 						</li>
 						<li id="userGeneral" class="">
 							<a href="userGeneral.html">
-								<i class="fa fa-lg fa-fw fa-user"></i> <span data-i18n="menu.administration.user">Blank</span>
+								<i class="fa fa-lg fa-fw fa-user"></i>
+								<span data-i18n="menu.administration.user">Blank</span>
 							</a>
 						</li>
 						<li id="workerGeneral" class="">
 							<a href="workerGeneral.html">
-								<i class="fa fa-lg fa-fw fa-male"></i> <span data-i18n="menu.administration.worker">Blank</span>
+								<i class="fa fa-lg fa-fw fa-male"></i>
+								<span data-i18n="menu.administration.worker">Blank</span>
 							</a>
 						</li>
 						<li id="companyGeneral" class="">
 							<a href="companyGeneral.html">
-								<i class="fa fa-lg fa-fw fa-building"></i> <span data-i18n="menu.administration.company">Blank</span>
+								<i class="fa fa-lg fa-fw fa-building"></i>
+								<span data-i18n="menu.administration.company">Blank</span>
 							</a>
 						</li>
 						<li id="storeGeneral" class="">
 							<a href="storeGeneral.html">
-								<i class="fa fa-lg fa-fw fa-database"></i> <span data-i18n="menu.administration.store">Blank</span>
+								<i class="fa fa-lg fa-fw fa-database"></i>
+								<span data-i18n="menu.administration.store">Blank</span>
 							</a>
 						</li>
 						<li id="unitGeneral" class="">
 							<a href="unitGeneral.html">
-								<i class="fa fa-lg fa-fw fa-wrench"></i> <span data-i18n="menu.administration.unit">Blank</span>
+								<i class="fa fa-lg fa-fw fa-wrench"></i>
+								<span data-i18n="menu.administration.unit">Blank</span>
 							</a>
 						</li>
 						<li id="itemGeneral" class="">
 							<a href="itemGeneral.html">
-								<i class="fa fa-lg fa-fw fa-cube"></i> <span data-i18n="menu.administration.item">Blank</span>
+								<i class="fa fa-lg fa-fw fa-cube"></i>
+								<span data-i18n="menu.administration.item">Blank</span>
 							</a>
 						</li>
 						<li id="cUnitGeneral" class="">
 							<a href="cUnitGeneral.html">
-								<i class="fa fa-lg fa-fw fa-cubes"></i> <span data-i18n="menu.administration.cUnit">Blank</span>
+								<i class="fa fa-lg fa-fw fa-cubes"></i>
+								<span data-i18n="menu.administration.cUnit">Blank</span>
 							</a>
 						</li>
 						<li id="zoneGeneral" class="">
 							<a href="zoneGeneral.html">
-								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span data-i18n="menu.administration.zone">Blank</span>
+								<i class="fa fa-lg fa-fw fa-puzzle-piece"></i>
+								<span data-i18n="menu.administration.zone">Blank</span>
 							</a>
-						</li>	
+						</li>
 						<li id="team" class="">
 							<a href="teamGeneral.html">
-								<i class="fa fa-lg fa-fw fa-user-circle"></i> <span data-i18n="menu.administration.team">Blank</span>
+								<i class="fa fa-lg fa-fw fa-user-circle"></i>
+								<span data-i18n="menu.administration.team">Blank</span>
 							</a>
-						</li>	
+						</li>
 						<li id="mea" class="">
 							<a href="meaGeneral.html">
-								<i class="fa fa-lg fa-fw fa-compass"></i> <span data-i18n="menu.administration.mea">Blank</span>
+								<i class="fa fa-lg fa-fw fa-compass"></i>
+								<span data-i18n="menu.administration.mea">Blank</span>
 							</a>
 						</li>
 						<li id="work" class="">
 							<a href="workGeneral.html">
-								<i class="fa fa-lg fa-fw fa-circle"></i> <span data-i18n="menu.administration.work">Blank</span>
+								<i class="fa fa-lg fa-fw fa-circle"></i>
+								<span data-i18n="menu.administration.work">Blank</span>
 							</a>
 						</li>
 						<li id="ins" class="">
 							<a href="insGeneral.html">
-								<i class="fa fa-lg fa-fw fa-circle-o"></i> <span data-i18n="menu.administration.ins">Blank</span>
+								<i class="fa fa-lg fa-fw fa-circle-o"></i>
+								<span data-i18n="menu.administration.ins">Blank</span>
 							</a>
 						</li>
 						<li id="area" class="">
 							<a href="areaGeneral.html">
-								<i class="fa fa-lg fa-fw fa-circle-o-notch"></i> <span data-i18n="menu.administration.area">Blank</span>
+								<i class="fa fa-lg fa-fw fa-circle-o-notch"></i>
+								<span data-i18n="menu.administration.area">Blank</span>
 							</a>
 						</li>
 						<li id="docType" class="">
 							<a href="docTypeGeneral.html">
-								<i class="fa fa-lg fa-fw fa-circle-o-notch"></i> <span data-i18n="menu.administration.docType">Blank</span>
+								<i class="fa fa-lg fa-fw fa-circle-o-notch"></i>
+								<span data-i18n="menu.administration.docType">Blank</span>
 							</a>
 						</li>
 						<li id="doc" class="">
 							<a href="docGeneral.html">
-								<i class="fa fa-lg fa-fw fa-file-o"></i> <span data-i18n="menu.administration.doc">Blank</span>
+								<i class="fa fa-lg fa-fw fa-file-o"></i>
+								<span data-i18n="menu.administration.doc">Blank</span>
 							</a>
 						</li>
 					</ul>
 				</li>
 				<li id="pwman" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-share-alt"></i> <span class="menu-item-parent" data-i18n="menu.pwman.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-share-alt"></i>
+						<span class="menu-item-parent" data-i18n="menu.pwman.main">Blank</span>
 					</a>
 					<ul>
 						<li id="pwGeneral" class="">
 							<a href="pwGeneral.html">
-								<i class="fa fa-lg fa-fw fa-cog"></i> <span data-i18n="menu.pwman.pw">Blank</span>
+								<i class="fa fa-lg fa-fw fa-cog"></i>
+								<span data-i18n="menu.pwman.pw">Blank</span>
 							</a>
 						</li>
 						<li id="plGeneral" class="">
@@ -240,56 +288,66 @@
 						</li>
 						<li id="woGeneral" class="">
 							<a href="woGeneral.html">
-								<i class="fa fa-lg fa-fw fa-cogs"></i> <span data-i18n="menu.pwman.wo">Blank</span>
+								<i class="fa fa-lg fa-fw fa-cogs"></i>
+								<span data-i18n="menu.pwman.wo">Blank</span>
 							</a>
 						</li>
 						<li id="moGeneral" class="">
 							<a href="moGeneral.html">
-								<i class="fa fa-lg fa-fw fa-compass"></i> <span data-i18n="menu.pwman.mo">Blank</span>
+								<i class="fa fa-lg fa-fw fa-compass"></i>
+								<span data-i18n="menu.pwman.mo">Blank</span>
 							</a>
-						</li>		
+						</li>
 						<li id="luGeneral" class="">
 							<a href="luGeneral.html">
-								<i class="fa fa-lg fa-fw fa-lightbulb-o"></i> <span data-i18n="menu.pwman.lu">Blank</span>
+								<i class="fa fa-lg fa-fw fa-lightbulb-o"></i>
+								<span data-i18n="menu.pwman.lu">Blank</span>
 							</a>
-						</li>						
+						</li>
 						<li id="closureGeneral" class="">
 							<a href="closureGeneral.html">
-								<i class="fa fa-lg fa-fw fa-times-circle-o"></i> <span data-i18n="menu.pwman.closure">Blank</span>
+								<i class="fa fa-lg fa-fw fa-times-circle-o"></i>
+								<span data-i18n="menu.pwman.closure">Blank</span>
 							</a>
 						</li>
 					</ul>
 				</li>
 				<li id="store" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-database"></i> <span class="menu-item-parent" data-i18n="menu.store.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-database"></i>
+						<span class="menu-item-parent" data-i18n="menu.store.main">Blank</span>
 					</a>
 					<ul>
 						<li id="deliveryGeneral" class="">
 							<a href="deliveryGeneral.html">
-								<i class="fa fa-lg fa-fw fa-archive"></i> <span data-i18n="menu.store.delivery">Blank</span>
+								<i class="fa fa-lg fa-fw fa-archive"></i>
+								<span data-i18n="menu.store.delivery">Blank</span>
 							</a>
-						</li>					
+						</li>
 						<li id="itemInGeneral" class="">
 							<a href="itemInGeneral.html">
-								<i class="fa fa-lg fa-fw fa-sign-in"></i> <span data-i18n="menu.store.itemIn">Blank</span>
+								<i class="fa fa-lg fa-fw fa-sign-in"></i>
+								<span data-i18n="menu.store.itemIn">Blank</span>
 							</a>
 						</li>
 						<li id="itemOutGeneral" class="">
 							<a href="itemOutGeneral.html">
-								<i class="fa fa-lg fa-fw fa-sign-out"></i> <span data-i18n="menu.store.itemOut">Blank</span>
+								<i class="fa fa-lg fa-fw fa-sign-out"></i>
+								<span data-i18n="menu.store.itemOut">Blank</span>
 							</a>
 						</li>
 						<li id="inventoryGeneral" class="">
 							<a href="inventoryGeneral.html">
-								<i class="fa fa-lg fa-fw fa-table"></i> <span data-i18n="menu.store.inventory">Blank</span>
+								<i class="fa fa-lg fa-fw fa-table"></i>
+								<span data-i18n="menu.store.inventory">Blank</span>
 							</a>
-						</li>						
+						</li>
 					</ul>
 				</li>
 				<li id="invoice" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent" data-i18n="menu.invoice.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-money"></i>
+						<span class="menu-item-parent" data-i18n="menu.invoice.main">Blank</span>
 					</a>
 					<ul>
 						<li id="invoiceGeneral" class="">
@@ -301,19 +359,21 @@
 							<a href="invoiceImport.html">
 								<i class="fa fa-lg fa-fw fa-cloud-upload"></i> <span data-i18n="menu.invoice.import">Blank</span>
 							</a>
-						</li>					
-					</ul>					
-				</li>	
+						</li>
+					</ul>
+				</li>
 				<li id="rrhh" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent" data-i18n="menu.rrhh.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-users"></i>
+						<span class="menu-item-parent" data-i18n="menu.rrhh.main">Blank</span>
 					</a>
 					<ul>
 						<li id="rrhh-worker" class="">
 							<a href="workerGeneral.html?rrhh=true">
-								<i class="fa fa-lg fa-fw fa-male"></i> <span data-i18n="menu.rrhh.worker">Blank</span>
+								<i class="fa fa-lg fa-fw fa-male"></i>
+								<span data-i18n="menu.rrhh.worker">Blank</span>
 							</a>
-						</li>	
+						</li>
 						<li id="rrhh-team" class="">
 							<a href="teamGeneral.html">
 								<i class="fa fa-lg fa-fw fa-user-circle"></i> <span data-i18n="menu.administration.team">Blank</span>
@@ -328,29 +388,34 @@
 							<a href="absTypeGeneral.html?rrhh=true">
 								<i class="fa fa-lg fa-fw fa-user-times"></i> <span data-i18n="menu.rrhh.absType">Blank</span>
 							</a>
-						</li>					
+						</li>
 						<li id="rrhh-report" class="">
 							<a href="rrHH.html">
-								<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span data-i18n="menu.rrhh.report">Blank</span>
+								<i class="fa fa-lg fa-fw fa-file-pdf-o"></i>
+								<span data-i18n="menu.rrhh.report">Blank</span>
 							</a>
-						</li>				
-					</ul>					
-				</li>				
+						</li>
+					</ul>
+				</li>
 				<li id="report" class="">
 					<a href="#">
-						<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span class="menu-item-parent" data-i18n="menu.report.main">Blank</span>
+						<i class="fa fa-lg fa-fw fa-file-pdf-o"></i>
+						<span class="menu-item-parent" data-i18n="menu.report.main">Blank</span>
 					</a>
 					<ul>
 						<li id="reportGeneral" class="">
 							<a href="reportGeneral.html">
-								<i class="fa fa-lg fa-fw fa-file-pdf-o"></i> <span data-i18n="menu.report.general">Blank</span>
+								<i class="fa fa-lg fa-fw fa-file-pdf-o"></i>
+								<span data-i18n="menu.report.general">Blank</span>
 							</a>
-						</li>					
-					</ul>					
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</nav>
-		<span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
+		<span class="minifyme" data-action="minifyMenu">
+			<i class="fa fa-arrow-circle-left hit"></i>
+		</span>
 	</aside>
 
 	<!-- MAIN PANEL -->
@@ -359,8 +424,8 @@
 		<div id="ribbon">
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
-				<li data-i18n="menu.administration.main">Home</li>
-				<li data-i18n="menu.administration.company">Home</li>
+				<li data-i18n="menu.rrhh.main">Home</li>
+				<li data-i18n="menu.rrhh.absType">Home</li>
 			</ol>
 		</div>
 		<!-- Main content -->
@@ -369,7 +434,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
-						<i class="fa-fw fa fa-building"></i> <span data-i18n="menu.administration.company">Inicio</span>
+						<i class="fa-fw fa fa-user-times"></i>
+						<span data-i18n="menu.rrhh.absType">Inicio</span>
 					</h1>
 				</div>
 			</div>
@@ -380,15 +446,17 @@
 						<!-- Widget ID (each widget will need unique ID)-->
 						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
-								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-								<h2 data-i18n="companyDetail.title">Mantenimiento</h2>
+								<span class="widget-icon">
+									<i class="fa fa-edit"></i>
+								</span>
+								<h2 data-i18n="absTypeDetail.title">Mantenimiento</h2>
 							</header>
 							<div class="widget-body">
-								<form id="companyDetail-form" class="smart-form">
+								<form id="absTypeDetail-form" class="smart-form">
 									<fieldset>
 										<div class="row">
 											<section class="col col-md-12">
-												<label class="label" data-i18n="companyDetail.name">Nombre:</label>
+												<label class="label" data-i18n="absTypeDetail.name">Nombre:</label>
 												<label class="input">
 													<input id="txtName" name="txtName" data-bind="value: name">
 												</label>
@@ -397,12 +465,12 @@
 									</fieldset>
 									<fieldset>
 										<div class="pull-right">
-											<button id="btnExit" data-i18n="[title]companyDetail.cancel" class="btn btn-warning btn-circle btn-lg">
-											<i class="fa fa-lg fa-sign-out"></i>
-										</button>
-											<button id="btnOk" data-i18n="[title]companyDetail.ok" class="btn btn-success btn-circle btn-lg">
-											<i class="fa fa-lg fa-check"></i>
-										</button>
+											<button id="btnExit" data-i18n="[title]absTypeDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+												<i class="fa fa-lg fa-sign-out"></i>
+											</button>
+											<button id="btnOk" data-i18n="[title]absTypeDetail.ok" class="btn btn-success btn-circle btn-lg">
+												<i class="fa fa-lg fa-check"></i>
+											</button>
 										</div>
 									</fieldset>
 								</form>
@@ -417,7 +485,8 @@
 	<div class="page-footer">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<span class="txt-color-white">GDES PANAMA <span class="hidden-xs"> - Web Application </span> © 2016</span>
+				<span class="txt-color-white">GDES PANAMA
+					<span class="hidden-xs"> - Web Application </span> © 2016</span>
 			</div>
 		</div>
 	</div>
@@ -436,16 +505,16 @@
 	<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
-			if (!window.jQuery) {
-				document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
-			}
-		</script>
+		if (!window.jQuery) {
+			document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
+		}
+	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script>
-			if (!window.jQuery.ui) {
-				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
-			}
-		</script>
+		if (!window.jQuery.ui) {
+			document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+		}
+	</script>
 	<!-- IMPORTANT: APP CONFIG -->
 	<script src="js/app.config.js"></script>
 	<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
@@ -498,6 +567,7 @@
 	<script src="locales/numeral-languages.js"></script>
 	<script src="locales/datepicker-languages.js"></script>
 	<script src="locales/select2-languages.js"></script>
+	<script src="locales/numeral-languages.js"></script>
 	<!-- PAGE RELATED PLUGIN(S) -->
 	<script src="js/plugin/datatables/jquery.dataTables.min.js"></script>
 	<script src="js/plugin/datatables/dataTables.colVis.min.js"></script>
@@ -508,29 +578,29 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/companyDetail.js"></script>
+	<script src="js/pages/absTypeDetail.js"></script>
 
 
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-				pageSetUp();
+		$(document).ready(function () {
+			pageSetUp();
 		})
 	</script>
 
 	<!-- Your GOOGLE ANALYTICS CODE Below -->
 	<script type="text/javascript">
-		var _gaq = _gaq || [];
+			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
 			_gaq.push(['_trackPageview']);
-		(function() {
-			var ga = document.createElement('script');
-			ga.type = 'text/javascript';
-			ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(ga, s);
-		})();
+			(function () {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
 	</script>
 </body>
 
