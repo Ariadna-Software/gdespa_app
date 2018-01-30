@@ -138,4 +138,16 @@ router.get('/worker-hours/:initDate/:endDate/:workerId', common.midChkApiKey, fu
     }, test);
 });
 
+router.get('/worker-infdays/:initDate/:endDate/:workerId', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var initDate = req.params.initDate;
+    var endDate = req.params.endDate;
+    var workerId = req.params.workerId;
+    if (!initDate || !endDate) return res.status(400).send('Formato de la petición incorrecto');
+    reportDb.getInfWorkerDays(initDate, endDate, workerId, function (err, reports) {
+        if (err) return res.status(500).send(err.message);
+        res.json(reports);
+    }, test);
+});
+
 module.exports = router;
