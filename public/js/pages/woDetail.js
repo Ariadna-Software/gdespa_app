@@ -318,7 +318,7 @@ var woDetailAPI = {
     loadPws: function (id) {
         $.ajax({
             type: "GET",
-            url: sprintf('%s/pw?api_key=%s', myconfig.apiUrl, api_key),
+            url: sprintf('%s/pw/combo?api_key=%s', myconfig.apiUrl, api_key),
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {

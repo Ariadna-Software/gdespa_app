@@ -84,6 +84,16 @@ router.get('/active/', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/combo/', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    pwDb.getCombo(function (err, pws) {
+        if (err) return res.status(500).send(err.message);
+        res.json(pws);
+    }, test);
+});
+
+
 router.get('/:id', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;

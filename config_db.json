@@ -2,7 +2,7 @@
     "prod": {
         "host": "localhost",
         "user": "root",
-        "password": "aritel,",
+        "password": "aritel",
         "database": "gdespa_test",
         "port": 3306
     },
