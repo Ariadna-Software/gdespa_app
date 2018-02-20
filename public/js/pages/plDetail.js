@@ -296,6 +296,8 @@ var plDetailAPI = {
         return mf;
     },
     loadWorkers: function (id) {
+        var url = sprintf('%s/worker/active?api_key=%s', myconfig.apiUrl, api_key);
+        if (id) url = sprintf('%s/worker?api_key=%s', myconfig.apiUrl, api_key);
         $.ajax({
             type: "GET",
             url: sprintf('%s/worker?api_key=%s', myconfig.apiUrl, api_key),
@@ -315,6 +317,8 @@ var plDetailAPI = {
         });
     },
     loadTeams: function (id) {
+        var url = sprintf('%s/team/active?api_key=%s', myconfig.apiUrl, api_key);
+        if (id) url = sprintf('%s/team?api_key=%s', myconfig.apiUrl, api_key);
         $.ajax({
             type: "GET",
             url: sprintf('%s/team?api_key=%s', myconfig.apiUrl, api_key),

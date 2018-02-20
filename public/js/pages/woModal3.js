@@ -118,9 +118,11 @@ var woModal3API = {
         return mf;
     },
     loadWorkers3: function (id) {
+        var url = sprintf('%s/worker/vehicle/active?api_key=%s', myconfig.apiUrl, api_key);
+        if (id) url = sprintf('%s/worker/vehicle?api_key=%s', myconfig.apiUrl, api_key);
         $.ajax({
             type: "GET",
-            url: sprintf('%s/worker/vehicle?api_key=%s', myconfig.apiUrl, api_key),
+            url: url,
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {

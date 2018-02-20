@@ -30,6 +30,17 @@ router.get('/', common.midChkApiKey, function (req, res) {
     }
 });
 
+router.get('/active/', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    workerDb.getActive(function (err, users) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(users);
+        }
+    }, test);
+});
+
 router.get('/worker', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     workerDb.getWorker(function (err, workers) {
@@ -41,6 +52,16 @@ router.get('/worker', common.midChkApiKey, function (req, res) {
     }, test);
 });
 
+router.get('/worker/active', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    workerDb.getWorkerActive(function (err, workers) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(workers);
+        }
+    }, test);
+});
 
 router.get('/hours', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
@@ -65,11 +86,11 @@ router.get('/hoursxls', common.midChkApiKey, function (req, res) {
         if (err) {
             res.status(500).send(err.message);
         } else {
-            workerDb.getHoursXls(fromDate, toDate, workers, function(err, file){
+            workerDb.getHoursXls(fromDate, toDate, workers, function (err, file) {
                 if (err) return res.status(500).send(err.message);
                 res.json(file);
             })
-            
+
         }
     }, test);
 });
@@ -78,6 +99,17 @@ router.get('/hoursxls', common.midChkApiKey, function (req, res) {
 router.get('/vehicle', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     workerDb.getVehicle(function (err, vehicles) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(vehicles);
+        }
+    }, test);
+});
+
+router.get('/vehicle/active', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    workerDb.getVehicleActive(function (err, vehicles) {
         if (err) {
             res.status(500).send(err.message);
         } else {

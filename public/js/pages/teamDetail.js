@@ -71,12 +71,15 @@ var teamDetailAPI = {
         self.optionsWorkers = ko.observableArray([]);
         self.selectedWorkers = ko.observableArray([]);
         self.sWorker = ko.observable();
+        //
+        self.active = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.teamId);
         vm.name(data.name);
         teamDetailAPI.loadWorkerInCharges(data.workerInChargeId);
         teamDetailAPI.loadZones(data.zoneId);
+        vm.active(data.active);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -131,7 +134,8 @@ var teamDetailAPI = {
                 teamId: vm.id(),
                 name: vm.name(),
                 workerInChargeId: vm.sWorkerInCharge(),
-                zoneId: vm.sZone()
+                zoneId: vm.sZone(),
+                active: vm.active()
             };
             var url = "", type = "";
             if (vm.id() == 0) {

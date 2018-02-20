@@ -120,9 +120,11 @@ var moModal2API = {
         return mf;
     },
     loadWorkers2: function (id) {
+        var url = sprintf('%s/worker/worker/active?api_key=%s', myconfig.apiUrl, api_key);
+        if (id) url = sprintf('%s/worker/worker?api_key=%s', myconfig.apiUrl, api_key);
         $.ajax({
             type: "GET",
-            url: sprintf('%s/worker/worker?api_key=%s', myconfig.apiUrl, api_key),
+            url: url,
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {

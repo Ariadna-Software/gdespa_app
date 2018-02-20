@@ -191,7 +191,7 @@
         "license": "Matricula",
         "resourceType": "Tipo de recurso",
         "administrative": "Es personal administrativo",
-        "active": "El trabajador está activo",
+        "active": "El recurso está activo",
         "ss": "Número SS",
         "dv": "DV",
         "bornDate": "Fecha Nacimiento",
@@ -642,7 +642,8 @@
         "ok": "Guardar",
         "newLine": "Nueva linea",
         "associated_lines": "Lineas de la brigada",
-        "modal_title": "Linea de la brigada"
+        "modal_title": "Linea de la brigada",
+        "active": "Activo"
     },
     "meaGeneral": {
         "title": "Mantenimiento otras UC",

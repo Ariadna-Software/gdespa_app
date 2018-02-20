@@ -30,6 +30,18 @@ router.get('/', common.midChkApiKey, function (req, res) {
     }
 });
 
+router.get('/active', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    var name = req.query.name;
+    teamDb.getActive(function (err, teams) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(teams);
+        }
+    }, test);
+});
+
 router.get('/report', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     teamDb.get(function (err, teams) {

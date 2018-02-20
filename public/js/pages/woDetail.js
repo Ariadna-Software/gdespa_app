@@ -297,9 +297,11 @@ var woDetailAPI = {
         });
     },
     loadTeams: function (id) {
+        var url = sprintf('%s/team/active?api_key=%s', myconfig.apiUrl, api_key);
+        if (id) url = sprintf('%s/team?api_key=%s', myconfig.apiUrl, api_key);
         $.ajax({
             type: "GET",
-            url: sprintf('%s/team?api_key=%s', myconfig.apiUrl, api_key),
+            url: url,
             dataType: "json",
             contentType: "application/json",
             success: function (data, status) {
