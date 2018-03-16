@@ -86,6 +86,16 @@ var pwModal2API = {
                     data.payDate = moment(vm.initDate2(), i18n.t('util.date_format')).format(i18n.t('util.date_iso'));
                     data.payRef = vm.reference2();
                     break;
+                case 6:
+                    data.itxInCharge = vm.sWorker2();
+                    data.itxDate = moment(vm.initDate2(), i18n.t('util.date_format')).format(i18n.t('util.date_iso'));
+                    data.itxRef = vm.reference2();
+                    break;
+                case 7:
+                    data.qlyInCharge = vm.sWorker2();
+                    data.qlyDate = moment(vm.initDate2(), i18n.t('util.date_format')).format(i18n.t('util.date_iso'));
+                    data.qlyRef = vm.reference2();
+                    break;
             }
             var url = "", type = "";
             type = "PUT";

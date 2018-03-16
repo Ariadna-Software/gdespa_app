@@ -36,7 +36,9 @@
         "DONE": "EN EJECUCIÓN",
         "VALIDATED": "TERMINADO",
         "INVOICED": "FACTURADO",
-        "PAID": "CERRADO"
+        "PAID": "CERRADO",
+        "ITX": "INTERCONEXIÓN",
+        "QLY": "CALIDAD"
     },
     "util": {
         "date_iso": "YYYY-MM-DD",

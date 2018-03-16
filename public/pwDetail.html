@@ -693,6 +693,17 @@
 														<section class="col col-md-2">
 															<div class="asw-center">
 																<strong>
+																	<p data-i18n="status.ITX">ITX</p>
+																</strong>
+																<p data-bind="text: itxDate"></p>
+																REF:
+																<p data-bind="text: itxRef"></p>
+																<p data-bind="text: itxInChargeName"></p>
+															</div>
+														</section>														
+														<section class="col col-md-2">
+															<div class="asw-center">
+																<strong>
 																	<p data-i18n="status.VALIDATED">*</p>
 																</strong>
 																<p data-bind="text: cerDate"></p>
@@ -712,6 +723,14 @@
 																<p data-bind="text: invInChargeName"></p>
 															</div>
 														</section>
+													</div>
+												</fieldset>
+											</section>
+										</div>
+										<div class="row">
+											<section class="col col-md-12">
+												<fieldset>
+													<div class="row">
 														<section class="col col-md-2">
 															<div class="asw-center">
 																<strong>
@@ -723,6 +742,17 @@
 																<p data-bind="text: payInChargeName"></p>
 															</div>
 														</section>
+														<section class="col col-md-2">
+															<div class="asw-center">
+																<strong>
+																	<p data-i18n="status.QLY">QLY</p>
+																</strong>
+																<p data-bind="text: qlyDate"></p>
+																REF:
+																<p data-bind="text: qlyRef"></p>
+																<p data-bind="text: qlyInChargeName"></p>
+															</div>
+														</section>														
 													</div>
 													<div class="pull-right">
 														<button id="btnChangeStatus" data-i18n="[title]pwDetail.change_status" data-toggle="modal" data-target="#pwModal2" class="btn btn-success btn-circle btn-lg"
@@ -744,7 +774,7 @@
 														<button id="btnOk" data-i18n="[title]pwDetail.ok" class="btn btn-success btn-circle btn-lg">
 															<i class="fa fa-lg fa-check"></i>
 														</button>
-													</div>
+													</div>													
 												</fieldset>
 											</section>
 										</div>

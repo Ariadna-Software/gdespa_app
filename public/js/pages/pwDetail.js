@@ -113,9 +113,9 @@ var pwDetailAPI = {
             $("#seeVerified").hide();
         }
         //
-        if (!user.perChangePwDate){
+        if (!user.perChangePwDate) {
             $("#txtInitDate").attr('disabled', 'disabled');
-        }  
+        }
         $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
             if (e.target.hash == "#s7") {
                 pwDetailAPI.showMapMod();
@@ -139,11 +139,15 @@ var pwDetailAPI = {
         self.cerDate = ko.observable();
         self.invDate = ko.observable();
         self.payDate = ko.observable();
+        self.itxDate = ko.observable();
+        self.qlyDate = ko.observable();
         self.acepRef = ko.observable();
         self.finRef = ko.observable();
         self.cerRef = ko.observable();
         self.invRef = ko.observable();
         self.payRef = ko.observable();
+        self.itxRef = ko.observable();
+        self.qlyRef = ko.observable();
         self.endDate = ko.observable();
         self.mainK = ko.observable();
         self.lastClose = ko.observable();
@@ -244,9 +248,12 @@ var pwDetailAPI = {
         self.cerInChargeName = ko.observable();
         self.invInChargeName = ko.observable();
         self.payInChargeName = ko.observable();
+        self.itxInChargeName = ko.observable();
+        self.qlyInChargeName = ko.observable();
         // map
         self.latitude = ko.observable();
         self.longitude = ko.observable();
+        // New status
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -278,11 +285,17 @@ var pwDetailAPI = {
             vm.payDate(moment(data.payDate).format(i18n.t("util.date_format")));
         if (moment(data.endDate).isValid())
             vm.endDate(moment(data.endDate).format(i18n.t("util.date_format")));
+        if (moment(data.itxDate).isValid())
+            vm.itxDate(moment(data.itxDate).format(i18n.t("util.date_format")));
+        if (moment(data.qlyDate).isValid())
+            vm.qlyDate(moment(data.qlyDate).format(i18n.t("util.date_format")));
         vm.acepRef(data.acepRef);
         vm.finRef(data.finRef);
         vm.cerRef(data.cerRef);
         vm.invRef(data.invRef);
         vm.payRef(data.payRef);
+        vm.itxRef(data.itxRef);
+        vm.qlyRef(data.qlyRef);
         vm.sZone(data.zone.id);
         vm.sZone2(data.zoneId2);
         vm.subZone(data.subZone);
@@ -340,6 +353,8 @@ var pwDetailAPI = {
         vm.cerInChargeName(data.cerInChargeName);
         vm.invInChargeName(data.invInChargeName);
         vm.payInChargeName(data.payInChargeName);
+        vm.itxInChargeName(data.itxInChargeName);
+        vm.qlyInChargeName(data.qlyInChargeName);
         if (!user.perChangePwDate) {
             // var html = "<span>" + vm.initDate() + "</span>";
             // $("#pwDate").html(html);
