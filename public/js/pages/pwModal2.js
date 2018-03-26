@@ -31,8 +31,8 @@ var pwModal2API = {
     },
     newStatus: function () {
         oldStatus = vm.sStatus(); // keep old status
-        var st = vm.sStatus() + 1;
-        if (st < 6) {
+        var st = pwModal2API.nextStatus(oldStatus);
+        if (st < 8) {
             // valid status
             vm.sStatus2(st)
         } else {
@@ -51,6 +51,11 @@ var pwModal2API = {
         var mf = function (e) {
             e.preventDefault();
             if (!pwModal2API.dataOk()) {
+                return;
+            }
+            // Controlar que si no tiene permisos de cierre no puede ir hacia atras
+            if (pwModal2API.controlBackStatus(oldStatus, vm.sStatus2())) {
+                aswNotif.generalMessage(i18n.t('userDetail.backStatusMessage'));
                 return;
             }
             // mount line to save 
@@ -121,7 +126,7 @@ var pwModal2API = {
                             if (data[0].ndocs == 0 && myInitDate >= myInitControl) {
                                 var question = i18n.t('pwDetail.docsNeedToClose');
                                 aswNotif.generalMessage(question);
-                                pwModal2API.dontCloseFin();
+                                // pwModal2API.dontCloseFin();
                                 // aswNotif.generalQuestionYesNo(question, 'pwModal2API.closeDocumentsPresent()', 'pwModal2API.dontClose()');
                                 pwDetailAPI.getPw(vm.id());
                             }
@@ -276,6 +281,39 @@ var pwModal2API = {
         // TODO: Notif authority
         pwDetailAPI.getPw(vm.id());
         return;
+    },
+    nextStatus: function (s) {
+        s = s + 1;
+        // comprobar con el nuevo orden cual seria el status correcto
+        switch (s) {
+            case 3:
+                s = 6;
+                break;
+            case 7:
+                s = 3;
+                break;
+            case 4:
+                s = 7;
+                break;
+            case 8:
+                s = 4;
+                break;
+            case 6:
+                s = 5;
+                break;
+        }
+        return s;
+    },
+    controlBackStatus: function (oldS, newS) {
+        if (user.perPwClosed) return false;
+        if (oldS >= 3 && oldS != 6) {
+            // estaba por encima de terminado
+            if (newS < 3 || newS == 6) {
+                // es inferior a terminado
+                return true;
+            }
+        }
+        return false;
     }
 
 };

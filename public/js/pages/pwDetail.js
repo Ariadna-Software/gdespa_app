@@ -337,7 +337,7 @@ var pwDetailAPI = {
         if (vm.profitLoses()) $('#profitLoses').text(numeral(data.profitLoses).format('0,0.00') + " USD");
         // control pw closed
         if ((vm.status() > 2 && vm.status() != 6) && !user.perPwClosed) {
-            $("#btnChangeStatus").hide();
+            //$("#btnChangeStatus").hide();
             $("#btnCalc").hide();
             $("#btnNewChapter").hide();
             $("#btnOk").hide();
