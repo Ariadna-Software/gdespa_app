@@ -1,0 +1,2 @@
+ALTER TABLE `pw`   
+  ADD COLUMN `geo` VARCHAR(255) NULL AFTER `qlyRef`;

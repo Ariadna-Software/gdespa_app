@@ -253,7 +253,8 @@ var pwDetailAPI = {
         // map
         self.latitude = ko.observable();
         self.longitude = ko.observable();
-        // New status
+        //
+        self.geo = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -363,6 +364,8 @@ var pwDetailAPI = {
         // map
         vm.latitude(data.latitude);
         vm.longitude(data.longitude);
+        //
+        vm.geo(data.geo);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -482,7 +485,8 @@ var pwDetailAPI = {
                 profitLoses: vm.profitLoses(),
                 isMeaMo: vm.isMeaMo(),
                 latitude: vm.latitude(),
-                longitude: vm.longitude()
+                longitude: vm.longitude(),
+                geo: vm.geo()
             };
             if (moment(vm.endDate(), i18n.t("util.date_format")).isValid()) {
                 data.endDate = moment(vm.endDate(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"));

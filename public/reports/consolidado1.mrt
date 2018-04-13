@@ -13,7 +13,7 @@
     <DataSources isList="true" count="1">
       <DatosPw Ref="3" type="Stimulsoft.Report.Dictionary.StiMySqlSource" isKey="true">
         <Alias>DatosPw</Alias>
-        <Columns isList="true" count="10">
+        <Columns isList="true" count="11">
           <value>reference,System.String</value>
           <value>name,System.String</value>
           <value>mainK,System.Decimal</value>
@@ -24,13 +24,14 @@
           <value>STATUS,System.String</value>
           <value>zone,System.String</value>
           <value>profitLoses,System.Decimal</value>
+          <value>geo,System.String</value>
         </Columns>
         <CommandTimeout>30</CommandTimeout>
         <Dictionary isRef="1" />
         <Name>DatosPw</Name>
         <NameInSource>GDESPA</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>SELECT t0.reference, t0.name, t0.mainK, COALESCE(t0.total, 0) AS total, t0.profitLoses,
+        <SqlCommand>SELECT t0.reference, t0.name, t0.mainK, COALESCE(t0.total, 0) AS total, t0.profitLoses, t0.geo,
 COALESCE(t1.prod,0) AS prod, COALESCE(t2.pres,0) AS pres, 
 COALESCE(t4.totalf,0) AS totalf, s.name AS STATUS,
 z.name AS zone
@@ -131,96 +132,6 @@ LEFT JOIN zone AS z on z.zoneId = t0.zoneId</SqlCommand>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.4,0.2,2.4,1.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <ImageBytes>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</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>Image1</Name>
               <Page isRef="4" />
@@ -293,7 +204,7 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
         <HeaderDatosPw Ref="15" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,5,27.69,0.8</ClientRectangle>
-          <Components isList="true" count="8">
+          <Components isList="true" count="9">
             <HeaderDatosPw_reference Ref="16" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
@@ -313,7 +224,7 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
             <HeaderDatosPw_name Ref="17" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.4,0,5.8,0.8</ClientRectangle>
+              <ClientRectangle>2.4,0,5.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <Margins>0,0,0,0</Margins>
@@ -380,7 +291,7 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
             <HeaderDatosPw_STATUS Ref="21" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>8.4,0,2.2,0.8</ClientRectangle>
+              <ClientRectangle>11,0,2.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,10,Bold</Font>
               <HorAlignment>Right</HorAlignment>
@@ -430,18 +341,35 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text16>
+            <Text20 Ref="24" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8,0,2.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>11fda57549614ea5ab92357f5c07febe</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="4" />
+              <Parent isRef="15" />
+              <Text>GEO</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text20>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>HeaderDatosPw</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
         </HeaderDatosPw>
-        <DataDatosPw Ref="24" type="DataBand" isKey="true">
+        <DataDatosPw Ref="25" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,6.6,27.69,0.8</ClientRectangle>
-          <Components isList="true" count="8">
-            <DataDatosPw_reference Ref="25" type="Text" isKey="true">
+          <Components isList="true" count="9">
+            <DataDatosPw_reference Ref="26" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0,0,2.4,0.8</ClientRectangle>
@@ -450,28 +378,28 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_reference</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DatosPw.reference}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_reference>
-            <DataDatosPw_name Ref="26" type="Text" isKey="true">
+            <DataDatosPw_name Ref="27" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>2.4,0,5.8,0.8</ClientRectangle>
+              <ClientRectangle>2.4,0,5.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_name</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DatosPw.name}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_name>
-            <DataDatosPw_prod Ref="27" type="Text" isKey="true">
+            <DataDatosPw_prod Ref="28" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>16.4,0,2.4,0.8</ClientRectangle>
@@ -481,10 +409,10 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_prod</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DatosPw.prod}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="28" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="29" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -495,7 +423,7 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_prod>
-            <DataDatosPw_pres Ref="29" type="Text" isKey="true">
+            <DataDatosPw_pres Ref="30" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>13.4,0,2.8,0.8</ClientRectangle>
@@ -505,10 +433,10 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_pres</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DatosPw.pres}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="30" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="31" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -519,7 +447,7 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_pres>
-            <DataDatosPw_totalf Ref="31" type="Text" isKey="true">
+            <DataDatosPw_totalf Ref="32" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>19,0,2.4,0.8</ClientRectangle>
@@ -529,10 +457,10 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_totalf</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DatosPw.totalf}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="32" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="33" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -543,23 +471,23 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_totalf>
-            <DataDatosPw_STATUS Ref="33" type="Text" isKey="true">
+            <DataDatosPw_STATUS Ref="34" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>8.4,0,2.2,0.8</ClientRectangle>
+              <ClientRectangle>11,0,2.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>DataDatosPw_STATUS</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DatosPw.STATUS}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataDatosPw_STATUS>
-            <Text6 Ref="34" type="Text" isKey="true">
+            <Text6 Ref="35" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>21.6,0,2.8,0.8</ClientRectangle>
@@ -570,10 +498,10 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DatosPw.prod - DatosPw.totalf}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="35" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="36" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -585,7 +513,7 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text6>
-            <Text17 Ref="36" type="Text" isKey="true">
+            <Text17 Ref="37" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>25,0,2.4,0.8</ClientRectangle>
@@ -596,10 +524,10 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>Text17</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="25" />
               <Text>{DatosPw.profitLoses}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="37" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="38" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -611,6 +539,23 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text17>
+            <Text21 Ref="39" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>8,0,2.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>90395d03e40b47868d79c34a7c1e60ef</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="4" />
+              <Parent isRef="25" />
+              <Text>{DatosPw.geo}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
           </Components>
           <Conditions isList="true" count="0" />
           <DataRelationName isNull="true" />
@@ -624,11 +569,11 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
             <value>{DatosPw.reference}</value>
           </Sort>
         </DataDatosPw>
-        <GroupFooterBand1 Ref="38" type="GroupFooterBand" isKey="true">
+        <GroupFooterBand1 Ref="40" type="GroupFooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,8.2,27.69,0.8</ClientRectangle>
           <Components isList="true" count="6">
-            <Text4 Ref="39" type="Text" isKey="true">
+            <Text4 Ref="41" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -640,35 +585,8 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
               <Page isRef="4" />
-              <Parent isRef="38" />
+              <Parent isRef="40" />
               <Text>{Sum(DataDatosPw,DatosPw.pres)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="40" type="CurrencyFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>8</NegativePattern>
-                <PositivePattern>3</PositivePattern>
-                <Symbol>USD</Symbol>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text4>
-            <Text7 Ref="41" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>16.4,0,2.4,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>697eda9ab0924bba8723f4f7a05d40ae</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text7</Name>
-              <Page isRef="4" />
-              <Parent isRef="38" />
-              <Text>{Sum(DataDatosPw,DatosPw.prod)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="42" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -681,21 +599,21 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text7>
-            <Text11 Ref="43" type="Text" isKey="true">
+            </Text4>
+            <Text7 Ref="43" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>19,0,2.4,0.8</ClientRectangle>
+              <ClientRectangle>16.4,0,2.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>7657f06583fb40309660e0ab6f77912e</Guid>
+              <Guid>697eda9ab0924bba8723f4f7a05d40ae</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text11</Name>
+              <Name>Text7</Name>
               <Page isRef="4" />
-              <Parent isRef="38" />
-              <Text>{Sum(DataDatosPw,DatosPw.totalf)}</Text>
+              <Parent isRef="40" />
+              <Text>{Sum(DataDatosPw,DatosPw.prod)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="44" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -708,21 +626,21 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text11>
-            <Text13 Ref="45" type="Text" isKey="true">
+            </Text7>
+            <Text11 Ref="45" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>21.6,0,2.8,0.8</ClientRectangle>
+              <ClientRectangle>19,0,2.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>bb594be273764628bd7acbb2e3f47598</Guid>
+              <Guid>7657f06583fb40309660e0ab6f77912e</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text13</Name>
+              <Name>Text11</Name>
               <Page isRef="4" />
-              <Parent isRef="38" />
-              <Text>{Sum(DataDatosPw,DatosPw.prod - DatosPw.totalf)}</Text>
+              <Parent isRef="40" />
+              <Text>{Sum(DataDatosPw,DatosPw.totalf)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="46" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -735,8 +653,35 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text13 Ref="47" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>21.6,0,2.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>bb594be273764628bd7acbb2e3f47598</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="4" />
+              <Parent isRef="40" />
+              <Text>{Sum(DataDatosPw,DatosPw.prod - DatosPw.totalf)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="48" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text13>
-            <Text14 Ref="47" type="Text" isKey="true">
+            <Text14 Ref="49" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>2.4,0,11.2,0.8</ClientRectangle>
@@ -747,14 +692,14 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>Text14</Name>
               <Page isRef="4" />
-              <Parent isRef="38" />
+              <Parent isRef="40" />
               <Text>TOTALES ZONA: {DatosPw.zone}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text14>
-            <Text18 Ref="48" type="Text" isKey="true">
+            <Text18 Ref="50" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -766,10 +711,10 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>Text18</Name>
               <Page isRef="4" />
-              <Parent isRef="38" />
+              <Parent isRef="40" />
               <Text>{Sum(DataDatosPw,DatosPw.profitLoses)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="49" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="51" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -787,11 +732,11 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
           <Page isRef="4" />
           <Parent isRef="4" />
         </GroupFooterBand1>
-        <FooterDatosPw Ref="50" type="FooterBand" isKey="true">
+        <FooterDatosPw Ref="52" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,9.8,27.69,0.8</ClientRectangle>
           <Components isList="true" count="6">
-            <Text8 Ref="51" type="Text" isKey="true">
+            <Text8 Ref="53" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -803,35 +748,8 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>Text8</Name>
               <Page isRef="4" />
-              <Parent isRef="50" />
+              <Parent isRef="52" />
               <Text>{Sum(DataDatosPw,DatosPw.pres)}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="52" type="CurrencyFormat" isKey="true">
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>8</NegativePattern>
-                <PositivePattern>3</PositivePattern>
-                <Symbol>USD</Symbol>
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Totals</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text8>
-            <Text9 Ref="53" type="Text" isKey="true">
-              <Border>Top;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>16.4,0,2.4,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <Guid>0ea190a77c2e483bbc7f4fcbadc83cdd</Guid>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text9</Name>
-              <Page isRef="4" />
-              <Parent isRef="50" />
-              <Text>{Sum(DataDatosPw,DatosPw.prod)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="54" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -844,21 +762,21 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text9>
-            <Text10 Ref="55" type="Text" isKey="true">
+            </Text8>
+            <Text9 Ref="55" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>19,0,2.4,0.8</ClientRectangle>
+              <ClientRectangle>16.4,0,2.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>b23648e1e4434e578343f5d6f8335414</Guid>
+              <Guid>0ea190a77c2e483bbc7f4fcbadc83cdd</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text10</Name>
+              <Name>Text9</Name>
               <Page isRef="4" />
-              <Parent isRef="50" />
-              <Text>{Sum(DataDatosPw,DatosPw.totalf)}</Text>
+              <Parent isRef="52" />
+              <Text>{Sum(DataDatosPw,DatosPw.prod)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="56" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -871,21 +789,21 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text10>
-            <Text12 Ref="57" type="Text" isKey="true">
+            </Text9>
+            <Text10 Ref="57" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>21.6,0,2.8,0.8</ClientRectangle>
+              <ClientRectangle>19,0,2.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
-              <Guid>689b9d2a11b94f2c8acdf97ce2cac6a6</Guid>
+              <Guid>b23648e1e4434e578343f5d6f8335414</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text12</Name>
+              <Name>Text10</Name>
               <Page isRef="4" />
-              <Parent isRef="50" />
-              <Text>{Sum(DataDatosPw,DatosPw.prod - DatosPw.totalf)}</Text>
+              <Parent isRef="52" />
+              <Text>{Sum(DataDatosPw,DatosPw.totalf)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="58" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
@@ -898,8 +816,35 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Totals</Type>
               <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text12 Ref="59" type="Text" isKey="true">
+              <Border>Top;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>21.6,0,2.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Guid>689b9d2a11b94f2c8acdf97ce2cac6a6</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="4" />
+              <Parent isRef="52" />
+              <Text>{Sum(DataDatosPw,DatosPw.prod - DatosPw.totalf)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="60" type="CurrencyFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>8</NegativePattern>
+                <PositivePattern>3</PositivePattern>
+                <Symbol>USD</Symbol>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text12>
-            <Text15 Ref="59" type="Text" isKey="true">
+            <Text15 Ref="61" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>2.4,0,11.2,0.8</ClientRectangle>
@@ -910,14 +855,14 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
               <Page isRef="4" />
-              <Parent isRef="50" />
+              <Parent isRef="52" />
               <Text>TOTALES INFORME:</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text15>
-            <Text19 Ref="60" type="Text" isKey="true">
+            <Text19 Ref="62" type="Text" isKey="true">
               <Border>Top;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -929,10 +874,10 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>Text19</Name>
               <Page isRef="4" />
-              <Parent isRef="50" />
+              <Parent isRef="52" />
               <Text>{Sum(DataDatosPw,DatosPw.profitLoses)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="61" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="63" type="CurrencyFormat" isKey="true">
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>8</NegativePattern>
@@ -959,13 +904,13 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
       <PageHeight>21.01</PageHeight>
       <PageWidth>29.69</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="62" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="64" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="63" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="65" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -978,14 +923,14 @@ tl3VwUAXKh2gC0s5RjTSxSMbsZ55DPxrtvwOK9jOgeApbFIMhlXDtGQO6gSo/9k=</ImageBytes>
   </ReferencedAssemblies>
   <ReportAlias>consolidado0</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>10/21/2017 10:25:08 AM</ReportChanged>
+  <ReportChanged>4/13/2018 11:24:42 AM</ReportChanged>
   <ReportCreated>9/13/2017 8:28:11 PM</ReportCreated>
   <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\consolidado1.mrt</ReportFile>
-  <ReportGuid>0c9abeef52194499bc8bbdef6d4fed66</ReportGuid>
+  <ReportGuid>a4d9bfa6e50b49118f9293a821da2dde</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>consolidado0</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
-  <ReportVersion>2017.2.2.0</ReportVersion>
+  <ReportVersion>2017.1.10.0</ReportVersion>
   <Script>using System;
 using System.Drawing;
 using System.Windows.Forms;

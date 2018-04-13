@@ -388,7 +388,8 @@
         "woNew": "Dar de alta parte desde planificación.",
         "map": "Mapa",
         "longitude": "Longitud",
-        "latitude": "Latitud"
+        "latitude": "Latitud",
+        "geo": "GEO"
     },
     "woGeneral": {
         "title": "Mantenimiento partes de trabajo",
