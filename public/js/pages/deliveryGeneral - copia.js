@@ -18,25 +18,18 @@ var deliveryGeneralAPI = {
         $('#deliveryGeneral-form').submit(function () {
             return false;
         });
-        $('#btnNew').click(deliveryGeneralAPI.newDelivery);
-        deliveryGeneralAPI.getDeliveries('');
+        deliveryGeneralAPI.getPws('');
     },
     // initializes the table
     initDeliveryPwTable: function () {
         var options = aswInit.initTableOptions('dt_delivery');
         options.data = data;
         options.columns = [{
-            data: "id"
+            data: "reference"
         }, {
-            data: "lastDate",
+            data: "name",
         }, {
-            data: "pw.name",
-        }, {
-            data: "worker.name"
-        }, {
-            data: "store.name",
-        }, {
-            data: "comments",
+            data: "initInCharge.name"
         }, {
             data: "id",
             render: function (data, type, row) {
@@ -47,24 +40,36 @@ var deliveryGeneralAPI = {
         }];
         $('#dt_delivery').dataTable(options);
     },
-    newDelivery: function () {
-        // obtain delivery from project (getPw)
-        window.open('deliveryDetail.html?id=0', '_self');
-    },
-    editDelivery: function () {
+    editDelivery: function (id) {
         // obtain delivery from project (getPw)
         window.open(sprintf('deliveryDetail.html?id=%s', id), '_self');
     },
     // obtain projects from the API
-    getDeliveries: function () {
-        var url = sprintf("%s/delivery/?api_key=%s", myconfig.apiUrl, api_key);
+    getPws: function () {
+        var url = sprintf("%s/pw/active/?api_key=%s", myconfig.apiUrl, api_key);
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data, status) {
                 var data2 = [];
-                data2 = data;
+                if (!user.seeNotOwner) {
+                    if (user.worker) {
+                        data.forEach(function (d) {
+                            if (d.initInCharge.id == user.worker.id) {
+                                data2.push(d);
+                            } else {
+                                if (user.seeZone) {
+                                    if (d.zone.id == user.zoneId) {
+                                        data2.push(d);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                } else {
+                    data2 = data;
+                }
                 deliveryGeneralAPI.loadDeliveryPwTable(data2);
             },
             error: function (err) {
@@ -85,10 +90,10 @@ var deliveryGeneralAPI = {
             success: function (data, status) {
                 if (data.length == 0) {
                     // new
-                    //window.open(sprintf('deliveryDetail.html?id=%s&pwId=%s', 0, id), '_self');
+                    window.open(sprintf('deliveryDetail.html?id=%s&pwId=%s', 0, id), '_self');
                 } else {
                     // exist
-                    //window.open(sprintf('deliveryDetail.html?id=%s&pwId=%s', data[0].id, data[0].pw.id), '_self');
+                    window.open(sprintf('deliveryDetail.html?id=%s&pwId=%s', data[0].id, data[0].pw.id), '_self');
                 }
             },
             error: function (err) {

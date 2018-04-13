@@ -558,7 +558,7 @@
         "reference": "Referencia",
         "generate_from_pw": "Generar desde la propuesta",
         "pw_required": "Necesita una propuesta",
-        "pw": "Propuesta",
+        "pw": "Obra",
         "item": "Artículo",
         "quantity": "Cantidad",
         "comments": "Observaciones",
@@ -569,7 +569,8 @@
         "modal_title": "Linea de la salida",
         "deliver": "Entregar",
         "estimate": "Propuesto",
-        "done": "Entregado"
+        "done": "Entregado",
+        "ID": "ID"
     },
     "inventoryGeneral": {
         "title": "Mantenimiento inventarios",

@@ -25,18 +25,12 @@ var deliveryDetailAPI = {
         //
         $('#cmbWorkers').select2(select2_languages[lang]);
         deliveryDetailAPI.loadWorkers();
-        if (user.worker) {
+        if (user.worker){
             deliveryDetailAPI.loadWorkers(user.worker.id);
             $("#cmbWorkers").attr('disabled', 'disabled');
-        }
+        }        
         $('#cmbStores').select2(select2_languages[lang]);
         deliveryDetailAPI.loadStores();
-
-        $('#cmbPws').select2(select2_languages[lang]);
-        deliveryDetailAPI.loadPws();
-        $("#cmbPws").select2().on('change', function (e) {
-            //deliveryDetailAPI.changePw(e.added);
-        });
         // buttons click events
         $('#btnOk').click(deliveryDetailAPI.btnOk());
         $('#btnDeliver').click(deliveryDetailAPI.btnDeliverMessage());
@@ -65,9 +59,9 @@ var deliveryDetailAPI = {
         }
         deliveryDetailAPI.getDelivery(id);
         //
-        // var pwId = aswUtil.gup('pwId');
-        // deliveryDetailAPI.getPw(pwId);
-        // vm.pwId(pwId);
+        var pwId = aswUtil.gup('pwId');
+        deliveryDetailAPI.getPw(pwId);
+        vm.pwId(pwId);
     },
     pageData: function () {
         // knockout objects
@@ -93,10 +87,6 @@ var deliveryDetailAPI = {
         self.optionsItems = ko.observableArray([]);
         self.selectedItems = ko.observableArray([]);
         self.sItem = ko.observable();
-        // pw combo
-        self.optionsPws = ko.observableArray([]);
-        self.selectedPws = ko.observableArray([]);
-        self.sPw = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -111,8 +101,7 @@ var deliveryDetailAPI = {
             rules: {
                 txtLastDate: { required: true },
                 cmbWorkers: { required: true },
-                cmbStores: { required: true },
-                cmbPws: { required: true }
+                cmbStores: { required: true }
             },
             // Messages for form validation
             messages: {
@@ -187,7 +176,7 @@ var deliveryDetailAPI = {
                     id: vm.sStore()
                 },
                 pw: {
-                    id: vm.sPw()
+                    id: vm.pwId()
                 },
                 comments: vm.comments()
             };
@@ -391,36 +380,6 @@ var deliveryDetailAPI = {
             data: JSON.stringify(data),
             success: function (data, status) {
                 window.open('deliveryGeneral.html', '_self');
-            },
-            error: function (err) {
-                aswNotif.errAjax(err);
-                if (err.status == 401) {
-                    window.open('index.html', '_self');
-                }
-            }
-        });
-    },
-    loadPws: function (id) {
-        $.ajax({
-            type: "GET",
-            url: sprintf('%s/pw/combo?api_key=%s', myconfig.apiUrl, api_key),
-            dataType: "json",
-            contentType: "application/json",
-            success: function (data, status) {
-                var options = [{ id: null, name: "" }];
-                var data2 = [];
-                if (!user.seeNotOwner) {
-                    data.forEach(function (d) {
-                        if (user.workOnlyZone && (d.zone.id == user.zoneId || d.zoneId2 == user.zoneId)) {
-                            data2.push(d);
-                        }
-                    });
-                } else {
-                    data2 = data;
-                }
-                options = options.concat(data2);
-                vm.optionsPws(options);
-                $("#cmbPws").val([id]).trigger('change');
             },
             error: function (err) {
                 aswNotif.errAjax(err);

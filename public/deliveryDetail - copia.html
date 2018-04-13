@@ -29,7 +29,7 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
 	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-	<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
+
 
 	<!-- FAVICONS -->
 	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -37,6 +37,7 @@
 
 	<!-- GOOGLE FONT -->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
 
 	<!-- Specifying a Webpage Icon for Web Clip 
 			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
@@ -284,7 +285,7 @@
 							<a href="inventoryGeneral.html">
 								<i class="fa fa-lg fa-fw fa-table"></i> <span data-i18n="menu.store.inventory">Blank</span>
 							</a>
-						</li>						
+						</li>
 					</ul>
 				</li>
 				<li id="invoice" class="">
@@ -375,6 +376,7 @@
 				<div class="col-md-12">
 					<h1 class="txt-color-blueDark">
 						<i class="fa-fw fa fa-archive"></i> <span data-i18n="menu.store.delivery">Inicio</span>
+						<span id="pwname"></span>
 					</h1>
 				</div>
 			</div>
@@ -385,49 +387,98 @@
 						<!-- Widget ID (each widget will need unique ID)-->
 						<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 							<header>
-								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-								<h2 data-i18n="deliveryGeneral.title">Mantenimiento</h2>
+								<span class="widget-icon"> <i class="fa fa-archive"></i> </span>
+								<h2 data-i18n="deliveryDetail.title">Mantenimiento</h2>
 							</header>
-							<div class="row">
-								<form id="deliveryGeneral-form" class="smart-form">
-									<fieldset>
-										<div class="pull-right">
-											<button id="btnNew" data-i18n="[title]deliveryGeneral.new" class="btn btn-success btn-circle btn-lg">
-                                        		<i class="fa fa-lg fa-plus"></i>
-                                        	</button>
-										</div>
-									</fieldset>
-								</form>
+							<div class="widget-body">
+								<div class="row">
+									<form id="delivery-form" class="smart-form">
+										<fieldset>
+											<div class="row">
+												<section class="col col-md-2">
+													<label class="label" data-i18n="deliveryDetail.lastDate">Fecha:</label>
+													<label class="input">
+														<input id="txLastDate" name="txtLastDate" data-bind="value: lastDate" class="datepicker" data-dateformat="dd/mm/yy">
+													</label>
+												</section>
+												<section class="col col-md-5">
+													<label class="label" data-18n="deliveryDetail.worker">Responsable:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbWorkers" name="cmbWorkers" data-bind="options: optionsWorkers, optionsText: 'name', optionsValue: 'id', value: sWorker, valueAllowUnset: true, selectedOptions: selectedWorkers, selected2:{}"></select><i></i>
+													</label>
+												</section>
+												<section class="col col-md-5">
+													<label class="label" data-18n="deliveryDetail.store">Almacen:</label>
+													<label style="width:100%;">
+														<select style="width:100%" id="cmbStores" name="cmbStores" data-bind="options: optionsStores, optionsText: 'name', optionsValue: 'id', value: sStore, valueAllowUnset: true, selectedOptions: selectedStores, selected2:{}"></select><i></i>
+													</label>
+												</section>
+											</div>
+											<div class="row">
+												<section class="col col-md-12">
+													<label class="label" data-i18n="deliveryDetail.comments">Observaciones:</label>
+													<label class="textarea textarea-resizable">
+                                                        <textarea id="txtComments" rows="3" class="custom-scroll" data-bind="value:comments"></textarea>
+	                                                </label>
+												</section>
+											</div>
+										</fieldset>
+										<fieldset>
+											<div class="pull-right">
+												<button id="btnDelete" data-i18n="[title]deliveryDetail.delete" class="btn btn-danger btn-circle btn-lg">
+													<i class="fa fa-lg fa-trash-o"></i>
+												</button>													
+												<button id="btnExit" data-i18n="[title]deliveryDetail.cancel" class="btn btn-warning btn-circle btn-lg">
+													<i class="fa fa-lg fa-sign-out"></i>
+												</button>
+												<button id="btnDeliver" data-i18n="[title]deliveryDetail.deliver" class="btn btn-primary btn-circle btn-lg">
+													<i class="fa fa-lg fa-share-square-o"></i>
+												</button>		
+												<button id="btnPrint" data-i18n="[title]deliveryDetail.print" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-print"></i>
+												</button>																						
+												<button id="btnOk" data-i18n="[title]deliveryDetail.ok" class="btn btn-success btn-circle btn-lg">
+													<i class="fa fa-lg fa-check"></i>
+												</button>
+											</div>
+										</fieldset>
+									</form>
+								</div>
 							</div>
-							<div class="row">
-								<div id="tb_delivery" style="display:none;">
-									<table id="dt_delivery" class="table table-striped table-bordered table-hover" width="100%">
-										<thead>
-											<tr>
-												<th data-class="expand">
-													<i class="fa fa-fw fa-cog text-muted hidden-md hidden-sm hidden-xs"></i>
-													<span data-i18n="deliveryDetail.ID">R</span>
-												</th>
-												<th data-hide="phone">
-													<span data-i18n="deliveryDetail.lastDate"></span>
-												</th>
-												<th data-hide="phone">
-													<span data-i18n="deliveryDetail.pw"></span>
-												</th>
-												<th data-hide="phone">
-													<span data-i18n="deliveryDetail.worker"></span>
-												</th>
-												<th data-hide="phone">
-													<span data-i18n="deliveryDetail.store"></span>
-												</th>
-												<th data-hide="phone">
-													<span data-i18n="deliveryDetail.comments"></span>
-												</th>
-												<th>
-												</th>
-											</tr>
-										</thead>
-									</table>
+						</div>
+						<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false"
+							style="display:none;">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
+								<h2 data-i18n="deliveryDetail.associated_lines">Mantenimiento</h2>
+							</header>
+							<div class="widget-body">
+								<div class="row">
+									<form id="deliveryDetail-form" class="smart-form">
+										<fieldset>
+											<div id="tb_deliveryLine">
+												<table id="dt_deliveryLine" class="table table-striped table-bordered table-hover" width="100%">
+													<thead>
+														<tr>
+															<th data-class="expand">
+																<i class="fa fa-fw fa-cube text-muted hidden-md hidden-sm hidden-xs"></i>
+																<span data-i18n="deliveryDetail.item">R</span>
+															</th>
+															<th data-hide="phone" class="asw-center">
+																<span data-i18n="deliveryDetail.estimate"></span>
+															</th>
+															<th data-hide="phone" class="asw-center">
+																<span data-i18n="deliveryDetail.done"></span>
+															</th>																														
+															<th data-hide="phone" class="asw-center">
+																<span data-i18n="deliveryDetail.quantity"></span>
+															</th>
+														</tr>
+													</thead>
+												</table>
+											</div>
+										</fieldset>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -445,7 +496,63 @@
 		</div>
 	</div>
 
-	<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+	<!-- Modal -->
+	<div class="modal fade" id="deliveryModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+					<h4 class="modal-title">
+						<i class="fa fa-sitemap"></i> <span data-i18n="deliveryDetail.modal_title">ART</span>
+					</h4>
+				</div>
+				<div class="modal-body no-padding">
+					<form id="deliveryModal-form" class="smart-form">
+						<fieldset>
+							<section>
+								<div class="row">
+									<section class="col col-md-6">
+										<label class="label" data-18n="deliveryDetail.item">Articulo:</label>
+										<label style="width:100%;">
+                                            <select style="width:100%" id="cmbItems" name="cmbItems" data-bind="options: optionsItems, optionsText: 'name', optionsValue: 'id', value: sItem, valueAllowUnset: true, selectedOptions: selectedItems, selected2:{}" disabled></select><i></i>
+                                        </label>
+									</section>
+									<section class="col col-md-2">
+										<label class="label" data-18n="deliveryDetail.estimate">Estimado:</label>
+										<span data-bind="text: estimate"></span>
+									</section>
+									<section class="col col-md-2">
+										<label class="label" data-18n="deliveryDetail.done">Entregado:</label>
+										<span data-bind="text: done"></span>
+									</section>
+									<section class="col col-md-2">
+										<label class="label" data-i18n="deliveryDetail.quantity">Cantidad:</label>
+										<label class="input">
+                                            <input id="txtQuantity" name="txtQuantity" type="text" data-bind="value: quantity" />
+                                        </label>
+									</section>
+								</div>
+							</section>
+						</fieldset>
+						<footer>
+							<button id="btnSaveLine" class="btn btn-primary">
+                                <span data-i18n="deliveryDetail.ok">A</span>
+                            </button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+                                <span data-i18n="deliveryDetail.cancel">C</span>
+                            </button>
+						</footer>
+					</form>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking wo name tag)
 		Note: These tiles are completely responsive,
 		you can add as many as you like
 		-->
@@ -520,6 +627,7 @@
 	<script src="locales/select2-languages.js"></script>
 	<script src="locales/numeral-languages.js"></script>
 	<script src="locales/datepicker-languages.js"></script>
+	<script src="locales/select2-languages.js"></script>
 	<!-- PAGE RELATED PLUGIN(S) -->
 	<script src="js/plugin/datatables/jquery.dataTables.min.js"></script>
 	<script src="js/plugin/datatables/dataTables.colVis.min.js"></script>
@@ -530,14 +638,16 @@
 	<!-- ARIADNA Scripts -->
 	<script src="config.js"></script>
 	<script src="js/asw.common.js"></script>
-	<script src="js/pages/deliveryGeneral.js"></script>
+	<script src="js/pages/deliveryModal.js"></script>
+	<script src="js/pages/deliveryLine.js"></script>
+	<script src="js/pages/deliveryDetail.js"></script>
 
 
 
 	<script type="text/javascript">
 		$(document).ready(function() {
 				pageSetUp();
-				aswInit.initPage();
+				deliveryDetailAPI.init();
 		})
 	</script>
 
