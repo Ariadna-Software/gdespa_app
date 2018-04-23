@@ -168,4 +168,11 @@ router.get('/pllines', function (req, res) {
     });
 });
 
+
+router.get('/outitems', function (req, res) {
+    pwbi1Db.getOutItems((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
 module.exports = router;
