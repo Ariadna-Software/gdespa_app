@@ -213,7 +213,7 @@ var obtainHours = function (fromDate, toDate, workerId) {
         url: url,
         contentType: "application/json",
         success: function (data, status) {
-            $("#waitprocess").hide();
+            $("#waitprocess").hide();   
             obtainReportWithExcess(data);
         },
         error: function (err) {

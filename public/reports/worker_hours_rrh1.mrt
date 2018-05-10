@@ -14,7 +14,7 @@
     <DataSources isList="true" count="1">
       <root Ref="3" type="DataTableSource" isKey="true">
         <Alias>root</Alias>
-        <Columns isList="true" count="37">
+        <Columns isList="true" count="38">
           <value>hEHD,System.Double</value>
           <value>hEHN,System.Double</value>
           <value>hH,System.Double</value>
@@ -52,6 +52,7 @@
           <value>nXHM,System.Double</value>
           <value>sXHM,System.Double</value>
           <value>hXHM,System.Double</value>
+          <value>code,System.Double</value>
         </Columns>
         <Dictionary isRef="1" />
         <Name>root</Name>
@@ -223,7 +224,7 @@
               <Name>Text1</Name>
               <Page isRef="4" />
               <Parent isRef="15" />
-              <Text>TRABAJADOR: {root.vName}</Text>
+              <Text>TRABAJADOR: {root.vName} [NR: {root.code}]</Text>
               <TextBrush>[0:0:0]</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -3193,11 +3194,11 @@
   </ReferencedAssemblies>
   <ReportAlias>rrhhHours</ReportAlias>
   <ReportAuthor>rafa@myariadna.com</ReportAuthor>
-  <ReportChanged>1/8/2018 2:14:50 PM</ReportChanged>
+  <ReportChanged>5/10/2018 4:56:52 PM</ReportChanged>
   <ReportCreated>1/1/1970 11:00:00 AM</ReportCreated>
   <ReportDescription>Horas por trabajador</ReportDescription>
-  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\worker_hours_rrhMx.mrt</ReportFile>
-  <ReportGuid>ff8327816b2b4ee797cd2963b8dd5988</ReportGuid>
+  <ReportFile>C:\PROYECTOS\gdespa_app\public\reports\worker_hours_rrh1.mrt</ReportFile>
+  <ReportGuid>48c727aa134747c8884de74c4bbd91ae</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>rrhhHours</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
