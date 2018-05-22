@@ -811,7 +811,8 @@
         "hEHN":"Horas extras nocturnas (Dia nacional / Feriado)",
         "heEHD":"Horas extras diurnas en exceso (Dia nacional / Feriado)",
         "heEHN":"Horas extras nocturnas en exceso (Dia nacional / Feriado)",
-        "initControlDocs": "Fecha a partir de la cual se controlan documentos en propuestas"
+        "initControlDocs": "Fecha a partir de la cual se controlan documentos en propuestas",
+        "uccontalum": "Unidad constructiva por defecto 'Órdenes de medida'"
     },
     "workGeneral": {
         "title": "Mantenimiento tipos obra",

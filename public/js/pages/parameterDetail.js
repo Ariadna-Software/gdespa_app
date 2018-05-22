@@ -19,6 +19,8 @@ var parameterDetailAPI = {
         aswInit.initPerm(user);
         // make active menu option
         $('#parameterDetail').attr('class', 'active');
+        $('#cmbUcContaLum').select2(select2_languages[lang]);
+        parameterDetailAPI.loadUcContaLum();
         // knockout management
         vm = new parameterDetailAPI.pageData();
         ko.applyBindings(vm);
@@ -52,6 +54,10 @@ var parameterDetailAPI = {
         self.heEHD = ko.observable();
         self.heEHN = ko.observable();
         self.initControlDocs = ko.observable();
+        // contalum
+        self.optionsUcContaLum = ko.observableArray([]);
+        self.selectedUcContaLum = ko.observableArray([]);
+        self.sUcContaLum = ko.observable();
 
     },
     loadData: function (data) {
@@ -70,6 +76,8 @@ var parameterDetailAPI = {
         vm.hEHN(data.hEHN);
         vm.heEHD(data.heEHD);
         vm.heEHN(data.heEHN);
+        // carga contalum
+        parameterDetailAPI.loadUcContaLum(data.ucContaLumId);
         vm.initControlDocs(moment(data.initControlDocs).format(i18n.t("util.date_format")));
     },
     // Validates form (jquery validate) 
@@ -126,7 +134,8 @@ var parameterDetailAPI = {
                 hEHN: vm.hEHN(),
                 heEHD: vm.heEHD(),
                 heEHN: vm.heEHN(),
-                initControlDocs: moment(vm.initControlDocs(), i18n.t("util.date_format")).format(i18n.t("util.date_iso"))
+                initControlDocs: moment(vm.initControlDocs(), i18n.t("util.date_format")).format(i18n.t("util.date_iso")),
+                ucContaLumId: vm.sUcContaLum()
             };
             var url = "", type = "";
             // updating record
@@ -149,6 +158,28 @@ var parameterDetailAPI = {
             });
         }
         return mf;
-    }
+    },
+    loadUcContaLum: function (cunitId, pwId) {
+        $.ajax({
+            type: "GET",
+            url: sprintf('%s/cunit/block/?api_key=%s', myconfig.apiUrl, api_key),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, status) {
+                var options = [{
+                    id: null,
+                    name: ""
+                }].concat(data);
+                vm.optionsUcContaLum(options);
+                $("#cmbUcContaLum").val([cunitId]).trigger('change');
+            },
+            error: function (err) {
+                aswNotif.errAjax(err);
+                if (err.status == 401) {
+                    window.open('index.html', '_self');
+                }
+            }
+        });
+    },
 };
 parameterDetailAPI.init();

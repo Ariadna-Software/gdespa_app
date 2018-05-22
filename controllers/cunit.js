@@ -31,6 +31,17 @@ router.get('/', common.midChkApiKey, function (req, res) {
     }
 });
 
+router.get('/block', common.midChkApiKey, function (req, res) {
+    var test = req.query.test && (req.query.test == 'true');
+    cunitDb.getBlock(function (err, cunits) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(cunits);
+        }
+    }, test);
+});
+
 router.get('/estdone', common.midChkApiKey, function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var cunitId = req.query.cunitId;
