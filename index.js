@@ -54,6 +54,7 @@ router.get('/', function(req, res) {
     res.json('GDES PANAMA API / SERVER -- runnig');
 });
 
+app.use('/utility', require('./controllers/utility'));
 // -- registering routes
 // registering routes
 app.use('/api/echo', require('./controllers/echo'));
