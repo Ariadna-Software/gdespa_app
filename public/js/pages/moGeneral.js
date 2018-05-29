@@ -53,16 +53,30 @@ var moGeneralAPI = {
         }, {
             data: "worker.name"
         }, {
+            data: "id",
+            render: function (data, type, row) {
+                var html = "PENDIENTE";
+                if (row.woId) {
+                    html = "EN ORDEN"
+                }
+                return html;
+            }
+        }, {
             data: "comments"
         }, {
             data: "id",
             render: function (data, type, row) {
-                var bt1 = "<button class='btn btn-circle btn-danger btn-lg' onclick='moGeneralAPI.deleteMoMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
-                var bt2 = "<button class='btn btn-circle btn-success btn-lg' onclick='moGeneralAPI.editMo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
+                var bt1 = "<button class='btn btn-circle btn-danger' onclick='moGeneralAPI.deleteMoMessage(" + data + ");' title='Eliminar registro'> <i class='fa fa-trash-o fa-fw'></i> </button>";
+                var bt2 = "<button class='btn btn-circle btn-success' onclick='moGeneralAPI.editMo(" + data + ");' title='Editar registro'> <i class='fa fa-edit fa-fw'></i> </button>";
                 var html = "<div class='pull-right'>" + bt1 + " " + bt2 + "</div>";
                 return html;
             }
         }];
+        options.fnRowCallback = function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            if (!aData.woId) {
+                $('td', nRow).css('background-color', '#f4b642');
+            }
+        };
         $('#dt_mo').dataTable(options);
     },
     searchMo: function () {

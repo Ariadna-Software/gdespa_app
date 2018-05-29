@@ -726,7 +726,8 @@
         "price": "Precio",
         "dayType": "Tipo jornada",
         "meaType": "Tipo parte",
-        "moK": "K"
+        "moK": "K",
+        "order": "ORDEN"
     },
     "luGeneral": {
         "title": "Mantenimiento partes de luminarias",

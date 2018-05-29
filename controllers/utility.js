@@ -10,7 +10,7 @@ var mysql = require('mysql'),
 router.get('/crear-ordenes/:fecha1/:fecha2', function (req, res) {
     var txt = "Crear ordenes";
     var fecha1 = req.params.fecha1;
-    var fecha2 = req.params.fecha1;
+    var fecha2 = req.params.fecha2;
     if (!fecha1 || !fecha2 ) return res.json("La fecha me falta en formato 'YYYY-MM-DD'");
     dbCon.getConnection(function (err, con) {
         if (err) return res.json("Error: " + err.message);
