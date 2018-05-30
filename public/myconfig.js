@@ -3,7 +3,7 @@
     apiUrl: "",
     idiomas: ['en','es'],
     report: {
-        host: "localhost",
+        host: "mysql01.ariadnasw.com",
         database: "gdespa_test",
         port: 3306,
         user: "root",
