@@ -3,7 +3,7 @@ var myconfig = {
     apiUrl: "/api",
     languages: ['es','es-PA', 'en'],
     report: {
-        host: "mysql01.ariadnasw.com",
+        host: "localhost",
         port: 3306,
         database: "gdespa_test",
         user: "root",

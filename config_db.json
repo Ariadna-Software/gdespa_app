@@ -1,13 +1,13 @@
 {
     "prod": {
-        "host": "mysql01.ariadnasw.com",
+        "host": "localhost",
         "user": "root",
         "password": "aritel",
         "database": "gdespa_test",
         "port": 3306
     },
     "test": {
-        "host": "mysql01.ariadnasw.com",
+        "host": "localhost",
         "user": "travis",
         "password": "",
         "database": "gdespa_test",
