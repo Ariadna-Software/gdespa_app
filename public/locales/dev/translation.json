@@ -451,7 +451,8 @@
         "team1": "Brigada",
         "dayType": "Tipo jornada",
         "noDocAllowed": "Para introducir documentos debe haber cantidades en el parte de trabajo",
-        "planned": "Planificado"
+        "planned": "Planificado",
+        "reWork": "Retrabajo"
     },
     "itemInGeneral": {
         "title": "Entradas",

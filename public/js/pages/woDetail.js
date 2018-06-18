@@ -147,6 +147,8 @@ var woDetailAPI = {
         // 
         self.thirdParty = ko.observable();
         self.thirdPartyCompany = ko.observable();
+        //
+        self.reWork = ko.observable();
     },
     loadData: function (data) {
         vm.id(data.id);
@@ -161,6 +163,8 @@ var woDetailAPI = {
         //
         vm.thirdParty(data.thirdParty);
         vm.thirdPartyCompany(data.thirdPartyCompany);
+        //
+        vm.reWork(data.reWork);
     },
     // Validates form (jquery validate) 
     dataOk: function () {
@@ -234,7 +238,8 @@ var woDetailAPI = {
                 thirdPartyCompany: vm.thirdPartyCompany(),
                 teamId: vm.sTeam(),
                 dayTypeId: vm.sDayType(),
-                zoneId: vm.sZone()
+                zoneId: vm.sZone(),
+                reWork: vm.reWork()
             };
             var url = "", type = "";
             if (vm.id() == 0) {
