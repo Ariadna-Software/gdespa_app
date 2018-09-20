@@ -52,7 +52,7 @@ var pwLineAPI = {
                 if (vm.sStatus() > 0 && !user.modPw) {
                     html = "<div class='pull-right'>" + bt3 + "</div>";
                 }
-                if (vm.status() > 2 && !user.perPwClosed) {
+                if (vm.status() > 2 && vm.status() != 6 && !user.perPwClosed) {
                     html = "<div class='pull-right'>" + bt3 + "</div>";
                 }
                 return html;
