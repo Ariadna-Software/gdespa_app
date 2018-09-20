@@ -175,4 +175,48 @@ router.get('/outitems', function (req, res) {
         res.json(regs);
     });
 });
+
+router.get('/rpt-wodetallado', function (req, res) {
+    pwbi1Db.getWoDetallado((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/rpt-wocostedetallado/cabcoste', function (req, res) {
+    pwbi1Db.getWoCostDetalladoCabCoste((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/rpt-wocostedetallado/cabtrabajador', function (req, res) {
+    pwbi1Db.getWoCostDetalladoCabTrabajador((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/rpt-wocostedetallado/cabvehiculo', function (req, res) {
+    pwbi1Db.getWoCostDetalladoCabVehiculo((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/rpt-wocostedetallado/cabarticulos', function (req, res) {
+    pwbi1Db.getWoCostDetalladoCabArticulos((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
+router.get('/table/:table', function (req, res) {
+    var table = req.params.table;
+    pwbi1Db.getTable(table, (err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
 module.exports = router;
