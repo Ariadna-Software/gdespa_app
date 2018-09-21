@@ -219,4 +219,11 @@ router.get('/table/:table', function (req, res) {
     });
 });
 
+router.get('/wo_line', function (req, res) {
+    pwbi1Db.getWoLines((err, regs) => {
+        if (err) return res.status(500).send(err.message);
+        res.json(regs);
+    });
+});
+
 module.exports = router;
